@@ -1,6 +1,6 @@
 import { combined, fetchStart, fetchError, fetchSuccess } from './common';
 
-import constants from '../constants/actions';
+import * as constants from '../constants/actions';
 
 const defaultState = {
   data: [],
