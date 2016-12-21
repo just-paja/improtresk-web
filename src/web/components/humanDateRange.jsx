@@ -5,7 +5,7 @@ import HumanDate from './humanDate';
 const HumanDateRange = ({ end, start }) => (
   <span>
     <HumanDate date={start} showYear={false} />
-    -
+    {' '}-{' '}
     <HumanDate date={end} />
   </span>
 );
