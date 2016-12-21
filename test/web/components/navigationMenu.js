@@ -18,8 +18,28 @@ describe('Navigation menu component', () => {
       />
     ).node).to.eql(
       <Nav>
-        <LinkContainer to="/pro-ucastniky" >
-          <NavItem>Pro účastníky</NavItem>
+        <NavDropdown id="navigation-dropdown" title="Pro účastníky">
+          <LinkContainer to="/pro-ucastniky/ubytovani">
+            <NavItem>Ubytování</NavItem>
+          </LinkContainer>
+          <LinkContainer to="/pro-ucastniky/jidlo">
+            <NavItem>Jídlo</NavItem>
+          </LinkContainer>
+          <LinkContainer to="/pro-ucastniky/poplatky">
+            <NavItem>Poplatky</NavItem>
+          </LinkContainer>
+          <LinkContainer to="/jizdomat">
+            <NavItem>Improjízdomat</NavItem>
+          </LinkContainer>
+          <LinkContainer to="/pro-ucastniky/tipy">
+            <NavItem>Tipy</NavItem>
+          </LinkContainer>
+          <LinkContainer to="/pro-ucastniky/podminky">
+            <NavItem>Podmínky</NavItem>
+          </LinkContainer>
+        </NavDropdown>
+        <LinkContainer to="/workshopy">
+          <NavItem>Workshopy</NavItem>
         </LinkContainer>
         <LinkContainer to="/prihlaska" >
           <NavItem>Přihláška</NavItem>
@@ -48,8 +68,28 @@ describe('Navigation menu component', () => {
       />
     ).node).to.eql(
       <Nav>
-        <LinkContainer to="/pro-ucastniky" >
-          <NavItem>Pro účastníky</NavItem>
+        <NavDropdown id="navigation-dropdown" title="Pro účastníky">
+          <LinkContainer to="/pro-ucastniky/ubytovani">
+            <NavItem>Ubytování</NavItem>
+          </LinkContainer>
+          <LinkContainer to="/pro-ucastniky/jidlo">
+            <NavItem>Jídlo</NavItem>
+          </LinkContainer>
+          <LinkContainer to="/pro-ucastniky/poplatky">
+            <NavItem>Poplatky</NavItem>
+          </LinkContainer>
+          <LinkContainer to="/jizdomat">
+            <NavItem>Improjízdomat</NavItem>
+          </LinkContainer>
+          <LinkContainer to="/pro-ucastniky/tipy">
+            <NavItem>Tipy</NavItem>
+          </LinkContainer>
+          <LinkContainer to="/pro-ucastniky/podminky">
+            <NavItem>Podmínky</NavItem>
+          </LinkContainer>
+        </NavDropdown>
+        <LinkContainer to="/workshopy">
+          <NavItem>Workshopy</NavItem>
         </LinkContainer>
         <LinkContainer to="/prihlaska" >
           <NavItem>Přihláška</NavItem>

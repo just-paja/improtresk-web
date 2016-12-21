@@ -10,7 +10,13 @@ import Schedule from './containers/schedule';
 
 const urlTable = {
   home: '/',
-  forAttending: '/pro-ucastniky',
+  accomodation: '/pro-ucastniky/ubytovani',
+  food: '/pro-ucastniky/jidlo',
+  fees: '/pro-ucastniky/poplatky',
+  tips: '/pro-ucastniky/tipy',
+  conditions: '/pro-ucastniky/podminky',
+  workshops: '/workshopy',
+  drive: '/jizdomat',
   'news:item': '/novinky/:slug',
   signup: '/prihlaska',
   schedule: '/program',

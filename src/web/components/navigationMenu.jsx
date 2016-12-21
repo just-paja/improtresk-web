@@ -7,8 +7,28 @@ import { reverse } from '../routes';
 
 const NavigationMenu = ({ years, ...props }) => (
   <Nav {...props}>
-    <LinkContainer to={reverse('forAttending')}>
-      <NavItem>Pro účastníky</NavItem>
+    <NavDropdown id="navigation-dropdown" title="Pro účastníky">
+      <LinkContainer to={reverse('accomodation')}>
+        <NavItem>Ubytování</NavItem>
+      </LinkContainer>
+      <LinkContainer to={reverse('food')}>
+        <NavItem>Jídlo</NavItem>
+      </LinkContainer>
+      <LinkContainer to={reverse('fees')}>
+        <NavItem>Poplatky</NavItem>
+      </LinkContainer>
+      <LinkContainer to={reverse('drive')}>
+        <NavItem>Improjízdomat</NavItem>
+      </LinkContainer>
+      <LinkContainer to={reverse('tips')}>
+        <NavItem>Tipy</NavItem>
+      </LinkContainer>
+      <LinkContainer to={reverse('conditions')}>
+        <NavItem>Podmínky</NavItem>
+      </LinkContainer>
+    </NavDropdown>
+    <LinkContainer to={reverse('workshops')}>
+      <NavItem>Workshopy</NavItem>
     </LinkContainer>
     <LinkContainer to={reverse('signup')}>
       <NavItem>Přihláška</NavItem>
