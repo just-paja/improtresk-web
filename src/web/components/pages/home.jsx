@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 import News from '../news';
+import YearDetail from '../yearDetail';
 
 export default class Home extends Component {
   componentDidMount() {
@@ -8,11 +9,24 @@ export default class Home extends Component {
   }
 
   render() {
-    const { news } = this.props;
+    const { news, ready, year } = this.props;
+
+    if (!ready) {
+      return null;
+    }
 
     return (
       <div>
         <h1>Improtřesk</h1>
+        {(
+          year ?
+            <YearDetail
+              endAt={year.endAt}
+              startAt={year.startAt}
+              topic={year.topic}
+              year={year.year}
+            /> : null
+        )}
         <News news={news} />
       </div>
     );
@@ -20,6 +34,17 @@ export default class Home extends Component {
 }
 
 Home.propTypes = {
-  news: PropTypes.arrayOf(PropTypes.object),
+  news: PropTypes.arrayOf(PropTypes.object).isRequired,
   onMount: PropTypes.func.isRequired,
+  ready: PropTypes.bool,
+  year: PropTypes.shape({
+    endAt: PropTypes.string,
+    startAt: PropTypes.string,
+    topic: PropTypes.string,
+    year: PropTypes.string,
+  }),
+};
+
+Home.defaultProps = {
+  ready: false,
 };
