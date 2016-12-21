@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
 
 import HumanDateRange from './humanDateRange';
+import styles from './yearDetail.css';
 
 const YearDetail = ({ endAt, startAt, topic, year }) => (
   <div className="text-center">
-    <h1>Improtřesk {year} <small>{topic}</small></h1>
-    <div>
+    <h1>Improtřesk {year} <small className={styles.topic}><i>{topic}</i></small></h1>
+    <div className={styles.upcomingDate}>
       <HumanDateRange
         end={endAt}
         start={startAt}
