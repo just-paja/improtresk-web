@@ -7,7 +7,7 @@ import { shallow } from 'enzyme';
 
 import NavigationMenu from '../../../src/web/components/navigationMenu';
 
-describe('Navigation component', () => {
+describe('Navigation menu component', () => {
   it('renders layout and content', () => {
     expect(shallow(
       <NavigationMenu
