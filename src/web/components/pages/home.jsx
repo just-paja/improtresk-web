@@ -40,7 +40,7 @@ export default class Home extends Component {
             </p>
           </Col>
           <Col md={6}>
-            <h2>Aktuality</h2>
+            <h2>Novinky</h2>
             <News news={news} />
           </Col>
         </Row>
