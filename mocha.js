@@ -1,8 +1,11 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import chaiJsx from 'jsx-chai';
+import cssHook from 'css-modules-require-hook';
 
-import './src/server/mainCss';
+cssHook({
+  generateScopedName: '[name]-[local]',
+});
 
 chai.use(chaiHttp);
 chai.use(chaiJsx);
