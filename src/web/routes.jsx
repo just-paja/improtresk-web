@@ -7,6 +7,7 @@ import App from './containers/app';
 import Contact from './containers/contact';
 import Home from './containers/home';
 import Schedule from './containers/schedule';
+import Workshops from './containers/workshops';
 
 const urlTable = {
   home: '/',
@@ -16,6 +17,7 @@ const urlTable = {
   tips: '/pro-ucastniky/tipy',
   conditions: '/pro-ucastniky/podminky',
   workshops: '/workshopy',
+  'workshops:item': '/workshopy/:slug',
   drive: '/jizdomat',
   'news:item': '/novinky/:slug',
   signup: '/prihlaska',
@@ -36,6 +38,7 @@ export default function configureRoutes() {
     <Route path={urlTable.home} component={App}>
       <IndexRoute component={Home} />
       <Route path={urlTable.schedule} component={Schedule} />
+      <Route path={urlTable.workshops} component={Workshops} />
       <Route path={urlTable.contact} component={Contact} />
     </Route>
   );
