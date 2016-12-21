@@ -1,13 +1,22 @@
 import React, { PropTypes } from 'react';
 
+import { remove } from 'diacritics';
+
 import Link from './link';
 
-const PermaLink = ({ id, children, title, to, routeParams }) => (
+const transformToSlug = str =>
+  remove(str)
+    .replace(/[\s-]+/g, '-')
+    .toLowerCase()
+    .replace(/[^a-z-]/g, '')
+    .substr(0, 48);
+
+const PermaLink = ({ id, children, title, to, routeParams = {} }) => (
   <Link
     to={to}
     params={{
       ...routeParams,
-      slug: `${title}-${id}`,
+      slug: `${transformToSlug(title)}-${id}`,
     }}
   >{children}</Link>
 );
@@ -22,7 +31,7 @@ PermaLink.propTypes = {
     PropTypes.number,
   ]).isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  routeParams: PropTypes.object.isRequired,
+  routeParams: PropTypes.object,
   title: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
 };
