@@ -1,5 +1,8 @@
 import React, { PropTypes } from 'react';
 
+import { Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+
 import HumanDateRange from './humanDateRange';
 import styles from './yearDetail.css';
 
@@ -12,6 +15,9 @@ const YearDetail = ({ endAt, startAt, topic, year }) => (
         start={startAt}
       />
     </div>
+    <LinkContainer to="/prihlaska">
+      <Button bsStyle="primary">Přihláška</Button>
+    </LinkContainer>
   </div>
 );
 
