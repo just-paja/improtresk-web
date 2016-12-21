@@ -4,6 +4,7 @@ import React from 'react';
 import { IndexRoute, Route } from 'react-router';
 
 import App from './containers/app';
+import Contact from './containers/contact';
 import Home from './containers/home';
 import Schedule from './containers/schedule';
 
@@ -29,7 +30,7 @@ export default function configureRoutes() {
     <Route path={urlTable.home} component={App}>
       <IndexRoute component={Home} />
       <Route path={urlTable.schedule} component={Schedule} />
-      <Route path={urlTable.contact} component={Home} />
+      <Route path={urlTable.contact} component={Contact} />
     </Route>
   );
 }
