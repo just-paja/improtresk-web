@@ -3,7 +3,7 @@ import React from 'react';
 import { IndexRoute, Route } from 'react-router';
 
 import App from './containers/app';
-import Home from './components/pages/home';
+import Home from './containers/home';
 
 export default function configureRoutes() {
   return (
