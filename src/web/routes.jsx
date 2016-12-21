@@ -6,6 +6,7 @@ import { IndexRoute, Route } from 'react-router';
 import App from './containers/app';
 import Contact from './containers/contact';
 import Home from './containers/home';
+import NotFound from './components/notFound';
 import Schedule from './containers/schedule';
 import Workshops from './containers/workshops';
 
@@ -40,6 +41,7 @@ export default function configureRoutes() {
       <Route path={urlTable.schedule} component={Schedule} />
       <Route path={urlTable.workshops} component={Workshops} />
       <Route path={urlTable.contact} component={Contact} />
+      <Route path="*" component={NotFound} />
     </Route>
   );
 }

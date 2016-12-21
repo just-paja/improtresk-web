@@ -11,7 +11,7 @@ describe('Not Found error component', () => {
       <NotFound />
     ).node).to.eql(
       <div>
-        <h1>Cíl nenalezen</h1>
+        <h1>Stránka nenalezena</h1>
         <p>
           Stránka kterou hledáte nebyla nalezena. Zkontrolujte prosím URL a zeptejte se
           toho kdo vám dal odkaz jestli vás opravdu chtěl odkázat sem.
