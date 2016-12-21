@@ -8,6 +8,7 @@ import Contact from './containers/contact';
 import Home from './containers/home';
 import NotFound from './components/notFound';
 import Schedule from './containers/schedule';
+import WorkshopDetail from './containers/workshopDetail';
 import Workshops from './containers/workshops';
 
 const urlTable = {
@@ -30,6 +31,10 @@ const urlTable = {
 const resolver = new Crossing(new RegExp(':([A-Za-z0-9-_%]{1,})'));
 resolver.load(urlTable);
 
+export function idFromSlug(slug) {
+  return slug.split('-').pop();
+}
+
 export function reverse(url, params) {
   return resolver.get(url, params);
 }
@@ -40,6 +45,7 @@ export default function configureRoutes() {
       <IndexRoute component={Home} />
       <Route path={urlTable.schedule} component={Schedule} />
       <Route path={urlTable.workshops} component={Workshops} />
+      <Route path={urlTable['workshops:item']} component={WorkshopDetail} />
       <Route path={urlTable.contact} component={Contact} />
       <Route path="*" component={NotFound} />
     </Route>
