@@ -1,11 +1,10 @@
 import { call, fork, put, select } from 'redux-saga/effects';
 
-export const fetchResource = (resource, { onStart, onSuccess, onError }) =>
+export const fetchResource = (resource, action, { onStart, onSuccess, onError }) =>
   function* fetchResourceInner() {
-    console.log('resource inner');
     yield put({ type: onStart });
     try {
-      const res = yield call(resource);
+      const res = yield call(resource, action);
       const data = yield res.json();
 
       yield put({ type: onSuccess, data });
@@ -15,10 +14,10 @@ export const fetchResource = (resource, { onStart, onSuccess, onError }) =>
   };
 
 export const fetchResourceIfNeeded = (resource, selector, constants) =>
-  function* fetchResourceIfNeededInner() {
+  function* fetchResourceIfNeededInner(action) {
     const valid = yield select(selector);
 
     if (!valid) {
-      yield fork(fetchResource(resource, constants));
+      yield fork(fetchResource(resource, action, constants));
     }
   };

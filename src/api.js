@@ -10,4 +10,6 @@ export const fetchNews = () => apiFetch('news');
 
 export const fetchYears = () => apiFetch('years');
 
+export const fetchWorkshopDetail = ({ workshop }) => apiFetch(`workshops/${workshop}`);
+
 export const fetchWorkshops = () => apiFetch('workshops');
