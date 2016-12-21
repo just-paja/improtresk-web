@@ -1,6 +1,10 @@
 import { fork } from 'redux-saga/effects';
 
-const sagas = [];
+import years from './years';
+
+const sagas = [
+  ...years,
+];
 
 export default function* () {
   yield sagas.map(saga => fork(saga));
