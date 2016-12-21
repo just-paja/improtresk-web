@@ -36,6 +36,7 @@
     "bootswatch": "^3.3.7",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
+    "crossing": "^1.2.1",
     "css-loader": "^0.26.1",
     "css-modules-require-hook": "^4.0.5",
     "enzyme": "^2.6.0",

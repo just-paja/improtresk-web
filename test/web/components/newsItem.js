@@ -18,7 +18,7 @@ describe('News item component', () => {
     ).node).to.eql(
       <div>
         <div>foo</div>
-        <PermaLink id={21} title="foo">
+        <PermaLink id={21} title="foo" to="news:item">
           <HumanDate date="2016-01-02T03:04:05" showTime />
         </PermaLink>
       </div>

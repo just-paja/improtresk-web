@@ -28,10 +28,10 @@ describe('Navigation menu component', () => {
           <NavItem>Program</NavItem>
         </LinkContainer>
         <NavDropdown id="navigation-dropdown" title="Archív">
-          <LinkContainer to="/archiv/:2016">
+          <LinkContainer to="/archiv/2016">
             <NavItem>2016 - Foo</NavItem>
           </LinkContainer>
-          <LinkContainer to="/archiv/:2017">
+          <LinkContainer to="/archiv/2017">
             <NavItem>2017 - Bar</NavItem>
           </LinkContainer>
         </NavDropdown>

@@ -6,7 +6,7 @@ import PermaLink from './permaLink';
 const NewsItem = ({ id, text, createdAt }) => (
   <div>
     <div>{text}</div>
-    <PermaLink id={id} title={text}>
+    <PermaLink id={id} title={text} to="news:item">
       <HumanDate date={createdAt} showTime />
     </PermaLink>
   </div>
