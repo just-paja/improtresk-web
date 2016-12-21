@@ -1,6 +1,8 @@
 import { takeLatest } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 
+import { ifNeeded } from './common';
+
 import * as api from '../../api';
 import * as constants from '../constants/actions';
 
@@ -17,7 +19,7 @@ function* fetchNews() {
 }
 
 export function* fetchNewsOnHomeMount() {
-  yield* takeLatest(constants.HOME_MOUNTED, fetchNews);
+  yield* takeLatest(constants.HOME_MOUNTED, ifNeeded(fetchNews, state => state.news.valid));
 }
 
 export default [

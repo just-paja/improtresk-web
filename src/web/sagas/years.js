@@ -1,6 +1,8 @@
 import { takeLatest } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 
+import { ifNeeded } from './common';
+
 import * as api from '../../api';
 import * as constants from '../constants/actions';
 
@@ -17,7 +19,7 @@ function* fetchYears() {
 }
 
 export function* fetchYearsOnMount() {
-  yield* takeLatest(constants.APP_MOUNTED, fetchYears);
+  yield* takeLatest(constants.APP_MOUNTED, ifNeeded(fetchYears, state => state.years.valid));
 }
 
 export default [
