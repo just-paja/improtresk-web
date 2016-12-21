@@ -17,7 +17,7 @@ const NavigationMenu = ({ years, ...props }) => (
     <NavDropdown id="navigation-dropdown" title="Archív">
       {(years.length ?
         years.map(yearRun => (
-          <LinkContainer to={`/archiv/:${yearRun.year}`}>
+          <LinkContainer key={yearRun.year} to={`/archiv/:${yearRun.year}`}>
             <NavItem>{yearRun.year} - {yearRun.topic}</NavItem>
           </LinkContainer>
         )) :
