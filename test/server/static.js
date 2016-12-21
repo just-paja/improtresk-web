@@ -10,13 +10,13 @@ describe('Server', () => {
   beforeEach(() => {
     app = runServer({
       logLevel: 'warn',
-      port: 3001,
+      port: 3005,
     });
-    return app;
+    return app.ready;
   });
 
   afterEach(() => {
-    app.close();
+    app.server.close();
   });
 
   it('returns home title when requesting /', () =>

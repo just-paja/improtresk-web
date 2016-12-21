@@ -32,7 +32,12 @@ export default function server(userConfig = {}) {
   app.use(routerRender);
   app.use(errorRender);
 
-  const promise = app.listen(defaultConfig.port);
-  winston.log('info', `Started server on port ${defaultConfig.port}`);
-  return promise;
+  app.ready = new Promise((resolve) => {
+    app.server = app.listen(config.port, () => {
+      winston.log('info', `Started server on port ${config.port}`);
+      resolve();
+    });
+  });
+
+  return app;
 }
