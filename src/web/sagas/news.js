@@ -16,10 +16,10 @@ function* fetchNews() {
   }
 }
 
-export function* fetchNewsOnMount() {
-  yield* takeLatest(constants.APP_MOUNTED, fetchNews);
+export function* fetchNewsOnHomeMount() {
+  yield* takeLatest(constants.HOME_MOUNTED, fetchNews);
 }
 
 export default [
-  fetchNewsOnMount,
+  fetchNewsOnHomeMount,
 ];

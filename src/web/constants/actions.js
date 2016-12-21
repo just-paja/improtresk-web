@@ -1,4 +1,5 @@
 export const APP_MOUNTED = 'APP_MOUNTED';
+export const HOME_MOUNTED = 'HOME_MOUNTED';
 
 export const NEWS_FETCH_STARTED = 'NEWS_FETCH_STARTED';
 export const NEWS_FETCH_SUCCESS = 'NEWS_FETCH_SUCCESS';

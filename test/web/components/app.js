@@ -1,4 +1,5 @@
 import React from 'react';
+import sinon from 'sinon';
 
 import { expect } from 'chai';
 import { Grid } from 'react-bootstrap';
@@ -11,8 +12,9 @@ describe('App component', () => {
   it('renders layout and content', () => {
     expect(shallow(
       <App
+        onMount={() => {}}
         years={[
-          { year: '20016', topic: 'Ovce' },
+          { year: '2016', topic: 'Ovce' },
         ]}
       >
         <div>foo</div>
@@ -21,11 +23,26 @@ describe('App component', () => {
       <Grid className="improtresk-app">
         <Navigation
           years={[
-            { year: '20016', topic: 'Ovce' },
+            { year: '2016', topic: 'Ovce' },
           ]}
         />
         <div>foo</div>
       </Grid>
     );
+  });
+
+  it('calls onMount on componentDidMount', () => {
+    const mountSpy = sinon.spy();
+    const comp = shallow(
+      <App
+        onMount={mountSpy}
+        years={[
+          { year: '2016', topic: 'Ovce' },
+        ]}
+      />
+    );
+
+    comp.instance().componentDidMount();
+    expect(mountSpy.calledOnce).to.equal(true);
   });
 });
