@@ -11,6 +11,11 @@ const pageBase = ({ markup }) => (
         rel="stylesheet"
         href="/static/bootswatch/bootstrap.min.css"
       />
+      <link
+        type="text/css"
+        rel="stylesheet"
+        href="/static/font-awesome/css/font-awesome.min.css"
+      />
     </head>
     <body>
       {/* eslint-disable react/no-danger */}
