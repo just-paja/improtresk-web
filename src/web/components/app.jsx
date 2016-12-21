@@ -7,7 +7,7 @@ import './app.css';
 
 export default class App extends Component {
   componentDidMount() {
-    this.props.onFetchConfig();
+    this.props.onMount();
   }
 
   render() {
@@ -27,6 +27,6 @@ App.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
-  onFetchConfig: PropTypes.func.isRequired,
+  onMount: PropTypes.func.isRequired,
   years: PropTypes.arrayOf(PropTypes.object),
 };

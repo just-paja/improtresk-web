@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  onFetchConfig: () => ({ type: actions.APP_MOUNTED }),
+  onMount: () => ({ type: actions.APP_MOUNTED }),
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

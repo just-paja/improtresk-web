@@ -7,9 +7,10 @@
   "scripts": {
     "start": "babel-node ./src/server/main",
     "test:lint": "eslint webpack src test",
+    "test:coverage": "babel-node node_modules/babel-istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha --report clover --report lcov --report html -- --recursive --require ./mocha.js",
     "test:unit": "mocha --compilers babel-register -r mocha.js --recursive test",
     "test:watch": "npm run test:unit -- -w --watch-extensions js,jsx,css test",
-    "test": "npm run test:lint && npm run test:unit"
+    "test": "npm run test:lint && npm run test:coverage"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/just-paja/improtresk-web#readme",
   "dependencies": {
+    "babel-istanbul": "^0.12.1",
     "babel-loader": "^6.2.10",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-polyfill": "^6.20.0",
@@ -50,6 +52,7 @@
     "jsx-chai": "^4.0.0",
     "mocha": "^3.2.0",
     "moment": "^2.17.1",
+    "nock": "^9.0.2",
     "postcss-cssnext": "^2.9.0",
     "postcss-import": "^9.0.0",
     "postcss-loader": "^1.2.1",
@@ -64,6 +67,7 @@
     "redux-logger": "^2.7.4",
     "redux-saga": "^0.13.0",
     "reselect": "^2.5.4",
+    "sinon": "^1.17.6",
     "style-loader": "^0.13.1",
     "webpack": "^1.14.0",
     "webpack-dev-middleware": "^1.9.0",
