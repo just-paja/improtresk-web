@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { expect } from 'chai';
-import { Link } from 'react-router';
 import { Navbar } from 'react-bootstrap';
 import { shallow } from 'enzyme';
 
+import Link from '../../../src/web/components/link';
 import Navigation from '../../../src/web/components/navigation';
 import NavigationMenu from '../../../src/web/components/navigationMenu';
 
@@ -21,7 +21,7 @@ describe('Navigation component', () => {
       <Navbar fixedTop>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to="/">Improtřesk</Link>
+            <Link to="home">Improtřesk</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>

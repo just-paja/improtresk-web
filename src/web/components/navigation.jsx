@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
 
-import { Link } from 'react-router';
 import { Navbar } from 'react-bootstrap';
 
+import Link from './link';
 import NavigationMenu from './navigationMenu';
 
 const Navigation = ({ years }) => (
   <Navbar fixedTop>
     <Navbar.Header>
       <Navbar.Brand>
-        <Link to="/">Improtřesk</Link>
+        <Link to="home">Improtřesk</Link>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
