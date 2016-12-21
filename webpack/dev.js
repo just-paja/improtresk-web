@@ -47,5 +47,6 @@ export default {
       },
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.ContextReplacementPlugin(/moment[/]locale$/, /^\.\/(en|ko|ja|zh-cn)$/),
   ],
 };

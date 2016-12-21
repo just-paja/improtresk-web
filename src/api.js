@@ -6,4 +6,6 @@ export const getApiUrl = path => `${API_SOURCE}/${path}`;
 
 export const apiFetch = url => fetch(getApiUrl(url));
 
+export const fetchNews = () => apiFetch('news');
+
 export const fetchYears = () => apiFetch('years');

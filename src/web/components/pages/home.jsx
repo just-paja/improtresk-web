@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-const Home = () => (
+import News from '../news';
+
+const Home = ({ news }) => (
   <div>
-    Foo bar ss
+    <h1>Improtřesk</h1>
+    <News news={news} />
   </div>
 );
+
+Home.propTypes = {
+  news: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default Home;
