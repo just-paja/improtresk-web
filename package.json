@@ -39,6 +39,7 @@
     "crossing": "^1.2.1",
     "css-loader": "^0.26.1",
     "css-modules-require-hook": "^4.0.5",
+    "diacritics": "^1.2.3",
     "enzyme": "^2.6.0",
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^13.0.0",
