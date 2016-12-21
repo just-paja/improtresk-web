@@ -16,6 +16,7 @@ export const fetchSuccess = (state, action) => ({
   loading: false,
   data: action.data,
   ready: true,
+  valid: true,
 });
 
 export const fetchError = (state, action) => ({

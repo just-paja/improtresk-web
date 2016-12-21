@@ -29,6 +29,7 @@ describe('News reducer', () => {
     )).to.eql({
       loading: false,
       ready: true,
+      valid: true,
       data: [
         { year: '2016' },
         { year: '2017' },
