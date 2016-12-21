@@ -1,16 +1,29 @@
 import React, { PropTypes } from 'react';
 
 import { LinkContainer } from 'react-router-bootstrap';
-import { Nav, NavItem } from 'react-bootstrap';
+import { Nav, NavDropdown, NavItem } from 'react-bootstrap';
 
-const NavigationMenu = props => (
+const NavigationMenu = ({ years, ...props }) => (
   <Nav {...props}>
-    <LinkContainer onlyActiveOnIndex to="/" >
-      <NavItem>Home</NavItem>
+    <LinkContainer to="/pro-ucastniky">
+      <NavItem>Pro účastníky</NavItem>
     </LinkContainer>
-    <LinkContainer to="/archiv" >
-      <NavItem>Archiv</NavItem>
+    <LinkContainer to="/prihlaska">
+      <NavItem>Přihláška</NavItem>
     </LinkContainer>
+    <LinkContainer to="/program">
+      <NavItem>Program</NavItem>
+    </LinkContainer>
+    <NavDropdown id="navigation-dropdown" title="Archív">
+      {(years.length ?
+        years.map(yearRun => (
+          <LinkContainer to={`/archiv/:${yearRun.year}`}>
+            <NavItem>{yearRun.year} - {yearRun.topic}</NavItem>
+          </LinkContainer>
+        )) :
+        <NavItem disabled>Archív je prázdný</NavItem>
+      )}
+    </NavDropdown>
     <LinkContainer to="/kontakt">
       <NavItem>Kontakt</NavItem>
     </LinkContainer>
@@ -18,7 +31,7 @@ const NavigationMenu = props => (
 );
 
 NavigationMenu.propTypes = {
-  years: PropTypes.arrayOf(PropTypes.string),
+  years: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default NavigationMenu;

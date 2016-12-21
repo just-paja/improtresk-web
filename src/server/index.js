@@ -1,3 +1,4 @@
+import deviceMiddleware from 'express-device';
 import express from 'express';
 import bodyParser from 'body-parser';
 import winston from 'winston';
@@ -19,6 +20,7 @@ export default function server(userConfig = {}) {
 
   app.use('/static', staticMiddleware);
 
+  app.use(deviceMiddleware.capture());
   app.use(bodyParser.json());
   app.use(bodyParser.json({ type: 'application/json' }));
 

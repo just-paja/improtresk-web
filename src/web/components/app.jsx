@@ -5,9 +5,9 @@ import Navigation from './navigation';
 
 import './app.css';
 
-const App = ({ children }) => (
+const App = ({ children, years }) => (
   <Grid className="improtresk-app">
-    <Navigation />
+    <Navigation years={years} />
     {children}
   </Grid>
 );
@@ -17,6 +17,7 @@ App.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  years: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default App;

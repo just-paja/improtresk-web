@@ -2,34 +2,34 @@ import 'babel-polyfill';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Router from 'react-router';
 
-import { Provider } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 import configureStore from './store';
-import configureRoutes from './routes';
+import RootDefault from './components/root';
 import sagas from './sagas';
 
 // eslint-disable-next-line no-underscore-dangle
 const initialState = window.__INITIAL_STATE__;
 const store = configureStore(initialState);
 
-const render = () => {
+const render = (RootComponent) => {
   store.runSaga(sagas);
 
   ReactDOM.render(
-    <Provider store={store}>
-      <Router
-        history={history}
-        routes={configureRoutes(store)}
-      />
-    </Provider>,
+    <RootComponent
+      history={browserHistory}
+      store={store}
+    />,
     document.getElementById('appContent')
   );
 };
 
-document.addEventListener('DOMContentLoaded', () => render);
+render(RootDefault);
 
 if (module.hot) {
-  module.hot.accept();
+  module.hot.accept('./components/root', () => {
+    // eslint-disable-next-line global-require
+    render(require('./components/root').default);
+  });
 }
