@@ -11,7 +11,10 @@ describe('Navigation component', () => {
   it('renders layout and content', () => {
     expect(shallow(
       <NavigationMenu
-        years={['2016', '2017']}
+        years={[
+          { year: '2016', topic: 'Foo' },
+          { year: '2017', topic: 'Bar' },
+        ]}
       />
     ).node).to.eql(
       <Nav>
@@ -24,13 +27,38 @@ describe('Navigation component', () => {
         <LinkContainer to="/program" >
           <NavItem>Program</NavItem>
         </LinkContainer>
-        <NavDropdown title="Archív">
+        <NavDropdown id="navigation-dropdown" title="Archív">
           <LinkContainer to="/archiv/:2016">
-            <NavItem>2016</NavItem>
+            <NavItem>2016 - Foo</NavItem>
           </LinkContainer>
           <LinkContainer to="/archiv/:2017">
-            <NavItem>2017</NavItem>
+            <NavItem>2017 - Bar</NavItem>
           </LinkContainer>
+        </NavDropdown>
+        <LinkContainer to="/kontakt">
+          <NavItem>Kontakt</NavItem>
+        </LinkContainer>
+      </Nav>
+    );
+  });
+  it('renders empty', () => {
+    expect(shallow(
+      <NavigationMenu
+        years={[]}
+      />
+    ).node).to.eql(
+      <Nav>
+        <LinkContainer to="/pro-ucastniky" >
+          <NavItem>Pro účastníky</NavItem>
+        </LinkContainer>
+        <LinkContainer to="/prihlaska" >
+          <NavItem>Přihláška</NavItem>
+        </LinkContainer>
+        <LinkContainer to="/program" >
+          <NavItem>Program</NavItem>
+        </LinkContainer>
+        <NavDropdown id="navigation-dropdown" title="Archív">
+          <NavItem disabled>Archív je prázdný</NavItem>
         </NavDropdown>
         <LinkContainer to="/kontakt">
           <NavItem>Kontakt</NavItem>

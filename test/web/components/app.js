@@ -10,12 +10,20 @@ import Navigation from '../../../src/web/components/navigation';
 describe('App component', () => {
   it('renders layout and content', () => {
     expect(shallow(
-      <App>
+      <App
+        years={[
+          { year: '20016', topic: 'Ovce' },
+        ]}
+      >
         <div>foo</div>
       </App>
     ).node).to.eql(
       <Grid className="improtresk-app">
-        <Navigation />
+        <Navigation
+          years={[
+            { year: '20016', topic: 'Ovce' },
+          ]}
+        />
         <div>foo</div>
       </Grid>
     );
