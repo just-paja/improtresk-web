@@ -1,11 +1,24 @@
-import { fork, select } from 'redux-saga/effects';
+import { call, fork, put, select } from 'redux-saga/effects';
 
-export const ifNeeded = (generator, selector) => function* ifNeededInner() {
-  const valid = yield select(selector);
+export const fetchResource = (resource, { onStart, onSuccess, onError }) =>
+  function* fetchResourceInner() {
+    console.log('resource inner');
+    yield put({ type: onStart });
+    try {
+      const res = yield call(resource);
+      const data = yield res.json();
 
-  if (!valid) {
-    yield fork(generator);
-  }
-};
+      yield put({ type: onSuccess, data });
+    } catch (error) {
+      yield put({ type: onError, error });
+    }
+  };
 
-export default { ifNeeded };
+export const fetchResourceIfNeeded = (resource, selector, constants) =>
+  function* fetchResourceIfNeededInner() {
+    const valid = yield select(selector);
+
+    if (!valid) {
+      yield fork(fetchResource(resource, constants));
+    }
+  };
