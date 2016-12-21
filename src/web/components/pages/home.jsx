@@ -24,6 +24,7 @@ export default class Home extends Component {
             <YearDetail
               endAt={year.endAt}
               startAt={year.startAt}
+              startSignupsAt={year.startSignupsAt}
               topic={year.topic}
               year={year.year}
             /> : null
