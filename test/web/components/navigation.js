@@ -12,7 +12,10 @@ describe('Navigation component', () => {
   it('renders layout and content', () => {
     expect(shallow(
       <Navigation
-        years={['2016', '2017']}
+        years={[
+          { year: '2016', topic: 'Foo' },
+          { year: '2017', topic: 'Bar' },
+        ]}
       />
     ).node).to.eql(
       <Navbar fixedTop>
@@ -23,7 +26,12 @@ describe('Navigation component', () => {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-          <NavigationMenu years={['2016', '2017']} />
+          <NavigationMenu
+            years={[
+              { year: '2016', topic: 'Foo' },
+              { year: '2017', topic: 'Bar' },
+            ]}
+          />
         </Navbar.Collapse>
       </Navbar>
     );
