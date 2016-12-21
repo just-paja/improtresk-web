@@ -5,6 +5,7 @@ import { IndexRoute, Route } from 'react-router';
 
 import App from './containers/app';
 import Home from './containers/home';
+import Schedule from './containers/schedule';
 
 const urlTable = {
   home: '/',
@@ -27,6 +28,7 @@ export default function configureRoutes() {
   return (
     <Route path={urlTable.home} component={App}>
       <IndexRoute component={Home} />
+      <Route path={urlTable.schedule} component={Schedule} />
       <Route path={urlTable.contact} component={Home} />
     </Route>
   );
