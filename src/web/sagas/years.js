@@ -1,25 +1,22 @@
 import { takeLatest } from 'redux-saga';
-import { call, put } from 'redux-saga/effects';
 
-import { ifNeeded } from './common';
+import { fetchResourceIfNeeded } from './common';
 
 import * as api from '../../api';
 import * as constants from '../constants/actions';
 
-function* fetchYears() {
-  yield put({ type: constants.YEARS_FETCH_STARTED });
-  try {
-    const res = yield call(api.fetchYears);
-    const data = yield res.json();
-
-    yield put({ type: constants.YEARS_FETCH_SUCCESS, data });
-  } catch (error) {
-    yield put({ type: constants.YEARS_FETCH_ERROR, error });
+const fetchYearsIfNeeded = fetchResourceIfNeeded(
+  api.fetchYears,
+  state => state.years.valid,
+  {
+    onStart: constants.YEARS_FETCH_STARTED,
+    onSuccess: constants.YEARS_FETCH_SUCCESS,
+    onError: constants.YEARS_FETCH_ERROR,
   }
-}
+);
 
 export function* fetchYearsOnMount() {
-  yield* takeLatest(constants.APP_MOUNTED, ifNeeded(fetchYears, state => state.years.valid));
+  yield* takeLatest(constants.APP_MOUNTED, fetchYearsIfNeeded);
 }
 
 export default [
