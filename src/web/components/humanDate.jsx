@@ -3,10 +3,13 @@ import React, { PropTypes } from 'react';
 
 import * as dateTypes from '../constants/date';
 
-const HumanDate = ({ date, showTime }) => {
+const HumanDate = ({ date, showTime, showYear }) => {
+  const formatDate = showYear ?
+    dateTypes.FORMAT_HUMAN_DATE :
+    dateTypes.FORMAT_HUMAN_DATE_NO_YEAR;
+
   const format = showTime ?
-    `${dateTypes.FORMAT_HUMAN_DATE} ${dateTypes.FORMAT_HUMAN_TIME}` :
-    dateTypes.FORMAT_HUMAN_DATE;
+    `${formatDate} ${dateTypes.FORMAT_HUMAN_TIME}` : formatDate;
 
   return (<span>{moment(date).format(format)}</span>);
 };
@@ -14,10 +17,12 @@ const HumanDate = ({ date, showTime }) => {
 HumanDate.propTypes = {
   date: PropTypes.string.isRequired,
   showTime: PropTypes.bool,
+  showYear: PropTypes.bool,
 };
 
 HumanDate.defaultProps = {
   showTime: false,
+  showYear: false,
 };
 
 export default HumanDate;

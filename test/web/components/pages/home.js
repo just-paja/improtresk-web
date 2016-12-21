@@ -8,6 +8,18 @@ import Home from '../../../../src/web/components/pages/home';
 import News from '../../../../src/web/components/news';
 
 describe('Home component', () => {
+  it('empty when not ready', () => {
+    expect(shallow(
+      <Home
+        onMount={() => {}}
+        news={[]}
+        year={null}
+      >
+        <div>foo</div>
+      </Home>
+    ).node).to.equal(null);
+  });
+
   it('renders content', () => {
     expect(shallow(
       <Home
@@ -15,6 +27,8 @@ describe('Home component', () => {
         news={[
           { id: 1, text: 'foo', createdAt: '2016-01-02T03:04:05' },
         ]}
+        ready
+        year={null}
       >
         <div>foo</div>
       </Home>
@@ -35,7 +49,7 @@ describe('Home component', () => {
     const comp = shallow(
       <Home
         onMount={mountSpy}
-        years={[]}
+        news={[]}
       />
     );
 
