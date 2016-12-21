@@ -10,6 +10,10 @@ const compiler = webpack(webpackConfig);
 const app = express();
 
 app.use(webpackDev(compiler, {
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+  },
+  hot: true,
   publicPath: webpackConfig.output.publicPath,
   stats: false,
 }));

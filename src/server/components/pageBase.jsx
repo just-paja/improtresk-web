@@ -6,7 +6,6 @@ const pageBase = ({ markup }) => (
       <meta charSet="utf-8" />
       <meta content="width=device-width" name="viewport" />
       <title>Improtřesk</title>
-      <script src="/assets/app.js" />
       <link
         type="text/css"
         rel="stylesheet"
@@ -22,6 +21,7 @@ const pageBase = ({ markup }) => (
         }}
       />
       {/* eslint-enable react/no-danger */}
+      <script src="/assets/app.js" />
     </body>
   </html>
 );

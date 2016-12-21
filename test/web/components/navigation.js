@@ -10,7 +10,11 @@ import NavigationMenu from '../../../src/web/components/navigationMenu';
 
 describe('Navigation component', () => {
   it('renders layout and content', () => {
-    expect(shallow(<Navigation />).node).to.eql(
+    expect(shallow(
+      <Navigation
+        years={['2016', '2017']}
+      />
+    ).node).to.eql(
       <Navbar fixedTop>
         <Navbar.Header>
           <Navbar.Brand>
@@ -19,7 +23,7 @@ describe('Navigation component', () => {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-          <NavigationMenu />
+          <NavigationMenu years={['2016', '2017']} />
         </Navbar.Collapse>
       </Navbar>
     );
