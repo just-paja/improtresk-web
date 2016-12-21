@@ -1,12 +1,10 @@
 import React, { PropTypes } from 'react';
 
-import { Button } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
-
 import HumanDateRange from './humanDateRange';
+import SignupButton from './signupButton';
 import styles from './yearDetail.css';
 
-const YearDetail = ({ endAt, startAt, topic, year }) => (
+const YearDetail = ({ endAt, startAt, startSignupsAt, topic, year }) => (
   <div className="text-center">
     <h1>Improtřesk {year} <small className={styles.topic}><i>{topic}</i></small></h1>
     <div className={styles.upcomingDate}>
@@ -15,15 +13,18 @@ const YearDetail = ({ endAt, startAt, topic, year }) => (
         start={startAt}
       />
     </div>
-    <LinkContainer to="/prihlaska">
-      <Button bsStyle="primary">Přihláška</Button>
-    </LinkContainer>
+    <SignupButton
+      startAt={startSignupsAt}
+      endAt={startAt}
+      alreadyFull={false}
+    />
   </div>
 );
 
 YearDetail.propTypes = {
   endAt: PropTypes.string.isRequired,
   startAt: PropTypes.string.isRequired,
+  startSignupsAt: PropTypes.string.isRequired,
   topic: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
 };
