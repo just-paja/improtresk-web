@@ -6,6 +6,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import HumanDate from './humanDate';
 
+import { reverse } from '../routes';
+
 const getSignupText = (endAt, startAt, alreadyFull) => {
   if (moment().isBefore(startAt)) {
     return {
@@ -45,7 +47,7 @@ const SignupButton = ({ endAt, startAt, alreadyFull }) => {
     <div>
       {(showStartDate ?
         <Alert bsStyle="info">Přihlašování se otevře <HumanDate date={startAt} showTime /></Alert> :
-        <LinkContainer to="/prihlaska">
+        <LinkContainer to={reverse('signup')}>
           <Button disabled={disabled} bsStyle="primary">{textButton}</Button>
         </LinkContainer>
       )}
@@ -54,9 +56,13 @@ const SignupButton = ({ endAt, startAt, alreadyFull }) => {
 };
 
 SignupButton.propTypes = {
-  alreadyFull: PropTypes.bool.isRequired,
+  alreadyFull: PropTypes.bool,
   endAt: PropTypes.string.isRequired,
   startAt: PropTypes.string.isRequired,
+};
+
+SignupButton.defaultProps = {
+  alreadyFull: false,
 };
 
 export default SignupButton;
