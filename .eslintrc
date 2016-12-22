@@ -23,6 +23,7 @@
       "imports": "always-multiline",
       "exports": "always-multiline",
       "functions": "ignore"
-    }]
+    }],
+    "react/forbid-prop-types": [1, { "forbid": ["any", "array"] }]
   }
 }
