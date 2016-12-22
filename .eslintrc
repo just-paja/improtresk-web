@@ -17,13 +17,13 @@
     "node": true
   },
   "rules": {
-    "comma-dangle": ["error", {
+    "comma-dangle": [2, {
       "arrays": "always-multiline",
       "objects": "always-multiline",
       "imports": "always-multiline",
       "exports": "always-multiline",
       "functions": "ignore"
     }],
-    "react/forbid-prop-types": [1, { "forbid": ["any", "array"] }]
+    "react/forbid-prop-types": [2, { "forbid": ["any", "array"] }]
   }
 }
