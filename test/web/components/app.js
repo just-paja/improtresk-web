@@ -42,7 +42,7 @@ describe('App component', () => {
       />
     );
 
-    comp.instance().componentDidMount();
-    expect(mountSpy.calledOnce).to.equal(true);
+    comp.instance().componentWillMount();
+    expect(mountSpy.calledTwice).to.equal(true);
   });
 });

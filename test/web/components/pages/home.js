@@ -58,7 +58,7 @@ describe('Home component', () => {
     );
   });
 
-  it('calls onMount on componentDidMount', () => {
+  it('calls onMount on componentWillMount', () => {
     const mountSpy = sinon.spy();
     const comp = shallow(
       <Home
@@ -67,7 +67,7 @@ describe('Home component', () => {
       />
     );
 
-    comp.instance().componentDidMount();
-    expect(mountSpy.calledOnce).to.equal(true);
+    comp.instance().componentWillMount();
+    expect(mountSpy.calledTwice).to.equal(true);
   });
 });

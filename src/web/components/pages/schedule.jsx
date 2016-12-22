@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 export default class Home extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.onMount();
   }
 

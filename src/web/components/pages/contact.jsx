@@ -4,7 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import { Col, Row } from 'react-bootstrap';
 
 export default class Contact extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.onMount();
   }
 
