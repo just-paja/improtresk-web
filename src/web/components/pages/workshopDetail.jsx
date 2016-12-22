@@ -5,7 +5,7 @@ import WorkshopDetail from '../workshopDetail';
 import { idFromSlug } from '../../routes';
 
 export default class WorkshopDetailPage extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.onMount(idFromSlug(this.props.routeParams.slug));
   }
 

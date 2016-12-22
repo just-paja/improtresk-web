@@ -6,7 +6,7 @@ import News from '../news';
 import YearDetail from '../yearDetail';
 
 export default class Home extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.onMount();
   }
 

@@ -6,7 +6,7 @@ import Navigation from './navigation';
 import './app.css';
 
 export default class App extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.onMount();
   }
 

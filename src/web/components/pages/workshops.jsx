@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import WorkshopList from '../workshopList';
 
 export default class Workshops extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.onMount();
   }
 
