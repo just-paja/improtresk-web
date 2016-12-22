@@ -10,11 +10,14 @@ import configureStore, { sagaMiddleware } from '../../web/store';
 import pageBase from '../components/pageBase';
 import sagas from '../../web/sagas';
 
-const renderMarkup = (store, renderProps) => renderToString(
+const getComponentTree = (store, renderProps) => (
   <Provider store={store}>
     <RouterContext {...renderProps} />
   </Provider>
 );
+
+const renderFromRouter = (store, renderProps) =>
+  renderToString(getComponentTree(store, renderProps));
 
 export const renderMarkupAndWait = (req, renderProps) => {
   const initialState = {
@@ -29,17 +32,20 @@ export const renderMarkupAndWait = (req, renderProps) => {
   const store = configureStore(initialState);
   const rootTask = sagaMiddleware.run(sagas);
 
-  renderMarkup(store, renderProps);
+  renderFromRouter(store, renderProps);
   store.dispatch(END);
   return rootTask.done
-    .then(() => renderMarkup(store, renderProps));
+    .then(() => ({
+      markup: renderFromRouter(store, renderProps),
+      state: store.getState(),
+    }));
 };
 
-export const renderInHtml = markup => renderToStaticMarkup(pageBase({ markup }));
+export const renderInHtml = markupAndState => renderToStaticMarkup(pageBase(markupAndState));
 
-export const respondWithHtml = (req, res, markup) => {
+export const respondWithHtml = (req, res, markupAndState) => {
   try {
-    return res.send(renderInHtml(markup));
+    return res.send(renderInHtml(markupAndState));
   } catch (e) {
     winston.log('error', e);
   }
@@ -49,4 +55,4 @@ export const respondWithHtml = (req, res, markup) => {
 
 export const renderAndRespond = (req, res, renderProps) =>
   renderMarkupAndWait(req, renderProps)
-    .then(contentMarkup => respondWithHtml(req, res, contentMarkup));
+    .then(markupAndState => respondWithHtml(req, res, markupAndState));
