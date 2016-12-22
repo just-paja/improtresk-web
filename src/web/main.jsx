@@ -9,8 +9,7 @@ import configureStore from './store';
 import RootDefault from './components/root';
 import sagas from './sagas';
 
-// eslint-disable-next-line no-underscore-dangle
-const initialState = window.__INITIAL_STATE__;
+const initialState = window.INITIAL_STATE;
 const store = configureStore(initialState);
 
 const render = (RootComponent) => {

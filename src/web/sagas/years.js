@@ -16,7 +16,10 @@ const fetchYearsIfNeeded = fetchResourceIfNeeded(
 );
 
 export function* fetchYearsOnMount() {
-  yield* takeLatest(constants.APP_MOUNTED, fetchYearsIfNeeded);
+  yield* takeLatest([
+    constants.APP_MOUNTED,
+    constants.HOME_MOUNTED,
+  ], fetchYearsIfNeeded);
 }
 
 export default [
