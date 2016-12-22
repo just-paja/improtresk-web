@@ -1,6 +1,6 @@
 # Improtřesk Website
 
-[![CircleCI](https://circleci.com/gh/just-paja/improtresk-web.svg?style=svg)](https://circleci.com/gh/just-paja/improtresk-web)
+[![CircleCI](https://circleci.com/gh/just-paja/improtresk-web.svg?style=shield)](https://circleci.com/gh/just-paja/improtresk-web)
 [![Code Climate](https://codeclimate.com/github/just-paja/improtresk-web/badges/gpa.svg)](https://codeclimate.com/github/just-paja/improtresk-web)
 [![Test Coverage](https://codeclimate.com/github/just-paja/improtresk-web/badges/coverage.svg)](https://codeclimate.com/github/just-paja/improtresk-web/coverage)
 [![Issue Count](https://codeclimate.com/github/just-paja/improtresk-web/badges/issue_count.svg)](https://codeclimate.com/github/just-paja/improtresk-web)
