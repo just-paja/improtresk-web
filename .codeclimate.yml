@@ -2,3 +2,7 @@
 engines:
   eslint:
     enabled: false
+ratings:
+   paths:
+   - "src/**/*"
+   - "webpack/**/*"
