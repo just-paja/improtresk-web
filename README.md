@@ -9,7 +9,7 @@ This is frontend for website of first and biggest Czech improvisation festival b
 
 ## Used technologies
 
-* [React](https://facebook.github.io/react/)
+* [React](https://facebook.github.io/react/) to be reactive (of course)
 * [Redux](http://redux.js.org/) to keep the state
 * [Redux Sagas](https://github.com/yelouafi/redux-saga) to manipulate the state
 * [Express](http://expressjs.com/) for server rendering
@@ -21,3 +21,8 @@ This is frontend for website of first and biggest Czech improvisation festival b
 ## Live
 
 Live version will be running hopefully soon on [improtresk.cz](http://improtresk.cz) - the old website is deployed there at the moment. Btw sorry guys, so far there were no plans to make English version.
+
+## Backend
+
+Backend for this app is written in Pyhton / Django. You can see it in separate repository:
+[improtresk-api](https://github.com/just-paja/improtresk-api).
