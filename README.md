@@ -20,6 +20,4 @@ This is frontend for website of first and biggest Czech improvisation festival b
 
 ## Live
 
-[http://improtresk.cz](http://improtresk.cz)
-
-Sorry, no English version there yet.
+Live version will be running hopefully soon on [improtresk.cz](http://improtresk.cz) - the old website is deployed there at the moment. Btw sorry guys, so far there were no plans to make English version.
