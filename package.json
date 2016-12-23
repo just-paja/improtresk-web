@@ -5,11 +5,12 @@
   "main": "dist/server.js",
   "private": true,
   "scripts": {
+    "dev": "babel-node ./src/server/main",
     "build": "npm run build:clean && npm run build:client && npm run build:server",
     "build:clean": "rimraf dist",
     "build:client": "webpack --config webpack/client.babel.js",
     "build:server": "webpack --config webpack/server.babel.js",
-    "start": "babel-node ./src/server/main",
+    "start": "node ./dist/server.js",
     "test:lint": "eslint --ext .jsx --ext.js webpack src test",
     "test:coverage": "babel-node node_modules/babel-istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha --report clover --report lcov --report html -- --recursive --require ./mocha.js",
     "test:production": "npm run build && node dist/server.js",
