@@ -8,6 +8,8 @@ const apiFetch = url => fetch(getApiUrl(url));
 
 export const fetchNews = () => apiFetch('news');
 
+export const fetchTips = () => apiFetch('tips');
+
 export const fetchYears = () => apiFetch('years');
 
 export const fetchWorkshopDetail = ({ workshop }) => apiFetch(`workshops/${workshop}`);
