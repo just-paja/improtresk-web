@@ -8,7 +8,7 @@ import errorRender from './middleware/errorRender';
 import staticMiddleware from './middleware/static';
 
 const defaultConfig = {
-  logLevel: process.env.NODE_LOGLEVEL || 'info',
+  logLevel: process.env.NODE_LOG_LEVEL || 'info',
   port: process.env.NODE_PORT || 3000,
 };
 
