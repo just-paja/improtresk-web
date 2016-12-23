@@ -1,0 +1,6 @@
+/coverage
+/src
+/test
+/webpack
+/circle.yml
+/mocha.js
