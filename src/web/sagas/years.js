@@ -19,6 +19,7 @@ export function* fetchYearsOnMount() {
   yield* takeLatest([
     constants.APP_MOUNTED,
     constants.HOME_MOUNTED,
+    constants.CONDITIONS_MOUNTED,
   ], fetchYearsIfNeeded);
 }
 
