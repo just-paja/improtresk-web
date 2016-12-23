@@ -7,3 +7,8 @@ deployment:
     branch: master
     commands:
       - ./node_modules/.bin/codeclimate-test-reporter < coverage/lcov.info
+      - ./bin/deploy staging
+  release:
+    tag: /[0-9]+\.[0-9]+\.[0-9]+/
+    commands:
+      - ./bin/deploy production
