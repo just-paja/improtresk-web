@@ -28,11 +28,6 @@ export default {
   plugins: [
     ...frontendPlugins,
     new webpack.IgnorePlugin(/webpack-assets\.json$/),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"',
-      },
-    }),
     new ExtractTextPlugin('[name].css'),
     ...optimizePlugins,
   ],
