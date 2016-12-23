@@ -28,6 +28,8 @@ if (process.env.NODE_ENV === 'production') {
       }
     });
   });
+} else {
+  assets.js.push('app.js');
 }
 
 const getComponentTree = (store, renderProps) => (

@@ -8,6 +8,7 @@ import Contact from './containers/contact';
 import Home from './containers/home';
 import NotFound from './components/notFound';
 import Schedule from './containers/schedule';
+import Tips from './containers/tips';
 import WorkshopDetail from './containers/workshopDetail';
 import Workshops from './containers/workshops';
 
@@ -47,6 +48,7 @@ export default function configureRoutes() {
       <Route path={urlTable.workshops} component={Workshops} />
       <Route path={urlTable['workshops:item']} component={WorkshopDetail} />
       <Route path={urlTable.contact} component={Contact} />
+      <Route path={urlTable.tips} component={Tips} />
       <Route path="*" component={NotFound} />
     </Route>
   );

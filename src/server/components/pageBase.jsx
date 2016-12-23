@@ -50,7 +50,7 @@ pageBase.propTypes = {
 
 pageBase.defaultProps = {
   css: [],
-  js: ['app.js'],
+  js: [],
 };
 
 export default pageBase;
