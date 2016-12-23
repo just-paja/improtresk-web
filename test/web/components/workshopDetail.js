@@ -1,9 +1,11 @@
 import FontAwesome from 'react-fontawesome';
+import Markdown from 'react-markdown';
 import React from 'react';
 
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
+import Gallery from '../../../src/web/components/gallery';
 import PermaLink from '../../../src/web/components/permaLink';
 import WorkshopDetail from '../../../src/web/components/workshopDetail';
 
@@ -22,8 +24,10 @@ describe('Workshop Detail component', () => {
           'práci s hereckým partnerem...zkrátka uvidíme, co všechno stihneme.'}
         difficulty="Pro všechny"
         name="Pantomima a fyzické divadlo"
+        photos={[]}
         lector={{
           name: 'Vojtěch Svoboda',
+          photos: [],
           about:
             'Herectví se věnuje odmalička, kdy ztvárnil mnoho rolí v amatérských souborech, ' +
             'za které získal řadu cen a ocenění (za herecký výkon Karlínská tříska, Nadělení ' +
@@ -52,24 +56,34 @@ describe('Workshop Detail component', () => {
         </ul>
 
         <div>
-          Na workshopu se zaměříme na práci s tělem, nonverbální herectví a pantomimu.
-          Budeme se věnovat fyzickému tréninku a technikám k ovládnutí svého těla a
-          celkovému propojení se svým tělem na jevišti. S tím souvisí i cvičení na jevištní
-          přítomnost, dech, pohled a temporytmus. Podíváme se také na techniku imaginární
-          pantomimy jako chůze na místě, práce s imaginárním objektem a další. Zkusíme
-          sizáklady nonverbálního herectví, tvorbu divadelní postavy podle jejího fyzična
-          apráci s hereckým partnerem...zkrátka uvidíme, co všechno stihneme.
+          <Markdown
+            source={
+              'Na workshopu se zaměříme na práci s tělem, nonverbální herectví a pantomimu. ' +
+              'Budeme se věnovat fyzickému tréninku a technikám k ovládnutí svého těla a ' +
+              'celkovému propojení se svým tělem na jevišti. S tím souvisí i cvičení na jevištní ' +
+              'přítomnost, dech, pohled a temporytmus. Podíváme se také na techniku imaginární ' +
+              'pantomimy jako chůze na místě, práce s imaginárním objektem a další. Zkusíme si' +
+              'základy nonverbálního herectví, tvorbu divadelní postavy podle jejího fyzična a' +
+              'práci s hereckým partnerem...zkrátka uvidíme, co všechno stihneme.'
+            }
+          />
         </div>
+
+        <Gallery photos={[]} onClose={() => {}} />
 
         <h2>Vojtěch Svoboda</h2>
         <div>
-          Herectví se věnuje odmalička, kdy ztvárnil mnoho rolí v amatérských souborech,
-          za které získal řadu cen a ocenění (za herecký výkon Karlínská tříska, Nadělení
-          Brno, cena poroty Loutkářská Chrudim, Held/in Tirol v Rakousku a další). Po
-          studiu na osmiletém gymnáziu zamířil na katedru pantomimy pražské HAMU, kde v
-          roce 2013 absolvoval bakalářský obor (titul BcA.), v současné době pokračuje v
-          navazujícím
+          <Markdown
+            source={
+              'Herectví se věnuje odmalička, kdy ztvárnil mnoho rolí v amatérských souborech, ' +
+              'za které získal řadu cen a ocenění (za herecký výkon Karlínská tříska, Nadělení ' +
+              'Brno, cena poroty Loutkářská Chrudim, Held/in Tirol v Rakousku a další). Po studiu ' +
+              'na osmiletém gymnáziu zamířil na katedru pantomimy pražské HAMU, kde v roce 2013 ' +
+              'absolvoval bakalářský obor (titul BcA.), v současné době pokračuje v navazujícím'
+            }
+          />
         </div>
+        <Gallery photos={[]} onClose={() => {}} />
       </div>
     );
   });
