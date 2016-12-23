@@ -8,8 +8,8 @@ import errorRender from './middleware/errorRender';
 import staticMiddleware from './middleware/static';
 
 const defaultConfig = {
-  logLevel: 'info',
-  port: 3000,
+  logLevel: process.env.NODE_LOGLEVEL || 'info',
+  port: process.env.NODE_PORT || 3000,
 };
 
 export default function server(userConfig = {}) {
