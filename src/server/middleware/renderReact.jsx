@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import React from 'react';
 import winston from 'winston';
 
@@ -9,6 +11,24 @@ import { RouterContext } from 'react-router';
 import configureStore, { sagaMiddleware } from '../../web/store';
 import pageBase from '../components/pageBase';
 import sagas from '../../web/sagas';
+
+const assetTypes = ['css', 'js'];
+const assets = {
+  js: [],
+  css: [],
+};
+
+if (process.env.NODE_ENV === 'production') {
+  const assetsPath = path.resolve('./dist/webpack-assets.json');
+  const assetsRaw = JSON.parse(fs.readFileSync(assetsPath));
+  Object.keys(assetsRaw).forEach((asset) => {
+    assetTypes.forEach((type) => {
+      if (assetsRaw[asset][type]) {
+        assets[type].push(assetsRaw[asset][type]);
+      }
+    });
+  });
+}
 
 const getComponentTree = (store, renderProps) => (
   <Provider store={store}>
@@ -41,7 +61,10 @@ export const renderMarkupAndWait = (req, renderProps) => {
     }));
 };
 
-export const renderInHtml = markupAndState => renderToStaticMarkup(pageBase(markupAndState));
+export const renderInHtml = markupAndState => renderToStaticMarkup(pageBase({
+  ...markupAndState,
+  ...assets,
+}));
 
 export const respondWithHtml = (req, res, markupAndState) => {
   try {
