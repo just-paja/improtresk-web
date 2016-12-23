@@ -1,14 +1,12 @@
 import webpack from 'webpack';
 
-import { resolve } from 'path';
-
-import common from './common';
+import { loaders, globalOptions, frontendEntry, frontendPlugins } from './common';
 
 export default {
-  ...common,
+  ...globalOptions,
   entry: [
     'webpack-hot-middleware/client',
-    `${resolve(__dirname, '..')}/src/web/main.jsx`,
+    frontendEntry,
   ],
   output: {
     filename: 'app.js',
@@ -25,21 +23,15 @@ export default {
       },
     ],
     loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loaders: ['babel?presets[]=react,presets[]=es2015'],
-      },
+      ...loaders,
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader!postcss-loader',
       },
     ],
   },
-  resolve: {
-    extensions: ['', '.js', '.jsx'],
-  },
   plugins: [
+    ...frontendPlugins,
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"development"',
@@ -47,6 +39,5 @@ export default {
       },
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.ContextReplacementPlugin(/moment[/]locale$/, /^\.\/(en|ko|ja|zh-cn)$/),
   ],
 };
