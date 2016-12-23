@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+app="improtresk-web"
+artifact=$(npm pack)
+env=${1}
+dest="/tmp/${app}.${env}.tgz"
+
+if [ "$env" == "staging" ]; then
+  host=${STAGING_HOST}
+  hostAs=${STAGING_HOST_AS}
+elif [ "$env" == "production" ]; then
+  host=${PRODUCTION_HOST}
+  hostAs=${PRODUCTION_HOST_AS}
+fi
+
+echo "Uploading data"
+scp ${artifact} www-data@${host}:${dest}
+
+ssh www-data@${host} hosting-install-nodejs --app-host "${hostAs}" --app-env "${env}" --app-name "${app}" --app-src "${dest}"
