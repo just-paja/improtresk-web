@@ -1,9 +1,11 @@
 import FontAwesome from 'react-fontawesome';
+import Markdown from 'react-markdown';
 import React, { PropTypes } from 'react';
 
+import Gallery from './gallery';
 import PermaLink from './permaLink';
 
-const WorkshopDetail = ({ id, desc, difficulty, name, lector }) => (
+const WorkshopDetail = ({ id, desc, difficulty, name, lector, photos }) => (
   <div>
     <h1>
       <PermaLink id={id} title={name} to="workshops:item">{name}</PermaLink>
@@ -18,13 +20,15 @@ const WorkshopDetail = ({ id, desc, difficulty, name, lector }) => (
       </li>
     </ul>
     <div>
-      {desc}
+      <Markdown source={desc} />
     </div>
+    <Gallery photos={photos} onClose={() => {}} />
 
     <h2>{lector.name}</h2>
     <div>
-      {lector.about}
+      <Markdown source={lector.about} />
     </div>
+    <Gallery photos={lector.photos} onClose={() => {}} />
   </div>
 );
 
@@ -33,9 +37,11 @@ WorkshopDetail.propTypes = {
   desc: PropTypes.string.isRequired,
   difficulty: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  photos: PropTypes.arrayOf(PropTypes.object).isRequired,
   lector: PropTypes.shape({
     name: PropTypes.string,
     about: PropTypes.string,
+    photos: PropTypes.arrayOf(PropTypes.object).isRequired,
   }).isRequired,
 };
 
