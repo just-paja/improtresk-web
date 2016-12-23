@@ -1,7 +1,7 @@
+import Col from 'react-bootstrap/lib/Col';
+import Row from 'react-bootstrap/lib/Row';
 import FontAwesome from 'react-fontawesome';
 import React, { Component, PropTypes } from 'react';
-
-import { Col, Row } from 'react-bootstrap';
 
 export default class Contact extends Component {
   componentWillMount() {

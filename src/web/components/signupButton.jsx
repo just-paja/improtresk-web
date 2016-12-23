@@ -1,7 +1,8 @@
+import Alert from 'react-bootstrap/lib/Alert';
+import Button from 'react-bootstrap/lib/Button';
 import moment from 'moment';
 import React, { PropTypes } from 'react';
 
-import { Alert, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import HumanDate from './humanDate';

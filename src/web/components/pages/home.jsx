@@ -1,6 +1,6 @@
+import Col from 'react-bootstrap/lib/Col';
+import Row from 'react-bootstrap/lib/Row';
 import React, { Component, PropTypes } from 'react';
-
-import { Col, Row } from 'react-bootstrap';
 
 import News from '../news';
 import YearDetail from '../yearDetail';

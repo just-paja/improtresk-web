@@ -1,7 +1,9 @@
+import Nav from 'react-bootstrap/lib/Nav';
+import NavDropdown from 'react-bootstrap/lib/NavDropdown';
+import NavItem from 'react-bootstrap/lib/NavItem';
 import React, { PropTypes } from 'react';
 
 import { LinkContainer } from 'react-router-bootstrap';
-import { Nav, NavDropdown, NavItem } from 'react-bootstrap';
 
 import { reverse } from '../routes';
 
