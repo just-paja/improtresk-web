@@ -1,5 +1,5 @@
+import Grid from 'react-bootstrap/lib/Grid';
 import React, { Component, PropTypes } from 'react';
-import { Grid } from 'react-bootstrap';
 
 import Navigation from './navigation';
 

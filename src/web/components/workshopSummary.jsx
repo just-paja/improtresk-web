@@ -1,7 +1,7 @@
+import Button from 'react-bootstrap/lib/Button';
 import FontAwesome from 'react-fontawesome';
 import React, { PropTypes } from 'react';
 
-import { Button } from 'react-bootstrap';
 
 import PermaLink from './permaLink';
 

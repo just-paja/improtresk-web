@@ -1,6 +1,5 @@
+import Navbar from 'react-bootstrap/lib/Navbar';
 import React, { PropTypes } from 'react';
-
-import { Navbar } from 'react-bootstrap';
 
 import Link from './link';
 import NavigationMenu from './navigationMenu';
