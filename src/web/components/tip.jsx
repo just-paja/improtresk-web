@@ -1,6 +1,7 @@
-import Gallery from 'react-photo-gallery';
 import Markdown from 'react-markdown';
 import React, { PropTypes } from 'react';
+
+import Gallery from './gallery';
 
 const Tip = ({ name, text, photos }) => (
   <div>
@@ -8,17 +9,7 @@ const Tip = ({ name, text, photos }) => (
     <div>
       <Markdown source={text} />
     </div>
-    <Gallery
-      photos={photos.map(photo => ({
-        ...photo,
-        aspectRatio: photo.width / photo.height,
-        lightboxImage: {
-          src: photo.src,
-          caption: photo.caption,
-        },
-      }))}
-      onClose={() => {}}
-    />
+    <Gallery photos={photos} onClose={() => {}} />
   </div>
 );
 
