@@ -20,6 +20,10 @@ export default function server(userConfig = {}) {
 
   app.use('/static', staticMiddleware);
 
+  if (process.env.NODE_ENV === 'production') {
+    app.use('/assets', express.static('dist/frontend'));
+  }
+
   app.use(deviceMiddleware.capture());
   app.use(bodyParser.json());
   app.use(bodyParser.json({ type: 'application/json' }));

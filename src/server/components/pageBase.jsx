@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const pageBase = ({ markup, state = {} }) => (
+const pageBase = ({ css, js, markup, state = {} }) => (
   <html lang="cs">
     <head>
       <meta charSet="utf-8" />
@@ -16,6 +16,9 @@ const pageBase = ({ markup, state = {} }) => (
         rel="stylesheet"
         href="/static/font-awesome/css/font-awesome.min.css"
       />
+      {css.map((asset, key) =>
+        <link key={key} type="text/css" rel="stylesheet" href={`/assets/${asset}`} />
+      )}
       {/* eslint-disable react/no-danger */}
       <script
         dangerouslySetInnerHTML={{
@@ -33,14 +36,21 @@ const pageBase = ({ markup, state = {} }) => (
         }}
       />
       {/* eslint-enable react/no-danger */}
-      <script src="/assets/app.js" />
+      {js.map((asset, key) => <script src={`/assets/${asset}`} key={key} />)}
     </body>
   </html>
 );
 
 pageBase.propTypes = {
+  css: PropTypes.object,
+  js: PropTypes.object,
   markup: PropTypes.string,
   state: PropTypes.object,
+};
+
+pageBase.defaultProps = {
+  css: [],
+  js: ['app.js'],
 };
 
 export default pageBase;
