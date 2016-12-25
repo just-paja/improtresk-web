@@ -3,12 +3,12 @@ import { bindActionCreators } from 'redux';
 
 import App from '../components/app';
 
-import { yearsAll } from '../selectors/years';
+import { yearsNotCurrent } from '../selectors/years';
 
 import * as actions from '../constants/actions';
 
 const mapStateToProps = state => ({
-  years: yearsAll(state),
+  years: yearsNotCurrent(state),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
