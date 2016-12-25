@@ -6,6 +6,7 @@ import { shallow } from 'enzyme';
 
 import Address from '../../../src/web/components/address';
 import Accomodation from '../../../src/web/components/accomodation';
+import Capacity from '../../../src/web/components/capacity';
 import Gallery from '../../../src/web/components/gallery';
 import Prop from '../../../src/web/components/prop';
 import Price from '../../../src/web/components/price';
@@ -15,6 +16,8 @@ describe('Address component', () => {
     expect(shallow(
       <Accomodation
         address="Nádražní 846, 399 01 Milevsko"
+        available={15}
+        capacity={20}
         name="Dům Kultury Milevsko"
         photos={[]}
         price={200}
@@ -28,7 +31,10 @@ describe('Address component', () => {
             <Address address="Nádražní 846, 399 01 Milevsko" />
           </Prop>
           <Prop label="Příplatek" icon="money">
-            <Price price={200} />
+            <Price freeMessage="V ceně přihlášky" price={200} />
+          </Prop>
+          <Prop label="Volná místa" icon="bed">
+            <Capacity available={15} capacity={20} />
           </Prop>
         </ul>
 

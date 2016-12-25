@@ -5,7 +5,7 @@ import Tip from './tip';
 
 const TipList = ({ tips }) => (
   <ObjectList
-    component={Tip}
+    Component={Tip}
     data={tips}
   />
 );

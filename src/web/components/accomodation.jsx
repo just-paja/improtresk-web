@@ -2,11 +2,12 @@ import Markdown from 'react-markdown';
 import React, { PropTypes } from 'react';
 
 import Address from './address';
+import Capacity from './capacity';
 import Gallery from './gallery';
 import Price from './price';
 import Prop from './prop';
 
-const Accomodation = ({ address, name, price, text, photos }) => (
+const Accomodation = ({ address, available, capacity, name, price, text, photos }) => (
   <div>
     <h2>{name}</h2>
     <ul className="list-unstyled">
@@ -14,7 +15,10 @@ const Accomodation = ({ address, name, price, text, photos }) => (
         <Address address={address} />
       </Prop>
       <Prop label="Příplatek" icon="money">
-        <Price price={price} />
+        <Price freeMessage="V ceně přihlášky" price={price} />
+      </Prop>
+      <Prop label="Volná místa" icon="bed">
+        <Capacity available={available} capacity={capacity} />
       </Prop>
     </ul>
 
@@ -25,6 +29,8 @@ const Accomodation = ({ address, name, price, text, photos }) => (
 
 Accomodation.propTypes = {
   address: PropTypes.string.isRequired,
+  available: PropTypes.number,
+  capacity: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   photos: PropTypes.arrayOf(PropTypes.object).isRequired,
   price: PropTypes.number,
