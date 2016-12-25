@@ -7,13 +7,11 @@ import { shallow } from 'enzyme';
 import ObjectList from '../../../src/web/components/objectList';
 import Tip from '../../../src/web/components/tip';
 
-const component = Tip;
-
 describe('Tip List component', () => {
   it('renders', () => {
     expect(shallow(
       <ObjectList
-        component={Tip}
+        Component={Tip}
         data={[
           {
             id: 21,
@@ -26,7 +24,7 @@ describe('Tip List component', () => {
     ).node).to.eql(
       <Row>
         <Col key={21} md={6}>
-          <component
+          <Tip
             id={21}
             name="Foo"
             photos={[]}

@@ -2,18 +2,18 @@ import Col from 'react-bootstrap/lib/Col';
 import Row from 'react-bootstrap/lib/Row';
 import React, { PropTypes } from 'react';
 
-const ObjectList = ({ component, data }) => (
+const ObjectList = ({ Component, data }) => (
   <Row>
     {data.map(object => (
       <Col key={object.id} md={6}>
-        <component {...object} />
+        <Component {...object} />
       </Col>
     ))}
   </Row>
 );
 
 ObjectList.propTypes = {
-  component: PropTypes.func.isRequired,
+  Component: PropTypes.func.isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

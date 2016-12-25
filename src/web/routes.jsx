@@ -4,6 +4,8 @@ import React from 'react';
 import { IndexRoute, Route } from 'react-router';
 
 import App from './containers/app';
+
+import Accomodations from './containers/accomodations';
 import Conditions from './containers/conditions';
 import Contact from './containers/contact';
 import Home from './containers/home';
@@ -50,6 +52,7 @@ export default function configureRoutes() {
       <Route path={urlTable['workshops:item']} component={WorkshopDetail} />
       <Route path={urlTable.contact} component={Contact} />
       <Route path={urlTable.tips} component={Tips} />
+      <Route path={urlTable.accomodation} component={Accomodations} />
       <Route path={urlTable.conditions} component={Conditions} />
       <Route path="*" component={NotFound} />
     </Route>

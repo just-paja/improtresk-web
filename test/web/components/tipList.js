@@ -22,7 +22,7 @@ describe('Object list component', () => {
       />
     ).node).to.eql(
       <ObjectList
-        component={Tip}
+        Component={Tip}
         data={[
           {
             id: 21,
