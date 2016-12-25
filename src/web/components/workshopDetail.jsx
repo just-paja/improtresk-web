@@ -22,13 +22,13 @@ const WorkshopDetail = ({ id, desc, difficulty, name, lector, photos }) => (
     <div>
       <Markdown source={desc} />
     </div>
-    <Gallery photos={photos} onClose={() => {}} />
+    <Gallery photos={photos} />
 
     <h2>{lector.name}</h2>
     <div>
       <Markdown source={lector.about} />
     </div>
-    <Gallery photos={lector.photos} onClose={() => {}} />
+    <Gallery photos={lector.photos} />
   </div>
 );
 

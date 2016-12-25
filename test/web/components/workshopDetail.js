@@ -69,7 +69,7 @@ describe('Workshop Detail component', () => {
           />
         </div>
 
-        <Gallery photos={[]} onClose={() => {}} />
+        <Gallery photos={[]} />
 
         <h2>Vojtěch Svoboda</h2>
         <div>
@@ -83,7 +83,7 @@ describe('Workshop Detail component', () => {
             }
           />
         </div>
-        <Gallery photos={[]} onClose={() => {}} />
+        <Gallery photos={[]} />
       </div>
     );
   });
