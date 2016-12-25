@@ -6,6 +6,8 @@ const getApiUrl = path => `${API_SOURCE}/${path}`;
 
 const apiFetch = url => fetch(getApiUrl(url));
 
+export const fetchAccomodation = () => apiFetch('accomodation');
+
 export const fetchConditionsCurrent = () => apiFetch('conditions');
 
 export const fetchNews = () => apiFetch('news');
