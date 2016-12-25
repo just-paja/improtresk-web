@@ -43,4 +43,48 @@ describe('API helper', () => {
         expect(nock.isDone()).to.equal(true);
       });
   });
+
+  it('fetchTips calls for tips', () => {
+    nock(apiEndpoint)
+      .get('/tips')
+      .reply(200, []);
+
+    return api.fetchTips()
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
+
+  it('fetchWorkshops calls for workshops', () => {
+    nock(apiEndpoint)
+      .get('/workshops')
+      .reply(200, []);
+
+    return api.fetchWorkshops()
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
+
+  it('fetchWorkshopDetail calls for workshop detail', () => {
+    nock(apiEndpoint)
+      .get('/workshops/312')
+      .reply(200, []);
+
+    return api.fetchWorkshopDetail({ workshop: 312 })
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
+
+  it('fetchConditionsCurrent calls for current conditions', () => {
+    nock(apiEndpoint)
+      .get('/conditions')
+      .reply(200, []);
+
+    return api.fetchConditionsCurrent()
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
 });
