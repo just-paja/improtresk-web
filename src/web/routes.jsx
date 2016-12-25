@@ -34,7 +34,7 @@ const resolver = new Crossing(new RegExp(':([A-Za-z0-9-_%]{1,})'));
 resolver.load(urlTable);
 
 export function idFromSlug(slug) {
-  return slug.split('-').pop();
+  return slug ? slug.split('-').pop() : null;
 }
 
 export function reverse(url, params) {
