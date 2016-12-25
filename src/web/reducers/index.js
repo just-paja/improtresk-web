@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import accomodation from './accomodation';
 import device from './device';
 import conditions from './conditions';
 import news from './news';
@@ -11,6 +12,7 @@ import years from './years';
 
 export default function createReducer() {
   return combineReducers({
+    accomodation,
     conditions,
     device,
     news,
