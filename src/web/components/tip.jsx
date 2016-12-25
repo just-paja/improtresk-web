@@ -9,7 +9,7 @@ const Tip = ({ name, text, photos }) => (
     <div>
       <Markdown source={text} />
     </div>
-    <Gallery photos={photos} onClose={() => {}} />
+    <Gallery photos={photos} />
   </div>
 );
 
