@@ -12,7 +12,6 @@ const Gallery = ({ photos, ...other }) => (
         caption: photo.caption,
       },
     }))}
-    onClose={() => {}}
   />
 );
 
