@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { yearCurrent, yearsAll } from '../../../src/web/selectors/years';
+import { yearCurrent, yearsNotCurrent, yearsAll } from '../../../src/web/selectors/years';
 
 describe('News selectors', () => {
   it('yearsAll returns all news stored', () => {
@@ -38,5 +38,18 @@ describe('News selectors', () => {
         ],
       },
     })).to.equal(null);
+  });
+  it('yearsNotCurrent returns null when not available', () => {
+    expect(yearsNotCurrent({
+      years: {
+        data: [
+          { id: 1 },
+          { id: 2 },
+        ],
+      },
+    })).to.eql([
+      { id: 1 },
+      { id: 2 },
+    ]);
   });
 });
