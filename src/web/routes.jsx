@@ -8,6 +8,7 @@ import App from './containers/app';
 import Accomodations from './containers/accomodations';
 import Conditions from './containers/conditions';
 import Contact from './containers/contact';
+import Food from './containers/food';
 import Home from './containers/home';
 import NotFound from './components/notFound';
 import Schedule from './containers/schedule';
@@ -48,13 +49,14 @@ export default function configureRoutes() {
   return (
     <Route path={urlTable.home} component={App}>
       <IndexRoute component={Home} />
-      <Route path={urlTable.schedule} component={Schedule} />
-      <Route path={urlTable.workshops} component={Workshops} />
-      <Route path={urlTable['workshops:item']} component={WorkshopDetail} />
-      <Route path={urlTable.contact} component={Contact} />
-      <Route path={urlTable.tips} component={Tips} />
       <Route path={urlTable.accomodation} component={Accomodations} />
       <Route path={urlTable.conditions} component={Conditions} />
+      <Route path={urlTable.contact} component={Contact} />
+      <Route path={urlTable.food} component={Food} />
+      <Route path={urlTable.schedule} component={Schedule} />
+      <Route path={urlTable.tips} component={Tips} />
+      <Route path={urlTable.workshops} component={Workshops} />
+      <Route path={urlTable['workshops:item']} component={WorkshopDetail} />
       <Route path="*" component={NotFound} />
     </Route>
   );

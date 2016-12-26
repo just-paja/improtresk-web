@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
 
 import accomodation from './accomodation';
-import device from './device';
 import conditions from './conditions';
+import device from './device';
+import foodTimes from './foodTimes';
 import news from './news';
 import server from './server';
 import texts from './texts';
@@ -16,6 +17,7 @@ export default function createReducer() {
     accomodation,
     conditions,
     device,
+    foodTimes,
     news,
     server,
     texts,

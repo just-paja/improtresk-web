@@ -10,6 +10,8 @@ export const fetchAccomodation = () => apiFetch('accomodation');
 
 export const fetchConditionsCurrent = () => apiFetch('conditions');
 
+export const fetchFoodTimes = () => apiFetch('foodTimes');
+
 export const fetchNews = () => apiFetch('news');
 
 export const fetchText = ({ code }) => apiFetch(`texts/${code}`);
