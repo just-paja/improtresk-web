@@ -2,6 +2,7 @@ import { takeLatest } from 'redux-saga';
 
 import { fetchResourceIfNeeded } from './common';
 import { fetchTextsIfNeeded } from './texts';
+import { isValid } from '../selectors/food';
 
 import * as api from '../../api';
 import * as constants from '../constants/actions';
@@ -12,7 +13,7 @@ export function* fetchFoodTimesOnMount() {
     constants.FOOD_MOUNTED,
     fetchResourceIfNeeded,
     api.fetchFoodTimes,
-    state => state.foodTimes.valid,
+    isValid,
     {
       onStart: constants.FOOD_TIMES_FETCH_STARTED,
       onSuccess: constants.FOOD_TIMES_FETCH_SUCCESS,

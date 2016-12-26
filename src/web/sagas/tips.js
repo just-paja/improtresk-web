@@ -1,6 +1,7 @@
 import { takeLatest } from 'redux-saga';
 
 import { fetchResourceIfNeeded } from './common';
+import { isValid } from '../selectors/tips';
 
 import * as api from '../../api';
 import * as constants from '../constants/actions';
@@ -10,7 +11,7 @@ export function* fetchTipsOnMount() {
     constants.TIPS_MOUNTED,
     fetchResourceIfNeeded,
     api.fetchTips,
-    state => state.tips.valid,
+    isValid,
     {
       onStart: constants.TIPS_FETCH_STARTED,
       onSuccess: constants.TIPS_FETCH_SUCCESS,
