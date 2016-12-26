@@ -1,6 +1,7 @@
 import { takeLatest } from 'redux-saga';
 
 import { fetchResourceIfNeeded } from './common';
+import { shouldFetchList, shouldFetchDetail } from '../selectors/workshops';
 
 import * as api from '../../api';
 import * as constants from '../constants/actions';
@@ -10,7 +11,7 @@ export function* fetchWorkshopsOnMount() {
     constants.WORKSHOPS_MOUNTED,
     fetchResourceIfNeeded,
     api.fetchWorkshops,
-    state => state.workshops.valid,
+    shouldFetchList,
     {
       onStart: constants.WORKSHOPS_FETCH_STARTED,
       onSuccess: constants.WORKSHOPS_FETCH_SUCCESS,
@@ -24,7 +25,7 @@ export function* fetchWorkshopDetailOnMount() {
     constants.WORKSHOP_DETAIL_MOUNTED,
     fetchResourceIfNeeded,
     api.fetchWorkshopDetail,
-    state => state.workshopDetail.valid,
+    shouldFetchDetail,
     {
       onStart: constants.WORKSHOP_DETAIL_FETCH_STARTED,
       onSuccess: constants.WORKSHOP_DETAIL_FETCH_SUCCESS,

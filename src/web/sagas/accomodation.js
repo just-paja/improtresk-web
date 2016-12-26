@@ -2,6 +2,7 @@ import { takeLatest } from 'redux-saga';
 
 import { fetchResourceIfNeeded } from './common';
 import { fetchTextsIfNeeded } from './texts';
+import { isValid } from '../selectors/accomodation';
 
 import * as api from '../../api';
 import * as constants from '../constants/actions';
@@ -12,7 +13,7 @@ export function* fetchAccomodationOnMount() {
     constants.ACCOMODATION_MOUNTED,
     fetchResourceIfNeeded,
     api.fetchAccomodation,
-    state => state.accomodation.valid,
+    isValid,
     {
       onStart: constants.ACCOMODATION_FETCH_STARTED,
       onSuccess: constants.ACCOMODATION_FETCH_SUCCESS,
