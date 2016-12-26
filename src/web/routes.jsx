@@ -22,6 +22,7 @@ const urlTable = {
   fees: '/pro-ucastniky/poplatky',
   tips: '/pro-ucastniky/tipy',
   conditions: '/pro-ucastniky/podminky',
+  location: '/pro-ucastniky/lokace',
   workshops: '/workshopy',
   'workshops:item': '/workshopy/:slug',
   drive: '/jizdomat',
