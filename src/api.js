@@ -12,6 +12,8 @@ export const fetchConditionsCurrent = () => apiFetch('conditions');
 
 export const fetchNews = () => apiFetch('news');
 
+export const fetchText = ({ code }) => apiFetch(`texts/${code}`);
+
 export const fetchTips = () => apiFetch('tips');
 
 export const fetchYears = () => apiFetch('years');
