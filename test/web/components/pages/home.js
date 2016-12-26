@@ -6,6 +6,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import Home from '../../../../src/web/components/pages/home';
+import Link from '../../../../src/web/components/link';
 import News from '../../../../src/web/components/news';
 
 describe('Home component', () => {
@@ -44,6 +45,14 @@ describe('Home component', () => {
               otevírají dílny z oblasti improvizačního divadla na kterých se schází nadšenci
               improvizačního divadla i veřejnost.
             </p>
+
+            <h3>Rychlé odkazy</h3>
+            <ul className="list-unstyled">
+              <li><Link to="location"><b>Kde</b> to je?</Link></li>
+              <li><Link to="fees"><b>Kolik</b> to stojí?</Link></li>
+              <li><Link to="accomodation">Jak je to se <b>spaní</b>m?</Link></li>
+              <li><Link to="workshops">Jaké jsou <b>workshop</b>y?</Link></li>
+            </ul>
           </Col>
           <Col md={6}>
             <h2>Novinky</h2>

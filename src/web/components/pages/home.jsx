@@ -2,6 +2,7 @@ import Col from 'react-bootstrap/lib/Col';
 import Row from 'react-bootstrap/lib/Row';
 import React, { Component, PropTypes } from 'react';
 
+import Link from '../link';
 import News from '../news';
 import YearDetail from '../yearDetail';
 
@@ -38,6 +39,14 @@ export default class Home extends Component {
               dílny z oblasti improvizačního divadla na kterých se schází nadšenci
               improvizačního divadla i veřejnost.
             </p>
+
+            <h3>Rychlé odkazy</h3>
+            <ul className="list-unstyled">
+              <li><Link to="location"><b>Kde</b> to je?</Link></li>
+              <li><Link to="fees"><b>Kolik</b> to stojí?</Link></li>
+              <li><Link to="accomodation">Jak je to se <b>spaní</b>m?</Link></li>
+              <li><Link to="workshops">Jaké jsou <b>workshop</b>y?</Link></li>
+            </ul>
           </Col>
           <Col md={6}>
             <h2>Novinky</h2>

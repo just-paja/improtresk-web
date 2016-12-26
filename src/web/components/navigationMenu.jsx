@@ -10,6 +10,9 @@ import { reverse } from '../routes';
 const NavigationMenu = ({ years, ...props }) => (
   <Nav {...props}>
     <NavDropdown id="navigation-dropdown" title="Pro účastníky">
+      <LinkContainer to={reverse('location')}>
+        <NavItem>Lokace</NavItem>
+      </LinkContainer>
       <LinkContainer to={reverse('accomodation')}>
         <NavItem>Ubytování</NavItem>
       </LinkContainer>
