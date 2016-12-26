@@ -8,6 +8,7 @@ import App from './containers/app';
 import Accomodations from './containers/accomodations';
 import Conditions from './containers/conditions';
 import Contact from './containers/contact';
+import Fees from './containers/fees';
 import Food from './containers/food';
 import Home from './containers/home';
 import NotFound from './components/notFound';
@@ -52,6 +53,7 @@ export default function configureRoutes() {
       <Route path={urlTable.accomodation} component={Accomodations} />
       <Route path={urlTable.conditions} component={Conditions} />
       <Route path={urlTable.contact} component={Contact} />
+      <Route path={urlTable.fees} component={Fees} />
       <Route path={urlTable.food} component={Food} />
       <Route path={urlTable.schedule} component={Schedule} />
       <Route path={urlTable.tips} component={Tips} />
