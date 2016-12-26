@@ -5,6 +5,7 @@ import device from './device';
 import conditions from './conditions';
 import news from './news';
 import server from './server';
+import texts from './texts';
 import tips from './tips';
 import workshopDetail from './workshopDetail';
 import workshops from './workshops';
@@ -17,6 +18,7 @@ export default function createReducer() {
     device,
     news,
     server,
+    texts,
     tips,
     workshopDetail,
     workshops,

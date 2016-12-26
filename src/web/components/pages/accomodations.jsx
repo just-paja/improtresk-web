@@ -1,3 +1,4 @@
+import Markdown from 'react-markdown';
 import React, { Component, PropTypes } from 'react';
 
 import Accomodation from '../accomodation';
@@ -9,7 +10,7 @@ export default class Accomodations extends Component {
   }
 
   render() {
-    const { accomodations, ready } = this.props;
+    const { accomodations, intro, ready } = this.props;
 
     if (!ready) {
       return null;
@@ -18,6 +19,7 @@ export default class Accomodations extends Component {
     return (
       <div>
         <h1>Ubytování</h1>
+        <Markdown source={intro} />
         <ObjectList
           Component={Accomodation}
           data={accomodations}
@@ -31,6 +33,7 @@ Accomodations.propTypes = {
   onMount: PropTypes.func.isRequired,
   ready: PropTypes.bool,
   accomodations: PropTypes.arrayOf(PropTypes.object),
+  intro: PropTypes.string.isRequired,
 };
 
 Accomodations.defaultProps = {
