@@ -23,6 +23,7 @@ describe('Input component', () => {
         <FormControl
           maxLength={255}
           name="text-input"
+          onBlur={() => {}}
           onChange={() => {}}
           type="text"
           value=""
@@ -44,6 +45,7 @@ describe('Input component', () => {
         <FormControl
           maxLength={255}
           name="text-input"
+          onBlur={() => {}}
           onChange={() => {}}
           type="text"
           value=""
@@ -67,6 +69,7 @@ describe('Input component', () => {
         <FormControl
           maxLength={255}
           name="text-input"
+          onBlur={() => {}}
           onChange={() => {}}
           type="email"
           value=""
@@ -107,5 +110,90 @@ describe('Input component', () => {
     expect(changeSpy.args).to.eql([
       ['text-input', 'foo'],
     ]);
+  });
+  it('triggers onChange on input value change when passed with no target input', () => {
+    const changeSpy = sinon.spy();
+    const comp = shallow(
+      <Input
+        label="Input label"
+        name="text-input"
+        onChange={changeSpy}
+      />
+    );
+
+    comp.find('FormControl').simulate('change', 'foo');
+    expect(changeSpy.args).to.eql([
+      ['text-input', 'foo'],
+    ]);
+  });
+  it('triggers onChange on input value change when passed with formatValue prop', () => {
+    const changeSpy = sinon.spy();
+    const valueSpy = sinon.stub();
+    valueSpy.returns('bar');
+    const comp = shallow(
+      <Input
+        formatValue={valueSpy}
+        label="Input label"
+        name="text-input"
+        onChange={changeSpy}
+      />
+    );
+
+    comp.find('FormControl').simulate('change', 'foo');
+    expect(valueSpy.args).to.eql([['foo']]);
+    expect(changeSpy.args).to.eql([
+      ['text-input', 'bar'],
+    ]);
+  });
+  it('triggers touch state on input value change when passed changeLeadsToTouch', () => {
+    const changeSpy = sinon.spy();
+    const comp = shallow(
+      <Input
+        changeLeadsToTouch
+        label="Input label"
+        name="text-input"
+        onChange={changeSpy}
+      />
+    );
+
+    comp.find('FormControl').simulate('change', 'foo');
+    expect(comp.instance().state).to.eql({
+      changed: true,
+      touched: true,
+    });
+  });
+  it('triggers touch state on input blur when input was changed', () => {
+    const changeSpy = sinon.spy();
+    const comp = shallow(
+      <Input
+        changeLeadsToTouch
+        label="Input label"
+        name="text-input"
+        onChange={changeSpy}
+      />
+    );
+
+    comp.setState({ changed: true });
+
+    comp.find('FormControl').simulate('blur');
+    expect(comp.instance().state).to.eql({
+      changed: true,
+      touched: true,
+    });
+  });
+  it('triggers onBlur on blur', () => {
+    const blurSpy = sinon.spy();
+    const comp = shallow(
+      <Input
+        changeLeadsToTouch
+        label="Input label"
+        name="text-input"
+        onBlur={blurSpy}
+      />
+    );
+
+    comp.setState({ changed: true });
+    comp.find('FormControl').simulate('blur');
+    expect(blurSpy.calledOnce).to.equal(true);
   });
 });

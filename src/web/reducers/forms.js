@@ -4,9 +4,10 @@ import * as constants from '../constants/actions';
 
 const defaultState = {};
 
-const defaultFormState = {
+export const defaultFormState = {
   errors: {},
   values: {},
+  valid: true,
 };
 
 const workWithForm = (state, action) => (

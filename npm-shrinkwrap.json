@@ -3892,6 +3892,11 @@
       "from": "react-bootstrap@>=0.30.7 <0.31.0",
       "resolved": "http://registry.npmjs.org/react-bootstrap/-/react-bootstrap-0.30.7.tgz"
     },
+    "react-bootstrap-date-picker": {
+      "version": "4.0.0",
+      "from": "react-bootstrap-date-picker@latest",
+      "resolved": "http://registry.npmjs.org/react-bootstrap-date-picker/-/react-bootstrap-date-picker-4.0.0.tgz"
+    },
     "react-dom": {
       "version": "15.4.1",
       "from": "react-dom@>=15.4.1 <16.0.0",
