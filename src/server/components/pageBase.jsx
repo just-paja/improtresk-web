@@ -9,7 +9,7 @@ const pageBase = ({ css, js, markup, state = {} }) => (
       <link
         type="text/css"
         rel="stylesheet"
-        href="/static/bootswatch/bootstrap.min.css"
+        href="/static/bootswatch/sandstone/bootstrap.min.css"
       />
       <link
         type="text/css"
