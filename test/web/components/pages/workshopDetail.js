@@ -1,3 +1,4 @@
+import Grid from 'react-bootstrap/lib/Grid';
 import React from 'react';
 import sinon from 'sinon';
 
@@ -50,7 +51,7 @@ describe('Workshop Detail page component', () => {
         ready
       />
     ).node).to.eql(
-      <div>
+      <Grid>
         <WorkshopDetail
           id={12}
           desc={
@@ -75,7 +76,7 @@ describe('Workshop Detail page component', () => {
               'absolvoval bakalářský obor (titul BcA.), v současné době pokračuje v navazujícím',
           }}
         />
-      </div>
+      </Grid>
     );
   });
 

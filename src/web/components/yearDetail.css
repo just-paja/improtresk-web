@@ -1,8 +1,36 @@
-:local(.topic) {
-  display: block;
+:local .container {
+  background-color: #d9d4c0;
+  background-image: url(/static/theme/2017/bg-legs.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left top;
+  padding: 12rem 0;
+  position: relative;
 }
 
-:local(.upcomingDate) {
+@media(min-width: 1350px) {
+  :local .container {
+    background-size: 1350px auto;
+  }
+}
+
+:local .buttons {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+:local .topic {
+  display: block;
+  color: inherit;
+}
+
+:local .upcomingDate {
   font-size: 24px;
   margin-bottom: 1rem;
+}
+
+:local .text {
+  text-shadow: rgba(216, 211, 191, .5) 0 0 5px;
 }

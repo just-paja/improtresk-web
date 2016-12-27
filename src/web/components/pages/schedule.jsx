@@ -1,3 +1,4 @@
+import Grid from 'react-bootstrap/lib/Grid';
 import React, { Component, PropTypes } from 'react';
 
 export default class Home extends Component {
@@ -13,10 +14,10 @@ export default class Home extends Component {
     }
 
     return (
-      <div>
+      <Grid>
         <h1>Program</h1>
         <p>Program pro tento ročník zatím není zveřejněný.</p>
-      </div>
+      </Grid>
     );
   }
 }

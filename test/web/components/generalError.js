@@ -1,3 +1,4 @@
+import Grid from 'react-bootstrap/lib/Grid';
 import React from 'react';
 
 import { expect } from 'chai';
@@ -10,14 +11,14 @@ describe('General error component', () => {
     expect(shallow(
       <GeneralError />
     ).node).to.eql(
-      <div>
+      <Grid>
         <h1>Jejda, něco se pokazilo</h1>
         <p>
           Během vašeho požadavku se něco pokazilo a nebyli jsme schopni to vyřídit.
           Zkuste to prosím znovu, potom zkuste chvílil počkat a zkusit to znovu a když
           to nepomůže, tak nám napište.
         </p>
-      </div>
+      </Grid>
     );
   });
 });

@@ -1,3 +1,4 @@
+import Grid from 'react-bootstrap/lib/Grid';
 import React, { Component, PropTypes } from 'react';
 
 import WorkshopDetail from '../workshopDetail';
@@ -17,9 +18,9 @@ export default class WorkshopDetailPage extends Component {
     }
 
     return (
-      <div>
+      <Grid>
         <WorkshopDetail {...workshop} />
-      </div>
+      </Grid>
     );
   }
 }

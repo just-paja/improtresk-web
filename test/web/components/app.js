@@ -2,7 +2,6 @@ import React from 'react';
 import sinon from 'sinon';
 
 import { expect } from 'chai';
-import { Grid } from 'react-bootstrap';
 import { shallow } from 'enzyme';
 
 import App from '../../../src/web/components/app';
@@ -20,14 +19,14 @@ describe('App component', () => {
         <div>foo</div>
       </App>
     ).node).to.eql(
-      <Grid className="improtresk-app">
+      <div className="app-app">
         <Navigation
           years={[
             { year: '2016', topic: 'Ovce' },
           ]}
         />
         <div>foo</div>
-      </Grid>
+      </div>
     );
   });
 
