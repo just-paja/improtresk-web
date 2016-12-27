@@ -42,6 +42,7 @@ const schema = {
     rules: {
       message: 'Bez toho abys souhlasil s našimi pravidly se nemůžeš zúčastnit',
       required: true,
+      enum: [true],
       type: 'boolean',
     },
   },

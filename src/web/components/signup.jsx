@@ -1,11 +1,9 @@
-import Checkbox from 'react-bootstrap/lib/Checkbox';
 import Form from 'react-bootstrap/lib/Form';
-import FormControl from 'react-bootstrap/lib/FormControl';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
 import React, { Component, PropTypes } from 'react';
 
 import Link from './link';
 import Input from './input';
+import InputCheckbox from './inputCheckbox';
 import InputDate from './inputDate';
 import InputSelect from './inputSelect';
 
@@ -21,6 +19,8 @@ export default class Signup extends Component {
 
   render() {
     const { errors, values } = this.props;
+
+    const rulesLabel = <span>Souhlasím s <Link to="conditions">podmínkami festivalu</Link></span>;
 
     return (
       <Form>
@@ -81,22 +81,19 @@ export default class Signup extends Component {
           error={errors.team}
           value={values.team}
         />
-        <FormGroup>
-          <Checkbox
-            name="rules"
-            label="pravidla"
-            inline
-          >Souhlasím s <Link to="conditions">podmínkami festivalu</Link></Checkbox>
-          <FormControl.Feedback />
-        </FormGroup>
-        <FormGroup>
-          <Checkbox
-            name="newsletter"
-            label="pravidla"
-            inline
-          >Chci dostávat e-mailem novinky o událostech Improligy</Checkbox>
-          <FormControl.Feedback />
-        </FormGroup>
+        <InputCheckbox
+          name="rules"
+          label={rulesLabel}
+          error={errors.rules}
+          checked={values.rules}
+          onChange={this.handleChange}
+        />
+        <InputCheckbox
+          name="newsletter"
+          label="Chci dostávat e-mailem novinky o událostech Improligy"
+          error={errors.newsletter}
+          onChange={this.handleChange}
+        />
       </Form>
     );
   }
