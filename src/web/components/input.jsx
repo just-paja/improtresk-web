@@ -7,26 +7,57 @@ import React, { Component, PropTypes } from 'react';
 export default class Input extends Component {
   constructor() {
     super();
+    this.state = {};
+    this.handleBlur = this.handleBlur.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
+  handleBlur() {
+    this.setState({ touched: this.state.changed });
+    if (this.props.onBlur) {
+      this.props.onBlur();
+    }
+  }
+
   handleChange(e) {
+    this.setState({ changed: true });
+
+    if (this.props.changeLeadsToTouch) {
+      this.setState({ touched: true });
+    }
+
     if (this.props.onChange) {
-      this.props.onChange(e.target.name, e.target.value);
+      const value = e.target ? e.target.value : e;
+      const formattedValue = this.props.formatValue ? this.props.formatValue(value) : value;
+      this.props.onChange(this.props.name, formattedValue);
     }
   }
 
   render() {
-    const { error, help, label, maxLength, name, type, value, ...other } = this.props;
-    const message = error || help;
+    const {
+      Control,
+      error,
+      help,
+      label,
+      maxLength,
+      name,
+      type,
+      value,
+      ...other
+    } = this.props;
+    const { touched } = this.state;
+    const message = (touched && error) || help;
+
+    delete other.changeLeadsToTouch;
 
     return (
-      <FormGroup validationState={error ? 'error' : null}>
+      <FormGroup validationState={(touched && error) ? 'error' : null}>
         <ControlLabel>{label}</ControlLabel>
-        <FormControl
+        <Control
           {...other}
           maxLength={maxLength}
           name={name}
+          onBlur={this.handleBlur}
           onChange={this.handleChange}
           type={type}
           value={value || ''}
@@ -39,7 +70,10 @@ export default class Input extends Component {
 }
 
 Input.propTypes = {
+  changeLeadsToTouch: PropTypes.bool,
+  Control: PropTypes.func.isRequired,
   error: PropTypes.string,
+  formatValue: PropTypes.func,
   help: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
@@ -48,12 +82,18 @@ Input.propTypes = {
   label: PropTypes.string,
   maxLength: PropTypes.number,
   name: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
   type: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]),
 };
 
 Input.defaultProps = {
+  changeLeadsToTouch: false,
+  Control: FormControl,
   error: null,
   maxLength: 255,
   type: 'text',

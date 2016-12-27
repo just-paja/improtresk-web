@@ -3,6 +3,9 @@ import { expect } from 'chai';
 import forms from '../../../src/web/reducers/forms';
 
 describe('Forms reducer', () => {
+  it('returns default state', () => {
+    expect(forms()).to.eql({});
+  });
   it('updates form field value', () => {
     expect(forms(
       {
@@ -82,6 +85,29 @@ describe('Forms reducer', () => {
         values: {
           foo: 'baz',
         },
+      },
+    });
+  });
+  it('updates form validation status', () => {
+    expect(forms(
+      {
+        testForm: {
+          values: { foo: 'bar' },
+        },
+      },
+      {
+        type: 'FORM_VALUES_VALIDATE',
+        form: 'testForm',
+        valid: true,
+        errors: {},
+      }
+    )).to.eql({
+      testForm: {
+        values: {
+          foo: 'bar',
+        },
+        valid: true,
+        errors: {},
       },
     });
   });

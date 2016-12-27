@@ -1,11 +1,6 @@
-export const getForm = (state, form) => state.forms[form] || {
-  errors: {},
-  values: {},
-};
+import { defaultFormState } from '../reducers/forms';
 
-export const getFormFromState = form => state => getForm(state, form);
+export const getForm = (state, form) =>
+  state.forms[form] || Object.assign({}, defaultFormState);
 
-export const isFormValid = (state, form) => !!(
-  state.forms[form] &&
-  state.forms[form].valid
-);
+export const isFormValid = (state, form) => !!getForm(state, form).valid;

@@ -1,36 +1,46 @@
-import Checkbox from 'react-bootstrap/lib/Checkbox';
-import Form from 'react-bootstrap/lib/Form';
-import FormControl from 'react-bootstrap/lib/FormControl';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
+import sinon from 'sinon';
 
-import Link from './link';
-import Input from './input';
-import InputDate from './inputDate';
-import InputSelect from './inputSelect';
+import { Checkbox, Form, FormControl, FormGroup } from 'react-bootstrap';
+import { expect } from 'chai';
+import { shallow } from 'enzyme';
 
-export default class Signup extends Component {
-  constructor() {
-    super();
-    this.handleChange = this.handleChange.bind(this);
-  }
+import Link from '../../../src/web/components/link';
+import Input from '../../../src/web/components/input';
+import InputDate from '../../../src/web/components/inputDate';
+import InputSelect from '../../../src/web/components/inputSelect';
+import Signup from '../../../src/web/components/signup';
 
-  handleChange(name, value) {
-    this.props.onChange(this.props.form, name, value);
-  }
-
-  render() {
-    const { errors, values } = this.props;
-
-    return (
+describe('Signup Form component', () => {
+  it('renders the form', () => {
+    expect(shallow(
+      <Signup
+        form="signup"
+        onChange={() => {}}
+        errors={{
+          name: 'name error',
+          email: 'email error',
+          phone: 'phone error',
+          dob: 'dob error',
+          team: 'team error',
+        }}
+        values={{
+          name: 'name value',
+          email: 'email value',
+          phone: 'phone value',
+          dob: 'dob value',
+          team: 'team value',
+        }}
+      />
+    ).node).to.eql(
       <Form>
         <Input
           help="Jméno, příjmení a ostatní jména která nalezneš na svém občanském průkazu"
           label="Tvoje celé jméno"
           name="name"
-          onChange={this.handleChange}
-          error={errors.name}
-          value={values.name}
+          onChange={() => {}}
+          error="name error"
+          value="name value"
         />
         <Input
           help={
@@ -39,10 +49,10 @@ export default class Signup extends Component {
           }
           label="E-mail"
           name="email"
-          onChange={this.handleChange}
+          onChange={() => {}}
           type="email"
-          error={errors.email}
-          value={values.email}
+          error="email error"
+          value="email value"
         />
         <Input
           help={
@@ -51,9 +61,9 @@ export default class Signup extends Component {
           }
           label="Telefonní číslo"
           name="phone"
-          onChange={this.handleChange}
-          error={errors.phone}
-          value={values.phone}
+          onChange={() => {}}
+          error="phone error"
+          value="phone value"
         />
         <InputDate
           help={
@@ -62,9 +72,9 @@ export default class Signup extends Component {
           }
           label="Datum narození"
           name="dob"
-          onChange={this.handleChange}
-          error={errors.dob}
-          value={values.dob}
+          onChange={() => {}}
+          error="dob error"
+          value="dob value"
         />
         <InputSelect
           help={
@@ -73,13 +83,13 @@ export default class Signup extends Component {
           }
           label="Tvoje skupina"
           name="team"
-          onChange={this.handleChange}
+          onChange={() => {}}
           options={[
             { value: 'foo', label: 'Foo' },
             { value: 'bar', label: 'Bar' },
           ]}
-          error={errors.team}
-          value={values.team}
+          error="team error"
+          value="team value"
         />
         <FormGroup>
           <Checkbox
@@ -99,12 +109,21 @@ export default class Signup extends Component {
         </FormGroup>
       </Form>
     );
-  }
-}
+  });
+  it('injects form name into onChange', () => {
+    const changeSpy = sinon.spy();
+    const comp = shallow(
+      <Signup
+        form="signup"
+        onChange={changeSpy}
+        errors={{}}
+        values={{}}
+      />
+    );
 
-Signup.propTypes = {
-  form: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
-  values: PropTypes.object.isRequired,
-};
+    comp.find('Input').at(0).simulate('change', 'name', 'foo');
+    expect(changeSpy.args).to.eql([
+      ['signup', 'name', 'foo'],
+    ]);
+  });
+});
