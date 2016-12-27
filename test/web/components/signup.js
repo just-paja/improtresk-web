@@ -1,12 +1,13 @@
 import React from 'react';
 import sinon from 'sinon';
 
-import { Checkbox, Form, FormControl, FormGroup } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import Link from '../../../src/web/components/link';
 import Input from '../../../src/web/components/input';
+import InputCheckbox from '../../../src/web/components/inputCheckbox';
 import InputDate from '../../../src/web/components/inputDate';
 import InputSelect from '../../../src/web/components/inputSelect';
 import Signup from '../../../src/web/components/signup';
@@ -23,6 +24,7 @@ describe('Signup Form component', () => {
           phone: 'phone error',
           dob: 'dob error',
           team: 'team error',
+          rules: 'rules error',
         }}
         values={{
           name: 'name value',
@@ -30,6 +32,7 @@ describe('Signup Form component', () => {
           phone: 'phone value',
           dob: 'dob value',
           team: 'team value',
+          rules: false,
         }}
       />
     ).node).to.eql(
@@ -91,22 +94,18 @@ describe('Signup Form component', () => {
           error="team error"
           value="team value"
         />
-        <FormGroup>
-          <Checkbox
-            name="rules"
-            label="pravidla"
-            inline
-          >Souhlasím s <Link to="conditions">podmínkami festivalu</Link></Checkbox>
-          <FormControl.Feedback />
-        </FormGroup>
-        <FormGroup>
-          <Checkbox
-            name="newsletter"
-            label="pravidla"
-            inline
-          >Chci dostávat e-mailem novinky o událostech Improligy</Checkbox>
-          <FormControl.Feedback />
-        </FormGroup>
+        <InputCheckbox
+          name="rules"
+          label={<span>Souhlasím s <Link to="conditions">podmínkami festivalu</Link></span>}
+          onChange={() => {}}
+          error="rules error"
+          checked={false}
+        />
+        <InputCheckbox
+          name="newsletter"
+          label="Chci dostávat e-mailem novinky o událostech Improligy"
+          onChange={() => {}}
+        />
       </Form>
     );
   });
