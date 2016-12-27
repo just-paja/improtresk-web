@@ -4,6 +4,7 @@ import accomodation from './accomodation';
 import conditions from './conditions';
 import device from './device';
 import foodTimes from './foodTimes';
+import forms from './forms';
 import news from './news';
 import server from './server';
 import texts from './texts';
@@ -17,6 +18,7 @@ export default function createReducer() {
     accomodation,
     conditions,
     device,
+    forms,
     foodTimes,
     news,
     server,

@@ -4,6 +4,7 @@ import accomodation from './accomodation';
 import conditions from './conditions';
 import foodTimes from './foodTimes';
 import fees from './fees';
+import forms from './forms';
 import news from './news';
 import years from './years';
 import texts from './texts';
@@ -15,6 +16,7 @@ const sagas = [
   ...conditions,
   ...foodTimes,
   ...fees,
+  ...forms,
   ...news,
   ...years,
   ...texts,

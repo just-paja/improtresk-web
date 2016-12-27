@@ -11,6 +11,7 @@ export function* fetchYearsOnMount() {
       constants.APP_MOUNTED,
       constants.HOME_MOUNTED,
       constants.CONDITIONS_MOUNTED,
+      constants.SIGNUP_MOUNTED,
     ],
     fetchResourceIfNeeded,
     api.fetchYears,
