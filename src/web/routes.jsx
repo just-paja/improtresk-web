@@ -13,6 +13,7 @@ import Food from './containers/food';
 import Home from './containers/home';
 import NotFound from './components/notFound';
 import Schedule from './containers/schedule';
+import Signup from './containers/signup';
 import Tips from './containers/tips';
 import WorkshopDetail from './containers/workshopDetail';
 import Workshops from './containers/workshops';
@@ -56,6 +57,7 @@ export default function configureRoutes() {
       <Route path={urlTable.fees} component={Fees} />
       <Route path={urlTable.food} component={Food} />
       <Route path={urlTable.schedule} component={Schedule} />
+      <Route path={urlTable.signup} component={Signup} />
       <Route path={urlTable.tips} component={Tips} />
       <Route path={urlTable.workshops} component={Workshops} />
       <Route path={urlTable['workshops:item']} component={WorkshopDetail} />
