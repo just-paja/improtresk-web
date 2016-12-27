@@ -15,10 +15,17 @@ const templateMap = {
 const getTemplate = status => templateMap[status] || GeneralError;
 
 export default (req, res, next) => {
-  const ErrorComponent = getTemplate(res.status);
+  if (res.statusCode === 200) {
+    res.status(404);
+  }
+
+  const ErrorComponent = getTemplate(res.statusCode);
 
   try {
-    res.send(renderInHtml(renderToString(<ErrorComponent />)));
+    const html = renderInHtml({
+      markup: renderToString(<ErrorComponent />),
+    });
+    res.send(html);
   } catch (e) {
     winston.log('error', e);
     return res.status(500).send('Internal server errror');
