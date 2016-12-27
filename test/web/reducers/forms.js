@@ -82,6 +82,10 @@ describe('Forms reducer', () => {
       }
     )).to.eql({
       testForm: {
+        errors: {},
+        sending: false,
+        submitted: false,
+        valid: true,
         values: {
           foo: 'baz',
         },
@@ -106,6 +110,78 @@ describe('Forms reducer', () => {
         values: {
           foo: 'bar',
         },
+        valid: true,
+        errors: {},
+      },
+    });
+  });
+  it('updates form submitted status', () => {
+    expect(forms(
+      {
+        testForm: {
+          values: { foo: 'bar' },
+        },
+      },
+      {
+        type: 'FORM_SUBMIT',
+        form: 'testForm',
+      }
+    )).to.eql({
+      testForm: {
+        values: {
+          foo: 'bar',
+        },
+        submitted: true,
+      },
+    });
+  });
+  it('updates form sending status on submit prevention', () => {
+    expect(forms(
+      {
+        testForm: {
+          values: { foo: 'bar' },
+          submitted: true,
+        },
+      },
+      {
+        type: 'FORM_SUBMIT_PREVENTED',
+        form: 'testForm',
+        valid: false,
+        errors: {},
+      }
+    )).to.eql({
+      testForm: {
+        values: {
+          foo: 'bar',
+        },
+        submitted: true,
+        sending: false,
+        valid: false,
+        errors: {},
+      },
+    });
+  });
+  it('updates form sending status on submit allowance', () => {
+    expect(forms(
+      {
+        testForm: {
+          values: { foo: 'bar' },
+          submitted: true,
+        },
+      },
+      {
+        type: 'FORM_SUBMIT_ALLOWED',
+        form: 'testForm',
+        valid: true,
+        errors: {},
+      }
+    )).to.eql({
+      testForm: {
+        values: {
+          foo: 'bar',
+        },
+        submitted: true,
+        sending: true,
         valid: true,
         errors: {},
       },

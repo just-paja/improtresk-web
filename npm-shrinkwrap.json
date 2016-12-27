@@ -908,7 +908,7 @@
     },
     "classnames": {
       "version": "2.2.5",
-      "from": "classnames@>=2.2.5 <3.0.0",
+      "from": "http://registry.npmjs.org/classnames/-/classnames-2.2.5.tgz",
       "resolved": "http://registry.npmjs.org/classnames/-/classnames-2.2.5.tgz"
     },
     "cli-cursor": {

@@ -8,7 +8,7 @@ export default class SignupPage extends Component {
   }
 
   render() {
-    const { onChange, ready, signup } = this.props;
+    const { onChange, onSubmit, ready, signup } = this.props;
 
     if (!ready) {
       return null;
@@ -26,8 +26,8 @@ export default class SignupPage extends Component {
         <Signup
           form="signup"
           onChange={onChange}
-          errors={signup.errors}
-          values={signup.values}
+          onSubmit={onSubmit}
+          {...signup}
         />
       </div>
     );
@@ -37,6 +37,7 @@ export default class SignupPage extends Component {
 SignupPage.propTypes = {
   onMount: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
   ready: PropTypes.bool,
   signup: PropTypes.object,
 };

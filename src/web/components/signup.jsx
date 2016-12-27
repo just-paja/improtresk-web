@@ -1,6 +1,7 @@
 import Form from 'react-bootstrap/lib/Form';
 import React, { Component, PropTypes } from 'react';
 
+import Button from './button';
 import Link from './link';
 import Input from './input';
 import InputCheckbox from './inputCheckbox';
@@ -11,19 +12,25 @@ export default class Signup extends Component {
   constructor() {
     super();
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(name, value) {
     this.props.onChange(this.props.form, name, value);
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.onSubmit(this.props.form);
+  }
+
   render() {
-    const { errors, values } = this.props;
+    const { errors, sending, submitted, values } = this.props;
 
     const rulesLabel = <span>Souhlasím s <Link to="conditions">podmínkami festivalu</Link></span>;
 
     return (
-      <Form>
+      <Form onSubmit={this.handleSubmit}>
         <Input
           help="Jméno, příjmení a ostatní jména která nalezneš na svém občanském průkazu"
           label="Tvoje celé jméno"
@@ -31,6 +38,7 @@ export default class Signup extends Component {
           onChange={this.handleChange}
           error={errors.name}
           value={values.name}
+          touched={submitted}
         />
         <Input
           help={
@@ -43,6 +51,7 @@ export default class Signup extends Component {
           type="email"
           error={errors.email}
           value={values.email}
+          touched={submitted}
         />
         <Input
           help={
@@ -54,6 +63,7 @@ export default class Signup extends Component {
           onChange={this.handleChange}
           error={errors.phone}
           value={values.phone}
+          touched={submitted}
         />
         <InputDate
           help={
@@ -65,6 +75,7 @@ export default class Signup extends Component {
           onChange={this.handleChange}
           error={errors.dob}
           value={values.dob}
+          touched={submitted}
         />
         <InputSelect
           help={
@@ -80,6 +91,7 @@ export default class Signup extends Component {
           ]}
           error={errors.team}
           value={values.team}
+          touched={submitted}
         />
         <InputCheckbox
           name="rules"
@@ -94,14 +106,27 @@ export default class Signup extends Component {
           error={errors.newsletter}
           onChange={this.handleChange}
         />
+        <Button
+          bsStyle="primary"
+          loading={sending}
+          type="submit"
+        >Zaregistrovat</Button>
       </Form>
     );
   }
 }
 
 Signup.propTypes = {
+  errors: PropTypes.object.isRequired,
   form: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired,
   values: PropTypes.object.isRequired,
+  sending: PropTypes.bool,
+  submitted: PropTypes.bool,
+};
+
+Signup.defaultProps = {
+  sending: false,
+  submitted: false,
 };

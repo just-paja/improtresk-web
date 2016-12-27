@@ -4,7 +4,7 @@ export function* fetchResource(resource, { onStart, onSuccess, onError, ...args 
   yield put({ type: onStart, ...args });
   try {
     const res = yield call(resource, { ...action, ...args });
-    const data = yield res.json();
+    const data = yield res.status === 204 ? [] : res.json();
 
     yield put({ type: onSuccess, data, ...args });
   } catch (error) {

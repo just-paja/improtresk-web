@@ -20,8 +20,10 @@ describe('Formsselectors', () => {
       forms: {},
     }, 'testForm')).to.eql({
       errors: {},
-      values: {},
+      submitted: false,
+      sending: false,
       valid: true,
+      values: {},
     });
   });
 

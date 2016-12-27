@@ -1,8 +1,10 @@
 import { expect } from 'chai';
-import { fork, put, select, take } from 'redux-saga/effects';
+import { call, fork, put, select, take } from 'redux-saga/effects';
+
+import signupValidator from '../../../src/web/forms/signup';
 
 import { getForm } from '../../../src/web/selectors/forms';
-import { validateForm, validateFormOnValuesChange } from '../../../src/web/sagas/forms';
+import { validateForm, validateFormOnValuesChange, validateAndSubmitForm } from '../../../src/web/sagas/forms';
 
 describe('Form saga helpers', () => {
   it('validateForm validates signup form as valid when everything is green', () => {
@@ -43,6 +45,62 @@ describe('Form saga helpers', () => {
       type: 'FORM_VALUES_VALIDATE',
       form: 'signup',
       errors: {},
+      valid: true,
+    }));
+    expect(generator.next().done).to.equal(true);
+  });
+
+  it('validateAndSubmitForm validates and blocks invalid form submit', () => {
+    const generator = validateAndSubmitForm({
+      form: 'signup',
+    });
+
+    expect(generator.next().value).to.eql(select(getForm, 'signup'));
+    expect(generator.next({
+      valid: false,
+      values: {
+        dob: '1970-01-01',
+        email: 'test@example.com',
+        phone: '123456789',
+        rules: true,
+      },
+    }).value).to.eql(signupValidator({
+      dob: '1970-01-01',
+      email: 'test@example.com',
+      phone: '123456789',
+      rules: true,
+    }));
+    expect(generator.next({ valid: false }).value).to.eql(put({
+      type: 'FORM_SUBMIT_PREVENTED',
+      form: 'signup',
+      valid: false,
+    }));
+    expect(generator.next().done).to.equal(true);
+  });
+
+  it('validateAndSubmitForm validates and allows valid form submit', () => {
+    const generator = validateAndSubmitForm({
+      form: 'signup',
+    });
+
+    expect(generator.next().value).to.eql(select(getForm, 'signup'));
+    expect(generator.next({
+      valid: false,
+      values: {
+        dob: '1970-01-01',
+        email: 'test@example.com',
+        phone: '123456789',
+        rules: true,
+      },
+    }).value).to.eql(signupValidator({
+      dob: '1970-01-01',
+      email: 'test@example.com',
+      phone: '123456789',
+      rules: true,
+    }));
+    expect(generator.next({ valid: true }).value).to.eql(put({
+      type: 'FORM_SUBMIT_ALLOWED',
+      form: 'signup',
       valid: true,
     }));
     expect(generator.next().done).to.equal(true);
