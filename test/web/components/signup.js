@@ -5,6 +5,7 @@ import { Form } from 'react-bootstrap';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
+import Button from '../../../src/web/components/button';
 import Link from '../../../src/web/components/link';
 import Input from '../../../src/web/components/input';
 import InputCheckbox from '../../../src/web/components/inputCheckbox';
@@ -36,7 +37,7 @@ describe('Signup Form component', () => {
         }}
       />
     ).node).to.eql(
-      <Form>
+      <Form onSubmit={() => {}}>
         <Input
           help="Jméno, příjmení a ostatní jména která nalezneš na svém občanském průkazu"
           label="Tvoje celé jméno"
@@ -44,6 +45,7 @@ describe('Signup Form component', () => {
           onChange={() => {}}
           error="name error"
           value="name value"
+          touched={false}
         />
         <Input
           help={
@@ -56,6 +58,7 @@ describe('Signup Form component', () => {
           type="email"
           error="email error"
           value="email value"
+          touched={false}
         />
         <Input
           help={
@@ -67,6 +70,7 @@ describe('Signup Form component', () => {
           onChange={() => {}}
           error="phone error"
           value="phone value"
+          touched={false}
         />
         <InputDate
           help={
@@ -78,6 +82,7 @@ describe('Signup Form component', () => {
           onChange={() => {}}
           error="dob error"
           value="dob value"
+          touched={false}
         />
         <InputSelect
           help={
@@ -93,6 +98,7 @@ describe('Signup Form component', () => {
           ]}
           error="team error"
           value="team value"
+          touched={false}
         />
         <InputCheckbox
           name="rules"
@@ -106,6 +112,10 @@ describe('Signup Form component', () => {
           label="Chci dostávat e-mailem novinky o událostech Improligy"
           onChange={() => {}}
         />
+        <Button
+          bsStyle="primary"
+          type="submit"
+        >Zaregistrovat</Button>
       </Form>
     );
   });

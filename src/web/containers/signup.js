@@ -21,6 +21,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     field,
     value,
   }),
+  onSubmit: form => ({ type: actions.FORM_SUBMIT, form }),
   onMount: () => ({ type: actions.SIGNUP_MOUNTED }),
 }, dispatch);
 

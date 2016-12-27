@@ -6,9 +6,10 @@ import foodTimes from './foodTimes';
 import fees from './fees';
 import forms from './forms';
 import news from './news';
-import years from './years';
+import signup from './signup';
 import texts from './texts';
 import tips from './tips';
+import years from './years';
 import workshops from './workshops';
 
 const sagas = [
@@ -18,9 +19,10 @@ const sagas = [
   ...fees,
   ...forms,
   ...news,
-  ...years,
+  ...signup,
   ...texts,
   ...tips,
+  ...years,
   ...workshops,
 ];
 

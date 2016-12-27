@@ -6,36 +6,98 @@ const defaultState = {};
 
 export const defaultFormState = {
   errors: {},
-  values: {},
+  submitted: false,
+  sending: false,
   valid: true,
+  values: {},
 };
 
-const workWithForm = (state, action) => (
+const ensureFormIsPresent = (state, action) => (
   state[action.form] ? state : Object.assign({}, state, {
     [action.form]: Object.assign({}, defaultFormState),
   })
 );
 
+const workWithForm = reducer => (state, action) =>
+  reducer(ensureFormIsPresent(state, action), action);
+
 export default combined(defaultState, {
-  [constants.FORM_FIELD_CHANGE]: (state, action) => {
-    const fixedState = workWithForm(state, action);
-    return Object.assign({}, fixedState, {
+  [constants.FORM_FIELD_CHANGE]: workWithForm((state, action) => Object.assign(
+    {},
+    state,
+    {
       [action.form]: {
+        ...state[action.form],
         values: {
-          ...fixedState[action.form].values,
+          ...state[action.form].values,
           [action.field]: action.value,
         },
       },
-    });
-  },
-  [constants.FORM_VALUES_VALIDATE]: (state, action) => {
-    const fixedState = workWithForm(state, action);
-    return Object.assign({}, fixedState, {
+    }
+  )),
+  [constants.FORM_VALUES_VALIDATE]: workWithForm((state, action) => Object.assign(
+    {},
+    state,
+    {
       [action.form]: {
-        ...fixedState[action.form],
+        ...state[action.form],
         valid: action.valid,
         errors: action.errors,
       },
-    });
-  },
+    }
+  )),
+  [constants.FORM_SUBMIT]: workWithForm((state, action) => Object.assign(
+    {},
+    state,
+    {
+      [action.form]: {
+        ...state[action.form],
+        submitted: true,
+      },
+    }
+  )),
+  [constants.FORM_SUBMIT_ALLOWED]: workWithForm((state, action) => Object.assign(
+    {},
+    state,
+    {
+      [action.form]: {
+        ...state[action.form],
+        sending: true,
+        valid: action.valid,
+        errors: action.errors,
+      },
+    }
+  )),
+  [constants.FORM_SUBMIT_PREVENTED]: workWithForm((state, action) => Object.assign(
+    {},
+    state,
+    {
+      [action.form]: {
+        ...state[action.form],
+        sending: false,
+        valid: action.valid,
+        errors: action.errors,
+      },
+    }
+  )),
+  [constants.FORM_SUBMIT_SUCCESS]: workWithForm((state, action) => Object.assign(
+    {},
+    state,
+    {
+      [action.form]: {
+        ...state[action.form],
+        sending: false,
+      },
+    }
+  )),
+  [constants.FORM_SUBMIT_ERROR]: workWithForm((state, action) => Object.assign(
+    {},
+    state,
+    {
+      [action.form]: {
+        ...state[action.form],
+        sending: false,
+      },
+    }
+  )),
 });

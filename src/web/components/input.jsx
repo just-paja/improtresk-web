@@ -33,6 +33,10 @@ export default class Input extends Component {
     }
   }
 
+  isTouched() {
+    return !!(this.props.touched || this.state.touched);
+  }
+
   render() {
     const {
       Control,
@@ -45,10 +49,11 @@ export default class Input extends Component {
       value,
       ...other
     } = this.props;
-    const { touched } = this.state;
-    const message = (touched && error) || help;
-
     delete other.changeLeadsToTouch;
+    delete other.touched;
+
+    const touched = this.isTouched();
+    const message = (touched && error) || help;
 
     return (
       <FormGroup validationState={(touched && error) ? 'error' : null}>
@@ -85,6 +90,7 @@ Input.propTypes = {
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   type: PropTypes.string,
+  touched: PropTypes.bool,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
