@@ -1,3 +1,4 @@
+import Grid from 'react-bootstrap/lib/Grid';
 import Col from 'react-bootstrap/lib/Col';
 import Row from 'react-bootstrap/lib/Row';
 import FontAwesome from 'react-fontawesome';
@@ -16,7 +17,7 @@ export default class Contact extends Component {
     }
 
     return (
-      <div>
+      <Grid>
         <h1>Kontakt</h1>
         <Row>
           <Col md={6}>
@@ -46,7 +47,7 @@ export default class Contact extends Component {
             </ul>
           </Col>
         </Row>
-      </div>
+      </Grid>
     );
   }
 }

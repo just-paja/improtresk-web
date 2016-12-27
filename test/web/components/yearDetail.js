@@ -1,3 +1,6 @@
+import Col from 'react-bootstrap/lib/Col';
+import Grid from 'react-bootstrap/lib/Grid';
+import Row from 'react-bootstrap/lib/Row';
 import React from 'react';
 
 import { expect } from 'chai';
@@ -18,21 +21,31 @@ describe('Year Detail component', () => {
         year="2019"
       />
     ).node).to.eql(
-      <div className="text-center">
-        <h1>Improtřesk 2019 <small className="yearDetail-topic">
-          <i>Porno je taky improvizace</i>
-        </small></h1>
-        <div className="yearDetail-upcomingDate">
-          <HumanDateRange
-            end="2019-05-09"
-            start="2019-05-06"
-          />
+      <div className="text-center yearDetail-container">
+        <div className="yearDetail-text">
+          <h1>Improtřesk 2019 <small className="yearDetail-topic">
+            <i>Porno je taky improvizace</i>
+          </small></h1>
+          <div className="yearDetail-upcomingDate">
+            <HumanDateRange
+              end="2019-05-09"
+              start="2019-05-06"
+            />
+          </div>
         </div>
-        <SignupButton
-          startAt="2019-03-01T00:00:00"
-          endAt="2019-05-06"
-          alreadyFull={false}
-        />
+        <div className="yearDetail-buttons">
+          <Grid>
+            <Row>
+              <Col xs={8} xsOffset={4} sm={6} smOffset={6} md={4} mdOffset={8}>
+                <SignupButton
+                  startAt="2019-03-01T00:00:00"
+                  endAt="2019-05-06"
+                  alreadyFull={false}
+                />
+              </Col>
+            </Row>
+          </Grid>
+        </div>
       </div>
     );
   });

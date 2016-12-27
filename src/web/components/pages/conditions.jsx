@@ -1,3 +1,4 @@
+import Grid from 'react-bootstrap/lib/Grid';
 import Markdown from 'react-markdown';
 import React, { Component, PropTypes } from 'react';
 
@@ -16,7 +17,7 @@ export default class Conditions extends Component {
     }
 
     return (
-      <div>
+      <Grid>
         <h1>Podmínky pro účastníky{year ? ` (Improtřesk ${year.year})` : null}</h1>
         {(conditions ?
           <Markdown source={conditions.text} /> :
@@ -26,7 +27,7 @@ export default class Conditions extends Component {
             <Link to="contact">popohnat</Link>.
           </p>
         )}
-      </div>
+      </Grid>
     );
   }
 }

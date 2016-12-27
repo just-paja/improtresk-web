@@ -1,9 +1,8 @@
-import Grid from 'react-bootstrap/lib/Grid';
 import React, { Component, PropTypes } from 'react';
 
 import Navigation from './navigation';
 
-import './app.css';
+import styles from './app.css';
 
 export default class App extends Component {
   componentWillMount() {
@@ -14,10 +13,10 @@ export default class App extends Component {
     const { children, years } = this.props;
 
     return (
-      <Grid className="improtresk-app">
+      <div className={styles.app}>
         <Navigation years={years} />
         {children}
-      </Grid>
+      </div>
     );
   }
 }

@@ -1,3 +1,4 @@
+import Grid from 'react-bootstrap/lib/Grid';
 import Markdown from 'react-markdown';
 import React, { Component, PropTypes } from 'react';
 
@@ -16,7 +17,7 @@ export default class Food extends Component {
     }
 
     return (
-      <div>
+      <Grid>
         <h1>Stravování</h1>
         <Markdown source={intro} />
         <ul>
@@ -26,7 +27,7 @@ export default class Food extends Component {
             </li>
           )}
         </ul>
-      </div>
+      </Grid>
     );
   }
 }

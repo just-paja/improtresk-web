@@ -1,3 +1,4 @@
+import Grid from 'react-bootstrap/lib/Grid';
 import Markdown from 'react-markdown';
 import React, { Component, PropTypes } from 'react';
 
@@ -17,14 +18,14 @@ export default class Accomodations extends Component {
     }
 
     return (
-      <div>
+      <Grid>
         <h1>Ubytování</h1>
         <Markdown source={intro} />
         <ObjectList
           Component={Accomodation}
           data={accomodations}
         />
-      </div>
+      </Grid>
     );
   }
 }

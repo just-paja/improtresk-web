@@ -1,3 +1,4 @@
+import Grid from 'react-bootstrap/lib/Grid';
 import React from 'react';
 import sinon from 'sinon';
 
@@ -35,7 +36,7 @@ describe('Workshops page component', () => {
         ready
       />
     ).node).to.eql(
-      <div>
+      <Grid>
         <h1>Workshopy</h1>
         <WorkshopList
           workshops={[
@@ -49,7 +50,7 @@ describe('Workshops page component', () => {
             },
           ]}
         />
-      </div>
+      </Grid>
     );
   });
 

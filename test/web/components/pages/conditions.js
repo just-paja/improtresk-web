@@ -1,3 +1,4 @@
+import Grid from 'react-bootstrap/lib/Grid';
 import Markdown from 'react-markdown';
 import React from 'react';
 import sinon from 'sinon';
@@ -32,10 +33,10 @@ describe('Conditions page component', () => {
         }}
       />
     ).node).to.eql(
-      <div>
+      <Grid>
         <h1>Podmínky pro účastníky (Improtřesk 2017)</h1>
         <Markdown source="foo" />
-      </div>
+      </Grid>
     );
   });
 
@@ -48,14 +49,14 @@ describe('Conditions page component', () => {
         year={null}
       />
     ).node).to.eql(
-      <div>
+      <Grid>
         <h1>Podmínky pro účastníky</h1>
         <p>
           Podmínky pro účastníky za tento ročník ještě nejsou zveřejněné. Organizátoři
           by to měli co nejrychleji napravit, zkuste je{' '}
           <Link to="contact">popohnat</Link>.
         </p>
-      </div>
+      </Grid>
     );
   });
 
@@ -70,10 +71,10 @@ describe('Conditions page component', () => {
         year={null}
       />
     ).node).to.eql(
-      <div>
+      <Grid>
         <h1>Podmínky pro účastníky</h1>
         <Markdown source="foo" />
-      </div>
+      </Grid>
     );
   });
 
