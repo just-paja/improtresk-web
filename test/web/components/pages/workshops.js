@@ -59,10 +59,8 @@ describe('Workshops page component', () => {
     const comp = shallow(
       <Workshops
         onMount={mountSpy}
-        routeParams={{
-          slug: 'foo',
-        }}
-        news={[]}
+        routeParams={{}}
+        workshops={[]}
       />
     );
 

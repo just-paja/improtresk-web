@@ -14,7 +14,7 @@ describe('Workshop Detail page component', () => {
       <WorkshopDetailPage
         onMount={() => {}}
         routeParams={{}}
-        tips={[]}
+        workshop={{}}
       />
     ).node).to.equal(null);
   });
@@ -80,7 +80,7 @@ describe('Workshop Detail page component', () => {
     );
   });
 
-  it('calls onMount on componentWillMount', () => {
+  it('calls onMount on componentWillMount with slug', () => {
     const mountSpy = sinon.spy();
     const comp = shallow(
       <WorkshopDetailPage
@@ -88,7 +88,7 @@ describe('Workshop Detail page component', () => {
         routeParams={{
           slug: 'foo',
         }}
-        news={[]}
+        workshop={{}}
       />
     );
 
@@ -106,7 +106,7 @@ describe('Workshop Detail page component', () => {
       <WorkshopDetailPage
         onMount={mountSpy}
         routeParams={{}}
-        news={[]}
+        workshop={{}}
       />
     );
 
