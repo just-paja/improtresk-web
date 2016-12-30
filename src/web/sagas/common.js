@@ -1,9 +1,16 @@
 import { call, fork, put, select } from 'redux-saga/effects';
 
+import { getApiSource } from '../selectors/session';
+
 export function* fetchResource(resource, { onStart, onSuccess, onError, ...args }, action) {
+  const apiSource = yield select(getApiSource);
   yield put({ type: onStart, ...args });
   try {
-    const res = yield call(resource, { ...action, ...args });
+    const res = yield call(resource, {
+      ...action,
+      ...args,
+      apiSource,
+    });
     const data = yield res.status === 204 ? [] : res.json();
 
     yield put({ type: onSuccess, data, ...args });
