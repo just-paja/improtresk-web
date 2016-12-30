@@ -2,7 +2,7 @@ import { takeLatest } from 'redux-saga';
 
 import { fetchResourceIfNeeded } from './common';
 
-import * as api from '../../api';
+import * as api from '../api';
 import * as constants from '../constants/actions';
 
 export function* fetchYearsOnMount() {

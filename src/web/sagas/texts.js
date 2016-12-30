@@ -3,7 +3,7 @@ import { takeLatest } from 'redux-saga';
 
 import { fetchResourceIfNeeded, isValid } from './common';
 
-import * as api from '../../api';
+import * as api from '../api';
 import * as constants from '../constants/actions';
 import * as texts from '../constants/texts';
 
