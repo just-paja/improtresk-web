@@ -66,7 +66,7 @@ describe('Tips page component', () => {
     const comp = shallow(
       <Tips
         onMount={mountSpy}
-        news={[]}
+        tips={[]}
       />
     );
 

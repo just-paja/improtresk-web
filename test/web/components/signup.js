@@ -19,6 +19,7 @@ describe('Signup Form component', () => {
       <Signup
         form="signup"
         onChange={() => {}}
+        onSubmit={() => {}}
         errors={{
           name: 'name error',
           email: 'email error',
@@ -125,6 +126,7 @@ describe('Signup Form component', () => {
       <Signup
         form="signup"
         onChange={changeSpy}
+        onSubmit={() => {}}
         errors={{}}
         values={{}}
       />
