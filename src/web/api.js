@@ -11,6 +11,9 @@ export const fetchMeals = params => apiFetch('meals', params);
 
 export const fetchNews = params => apiFetch('news', params);
 
+export const fetchNewsDetail = ({ news, ...params }) =>
+  apiFetch(`news/${news}`, params);
+
 export const fetchText = ({ code, ...params }) => apiFetch(`texts/${code}`, params);
 
 export const fetchTips = params => apiFetch('tips', params);

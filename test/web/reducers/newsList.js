@@ -1,23 +1,23 @@
 import { expect } from 'chai';
 
-import news from '../../../src/web/reducers/news';
+import newsList from '../../../src/web/reducers/newsList';
 
 describe('News reducer', () => {
   it('returns default state', () => {
-    expect(news()).to.eql({
+    expect(newsList()).to.eql({
       loading: false,
       data: [],
     });
   });
 
   it('marks as loading on NEWS_FETCH_STARTED', () => {
-    expect(news({}, { type: 'NEWS_FETCH_STARTED' })).to.eql({
+    expect(newsList({}, { type: 'NEWS_FETCH_STARTED' })).to.eql({
       loading: true,
     });
   });
 
   it('marks as loading on NEWS_FETCH_SUCCESS', () => {
-    expect(news(
+    expect(newsList(
       {},
       {
         type: 'NEWS_FETCH_SUCCESS',
@@ -38,7 +38,7 @@ describe('News reducer', () => {
   });
 
   it('marks as loading on NEWS_FETCH_ERROR', () => {
-    expect(news({}, { type: 'NEWS_FETCH_ERROR', error: 'error' })).to.eql({
+    expect(newsList({}, { type: 'NEWS_FETCH_ERROR', error: 'error' })).to.eql({
       loading: false,
       error: 'error',
     });

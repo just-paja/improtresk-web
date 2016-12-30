@@ -1,14 +1,9 @@
-import { combined, fetchStart, fetchError, fetchSuccess } from './common';
+import { combineReducers } from 'redux';
 
-import * as constants from '../constants/actions';
+import newsDetail from './newsDetail';
+import newsList from './newsList';
 
-const defaultState = {
-  data: [],
-  loading: false,
-};
-
-export default combined(defaultState, {
-  [constants.NEWS_FETCH_STARTED]: fetchStart,
-  [constants.NEWS_FETCH_SUCCESS]: fetchSuccess,
-  [constants.NEWS_FETCH_ERROR]: fetchError,
+export default combineReducers({
+  detail: newsDetail,
+  list: newsList,
 });

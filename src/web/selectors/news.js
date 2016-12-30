@@ -1,7 +1,15 @@
 import { createSelector } from 'reselect';
 
-const getNewsState = state => state.news;
+import { isStateValid } from './common';
 
-export const newsAll = createSelector(getNewsState, news => news.data);
+const getNewsListState = state => state.news.list;
+const getNewsDetailState = state => state.news.detail;
+
+export const newsAll = createSelector(getNewsListState, news => news.data);
+
+export const getNewsDetail = createSelector(getNewsDetailState, detail => detail.data);
+
+export const shouldFetchList = createSelector(getNewsListState, isStateValid);
+export const shouldFetchDetail = createSelector(getNewsDetailState, isStateValid);
 
 export default { newsAll };
