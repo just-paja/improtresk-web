@@ -13,7 +13,7 @@ import * as texts from '../constants/texts';
 const mapStateToProps = state => ({
   about: getText(state, texts.ABOUT_FESTIVAL_SHORT),
   news: newsAll(state),
-  ready: state.years.ready && state.news.ready && readyTexts(state, [
+  ready: state.years.ready && state.news.list.ready && readyTexts(state, [
     texts.ABOUT_FESTIVAL_SHORT,
   ]),
   year: yearCurrent(state) || yearNext(state),

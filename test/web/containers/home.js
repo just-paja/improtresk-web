@@ -13,8 +13,10 @@ describe('Home container', () => {
   it('renders not ready when news nor years are ready', () => {
     const store = mockStore({
       news: {
-        data: [],
-        ready: false,
+        list: {
+          data: [],
+          ready: false,
+        },
       },
       years: {
         data: [],
@@ -37,10 +39,12 @@ describe('Home container', () => {
   it('renders as ready when years and news are ready', () => {
     const store = mockStore({
       news: {
-        data: [
-          { id: 1, text: 'foo' },
-        ],
-        ready: true,
+        list: {
+          data: [
+            { id: 1, text: 'foo' },
+          ],
+          ready: true,
+        },
       },
       texts: {
         'about-festival-short': {

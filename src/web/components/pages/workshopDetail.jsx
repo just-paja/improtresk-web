@@ -28,9 +28,7 @@ export default class WorkshopDetailPage extends Component {
 WorkshopDetailPage.propTypes = {
   onMount: PropTypes.func.isRequired,
   ready: PropTypes.bool,
-  // eslint-disable-next-line react/forbid-prop-types
   routeParams: PropTypes.object.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
   workshop: PropTypes.object.isRequired,
 };
 
