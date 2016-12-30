@@ -97,6 +97,7 @@ export default combined(defaultState, {
       [action.form]: {
         ...state[action.form],
         sending: false,
+        error: action.error,
       },
     }
   )),

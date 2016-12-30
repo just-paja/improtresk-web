@@ -187,4 +187,58 @@ describe('Forms reducer', () => {
       },
     });
   });
+  it('updates form sending status on submit success', () => {
+    expect(forms(
+      {
+        testForm: {
+          errors: {},
+          submitted: true,
+          valid: true,
+          values: { foo: 'bar' },
+        },
+      },
+      {
+        type: 'FORM_SUBMIT_SUCCESS',
+        form: 'testForm',
+      }
+    )).to.eql({
+      testForm: {
+        values: {
+          foo: 'bar',
+        },
+        submitted: true,
+        sending: false,
+        valid: true,
+        errors: {},
+      },
+    });
+  });
+  it('updates form sending status on submit error', () => {
+    expect(forms(
+      {
+        testForm: {
+          errors: {},
+          submitted: true,
+          valid: true,
+          values: { foo: 'bar' },
+        },
+      },
+      {
+        type: 'FORM_SUBMIT_ERROR',
+        form: 'testForm',
+        error: 'foo',
+      }
+    )).to.eql({
+      testForm: {
+        values: {
+          foo: 'bar',
+        },
+        submitted: true,
+        sending: false,
+        valid: true,
+        errors: {},
+        error: 'foo',
+      },
+    });
+  });
 });

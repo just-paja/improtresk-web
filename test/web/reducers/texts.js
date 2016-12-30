@@ -6,7 +6,6 @@ describe('Texts reducer', () => {
   it('returns default state', () => {
     expect(texts()).to.eql({});
   });
-
   it('marks as loading on TEXT_FETCH_STARTED', () => {
     expect(texts({}, {
       code: 'ACCOMODATION_INTRO',
@@ -18,7 +17,6 @@ describe('Texts reducer', () => {
       },
     });
   });
-
   it('marks as loading on TEXT_FETCH_SUCCESS', () => {
     expect(texts(
       {},
@@ -40,7 +38,6 @@ describe('Texts reducer', () => {
       },
     });
   });
-
   it('marks as loading on TEXT_FETCH_ERROR', () => {
     expect(texts(
       {},
