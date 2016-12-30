@@ -10,11 +10,11 @@ export default class App extends Component {
   }
 
   render() {
-    const { children, years } = this.props;
+    const { children, currentYear, years } = this.props;
 
     return (
       <div className={styles.app}>
-        <Navigation years={years} />
+        <Navigation currentYear={currentYear} years={years} />
         {children}
       </div>
     );
@@ -26,6 +26,7 @@ App.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  currentYear: PropTypes.object,
   onMount: PropTypes.func.isRequired,
   years: PropTypes.arrayOf(PropTypes.object),
 };

@@ -11,9 +11,10 @@ describe('Navigation menu component', () => {
   it('renders layout and content', () => {
     expect(shallow(
       <NavigationMenu
+        currentYear={{ year: '2017', topic: 'Kůže', current: true }}
         years={[
-          { year: '2016', topic: 'Foo' },
-          { year: '2017', topic: 'Bar' },
+          { year: '2015', topic: 'Foo' },
+          { year: '2016', topic: 'Bar' },
         ]}
       />
     ).node).to.eql(
@@ -51,11 +52,11 @@ describe('Navigation menu component', () => {
           <NavItem>Program</NavItem>
         </LinkContainer>
         <NavDropdown id="navigation-dropdown" title="Archív">
-          <LinkContainer to="/archiv/2016">
-            <NavItem>2016 - Foo</NavItem>
+          <LinkContainer to="/archiv/2015">
+            <NavItem>2015 - Foo</NavItem>
           </LinkContainer>
-          <LinkContainer to="/archiv/2017">
-            <NavItem>2017 - Bar</NavItem>
+          <LinkContainer to="/archiv/2016">
+            <NavItem>2016 - Bar</NavItem>
           </LinkContainer>
         </NavDropdown>
         <LinkContainer to="/kontakt">
@@ -71,38 +72,6 @@ describe('Navigation menu component', () => {
       />
     ).node).to.eql(
       <Nav>
-        <NavDropdown id="navigation-dropdown" title="Pro účastníky">
-          <LinkContainer to="/pro-ucastniky/lokace">
-            <NavItem>Lokace</NavItem>
-          </LinkContainer>
-          <LinkContainer to="/pro-ucastniky/ubytovani">
-            <NavItem>Ubytování</NavItem>
-          </LinkContainer>
-          <LinkContainer to="/pro-ucastniky/jidlo">
-            <NavItem>Jídlo</NavItem>
-          </LinkContainer>
-          <LinkContainer to="/pro-ucastniky/poplatky">
-            <NavItem>Poplatky</NavItem>
-          </LinkContainer>
-          <LinkContainer to="/jizdomat">
-            <NavItem>Improjízdomat</NavItem>
-          </LinkContainer>
-          <LinkContainer to="/pro-ucastniky/tipy">
-            <NavItem>Tipy</NavItem>
-          </LinkContainer>
-          <LinkContainer to="/pro-ucastniky/podminky">
-            <NavItem>Podmínky</NavItem>
-          </LinkContainer>
-        </NavDropdown>
-        <LinkContainer to="/workshopy">
-          <NavItem>Workshopy</NavItem>
-        </LinkContainer>
-        <LinkContainer to="/prihlaska" >
-          <NavItem>Přihláška</NavItem>
-        </LinkContainer>
-        <LinkContainer to="/program" >
-          <NavItem>Program</NavItem>
-        </LinkContainer>
         <NavDropdown id="navigation-dropdown" title="Archív">
           <NavItem disabled>Archív je prázdný</NavItem>
         </NavDropdown>

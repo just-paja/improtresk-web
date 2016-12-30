@@ -7,9 +7,9 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import { reverse } from '../routes';
 
-const NavigationMenu = ({ years, ...props }) => (
-  <Nav {...props}>
-    <NavDropdown id="navigation-dropdown" title="Pro účastníky">
+const NavigationMenu = ({ currentYear, years, ...props }) => {
+  const currentYearItems = currentYear ? [
+    <NavDropdown key="participants" id="navigation-dropdown" title="Pro účastníky">
       <LinkContainer to={reverse('location')}>
         <NavItem>Lokace</NavItem>
       </LinkContainer>
@@ -31,36 +31,43 @@ const NavigationMenu = ({ years, ...props }) => (
       <LinkContainer to={reverse('conditions')}>
         <NavItem>Podmínky</NavItem>
       </LinkContainer>
-    </NavDropdown>
-    <LinkContainer to={reverse('workshops')}>
+    </NavDropdown>,
+    <LinkContainer key="workshops" to={reverse('workshops')}>
       <NavItem>Workshopy</NavItem>
-    </LinkContainer>
-    <LinkContainer to={reverse('signup')}>
+    </LinkContainer>,
+    <LinkContainer key="signup" to={reverse('signup')}>
       <NavItem>Přihláška</NavItem>
-    </LinkContainer>
-    <LinkContainer to={reverse('schedule')}>
+    </LinkContainer>,
+    <LinkContainer key="schedule" to={reverse('schedule')}>
       <NavItem>Program</NavItem>
-    </LinkContainer>
-    <NavDropdown id="navigation-dropdown" title="Archív">
-      {(years.length ?
-        years.map(yearRun => (
-          <LinkContainer
-            key={yearRun.year}
-            to={reverse('archive:year', { year: yearRun.year })}
-          >
-            <NavItem>{yearRun.year} - {yearRun.topic}</NavItem>
-          </LinkContainer>
-        )) :
-        <NavItem disabled>Archív je prázdný</NavItem>
-      )}
-    </NavDropdown>
-    <LinkContainer to={reverse('contact')}>
-      <NavItem>Kontakt</NavItem>
-    </LinkContainer>
-  </Nav>
-);
+    </LinkContainer>,
+  ] : null;
+
+  return (
+    <Nav {...props}>
+      {currentYearItems}
+      <NavDropdown id="navigation-dropdown" title="Archív">
+        {(years.length ?
+          years.map(yearRun => (
+            <LinkContainer
+              key={yearRun.year}
+              to={reverse('archive:year', { year: yearRun.year })}
+            >
+              <NavItem>{yearRun.year} - {yearRun.topic}</NavItem>
+            </LinkContainer>
+          )) :
+          <NavItem disabled>Archív je prázdný</NavItem>
+        )}
+      </NavDropdown>
+      <LinkContainer to={reverse('contact')}>
+        <NavItem>Kontakt</NavItem>
+      </LinkContainer>
+    </Nav>
+  );
+};
 
 NavigationMenu.propTypes = {
+  currentYear: PropTypes.object,
   years: PropTypes.arrayOf(PropTypes.object),
 };
 
