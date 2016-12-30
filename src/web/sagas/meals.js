@@ -8,16 +8,16 @@ import * as api from '../api';
 import * as constants from '../constants/actions';
 import * as texts from '../constants/texts';
 
-export function* fetchFoodTimesOnMount() {
+export function* fetchMealsOnMount() {
   yield* takeLatest(
     constants.FOOD_MOUNTED,
     fetchResourceIfNeeded,
-    api.fetchFoodTimes,
+    api.fetchMeals,
     isValid,
     {
-      onStart: constants.FOOD_TIMES_FETCH_STARTED,
-      onSuccess: constants.FOOD_TIMES_FETCH_SUCCESS,
-      onError: constants.FOOD_TIMES_FETCH_ERROR,
+      onStart: constants.MEALS_FETCH_STARTED,
+      onSuccess: constants.MEALS_FETCH_SUCCESS,
+      onError: constants.MEALS_FETCH_ERROR,
     }
   );
 }
@@ -31,6 +31,6 @@ export function* fetchTextsOnMount() {
 }
 
 export default [
-  fetchFoodTimesOnMount,
+  fetchMealsOnMount,
   fetchTextsOnMount,
 ];

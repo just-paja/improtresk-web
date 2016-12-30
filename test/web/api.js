@@ -11,6 +11,39 @@ describe('API helper', () => {
     nock.cleanAll();
   });
 
+  it('fetchAccomodation calls for accomodation', () => {
+    nock(apiSource)
+    .get('/accomodation')
+    .reply(200, []);
+
+    return api.fetchAccomodation({ apiSource })
+    .then(() => {
+      expect(nock.isDone()).to.equal(true);
+    });
+  });
+
+  it('fetchConditionsCurrent calls for current conditions', () => {
+    nock(apiSource)
+    .get('/conditions')
+    .reply(200, []);
+
+    return api.fetchConditionsCurrent({ apiSource })
+    .then(() => {
+      expect(nock.isDone()).to.equal(true);
+    });
+  });
+
+  it('fetchMeals calls for list of meals', () => {
+    nock(apiSource)
+    .get('/meals')
+    .reply(200, []);
+
+    return api.fetchMeals({ apiSource })
+    .then(() => {
+      expect(nock.isDone()).to.equal(true);
+    });
+  });
+
   it('fetchNews calls for news', () => {
     nock(apiSource)
       .get('/news')
@@ -33,15 +66,15 @@ describe('API helper', () => {
       });
   });
 
-  it('fetchYears calls for news', () => {
+  it('fetchText calls for text', () => {
     nock(apiSource)
-      .get('/years')
-      .reply(200, []);
+    .get('/texts/food-intro-text')
+    .reply(200, {});
 
-    return api.fetchYears({ apiSource })
-      .then(() => {
-        expect(nock.isDone()).to.equal(true);
-      });
+    return api.fetchText({ apiSource, code: 'food-intro-text' })
+    .then(() => {
+      expect(nock.isDone()).to.equal(true);
+    });
   });
 
   it('fetchTips calls for tips', () => {
@@ -55,6 +88,17 @@ describe('API helper', () => {
       });
   });
 
+  it('fetchWorkshopDetail calls for workshop detail', () => {
+    nock(apiSource)
+    .get('/workshops/312')
+    .reply(200, []);
+
+    return api.fetchWorkshopDetail({ apiSource, workshop: 312 })
+    .then(() => {
+      expect(nock.isDone()).to.equal(true);
+    });
+  });
+
   it('fetchWorkshops calls for workshops', () => {
     nock(apiSource)
       .get('/workshops')
@@ -66,25 +110,25 @@ describe('API helper', () => {
       });
   });
 
-  it('fetchWorkshopDetail calls for workshop detail', () => {
+  it('fetchYears calls for news', () => {
     nock(apiSource)
-      .get('/workshops/312')
-      .reply(200, []);
+    .get('/years')
+    .reply(200, []);
 
-    return api.fetchWorkshopDetail({ apiSource, workshop: 312 })
-      .then(() => {
-        expect(nock.isDone()).to.equal(true);
-      });
+    return api.fetchYears({ apiSource })
+    .then(() => {
+      expect(nock.isDone()).to.equal(true);
+    });
   });
 
-  it('fetchConditionsCurrent calls for current conditions', () => {
+  it('signup posts signup', () => {
     nock(apiSource)
-      .get('/conditions')
-      .reply(200, []);
+    .post('/signup')
+    .reply(200, {});
 
-    return api.fetchConditionsCurrent({ apiSource })
-      .then(() => {
-        expect(nock.isDone()).to.equal(true);
-      });
+    return api.signup({ apiSource, data: { foo: 'bar' } })
+    .then(() => {
+      expect(nock.isDone()).to.equal(true);
+    });
   });
 });

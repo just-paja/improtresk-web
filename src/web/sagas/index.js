@@ -2,9 +2,9 @@ import { fork } from 'redux-saga/effects';
 
 import accomodation from './accomodation';
 import conditions from './conditions';
-import foodTimes from './foodTimes';
 import fees from './fees';
 import forms from './forms';
+import meals from './meals';
 import news from './news';
 import signup from './signup';
 import texts from './texts';
@@ -15,9 +15,9 @@ import workshops from './workshops';
 const sagas = [
   ...accomodation,
   ...conditions,
-  ...foodTimes,
   ...fees,
   ...forms,
+  ...meals,
   ...news,
   ...signup,
   ...texts,
