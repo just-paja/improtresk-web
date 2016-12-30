@@ -3,18 +3,14 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import winston from 'winston';
 
+import configure from './config';
 import routerRender from './middleware/routerRender';
 import errorRender from './middleware/errorRender';
 import staticMiddleware from './middleware/static';
 
-const defaultConfig = {
-  logLevel: process.env.NODE_LOG_LEVEL || 'info',
-  port: process.env.NODE_PORT || 3000,
-};
-
 export default function server(userConfig = {}) {
   const app = express();
-  const config = { ...defaultConfig, ...userConfig };
+  const config = configure(userConfig);
 
   winston.level = config.logLevel;
 

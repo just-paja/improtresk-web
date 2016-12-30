@@ -4,7 +4,7 @@ import { expect } from 'chai';
 
 import * as api from '../../src/api';
 
-const apiEndpoint = 'https://private-6502a9-improtreskapi.apiary-mock.com:443/api';
+const apiSource = 'https://private-6502a9-improtreskapi.apiary-mock.com:443/api';
 
 describe('API helper', () => {
   afterEach(() => {
@@ -12,7 +12,7 @@ describe('API helper', () => {
   });
 
   it('fetchNews calls for news', () => {
-    nock(apiEndpoint)
+    nock(apiSource)
       .get('/news')
       .reply(200, [
         {
@@ -27,62 +27,62 @@ describe('API helper', () => {
         },
       ]);
 
-    return api.fetchNews()
+    return api.fetchNews({ apiSource })
       .then(() => {
         expect(nock.isDone()).to.equal(true);
       });
   });
 
   it('fetchYears calls for news', () => {
-    nock(apiEndpoint)
+    nock(apiSource)
       .get('/years')
       .reply(200, []);
 
-    return api.fetchYears()
+    return api.fetchYears({ apiSource })
       .then(() => {
         expect(nock.isDone()).to.equal(true);
       });
   });
 
   it('fetchTips calls for tips', () => {
-    nock(apiEndpoint)
+    nock(apiSource)
       .get('/tips')
       .reply(200, []);
 
-    return api.fetchTips()
+    return api.fetchTips({ apiSource })
       .then(() => {
         expect(nock.isDone()).to.equal(true);
       });
   });
 
   it('fetchWorkshops calls for workshops', () => {
-    nock(apiEndpoint)
+    nock(apiSource)
       .get('/workshops')
       .reply(200, []);
 
-    return api.fetchWorkshops()
+    return api.fetchWorkshops({ apiSource })
       .then(() => {
         expect(nock.isDone()).to.equal(true);
       });
   });
 
   it('fetchWorkshopDetail calls for workshop detail', () => {
-    nock(apiEndpoint)
+    nock(apiSource)
       .get('/workshops/312')
       .reply(200, []);
 
-    return api.fetchWorkshopDetail({ workshop: 312 })
+    return api.fetchWorkshopDetail({ apiSource, workshop: 312 })
       .then(() => {
         expect(nock.isDone()).to.equal(true);
       });
   });
 
   it('fetchConditionsCurrent calls for current conditions', () => {
-    nock(apiEndpoint)
+    nock(apiSource)
       .get('/conditions')
       .reply(200, []);
 
-    return api.fetchConditionsCurrent()
+    return api.fetchConditionsCurrent({ apiSource })
       .then(() => {
         expect(nock.isDone()).to.equal(true);
       });

@@ -7,6 +7,7 @@ import foodTimes from './foodTimes';
 import forms from './forms';
 import news from './news';
 import server from './server';
+import session from './session';
 import texts from './texts';
 import tips from './tips';
 import workshopDetail from './workshopDetail';
@@ -22,6 +23,7 @@ export default function createReducer() {
     foodTimes,
     news,
     server,
+    session,
     texts,
     tips,
     workshopDetail,

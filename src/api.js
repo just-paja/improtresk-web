@@ -1,30 +1,29 @@
 import fetch from 'isomorphic-fetch';
 
-const API_SOURCE = 'https://private-6502a9-improtreskapi.apiary-mock.com/api';
+const apiFetch = (url, { apiSource, ...params }) =>
+  fetch(`${apiSource}/${url}`, params);
 
-const getApiUrl = path => `${API_SOURCE}/${path}`;
+export const fetchAccomodation = params => apiFetch('accomodation', params);
 
-const apiFetch = (url, params) => fetch(getApiUrl(url), params);
+export const fetchConditionsCurrent = params => apiFetch('conditions', params);
 
-export const fetchAccomodation = () => apiFetch('accomodation');
+export const fetchFoodTimes = params => apiFetch('foodTimes', params);
 
-export const fetchConditionsCurrent = () => apiFetch('conditions');
+export const fetchNews = params => apiFetch('news', params);
 
-export const fetchFoodTimes = () => apiFetch('foodTimes');
+export const fetchText = ({ code, ...params }) => apiFetch(`texts/${code}`, params);
 
-export const fetchNews = () => apiFetch('news');
+export const fetchTips = params => apiFetch('tips', params);
 
-export const fetchText = ({ code }) => apiFetch(`texts/${code}`);
+export const fetchYears = params => apiFetch('years', params);
 
-export const fetchTips = () => apiFetch('tips');
+export const fetchWorkshopDetail = ({ workshop, ...params }) =>
+  apiFetch(`workshops/${workshop}`, params);
 
-export const fetchYears = () => apiFetch('years');
+export const fetchWorkshops = params => apiFetch('workshops', params);
 
-export const fetchWorkshopDetail = ({ workshop }) => apiFetch(`workshops/${workshop}`);
-
-export const fetchWorkshops = () => apiFetch('workshops');
-
-export const signup = ({ data }) => apiFetch('signup', {
+export const signup = ({ data, params }) => apiFetch('signup', {
+  ...params,
   method: 'POST',
   body: JSON.stringify(data),
 });

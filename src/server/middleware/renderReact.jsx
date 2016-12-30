@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { RouterContext } from 'react-router';
 
+import configure from '../config';
 import configureStore, { sagaMiddleware } from '../../web/store';
 import pageBase from '../components/pageBase';
 import sagas from '../../web/sagas';
@@ -42,6 +43,7 @@ const renderFromRouter = (store, renderProps) =>
   renderToString(getComponentTree(store, renderProps));
 
 export const renderMarkupAndWait = (req, renderProps) => {
+  const config = configure();
   const initialState = {
     device: {
       isMobile: ['phone', 'gtablet'].indexOf(req.device.type) > -1,
@@ -49,6 +51,9 @@ export const renderMarkupAndWait = (req, renderProps) => {
     server: {
       host: req.get('host'),
       protocol: req.protocol,
+    },
+    session: {
+      apiSource: config.apiSource,
     },
   };
   const store = configureStore(initialState);

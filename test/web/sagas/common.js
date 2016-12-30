@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import { call, fork, put, select } from 'redux-saga/effects';
 
 import { fetchResource, fetchResourceIfNeeded } from '../../../src/web/sagas/common';
+import { getApiSource } from '../../../src/web/selectors/session';
 
 describe('Common saga helpers', () => {
   it('fetchResourceIfNeeded does not fetch when validity selector returns true', () => {
@@ -66,8 +67,15 @@ describe('Common saga helpers', () => {
       { type: 'REDUX_ACTION' }
     );
 
-    expect(testFetch.next().value).to.eql(put({ type: 'started', code: 'code' }));
-    expect(testFetch.next().value).to.eql(call(fetch, { type: 'REDUX_ACTION', code: 'code' }));
+    expect(testFetch.next().value).to.eql(select(getApiSource));
+    expect(testFetch.next('http://localhost').value)
+      .to.eql(put({ type: 'started', code: 'code' }));
+    expect(testFetch.next().value)
+      .to.eql(call(fetch, {
+        apiSource: 'http://localhost',
+        code: 'code',
+        type: 'REDUX_ACTION',
+      }));
 
     const response = {
       json: () => ({ text: 'foo' }),
@@ -97,8 +105,15 @@ describe('Common saga helpers', () => {
       { type: 'REDUX_ACTION' }
     );
 
-    expect(testFetch.next().value).to.eql(put({ type: 'started', code: 'code' }));
-    expect(testFetch.next().value).to.eql(call(fetch, { type: 'REDUX_ACTION', code: 'code' }));
+    expect(testFetch.next().value).to.eql(select(getApiSource));
+    expect(testFetch.next('http://localhost').value)
+      .to.eql(put({ type: 'started', code: 'code' }));
+    expect(testFetch.next().value)
+      .to.eql(call(fetch, {
+        apiSource: 'http://localhost',
+        code: 'code',
+        type: 'REDUX_ACTION',
+      }));
 
     const testError = new Error('test');
     const response = {
