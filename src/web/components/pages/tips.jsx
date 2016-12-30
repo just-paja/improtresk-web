@@ -1,6 +1,6 @@
-import Grid from 'react-bootstrap/lib/Grid';
 import React, { Component, PropTypes } from 'react';
 
+import Container from '../container';
 import TipList from '../tipList';
 
 export default class Tips extends Component {
@@ -16,10 +16,10 @@ export default class Tips extends Component {
     }
 
     return (
-      <Grid>
+      <Container>
         <h1>Tipy z Milevska</h1>
         <TipList tips={tips} />
-      </Grid>
+      </Container>
     );
   }
 }

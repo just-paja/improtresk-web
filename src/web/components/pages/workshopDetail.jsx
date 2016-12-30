@@ -1,6 +1,6 @@
-import Grid from 'react-bootstrap/lib/Grid';
 import React, { Component, PropTypes } from 'react';
 
+import Container from '../container';
 import WorkshopDetail from '../workshopDetail';
 
 import { idFromSlug } from '../../routes';
@@ -18,9 +18,9 @@ export default class WorkshopDetailPage extends Component {
     }
 
     return (
-      <Grid>
+      <Container>
         <WorkshopDetail {...workshop} />
-      </Grid>
+      </Container>
     );
   }
 }

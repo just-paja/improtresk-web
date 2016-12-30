@@ -12,6 +12,7 @@ describe('Navigation component', () => {
   it('renders layout and content', () => {
     expect(shallow(
       <Navigation
+        currentYear={null}
         years={[
           { year: '2016', topic: 'Foo' },
           { year: '2017', topic: 'Bar' },
@@ -27,6 +28,7 @@ describe('Navigation component', () => {
         </Navbar.Header>
         <Navbar.Collapse>
           <NavigationMenu
+            currentYear={null}
             years={[
               { year: '2016', topic: 'Foo' },
               { year: '2017', topic: 'Bar' },

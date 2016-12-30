@@ -1,4 +1,3 @@
-import Grid from 'react-bootstrap/lib/Grid';
 import Markdown from 'react-markdown';
 import React from 'react';
 import sinon from 'sinon';
@@ -6,6 +5,7 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
+import Container from '../../../../src/web/components/container';
 import Conditions from '../../../../src/web/components/pages/conditions';
 import Link from '../../../../src/web/components/link';
 
@@ -33,10 +33,10 @@ describe('Conditions page component', () => {
         }}
       />
     ).node).to.eql(
-      <Grid>
+      <Container>
         <h1>Podmínky pro účastníky (Improtřesk 2017)</h1>
         <Markdown source="foo" />
-      </Grid>
+      </Container>
     );
   });
 
@@ -49,14 +49,14 @@ describe('Conditions page component', () => {
         year={null}
       />
     ).node).to.eql(
-      <Grid>
+      <Container>
         <h1>Podmínky pro účastníky</h1>
         <p>
           Podmínky pro účastníky za tento ročník ještě nejsou zveřejněné. Organizátoři
           by to měli co nejrychleji napravit, zkuste je{' '}
           <Link to="contact">popohnat</Link>.
         </p>
-      </Grid>
+      </Container>
     );
   });
 
@@ -71,10 +71,10 @@ describe('Conditions page component', () => {
         year={null}
       />
     ).node).to.eql(
-      <Grid>
+      <Container>
         <h1>Podmínky pro účastníky</h1>
         <Markdown source="foo" />
-      </Grid>
+      </Container>
     );
   });
 

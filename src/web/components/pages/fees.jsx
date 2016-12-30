@@ -1,6 +1,7 @@
-import Grid from 'react-bootstrap/lib/Grid';
 import Markdown from 'react-markdown';
 import React, { Component, PropTypes } from 'react';
+
+import Container from '../container';
 
 export default class Fees extends Component {
   componentWillMount() {
@@ -15,7 +16,7 @@ export default class Fees extends Component {
     }
 
     return (
-      <Grid>
+      <Container>
         <h1>Poplatky</h1>
         <h2>Za co se platí?</h2>
         <Markdown source={whatDoYouPayFor} />
@@ -25,7 +26,7 @@ export default class Fees extends Component {
 
         <h2>Jak se můžu odhlásit?</h2>
         <Markdown source={howToSignOut} />
-      </Grid>
+      </Container>
     );
   }
 }

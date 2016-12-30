@@ -1,5 +1,6 @@
-import Grid from 'react-bootstrap/lib/Grid';
 import React, { Component, PropTypes } from 'react';
+
+import Container from '../container';
 
 export default class Home extends Component {
   componentWillMount() {
@@ -14,10 +15,10 @@ export default class Home extends Component {
     }
 
     return (
-      <Grid>
+      <Container>
         <h1>Program</h1>
         <p>Program pro tento ročník zatím není zveřejněný.</p>
-      </Grid>
+      </Container>
     );
   }
 }

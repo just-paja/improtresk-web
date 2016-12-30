@@ -5,6 +5,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import App from '../../../src/web/components/app';
+import Footer from '../../../src/web/components/footer';
 import Navigation from '../../../src/web/components/navigation';
 
 describe('App component', () => {
@@ -28,6 +29,7 @@ describe('App component', () => {
           ]}
         />
         <div>foo</div>
+        <Footer partners={[]} />
       </div>
     );
   });

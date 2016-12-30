@@ -1,4 +1,3 @@
-import Grid from 'react-bootstrap/lib/Grid';
 import Markdown from 'react-markdown';
 import React from 'react';
 import sinon from 'sinon';
@@ -7,6 +6,7 @@ import { Col, Row } from 'react-bootstrap';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
+import Container from '../../../../src/web/components/container';
 import Home from '../../../../src/web/components/pages/home';
 import Link from '../../../../src/web/components/link';
 import News from '../../../../src/web/components/news';
@@ -67,7 +67,7 @@ describe('Home page component', () => {
           topic="foo"
           year="2016"
         />
-        <Grid>
+        <Container>
           <Row>
             <Col md={6}>
               <h2>O Improtřesku</h2>
@@ -90,7 +90,7 @@ describe('Home page component', () => {
               />
             </Col>
           </Row>
-        </Grid>
+        </Container>
       </div>
     );
   });
