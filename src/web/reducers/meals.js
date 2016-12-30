@@ -8,7 +8,7 @@ const defaultState = {
 };
 
 export default combined(defaultState, {
-  [constants.FOOD_TIMES_FETCH_STARTED]: fetchStart,
-  [constants.FOOD_TIMES_FETCH_SUCCESS]: fetchSuccess,
-  [constants.FOOD_TIMES_FETCH_ERROR]: fetchError,
+  [constants.MEALS_FETCH_STARTED]: fetchStart,
+  [constants.MEALS_FETCH_SUCCESS]: fetchSuccess,
+  [constants.MEALS_FETCH_ERROR]: fetchError,
 });

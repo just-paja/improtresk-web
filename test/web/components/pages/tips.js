@@ -1,10 +1,10 @@
-import Grid from 'react-bootstrap/lib/Grid';
 import React from 'react';
 import sinon from 'sinon';
 
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
+import Container from '../../../../src/web/components/container';
 import Tips from '../../../../src/web/components/pages/tips';
 import TipList from '../../../../src/web/components/tipList';
 
@@ -39,7 +39,7 @@ describe('Tips page component', () => {
         ready
       />
     ).node).to.eql(
-      <Grid>
+      <Container>
         <h1>Tipy z Milevska</h1>
         <TipList
           tips={[
@@ -57,7 +57,7 @@ describe('Tips page component', () => {
             },
           ]}
         />
-      </Grid>
+      </Container>
     );
   });
 

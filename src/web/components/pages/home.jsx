@@ -1,10 +1,10 @@
 import classnames from 'classnames';
 import Col from 'react-bootstrap/lib/Col';
-import Grid from 'react-bootstrap/lib/Grid';
 import Markdown from 'react-markdown';
 import Row from 'react-bootstrap/lib/Row';
 import React, { Component, PropTypes } from 'react';
 
+import Container from '../container';
 import Link from '../link';
 import News from '../news';
 import YearDetail from '../yearDetail';
@@ -36,7 +36,7 @@ export default class Home extends Component {
           topic={year.topic}
           year={year.year}
         />
-        <Grid>
+        <Container>
           <Row>
             <Col md={6}>
               <h2>O Improtřesku</h2>
@@ -55,7 +55,7 @@ export default class Home extends Component {
               <News news={news} />
             </Col>
           </Row>
-        </Grid>
+        </Container>
       </div>
     );
   }

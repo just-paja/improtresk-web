@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 import Navigation from './navigation';
+import Footer from './footer';
 
 import styles from './app.css';
 
@@ -16,6 +17,7 @@ export default class App extends Component {
       <div className={styles.app}>
         <Navigation currentYear={currentYear} years={years} />
         {children}
+        <Footer partners={[]} />
       </div>
     );
   }

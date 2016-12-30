@@ -2,8 +2,8 @@ import { createSelector } from 'reselect';
 
 import { isStateValid } from './common';
 
-const getFoodTimesState = state => state.foodTimes;
+const getMealsState = state => state.meals;
 
-export const foodTimesAll = createSelector(getFoodTimesState, foodTimes => foodTimes.data);
+export const mealsAll = createSelector(getMealsState, meals => meals.data);
 
-export const isValid = state => isStateValid(state.foodTimes);
+export const isValid = state => isStateValid(state.meals);

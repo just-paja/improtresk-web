@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import Link from './link';
 import NavigationMenu from './navigationMenu';
 
-const Navigation = ({ years }) => (
+const Navigation = ({ currentYear, years }) => (
   <Navbar fixedTop>
     <Navbar.Header>
       <Navbar.Brand>
@@ -13,12 +13,13 @@ const Navigation = ({ years }) => (
       <Navbar.Toggle />
     </Navbar.Header>
     <Navbar.Collapse>
-      <NavigationMenu years={years} />
+      <NavigationMenu currentYear={currentYear} years={years} />
     </Navbar.Collapse>
   </Navbar>
 );
 
 Navigation.propTypes = {
+  currentYear: PropTypes.object,
   years: PropTypes.arrayOf(PropTypes.object),
 };
 

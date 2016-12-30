@@ -1,9 +1,9 @@
-import Grid from 'react-bootstrap/lib/Grid';
 import React from 'react';
 
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
+import Container from '../../../src/web/components/container';
 import NotFound from '../../../src/web/components/notFound';
 
 describe('Not Found error component', () => {
@@ -11,13 +11,13 @@ describe('Not Found error component', () => {
     expect(shallow(
       <NotFound />
     ).node).to.eql(
-      <Grid>
+      <Container>
         <h1>Stránka nenalezena</h1>
         <p>
           Stránka kterou hledáte nebyla nalezena. Zkontrolujte prosím URL a zeptejte se
           toho kdo vám dal odkaz jestli vás opravdu chtěl odkázat sem.
         </p>
-      </Grid>
+      </Container>
     );
   });
 });

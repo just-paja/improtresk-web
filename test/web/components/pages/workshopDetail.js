@@ -1,10 +1,10 @@
-import Grid from 'react-bootstrap/lib/Grid';
 import React from 'react';
 import sinon from 'sinon';
 
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
+import Container from '../../../../src/web/components/container';
 import WorkshopDetailPage from '../../../../src/web/components/pages/workshopDetail';
 import WorkshopDetail from '../../../../src/web/components/workshopDetail';
 
@@ -51,7 +51,7 @@ describe('Workshop Detail page component', () => {
         ready
       />
     ).node).to.eql(
-      <Grid>
+      <Container>
         <WorkshopDetail
           id={12}
           desc={
@@ -76,7 +76,7 @@ describe('Workshop Detail page component', () => {
               'absolvoval bakalářský obor (titul BcA.), v současné době pokračuje v navazujícím',
           }}
         />
-      </Grid>
+      </Container>
     );
   });
 

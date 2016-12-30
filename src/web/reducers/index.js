@@ -3,8 +3,8 @@ import { combineReducers } from 'redux';
 import accomodation from './accomodation';
 import conditions from './conditions';
 import device from './device';
-import foodTimes from './foodTimes';
 import forms from './forms';
+import meals from './meals';
 import news from './news';
 import server from './server';
 import session from './session';
@@ -20,7 +20,7 @@ export default function createReducer() {
     conditions,
     device,
     forms,
-    foodTimes,
+    meals,
     news,
     server,
     session,

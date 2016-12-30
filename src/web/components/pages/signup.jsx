@@ -1,6 +1,6 @@
-import Grid from 'react-bootstrap/lib/Grid';
 import React, { Component, PropTypes } from 'react';
 
+import Container from '../container';
 import Signup from '../signup';
 
 export default class SignupPage extends Component {
@@ -16,7 +16,7 @@ export default class SignupPage extends Component {
     }
 
     return (
-      <Grid>
+      <Container>
         <h1>Přihláška</h1>
         <p>
           Napřed tě musíme dostat do systému. Je to jen pár jednoduchých otázek na
@@ -30,7 +30,7 @@ export default class SignupPage extends Component {
           onSubmit={onSubmit}
           {...signup}
         />
-      </Grid>
+      </Container>
     );
   }
 }
