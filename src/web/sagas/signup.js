@@ -4,7 +4,7 @@ import { takeLatest } from 'redux-saga';
 import { fetchResource } from './common';
 import { getForm } from '../selectors/forms';
 
-import * as api from '../../api';
+import * as api from '../api';
 import * as constants from '../constants/actions';
 
 const formSelector = action =>

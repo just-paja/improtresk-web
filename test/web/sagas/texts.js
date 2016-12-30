@@ -4,7 +4,7 @@ import { fork } from 'redux-saga/effects';
 import { fetchResourceIfNeeded } from '../../../src/web/sagas/common';
 import { fetchTextsIfNeeded, fetchTextIfNeeded, isTextCodeValid } from '../../../src/web/sagas/texts';
 
-import * as api from '../../../src/api';
+import * as api from '../../../src/web/api';
 
 describe('Text sagas', () => {
   it('fetchTextsIfNeeded forks fetchTextsIfNeeded for all texts', () => {

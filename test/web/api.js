@@ -2,7 +2,7 @@ import nock from 'nock';
 
 import { expect } from 'chai';
 
-import * as api from '../../src/api';
+import * as api from '../../src/web/api';
 
 const apiSource = 'https://private-6502a9-improtreskapi.apiary-mock.com:443/api';
 
