@@ -1,5 +1,7 @@
+import classnames from 'classnames';
 import Col from 'react-bootstrap/lib/Col';
 import Grid from 'react-bootstrap/lib/Grid';
+import Markdown from 'react-markdown';
 import Row from 'react-bootstrap/lib/Row';
 import React, { Component, PropTypes } from 'react';
 
@@ -13,34 +15,32 @@ export default class Home extends Component {
   }
 
   render() {
-    const { news, ready, year } = this.props;
+    const { about, news, ready, year } = this.props;
 
-    if (!ready) {
+    if (!ready || !year) {
       return null;
     }
 
+    const yearClass = `year-${year.year}`;
+
     return (
-      <div>
-        {(
-          year ?
-            <YearDetail
-              endAt={year.endAt}
-              startAt={year.startAt}
-              startSignupsAt={year.startSignupsAt}
-              topic={year.topic}
-              year={year.year}
-            /> : null
-        )}
+      <div
+        className={classnames([yearClass], {
+          'year-next': !year.current,
+        })}
+      >
+        <YearDetail
+          endAt={year.endAt}
+          startAt={year.startAt}
+          startSignupsAt={year.startSignupsAt}
+          topic={year.topic}
+          year={year.year}
+        />
         <Grid>
           <Row>
             <Col md={6}>
               <h2>O Improtřesku</h2>
-              <p>
-                Improtřesk je český festival divadelní improvizace a největší setkání
-                improvizátorů z celé České republiky. Každý rok se na Improtřesku otevírají
-                dílny z oblasti improvizačního divadla na kterých se schází nadšenci
-                improvizačního divadla i veřejnost.
-              </p>
+              <Markdown source={about} />
 
               <h3>Rychlé odkazy</h3>
               <ul className="list-unstyled">
@@ -62,6 +62,7 @@ export default class Home extends Component {
 }
 
 Home.propTypes = {
+  about: PropTypes.string.isRequired,
   news: PropTypes.arrayOf(PropTypes.object).isRequired,
   onMount: PropTypes.func.isRequired,
   ready: PropTypes.bool,

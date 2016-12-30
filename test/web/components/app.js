@@ -12,6 +12,7 @@ describe('App component', () => {
     expect(shallow(
       <App
         onMount={() => {}}
+        currentYear={{ year: '2016', topic: 'Kůže' }}
         years={[
           { year: '2016', topic: 'Ovce' },
         ]}
@@ -21,6 +22,7 @@ describe('App component', () => {
     ).node).to.eql(
       <div className="app-app">
         <Navigation
+          currentYear={{ year: '2016', topic: 'Kůže' }}
           years={[
             { year: '2016', topic: 'Ovce' },
           ]}

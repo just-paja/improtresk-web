@@ -4039,6 +4039,12 @@
       "from": "redux-logger@>=2.7.4 <3.0.0",
       "resolved": "http://registry.npmjs.org/redux-logger/-/redux-logger-2.7.4.tgz"
     },
+    "redux-mock-store": {
+      "version": "1.2.1",
+      "from": "redux-mock-store@latest",
+      "resolved": "http://registry.npmjs.org/redux-mock-store/-/redux-mock-store-1.2.1.tgz",
+      "dev": true
+    },
     "redux-saga": {
       "version": "0.13.0",
       "from": "redux-saga@>=0.13.0 <0.14.0",

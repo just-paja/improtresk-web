@@ -1,4 +1,5 @@
 import Grid from 'react-bootstrap/lib/Grid';
+import Markdown from 'react-markdown';
 import React from 'react';
 import sinon from 'sinon';
 
@@ -9,6 +10,7 @@ import { shallow } from 'enzyme';
 import Home from '../../../../src/web/components/pages/home';
 import Link from '../../../../src/web/components/link';
 import News from '../../../../src/web/components/news';
+import YearDetail from '../../../../src/web/components/yearDetail';
 
 describe('Home page component', () => {
   it('empty when not ready', () => {
@@ -23,30 +25,53 @@ describe('Home page component', () => {
     ).node).to.equal(null);
   });
 
-  it('renders content', () => {
+  it('empty when not ready and no year', () => {
     expect(shallow(
       <Home
         onMount={() => {}}
-        news={[
-          { id: 1, text: 'foo', createdAt: '2016-01-02T03:04:05' },
-        ]}
+        news={[]}
         ready
         year={null}
       >
         <div>foo</div>
       </Home>
+    ).node).to.equal(null);
+  });
+
+  it('renders content', () => {
+    expect(shallow(
+      <Home
+        about="bla bla bla"
+        onMount={() => {}}
+        news={[
+          { id: 1, text: 'foo', createdAt: '2016-01-02T03:04:05' },
+        ]}
+        ready
+        year={{
+          current: false,
+          startAt: '2016-01-02',
+          endAt: '2016-01-05',
+          startSignupsAt: '2016-01-01T00:00:00',
+          topic: 'foo',
+          year: '2016',
+        }}
+      >
+        <div>foo</div>
+      </Home>
     ).node).to.eql(
-      <div>
+      <div className="year-2016 year-next">
+        <YearDetail
+          endAt="2016-01-05"
+          startAt="2016-01-02"
+          startSignupsAt="2016-01-01T00:00:00"
+          topic="foo"
+          year="2016"
+        />
         <Grid>
           <Row>
             <Col md={6}>
               <h2>O Improtřesku</h2>
-              <p>
-                Improtřesk je český festival divadelní improvizace a největší setkání
-                improvizátorů z celé České republiky. Každý rok se na Improtřesku
-                otevírají dílny z oblasti improvizačního divadla na kterých se schází nadšenci
-                improvizačního divadla i veřejnost.
-              </p>
+              <Markdown source="bla bla bla" />
 
               <h3>Rychlé odkazy</h3>
               <ul className="list-unstyled">

@@ -3,15 +3,20 @@ import { bindActionCreators } from 'redux';
 
 import Home from '../components/pages/home';
 
+import { getText, readyTexts } from '../selectors/texts';
 import { newsAll } from '../selectors/news';
-import { yearCurrent } from '../selectors/years';
+import { yearCurrent, yearNext } from '../selectors/years';
 
 import * as actions from '../constants/actions';
+import * as texts from '../constants/texts';
 
 const mapStateToProps = state => ({
+  about: getText(state, texts.ABOUT_FESTIVAL_SHORT),
   news: newsAll(state),
-  ready: state.years.ready && state.news.ready,
-  year: yearCurrent(state),
+  ready: state.years.ready && state.news.ready && readyTexts(state, [
+    texts.ABOUT_FESTIVAL_SHORT,
+  ]),
+  year: yearCurrent(state) || yearNext(state),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
