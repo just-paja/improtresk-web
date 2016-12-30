@@ -79,6 +79,31 @@ describe('Input component', () => {
       </FormGroup>
     );
   });
+  it('renders in touched error state', () => {
+    expect(shallow(
+      <Input
+        help="This is the input help!"
+        error="This is the input error!"
+        label="Input label"
+        name="text-input"
+        touched
+      />
+    ).node).to.eql(
+      <FormGroup validationState="error">
+        <ControlLabel>Input label</ControlLabel>
+        <FormControl
+          maxLength={255}
+          name="text-input"
+          onBlur={() => {}}
+          onChange={() => {}}
+          type="text"
+          value=""
+        />
+        <HelpBlock>This is the input error!</HelpBlock>
+        <FormControl.Feedback />
+      </FormGroup>
+    );
+  });
 
   it('ignores onChange on input value change by default', () => {
     const comp = shallow(

@@ -137,4 +137,25 @@ describe('Signup Form component', () => {
       ['signup', 'name', 'foo'],
     ]);
   });
+  it('triggers onSubmit on form submit', () => {
+    const preventDefaultSpy = sinon.spy();
+    const submitSpy = sinon.spy();
+    const comp = shallow(
+      <Signup
+        form="signup"
+        onChange={() => {}}
+        onSubmit={submitSpy}
+        errors={{}}
+        values={{}}
+      />
+    );
+
+    comp.simulate('submit', {
+      preventDefault: preventDefaultSpy,
+    });
+    expect(submitSpy.args).to.eql([
+      ['signup'],
+    ]);
+    expect(preventDefaultSpy.calledOnce).to.equal(true);
+  });
 });
