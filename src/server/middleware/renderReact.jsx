@@ -33,16 +33,13 @@ if (process.env.NODE_ENV === 'production') {
   assets.js.push('app.js');
 }
 
-const getComponentTree = (store, renderProps) => (
+export const getComponentTree = (store, renderProps) => (
   <Provider store={store}>
     <RouterContext {...renderProps} />
   </Provider>
 );
 
-const renderFromRouter = (store, renderProps) =>
-  renderToString(getComponentTree(store, renderProps));
-
-export const renderMarkupAndWait = (req, renderProps) => {
+export const getStore = (req) => {
   const config = configure();
   const initialState = {
     device: {
@@ -56,14 +53,18 @@ export const renderMarkupAndWait = (req, renderProps) => {
       apiSource: config.apiSource,
     },
   };
-  const store = configureStore(initialState);
+
+  return configureStore(initialState);
+};
+
+export const renderMarkupAndWait = (req, store, componentTree) => {
   const rootTask = sagaMiddleware.run(sagas);
 
-  renderFromRouter(store, renderProps);
+  renderToString(componentTree);
   store.dispatch(END);
   return rootTask.done
     .then(() => ({
-      markup: renderFromRouter(store, renderProps),
+      markup: renderToString(componentTree),
       state: store.getState(),
     }));
 };
@@ -82,7 +83,3 @@ export const respondWithHtml = (req, res, markupAndState) => {
 
   return res.status(500).send('Internal server error');
 };
-
-export const renderAndRespond = (req, res, renderProps) =>
-  renderMarkupAndWait(req, renderProps)
-    .then(markupAndState => respondWithHtml(req, res, markupAndState));

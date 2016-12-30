@@ -3,7 +3,7 @@ import { combined, fetchStart, fetchError, fetchSuccess } from './common';
 import * as constants from '../constants/actions';
 
 const defaultState = {
-  data: [],
+  data: {},
   loading: false,
 };
 
