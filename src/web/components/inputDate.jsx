@@ -6,7 +6,7 @@ import 'react-select/dist/react-select.css';
 
 import Input from './input';
 
-const formatValue = value => moment(value).format('YYYY-MM-DD');
+export const formatValue = value => moment(value).format('YYYY-MM-DD');
 
 const InputDate = props => (
   <Input

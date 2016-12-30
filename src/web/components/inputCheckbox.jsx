@@ -6,11 +6,17 @@ import React, { Component, PropTypes } from 'react';
 export default class InputCheckbox extends Component {
   constructor() {
     super();
+    this.state = {};
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
+    this.setState({ touched: true });
     this.props.onChange(this.props.name, !!e.target.checked);
+  }
+
+  isTouched() {
+    return !!(this.props.touched || this.state.touched);
   }
 
   render() {
@@ -21,10 +27,12 @@ export default class InputCheckbox extends Component {
       name,
       ...other
     } = this.props;
-    const message = error || help;
+    const touched = this.isTouched();
+    const message = (touched && error) || help;
+    delete other.touched;
 
     return (
-      <FormGroup validationState={error ? 'error' : null}>
+      <FormGroup validationState={(touched && error) ? 'error' : null}>
         <Checkbox
           {...other}
           name={name}
@@ -51,6 +59,7 @@ InputCheckbox.propTypes = {
   name: PropTypes.string.isRequired,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  touched: PropTypes.bool,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
@@ -59,4 +68,5 @@ InputCheckbox.propTypes = {
 
 InputCheckbox.defaultProps = {
   error: null,
+  touched: false,
 };
