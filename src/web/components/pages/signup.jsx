@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import React, { Component, PropTypes } from 'react';
 
 import Container from '../container';
@@ -10,6 +11,7 @@ export default class SignupPage extends Component {
 
   render() {
     const { onChange, onSubmit, ready, signup } = this.props;
+    const title = 'Přihláška';
 
     if (!ready) {
       return null;
@@ -17,7 +19,13 @@ export default class SignupPage extends Component {
 
     return (
       <Container>
-        <h1>Přihláška</h1>
+        <Helmet
+          title={title}
+          meta={[
+            { property: 'og:title', content: title },
+          ]}
+        />
+        <h1>{title}</h1>
         <p>
           Napřed tě musíme dostat do systému. Je to jen pár jednoduchých otázek na
           které potřebujeme znát odpověď. Určitě by to nemělo zabrat víc jak dvě

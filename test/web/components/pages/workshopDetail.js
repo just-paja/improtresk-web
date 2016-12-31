@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import React from 'react';
 import sinon from 'sinon';
 
@@ -52,6 +53,12 @@ describe('Workshop Detail page component', () => {
       />
     ).node).to.eql(
       <Container>
+        <Helmet
+          title="Pantomima a fyzické divadlo"
+          meta={[
+            { property: 'og:title', content: 'Pantomima a fyzické divadlo' },
+          ]}
+        />
         <WorkshopDetail
           id={12}
           desc={

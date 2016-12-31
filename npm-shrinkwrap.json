@@ -1288,8 +1288,7 @@
     "deep-equal": {
       "version": "1.0.1",
       "from": "deep-equal@>=1.0.0 <2.0.0",
-      "resolved": "http://registry.npmjs.org/deep-equal/-/deep-equal-1.0.1.tgz",
-      "dev": true
+      "resolved": "http://registry.npmjs.org/deep-equal/-/deep-equal-1.0.1.tgz"
     },
     "deep-is": {
       "version": "0.1.3",
@@ -3921,6 +3920,11 @@
       "from": "react-fontawesome@>=1.5.0 <2.0.0",
       "resolved": "http://registry.npmjs.org/react-fontawesome/-/react-fontawesome-1.5.0.tgz"
     },
+    "react-helmet": {
+      "version": "3.3.0",
+      "from": "react-helmet@latest",
+      "resolved": "http://registry.npmjs.org/react-helmet/-/react-helmet-3.3.0.tgz"
+    },
     "react-hot-api": {
       "version": "0.4.7",
       "from": "react-hot-api@>=0.4.5 <0.5.0",
@@ -3995,6 +3999,28 @@
       "version": "1.0.0-rc.2",
       "from": "react-select@latest",
       "resolved": "http://registry.npmjs.org/react-select/-/react-select-1.0.0-rc.2.tgz"
+    },
+    "react-side-effect": {
+      "version": "1.0.2",
+      "from": "react-side-effect@1.0.2",
+      "resolved": "http://registry.npmjs.org/react-side-effect/-/react-side-effect-1.0.2.tgz",
+      "dependencies": {
+        "core-js": {
+          "version": "1.2.7",
+          "from": "core-js@>=1.0.0 <2.0.0",
+          "resolved": "http://registry.npmjs.org/core-js/-/core-js-1.2.7.tgz"
+        },
+        "fbjs": {
+          "version": "0.1.0-alpha.10",
+          "from": "fbjs@0.1.0-alpha.10",
+          "resolved": "http://registry.npmjs.org/fbjs/-/fbjs-0.1.0-alpha.10.tgz"
+        },
+        "whatwg-fetch": {
+          "version": "0.9.0",
+          "from": "whatwg-fetch@>=0.9.0 <0.10.0",
+          "resolved": "http://registry.npmjs.org/whatwg-fetch/-/whatwg-fetch-0.9.0.tgz"
+        }
+      }
     },
     "read-cache": {
       "version": "1.0.0",

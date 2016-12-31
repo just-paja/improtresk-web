@@ -1,21 +1,21 @@
 import React, { PropTypes } from 'react';
 
-const pageBase = ({ css, js, markup, state = {} }) => (
+const pageBase = ({
+  css,
+  js,
+  markup,
+  helmet: { title, base, meta, link, script },
+  state = {},
+}) => (
   <html lang="cs">
     <head>
       <meta charSet="utf-8" />
       <meta content="width=device-width" name="viewport" />
-      <title>Improtřesk</title>
-      <link
-        type="text/css"
-        rel="stylesheet"
-        href="/static/bootswatch/sandstone/bootstrap.min.css"
-      />
-      <link
-        type="text/css"
-        rel="stylesheet"
-        href="/static/font-awesome/css/font-awesome.min.css"
-      />
+      {title.toComponent()}
+      {base.toComponent()}
+      {meta.toComponent()}
+      {link.toComponent()}
+      {script.toComponent()}
       {css.map((asset, key) =>
         <link key={key} type="text/css" rel="stylesheet" href={`/assets/${asset}`} />
       )}
@@ -29,12 +29,7 @@ const pageBase = ({ css, js, markup, state = {} }) => (
     </head>
     <body>
       {/* eslint-disable react/no-danger */}
-      <div
-        id="appContent"
-        dangerouslySetInnerHTML={{
-          __html: markup,
-        }}
-      />
+      <div id="appContent" dangerouslySetInnerHTML={{ __html: markup }} />
       {/* eslint-enable react/no-danger */}
       {js.map((asset, key) => <script src={`/assets/${asset}`} key={key} />)}
     </body>
@@ -46,6 +41,13 @@ pageBase.propTypes = {
   js: PropTypes.object,
   markup: PropTypes.string,
   state: PropTypes.object,
+  helmet: PropTypes.shape({
+    base: PropTypes.object,
+    meta: PropTypes.object,
+    link: PropTypes.object,
+    script: PropTypes.object,
+    title: PropTypes.object,
+  }).isRequired,
 };
 
 pageBase.defaultProps = {

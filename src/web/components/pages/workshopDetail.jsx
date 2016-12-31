@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import React, { Component, PropTypes } from 'react';
 
 import Container from '../container';
@@ -19,6 +20,12 @@ export default class WorkshopDetailPage extends Component {
 
     return (
       <Container>
+        <Helmet
+          title={workshop.name}
+          meta={[
+            { property: 'og:title', content: workshop.name },
+          ]}
+        />
         <WorkshopDetail {...workshop} />
       </Container>
     );

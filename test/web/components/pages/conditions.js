@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import Markdown from 'react-markdown';
 import React from 'react';
 import sinon from 'sinon';
@@ -20,7 +21,7 @@ describe('Conditions page component', () => {
     ).node).to.equal(null);
   });
 
-  it('renders content with year', () => {
+  it('renders content', () => {
     expect(shallow(
       <Conditions
         onMount={() => {}}
@@ -28,13 +29,16 @@ describe('Conditions page component', () => {
           text: 'foo',
         }}
         ready
-        year={{
-          year: '2017',
-        }}
       />
     ).node).to.eql(
       <Container>
-        <h1>Podmínky pro účastníky (Improtřesk 2017)</h1>
+        <Helmet
+          title="Podmínky pro účastníky"
+          meta={[
+            { property: 'og:title', content: 'Podmínky pro účastníky' },
+          ]}
+        />
+        <h1>Podmínky pro účastníky</h1>
         <Markdown source="foo" />
       </Container>
     );
@@ -46,34 +50,21 @@ describe('Conditions page component', () => {
         onMount={() => {}}
         conditions={null}
         ready
-        year={null}
       />
     ).node).to.eql(
       <Container>
+        <Helmet
+          title="Podmínky pro účastníky"
+          meta={[
+            { property: 'og:title', content: 'Podmínky pro účastníky' },
+          ]}
+        />
         <h1>Podmínky pro účastníky</h1>
         <p>
           Podmínky pro účastníky za tento ročník ještě nejsou zveřejněné. Organizátoři
           by to měli co nejrychleji napravit, zkuste je{' '}
           <Link to="contact">popohnat</Link>.
         </p>
-      </Container>
-    );
-  });
-
-  it('renders content', () => {
-    expect(shallow(
-      <Conditions
-        onMount={() => {}}
-        conditions={{
-          text: 'foo',
-        }}
-        ready
-        year={null}
-      />
-    ).node).to.eql(
-      <Container>
-        <h1>Podmínky pro účastníky</h1>
-        <Markdown source="foo" />
       </Container>
     );
   });

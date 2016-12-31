@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import Markdown from 'react-markdown';
 import React, { Component, PropTypes } from 'react';
 
@@ -11,6 +12,7 @@ export default class Food extends Component {
 
   render() {
     const { foodTimes, intro, ready } = this.props;
+    const title = 'Stravování';
 
     if (!ready) {
       return null;
@@ -18,7 +20,13 @@ export default class Food extends Component {
 
     return (
       <Container>
-        <h1>Stravování</h1>
+        <Helmet
+          title={title}
+          meta={[
+            { property: 'og:title', content: title },
+          ]}
+        />
+        <h1>{title}</h1>
         <Markdown source={intro} />
         <ul>
           {foodTimes.map(foodTime =>

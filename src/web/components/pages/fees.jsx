@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import Markdown from 'react-markdown';
 import React, { Component, PropTypes } from 'react';
 
@@ -10,6 +11,7 @@ export default class Fees extends Component {
 
   render() {
     const { howToPay, howToSignOut, ready, whatDoYouPayFor } = this.props;
+    const title = 'Poplatky';
 
     if (!ready) {
       return null;
@@ -17,7 +19,13 @@ export default class Fees extends Component {
 
     return (
       <Container>
-        <h1>Poplatky</h1>
+        <Helmet
+          title={title}
+          meta={[
+            { property: 'og:title', content: title },
+          ]}
+        />
+        <h1>{title}</h1>
         <h2>Za co se platí?</h2>
         <Markdown source={whatDoYouPayFor} />
 
