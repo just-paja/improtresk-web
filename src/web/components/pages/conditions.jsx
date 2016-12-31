@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import Markdown from 'react-markdown';
 import React, { Component, PropTypes } from 'react';
 
@@ -10,7 +11,8 @@ export default class Conditions extends Component {
   }
 
   render() {
-    const { conditions, ready, year } = this.props;
+    const { conditions, ready } = this.props;
+    const title = 'Podmínky pro účastníky';
 
     if (!ready) {
       return null;
@@ -18,7 +20,13 @@ export default class Conditions extends Component {
 
     return (
       <Container>
-        <h1>Podmínky pro účastníky{year ? ` (Improtřesk ${year.year})` : null}</h1>
+        <Helmet
+          title={title}
+          meta={[
+            { property: 'og:title', content: title },
+          ]}
+        />
+        <h1>{title}</h1>
         {(conditions ?
           <Markdown source={conditions.text} /> :
           <p>
@@ -36,7 +44,6 @@ Conditions.propTypes = {
   onMount: PropTypes.func.isRequired,
   ready: PropTypes.bool,
   conditions: PropTypes.object,
-  year: PropTypes.object,
 };
 
 Conditions.defaultProps = {

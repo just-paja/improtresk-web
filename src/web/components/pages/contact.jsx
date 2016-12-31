@@ -1,4 +1,5 @@
 import Col from 'react-bootstrap/lib/Col';
+import Helmet from 'react-helmet';
 import Row from 'react-bootstrap/lib/Row';
 import FontAwesome from 'react-fontawesome';
 import React, { Component, PropTypes } from 'react';
@@ -12,6 +13,7 @@ export default class Contact extends Component {
 
   render() {
     const { ready } = this.props;
+    const title = 'Kontakt';
 
     if (!ready) {
       return null;
@@ -19,6 +21,12 @@ export default class Contact extends Component {
 
     return (
       <Container>
+        <Helmet
+          title={title}
+          meta={[
+            { property: 'og:title', content: title },
+          ]}
+        />
         <h1>Kontakt</h1>
         <Row>
           <Col md={6}>

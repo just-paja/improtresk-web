@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import Col from 'react-bootstrap/lib/Col';
 import Markdown from 'react-markdown';
 import Row from 'react-bootstrap/lib/Row';
@@ -22,6 +23,15 @@ export default class NewsDetail extends Component {
 
     return (
       <Container>
+        <Helmet
+          title={newsDetail.title}
+          meta={[
+            {
+              property: 'og:title',
+              content: `${newsDetail.text.substr(0, 127)}...`,
+            },
+          ]}
+        />
         <Row>
           <Col md={8}>
             <h1>{newsDetail.title}</h1>

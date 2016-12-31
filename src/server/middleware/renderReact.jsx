@@ -1,4 +1,5 @@
 import fs from 'fs';
+import Helmet from 'react-helmet';
 import path from 'path';
 import React from 'react';
 import winston from 'winston';
@@ -70,6 +71,7 @@ export const renderMarkupAndWait = (req, store, componentTree) => {
 };
 
 export const renderInHtml = markupAndState => renderToStaticMarkup(pageBase({
+  helmet: Helmet.rewind(),
   ...markupAndState,
   ...assets,
 }));

@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import React from 'react';
 import sinon from 'sinon';
 
@@ -37,6 +38,12 @@ describe('Workshops page component', () => {
       />
     ).node).to.eql(
       <Container>
+        <Helmet
+          title="Workshopy"
+          meta={[
+            { property: 'og:title', content: 'Workshopy' },
+          ]}
+        />
         <h1>Workshopy</h1>
         <WorkshopList
           workshops={[

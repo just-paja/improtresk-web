@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import Markdown from 'react-markdown';
 import React, { Component, PropTypes } from 'react';
 
@@ -12,6 +13,7 @@ export default class Accomodations extends Component {
 
   render() {
     const { accomodations, intro, ready } = this.props;
+    const title = 'Ubytování';
 
     if (!ready) {
       return null;
@@ -19,7 +21,13 @@ export default class Accomodations extends Component {
 
     return (
       <Container>
-        <h1>Ubytování</h1>
+        <Helmet
+          title={title}
+          meta={[
+            { property: 'og:title', content: title },
+          ]}
+        />
+        <h1>{title}</h1>
         <Markdown source={intro} />
         <ObjectList
           Component={Accomodation}

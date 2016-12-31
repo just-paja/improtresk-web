@@ -51,6 +51,7 @@
     "react-bootstrap-date-picker": "^4.0.0",
     "react-dom": "^15.4.1",
     "react-fontawesome": "^1.5.0",
+    "react-helmet": "^3.3.0",
     "react-markdown": "^2.4.2",
     "react-photo-gallery": "^4.2.15",
     "react-redux": "^5.0.1",
