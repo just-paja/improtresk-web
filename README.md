@@ -10,8 +10,8 @@ This is frontend for website of first and biggest Czech improvisation festival b
 ## Used technologies
 
 * [React](https://facebook.github.io/react/) to be reactive (of course)
-* [Redux](http://redux.js.org/) to keep the state
-* [Redux Sagas](https://github.com/yelouafi/redux-saga) to manipulate the state
+* [Redux](http://redux.js.org/) to manipulate the state
+* [Redux Sagas](https://github.com/yelouafi/redux-saga) to manage side effects
 * [Express](http://expressjs.com/) for server rendering
 * [React Bootstrap](https://react-bootstrap.github.io/) to have some looks
 * [React Router](https://github.com/ReactTraining/react-router) to map URLs to application layout
