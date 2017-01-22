@@ -3,6 +3,9 @@ import fetch from 'isomorphic-fetch';
 const apiFetch = (url, { apiSource, ...params }) =>
   fetch(`${apiSource}/${url}`, params);
 
+export const fetchArchivedYear = ({ year, ...params }) =>
+  apiFetch(`years/${year}`, params);
+
 export const fetchAccomodation = params => apiFetch('accomodation', params);
 
 export const fetchConditionsCurrent = params => apiFetch('conditions', params);

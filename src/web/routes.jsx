@@ -6,6 +6,7 @@ import { IndexRoute, Route } from 'react-router';
 import App from './containers/app';
 
 import Accomodations from './containers/accomodations';
+import ArchivedYear from './containers/archivedYear';
 import Conditions from './containers/conditions';
 import Contact from './containers/contact';
 import Fees from './containers/fees';
@@ -53,6 +54,7 @@ export default function configureRoutes() {
     <Route path={urlTable.home} component={App}>
       <IndexRoute component={Home} />
       <Route path={urlTable.accomodation} component={Accomodations} />
+      <Route path={urlTable['archive:year']} component={ArchivedYear} />
       <Route path={urlTable.conditions} component={Conditions} />
       <Route path={urlTable.contact} component={Contact} />
       <Route path={urlTable.fees} component={Fees} />
