@@ -30,3 +30,8 @@ export const yearNext = createSelector(
     return next || sortedYears[sortedYears.length - 1] || null;
   }
 );
+
+export const yearActive = createSelector(
+  [yearCurrent, yearNext],
+  (current, next) => (current || next)
+);
