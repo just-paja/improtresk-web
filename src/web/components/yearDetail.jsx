@@ -8,7 +8,7 @@ import HumanDateRange from './humanDateRange';
 import SignupButton from './signupButton';
 import styles from './yearDetail.css';
 
-const YearDetail = ({ endAt, startAt, startSignupsAt, topic, year }) => (
+const YearDetail = ({ current, endAt, startAt, startSignupsAt, topic, year }) => (
   <div className={classnames('text-center', styles.container)}>
     <div className={styles.text}>
       <h1>Improtřesk {year} <small className={styles.topic}><i>{topic}</i></small></h1>
@@ -19,28 +19,35 @@ const YearDetail = ({ endAt, startAt, startSignupsAt, topic, year }) => (
         />
       </div>
     </div>
-    <div className={styles.buttons}>
-      <Grid>
-        <Row>
-          <Col xs={8} xsOffset={4} sm={6} smOffset={6} md={4} mdOffset={8}>
-            <SignupButton
-              startAt={startSignupsAt}
-              endAt={startAt}
-              alreadyFull={false}
-            />
-          </Col>
-        </Row>
-      </Grid>
-    </div>
+    {current ? (
+      <div className={styles.buttons}>
+        <Grid>
+          <Row>
+            <Col xs={8} xsOffset={4} sm={6} smOffset={6} md={4} mdOffset={8}>
+              <SignupButton
+                startAt={startSignupsAt}
+                endAt={startAt}
+                alreadyFull={false}
+              />
+            </Col>
+          </Row>
+        </Grid>
+      </div>
+    ) : null}
   </div>
 );
 
 YearDetail.propTypes = {
+  current: PropTypes.bool,
   endAt: PropTypes.string.isRequired,
   startAt: PropTypes.string.isRequired,
   startSignupsAt: PropTypes.string.isRequired,
   topic: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
+};
+
+YearDetail.defaultProps = {
+  current: false,
 };
 
 export default YearDetail;
