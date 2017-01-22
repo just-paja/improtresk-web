@@ -4,6 +4,7 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 
 import {
+  yearActive,
   yearCurrent,
   yearNext,
   yearsNotCurrent,
@@ -104,6 +105,44 @@ describe('News selectors', () => {
       })).to.eql([
         { id: 1, endAt: '2015-02-03' },
       ]);
+    });
+  });
+  describe('yearActive', () => {
+    beforeEach(() => {
+      sinon.stub(moment, 'now');
+      moment.now.returns('2016-01-02T03:04:05.678');
+    });
+    afterEach(() => {
+      moment.now.restore();
+    });
+    it('returns current year when available', () => {
+      expect(yearActive({
+        years: {
+          data: [
+            { id: 1, endAt: '2015-02-03' },
+            { id: 3, endAt: '2017-02-03', current: true },
+            { id: 2, endAt: '2016-02-03' },
+          ],
+        },
+      })).to.eql({
+        id: 3,
+        endAt: '2017-02-03',
+        current: true,
+      });
+    });
+    it('returns next closest year when current not available', () => {
+      expect(yearActive({
+        years: {
+          data: [
+            { id: 1, endAt: '2015-02-03' },
+            { id: 3, endAt: '2017-02-03' },
+            { id: 2, endAt: '2016-02-03' },
+          ],
+        },
+      })).to.eql({
+        id: 2,
+        endAt: '2016-02-03',
+      });
     });
   });
 });
