@@ -57,6 +57,7 @@ describe('Home page component', () => {
     ).node).to.eql(
       <div className="year-2016">
         <YearDetail
+          current
           endDate="2016-01-05"
           startDate="2016-01-02"
           startSignupsAt="2016-01-01T00:00:00"
