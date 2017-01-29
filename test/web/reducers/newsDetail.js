@@ -40,6 +40,7 @@ describe('News detail reducer', () => {
   it('marks as not loading on NEWS_DETAIL_FETCH_ERROR', () => {
     expect(newsDetail({}, { type: 'NEWS_DETAIL_FETCH_ERROR', error: 'error' })).to.eql({
       loading: false,
+      ready: true,
       error: 'error',
     });
   });

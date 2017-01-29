@@ -40,6 +40,7 @@ describe('Workshops reducer', () => {
   it('marks as loading on WORKSHOPS_FETCH_ERROR', () => {
     expect(workshops({}, { type: 'WORKSHOPS_FETCH_ERROR', error: 'error' })).to.eql({
       loading: false,
+      ready: true,
       error: 'error',
     });
   });

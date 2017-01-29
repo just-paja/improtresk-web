@@ -40,6 +40,7 @@ describe('Years reducer', () => {
   it('marks as loading on YEARS_FETCH_ERROR', () => {
     expect(years({}, { type: 'YEARS_FETCH_ERROR', error: 'error' })).to.eql({
       loading: false,
+      ready: true,
       error: 'error',
     });
   });
