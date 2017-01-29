@@ -9,8 +9,9 @@ const pageBase = ({
 }) => (
   <html lang="cs">
     <head>
+      <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta charSet="utf-8" />
-      <meta content="width=device-width" name="viewport" />
+      <meta content="width=device-width,initial-scale=1" name="viewport" />
       {title.toComponent()}
       {base.toComponent()}
       {meta.toComponent()}
