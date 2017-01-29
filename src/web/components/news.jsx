@@ -1,18 +1,15 @@
 import React, { PropTypes } from 'react';
 
+import ObjectList from './objectList';
 import NewsItem from './newsItem';
 
 const News = ({ news }) => (
-  <div>
-    {news.map(item => (
-      <NewsItem
-        createdAt={item.createdAt}
-        id={item.id}
-        key={item.id}
-        text={item.text}
-      />
-    ))}
-  </div>
+  <ObjectList
+    Component={NewsItem}
+    data={news}
+    emptyMessage="Zatím nemáme žádné novinky"
+    md={12}
+  />
 );
 
 News.propTypes = {
