@@ -5,11 +5,19 @@ import Signup from '../components/pages/signup';
 
 import { yearCurrent } from '../selectors/years';
 import { getForm } from '../selectors/forms';
+import {
+  areSignupsOpen,
+  getSignupsCloseDate,
+  getSignupsOpenDate,
+} from '../selectors/signups';
 
 import * as actions from '../constants/actions';
 
 const mapStateToProps = state => ({
   signup: getForm(state, 'signup'),
+  signupsCloseDate: getSignupsCloseDate(state),
+  signupsOpen: areSignupsOpen(state),
+  signupsOpenDate: getSignupsOpenDate(state),
   ready: state.years.ready,
   year: yearCurrent(state),
 });

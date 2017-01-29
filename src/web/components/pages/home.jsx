@@ -25,6 +25,7 @@ export default class Home extends Component {
         })}
       >
         <YearDetail
+          current={year.current}
           endDate={year.endDate}
           startDate={year.startDate}
           startSignupsAt={year.startSignupsAt}
