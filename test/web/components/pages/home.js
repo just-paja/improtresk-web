@@ -45,8 +45,8 @@ describe('Home page component', () => {
         ready
         year={{
           current: true,
-          startAt: '2016-01-02',
-          endAt: '2016-01-05',
+          startDate: '2016-01-02',
+          endDate: '2016-01-05',
           startSignupsAt: '2016-01-01T00:00:00',
           topic: 'foo',
           year: '2016',
@@ -57,8 +57,8 @@ describe('Home page component', () => {
     ).node).to.eql(
       <div className="year-2016">
         <YearDetail
-          endAt="2016-01-05"
-          startAt="2016-01-02"
+          endDate="2016-01-05"
+          startDate="2016-01-02"
           startSignupsAt="2016-01-01T00:00:00"
           topic="foo"
           year="2016"
@@ -84,8 +84,8 @@ describe('Home page component', () => {
         ready
         year={{
           current: false,
-          startAt: '2016-01-02',
-          endAt: '2016-01-05',
+          startDate: '2016-01-02',
+          endDate: '2016-01-05',
           startSignupsAt: '2016-01-01T00:00:00',
           topic: 'foo',
           year: '2016',
@@ -96,8 +96,8 @@ describe('Home page component', () => {
     ).node).to.eql(
       <div className="year-2016 year-next">
         <YearDetail
-          endAt="2016-01-05"
-          startAt="2016-01-02"
+          endDate="2016-01-05"
+          startDate="2016-01-02"
           startSignupsAt="2016-01-01T00:00:00"
           topic="foo"
           year="2016"

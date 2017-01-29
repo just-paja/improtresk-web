@@ -5,7 +5,7 @@ import Home from '../components/pages/home';
 
 import { getText, readyTexts } from '../selectors/texts';
 import { newsAll } from '../selectors/news';
-import { yearCurrent, yearNext } from '../selectors/years';
+import { yearActive } from '../selectors/years';
 
 import * as actions from '../constants/actions';
 import * as texts from '../constants/texts';
@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
   ready: state.years.ready && state.news.list.ready && readyTexts(state, [
     texts.ABOUT_FESTIVAL_SHORT,
   ]),
-  year: yearCurrent(state) || yearNext(state),
+  year: yearActive(state),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
