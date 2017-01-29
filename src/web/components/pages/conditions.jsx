@@ -47,5 +47,6 @@ Conditions.propTypes = {
 };
 
 Conditions.defaultProps = {
+  conditions: null,
   ready: false,
 };

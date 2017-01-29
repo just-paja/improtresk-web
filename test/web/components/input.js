@@ -21,6 +21,7 @@ describe('Input component', () => {
       <FormGroup validationState={null}>
         <ControlLabel>Input label</ControlLabel>
         <FormControl
+          formatValue={null}
           maxLength={255}
           name="text-input"
           onBlur={() => {}}
@@ -43,6 +44,7 @@ describe('Input component', () => {
       <FormGroup validationState={null}>
         <ControlLabel>Input label</ControlLabel>
         <FormControl
+          formatValue={null}
           maxLength={255}
           name="text-input"
           onBlur={() => {}}
@@ -67,6 +69,7 @@ describe('Input component', () => {
       <FormGroup validationState={null}>
         <ControlLabel>Input label</ControlLabel>
         <FormControl
+          formatValue={null}
           maxLength={255}
           name="text-input"
           onBlur={() => {}}
@@ -92,6 +95,7 @@ describe('Input component', () => {
       <FormGroup validationState="error">
         <ControlLabel>Input label</ControlLabel>
         <FormControl
+          formatValue={null}
           maxLength={255}
           name="text-input"
           onBlur={() => {}}

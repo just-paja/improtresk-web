@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { call, fork, put, select, take } from 'redux-saga/effects';
+import { put, select, takeLatest } from 'redux-saga/effects';
 
 import signupValidator from '../../../src/web/forms/signup';
 
@@ -10,14 +10,8 @@ describe('Form saga helpers', () => {
   it('validateForm validates signup form as valid when everything is green', () => {
     const generator = validateFormOnValuesChange();
 
-    expect(generator.next().value).to.eql(take('FORM_FIELD_CHANGE'));
-    expect(generator.next({
-      type: 'FORM_FIELD_CHANGE',
-      form: 'test',
-    }).value).to.eql(fork(validateForm, {
-      type: 'FORM_FIELD_CHANGE',
-      form: 'test',
-    }));
+    expect(generator.next().value).to.eql(takeLatest('FORM_FIELD_CHANGE', validateForm));
+    expect(generator.next().done).to.equal(true);
   });
   it('validateForm skips validation if validator is missing', () => {
     const generator = validateForm({
@@ -26,7 +20,6 @@ describe('Form saga helpers', () => {
 
     expect(generator.next().done).to.equal(true);
   });
-
   it('validateForm validates signup on FORM_FIELD_CHANGE', () => {
     const generator = validateForm({
       form: 'signup',
@@ -49,7 +42,6 @@ describe('Form saga helpers', () => {
     }));
     expect(generator.next().done).to.equal(true);
   });
-
   it('validateAndSubmitForm validates and blocks invalid form submit', () => {
     const generator = validateAndSubmitForm({
       form: 'signup',
@@ -77,7 +69,6 @@ describe('Form saga helpers', () => {
     }));
     expect(generator.next().done).to.equal(true);
   });
-
   it('validateAndSubmitForm validates and allows valid form submit', () => {
     const generator = validateAndSubmitForm({
       form: 'signup',

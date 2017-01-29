@@ -9,4 +9,8 @@ WorkshopSummaryOneLine.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
+WorkshopSummaryOneLine.defaultProps = {
+  lectorName: null,
+};
+
 export default WorkshopSummaryOneLine;

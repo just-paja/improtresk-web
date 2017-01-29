@@ -65,4 +65,5 @@ SignupPage.propTypes = {
 SignupPage.defaultProps = {
   open: false,
   ready: false,
+  signup: null,
 };

@@ -68,7 +68,11 @@ const NavigationMenu = ({ currentYear, years, ...props }) => {
 
 NavigationMenu.propTypes = {
   currentYear: PropTypes.object,
-  years: PropTypes.arrayOf(PropTypes.object),
+  years: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+NavigationMenu.defaultProps = {
+  currentYear: null,
 };
 
 export default NavigationMenu;

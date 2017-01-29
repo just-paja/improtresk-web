@@ -14,10 +14,13 @@ const Root = ({ history, store }) => (
 );
 
 Root.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   history: PropTypes.object,
-  // eslint-disable-next-line react/forbid-prop-types
   store: PropTypes.object,
+};
+
+Root.defaultProps = {
+  history: null,
+  store: null,
 };
 
 export default Root;

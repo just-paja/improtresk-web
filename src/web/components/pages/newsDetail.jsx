@@ -56,5 +56,6 @@ NewsDetail.propTypes = {
 };
 
 NewsDetail.defaultProps = {
+  newsDetail: null,
   ready: false,
 };

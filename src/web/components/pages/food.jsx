@@ -43,7 +43,7 @@ export default class Food extends Component {
 Food.propTypes = {
   onMount: PropTypes.func.isRequired,
   ready: PropTypes.bool,
-  foodTimes: PropTypes.arrayOf(PropTypes.object),
+  foodTimes: PropTypes.arrayOf(PropTypes.object).isRequired,
   intro: PropTypes.string.isRequired,
 };
 

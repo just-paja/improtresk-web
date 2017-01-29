@@ -13,7 +13,7 @@ const News = ({ news }) => (
 );
 
 News.propTypes = {
-  news: PropTypes.arrayOf(PropTypes.object),
+  news: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default News;

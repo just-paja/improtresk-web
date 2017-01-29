@@ -46,5 +46,6 @@ Accomodations.propTypes = {
 };
 
 Accomodations.defaultProps = {
+  accomodations: null,
   ready: false,
 };

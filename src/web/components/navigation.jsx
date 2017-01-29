@@ -23,4 +23,9 @@ Navigation.propTypes = {
   years: PropTypes.arrayOf(PropTypes.object),
 };
 
+Navigation.defaultProps = {
+  currentYear: null,
+  years: null,
+};
+
 export default Navigation;

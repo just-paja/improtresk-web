@@ -18,7 +18,9 @@ describe('Input Checkbox component', () => {
       <FormGroup validationState={null}>
         <Checkbox
           name="test-input"
+          onBlur={null}
           onChange={() => {}}
+          value={null}
         >Input label</Checkbox>
       </FormGroup>
     );
@@ -34,7 +36,9 @@ describe('Input Checkbox component', () => {
       <FormGroup validationState={null}>
         <Checkbox
           name="test-input"
+          onBlur={null}
           onChange={() => {}}
+          value={null}
         >Input label</Checkbox>
         <HelpBlock>foo</HelpBlock>
       </FormGroup>
@@ -51,7 +55,9 @@ describe('Input Checkbox component', () => {
       <FormGroup validationState={null}>
         <Checkbox
           name="test-input"
+          onBlur={null}
           onChange={() => {}}
+          value={null}
         >Input label</Checkbox>
       </FormGroup>
     );
@@ -68,7 +74,9 @@ describe('Input Checkbox component', () => {
       <FormGroup validationState="error">
         <Checkbox
           name="test-input"
+          onBlur={null}
           onChange={() => {}}
+          value={null}
         >Input label</Checkbox>
         <HelpBlock>foo</HelpBlock>
       </FormGroup>

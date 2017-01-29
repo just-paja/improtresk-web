@@ -38,6 +38,7 @@ Accomodation.propTypes = {
 };
 
 Accomodation.defaultProps = {
+  available: null,
   price: null,
 };
 

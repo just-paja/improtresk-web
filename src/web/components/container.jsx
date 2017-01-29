@@ -16,4 +16,8 @@ Container.propTypes = {
   ]),
 };
 
+Container.defaultProps = {
+  children: null,
+};
+
 export default Container;
