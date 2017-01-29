@@ -50,6 +50,7 @@ describe('Texts reducer', () => {
       ACCOMODATION_INTRO: {
         data: {},
         loading: false,
+        ready: true,
         error: 'error',
       },
     });

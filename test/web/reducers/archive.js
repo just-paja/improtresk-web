@@ -47,6 +47,7 @@ describe('Archive reducer', () => {
   it('marks as loading on ARCHIVED_YEAR_FETCH_ERROR', () => {
     expect(archive({}, { type: 'ARCHIVED_YEAR_FETCH_ERROR', error: 'error' })).to.eql({
       loading: false,
+      ready: true,
       error: 'error',
     });
   });

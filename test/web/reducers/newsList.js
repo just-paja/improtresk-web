@@ -40,6 +40,7 @@ describe('News reducer', () => {
   it('marks as loading on NEWS_FETCH_ERROR', () => {
     expect(newsList({}, { type: 'NEWS_FETCH_ERROR', error: 'error' })).to.eql({
       loading: false,
+      ready: true,
       error: 'error',
     });
   });

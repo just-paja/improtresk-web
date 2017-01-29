@@ -40,6 +40,7 @@ describe('Accomodation reducer', () => {
   it('marks as loading on ACCOMODATION_FETCH_ERROR', () => {
     expect(accomodation({}, { type: 'ACCOMODATION_FETCH_ERROR', error: 'error' })).to.eql({
       loading: false,
+      ready: true,
       error: 'error',
     });
   });

@@ -22,5 +22,6 @@ export const fetchSuccess = (state, action) => ({
 export const fetchError = (state, action) => ({
   ...state,
   loading: false,
+  ready: true,
   error: action.error,
 });
