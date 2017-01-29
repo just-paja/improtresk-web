@@ -8,14 +8,14 @@ import HumanDateRange from './humanDateRange';
 import SignupButton from './signupButton';
 import styles from './yearDetail.css';
 
-const YearDetail = ({ current, endAt, startAt, startSignupsAt, topic, year }) => (
+const YearDetail = ({ current, endDate, startDate, startSignupsAt, topic, year }) => (
   <div className={classnames('text-center', styles.container)}>
     <div className={styles.text}>
       <h1>Improtřesk {year} <small className={styles.topic}><i>{topic}</i></small></h1>
       <div className={styles.upcomingDate}>
         <HumanDateRange
-          end={endAt}
-          start={startAt}
+          end={endDate}
+          start={startDate}
         />
       </div>
     </div>
@@ -26,7 +26,7 @@ const YearDetail = ({ current, endAt, startAt, startSignupsAt, topic, year }) =>
             <Col xs={8} xsOffset={4} sm={6} smOffset={6} md={4} mdOffset={8}>
               <SignupButton
                 startAt={startSignupsAt}
-                endAt={startAt}
+                endAt={startDate}
                 alreadyFull={false}
               />
             </Col>
@@ -39,8 +39,8 @@ const YearDetail = ({ current, endAt, startAt, startSignupsAt, topic, year }) =>
 
 YearDetail.propTypes = {
   current: PropTypes.bool,
-  endAt: PropTypes.string.isRequired,
-  startAt: PropTypes.string.isRequired,
+  endDate: PropTypes.string.isRequired,
+  startDate: PropTypes.string.isRequired,
   startSignupsAt: PropTypes.string.isRequired,
   topic: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,

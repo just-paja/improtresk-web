@@ -25,8 +25,8 @@ export default class Home extends Component {
         })}
       >
         <YearDetail
-          endAt={year.endAt}
-          startAt={year.startAt}
+          endDate={year.endDate}
+          startDate={year.startDate}
           startSignupsAt={year.startSignupsAt}
           topic={year.topic}
           year={year.year}
@@ -48,7 +48,7 @@ Home.propTypes = {
   onMount: PropTypes.func.isRequired,
   ready: PropTypes.bool,
   year: PropTypes.shape({
-    endAt: PropTypes.string,
+    endDate: PropTypes.string,
     startAt: PropTypes.string,
     topic: PropTypes.string,
     year: PropTypes.string,
