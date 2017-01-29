@@ -72,6 +72,7 @@ describe('Year Detail component', () => {
             />
           </div>
         </div>
+        <p>Sledujte novinky na stránkách Improtřesku</p>
       </div>
     );
   });
