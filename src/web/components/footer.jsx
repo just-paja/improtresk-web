@@ -13,7 +13,7 @@ const Footer = ({ currentYear, partners }) => (
   <footer className={styles.footer}>
     <Grid>
       <Row>
-        <Col className={styles.social} xs={6}>
+        <Col className={styles.social} md={6}>
           <ul className="list-inline">
             <NavItem href="https://fb.com/improtresk/" title="Improtřesk na Facebooku">
               <FontAwesome name="facebook-official" />
