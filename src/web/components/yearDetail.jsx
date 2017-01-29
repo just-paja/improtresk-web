@@ -34,7 +34,7 @@ const YearDetail = ({ current, endDate, startDate, startSignupsAt, topic, year }
         </Grid>
       </div>
     ) : (
-      <p>Sledujte novinky na stránkách Improtřesku</p>
+      <p className={styles.text}>Sledujte novinky na stránkách Improtřesku</p>
     )}
   </div>
 );

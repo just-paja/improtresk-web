@@ -32,5 +32,8 @@
 }
 
 :local .text {
-  text-shadow: rgba(216, 211, 191, .5) 0 0 5px;
+  text-shadow:
+    rgba(255, 255, 255, .75) 0 0 1px,
+    rgba(216, 211, 191, .75) 0 0 2px,
+    rgba(216, 211, 191,  .5) 0 0 5px;
 }
