@@ -60,22 +60,22 @@ describe('News selectors', () => {
       expect(yearNext({
         years: {
           data: [
-            { id: 1, startAt: '2015-02-03' },
-            { id: 3, startAt: '2017-02-03' },
-            { id: 2, startAt: '2016-02-03' },
+            { id: 1, startDate: '2015-02-03' },
+            { id: 3, startDate: '2017-02-03' },
+            { id: 2, startDate: '2016-02-03' },
           ],
         },
-      })).to.eql({ id: 2, startAt: '2016-02-03' });
+      })).to.eql({ id: 2, startDate: '2016-02-03' });
     });
     it('returns last year when there is no future year', () => {
       expect(yearNext({
         years: {
           data: [
-            { id: 1, startAt: '2014-02-03' },
-            { id: 2, startAt: '2015-02-03' },
+            { id: 1, startDate: '2014-02-03' },
+            { id: 2, startDate: '2015-02-03' },
           ],
         },
-      })).to.eql({ id: 2, startAt: '2015-02-03' });
+      })).to.eql({ id: 2, startDate: '2015-02-03' });
     });
     it('returns null when there no data', () => {
       expect(yearNext({
@@ -97,13 +97,13 @@ describe('News selectors', () => {
       expect(yearsNotCurrent({
         years: {
           data: [
-            { id: 1, endAt: '2015-02-03' },
-            { id: 3, endAt: '2017-02-03', current: true },
-            { id: 2, endAt: '2016-02-03' },
+            { id: 1, endDate: '2015-02-03' },
+            { id: 3, endDate: '2017-02-03', current: true },
+            { id: 2, endDate: '2016-02-03' },
           ],
         },
       })).to.eql([
-        { id: 1, endAt: '2015-02-03' },
+        { id: 1, endDate: '2015-02-03' },
       ]);
     });
   });
@@ -119,14 +119,14 @@ describe('News selectors', () => {
       expect(yearActive({
         years: {
           data: [
-            { id: 1, endAt: '2015-02-03' },
-            { id: 3, endAt: '2017-02-03', current: true },
-            { id: 2, endAt: '2016-02-03' },
+            { id: 1, endDate: '2015-02-03' },
+            { id: 3, endDate: '2017-02-03', current: true },
+            { id: 2, endDate: '2016-02-03' },
           ],
         },
       })).to.eql({
         id: 3,
-        endAt: '2017-02-03',
+        endDate: '2017-02-03',
         current: true,
       });
     });
@@ -134,14 +134,14 @@ describe('News selectors', () => {
       expect(yearActive({
         years: {
           data: [
-            { id: 1, endAt: '2015-02-03' },
-            { id: 3, endAt: '2017-02-03' },
-            { id: 2, endAt: '2016-02-03' },
+            { id: 1, endDate: '2015-02-03' },
+            { id: 3, endDate: '2017-02-03' },
+            { id: 2, endDate: '2016-02-03' },
           ],
         },
       })).to.eql({
         id: 2,
-        endAt: '2016-02-03',
+        endDate: '2016-02-03',
       });
     });
   });
