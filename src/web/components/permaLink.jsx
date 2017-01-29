@@ -36,4 +36,9 @@ PermaLink.propTypes = {
   to: PropTypes.string.isRequired,
 };
 
+PermaLink.defaultProps = {
+  children: null,
+  routeParams: null,
+};
+
 export default PermaLink;

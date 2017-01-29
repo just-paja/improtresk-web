@@ -30,6 +30,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  children: null,
   disabled: false,
   icon: 'floppy-o',
   loading: false,

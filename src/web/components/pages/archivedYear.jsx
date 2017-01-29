@@ -58,5 +58,7 @@ ArchivedYear.propTypes = {
 
 ArchivedYear.defaultProps = {
   ready: false,
+  topic: null,
+  workshops: null,
   year: null,
 };

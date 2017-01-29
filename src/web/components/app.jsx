@@ -115,3 +115,11 @@ App.propTypes = {
   onMount: PropTypes.func.isRequired,
   years: PropTypes.arrayOf(PropTypes.object),
 };
+
+App.defaultProps = {
+  children: null,
+  currentYear: null,
+  host: null,
+  route: null,
+  years: null,
+};

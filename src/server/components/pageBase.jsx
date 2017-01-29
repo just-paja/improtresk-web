@@ -17,8 +17,8 @@ const pageBase = ({
       {meta.toComponent()}
       {link.toComponent()}
       {script.toComponent()}
-      {css.map((asset, key) =>
-        <link key={key} type="text/css" rel="stylesheet" href={`/assets/${asset}`} />
+      {css.map(asset =>
+        <link key={asset} type="text/css" rel="stylesheet" href={`/assets/${asset}`} />
       )}
       {/* eslint-disable react/no-danger */}
       <script
@@ -32,7 +32,7 @@ const pageBase = ({
       {/* eslint-disable react/no-danger */}
       <div id="appContent" dangerouslySetInnerHTML={{ __html: markup }} />
       {/* eslint-enable react/no-danger */}
-      {js.map((asset, key) => <script src={`/assets/${asset}`} key={key} />)}
+      {js.map(asset => <script src={`/assets/${asset}`} key={asset} />)}
     </body>
   </html>
 );
@@ -54,6 +54,8 @@ pageBase.propTypes = {
 pageBase.defaultProps = {
   css: [],
   js: [],
+  markup: null,
+  state: undefined,
 };
 
 export default pageBase;

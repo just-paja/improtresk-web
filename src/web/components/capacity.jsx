@@ -19,6 +19,7 @@ Capacity.propTypes = {
 };
 
 Capacity.defaultProps = {
+  available: false,
   blockedMessage: 'obsazeno',
 };
 

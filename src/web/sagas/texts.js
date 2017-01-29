@@ -1,5 +1,4 @@
-import { fork } from 'redux-saga/effects';
-import { takeLatest } from 'redux-saga';
+import { fork, takeLatest } from 'redux-saga/effects';
 
 import { fetchResourceIfNeeded, isValid } from './common';
 
@@ -32,7 +31,7 @@ export function* fetchTextsIfNeeded(codes, action) {
 }
 
 export function* fetchTextsOnMount() {
-  yield* takeLatest(
+  yield takeLatest(
     constants.ACCOMODATION_MOUNTED,
     fetchTextsIfNeeded,
     [texts.ACCOMODATION_INTRO]

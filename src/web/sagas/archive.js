@@ -1,4 +1,4 @@
-import { takeLatest } from 'redux-saga';
+import { takeLatest } from 'redux-saga/effects';
 
 import { fetchResourceIfNeeded } from './common';
 import { isValid } from '../selectors/accomodation';
@@ -7,7 +7,7 @@ import * as api from '../api';
 import * as constants from '../constants/actions';
 
 export function* fetchArchivedYearOnMount() {
-  yield* takeLatest(
+  yield takeLatest(
     constants.ARCHIVED_YEAR_MOUNTED,
     fetchResourceIfNeeded,
     api.fetchArchivedYear,

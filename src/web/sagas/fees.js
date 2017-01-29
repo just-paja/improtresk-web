@@ -1,4 +1,4 @@
-import { takeLatest } from 'redux-saga';
+import { takeLatest } from 'redux-saga/effects';
 
 import { fetchTextsIfNeeded } from './texts';
 
@@ -6,7 +6,7 @@ import * as constants from '../constants/actions';
 import * as texts from '../constants/texts';
 
 export function* fetchTextsOnMount() {
-  yield* takeLatest(
+  yield takeLatest(
     constants.FEES_MOUNTED,
     fetchTextsIfNeeded,
     [

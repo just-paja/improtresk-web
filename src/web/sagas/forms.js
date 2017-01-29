@@ -1,5 +1,4 @@
-import { put, select } from 'redux-saga/effects';
-import { takeLatest } from 'redux-saga';
+import { put, select, takeLatest } from 'redux-saga/effects';
 
 import { getForm } from '../selectors/forms';
 
@@ -40,11 +39,11 @@ export function* validateAndSubmitForm(action) {
 }
 
 export function* validateFormOnValuesChange() {
-  yield* takeLatest(constants.FORM_FIELD_CHANGE, validateForm);
+  yield takeLatest(constants.FORM_FIELD_CHANGE, validateForm);
 }
 
 export function* validateFormOnSubmit() {
-  yield* takeLatest(constants.FORM_SUBMIT, validateAndSubmitForm);
+  yield takeLatest(constants.FORM_SUBMIT, validateAndSubmitForm);
 }
 
 export default [

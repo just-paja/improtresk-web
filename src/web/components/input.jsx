@@ -101,6 +101,13 @@ Input.defaultProps = {
   changeLeadsToTouch: false,
   Control: FormControl,
   error: null,
+  formatValue: null,
+  help: null,
+  label: null,
+  onBlur: null,
+  onChange: null,
   maxLength: 255,
+  touched: false,
   type: 'text',
+  value: null,
 };

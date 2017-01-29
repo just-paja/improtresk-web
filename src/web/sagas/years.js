@@ -1,4 +1,4 @@
-import { takeLatest } from 'redux-saga';
+import { takeLatest } from 'redux-saga/effects';
 
 import { fetchResourceIfNeeded } from './common';
 
@@ -6,7 +6,7 @@ import * as api from '../api';
 import * as constants from '../constants/actions';
 
 export function* fetchYearsOnMount() {
-  yield* takeLatest(
+  yield takeLatest(
     [
       constants.APP_MOUNTED,
       constants.HOME_MOUNTED,

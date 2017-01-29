@@ -58,4 +58,5 @@ Home.propTypes = {
 
 Home.defaultProps = {
   ready: false,
+  year: null,
 };

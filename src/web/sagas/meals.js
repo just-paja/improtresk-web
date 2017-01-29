@@ -1,4 +1,4 @@
-import { takeLatest } from 'redux-saga';
+import { takeLatest } from 'redux-saga/effects';
 
 import { fetchResourceIfNeeded } from './common';
 import { fetchTextsIfNeeded } from './texts';
@@ -9,7 +9,7 @@ import * as constants from '../constants/actions';
 import * as texts from '../constants/texts';
 
 export function* fetchMealsOnMount() {
-  yield* takeLatest(
+  yield takeLatest(
     constants.FOOD_MOUNTED,
     fetchResourceIfNeeded,
     api.fetchMeals,
@@ -23,7 +23,7 @@ export function* fetchMealsOnMount() {
 }
 
 export function* fetchTextsOnMount() {
-  yield* takeLatest(
+  yield takeLatest(
     constants.FOOD_MOUNTED,
     fetchTextsIfNeeded,
     [texts.FOOD_INTRO]

@@ -46,4 +46,8 @@ Footer.propTypes = {
   partners: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
+Footer.defaultProps = {
+  currentYear: null,
+};
+
 export default Footer;

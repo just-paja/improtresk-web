@@ -1,5 +1,4 @@
-import { select } from 'redux-saga/effects';
-import { takeLatest } from 'redux-saga';
+import { select, takeLatest } from 'redux-saga/effects';
 
 import { fetchResource } from './common';
 import { getForm } from '../selectors/forms';
@@ -25,7 +24,7 @@ export function* sendSignup(action) {
 }
 
 export function* signupOnFormSubmit() {
-  yield* takeLatest(formSelector, sendSignup);
+  yield takeLatest(formSelector, sendSignup);
 }
 
 export default [

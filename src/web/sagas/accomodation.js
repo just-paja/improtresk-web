@@ -1,4 +1,4 @@
-import { takeLatest } from 'redux-saga';
+import { takeLatest } from 'redux-saga/effects';
 
 import { fetchResourceIfNeeded } from './common';
 import { fetchTextsIfNeeded } from './texts';
@@ -9,7 +9,7 @@ import * as constants from '../constants/actions';
 import * as texts from '../constants/texts';
 
 export function* fetchAccomodationOnMount() {
-  yield* takeLatest(
+  yield takeLatest(
     constants.ACCOMODATION_MOUNTED,
     fetchResourceIfNeeded,
     api.fetchAccomodation,
@@ -23,7 +23,7 @@ export function* fetchAccomodationOnMount() {
 }
 
 export function* fetchTextsOnMount() {
-  yield* takeLatest(
+  yield takeLatest(
     constants.ACCOMODATION_MOUNTED,
     fetchTextsIfNeeded,
     [texts.ACCOMODATION_INTRO]

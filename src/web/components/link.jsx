@@ -8,8 +8,11 @@ const Link = ({ to, params, ...other }) =>
 
 Link.propTypes = {
   to: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
   params: PropTypes.object,
+};
+
+Link.defaultProps = {
+  params: null,
 };
 
 export default Link;

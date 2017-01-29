@@ -68,5 +68,10 @@ InputCheckbox.propTypes = {
 
 InputCheckbox.defaultProps = {
   error: null,
+  help: null,
+  label: null,
+  onBlur: null,
+  onChange: null,
   touched: false,
+  value: null,
 };
