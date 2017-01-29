@@ -6,7 +6,11 @@ import createReducer from './reducers';
 export const sagaMiddleware = createSagaMiddleware();
 
 export const getDevTools = () =>
-  (typeof window !== 'undefined' && window.devToolsExtension()) || (noop => noop);
+  (
+    typeof window !== 'undefined' &&
+    window.devToolsExtension &&
+    window.devToolsExtension()
+  ) || (noop => noop);
 
 const BROWSER_DEVELOPMENT = (
   process.env.NODE_ENV !== 'production' && // eslint-disable-line no-undef
