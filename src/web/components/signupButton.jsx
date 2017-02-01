@@ -44,6 +44,10 @@ const getSignupText = (endAt, startAt, alreadyFull) => {
 const SignupButton = ({ endAt, startAt, alreadyFull }) => {
   const { disabled, showStartDate, textButton } = getSignupText(endAt, startAt, alreadyFull);
 
+  if (!startAt) {
+    return null;
+  }
+
   return (
     <div>
       {(showStartDate ?
@@ -61,11 +65,12 @@ const SignupButton = ({ endAt, startAt, alreadyFull }) => {
 SignupButton.propTypes = {
   alreadyFull: PropTypes.bool,
   endAt: PropTypes.string.isRequired,
-  startAt: PropTypes.string.isRequired,
+  startAt: PropTypes.string,
 };
 
 SignupButton.defaultProps = {
   alreadyFull: false,
+  startAt: null,
 };
 
 export default SignupButton;

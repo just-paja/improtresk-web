@@ -43,13 +43,14 @@ YearDetail.propTypes = {
   current: PropTypes.bool,
   endDate: PropTypes.string.isRequired,
   startDate: PropTypes.string.isRequired,
-  startSignupsAt: PropTypes.string.isRequired,
+  startSignupsAt: PropTypes.string,
   topic: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
 };
 
 YearDetail.defaultProps = {
   current: false,
+  startSignupsAt: null,
 };
 
 export default YearDetail;
