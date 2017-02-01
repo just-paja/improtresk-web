@@ -24,17 +24,17 @@ export default class NewsDetail extends Component {
     return (
       <Container>
         <Helmet
-          title={newsDetail.title}
+          name={newsDetail.name}
           meta={[
             {
-              property: 'og:title',
+              property: 'og:name',
               content: `${newsDetail.text.substr(0, 127)}...`,
             },
           ]}
         />
         <Row>
           <Col md={8}>
-            <h1>{newsDetail.title}</h1>
+            <h1>{newsDetail.name}</h1>
             <Markdown source={newsDetail.text} />
           </Col>
           <Col md={4}>
