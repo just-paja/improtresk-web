@@ -1,21 +1,18 @@
 import React, { PropTypes } from 'react';
 
-import HumanDate from './humanDate';
 import PermaLink from './permaLink';
 
-const NewsItem = ({ id, text, createdAt }) => (
+const NewsItem = ({ id, name }) => (
   <div>
-    <div>{text}</div>
-    <PermaLink id={id} title={text} to="news:item">
-      <HumanDate date={createdAt} showTime />
+    <PermaLink id={id} title={name} to="news:item">
+      <strong>{name}</strong>
     </PermaLink>
   </div>
 );
 
 NewsItem.propTypes = {
   id: PropTypes.number.isRequired,
-  text: PropTypes.string.isRequired,
-  createdAt: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 export default NewsItem;
