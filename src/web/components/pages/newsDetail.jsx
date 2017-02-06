@@ -15,6 +15,12 @@ export default class NewsDetail extends Component {
     this.props.onMount(idFromSlug(this.props.routeParams.slug));
   }
 
+  componentWillUpdate(nextProps) {
+    if (nextProps.routeParams.slug !== this.props.routeParams.slug) {
+      this.props.onMount(idFromSlug(nextProps.routeParams.slug));
+    }
+  }
+
   render() {
     const { news, newsDetail, ready } = this.props;
 
