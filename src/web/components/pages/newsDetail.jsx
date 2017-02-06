@@ -6,6 +6,7 @@ import React, { Component, PropTypes } from 'react';
 
 import Container from '../container';
 import News from '../news';
+import NotFound from '../notFound';
 
 import { idFromSlug } from '../../routes';
 
@@ -19,6 +20,10 @@ export default class NewsDetail extends Component {
 
     if (!ready) {
       return null;
+    }
+
+    if (!newsDetail) {
+      return <NotFound />;
     }
 
     return (
