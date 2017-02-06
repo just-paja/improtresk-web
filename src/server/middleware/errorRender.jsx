@@ -24,7 +24,8 @@ export const renderAndRespond = (req, res, ErrorComponent) => {
     .then(markupAndState => respondWithHtml(req, res, markupAndState));
 };
 
-export default (req, res) => {
+// eslint-disable-next-line no-unused-vars
+export default (err, req, res, next) => {
   if (res.statusCode === 200) {
     res.status(404);
   }

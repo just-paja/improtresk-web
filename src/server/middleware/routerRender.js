@@ -37,7 +37,7 @@ export default (req, res, next) => match(
         res.status(404);
       }
 
-      return renderAndRespond(req, res, renderProps);
+      return renderAndRespond(req, res, renderProps).catch(next);
     }
 
     return next();
