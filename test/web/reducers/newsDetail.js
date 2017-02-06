@@ -6,7 +6,7 @@ describe('News detail reducer', () => {
   it('returns default state', () => {
     expect(newsDetail()).to.eql({
       loading: false,
-      data: {},
+      data: null,
     });
   });
 

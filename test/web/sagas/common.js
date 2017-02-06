@@ -78,6 +78,7 @@ describe('Common saga helpers', () => {
       }));
 
     const response = {
+      status: 200,
       json: () => ({ text: 'foo' }),
     };
 
@@ -117,6 +118,7 @@ describe('Common saga helpers', () => {
 
     const testError = new Error('test');
     const response = {
+      status: 200,
       json: () => {
         throw testError;
       },
