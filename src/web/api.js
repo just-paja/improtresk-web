@@ -6,7 +6,7 @@ const apiFetch = (url, { apiSource, ...params }) =>
 export const fetchArchivedYear = ({ year, ...params }) =>
   apiFetch(`years/${year}`, params);
 
-export const fetchAccomodation = params => apiFetch('accomodation', params);
+export const fetchAccomodation = params => apiFetch('accomodations', params);
 
 export const fetchConditionsCurrent = params => apiFetch('conditions', params);
 
