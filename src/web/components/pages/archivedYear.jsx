@@ -2,12 +2,21 @@ import Helmet from 'react-helmet';
 import React, { Component, PropTypes } from 'react';
 
 import Container from '../container';
+import NotFound from '../notFound';
 import ObjectList from '../objectList';
 import WorkshopSummaryOneLine from '../workshopSummaryOneLine';
 
+import { idFromSlug } from '../../routes';
+
 export default class ArchivedYear extends Component {
   componentWillMount() {
-    this.props.onMount(this.props.routeParams.year);
+    this.props.onDataRequest(idFromSlug(this.props.routeParams.year));
+  }
+
+  componentWillUpdate(nextProps) {
+    if (nextProps.routeParams.year !== this.props.routeParams.year) {
+      this.props.onDataRequest(idFromSlug(nextProps.routeParams.year));
+    }
   }
 
   render() {
@@ -17,7 +26,9 @@ export default class ArchivedYear extends Component {
       return null;
     }
 
-    // FIXME: Should render 404 page when object is not found
+    if (!year) {
+      return <NotFound />;
+    }
 
     const title = `Ročník ${year}`;
     const titleFull = `${title}: ${topic}`;
@@ -42,7 +53,7 @@ export default class ArchivedYear extends Component {
 }
 
 ArchivedYear.propTypes = {
-  onMount: PropTypes.func.isRequired,
+  onDataRequest: PropTypes.func.isRequired,
   ready: PropTypes.bool,
   routeParams: PropTypes.shape({
     year: PropTypes.string,
