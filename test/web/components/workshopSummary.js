@@ -21,11 +21,20 @@ describe('Workshop Summary component', () => {
           'pantomimy jako chůze na místě, práce s imaginárním objektem a další. Zkusíme si' +
           'základy nonverbálního herectví, tvorbu divadelní postavy podle jejího fyzična a' +
           'práci s hereckým partnerem...zkrátka uvidíme, co všechno stihneme.'}
-        difficulty="Pro všechny"
-        name="Pantomima a fyzické divadlo"
-        lector={{
-          name: 'Vojtěch Svoboda',
+        difficulty={{
+          name: 'Pro všechny',
         }}
+        name="Pantomima a fyzické divadlo"
+        lectors={[
+          {
+            lector: 'Vojtěch Svoboda',
+            role: 'Hlavní lektor',
+          },
+          {
+            lector: 'Martin Vlk',
+            role: 'Doprovodný lektor',
+          },
+        ]}
       />
     ).node).to.eql(
       <div>
@@ -37,11 +46,22 @@ describe('Workshop Summary component', () => {
 
         <ul className="list-unstyled">
           <li>
-            <FontAwesome name="user" />{' '}
+            <FontAwesome name="user" />
+            {' '}
+            <b>Hlavní lektor:</b>
+            {' '}
             Vojtěch Svoboda
           </li>
           <li>
-            <FontAwesome name="hand-rock-o" />{' '}
+            <FontAwesome name="user" />
+            {' '}
+            <b>Doprovodný lektor:</b>
+            {' '}
+            Martin Vlk
+          </li>
+          <li>
+            <FontAwesome name="hand-rock-o" />
+            {' '}
             Pro všechny
           </li>
         </ul>
