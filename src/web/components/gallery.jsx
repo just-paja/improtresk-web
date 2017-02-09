@@ -6,9 +6,10 @@ const Gallery = ({ photos, ...other }) => (
     {...other}
     photos={photos.map(photo => ({
       ...photo,
+      src: photo.image,
       aspectRatio: photo.width / photo.height,
       lightboxImage: {
-        src: photo.src,
+        src: photo.image,
         caption: photo.caption,
       },
     }))}
