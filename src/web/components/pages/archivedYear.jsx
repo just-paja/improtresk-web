@@ -46,6 +46,7 @@ export default class ArchivedYear extends Component {
         <ObjectList
           Component={WorkshopSummaryOneLine}
           data={workshops}
+          emptyMessage="Bohužel nemáme záznamy"
         />
       </Container>
     );
