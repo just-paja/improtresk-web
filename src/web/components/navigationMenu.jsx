@@ -5,6 +5,8 @@ import React, { PropTypes } from 'react';
 
 import { LinkContainer } from 'react-router-bootstrap';
 
+import PermaLinkContainer from './permaLinkContainer';
+
 import { reverse } from '../routes';
 
 const NavigationMenu = ({ currentYear, years, ...props }) => {
@@ -49,12 +51,16 @@ const NavigationMenu = ({ currentYear, years, ...props }) => {
       <NavDropdown id="navigation-dropdown" title="Archív">
         {(years.length ?
           years.map(yearRun => (
-            <LinkContainer
-              key={yearRun.year}
-              to={reverse('archive:year', { year: yearRun.id })}
+            <PermaLinkContainer
+              id={yearRun.id}
+              key={yearRun.id}
+              to="archive:year"
+              title={`${yearRun.year} - ${yearRun.topic}`}
             >
-              <NavItem>{yearRun.year} - {yearRun.topic}</NavItem>
-            </LinkContainer>
+              <NavItem>
+                {yearRun.year} - {yearRun.topic}
+              </NavItem>
+            </PermaLinkContainer>
           )) :
           <NavItem disabled>Archív je prázdný</NavItem>
         )}

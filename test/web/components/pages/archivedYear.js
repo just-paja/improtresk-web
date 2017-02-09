@@ -64,7 +64,7 @@ describe('Workshop Detail page component', () => {
       <ArchivedYear
         onDataRequest={dataRequestSpy}
         routeParams={{
-          year: '2016-foo-1',
+          slug: '2016-foo-1',
         }}
         workshops={[]}
         ready
@@ -83,7 +83,7 @@ describe('Workshop Detail page component', () => {
       <ArchivedYear
         onDataRequest={dataRequestSpy}
         routeParams={{
-          year: '2016-foo-1',
+          slug: '2016-foo-1',
         }}
         workshops={[]}
         ready
@@ -94,7 +94,7 @@ describe('Workshop Detail page component', () => {
 
     comp.setProps({
       routeParams: {
-        year: '2015-bar-2',
+        slug: '2015-bar-2',
       },
     });
 
