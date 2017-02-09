@@ -6,6 +6,7 @@ import { Nav, NavDropdown, NavItem } from 'react-bootstrap';
 import { shallow } from 'enzyme';
 
 import NavigationMenu from '../../../src/web/components/navigationMenu';
+import PermaLinkContainer from '../../../src/web/components/permaLinkContainer';
 
 describe('Navigation menu component', () => {
   it('renders layout and content', () => {
@@ -52,12 +53,12 @@ describe('Navigation menu component', () => {
           <NavItem>Program</NavItem>
         </LinkContainer>
         <NavDropdown id="navigation-dropdown" title="Archív">
-          <LinkContainer to="/archiv/1">
+          <PermaLinkContainer id={1} title="2015 - Foo" to="archive:year">
             <NavItem>2015 - Foo</NavItem>
-          </LinkContainer>
-          <LinkContainer to="/archiv/2">
+          </PermaLinkContainer>
+          <PermaLinkContainer id={2} title="2016 - Bar" to="archive:year">
             <NavItem>2016 - Bar</NavItem>
-          </LinkContainer>
+          </PermaLinkContainer>
         </NavDropdown>
         <LinkContainer to="/kontakt">
           <NavItem>Kontakt</NavItem>

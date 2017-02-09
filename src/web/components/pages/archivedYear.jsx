@@ -10,12 +10,12 @@ import { idFromSlug } from '../../routes';
 
 export default class ArchivedYear extends Component {
   componentWillMount() {
-    this.props.onDataRequest(idFromSlug(this.props.routeParams.year));
+    this.props.onDataRequest(idFromSlug(this.props.routeParams.slug));
   }
 
   componentWillUpdate(nextProps) {
-    if (nextProps.routeParams.year !== this.props.routeParams.year) {
-      this.props.onDataRequest(idFromSlug(nextProps.routeParams.year));
+    if (nextProps.routeParams.slug !== this.props.routeParams.slug) {
+      this.props.onDataRequest(idFromSlug(nextProps.routeParams.slug));
     }
   }
 
@@ -56,7 +56,7 @@ ArchivedYear.propTypes = {
   onDataRequest: PropTypes.func.isRequired,
   ready: PropTypes.bool,
   routeParams: PropTypes.shape({
-    year: PropTypes.string,
+    slug: PropTypes.string,
   }).isRequired,
   topic: PropTypes.string,
   workshops: PropTypes.arrayOf(PropTypes.shape({

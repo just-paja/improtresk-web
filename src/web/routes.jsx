@@ -35,7 +35,7 @@ const urlTable = {
   signup: '/prihlaska',
   schedule: '/program',
   contact: '/kontakt',
-  'archive:year': '/archiv/:year',
+  'archive:year': '/archiv/:slug',
 };
 
 const resolver = new Crossing(new RegExp(':([A-Za-z0-9-_%]{1,})'));
