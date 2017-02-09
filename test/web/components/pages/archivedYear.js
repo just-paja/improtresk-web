@@ -54,6 +54,7 @@ describe('Workshop Detail page component', () => {
         <ObjectList
           Component={WorkshopSummaryOneLine}
           data={[]}
+          emptyMessage="Bohužel nemáme záznamy"
         />
       </Container>
     );

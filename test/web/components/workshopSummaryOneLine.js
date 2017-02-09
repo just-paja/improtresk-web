@@ -10,11 +10,14 @@ describe('Workshop Summary One Line component', () => {
     expect(shallow(
       <WorkshopSummaryOneLine
         name="Pantomima a fyzické divadlo"
-        lectorName="Vojtěch Svoboda"
+        lectors={[
+          { lector: 'Vojtěch Svoboda', role: 'Hlavní lektor' },
+          { lector: 'Martin Skot', role: 'Pomocný lektor' },
+        ]}
       />
     ).node).to.eql(
       <div>
-        Vojtěch Svoboda: Pantomima a fyzické divadlo
+        Pantomima a fyzické divadlo: Vojtěch Svoboda (Hlavní lektor), Martin Skot (Pomocný lektor)
       </div>
     );
   });
