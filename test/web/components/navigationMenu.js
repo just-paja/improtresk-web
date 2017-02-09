@@ -13,8 +13,8 @@ describe('Navigation menu component', () => {
       <NavigationMenu
         currentYear={{ year: '2017', topic: 'Kůže', current: true }}
         years={[
-          { year: '2015', topic: 'Foo' },
-          { year: '2016', topic: 'Bar' },
+          { id: 1, year: '2015', topic: 'Foo' },
+          { id: 2, year: '2016', topic: 'Bar' },
         ]}
       />
     ).node).to.eql(
@@ -52,10 +52,10 @@ describe('Navigation menu component', () => {
           <NavItem>Program</NavItem>
         </LinkContainer>
         <NavDropdown id="navigation-dropdown" title="Archív">
-          <LinkContainer to="/archiv/2015">
+          <LinkContainer to="/archiv/1">
             <NavItem>2015 - Foo</NavItem>
           </LinkContainer>
-          <LinkContainer to="/archiv/2016">
+          <LinkContainer to="/archiv/2">
             <NavItem>2016 - Bar</NavItem>
           </LinkContainer>
         </NavDropdown>

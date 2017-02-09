@@ -51,7 +51,7 @@ const NavigationMenu = ({ currentYear, years, ...props }) => {
           years.map(yearRun => (
             <LinkContainer
               key={yearRun.year}
-              to={reverse('archive:year', { year: yearRun.year })}
+              to={reverse('archive:year', { year: yearRun.id })}
             >
               <NavItem>{yearRun.year} - {yearRun.topic}</NavItem>
             </LinkContainer>
