@@ -19,7 +19,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  onMount: year => ({ type: actions.ARCHIVED_YEAR_MOUNTED, year }),
+  onDataRequest: year => ({ type: actions.ARCHIVED_YEAR_MOUNTED, year }),
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArchivedYear);
