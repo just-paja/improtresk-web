@@ -12,13 +12,13 @@ describe('Gallery component', () => {
       <Gallery
         photos={[
           {
-            src: 'http://example.com/test1.jpg',
+            image: 'http://example.com/test1.jpg',
             caption: 'foo',
             height: 200,
             width: 400,
           },
           {
-            src: 'http://example.com/test2.jpg',
+            image: 'http://example.com/test2.jpg',
             height: 400,
             width: 200,
           },
@@ -28,6 +28,7 @@ describe('Gallery component', () => {
       <ReactGallery
         photos={[
           {
+            image: 'http://example.com/test1.jpg',
             src: 'http://example.com/test1.jpg',
             caption: 'foo',
             height: 200,
@@ -39,6 +40,7 @@ describe('Gallery component', () => {
             },
           },
           {
+            image: 'http://example.com/test2.jpg',
             src: 'http://example.com/test2.jpg',
             height: 400,
             width: 200,
