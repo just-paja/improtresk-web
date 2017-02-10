@@ -13,7 +13,7 @@ describe('API helper', () => {
 
   it('fetchAccomodation calls for accomodation', () => {
     nock(apiSource)
-    .get('/accomodation')
+    .get('/accomodations')
     .reply(200, []);
 
     return api.fetchAccomodation({ apiSource })
