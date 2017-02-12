@@ -33,12 +33,6 @@ describe('Navigation menu component', () => {
           <LinkContainer to="/pro-ucastniky/poplatky">
             <NavItem>Poplatky</NavItem>
           </LinkContainer>
-          <LinkContainer to="/jizdomat">
-            <NavItem>Improjízdomat</NavItem>
-          </LinkContainer>
-          <LinkContainer to="/pro-ucastniky/tipy">
-            <NavItem>Tipy</NavItem>
-          </LinkContainer>
           <LinkContainer to="/pro-ucastniky/podminky">
             <NavItem>Podmínky</NavItem>
           </LinkContainer>
