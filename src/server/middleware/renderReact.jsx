@@ -49,7 +49,7 @@ export const getStore = (req) => {
       isMobile: ['phone', 'gtablet'].indexOf(req.device.type) > -1,
     },
     server: {
-      host: req.get('host'),
+      host: req.hostname,
       protocol: req.protocol,
     },
     session: {
