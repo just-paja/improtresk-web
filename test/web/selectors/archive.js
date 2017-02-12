@@ -39,17 +39,50 @@ describe('Archive selectors', () => {
       archive: {
         data: {
           workshops: [
-            { name: 'foo' },
+            {
+              name: 'foo',
+              lectors: [],
+            },
           ],
         },
       },
+      lectors: {
+        list: {
+          data: [],
+        },
+        roles: {
+          data: [],
+        },
+      },
+      workshops: {
+        difficulties: {
+          data: [],
+        },
+      },
     })).to.eql([
-      { name: 'foo' },
+      {
+        difficulty: null,
+        lectors: [],
+        name: 'foo',
+      },
     ]);
   });
-  it('getArchivedYearWorkshops returns null when missing', () => {
+  it('getArchivedYearWorkshops returns empty array when missing year', () => {
     expect(getArchivedYearWorkshops({
       archive: {
+      },
+      lectors: {
+        list: {
+          data: [],
+        },
+        roles: {
+          data: [],
+        },
+      },
+      workshops: {
+        difficulties: {
+          data: [],
+        },
       },
     })).to.eql([]);
   });
