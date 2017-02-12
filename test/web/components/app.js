@@ -17,7 +17,7 @@ describe('App component', () => {
         onMount={() => {}}
         currentYear={{ year: '2016', topic: 'Kůže' }}
         ready={false}
-        route={{ path: '/' }}
+        location={{ pathname: '/' }}
         years={[
           { year: '2016', topic: 'Ovce' },
         ]}
@@ -33,7 +33,7 @@ describe('App component', () => {
         onMount={() => {}}
         currentYear={{ year: '2016', topic: 'Kůže' }}
         ready
-        route={{ path: '/' }}
+        location={{ pathname: '/' }}
         years={[
           { year: '2016', topic: 'Ovce' },
         ]}
@@ -135,7 +135,7 @@ describe('App component', () => {
     const comp = shallow(
       <App
         onMount={mountSpy}
-        route={{ path: '/' }}
+        location={{ pathname: '/' }}
         years={[
           { year: '2016', topic: 'Ovce' },
         ]}

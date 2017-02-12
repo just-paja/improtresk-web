@@ -12,7 +12,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { children, currentYear, host, ready, route: { path }, years } = this.props;
+    const { children, currentYear, host, ready, location: { pathname }, years } = this.props;
     const defaultTitle = 'Festival divadelní improvizace';
     const titleTemplate = currentYear ? `%s - Improtřesk ${currentYear.year}` : '%s - Improtřesk';
 
@@ -44,7 +44,7 @@ export default class App extends Component {
             },
             {
               property: 'og:url',
-              content: `${host}${path}`,
+              content: `${host}${pathname}`,
             },
             {
               name: 'msapplication-config',
@@ -114,9 +114,9 @@ App.propTypes = {
   currentYear: PropTypes.object,
   host: PropTypes.string,
   ready: PropTypes.bool,
-  route: PropTypes.shape({
-    path: PropTypes.string,
-  }),
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }).isRequired,
   onMount: PropTypes.func.isRequired,
   years: PropTypes.arrayOf(PropTypes.object),
 };
