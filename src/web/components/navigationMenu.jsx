@@ -43,10 +43,10 @@ const NavigationMenu = ({ currentYear, years, ...props }) => {
         {(years.length ?
           years.map(yearRun => (
             <PermaLinkContainer
-              id={yearRun.id}
+              id={yearRun.year}
               key={yearRun.id}
               to="archive:year"
-              title={`${yearRun.year} - ${yearRun.topic}`}
+              title={yearRun.topic}
             >
               <NavItem>
                 {yearRun.year} - {yearRun.topic}

@@ -44,10 +44,10 @@ describe('Navigation menu component', () => {
           <NavItem>Program</NavItem>
         </LinkContainer>
         <NavDropdown id="navigation-dropdown" title="Archív">
-          <PermaLinkContainer id={1} title="2015 - Foo" to="archive:year">
+          <PermaLinkContainer id="2015" title="Foo" to="archive:year">
             <NavItem>2015 - Foo</NavItem>
           </PermaLinkContainer>
-          <PermaLinkContainer id={2} title="2016 - Bar" to="archive:year">
+          <PermaLinkContainer id="2016" title="Bar" to="archive:year">
             <NavItem>2016 - Bar</NavItem>
           </PermaLinkContainer>
         </NavDropdown>

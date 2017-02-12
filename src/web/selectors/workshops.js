@@ -12,7 +12,7 @@ const findDifficultyName = (difficulties, id) => {
   return difficulty ? difficulty.name : null;
 };
 
-const mapWorkshop = (lectors, roles, difficulties) => workshop => (
+export const mapWorkshop = (lectors, roles, difficulties) => workshop => (
   workshop ?
     ({
       ...workshop,
@@ -25,7 +25,7 @@ const mapWorkshop = (lectors, roles, difficulties) => workshop => (
     }) : null
 );
 
-const getWorkshopDifficulties = createSelector(
+export const getWorkshopDifficulties = createSelector(
   getWorkshopDifficultiesState,
   state => state.data
 );
