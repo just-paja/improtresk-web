@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 
-import workshops from '../../../src/web/reducers/workshops';
+import workshops from '../../../src/web/reducers/workshopList';
 
-describe('Workshops reducer', () => {
+describe('Workshops list reducer', () => {
   it('returns default state', () => {
     expect(workshops()).to.eql({
       loading: false,

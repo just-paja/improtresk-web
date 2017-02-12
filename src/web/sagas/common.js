@@ -17,7 +17,7 @@ export function* fetchResource(resource, { onStart, onSuccess, onError, ...args 
 
       yield put({ type: onSuccess, data, ...args });
     } else {
-      yield put({ type: onError, error: res.error, ...args });
+      yield put({ type: onError, error: res.error, status: res.status, ...args });
     }
   } catch (error) {
     yield put({ type: onError, error, ...args });

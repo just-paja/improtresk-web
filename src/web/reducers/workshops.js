@@ -1,14 +1,9 @@
-import { combined, fetchStart, fetchError, fetchSuccess } from './common';
+import { combineReducers } from 'redux';
 
-import * as constants from '../constants/actions';
+import workshopDetail from './workshopDetail';
+import workshopList from './workshopList';
 
-const defaultState = {
-  data: [],
-  loading: false,
-};
-
-export default combined(defaultState, {
-  [constants.WORKSHOPS_FETCH_STARTED]: fetchStart,
-  [constants.WORKSHOPS_FETCH_SUCCESS]: fetchSuccess,
-  [constants.WORKSHOPS_FETCH_ERROR]: fetchError,
+export default combineReducers({
+  detail: workshopDetail,
+  list: workshopList,
 });

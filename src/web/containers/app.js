@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 
 import App from '../components/app';
 
+import { isAppReady } from '../selectors/app';
 import { getHost } from '../selectors/session';
 import { yearCurrent, yearsNotCurrent } from '../selectors/years';
 
@@ -12,6 +13,7 @@ const mapStateToProps = state => ({
   host: getHost(state),
   currentYear: yearCurrent(state),
   years: yearsNotCurrent(state),
+  ready: isAppReady(state),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
