@@ -21,7 +21,6 @@ describe('API helper', () => {
       expect(nock.isDone()).to.equal(true);
     });
   });
-
   it('fetchConditionsCurrent calls for current conditions', () => {
     nock(apiSource)
     .get('/conditions')
@@ -32,7 +31,6 @@ describe('API helper', () => {
       expect(nock.isDone()).to.equal(true);
     });
   });
-
   it('fetchMeals calls for list of meals', () => {
     nock(apiSource)
     .get('/meals')
@@ -43,7 +41,6 @@ describe('API helper', () => {
       expect(nock.isDone()).to.equal(true);
     });
   });
-
   it('fetchNews calls for news', () => {
     nock(apiSource)
       .get('/news')
@@ -65,7 +62,6 @@ describe('API helper', () => {
         expect(nock.isDone()).to.equal(true);
       });
   });
-
   it('fetchText calls for text', () => {
     nock(apiSource)
     .get('/texts/food-intro-text')
@@ -76,7 +72,6 @@ describe('API helper', () => {
       expect(nock.isDone()).to.equal(true);
     });
   });
-
   it('fetchTips calls for tips', () => {
     nock(apiSource)
       .get('/tips')
@@ -87,29 +82,26 @@ describe('API helper', () => {
         expect(nock.isDone()).to.equal(true);
       });
   });
-
   it('fetchWorkshopDetail calls for workshop detail', () => {
     nock(apiSource)
-    .get('/workshops/312')
+    .get('/years/2016/workshops/312')
     .reply(200, []);
 
-    return api.fetchWorkshopDetail({ apiSource, workshop: 312 })
+    return api.fetchWorkshopDetail({ apiSource, workshop: 312, year: 2016 })
     .then(() => {
       expect(nock.isDone()).to.equal(true);
     });
   });
-
   it('fetchWorkshops calls for workshops', () => {
     nock(apiSource)
-      .get('/workshops')
+      .get('/years/2016/workshops/')
       .reply(200, []);
 
-    return api.fetchWorkshops({ apiSource })
+    return api.fetchWorkshops({ apiSource, year: 2016 })
       .then(() => {
         expect(nock.isDone()).to.equal(true);
       });
   });
-
   it('fetchYears calls for news', () => {
     nock(apiSource)
     .get('/years')
@@ -120,7 +112,6 @@ describe('API helper', () => {
       expect(nock.isDone()).to.equal(true);
     });
   });
-
   it('signup posts signup', () => {
     nock(apiSource)
     .post('/signup')

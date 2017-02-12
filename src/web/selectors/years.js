@@ -48,3 +48,8 @@ export const yearActive = createSelector(
   [yearCurrent, yearNext],
   (current, next) => (current || next)
 );
+
+export const yearActiveNumber = createSelector(
+  [yearActive],
+  activeYear => (activeYear ? activeYear.year : null)
+);

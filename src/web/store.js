@@ -17,13 +17,25 @@ const BROWSER_DEVELOPMENT = (
   process.env.IS_BROWSER // eslint-disable-line no-undef
 );
 
-export default function configureStore(initialState = {}) {
+export default function configureStore(initialState = {}, forceDebug = false) {
   const middlewares = [
     sagaMiddleware,
   ];
 
   if (BROWSER_DEVELOPMENT) {
     middlewares.push(createLogger({ collapsed: true }));
+  }
+
+  if (forceDebug) {
+    middlewares.push(() => next => (action) => {
+      // eslint-disable-next-line no-console
+      console.log('info', action.type);
+      if (action.type.indexOf('ERROR') >= 0) {
+        // eslint-disable-next-line no-console
+        console.error('error', action);
+      }
+      next(action);
+    });
   }
 
   const enhancers = [
@@ -38,6 +50,7 @@ export default function configureStore(initialState = {}) {
   );
 
   // Create hook for async sagas
+  store.sagaMiddleware = sagaMiddleware;
   store.runSaga = sagaMiddleware.run;
   return store;
 }

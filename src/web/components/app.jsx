@@ -12,9 +12,13 @@ export default class App extends Component {
   }
 
   render() {
-    const { children, currentYear, host, route: { path }, years } = this.props;
+    const { children, currentYear, host, ready, route: { path }, years } = this.props;
     const defaultTitle = 'Festival divadelní improvizace';
     const titleTemplate = currentYear ? `%s - Improtřesk ${currentYear.year}` : '%s - Improtřesk';
+
+    if (!ready) {
+      return null;
+    }
 
     return (
       <div className={styles.app}>
@@ -109,6 +113,7 @@ App.propTypes = {
   ]),
   currentYear: PropTypes.object,
   host: PropTypes.string,
+  ready: PropTypes.bool,
   route: PropTypes.shape({
     path: PropTypes.string,
   }),
@@ -120,6 +125,7 @@ App.defaultProps = {
   children: null,
   currentYear: null,
   host: null,
+  ready: false,
   route: null,
   years: null,
 };

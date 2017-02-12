@@ -1,14 +1,15 @@
-import { takeLatest } from 'redux-saga/effects';
+import { fork, select, takeLatest } from 'redux-saga/effects';
 
 import { fetchResourceIfNeeded } from './common';
 import { shouldFetchList, shouldFetchDetail } from '../selectors/workshops';
+import { yearActiveNumber } from '../selectors/years';
 
 import * as api from '../api';
 import * as constants from '../constants/actions';
 
-export function* fetchWorkshopsOnMount() {
-  yield takeLatest(
-    constants.WORKSHOPS_MOUNTED,
+function* requireYearsWorkshops() {
+  const year = yield select(yearActiveNumber);
+  yield fork(
     fetchResourceIfNeeded,
     api.fetchWorkshops,
     shouldFetchList,
@@ -16,11 +17,19 @@ export function* fetchWorkshopsOnMount() {
       onStart: constants.WORKSHOPS_FETCH_STARTED,
       onSuccess: constants.WORKSHOPS_FETCH_SUCCESS,
       onError: constants.WORKSHOPS_FETCH_ERROR,
+      year,
     }
   );
 }
 
-export function* fetchWorkshopDetailOnMount() {
+export function* requireWorkshops() {
+  yield takeLatest(
+    constants.WORKSHOPS_MOUNTED,
+    requireYearsWorkshops
+  );
+}
+
+export function* requireWorkshopDetail() {
   yield takeLatest(
     constants.WORKSHOP_DETAIL_MOUNTED,
     fetchResourceIfNeeded,
@@ -35,6 +44,6 @@ export function* fetchWorkshopDetailOnMount() {
 }
 
 export default [
-  fetchWorkshopsOnMount,
-  fetchWorkshopDetailOnMount,
+  requireWorkshops,
+  requireWorkshopDetail,
 ];

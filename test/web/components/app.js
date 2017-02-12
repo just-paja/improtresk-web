@@ -10,12 +10,29 @@ import Footer from '../../../src/web/components/footer';
 import Navigation from '../../../src/web/components/navigation';
 
 describe('App component', () => {
+  it('renders as null when not ready', () => {
+    expect(shallow(
+      <App
+        host="http://foo"
+        onMount={() => {}}
+        currentYear={{ year: '2016', topic: 'Kůže' }}
+        ready={false}
+        route={{ path: '/' }}
+        years={[
+          { year: '2016', topic: 'Ovce' },
+        ]}
+      >
+        <div>foo</div>
+      </App>
+    ).node).to.equal(null);
+  });
   it('renders layout and content', () => {
     expect(shallow(
       <App
         host="http://foo"
         onMount={() => {}}
         currentYear={{ year: '2016', topic: 'Kůže' }}
+        ready
         route={{ path: '/' }}
         years={[
           { year: '2016', topic: 'Ovce' },

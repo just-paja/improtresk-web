@@ -6,6 +6,7 @@ import conditions from './conditions';
 import fees from './fees';
 import forms from './forms';
 import home from './home';
+import lectors from './lectors';
 import meals from './meals';
 import news from './news';
 import signup from './signup';
@@ -21,6 +22,7 @@ const sagas = [
   ...fees,
   ...forms,
   ...home,
+  ...lectors,
   ...meals,
   ...news,
   ...signup,

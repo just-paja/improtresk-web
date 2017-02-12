@@ -5,13 +5,13 @@ import archive from './archive';
 import conditions from './conditions';
 import device from './device';
 import forms from './forms';
+import lectors from './lectors';
 import meals from './meals';
 import news from './news';
 import server from './server';
 import session from './session';
 import texts from './texts';
 import tips from './tips';
-import workshopDetail from './workshopDetail';
 import workshops from './workshops';
 import years from './years';
 
@@ -22,13 +22,13 @@ export default function createReducer() {
     conditions,
     device,
     forms,
+    lectors,
     meals,
     news,
     server,
     session,
     texts,
     tips,
-    workshopDetail,
     workshops,
     years,
   });

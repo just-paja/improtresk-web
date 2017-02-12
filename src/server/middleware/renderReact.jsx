@@ -10,9 +10,11 @@ import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { RouterContext } from 'react-router';
 
 import configure from '../config';
-import configureStore, { sagaMiddleware } from '../../web/store';
+import configureStore from '../../web/store';
 import pageBase from '../components/pageBase';
 import sagas from '../../web/sagas';
+
+import { isAppReady } from '../../web/selectors/app';
 
 const assetTypes = ['css', 'js'];
 const assets = {
@@ -55,19 +57,38 @@ export const getStore = (req) => {
     },
   };
 
-  return configureStore(initialState);
+  return configureStore(initialState, config.logLevel === 'info');
 };
 
 export const renderMarkupAndWait = (req, store, componentTree) => {
-  const rootTask = sagaMiddleware.run(sagas);
+  const rootTask = store.sagaMiddleware.run(sagas);
+  let resolved = false;
+  let resolve;
+
+  const waitForConfig = new Promise((promiseResolve) => {
+    resolve = promiseResolve;
+  });
+
+  store.subscribe(() => {
+    if (!resolved) {
+      const ready = isAppReady(store.getState());
+      if (ready) {
+        resolved = true;
+        renderToString(componentTree);
+        store.dispatch(END);
+        resolve();
+      }
+    }
+  });
 
   renderToString(componentTree);
-  store.dispatch(END);
-  return rootTask.done
-    .then(() => ({
-      markup: renderToString(componentTree),
-      state: store.getState(),
-    }));
+  return Promise.all([
+    waitForConfig,
+    rootTask.done,
+  ]).then(() => ({
+    markup: renderToString(componentTree),
+    state: store.getState(),
+  }));
 };
 
 export const renderInHtml = markupAndState => renderToStaticMarkup(pageBase({
