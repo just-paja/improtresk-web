@@ -1,7 +1,12 @@
 import { fork, select, takeLatest } from 'redux-saga/effects';
 
 import { fetchResourceIfNeeded } from './common';
-import { shouldFetchList, shouldFetchDetail } from '../selectors/workshops';
+import {
+  getWorkshopDetailId,
+  shouldFetchList,
+  shouldFetchDetail,
+  shouldFetchDifficulties,
+} from '../selectors/workshops';
 import { yearActiveNumber } from '../selectors/years';
 
 import * as api from '../api';
@@ -22,6 +27,20 @@ function* requireYearsWorkshops() {
   );
 }
 
+export function* requireWorkshopDifficulties() {
+  yield takeLatest(
+    constants.APP_MOUNTED,
+    fetchResourceIfNeeded,
+    api.fetchWorkshopDifficulties,
+    shouldFetchDifficulties,
+    {
+      onStart: constants.WORKSHOP_DIFFICULTIES_FETCH_STARTED,
+      onSuccess: constants.WORKSHOP_DIFFICULTIES_FETCH_SUCCESS,
+      onError: constants.WORKSHOP_DIFFICULTIES_FETCH_ERROR,
+    }
+  );
+}
+
 export function* requireWorkshops() {
   yield takeLatest(
     constants.WORKSHOPS_MOUNTED,
@@ -29,9 +48,10 @@ export function* requireWorkshops() {
   );
 }
 
-export function* requireWorkshopDetail() {
-  yield takeLatest(
-    constants.WORKSHOP_DETAIL_MOUNTED,
+export function* requireYearsWorkshopDetail() {
+  const year = yield select(yearActiveNumber);
+  const workshop = yield select(getWorkshopDetailId);
+  yield fork(
     fetchResourceIfNeeded,
     api.fetchWorkshopDetail,
     shouldFetchDetail,
@@ -39,11 +59,21 @@ export function* requireWorkshopDetail() {
       onStart: constants.WORKSHOP_DETAIL_FETCH_STARTED,
       onSuccess: constants.WORKSHOP_DETAIL_FETCH_SUCCESS,
       onError: constants.WORKSHOP_DETAIL_FETCH_ERROR,
+      year,
+      workshop,
     }
+  );
+}
+
+export function* requireWorkshopDetail() {
+  yield takeLatest(
+    constants.WORKSHOP_DETAIL_MOUNTED,
+    requireYearsWorkshopDetail
   );
 }
 
 export default [
   requireWorkshops,
   requireWorkshopDetail,
+  requireWorkshopDifficulties,
 ];

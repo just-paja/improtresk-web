@@ -36,9 +36,10 @@ WorkshopDetailPage.propTypes = {
   onMount: PropTypes.func.isRequired,
   ready: PropTypes.bool,
   routeParams: PropTypes.object.isRequired,
-  workshop: PropTypes.object.isRequired,
+  workshop: PropTypes.object,
 };
 
 WorkshopDetailPage.defaultProps = {
   ready: false,
+  workshop: false,
 };

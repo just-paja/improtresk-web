@@ -9,7 +9,7 @@ import * as actions from '../constants/actions';
 
 const mapStateToProps = state => ({
   workshop: workshopsDetail(state),
-  ready: state.workshopDetail.ready,
+  ready: state.workshops.detail.ready,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

@@ -3,6 +3,7 @@ import FontAwesome from 'react-fontawesome';
 import React, { PropTypes } from 'react';
 
 
+import LectorListSummary from './lectorListSummary';
 import PermaLink from './permaLink';
 
 const WorkshopSummary = ({ id, desc, difficulty, name, lectors }) => (
@@ -12,20 +13,20 @@ const WorkshopSummary = ({ id, desc, difficulty, name, lectors }) => (
     </h2>
 
     <ul className="list-unstyled">
-      {lectors.map(lectorRole => (
-        <li key={lectorRole.id}>
-          <FontAwesome name="user" />
-          {' '}
-          <b>{lectorRole.role}:</b>
-          {' '}
-          {lectorRole.lector.name}
-        </li>
+      {lectors.map(lectorPosition => (
+        <LectorListSummary
+          key={lectorPosition.id}
+          role={lectorPosition.role}
+          name={lectorPosition.lector.name}
+        />
       ))}
-      <li>
-        <FontAwesome name="hand-rock-o" />
-        {' '}
-        {difficulty.name}
-      </li>
+      {difficulty ?
+        <li>
+          <FontAwesome name="hand-rock-o" />
+          {' '}
+          {difficulty}
+        </li> : null
+      }
     </ul>
     <div>
       {desc.substr(0, 255)}...
@@ -39,9 +40,7 @@ const WorkshopSummary = ({ id, desc, difficulty, name, lectors }) => (
 WorkshopSummary.propTypes = {
   id: PropTypes.number.isRequired,
   desc: PropTypes.string.isRequired,
-  difficulty: PropTypes.shape({
-    name: PropTypes.string,
-  }).isRequired,
+  difficulty: PropTypes.string,
   name: PropTypes.string.isRequired,
   lectors: PropTypes.arrayOf(PropTypes.shape({
     lector: PropTypes.shape({
@@ -49,6 +48,10 @@ WorkshopSummary.propTypes = {
     }),
     role: PropTypes.string,
   })).isRequired,
+};
+
+WorkshopSummary.defaultProps = {
+  difficulty: null,
 };
 
 export default WorkshopSummary;
