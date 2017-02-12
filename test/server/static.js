@@ -25,11 +25,27 @@ describe('Server', () => {
 
   it('returns home title when requesting /', () => {
     nock(apiEndpoint)
+      .get('/texts/about-festival-short')
+      .reply(200, []);
+
+    nock(apiEndpoint)
       .get('/years/')
       .reply(200, []);
 
     nock(apiEndpoint)
       .get('/news/')
+      .reply(200, []);
+
+    nock(apiEndpoint)
+      .get('/lectors/')
+      .reply(200, []);
+
+    nock(apiEndpoint)
+      .get('/lectorRoles/')
+      .reply(200, []);
+
+    nock(apiEndpoint)
+      .get('/workshopDifficulties/')
       .reply(200, []);
 
     return request(app)

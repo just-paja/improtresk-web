@@ -27,27 +27,18 @@ describe('Workshop Detail page component', () => {
         routeParams={{}}
         workshop={{
           id: 12,
-          desc:
-            'Na workshopu se zaměříme na práci s tělem, nonverbální herectví a pantomimu. ' +
-            'Budeme se věnovat fyzickému tréninku a technikám k ovládnutí svého těla a ' +
-            'celkovému propojení se svým tělem na jevišti. S tím souvisí i cvičení na jevištní ' +
-            'přítomnost, dech, pohled a temporytmus. Podíváme se také na techniku imaginární ' +
-            'pantomimy jako chůze na místě, práce s imaginárním objektem a další. Zkusíme si' +
-            'základy nonverbálního herectví, tvorbu divadelní postavy podle jejího fyzična a' +
-            'práci s hereckým partnerem...zkrátka uvidíme, co všechno stihneme.',
+          desc: 'Na workshopu se zaměříme na práci s tělem, nonverbální herectví a pantomimu',
           difficulty: 'Pro všechny',
           name: 'Pantomima a fyzické divadlo',
           photos: [],
-          lector: {
-            name: 'Vojtěch Svoboda',
-            photos: [],
-            about:
-              'Herectví se věnuje odmalička, kdy ztvárnil mnoho rolí v amatérských souborech, ' +
-              'za které získal řadu cen a ocenění (za herecký výkon Karlínská tříska, Nadělení ' +
-              'Brno, cena poroty Loutkářská Chrudim, Held/in Tirol v Rakousku a další). Po studiu ' +
-              'na osmiletém gymnáziu zamířil na katedru pantomimy pražské HAMU, kde v roce 2013 ' +
-              'absolvoval bakalářský obor (titul BcA.), v současné době pokračuje v navazujícím',
-          },
+          lectors: [
+            {
+              name: 'Vojtěch Svoboda',
+              photos: [],
+              about: 'Herectví se věnuje odmalička, kdy ztvárnil mnoho rolí v amatérských souborech.',
+              role: 'Hlavní lektor',
+            },
+          ],
         }}
         ready
       />
@@ -56,32 +47,30 @@ describe('Workshop Detail page component', () => {
         <Helmet
           title="Pantomima a fyzické divadlo"
           meta={[
-            { property: 'og:title', content: 'Pantomima a fyzické divadlo' },
+            {
+              property: 'og:title',
+              content: 'Pantomima a fyzické divadlo',
+            },
+            {
+              property: 'og:description',
+              content: 'Na workshopu se zaměříme na práci s tělem, nonverbální herectví a pantomimu...',
+            },
           ]}
         />
         <WorkshopDetail
           id={12}
-          desc={
-            'Na workshopu se zaměříme na práci s tělem, nonverbální herectví a pantomimu. ' +
-            'Budeme se věnovat fyzickému tréninku a technikám k ovládnutí svého těla a ' +
-            'celkovému propojení se svým tělem na jevišti. S tím souvisí i cvičení na jevištní ' +
-            'přítomnost, dech, pohled a temporytmus. Podíváme se také na techniku imaginární ' +
-            'pantomimy jako chůze na místě, práce s imaginárním objektem a další. Zkusíme si' +
-            'základy nonverbálního herectví, tvorbu divadelní postavy podle jejího fyzična a' +
-            'práci s hereckým partnerem...zkrátka uvidíme, co všechno stihneme.'}
+          desc="Na workshopu se zaměříme na práci s tělem, nonverbální herectví a pantomimu"
           difficulty="Pro všechny"
           name="Pantomima a fyzické divadlo"
           photos={[]}
-          lector={{
-            name: 'Vojtěch Svoboda',
-            photos: [],
-            about:
-              'Herectví se věnuje odmalička, kdy ztvárnil mnoho rolí v amatérských souborech, ' +
-              'za které získal řadu cen a ocenění (za herecký výkon Karlínská tříska, Nadělení ' +
-              'Brno, cena poroty Loutkářská Chrudim, Held/in Tirol v Rakousku a další). Po studiu ' +
-              'na osmiletém gymnáziu zamířil na katedru pantomimy pražské HAMU, kde v roce 2013 ' +
-              'absolvoval bakalářský obor (titul BcA.), v současné době pokračuje v navazujícím',
-          }}
+          lectors={[
+            {
+              name: 'Vojtěch Svoboda',
+              photos: [],
+              about: 'Herectví se věnuje odmalička, kdy ztvárnil mnoho rolí v amatérských souborech.',
+              role: 'Hlavní lektor',
+            }
+          ]}
         />
       </Container>
     );
