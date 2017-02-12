@@ -11,9 +11,11 @@ const Accomodation = ({ address, available, capacity, name, price, text, photos 
   <div>
     <h2>{name}</h2>
     <ul className="list-unstyled">
-      <Prop label="Adresa" icon="map-marker">
-        <Address address={address} />
-      </Prop>
+      {address ?
+        <Prop label="Adresa" icon="map-marker">
+          <Address address={address} />
+        </Prop> : null
+      }
       <Prop label="Příplatek" icon="money">
         <Price freeMessage="V ceně přihlášky" price={price} />
       </Prop>
@@ -28,7 +30,7 @@ const Accomodation = ({ address, available, capacity, name, price, text, photos 
 );
 
 Accomodation.propTypes = {
-  address: PropTypes.string.isRequired,
+  address: PropTypes.string,
   available: PropTypes.number,
   capacity: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
@@ -38,6 +40,7 @@ Accomodation.propTypes = {
 };
 
 Accomodation.defaultProps = {
+  address: null,
   available: null,
   price: null,
 };
