@@ -6,6 +6,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import PermaLink from '../../../src/web/components/permaLink';
+import LectorListSummary from '../../../src/web/components/lectorListSummary';
 import WorkshopSummary from '../../../src/web/components/workshopSummary';
 
 describe('Workshop Summary component', () => {
@@ -21,9 +22,7 @@ describe('Workshop Summary component', () => {
           'pantomimy jako chůze na místě, práce s imaginárním objektem a další. Zkusíme si' +
           'základy nonverbálního herectví, tvorbu divadelní postavy podle jejího fyzična a' +
           'práci s hereckým partnerem...zkrátka uvidíme, co všechno stihneme.'}
-        difficulty={{
-          name: 'Pro všechny',
-        }}
+        difficulty="Pro všechny"
         name="Pantomima a fyzické divadlo"
         lectors={[
           {
@@ -45,20 +44,14 @@ describe('Workshop Summary component', () => {
         </h2>
 
         <ul className="list-unstyled">
-          <li>
-            <FontAwesome name="user" />
-            {' '}
-            <b>Hlavní lektor:</b>
-            {' '}
-            Vojtěch Svoboda
-          </li>
-          <li>
-            <FontAwesome name="user" />
-            {' '}
-            <b>Doprovodný lektor:</b>
-            {' '}
-            Martin Vlk
-          </li>
+          <LectorListSummary
+            name="Vojtěch Svoboda"
+            position="Hlavní lektor"
+          />
+          <LectorListSummary
+            name="Martin Vlk"
+            position="Doprovodný lektor"
+          />
           <li>
             <FontAwesome name="hand-rock-o" />
             {' '}

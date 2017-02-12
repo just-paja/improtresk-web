@@ -1,11 +1,14 @@
+import Col from 'react-bootstrap/lib/Col';
 import FontAwesome from 'react-fontawesome';
 import Markdown from 'react-markdown';
 import React from 'react';
+import Row from 'react-bootstrap/lib/Row';
 
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import Gallery from '../../../src/web/components/gallery';
+import LectorSummary from '../../../src/web/components/lectorSummary';
 import PermaLink from '../../../src/web/components/permaLink';
 import WorkshopDetail from '../../../src/web/components/workshopDetail';
 
@@ -25,16 +28,17 @@ describe('Workshop Detail component', () => {
         difficulty="Pro všechny"
         name="Pantomima a fyzické divadlo"
         photos={[]}
-        lector={{
-          name: 'Vojtěch Svoboda',
-          photos: [],
-          about:
-            'Herectví se věnuje odmalička, kdy ztvárnil mnoho rolí v amatérských souborech, ' +
-            'za které získal řadu cen a ocenění (za herecký výkon Karlínská tříska, Nadělení ' +
-            'Brno, cena poroty Loutkářská Chrudim, Held/in Tirol v Rakousku a další). Po studiu ' +
-            'na osmiletém gymnáziu zamířil na katedru pantomimy pražské HAMU, kde v roce 2013 ' +
-            'absolvoval bakalářský obor (titul BcA.), v současné době pokračuje v navazujícím',
-        }}
+        lectors={[
+          {
+            id: 5,
+            role: 'Hlavní lektor',
+            lector: {
+              name: 'Vojtěch Svoboda',
+              photos: [],
+              about: 'Herectví se věnuje odmalička, kdy ztvárnil',
+            },
+          },
+        ]}
       />
     ).node).to.eql(
       <div>
@@ -45,10 +49,6 @@ describe('Workshop Detail component', () => {
         </h1>
 
         <ul className="list-unstyled">
-          <li>
-            <FontAwesome name="user" />{' '}
-            Vojtěch Svoboda
-          </li>
           <li>
             <FontAwesome name="hand-rock-o" />{' '}
             Pro všechny
@@ -71,19 +71,16 @@ describe('Workshop Detail component', () => {
 
         <Gallery photos={[]} />
 
-        <h2>Vojtěch Svoboda</h2>
-        <div>
-          <Markdown
-            source={
-              'Herectví se věnuje odmalička, kdy ztvárnil mnoho rolí v amatérských souborech, ' +
-              'za které získal řadu cen a ocenění (za herecký výkon Karlínská tříska, Nadělení ' +
-              'Brno, cena poroty Loutkářská Chrudim, Held/in Tirol v Rakousku a další). Po studiu ' +
-              'na osmiletém gymnáziu zamířil na katedru pantomimy pražské HAMU, kde v roce 2013 ' +
-              'absolvoval bakalářský obor (titul BcA.), v současné době pokračuje v navazujícím'
-            }
-          />
-        </div>
-        <Gallery photos={[]} />
+        <Row>
+          <Col md={6}>
+            <LectorSummary
+              name="Vojtěch Svoboda"
+              position="Hlavní lektor"
+              about="Herectví se věnuje odmalička, kdy ztvárnil"
+              photos={[]}
+            />
+          </Col>
+        </Row>
       </div>
     );
   });

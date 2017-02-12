@@ -16,7 +16,7 @@ const WorkshopSummary = ({ id, desc, difficulty, name, lectors }) => (
       {lectors.map(lectorPosition => (
         <LectorListSummary
           key={lectorPosition.id}
-          role={lectorPosition.role}
+          position={lectorPosition.role}
           name={lectorPosition.lector.name}
         />
       ))}
