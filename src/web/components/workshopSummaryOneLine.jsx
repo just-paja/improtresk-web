@@ -6,7 +6,7 @@ const WorkshopSummaryOneLine = ({ name, lectors }) => (
     {' '}
     {
       lectors
-        .map(lectorAssignment => `${lectorAssignment.lector} (${lectorAssignment.role})`)
+        .map(lectorAssignment => `${lectorAssignment.lector.name} (${lectorAssignment.role})`)
         .join(', ')
     }
   </div>
@@ -14,7 +14,9 @@ const WorkshopSummaryOneLine = ({ name, lectors }) => (
 
 WorkshopSummaryOneLine.propTypes = {
   lectors: PropTypes.arrayOf(PropTypes.shape({
-    lector: PropTypes.string,
+    lector: PropTypes.shape({
+      name: PropTypes.tring,
+    }),
     role: PropTypes.string,
   })).isRequired,
   name: PropTypes.string.isRequired,

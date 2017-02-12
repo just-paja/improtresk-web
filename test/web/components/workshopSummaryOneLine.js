@@ -11,8 +11,8 @@ describe('Workshop Summary One Line component', () => {
       <WorkshopSummaryOneLine
         name="Pantomima a fyzické divadlo"
         lectors={[
-          { lector: 'Vojtěch Svoboda', role: 'Hlavní lektor' },
-          { lector: 'Martin Skot', role: 'Pomocný lektor' },
+          { lector: { name: 'Vojtěch Svoboda' }, role: 'Hlavní lektor' },
+          { lector: { name: 'Martin Skot' }, role: 'Pomocný lektor' },
         ]}
       />
     ).node).to.eql(
