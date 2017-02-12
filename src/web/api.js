@@ -30,6 +30,9 @@ export const fetchYears = params => apiFetch('years', params);
 export const fetchWorkshopDetail = ({ workshop, year, ...params }) =>
   apiFetch(`years/${year}/workshops/${workshop}`, params);
 
+export const fetchWorkshopDifficulties = ({ ...params }) =>
+  apiFetch('workshopDifficulties/', params);
+
 export const fetchWorkshops = ({ year, ...params }) =>
   apiFetch(`years/${year}/workshops/`, params);
 

@@ -1,34 +1,42 @@
+import Col from 'react-bootstrap/lib/Col';
 import FontAwesome from 'react-fontawesome';
 import Markdown from 'react-markdown';
 import React, { PropTypes } from 'react';
+import Row from 'react-bootstrap/lib/Row';
 
 import Gallery from './gallery';
+import LectorSummary from './lectorSummary';
 import PermaLink from './permaLink';
 
-const WorkshopDetail = ({ id, desc, difficulty, name, lector, photos }) => (
+const WorkshopDetail = ({ id, desc, difficulty, name, lectors, photos }) => (
   <div>
     <h1>
       <PermaLink id={id} title={name} to="workshops:item">{name}</PermaLink>
     </h1>
 
     <ul className="list-unstyled">
-      <li>
-        <FontAwesome name="user" /> {lector.name}
-      </li>
-      <li>
-        <FontAwesome name="hand-rock-o" /> {difficulty}
-      </li>
+      {difficulty ?
+        <li>
+          <FontAwesome name="hand-rock-o" /> {difficulty}
+        </li> : null
+      }
     </ul>
     <div>
       <Markdown source={desc} />
     </div>
     <Gallery photos={photos} />
-
-    <h2>{lector.name}</h2>
-    <div>
-      <Markdown source={lector.about} />
-    </div>
-    <Gallery photos={lector.photos} />
+    <Row>
+      {lectors.map(lectorPosition => (
+        <Col key={lectorPosition.id} md={6}>
+          <LectorSummary
+            name={lectorPosition.lector.name}
+            about={lectorPosition.lector.about}
+            photos={lectorPosition.lector.photos}
+            role={lectorPosition.role}
+          />
+        </Col>
+      ))}
+    </Row>
   </div>
 );
 
@@ -38,11 +46,14 @@ WorkshopDetail.propTypes = {
   difficulty: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   photos: PropTypes.arrayOf(PropTypes.object).isRequired,
-  lector: PropTypes.shape({
-    name: PropTypes.string,
-    about: PropTypes.string,
-    photos: PropTypes.arrayOf(PropTypes.object).isRequired,
-  }).isRequired,
+  lectors: PropTypes.arrayOf(PropTypes.shape({
+    lector: PropTypes.shape({
+      name: PropTypes.string,
+      about: PropTypes.string,
+      photos: PropTypes.arrayOf(PropTypes.object).isRequired,
+    }),
+    role: PropTypes.string,
+  })).isRequired,
 };
 
 export default WorkshopDetail;
