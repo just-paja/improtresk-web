@@ -24,12 +24,6 @@ const NavigationMenu = ({ currentYear, years, ...props }) => {
       <LinkContainer to={reverse('fees')}>
         <NavItem>Poplatky</NavItem>
       </LinkContainer>
-      <LinkContainer to={reverse('drive')}>
-        <NavItem>Improjízdomat</NavItem>
-      </LinkContainer>
-      <LinkContainer to={reverse('tips')}>
-        <NavItem>Tipy</NavItem>
-      </LinkContainer>
       <LinkContainer to={reverse('conditions')}>
         <NavItem>Podmínky</NavItem>
       </LinkContainer>
