@@ -27,11 +27,11 @@ describe('Workshop Summary component', () => {
         name="Pantomima a fyzické divadlo"
         lectors={[
           {
-            lector: 'Vojtěch Svoboda',
+            lector: { name: 'Vojtěch Svoboda' },
             role: 'Hlavní lektor',
           },
           {
-            lector: 'Martin Vlk',
+            lector: { name: 'Martin Vlk' },
             role: 'Doprovodný lektor',
           },
         ]}

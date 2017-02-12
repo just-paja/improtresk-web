@@ -10,30 +10,54 @@ import {
 describe('Workshops selectors', () => {
   it('workshopsAll returns all workshops stored', () => {
     expect(workshopsAll({
+      lectors: {
+        list: {
+          data: [],
+        },
+        roles: {
+          data: [],
+        },
+      },
       workshops: {
         list: {
           data: [
-            { id: 1 },
+            {
+              id: 1,
+              lectors: [],
+            },
           ],
         },
       },
     })).to.eql([
-      { id: 1 },
+      {
+        id: 1,
+        lectors: [],
+      },
     ]);
   });
   it('workshopsDetail returns detail of the stored workshop', () => {
     expect(workshopsDetail({
+      lectors: {
+        list: {
+          data: [],
+        },
+        roles: {
+          data: [],
+        },
+      },
       workshops: {
         detail: {
           data: {
             id: 1,
             name: 'foo',
+            lectors: [],
           },
         },
       },
     })).to.eql({
       id: 1,
       name: 'foo',
+      lectors: [],
     });
   });
   it('shouldFetchList returns false when in invalid state', () => {

@@ -18,7 +18,7 @@ const WorkshopSummary = ({ id, desc, difficulty, name, lectors }) => (
           {' '}
           <b>{lectorRole.role}:</b>
           {' '}
-          {lectorRole.lector}
+          {lectorRole.lector.name}
         </li>
       ))}
       <li>
@@ -44,7 +44,10 @@ WorkshopSummary.propTypes = {
   }).isRequired,
   name: PropTypes.string.isRequired,
   lectors: PropTypes.arrayOf(PropTypes.shape({
-    lector: PropTypes.string,
+    lector: PropTypes.shape({
+      name: PropTypes.name,
+    }),
+    role: PropTypes.string,
   })).isRequired,
 };
 
