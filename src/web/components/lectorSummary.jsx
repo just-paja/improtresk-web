@@ -3,10 +3,13 @@ import Markdown from 'react-markdown';
 
 import Gallery from './gallery';
 
-const LectorSummary = ({ name, role, about, photos }) => (
+const LectorSummary = ({ name, position, about, photos }) => (
   <div>
-    <h2>{name}</h2>
-    {role}
+    <h2>
+      {name}<br />
+      <small>{position}</small>
+    </h2>
+
     <Markdown source={about} />
     <Gallery photos={photos} />
   </div>
@@ -15,7 +18,7 @@ const LectorSummary = ({ name, role, about, photos }) => (
 LectorSummary.propTypes = {
   about: PropTypes.string,
   name: PropTypes.string.isRequired,
-  role: PropTypes.string,
+  position: PropTypes.string,
   photos: PropTypes.arrayOf(PropTypes.shape({
     image: PropTypes.string,
   })).isRequired,
@@ -23,7 +26,7 @@ LectorSummary.propTypes = {
 
 LectorSummary.defaultProps = {
   about: null,
-  role: null,
+  position: null,
 };
 
 export default LectorSummary;

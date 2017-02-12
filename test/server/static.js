@@ -25,11 +25,11 @@ describe('Server', () => {
 
   it('returns home title when requesting /', () => {
     nock(apiEndpoint)
-      .get('/years')
+      .get('/years/')
       .reply(200, []);
 
     nock(apiEndpoint)
-      .get('/news')
+      .get('/news/')
       .reply(200, []);
 
     return request(app)

@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-const LectorListSummary = ({ name, role }) => (
+const LectorListSummary = ({ name, position }) => (
   <li>
     <FontAwesome name="user" />
     {' '}
-    <b>{role}:</b>
+    <b>{position}:</b>
     {' '}
     {name}
   </li>
@@ -13,7 +13,7 @@ const LectorListSummary = ({ name, role }) => (
 
 LectorListSummary.propTypes = {
   name: PropTypes.string.isRequired,
-  role: PropTypes.string.isRequired,
+  position: PropTypes.string.isRequired,
 };
 
 export default LectorListSummary;

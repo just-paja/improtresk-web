@@ -13,7 +13,7 @@ describe('API helper', () => {
 
   it('fetchAccomodation calls for accomodation', () => {
     nock(apiSource)
-    .get('/accomodations')
+    .get('/accomodations/')
     .reply(200, []);
 
     return api.fetchAccomodation({ apiSource })
@@ -23,7 +23,7 @@ describe('API helper', () => {
   });
   it('fetchConditionsCurrent calls for current conditions', () => {
     nock(apiSource)
-    .get('/conditions')
+    .get('/conditions/')
     .reply(200, []);
 
     return api.fetchConditionsCurrent({ apiSource })
@@ -33,7 +33,7 @@ describe('API helper', () => {
   });
   it('fetchMeals calls for list of meals', () => {
     nock(apiSource)
-    .get('/meals')
+    .get('/meals/')
     .reply(200, []);
 
     return api.fetchMeals({ apiSource })
@@ -43,7 +43,7 @@ describe('API helper', () => {
   });
   it('fetchNews calls for news', () => {
     nock(apiSource)
-      .get('/news')
+      .get('/news/')
       .reply(200, [
         {
           id: 2,
@@ -74,7 +74,7 @@ describe('API helper', () => {
   });
   it('fetchTips calls for tips', () => {
     nock(apiSource)
-      .get('/tips')
+      .get('/tips/')
       .reply(200, []);
 
     return api.fetchTips({ apiSource })
@@ -84,7 +84,7 @@ describe('API helper', () => {
   });
   it('fetchWorkshopDetail calls for workshop detail', () => {
     nock(apiSource)
-    .get('/years/2016/workshops/312')
+    .get('/years/2016/workshops/312/')
     .reply(200, []);
 
     return api.fetchWorkshopDetail({ apiSource, workshop: 312, year: 2016 })
@@ -104,7 +104,7 @@ describe('API helper', () => {
   });
   it('fetchYears calls for news', () => {
     nock(apiSource)
-    .get('/years')
+    .get('/years/')
     .reply(200, []);
 
     return api.fetchYears({ apiSource })
@@ -114,7 +114,7 @@ describe('API helper', () => {
   });
   it('signup posts signup', () => {
     nock(apiSource)
-    .post('/signup')
+    .post('/signup/')
     .reply(200, {});
 
     return api.signup({ apiSource, data: { foo: 'bar' } })

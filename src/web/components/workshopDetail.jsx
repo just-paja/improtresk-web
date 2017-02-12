@@ -32,7 +32,7 @@ const WorkshopDetail = ({ id, desc, difficulty, name, lectors, photos }) => (
             name={lectorPosition.lector.name}
             about={lectorPosition.lector.about}
             photos={lectorPosition.lector.photos}
-            role={lectorPosition.role}
+            position={lectorPosition.role}
           />
         </Col>
       ))}

@@ -19,6 +19,9 @@ describe('Workshops selectors', () => {
         },
       },
       workshops: {
+        difficulties: {
+          data: [],
+        },
         list: {
           data: [
             {
@@ -31,6 +34,7 @@ describe('Workshops selectors', () => {
     })).to.eql([
       {
         id: 1,
+        difficulty: null,
         lectors: [],
       },
     ]);
@@ -53,9 +57,13 @@ describe('Workshops selectors', () => {
             lectors: [],
           },
         },
+        difficulties: {
+          data: [],
+        },
       },
     })).to.eql({
       id: 1,
+      difficulty: null,
       name: 'foo',
       lectors: [],
     });
