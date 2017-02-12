@@ -49,7 +49,7 @@ export default class NewsDetail extends Component {
             ...newsDetail.photos.reduce((data, photo) => ([
               ...data,
               {
-                property: 'og:image:url',
+                property: 'og:image',
                 content: photo.image,
               },
               {
