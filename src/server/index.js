@@ -14,6 +14,10 @@ export default function server(userConfig = {}) {
 
   winston.level = config.logLevel;
 
+  if (config.proxy) {
+    app.set('trust proxy', 'loopback');
+  }
+
   app.use('/static', staticMiddleware);
 
   if (process.env.NODE_ENV === 'production') {
