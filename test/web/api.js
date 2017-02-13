@@ -23,10 +23,10 @@ describe('API helper', () => {
   });
   it('fetchConditionsCurrent calls for current conditions', () => {
     nock(apiSource)
-    .get('/conditions/')
-    .reply(200, []);
+      .get('/years/2016/rules/latest/')
+      .reply(200, []);
 
-    return api.fetchConditionsCurrent({ apiSource })
+    return api.fetchConditionsCurrent({ year: 2016, apiSource })
     .then(() => {
       expect(nock.isDone()).to.equal(true);
     });

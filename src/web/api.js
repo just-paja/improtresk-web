@@ -8,7 +8,8 @@ export const fetchArchivedYear = ({ year, ...params }) =>
 
 export const fetchAccomodation = params => apiFetch('accomodations/', params);
 
-export const fetchConditionsCurrent = params => apiFetch('conditions/', params);
+export const fetchConditionsCurrent = ({ year, ...params }) =>
+  apiFetch(`years/${year}/rules/latest/`, params);
 
 export const fetchLectorRoles = params => apiFetch('lectorRoles/', params);
 
