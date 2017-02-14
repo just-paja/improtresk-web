@@ -52,8 +52,9 @@ export const shouldFetchList = createSelector(
 );
 export const shouldFetchDetail = createSelector(
   getWorkshopDetailState,
-  state => isStateValid(state)
+  detail => isStateValid(detail) && detail.data && detail.id === detail.data.id
 );
+
 export const shouldFetchDifficulties = createSelector(
   getWorkshopDifficultiesState,
   state => isStateValid(state)

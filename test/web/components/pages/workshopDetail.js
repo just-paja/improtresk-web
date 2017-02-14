@@ -69,7 +69,7 @@ describe('Workshop Detail page component', () => {
               photos: [],
               about: 'Herectví se věnuje odmalička, kdy ztvárnil mnoho rolí v amatérských souborech.',
               role: 'Hlavní lektor',
-            }
+            },
           ]}
         />
       </Container>
