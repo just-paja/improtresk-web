@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import React, { PropTypes } from 'react';
 import Markdown from 'react-markdown';
 
@@ -5,6 +6,25 @@ import Gallery from './gallery';
 
 const LectorSummary = ({ name, position, about, photos }) => (
   <div>
+    <Helmet
+      meta={[
+        ...photos.reduce((data, photo) => ([
+          ...data,
+          {
+            property: 'og:image',
+            content: photo.image,
+          },
+          {
+            property: 'og:image:height',
+            content: photo.height,
+          },
+          {
+            property: 'og:image:width',
+            content: photo.width,
+          },
+        ]), []),
+      ]}
+    />
     <h2>
       {name}<br />
       <small>{position}</small>
