@@ -82,6 +82,16 @@ describe('Workshops selectors', () => {
     expect(shouldFetchDetail({ workshops: { detail: { valid: false } } })).to.equal(false);
   });
   it('shouldFetchDetail returns true when in valid state', () => {
-    expect(shouldFetchDetail({ workshops: { detail: { valid: true } } })).to.equal(true);
+    expect(shouldFetchDetail({
+      workshops: {
+        detail: {
+          id: 1,
+          data: {
+            id: 1,
+          },
+          valid: true,
+        },
+      },
+    })).to.equal(true);
   });
 });
