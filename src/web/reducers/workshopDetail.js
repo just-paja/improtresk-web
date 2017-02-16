@@ -4,6 +4,7 @@ import * as constants from '../constants/actions';
 
 const defaultState = {
   data: null,
+  id: null,
   loading: false,
 };
 
