@@ -21,6 +21,16 @@ describe('API helper', () => {
       expect(nock.isDone()).to.equal(true);
     });
   });
+  it('fetchArchivedYear calls for archived year', () => {
+    nock(apiSource)
+    .get('/years/2016')
+    .reply(200, []);
+
+    return api.fetchArchivedYear({ apiSource, year: 2016 })
+    .then(() => {
+      expect(nock.isDone()).to.equal(true);
+    });
+  });
   it('fetchConditionsCurrent calls for current conditions', () => {
     nock(apiSource)
       .get('/years/2016/rules/latest/')
