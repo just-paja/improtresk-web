@@ -9,7 +9,7 @@ const defaultState = {
 };
 
 export default combined(defaultState, {
-  [constants.NEWS_DETAIL_MOUNTED]: (state = {}, action = {}) => ({
+  [constants.NEWS_DETAIL_MOUNTED]: (state, action) => ({
     ...state,
     id: action.news,
   }),
