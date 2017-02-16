@@ -72,6 +72,20 @@ describe('API helper', () => {
         expect(nock.isDone()).to.equal(true);
       });
   });
+  it('fetchNewsDetail calls for news', () => {
+    nock(apiSource)
+      .get('/news/1/')
+      .reply(200, {
+        id: 1,
+        text: 'Organizace Improtřesku začíná. Sestavili jsme nový organizační tým a už to jede!',
+        createdAt: '2016-11-29T18:29:31',
+      });
+
+    return api.fetchNewsDetail({ apiSource, news: 1 })
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
   it('fetchText calls for text', () => {
     nock(apiSource)
     .get('/texts/food-intro-text')
