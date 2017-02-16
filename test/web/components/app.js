@@ -8,6 +8,7 @@ import { shallow } from 'enzyme';
 import App from '../../../src/web/components/app';
 import Footer from '../../../src/web/components/footer';
 import Navigation from '../../../src/web/components/navigation';
+import ProgressBar from '../../../src/web/components/progressBar';
 
 describe('App component', () => {
   it('renders as null when not ready', () => {
@@ -29,6 +30,7 @@ describe('App component', () => {
   it('renders layout and content', () => {
     expect(shallow(
       <App
+        activeRequests={5}
         host="http://foo"
         onMount={() => {}}
         currentYear={{ year: '2016', topic: 'Kůže' }}
@@ -124,6 +126,7 @@ describe('App component', () => {
             { year: '2016', topic: 'Ovce' },
           ]}
         />
+        <ProgressBar activeRequests={5} />
         <div>foo</div>
         <Footer partners={[]} />
       </div>
