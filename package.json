@@ -14,8 +14,8 @@
     "test:lint": "eslint --ext .jsx --ext.js webpack src test",
     "test:coverage": "babel-node node_modules/babel-istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha --report clover --report lcov --report html -- --recursive --require ./mocha.js",
     "test:production": "npm run build && node dist/server.js",
-    "test:unit": "mocha --compilers babel-register -r mocha.js --recursive test",
-    "test:watch": "npm run test:unit -- -w --watch-extensions js,jsx,css test",
+    "test:unit": "mocha --compilers babel-register -r mocha.js --recursive",
+    "test:watch": "npm run test:unit -- -w --watch-extensions js,jsx,css",
     "pretest": "npm run test:lint",
     "test": "npm run test:coverage"
   },
