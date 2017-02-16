@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 
 import Navigation from './navigation';
 import Footer from './footer';
+import ProgressBar from './progressBar';
 
 import styles from './app.css';
 
@@ -12,7 +13,16 @@ export default class App extends Component {
   }
 
   render() {
-    const { children, currentYear, host, ready, location: { pathname }, years } = this.props;
+    const {
+      activeRequests,
+      children,
+      currentYear,
+      host,
+      ready,
+      location: { pathname },
+      years,
+    } = this.props;
+
     const defaultTitle = 'Festival divadelní improvizace';
     const titleTemplate = currentYear ? `%s - Improtřesk ${currentYear.year}` : '%s - Improtřesk';
 
@@ -99,6 +109,7 @@ export default class App extends Component {
           ]}
         />
         <Navigation currentYear={currentYear} years={years} />
+        <ProgressBar activeRequests={activeRequests} />
         {children}
         <Footer partners={[]} />
       </div>
@@ -107,6 +118,7 @@ export default class App extends Component {
 }
 
 App.propTypes = {
+  activeRequests: PropTypes.number,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
@@ -122,6 +134,7 @@ App.propTypes = {
 };
 
 App.defaultProps = {
+  activeRequests: 0,
   children: null,
   currentYear: null,
   host: null,

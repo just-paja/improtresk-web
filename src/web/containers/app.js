@@ -3,13 +3,14 @@ import { bindActionCreators } from 'redux';
 
 import App from '../components/app';
 
-import { isAppReady } from '../selectors/app';
+import { countAppRequests, isAppReady } from '../selectors/app';
 import { getHost } from '../selectors/session';
 import { yearCurrent, yearsNotCurrent } from '../selectors/years';
 
 import * as actions from '../constants/actions';
 
 const mapStateToProps = state => ({
+  activeRequests: countAppRequests(state),
   host: getHost(state),
   currentYear: yearCurrent(state),
   years: yearsNotCurrent(state),
