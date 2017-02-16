@@ -45,4 +45,10 @@ describe('News detail reducer', () => {
       error: 'error',
     });
   });
+
+  it('saves detail id on NEWS_DETAIL_MOUNTED', () => {
+    expect(newsDetail({}, { type: 'NEWS_DETAIL_MOUNTED', news: 1 })).to.eql({
+      id: 1,
+    });
+  });
 });
