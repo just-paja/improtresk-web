@@ -1,7 +1,18 @@
 :local .appProgressBar {
   border-radius: 0;
-  height: 5px;
+  height: 3px;
+  left: 0;
   margin: 0;
+  position: fixed;
+  right: 0;
+  top: 63px;
+  z-index: 1;
+}
+
+@media screen and (max-width: 768px) {
+  :local .appProgressBar {
+    top: 61px;
+  }
 }
 
 .progress-bar-striped {
