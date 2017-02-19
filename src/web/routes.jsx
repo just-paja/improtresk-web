@@ -12,6 +12,7 @@ import Contact from './containers/contact';
 import Fees from './containers/fees';
 import Food from './containers/food';
 import Home from './containers/home';
+import Locations from './containers/locations';
 import NewsDetail from './containers/newsDetail';
 import NotFound from './components/notFound';
 import Schedule from './containers/schedule';
@@ -59,6 +60,7 @@ export default function configureRoutes() {
       <Route path={urlTable.contact} component={Contact} />
       <Route path={urlTable.fees} component={Fees} />
       <Route path={urlTable.food} component={Food} />
+      <Route path={urlTable.location} component={Locations} />
       <Route path={urlTable['news:item']} component={NewsDetail} />
       <Route path={urlTable.schedule} component={Schedule} />
       <Route path={urlTable.signup} component={Signup} />

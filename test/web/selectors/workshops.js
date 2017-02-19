@@ -108,7 +108,9 @@ describe('Workshops selectors', () => {
   it('areLocationsReady returns true when fetched', () => {
     expect(areLocationsReady({
       geocode: {
-        foo: true,
+        foo: {
+          ready: true,
+        },
       },
       workshops: {
         locations: {

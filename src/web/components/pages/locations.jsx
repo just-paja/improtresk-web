@@ -3,16 +3,18 @@ import Markdown from 'react-markdown';
 import React, { Component, PropTypes } from 'react';
 
 import Container from '../container';
-import Link from '../link';
+import LocationItem from '../locationItem';
+import ObjectList from '../objectList';
+import MarkerMap from '../markerMap';
 
-export default class Conditions extends Component {
+export default class Locations extends Component {
   componentWillMount() {
     this.props.onMount();
   }
 
   render() {
-    const { conditions, ready } = this.props;
-    const title = 'Podmínky pro účastníky';
+    const { intro, markers, ready } = this.props;
+    const title = 'Lokace';
 
     if (!ready) {
       return null;
@@ -27,26 +29,27 @@ export default class Conditions extends Component {
           ]}
         />
         <h1>{title}</h1>
-        {(conditions ?
-          <Markdown source={conditions.text} /> :
-          <p>
-            Podmínky pro účastníky za tento ročník ještě nejsou zveřejněné. Organizátoři
-            by to měli co nejrychleji napravit, zkuste je{' '}
-            <Link to="contact">popohnat</Link>.
-          </p>
-        )}
+        <Markdown source={intro} />
+        <MarkerMap markers={markers} />
+        <ObjectList
+          data={markers}
+          Component={LocationItem}
+        />
       </Container>
     );
   }
 }
 
-Conditions.propTypes = {
+Locations.propTypes = {
+  intro: PropTypes.string.isRequired,
+  markers: PropTypes.arrayOf(PropTypes.shape({
+    lat: PropTypes.number,
+    lng: PropTypes.number,
+  })).isRequired,
   onMount: PropTypes.func.isRequired,
   ready: PropTypes.bool,
-  conditions: PropTypes.object,
 };
 
-Conditions.defaultProps = {
-  conditions: null,
+Locations.defaultProps = {
   ready: false,
 };

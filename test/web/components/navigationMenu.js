@@ -21,6 +21,9 @@ describe('Navigation menu component', () => {
     ).node).to.eql(
       <Nav>
         <NavDropdown id="navigation-dropdown" title="Pro účastníky">
+          <LinkContainer to="/pro-ucastniky/lokace">
+            <NavItem>Lokace</NavItem>
+          </LinkContainer>
           <LinkContainer to="/pro-ucastniky/ubytovani">
             <NavItem>Ubytování</NavItem>
           </LinkContainer>
