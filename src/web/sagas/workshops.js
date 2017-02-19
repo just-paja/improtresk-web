@@ -6,6 +6,7 @@ import {
   shouldFetchList,
   shouldFetchDetail,
   shouldFetchDifficulties,
+  shouldFetchLocations,
 } from '../selectors/workshops';
 import { yearActiveNumber } from '../selectors/years';
 
@@ -38,6 +39,28 @@ export function* requireWorkshopDifficulties() {
       onSuccess: constants.WORKSHOP_DIFFICULTIES_FETCH_SUCCESS,
       onError: constants.WORKSHOP_DIFFICULTIES_FETCH_ERROR,
     }
+  );
+}
+
+function* requireYearsWorkshopLocations() {
+  const year = yield select(yearActiveNumber);
+  yield fork(
+    fetchResourceIfNeeded,
+    api.fetchWorkshopLocations,
+    shouldFetchLocations,
+    {
+      onStart: constants.WORKSHOP_LOCATIONS_FETCH_STARTED,
+      onSuccess: constants.WORKSHOP_LOCATIONS_FETCH_SUCCESS,
+      onError: constants.WORKSHOP_LOCATIONS_FETCH_ERROR,
+      year,
+    }
+  );
+}
+
+export function* requireWorkshopLocations() {
+  yield takeLatest(
+    constants.REQUEST_WORKSHOP_LOCATIONS,
+    requireYearsWorkshopLocations
   );
 }
 
@@ -76,4 +99,5 @@ export default [
   requireWorkshops,
   requireWorkshopDetail,
   requireWorkshopDifficulties,
+  requireWorkshopLocations,
 ];

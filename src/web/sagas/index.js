@@ -5,8 +5,10 @@ import archive from './archive';
 import conditions from './conditions';
 import fees from './fees';
 import forms from './forms';
+import geocode from './geocode';
 import home from './home';
 import lectors from './lectors';
+import locations from './locations';
 import meals from './meals';
 import news from './news';
 import signup from './signup';
@@ -21,8 +23,10 @@ const sagas = [
   ...conditions,
   ...fees,
   ...forms,
+  ...geocode,
   ...home,
   ...lectors,
+  ...locations,
   ...meals,
   ...news,
   ...signup,

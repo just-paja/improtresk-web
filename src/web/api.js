@@ -31,6 +31,9 @@ export const fetchYears = params => apiFetch('years/', params);
 export const fetchWorkshopDetail = ({ workshop, year, ...params }) =>
   apiFetch(`years/${year}/workshops/${workshop}/`, params);
 
+export const fetchWorkshopLocations = ({ year, ...params }) =>
+  apiFetch(`years/${year}/locations/`, params);
+
 export const fetchWorkshopDifficulties = ({ ...params }) =>
   apiFetch('workshopDifficulties/', params);
 
@@ -42,3 +45,10 @@ export const signup = ({ data, ...params }) => apiFetch('signup/', {
   method: 'POST',
   body: JSON.stringify(data),
 });
+
+
+export const fetchMarker = ({ address, ...params }) => fetch(
+  'https://maps.googleapis.com/maps/api/geocode/' +
+  `json?address=${address}&key=AIzaSyABnfkdNP9H-wCCshO_ZRYxvGoCEozHxzg`,
+  params
+);

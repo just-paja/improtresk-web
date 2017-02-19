@@ -27,6 +27,7 @@ const pageBase = ({
         }}
       />
       {/* eslint-enable react/no-danger */}
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABnfkdNP9H-wCCshO_ZRYxvGoCEozHxzg" />
     </head>
     <body>
       {/* eslint-disable react/no-danger */}
