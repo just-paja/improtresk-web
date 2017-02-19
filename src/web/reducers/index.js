@@ -5,6 +5,7 @@ import archive from './archive';
 import conditions from './conditions';
 import device from './device';
 import forms from './forms';
+import geocode from './geocode';
 import lectors from './lectors';
 import meals from './meals';
 import news from './news';
@@ -22,6 +23,7 @@ export default function createReducer() {
     conditions,
     device,
     forms,
+    geocode,
     lectors,
     meals,
     news,
