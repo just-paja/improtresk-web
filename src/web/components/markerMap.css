@@ -1,0 +1,7 @@
+:local .markerMap {
+  height: 400px;
+}
+
+:local .markerMapContainer {
+  height: 100%;
+}
