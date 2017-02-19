@@ -1,6 +1,8 @@
 import { expect } from 'chai';
 
 import {
+  areLocationsFetched,
+  areLocationsReady,
   workshopsAll,
   workshopsDetail,
   shouldFetchList,
@@ -90,6 +92,32 @@ describe('Workshops selectors', () => {
             id: 1,
           },
           valid: true,
+        },
+      },
+    })).to.equal(true);
+  });
+  it('areLocationsFetched returns true when fetched', () => {
+    expect(areLocationsFetched({
+      workshops: {
+        locations: {
+          ready: true,
+        },
+      },
+    })).to.equal(true);
+  });
+  it('areLocationsReady returns true when fetched', () => {
+    expect(areLocationsReady({
+      geocode: {
+        foo: true,
+      },
+      workshops: {
+        locations: {
+          ready: true,
+          data: [
+            {
+              address: 'foo',
+            },
+          ],
         },
       },
     })).to.equal(true);

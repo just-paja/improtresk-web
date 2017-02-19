@@ -3,9 +3,11 @@ import { createSelector } from 'reselect';
 import { isStateValid } from './common';
 import { findLectorRoleName, getLectorRoles, getLectors } from './lectors';
 
+const getGeocodeState = state => state.geocode;
 const getWorkshopDetailState = state => state.workshops.detail;
 const getWorkshopDifficultiesState = state => state.workshops.difficulties;
 const getWorkshopListState = state => state.workshops.list;
+const getWorkshopLocationsState = state => state.workshops.locations;
 
 const findDifficultyName = (difficulties, id) => {
   const difficulty = difficulties.find(record => record.id === id);
@@ -46,6 +48,37 @@ export const workshopsAll = createSelector(
     workshops.data.map(mapWorkshop(lectors, roles, difficulties))
 );
 
+export const getLocations = createSelector(
+  [getWorkshopLocationsState],
+  locations => locations.data
+);
+
+export const getAddresses = createSelector(
+  [getLocations],
+  locations => locations.map(location => location.address)
+);
+
+export const areLocationsFetched = createSelector(
+  [getWorkshopLocationsState],
+  locations => locations.ready
+);
+
+export const areLocationsReady = createSelector(
+  [areLocationsFetched, getAddresses, getGeocodeState],
+  (fetched, addresses, geocode) =>
+    fetched &&
+    addresses.every(address => !!geocode[address].ready)
+);
+
+export const getLocationMarkers = createSelector(
+  [getLocations, getGeocodeState],
+  (locations, geocode) => locations.map(location => ({
+    ...location,
+    ...(geocode[location.address] ?
+      geocode[location.address].data : {}),
+  }))
+);
+
 export const shouldFetchList = createSelector(
   getWorkshopListState,
   state => isStateValid(state)
@@ -57,5 +90,10 @@ export const shouldFetchDetail = createSelector(
 
 export const shouldFetchDifficulties = createSelector(
   getWorkshopDifficultiesState,
+  state => isStateValid(state)
+);
+
+export const shouldFetchLocations = createSelector(
+  getWorkshopLocationsState,
   state => isStateValid(state)
 );
