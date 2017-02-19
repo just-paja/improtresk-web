@@ -1,7 +1,9 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 
+import { isStateValid } from '../selectors/common';
 import {
   getAllAddresses,
+  getGeocodeState,
 } from '../selectors/geocode';
 
 import * as api from '../api';
@@ -34,12 +36,19 @@ function* fetchMarker(address) {
 
 export function* fetchAllMarkers() {
   const markers = yield select(getAllAddresses);
-  yield markers.map(address => call(fetchMarker, address));
+  const locations = yield select(getGeocodeState);
+
+  yield markers
+    .filter(address => !isStateValid(locations[address]))
+    .map(address => call(fetchMarker, address));
 }
 
 export function* geocodeAll() {
   yield takeLatest(
-    constants.WORKSHOP_LOCATIONS_FETCH_SUCCESS,
+    [
+      constants.WORKSHOP_LOCATIONS_FETCH_SUCCESS,
+      constants.REQUEST_WORKSHOP_LOCATIONS,
+    ],
     fetchAllMarkers
   );
 }

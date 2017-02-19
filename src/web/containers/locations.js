@@ -4,10 +4,7 @@ import { bindActionCreators } from 'redux';
 import Locations from '../components/pages/locations';
 
 import { getText, readyTexts } from '../selectors/texts';
-import {
-  areLocationsReady,
-  getLocationMarkers,
-} from '../selectors/workshops';
+import { getLocationMarkers } from '../selectors/workshops';
 
 import * as actions from '../constants/actions';
 import * as texts from '../constants/texts';
@@ -16,7 +13,7 @@ const mapStateToProps = state => ({
   intro: getText(state, texts.LOCATIONS_INTRO),
   markers: getLocationMarkers(state),
   ready:
-    areLocationsReady(state) &&
+    state.workshops.locations.ready &&
     readyTexts(state, [
       texts.LOCATIONS_INTRO,
     ]),
