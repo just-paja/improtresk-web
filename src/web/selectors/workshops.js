@@ -58,25 +58,14 @@ export const getAddresses = createSelector(
   locations => locations.map(location => location.address)
 );
 
-export const areLocationsFetched = createSelector(
-  [getWorkshopLocationsState],
-  locations => locations.ready
-);
-
-export const areLocationsReady = createSelector(
-  [areLocationsFetched, getAddresses, getGeocodeState],
-  (fetched, addresses, geocode) =>
-    fetched &&
-    addresses.every(address => !!geocode[address].ready)
-);
-
 export const getLocationMarkers = createSelector(
   [getLocations, getGeocodeState],
-  (locations, geocode) => locations.map(location => ({
-    ...location,
-    ...(geocode[location.address] ?
-      geocode[location.address].data : {}),
-  }))
+  (locations, geocode) => locations
+    .filter(location => geocode[location.address] && geocode[location.address].valid)
+    .map(location => ({
+      ...location,
+      ...geocode[location.address].data,
+    }))
 );
 
 export const shouldFetchList = createSelector(

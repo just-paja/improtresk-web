@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const getGeocodeState = state => state.geocode;
+export const getGeocodeState = state => state.geocode;
 
 export const getAllAddresses = createSelector(
   [getGeocodeState],
