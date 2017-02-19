@@ -1,23 +1,23 @@
 import { expect } from 'chai';
 
-import workshops from '../../../src/web/reducers/workshopList';
+import workshopList from '../../../src/web/reducers/workshopList';
 
 describe('Workshops list reducer', () => {
   it('returns default state', () => {
-    expect(workshops()).to.eql({
+    expect(workshopList()).to.eql({
       loading: false,
       data: [],
     });
   });
 
   it('marks as loading on WORKSHOPS_FETCH_STARTED', () => {
-    expect(workshops({}, { type: 'WORKSHOPS_FETCH_STARTED' })).to.eql({
+    expect(workshopList({}, { type: 'WORKSHOPS_FETCH_STARTED' })).to.eql({
       loading: true,
     });
   });
 
   it('marks as loading on WORKSHOPS_FETCH_SUCCESS', () => {
-    expect(workshops(
+    expect(workshopList(
       {},
       {
         type: 'WORKSHOPS_FETCH_SUCCESS',
@@ -38,7 +38,7 @@ describe('Workshops list reducer', () => {
   });
 
   it('marks as loading on WORKSHOPS_FETCH_ERROR', () => {
-    expect(workshops({}, { type: 'WORKSHOPS_FETCH_ERROR', error: 'error' })).to.eql({
+    expect(workshopList({}, { type: 'WORKSHOPS_FETCH_ERROR', error: 'error' })).to.eql({
       loading: false,
       ready: true,
       error: 'error',
