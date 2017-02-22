@@ -20,7 +20,7 @@ describe('Input Checkbox component', () => {
           name="test-input"
           onBlur={null}
           onChange={() => {}}
-          value={null}
+          checked={false}
         >Input label</Checkbox>
       </FormGroup>
     );
@@ -38,7 +38,7 @@ describe('Input Checkbox component', () => {
           name="test-input"
           onBlur={null}
           onChange={() => {}}
-          value={null}
+          checked={false}
         >Input label</Checkbox>
         <HelpBlock>foo</HelpBlock>
       </FormGroup>
@@ -57,7 +57,7 @@ describe('Input Checkbox component', () => {
           name="test-input"
           onBlur={null}
           onChange={() => {}}
-          value={null}
+          checked={false}
         >Input label</Checkbox>
       </FormGroup>
     );
@@ -76,7 +76,7 @@ describe('Input Checkbox component', () => {
           name="test-input"
           onBlur={null}
           onChange={() => {}}
-          value={null}
+          checked={false}
         >Input label</Checkbox>
         <HelpBlock>foo</HelpBlock>
       </FormGroup>

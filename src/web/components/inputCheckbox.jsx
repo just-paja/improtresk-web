@@ -25,16 +25,20 @@ export default class InputCheckbox extends Component {
       help,
       label,
       name,
+      value,
       ...other
     } = this.props;
+
     const touched = this.isTouched();
     const message = (touched && error) || help;
+
     delete other.touched;
 
     return (
       <FormGroup validationState={(touched && error) ? 'error' : null}>
         <Checkbox
           {...other}
+          checked={!!value}
           name={name}
           onChange={this.handleChange}
         >{label}</Checkbox>
