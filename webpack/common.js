@@ -13,7 +13,7 @@ export const serverEntry = path.resolve(__dirname, '../src/server/main.js');
 export const frontendEntry = path.resolve(__dirname, '../src/web/main.jsx');
 
 export const frontendPlugins = [
-  new webpack.ContextReplacementPlugin(/moment[/]locale$/, /^\.\/(en|ko|ja|zh-cn)$/),
+  new webpack.ContextReplacementPlugin(/moment[/]locale$/, /^\.\/(en|cs|ko|ja|zh-cn)$/),
 ];
 
 export const loaders = [
