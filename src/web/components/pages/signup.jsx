@@ -64,7 +64,12 @@ export default class SignupPage extends Component {
                 spíš dřív, letos očekáváme davovou tlačenici.
               </p>
               <div className={styles.signupsOpenDate}>
-                <Countdown date={signupsOpenDate} />
+                <Countdown
+                  date={signupsOpenDate}
+                  countdownMessage="Přihlášky se otevřou"
+                  readyMessage="Přihlášky jsou otevřené"
+                  suffix
+                />
               </div>
             </div>
           )
