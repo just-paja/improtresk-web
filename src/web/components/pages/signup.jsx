@@ -10,7 +10,7 @@ export default class SignupPage extends Component {
   }
 
   render() {
-    const { onChange, onSubmit, open, ready, signup } = this.props;
+    const { onChange, onSubmit, signupsOpen, ready, signup } = this.props;
     const title = 'Přihláška';
 
     if (!ready) {
@@ -27,7 +27,7 @@ export default class SignupPage extends Component {
         />
         <h1>{title}</h1>
         {
-          open ? (
+          signupsOpen ? (
             <div>
               <p>
                 Napřed tě musíme dostat do systému. Je to jen pár jednoduchých otázek na
@@ -57,13 +57,13 @@ SignupPage.propTypes = {
   onMount: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  open: PropTypes.bool,
+  signupsOpen: PropTypes.bool,
   ready: PropTypes.bool,
   signup: PropTypes.object,
 };
 
 SignupPage.defaultProps = {
-  open: false,
+  signupsOpen: false,
   ready: false,
   signup: null,
 };
