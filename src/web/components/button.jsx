@@ -8,6 +8,7 @@ import styles from './button.css';
 const Button = ({ children, disabled, icon, loading, ...other }) => (
   <BootstrapButton
     {...other}
+    className={styles.buttonSize}
     disabled={loading || disabled}
   >
     <FontAwesome
