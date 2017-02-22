@@ -49,7 +49,9 @@ export default class Input extends Component {
       value,
       ...other
     } = this.props;
+
     delete other.changeLeadsToTouch;
+    delete other.formatValue;
     delete other.touched;
 
     const touched = this.isTouched();
