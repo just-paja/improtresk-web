@@ -14,6 +14,7 @@ import {
 import * as actions from '../constants/actions';
 
 const mapStateToProps = state => ({
+  login: getForm(state, 'login'),
   signup: getForm(state, 'signup'),
   signupsCloseDate: getSignupsCloseDate(state),
   signupsOpen: areSignupsOpen(state),
@@ -24,6 +25,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
+  onLoginChange: (form, field, value) => ({
+    type: actions.FORM_FIELD_CHANGE,
+    form,
+    field,
+    value,
+  }),
+  onLoginSubmit: form => ({ type: actions.FORM_SUBMIT, form }),
   onSignupsChange: (form, field, value) => ({
     type: actions.FORM_FIELD_CHANGE,
     form,
