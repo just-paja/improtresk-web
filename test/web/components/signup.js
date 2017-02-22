@@ -35,6 +35,7 @@ describe('Signup Form component', () => {
           dob: 'dob value',
           team: 'team value',
           rules: false,
+          newsletter: false,
         }}
       />
     ).node).to.eql(
@@ -106,12 +107,13 @@ describe('Signup Form component', () => {
           label={<span>Souhlasím s <Link to="conditions">podmínkami festivalu</Link></span>}
           onChange={() => {}}
           error="rules error"
-          checked={false}
+          value={false}
         />
         <InputCheckbox
           name="newsletter"
           label="Chci dostávat e-mailem novinky o událostech Improligy"
           onChange={() => {}}
+          value={false}
         />
         <Button
           bsStyle="primary"

@@ -99,12 +99,14 @@ export default class Signup extends Component {
           error={errors.rules}
           checked={values.rules}
           onChange={this.handleChange}
+          value={values.rules}
         />
         <InputCheckbox
           name="newsletter"
           label="Chci dostávat e-mailem novinky o událostech Improligy"
           error={errors.newsletter}
           onChange={this.handleChange}
+          value={values.newsletter}
         />
         <Button
           bsStyle="primary"
