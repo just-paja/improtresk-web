@@ -48,8 +48,8 @@ export default class SignupPage extends Component {
             <div>
               <p>
                 Napřed tě musíme dostat do systému. Je to jen pár jednoduchých otázek na
-                které potřebujeme znát odpověď. Určitě by to nemělo zabrat víc jak dvě
-                minuty. <b>V druhém kroce</b> si můžeš poskládat Improtřesk tak jak ti
+                které potřebujeme znát odpověď. Určitě by to nemělo zabrat víc jak pět
+                minut. <b>V druhém kroce</b> si můžeš poskládat Improtřesk tak jak ti
                 bude vyhovovat, tedy vybrat workshop, jídlo a ubytování.
               </p>
               <UserEntry
