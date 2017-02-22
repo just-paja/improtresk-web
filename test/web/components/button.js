@@ -7,10 +7,10 @@ import { shallow } from 'enzyme';
 
 import Button from '../../../src/web/components/button';
 
-describe('Address component', () => {
+describe('Button component', () => {
   it('renders a button', () => {
     expect(shallow(<Button>foo</Button>).node).to.eql(
-      <BootstrapButton disabled={false}>
+      <BootstrapButton className="button-buttonSize" disabled={false}>
         <FontAwesome className="button-buttonFa" name="floppy-o" />
         foo
       </BootstrapButton>
@@ -18,7 +18,7 @@ describe('Address component', () => {
   });
   it('renders a disabled button with rotating icon when loading', () => {
     expect(shallow(<Button loading>foo</Button>).node).to.eql(
-      <BootstrapButton disabled>
+      <BootstrapButton className="button-buttonSize" disabled>
         <FontAwesome className="button-buttonFa fa-spin" name="circle-o-notch" />
         foo
       </BootstrapButton>
