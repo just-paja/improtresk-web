@@ -1,4 +1,5 @@
 import Helmet from 'react-helmet';
+import moment from 'moment';
 import React, { Component, PropTypes } from 'react';
 
 import Navigation from './navigation';
@@ -6,6 +7,8 @@ import Footer from './footer';
 import ProgressBar from './progressBar';
 
 import styles from './app.css';
+
+moment.locale('cs');
 
 export default class App extends Component {
   componentWillMount() {
