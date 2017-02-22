@@ -8,6 +8,10 @@ const defaultState = {
 };
 
 export default combined(defaultState, {
+  [constants.SIGNUPS_OPEN]: state => ({
+    ...state,
+    data: state.data.slice(),
+  }),
   [constants.YEARS_FETCH_STARTED]: fetchStart,
   [constants.YEARS_FETCH_SUCCESS]: fetchSuccess,
   [constants.YEARS_FETCH_ERROR]: fetchError,

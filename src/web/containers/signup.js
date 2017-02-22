@@ -19,6 +19,7 @@ const mapStateToProps = state => ({
   signupsOpen: areSignupsOpen(state),
   signupsOpenDate: getSignupsOpenDate(state),
   ready: state.years.ready,
+  revalidate: state.session.revalidated,
   year: yearCurrent(state),
 });
 
@@ -30,6 +31,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     value,
   }),
   onSubmit: form => ({ type: actions.FORM_SUBMIT, form }),
+  onSignupsOpen: () => ({ type: actions.SIGNUPS_OPEN }),
   onMount: () => ({ type: actions.SIGNUP_MOUNTED }),
 }, dispatch);
 

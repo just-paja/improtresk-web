@@ -18,6 +18,7 @@ export default class SignupPage extends Component {
     const {
       onChange,
       onSubmit,
+      onSignupsOpen,
       signupsOpen,
       signupsOpenDate,
       ready,
@@ -67,6 +68,7 @@ export default class SignupPage extends Component {
                 <Countdown
                   date={signupsOpenDate}
                   countdownMessage="Přihlášky se otevřou"
+                  onFinish={onSignupsOpen}
                   readyMessage="Přihlášky jsou otevřené"
                   suffix
                 />
@@ -84,6 +86,7 @@ export default class SignupPage extends Component {
 SignupPage.propTypes = {
   onMount: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+  onSignupsOpen: PropTypes.func,
   onSubmit: PropTypes.func.isRequired,
   signupsOpen: PropTypes.bool,
   signupsOpenDate: PropTypes.string,
@@ -92,6 +95,7 @@ SignupPage.propTypes = {
 };
 
 SignupPage.defaultProps = {
+  onSignupsOpen: null,
   signupsOpen: false,
   signupsOpenDate: null,
   ready: false,
