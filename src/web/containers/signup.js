@@ -24,14 +24,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  onChange: (form, field, value) => ({
+  onSignupsChange: (form, field, value) => ({
     type: actions.FORM_FIELD_CHANGE,
     form,
     field,
     value,
   }),
-  onSubmit: form => ({ type: actions.FORM_SUBMIT, form }),
   onSignupsOpen: () => ({ type: actions.SIGNUPS_OPEN }),
+  onSignupsSubmit: form => ({ type: actions.FORM_SUBMIT, form }),
   onMount: () => ({ type: actions.SIGNUP_MOUNTED }),
 }, dispatch);
 
