@@ -16,9 +16,9 @@ export default class SignupPage extends Component {
 
   render() {
     const {
-      onChange,
-      onSubmit,
+      onSignupsChange,
       onSignupsOpen,
+      onSignupsSubmit,
       signupsOpen,
       signupsOpenDate,
       ready,
@@ -50,8 +50,8 @@ export default class SignupPage extends Component {
                 bude vyhovovat, tedy vybrat workshop, jídlo a ubytování.
               </p>
               <UserEntry
-                onSignupChange={onChange}
-                onSignupSubmit={onSubmit}
+                onSignupChange={onSignupsChange}
+                onSignupSubmit={onSignupsSubmit}
                 signup={signup}
               />
             </div>
@@ -85,9 +85,9 @@ export default class SignupPage extends Component {
 
 SignupPage.propTypes = {
   onMount: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onSignupsChange: PropTypes.func.isRequired,
   onSignupsOpen: PropTypes.func,
-  onSubmit: PropTypes.func.isRequired,
+  onSignupsSubmit: PropTypes.func.isRequired,
   signupsOpen: PropTypes.bool,
   signupsOpenDate: PropTypes.string,
   ready: PropTypes.bool,
