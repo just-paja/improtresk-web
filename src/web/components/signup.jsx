@@ -97,7 +97,6 @@ export default class Signup extends Component {
           name="rules"
           label={rulesLabel}
           error={errors.rules}
-          checked={values.rules}
           onChange={this.handleChange}
           value={values.rules}
         />

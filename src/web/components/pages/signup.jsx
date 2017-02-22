@@ -2,7 +2,7 @@ import Helmet from 'react-helmet';
 import React, { Component, PropTypes } from 'react';
 
 import Container from '../container';
-import Signup from '../signup';
+import UserEntry from '../userEntry';
 
 export default class SignupPage extends Component {
   componentWillMount() {
@@ -35,11 +35,10 @@ export default class SignupPage extends Component {
                 minuty. <b>V druhém kroce</b> si můžeš poskládat Improtřesk tak jak ti
                 bude vyhovovat, tedy vybrat workshop, jídlo a ubytování.
               </p>
-              <Signup
-                form="signup"
-                onChange={onChange}
-                onSubmit={onSubmit}
-                {...signup}
+              <UserEntry
+                onSignupChange={onChange}
+                onSignupSubmit={onSubmit}
+                signup={signup}
               />
             </div>
           ) : (
