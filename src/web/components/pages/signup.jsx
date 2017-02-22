@@ -2,7 +2,12 @@ import Helmet from 'react-helmet';
 import React, { Component, PropTypes } from 'react';
 
 import Container from '../container';
+import Countdown from '../countdown';
+import HumanDate from '../humanDate';
 import UserEntry from '../userEntry';
+import SignupHowto from '../signupHowto';
+
+import styles from './signup.css';
 
 export default class SignupPage extends Component {
   componentWillMount() {
@@ -10,7 +15,15 @@ export default class SignupPage extends Component {
   }
 
   render() {
-    const { onChange, onSubmit, signupsOpen, ready, signup } = this.props;
+    const {
+      onChange,
+      onSubmit,
+      signupsOpen,
+      signupsOpenDate,
+      ready,
+      signup,
+    } = this.props;
+
     const title = 'Přihláška';
 
     if (!ready) {
@@ -43,10 +56,21 @@ export default class SignupPage extends Component {
             </div>
           ) : (
             <div>
-              <p>Ještě nemáme otevřeno</p>
+              <p>
+                Přihlašování se na této stránce otevře
+                {' '}
+                <HumanDate date={signupsOpenDate} showTime />.
+                Do té doby máš šanci zvážit na jaký workshop chceš. Doporučujeme se přihlásit
+                spíš dřív, letos očekáváme davovou tlačenici.
+              </p>
+              <div className={styles.signupsOpenDate}>
+                <Countdown date={signupsOpenDate} />
+              </div>
             </div>
           )
         }
+        <hr />
+        <SignupHowto />
       </Container>
     );
   }
@@ -57,12 +81,14 @@ SignupPage.propTypes = {
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   signupsOpen: PropTypes.bool,
+  signupsOpenDate: PropTypes.string,
   ready: PropTypes.bool,
   signup: PropTypes.object,
 };
 
 SignupPage.defaultProps = {
   signupsOpen: false,
+  signupsOpenDate: null,
   ready: false,
   signup: null,
 };
