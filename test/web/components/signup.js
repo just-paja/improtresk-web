@@ -25,16 +25,16 @@ describe('Signup Form component', () => {
           email: 'email error',
           phone: 'phone error',
           dob: 'dob error',
-          team: 'team error',
-          rules: 'rules error',
+          team_name: 'team error',
+          rules_accepted: 'rules error',
         }}
         values={{
           name: 'name value',
           email: 'email value',
           phone: 'phone value',
           dob: 'dob value',
-          team: 'team value',
-          rules: false,
+          team_name: 'team value',
+          rules_accepted: false,
           newsletter: false,
         }}
       />
@@ -92,18 +92,14 @@ describe('Signup Form component', () => {
             'mistností na spaní'
           }
           label="Tvoje skupina"
-          name="team"
+          name="team_name"
           onChange={() => {}}
-          options={[
-            { value: 'foo', label: 'Foo' },
-            { value: 'bar', label: 'Bar' },
-          ]}
           error="team error"
           value="team value"
           touched={false}
         />
         <InputCheckbox
-          name="rules"
+          name="rules_accepted"
           label={<span>Souhlasím s <Link to="conditions">podmínkami festivalu</Link></span>}
           onChange={() => {}}
           error="rules error"

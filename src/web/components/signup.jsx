@@ -83,22 +83,18 @@ export default class Signup extends Component {
             'mistností na spaní'
           }
           label="Tvoje skupina"
-          name="team"
+          name="team_name"
           onChange={this.handleChange}
-          options={[
-            { value: 'foo', label: 'Foo' },
-            { value: 'bar', label: 'Bar' },
-          ]}
-          error={errors.team}
-          value={values.team}
+          error={errors.team_name}
+          value={values.team_name}
           touched={submitted}
         />
         <InputCheckbox
-          name="rules"
+          name="rules_accepted"
           label={rulesLabel}
-          error={errors.rules}
+          error={errors.rules_accepted}
           onChange={this.handleChange}
-          value={values.rules}
+          value={values.rules_accepted}
         />
         <InputCheckbox
           name="newsletter"

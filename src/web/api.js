@@ -40,7 +40,7 @@ export const fetchWorkshopDifficulties = ({ ...params }) =>
 export const fetchWorkshops = ({ year, ...params }) =>
   apiFetch(`years/${year}/workshops/`, params);
 
-export const signup = ({ data, ...params }) => apiFetch('signup/', {
+export const signup = ({ data, ...params }) => apiFetch('register/', {
   ...params,
   method: 'POST',
   body: JSON.stringify(data),

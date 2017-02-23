@@ -65,8 +65,9 @@ InputCheckbox.propTypes = {
   onChange: PropTypes.func,
   touched: PropTypes.bool,
   value: PropTypes.oneOfType([
-    PropTypes.string,
+    PropTypes.bool,
     PropTypes.object,
+    PropTypes.string,
   ]),
 };
 
