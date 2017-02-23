@@ -83,7 +83,7 @@ describe('Forms reducer', () => {
     )).to.eql({
       testForm: {
         errors: {},
-        sending: false,
+        loading: false,
         submitted: false,
         valid: true,
         values: {
@@ -135,7 +135,7 @@ describe('Forms reducer', () => {
       },
     });
   });
-  it('updates form sending status on submit prevention', () => {
+  it('updates form loading status on submit prevention', () => {
     expect(forms(
       {
         testForm: {
@@ -155,13 +155,13 @@ describe('Forms reducer', () => {
           foo: 'bar',
         },
         submitted: true,
-        sending: false,
+        loading: false,
         valid: false,
         errors: {},
       },
     });
   });
-  it('updates form sending status on submit allowance', () => {
+  it('updates form loading status on submit allowance', () => {
     expect(forms(
       {
         testForm: {
@@ -181,13 +181,13 @@ describe('Forms reducer', () => {
           foo: 'bar',
         },
         submitted: true,
-        sending: true,
+        loading: true,
         valid: true,
         errors: {},
       },
     });
   });
-  it('updates form sending status on submit success', () => {
+  it('updates form loading status on submit success', () => {
     expect(forms(
       {
         testForm: {
@@ -207,13 +207,13 @@ describe('Forms reducer', () => {
           foo: 'bar',
         },
         submitted: true,
-        sending: false,
+        loading: false,
         valid: true,
         errors: {},
       },
     });
   });
-  it('updates form sending status on submit error', () => {
+  it('updates form loading status on submit error', () => {
     expect(forms(
       {
         testForm: {
@@ -234,7 +234,7 @@ describe('Forms reducer', () => {
           foo: 'bar',
         },
         submitted: true,
-        sending: false,
+        loading: false,
         valid: true,
         errors: {},
         error: 'foo',
