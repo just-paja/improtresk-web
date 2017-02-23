@@ -32,7 +32,7 @@ describe('Form saga helpers', () => {
         email: 'test@example.com',
         phone: '+420 632-157-987',
         dob: '1980-01-15',
-        rules: true,
+        rules_accepted: true,
       },
     }).value).to.eql(put({
       type: 'FORM_VALUES_VALIDATE',
@@ -54,13 +54,13 @@ describe('Form saga helpers', () => {
         dob: '1970-01-01',
         email: 'test@example.com',
         phone: '123456789',
-        rules: true,
+        rules_accepted: true,
       },
     }).value).to.eql(signupValidator({
       dob: '1970-01-01',
       email: 'test@example.com',
       phone: '123456789',
-      rules: true,
+      rules_accepted: true,
     }));
     expect(generator.next({ valid: false }).value).to.eql(put({
       type: 'FORM_SUBMIT_PREVENTED',
@@ -81,13 +81,13 @@ describe('Form saga helpers', () => {
         dob: '1970-01-01',
         email: 'test@example.com',
         phone: '123456789',
-        rules: true,
+        rules_accepted: true,
       },
     }).value).to.eql(signupValidator({
       dob: '1970-01-01',
       email: 'test@example.com',
       phone: '123456789',
-      rules: true,
+      rules_accepted: true,
     }));
     expect(generator.next({ valid: true }).value).to.eql(put({
       type: 'FORM_SUBMIT_ALLOWED',

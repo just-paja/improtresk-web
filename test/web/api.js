@@ -136,10 +136,10 @@ describe('API helper', () => {
       expect(nock.isDone()).to.equal(true);
     });
   });
-  it('signup posts signup', () => {
+  it('register posts register', () => {
     nock(apiSource)
-    .post('/signup/')
-    .reply(200, {});
+    .post('/register/')
+    .reply(201, {});
 
     return api.signup({ apiSource, data: { foo: 'bar' } })
     .then(() => {
