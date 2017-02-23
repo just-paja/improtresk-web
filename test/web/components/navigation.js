@@ -19,7 +19,12 @@ describe('Navigation component', () => {
         ]}
       />
     ).node).to.eql(
-      <Navbar fixedTop>
+      <Navbar
+        expanded={false}
+        fixedTop
+        onSelect={() => {}}
+        onToggle={() => {}}
+      >
         <Navbar.Header>
           <Navbar.Brand>
             <Link to="home">Improtřesk</Link>
