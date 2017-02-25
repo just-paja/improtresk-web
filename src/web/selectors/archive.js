@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 
 import { isStateValid } from './common';
 import { getLectorRoles, getLectors } from './lectors';
+import { getPriceLevels } from './prices';
 import { getWorkshopDifficulties, mapWorkshop } from './workshops';
 
 const getArchiveState = state => state.archive;
@@ -20,9 +21,9 @@ export const getArchivedYearTopic = createSelector(
 );
 
 export const getArchivedYearWorkshops = createSelector(
-  [getArchiveData, getLectors, getLectorRoles, getWorkshopDifficulties],
-  (current, lectors, roles, difficulties) => (current ? (
-    current.workshops.map(mapWorkshop(lectors, roles, difficulties)) || []
+  [getArchiveData, getLectors, getLectorRoles, getWorkshopDifficulties, getPriceLevels],
+  (current, lectors, roles, difficulties, priceLevels) => (current ? (
+    current.workshops.map(mapWorkshop(lectors, roles, difficulties, priceLevels)) || []
   ) : [])
 );
 
