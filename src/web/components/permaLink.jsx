@@ -11,13 +11,14 @@ const transformToSlug = str =>
     .replace(/[^a-z0-9-]/g, '')
     .substr(0, 48);
 
-const PermaLink = ({ id, children, title, to, routeParams = {} }) => (
+const PermaLink = ({ id, children, title, to, routeParams = {}, ...other }) => (
   <Link
     to={to}
     params={{
       ...routeParams,
       slug: `${transformToSlug(title)}-${id}`,
     }}
+    {...other}
   >{children}</Link>
 );
 
