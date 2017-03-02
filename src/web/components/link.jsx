@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 import { Link as RouterLink } from 'react-router';
-import { reverse } from '../routes';
+import { reverse } from '../routeTable';
 
 const Link = ({ to, params, ...other }) =>
   <RouterLink to={reverse(to, params)} {...other} />;

@@ -6,7 +6,7 @@ import NotFound from '../notFound';
 import ObjectList from '../objectList';
 import WorkshopSummaryOneLine from '../workshopSummaryOneLine';
 
-import { idFromSlug } from '../../routes';
+import { idFromSlug } from '../../routeTable';
 
 export default class ArchivedYear extends Component {
   componentWillMount() {

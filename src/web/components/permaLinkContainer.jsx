@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { remove } from 'diacritics';
 
-import { reverse } from '../routes';
+import { reverse } from '../routeTable';
 
 const transformToSlug = str =>
   remove(str)
