@@ -7,6 +7,8 @@ import LocationItem from '../locationItem';
 import ObjectList from '../objectList';
 import MarkerMap from '../markerMap';
 
+import WellWithDecoration from '../wellWithDecoration';
+
 export default class Locations extends Component {
   componentWillMount() {
     this.props.onMount();
@@ -31,10 +33,12 @@ export default class Locations extends Component {
         <h1>{title}</h1>
         <Markdown source={intro} />
         <MarkerMap markers={markers} />
-        <ObjectList
-          data={markers}
-          Component={LocationItem}
-        />
+        <WellWithDecoration image="/static/theme/2017/bg-leave.jpg">
+          <ObjectList
+            data={markers}
+            Component={LocationItem}
+          />
+        </WellWithDecoration>
       </Container>
     );
   }

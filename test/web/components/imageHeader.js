@@ -10,7 +10,7 @@ describe('Image Header component', () => {
     expect(shallow(
       <ImageHeader image="foo" />
     ).node).to.eql(
-      <div className="imageHeader-header" style={{ backgroundImage: 'foo' }}>
+      <div className="imageHeader-header" style={{ backgroundImage: 'url(foo)' }}>
         <img src="foo" alt="" className="imageHeader-image" />
       </div>
     );
