@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 
+const getState = state => state;
 const getLectorListReady = state => state.lectors.list.ready;
 const getLectorRolesReady = state => state.lectors.roles.ready;
 const getWorkshopDifficultiesReady = state => state.workshops.difficulties.ready;
@@ -31,8 +32,27 @@ export const isAppReady = createSelector(
 );
 
 export const countAppRequests = createSelector(
-  state => state,
+  getState,
   state => countReducerFlags('loading', state)
+);
+
+const getFatalErrors = (object, errors = []) => {
+  Object.keys(object).forEach((objectKey) => {
+    const val = object[objectKey];
+
+    if (objectKey === 'error') {
+      errors.push(val);
+    } else if (val && typeof val === 'object' && !Array.isArray(val)) {
+      getFatalErrors(val, errors);
+    }
+  });
+
+  return errors;
+};
+
+export const getAppErrors = createSelector(
+  getState,
+  getFatalErrors
 );
 
 export default { isAppReady };
