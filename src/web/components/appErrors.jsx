@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 
 import Container from './container';
-
-import styles from './appErrors.css';
+import ImageHeader from './imageHeader';
 
 const mapErrorMessage = (message) => {
   if (message === 'Failed to fetch' || message.indexOf('connect') > -1) {
@@ -14,9 +13,7 @@ const mapErrorMessage = (message) => {
 
 const AppErrors = ({ errors }) => (
   <Container>
-    <div className={styles.header}>
-      <img src="/static/theme/2017/bg-leave.jpg" alt="" className={styles.image} />
-    </div>
+    <ImageHeader image="/static/theme/2017/bg-leave.jpg" />
     <h1>Jejda, něco se pokazilo</h1>
     <p>
       Stránku se nepovedlo vykreslit, protože na cestě mezi klávesnicí a databází
