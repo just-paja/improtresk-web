@@ -31,20 +31,18 @@ describe('Application selectors', () => {
     })).to.equal(2);
   });
   it('getAppErrors all fatal errors', () => {
-    const error1 = new Error('foo');
-    const error2 = new Error('bar');
     expect(getAppErrors({
       accomodation: {
-        error: error1,
+        error: new Error('foo'),
       },
       workshops: {
         workshopDetail: {
-          error: error2,
+          error: new Error('bar'),
         },
       },
-    })).to.eql([
-      error1,
-      error2,
-    ]);
+      news: {
+        error: undefined,
+      },
+    })).to.eql(['foo', 'bar']);
   });
 });

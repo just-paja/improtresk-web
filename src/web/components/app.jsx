@@ -1,6 +1,7 @@
 import moment from 'moment';
 import React, { Component, PropTypes } from 'react';
 
+import AppErrors from './appErrors';
 import AppHelmet from './appHelmet';
 import Navigation from './navigation';
 import Footer from './footer';
@@ -20,6 +21,7 @@ class App extends Component {
       activeRequests,
       children,
       currentYear,
+      errors,
       host,
       ready,
       location: { pathname },
@@ -43,7 +45,7 @@ class App extends Component {
         />
         <Navigation currentYear={currentYear} years={years} />
         <ProgressBar activeRequests={activeRequests} />
-        {children}
+        {errors.length ? <AppErrors errors={errors} /> : children}
         <Footer partners={[]} />
       </div>
     );
@@ -57,8 +59,9 @@ App.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
   ]),
   currentYear: PropTypes.shape({
-    year: PropTypes.number,
-  }).isRequired,
+    year: PropTypes.string,
+  }),
+  errors: PropTypes.arrayOf(String).isRequired,
   host: PropTypes.string,
   ready: PropTypes.bool,
   location: PropTypes.shape({
