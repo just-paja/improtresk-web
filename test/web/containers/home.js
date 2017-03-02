@@ -24,14 +24,16 @@ describe('Home container', () => {
       },
       texts: {},
     });
+    const comp = shallow(<HomeContainer store={store} />);
 
-    expect(shallow(<HomeContainer store={store} />).node).to.eql(
+    expect(comp.node).to.eql(
       <Home
         about=""
         news={[]}
         onMount={() => {}}
         ready={false}
         store={store}
+        storeSubscription={comp.prop('storeSubscription')}
         year={null}
       />
     );
@@ -61,8 +63,9 @@ describe('Home container', () => {
         ready: true,
       },
     });
+    const comp = shallow(<HomeContainer store={store} />);
 
-    expect(shallow(<HomeContainer store={store} />).node).to.eql(
+    expect(comp.node).to.eql(
       <Home
         about="foo"
         news={[
@@ -71,6 +74,7 @@ describe('Home container', () => {
         onMount={() => {}}
         ready
         store={store}
+        storeSubscription={comp.prop('storeSubscription')}
         year={{ id: 1, year: '2015' }}
       />
     );
