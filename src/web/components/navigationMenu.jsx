@@ -7,7 +7,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import PermaLinkContainer from './permaLinkContainer';
 
-import { reverse } from '../routes';
+import { reverse } from '../routeTable';
 
 const NavigationMenu = ({ currentYear, years, ...props }) => {
   const currentYearItems = currentYear ? [

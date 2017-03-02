@@ -7,7 +7,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import HumanDate from './humanDate';
 
-import { reverse } from '../routes';
+import { reverse } from '../routeTable';
 
 const getSignupText = (endAt, startAt, alreadyFull) => {
   if (moment().isBefore(startAt)) {
