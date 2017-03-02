@@ -5,10 +5,12 @@ import React, { PropTypes } from 'react';
 import Row from 'react-bootstrap/lib/Row';
 
 import Gallery from './gallery';
+import HumanDate from './humanDate';
 import LectorSummary from './lectorSummary';
 import PermaLink from './permaLink';
+import Price from './price';
 
-const WorkshopDetail = ({ id, desc, difficulty, name, lectors, photos }) => (
+const WorkshopDetail = ({ id, desc, difficulty, name, lectors, photos, prices }) => (
   <div>
     <h1>
       <PermaLink id={id} title={name} to="workshops:item">{name}</PermaLink>
@@ -20,6 +22,20 @@ const WorkshopDetail = ({ id, desc, difficulty, name, lectors, photos }) => (
           <FontAwesome name="hand-rock-o" /> {difficulty}
         </li> : null
       }
+      <li>
+        <FontAwesome name="money" /> Cena:
+        <ul>
+          {prices.map(price => (
+            <li key={price.name}>
+              <HumanDate date={price.takesEffectOn} />
+              {' - '}
+              <HumanDate date={price.endsOn} />:
+              {' '}
+              <Price price={price.price} />
+            </li>
+          ))}
+        </ul>
+      </li>
     </ul>
     <div>
       <Markdown source={desc} />
@@ -46,6 +62,11 @@ WorkshopDetail.propTypes = {
   difficulty: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   photos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  prices: PropTypes.arrayOf(PropTypes.shape({
+    endsOn: PropTypes.number,
+    price: PropTypes.number.isRequired,
+    takesEffectOn: PropTypes.string.isRequired,
+  })).isRequired,
   lectors: PropTypes.arrayOf(PropTypes.shape({
     lector: PropTypes.shape({
       name: PropTypes.string,
