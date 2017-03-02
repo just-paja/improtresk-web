@@ -5,6 +5,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import App from '../../../src/web/components/app';
+import AppErrors from '../../../src/web/components/appErrors';
 import AppHelmet from '../../../src/web/components/appHelmet';
 import Footer from '../../../src/web/components/footer';
 import Navigation from '../../../src/web/components/navigation';
@@ -17,6 +18,7 @@ describe('App component', () => {
         host="http://foo"
         onMount={() => {}}
         currentYear={{ year: '2016', topic: 'Kůže' }}
+        errors={[]}
         ready={false}
         location={{ pathname: '/' }}
         years={[
@@ -34,6 +36,7 @@ describe('App component', () => {
         host="http://foo"
         onMount={() => {}}
         currentYear={{ year: '2016', topic: 'Kůže' }}
+        errors={[]}
         ready
         location={{ pathname: '/' }}
         years={[
@@ -62,11 +65,48 @@ describe('App component', () => {
       </div>
     );
   });
+  it('renders errors if any', () => {
+    expect(shallow(
+      <App
+        activeRequests={5}
+        errors={['foo']}
+        host="http://foo"
+        onMount={() => {}}
+        currentYear={{ year: '2016', topic: 'Kůže' }}
+        ready
+        location={{ pathname: '/' }}
+        years={[
+          { year: '2016', topic: 'Ovce' },
+        ]}
+      >
+        <div>foo</div>
+      </App>
+    ).node).to.eql(
+      <div className="app-app">
+        <AppHelmet
+          defaultTitle="Festival divadelní improvizace"
+          host="http://foo"
+          pathname="/"
+          titleTemplate="%s - Improtřesk 2016"
+        />
+        <Navigation
+          currentYear={{ year: '2016', topic: 'Kůže' }}
+          years={[
+            { year: '2016', topic: 'Ovce' },
+          ]}
+        />
+        <ProgressBar activeRequests={5} />
+        <AppErrors errors={['foo']} />
+        <Footer partners={[]} />
+      </div>
+    );
+  });
   it('calls onMount on componentDidMount', () => {
     const mountSpy = sinon.spy();
     const comp = shallow(
       <App
         onMount={mountSpy}
+        errors={[]}
         location={{ pathname: '/' }}
         years={[
           { year: '2016', topic: 'Ovce' },

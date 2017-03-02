@@ -40,10 +40,12 @@ const getFatalErrors = (object, errors = []) => {
   Object.keys(object).forEach((objectKey) => {
     const val = object[objectKey];
 
-    if (objectKey === 'error') {
-      errors.push(val);
-    } else if (val && typeof val === 'object' && !Array.isArray(val)) {
-      getFatalErrors(val, errors);
+    if (val) {
+      if (objectKey === 'error' && val.message) {
+        errors.push(val.message);
+      } else if (typeof val === 'object' && !Array.isArray(val)) {
+        getFatalErrors(val, errors);
+      }
     }
   });
 
