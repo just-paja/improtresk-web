@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/just-paja/improtresk-web/issues"
   },
-  "homepage": "https://github.com/just-paja/improtresk-web#readme",
+  "homepage": "https://improtresk.cz",
   "dependencies": {
     "body-parser": "^1.16.0",
     "bootswatch": "^3.3.7",
