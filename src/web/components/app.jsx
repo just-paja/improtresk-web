@@ -1,7 +1,7 @@
-import Helmet from 'react-helmet';
 import moment from 'moment';
 import React, { Component, PropTypes } from 'react';
 
+import AppHelmet from './appHelmet';
 import Navigation from './navigation';
 import Footer from './footer';
 import ProgressBar from './progressBar';
@@ -10,7 +10,7 @@ import styles from './app.css';
 
 moment.locale('cs');
 
-export default class App extends Component {
+class App extends Component {
   componentWillMount() {
     this.props.onMount();
   }
@@ -35,81 +35,11 @@ export default class App extends Component {
 
     return (
       <div className={styles.app}>
-        <Helmet
+        <AppHelmet
           defaultTitle={defaultTitle}
+          host={host}
+          pathname={pathname}
           titleTemplate={titleTemplate}
-          meta={[
-            {
-              property: 'og:title',
-              content: titleTemplate.replace('%s', defaultTitle),
-            },
-            {
-              property: 'og:description',
-              content:
-                'Improtřesk je český festival divadelní improvizace a největší setkání ' +
-                'improvizátorů z celé České republiky. Každý rok se na Improtřesku ' +
-                'otevírají dílny z oblasti improvizačního divadla na kterých se schází ' +
-                'nadšenci improvizačního divadla i veřejnost.',
-            },
-            {
-              property: 'og:type',
-              content: 'website',
-            },
-            {
-              property: 'og:url',
-              content: `${host}${pathname}`,
-            },
-            {
-              name: 'msapplication-config',
-              content: '/static/theme/favicon/browserconfig.xml',
-            },
-            {
-              name: 'theme-color',
-              content: '#ffffff',
-            },
-          ]}
-          link={[
-            {
-              rel: 'stylesheet',
-              type: 'text/css',
-              href: '/static/bootswatch/sandstone/bootstrap.min.css',
-            },
-            {
-              rel: 'stylesheet',
-              type: 'text/css',
-              href: '/static/font-awesome/css/font-awesome.min.css',
-            },
-            {
-              rel: 'apple-touch-icon',
-              sizes: '180x180',
-              href: '/static/theme/favicon/apple-icon-180x180.png',
-            },
-            {
-              rel: 'icon',
-              type: 'image/png',
-              sizes: '32x32',
-              href: '/static/theme/favicon/favicon-32x32.png',
-            },
-            {
-              rel: 'icon',
-              type: 'image/png',
-              sizes: '16x16',
-              href: '/static/theme/favicon/favicon-16x16.png',
-            },
-            {
-              rel: 'manifest',
-              href: '/static/theme/favicon/manifest.json',
-            },
-            {
-              rel: 'mask-icon',
-              color: '#5bbad5',
-              href: '/static/theme/favicon/safari-pinned-tab.svg',
-            },
-            {
-              rel: 'shortcut icon',
-              href: '/static/theme/favicon/favicon.ico',
-            },
-          ]}
         />
         <Navigation currentYear={currentYear} years={years} />
         <ProgressBar activeRequests={activeRequests} />
@@ -126,7 +56,9 @@ App.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
-  currentYear: PropTypes.object,
+  currentYear: PropTypes.shape({
+    year: PropTypes.number,
+  }).isRequired,
   host: PropTypes.string,
   ready: PropTypes.bool,
   location: PropTypes.shape({
@@ -145,3 +77,5 @@ App.defaultProps = {
   route: null,
   years: null,
 };
+
+export default App;
