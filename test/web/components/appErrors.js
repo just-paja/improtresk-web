@@ -5,6 +5,7 @@ import { shallow } from 'enzyme';
 
 import AppErrors from '../../../src/web/components/appErrors';
 import Container from '../../../src/web/components/container';
+import ImageHeader from '../../../src/web/components/imageHeader';
 
 describe('App Errors component', () => {
   it('renders a problem warning with unknown message', () => {
@@ -14,9 +15,7 @@ describe('App Errors component', () => {
       />
     ).node).to.eql(
       <Container>
-        <div className="appErrors-header">
-          <img src="/static/theme/2017/bg-leave.jpg" alt="" className="appErrors-image" />
-        </div>
+        <ImageHeader image="/static/theme/2017/bg-leave.jpg" />
         <h1>Jejda, něco se pokazilo</h1>
         <p>
           Stránku se nepovedlo vykreslit, protože na cestě mezi klávesnicí a databází
@@ -36,9 +35,7 @@ describe('App Errors component', () => {
       />
     ).node).to.eql(
       <Container>
-        <div className="appErrors-header">
-          <img src="/static/theme/2017/bg-leave.jpg" alt="" className="appErrors-image" />
-        </div>
+        <ImageHeader image="/static/theme/2017/bg-leave.jpg" />
         <h1>Jejda, něco se pokazilo</h1>
         <p>
           Stránku se nepovedlo vykreslit, protože na cestě mezi klávesnicí a databází
@@ -58,9 +55,7 @@ describe('App Errors component', () => {
       />
     ).node).to.eql(
       <Container>
-        <div className="appErrors-header">
-          <img src="/static/theme/2017/bg-leave.jpg" alt="" className="appErrors-image" />
-        </div>
+        <ImageHeader image="/static/theme/2017/bg-leave.jpg" />
         <h1>Jejda, něco se pokazilo</h1>
         <p>
           Stránku se nepovedlo vykreslit, protože na cestě mezi klávesnicí a databází
