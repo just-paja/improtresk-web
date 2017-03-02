@@ -22,20 +22,22 @@ const WorkshopDetail = ({ id, desc, difficulty, name, lectors, photos, prices })
           <FontAwesome name="hand-rock-o" /> {difficulty}
         </li> : null
       }
-      <li>
-        <FontAwesome name="money" /> Cena:
-        <ul>
-          {prices.map(price => (
-            <li key={price.name}>
-              <HumanDate date={price.takesEffectOn} />
-              {' - '}
-              <HumanDate date={price.endsOn} />:
-              {' '}
-              <Price price={price.price} />
-            </li>
-          ))}
-        </ul>
-      </li>
+      {prices.length ?
+        <li>
+          <FontAwesome name="money" /> Cena:
+          <ul>
+            {prices.map(price => (
+              <li key={price.name}>
+                <HumanDate date={price.takesEffectOn} />
+                {' - '}
+                <HumanDate date={price.endsOn} />:
+                {' '}
+                <Price price={price.price} />
+              </li>
+            ))}
+          </ul>
+        </li> : null
+      }
     </ul>
     <div>
       <Markdown source={desc} />

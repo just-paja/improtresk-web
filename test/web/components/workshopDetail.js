@@ -28,6 +28,7 @@ describe('Workshop Detail component', () => {
         difficulty="Pro všechny"
         name="Pantomima a fyzické divadlo"
         photos={[]}
+        prices={[]}
         lectors={[
           {
             id: 5,
