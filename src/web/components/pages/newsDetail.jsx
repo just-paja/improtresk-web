@@ -9,7 +9,7 @@ import Gallery from '../gallery';
 import News from '../news';
 import NotFound from '../notFound';
 
-import { idFromSlug } from '../../routes';
+import { idFromSlug } from '../../routeTable';
 
 export default class NewsDetail extends Component {
   componentWillMount() {

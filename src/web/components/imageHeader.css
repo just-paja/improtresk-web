@@ -1,0 +1,12 @@
+:local .header {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center top;
+  position: relative;
+}
+
+:local .image {
+  display: block;
+  visibility: hidden;
+  width: 100%;
+}

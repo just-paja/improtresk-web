@@ -25,13 +25,26 @@ const assets = {
 if (process.env.NODE_ENV === 'production') {
   const assetsPath = path.resolve('./dist/webpack-assets.json');
   const assetsRaw = JSON.parse(fs.readFileSync(assetsPath));
-  Object.keys(assetsRaw).forEach((asset) => {
-    assetTypes.forEach((type) => {
-      if (assetsRaw[asset][type]) {
-        assets[type].push(assetsRaw[asset][type]);
+  Object.keys(assetsRaw)
+    .sort((a, b) => {
+      if (a === 'vendor') {
+        return 1;
       }
+      if (b === 'vendor') {
+        return 1;
+      }
+      if (a === b) {
+        return 0;
+      }
+      return -1;
+    })
+    .forEach((asset) => {
+      assetTypes.forEach((type) => {
+        if (assetsRaw[asset][type]) {
+          assets[type].push(assetsRaw[asset][type]);
+        }
+      });
     });
-  });
 } else {
   assets.js.push('app.js');
 }

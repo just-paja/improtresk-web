@@ -1,6 +1,9 @@
 import { expect } from 'chai';
 
-import { countAppRequests } from '../../../src/web/selectors/app';
+import {
+  countAppRequests,
+  getAppErrors,
+} from '../../../src/web/selectors/app';
 
 describe('Application selectors', () => {
   it('countAppRequests returns 0 when no request is loading', () => {
@@ -26,5 +29,20 @@ describe('Application selectors', () => {
         },
       },
     })).to.equal(2);
+  });
+  it('getAppErrors all fatal errors', () => {
+    expect(getAppErrors({
+      accomodation: {
+        error: new Error('foo'),
+      },
+      workshops: {
+        workshopDetail: {
+          error: new Error('bar'),
+        },
+      },
+      news: {
+        error: undefined,
+      },
+    })).to.eql(['foo', 'bar']);
   });
 });

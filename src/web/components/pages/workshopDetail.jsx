@@ -5,7 +5,7 @@ import Container from '../container';
 import NotFound from '../notFound';
 import WorkshopDetail from '../workshopDetail';
 
-import { idFromSlug } from '../../routes';
+import { idFromSlug } from '../../routeTable';
 
 export default class WorkshopDetailPage extends Component {
   componentWillMount() {
