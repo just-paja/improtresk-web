@@ -8,3 +8,8 @@ export const getHost =
 
 export const getApiSource =
   createSelector(getSessionState, session => session.apiSource);
+
+export const isLoggedIn = createSelector(
+  getSessionState,
+  session => !!session.recognized
+);

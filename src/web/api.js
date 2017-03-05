@@ -51,6 +51,12 @@ export const signup = ({ data, ...params }) => apiFetch('register/', {
   body: JSON.stringify(data),
 });
 
+export const fetchParticipant = () => apiFetch('participant');
+
+export const updateParticipantLastAction = () =>
+  apiFetch('participant/updateLastAction', {
+    method: 'POST',
+  });
 
 export const fetchMarker = ({ address, ...params }) => fetch(
   'https://maps.googleapis.com/maps/api/geocode/' +

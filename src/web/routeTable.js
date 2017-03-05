@@ -16,6 +16,7 @@ export const urlTable = {
   schedule: '/program',
   contact: '/kontakt',
   'archive:year': '/archiv/:slug',
+  'participant:home': '/ucastnik',
 };
 
 export const resolver = new Crossing(new RegExp(':([A-Za-z0-9-_%]{1,})'));
