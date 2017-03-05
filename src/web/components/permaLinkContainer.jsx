@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { remove } from 'diacritics';
 
-import { reverse } from '../routes';
+import { reverse } from '../routeTable';
 
 const transformToSlug = str =>
   remove(str)
@@ -12,12 +12,13 @@ const transformToSlug = str =>
     .replace(/[^a-z0-9-]/g, '')
     .substr(0, 48);
 
-const PermaLink = ({ id, children, title, to, routeParams = {} }) => (
+const PermaLink = ({ id, children, title, to, routeParams = {}, ...other }) => (
   <LinkContainer
     to={reverse(to, {
       ...routeParams,
       slug: `${transformToSlug(title)}-${id}`,
     })}
+    {...other}
   >{children}</LinkContainer>
 );
 

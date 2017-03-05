@@ -59,10 +59,14 @@ describe('Archive selectors', () => {
           data: [],
         },
       },
+      years: {
+        data: [],
+      },
     })).to.eql([
       {
         difficulty: null,
         lectors: [],
+        prices: [],
         name: 'foo',
       },
     ]);
@@ -83,6 +87,9 @@ describe('Archive selectors', () => {
         difficulties: {
           data: [],
         },
+      },
+      years: {
+        data: [],
       },
     })).to.eql([]);
   });

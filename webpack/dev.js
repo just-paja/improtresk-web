@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import webpack from 'webpack';
 
 import { loaders, globalOptions, frontendEntry, frontendPlugins } from './common';
@@ -15,18 +16,17 @@ export default {
   },
   devtool: 'eval-source-map',
   module: {
-    preLoaders: [
+    rules: [
       {
+        enforce: 'pre',
         test: /(\.js$|\.jsx$)/,
         exclude: /node_modules/,
         loader: 'eslint-loader',
       },
-    ],
-    loaders: [
       ...loaders,
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader!postcss-loader',
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
     ],
   },

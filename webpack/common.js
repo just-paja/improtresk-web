@@ -5,7 +5,7 @@ import webpack from 'webpack';
 
 export const globalOptions = {
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
   },
 };
 
@@ -20,7 +20,7 @@ export const loaders = [
   {
     test: /\.jsx?$/,
     exclude: /node_modules/,
-    loaders: ['babel?presets[]=react,presets[]=es2015'],
+    loader: 'babel-loader',
   },
   {
     test: /\.json$/,
@@ -37,8 +37,6 @@ export const loaders = [
 ];
 
 export const optimizePlugins = [
-  new webpack.optimize.OccurenceOrderPlugin(true),
-  new webpack.optimize.DedupePlugin(),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false,
