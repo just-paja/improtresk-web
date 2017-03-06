@@ -16,15 +16,20 @@ export const getSignupsOpenDate =
     year => (year && year.startSignupsAt ? year.startSignupsAt : null)
   );
 
-const getNow = () => moment();
+export const getForceOpen =
+  createSelector(
+    state => state.years,
+    years => years.forceOpen
+  );
 
 export const areSignupsOpen = createSelector(
-  [getSignupsOpenDate, getSignupsCloseDate, getNow],
-  (start, end, now) => {
+  [getSignupsOpenDate, getSignupsCloseDate, getForceOpen],
+  (start, end, forceOpen) => {
+    const now = moment();
     if (!start || !end) {
       return false;
     }
 
-    return now.isAfter(start) && now.isBefore(end);
+    return (now.isAfter(start) && now.isBefore(end)) || forceOpen;
   }
 );

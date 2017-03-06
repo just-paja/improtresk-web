@@ -91,6 +91,7 @@ describe('Signup selectors', () => {
             startDate: '2016-02-03',
           },
         ],
+        forceOpen: false,
       },
     })).to.equal(false);
   });
@@ -105,6 +106,7 @@ describe('Signup selectors', () => {
             startSignupsAt: '2016-01-03T03:04:05',
           },
         ],
+        forceOpen: false,
       },
     })).to.equal(false);
   });
@@ -118,6 +120,7 @@ describe('Signup selectors', () => {
             startDate: '2016-01-01',
           },
         ],
+        forceOpen: false,
       },
     })).to.equal(false);
   });
@@ -132,6 +135,7 @@ describe('Signup selectors', () => {
             startSignupsAt: '2015-01-03T03:04:05',
           },
         ],
+        forceOpen: false,
       },
     })).to.equal(false);
   });
@@ -146,6 +150,7 @@ describe('Signup selectors', () => {
             startSignupsAt: '2016-01-01T03:04:05',
           },
         ],
+        forceOpen: false,
       },
     })).to.equal(true);
   });
