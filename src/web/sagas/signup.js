@@ -10,15 +10,15 @@ const formSelector = action =>
   action.type === constants.FORM_SUBMIT_ALLOWED && action.form === 'signup';
 
 export function* sendSignup(action) {
-  const data = select(getForm, action.form);
+  const form = yield select(getForm, action.form);
   yield fetchResource(
     api.signup,
     {
-      onStart: constants.SIGNUP_SUBMIT_STARTED,
+      onStart: constants.FORM_SUBMIT_STARTED,
       onSuccess: constants.FORM_SUBMIT_SUCCESS,
       onError: constants.FORM_SUBMIT_ERROR,
       form: action.form,
-      data,
+      data: form.values,
     }
   );
 }
