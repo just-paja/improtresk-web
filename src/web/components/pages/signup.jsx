@@ -33,7 +33,7 @@ export default class SignupPage extends Component {
     if (!ready) {
       return null;
     }
-
+    /* eslint-disable no-nested-ternary */
     return (
       <Container>
         <Helmet
@@ -62,24 +62,33 @@ export default class SignupPage extends Component {
               />
             </div>
           ) : (
-            <div>
-              <p>
-                Přihlašování se na této stránce otevře
-                {' '}
-                <HumanDate date={signupsOpenDate} showTime />.
-                Do té doby máš šanci zvážit na jaký workshop chceš. Doporučujeme se přihlásit
-                spíš dřív, letos očekáváme davovou tlačenici.
-              </p>
-              <div className={styles.signupsOpenDate}>
-                <Countdown
-                  date={signupsOpenDate}
-                  countdownMessage="Přihlášky se otevřou"
-                  onFinish={onSignupsOpen}
-                  readyMessage="Přihlášky jsou otevřené"
-                  suffix
-                />
+            signupsOpenDate ? (
+              <div>
+                <p>
+                  Přihlašování se na této stránce otevře
+                  {' '}
+                  <HumanDate date={signupsOpenDate} showTime />.
+                  Do té doby máš šanci zvážit na jaký workshop chceš. Doporučujeme se přihlásit
+                  spíš dřív, letos očekáváme davovou tlačenici.
+                </p>
+                <div className={styles.signupsOpenDate}>
+                  <Countdown
+                    date={signupsOpenDate}
+                    countdownMessage="Přihlášky se otevřou"
+                    onFinish={onSignupsOpen}
+                    readyMessage="Přihlášky jsou otevřené"
+                    suffix
+                  />
+                </div>
               </div>
-            </div>
+            ) : (
+              <div>
+                <p>Buď jdeš moc pozdě nebo moc brzo.</p>
+                <div className={styles.signupsOpenDate}>
+                  Přihlášky jsou v tuto chvíli uzavřeny
+                </div>
+              </div>
+            )
           )
         }
         <hr />
