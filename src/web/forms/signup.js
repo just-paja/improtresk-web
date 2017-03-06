@@ -27,7 +27,7 @@ const schema = {
       required: true,
       type: 'string',
     },
-    dob: {
+    birthday: {
       conform: value => moment().diff(value, 'years') > 18,
       maxLength: 32,
       messages: {
