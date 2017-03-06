@@ -13,4 +13,9 @@ const InputSelect = props => (
   />
 );
 
+InputSelect.defaultProps = {
+  error: null,
+  value: null,
+};
+
 export default InputSelect;

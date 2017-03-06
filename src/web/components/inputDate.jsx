@@ -43,4 +43,9 @@ const InputDate = props => (
   />
 );
 
+InputDate.defaultProps = {
+  error: null,
+  value: null,
+};
+
 export default InputDate;
