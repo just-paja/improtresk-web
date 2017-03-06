@@ -21,11 +21,12 @@ export default class Login extends Component {
   }
 
   render() {
-    const { errors, sending, submitted, values } = this.props;
+    const { disabled, errors, sending, submitted, values } = this.props;
 
     return (
       <Form onSubmit={this.handleSubmit}>
         <Input
+          disabled={disabled}
           label="E-mail"
           name="email"
           onChange={this.handleChange}
@@ -35,6 +36,7 @@ export default class Login extends Component {
           touched={submitted}
         />
         <Input
+          disabled={disabled}
           label="Heslo"
           name="password"
           onChange={this.handleChange}
@@ -45,6 +47,7 @@ export default class Login extends Component {
         />
         <Button
           bsStyle="primary"
+          disabled={disabled}
           icon="key"
           loading={sending}
           type="submit"
@@ -55,6 +58,7 @@ export default class Login extends Component {
 }
 
 Login.propTypes = {
+  disabled: PropTypes.bool,
   errors: PropTypes.object.isRequired,
   form: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -65,6 +69,7 @@ Login.propTypes = {
 };
 
 Login.defaultProps = {
+  disabled: false,
   sending: false,
   submitted: false,
 };
