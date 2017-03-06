@@ -7,6 +7,7 @@ describe('Years reducer', () => {
     expect(years()).to.eql({
       loading: false,
       data: [],
+      forceOpen: false,
     });
   });
 
