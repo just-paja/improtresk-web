@@ -1,7 +1,12 @@
 import fetch from 'isomorphic-fetch';
 
 const apiFetch = (url, { apiSource, ...params }) =>
-  fetch(`${apiSource}/${url}`, params);
+  fetch(`${apiSource}/${url}`, {
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    ...params,
+  });
 
 export const fetchArchivedYear = ({ year, ...params }) =>
   apiFetch(`years/${year}`, params);
