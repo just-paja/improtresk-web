@@ -84,6 +84,7 @@ describe('Forms reducer', () => {
       testForm: {
         errors: {},
         loading: false,
+        saved: false,
         submitted: false,
         valid: true,
         values: {
@@ -192,6 +193,7 @@ describe('Forms reducer', () => {
       {
         testForm: {
           errors: {},
+          saved: false,
           submitted: true,
           valid: true,
           values: { foo: 'bar' },
@@ -207,6 +209,7 @@ describe('Forms reducer', () => {
           foo: 'bar',
         },
         submitted: true,
+        saved: true,
         loading: false,
         valid: true,
         errors: {},
@@ -233,6 +236,7 @@ describe('Forms reducer', () => {
         values: {
           foo: 'bar',
         },
+        saved: false,
         submitted: true,
         loading: false,
         valid: true,
