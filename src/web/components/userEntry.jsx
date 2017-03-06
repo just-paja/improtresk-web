@@ -15,30 +15,35 @@ const UserEntry = ({
   onSignupChange,
   onSignupSubmit,
   signup,
-}) => (
-  <Row>
-    <Col md={6}>
-      <h2>Už jsem zaregistrovaný</h2>
-      <Well>
-        <Login
-          form="login"
-          onChange={onLoginChange}
-          onSubmit={onLoginSubmit}
-          {...login}
+}) => {
+  const disabled = !!(login.loading || signup.loading);
+  return (
+    <Row>
+      <Col md={6}>
+        <h2>Už jsem zaregistrovaný</h2>
+        <Well>
+          <Login
+            disabled={disabled}
+            form="login"
+            onChange={onLoginChange}
+            onSubmit={onLoginSubmit}
+            {...login}
+          />
+        </Well>
+      </Col>
+      <Col md={6}>
+        <h2>Registrace</h2>
+        <Signup
+          disabled={disabled}
+          form="signup"
+          onChange={onSignupChange}
+          onSubmit={onSignupSubmit}
+          {...signup}
         />
-      </Well>
-    </Col>
-    <Col md={6}>
-      <h2>Registrace</h2>
-      <Signup
-        form="signup"
-        onChange={onSignupChange}
-        onSubmit={onSignupSubmit}
-        {...signup}
-      />
-    </Col>
-  </Row>
-);
+      </Col>
+    </Row>
+  );
+};
 
 UserEntry.propTypes = {
   login: PropTypes.object,
