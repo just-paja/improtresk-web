@@ -6,6 +6,7 @@ const defaultState = {};
 
 export const defaultFormState = {
   errors: {},
+  saved: false,
   submitted: false,
   loading: false,
   valid: true,
@@ -87,6 +88,7 @@ export default combined(defaultState, {
       [action.form]: {
         ...state[action.form],
         loading: false,
+        saved: true,
       },
     }
   )),
@@ -98,6 +100,7 @@ export default combined(defaultState, {
         ...state[action.form],
         loading: false,
         error: action.error,
+        saved: false,
       },
     }
   )),
