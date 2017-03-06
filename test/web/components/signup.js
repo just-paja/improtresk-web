@@ -14,7 +14,7 @@ import InputSelect from '../../../src/web/components/inputSelect';
 import Signup from '../../../src/web/components/signup';
 
 describe('Signup Form component', () => {
-  it('renders the form', () => {
+  it('renders form', () => {
     expect(shallow(
       <Signup
         form="signup"
@@ -24,7 +24,7 @@ describe('Signup Form component', () => {
           name: 'name error',
           email: 'email error',
           phone: 'phone error',
-          dob: 'dob error',
+          birthday: 'birthday error',
           team_name: 'team error',
           rules_accepted: 'rules error',
         }}
@@ -32,7 +32,7 @@ describe('Signup Form component', () => {
           name: 'name value',
           email: 'email value',
           phone: 'phone value',
-          dob: 'dob value',
+          birthday: 'birthday value',
           team_name: 'team value',
           rules_accepted: false,
           newsletter: false,
@@ -41,6 +41,7 @@ describe('Signup Form component', () => {
     ).node).to.eql(
       <Form onSubmit={() => {}}>
         <Input
+          disabled={false}
           help="Jméno, příjmení a ostatní jména která nalezneš na svém občanském průkazu"
           label="Tvoje celé jméno"
           name="name"
@@ -50,6 +51,7 @@ describe('Signup Form component', () => {
           touched={false}
         />
         <Input
+          disabled={false}
           help={
             'Přes tento e-mail s vámi budeme komunikovat ohledně přihlášky. Určitě ' +
             'chceš vyplnit správný.'
@@ -63,6 +65,7 @@ describe('Signup Form component', () => {
           touched={false}
         />
         <Input
+          disabled={false}
           help={
             'Pokud zjistíme že se něco nepovedlo, tak ti budeme volat. Pokud telefon nevyplníš, ' +
             'bereš zodpovědnost na sebe.'
@@ -75,18 +78,20 @@ describe('Signup Form component', () => {
           touched={false}
         />
         <InputDate
+          disabled={false}
           help={
             'V pravidlech festivalu se dočtete o věkovém limitu. Musíme si ověřit váš věk také ' +
             'abychom vás mohli lépe vyúčtovat.'
           }
           label="Datum narození"
-          name="dob"
+          name="birthday"
           onChange={() => {}}
-          error="dob error"
-          value="dob value"
+          error="birthday error"
+          value="birthday value"
           touched={false}
         />
         <InputSelect
+          disabled={false}
           help={
             'Tento údaj použijeme pro malé sčítání improvizátorů, ale také při rozdělování ' +
             'mistností na spaní'
@@ -99,6 +104,7 @@ describe('Signup Form component', () => {
           touched={false}
         />
         <InputCheckbox
+          disabled={false}
           name="rules_accepted"
           label={<span>Souhlasím s <Link to="conditions">podmínkami festivalu</Link></span>}
           onChange={() => {}}
@@ -106,12 +112,99 @@ describe('Signup Form component', () => {
           value={false}
         />
         <InputCheckbox
+          disabled={false}
           name="newsletter"
           label="Chci dostávat e-mailem novinky o událostech Improligy"
           onChange={() => {}}
           value={false}
         />
         <Button
+          disabled={false}
+          bsStyle="primary"
+          type="submit"
+        >Zaregistrovat</Button>
+      </Form>
+    );
+  });
+  it('renders form disabled', () => {
+    expect(shallow(
+      <Signup
+        form="signup"
+        onChange={() => {}}
+        onSubmit={() => {}}
+        errors={{}}
+        values={{}}
+        disabled
+      />
+    ).node).to.eql(
+      <Form onSubmit={() => {}}>
+        <Input
+          disabled
+          help="Jméno, příjmení a ostatní jména která nalezneš na svém občanském průkazu"
+          label="Tvoje celé jméno"
+          name="name"
+          onChange={() => {}}
+          touched={false}
+        />
+        <Input
+          disabled
+          help={
+            'Přes tento e-mail s vámi budeme komunikovat ohledně přihlášky. Určitě ' +
+            'chceš vyplnit správný.'
+          }
+          label="E-mail"
+          name="email"
+          onChange={() => {}}
+          type="email"
+          touched={false}
+        />
+        <Input
+          disabled
+          help={
+            'Pokud zjistíme že se něco nepovedlo, tak ti budeme volat. Pokud telefon nevyplníš, ' +
+            'bereš zodpovědnost na sebe.'
+          }
+          label="Telefonní číslo"
+          name="phone"
+          onChange={() => {}}
+          touched={false}
+        />
+        <InputDate
+          disabled
+          help={
+            'V pravidlech festivalu se dočtete o věkovém limitu. Musíme si ověřit váš věk také ' +
+            'abychom vás mohli lépe vyúčtovat.'
+          }
+          label="Datum narození"
+          name="birthday"
+          onChange={() => {}}
+          touched={false}
+        />
+        <InputSelect
+          disabled
+          help={
+            'Tento údaj použijeme pro malé sčítání improvizátorů, ale také při rozdělování ' +
+            'mistností na spaní'
+          }
+          label="Tvoje skupina"
+          name="team_name"
+          onChange={() => {}}
+          touched={false}
+        />
+        <InputCheckbox
+          disabled
+          name="rules_accepted"
+          label={<span>Souhlasím s <Link to="conditions">podmínkami festivalu</Link></span>}
+          onChange={() => {}}
+        />
+        <InputCheckbox
+          disabled
+          name="newsletter"
+          label="Chci dostávat e-mailem novinky o událostech Improligy"
+          onChange={() => {}}
+        />
+        <Button
+          disabled
           bsStyle="primary"
           type="submit"
         >Zaregistrovat</Button>
