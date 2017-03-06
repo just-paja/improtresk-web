@@ -25,13 +25,14 @@ export default class Signup extends Component {
   }
 
   render() {
-    const { errors, sending, submitted, values } = this.props;
+    const { disabled, errors, sending, submitted, values } = this.props;
 
     const rulesLabel = <span>Souhlasím s <Link to="conditions">podmínkami festivalu</Link></span>;
 
     return (
       <Form onSubmit={this.handleSubmit}>
         <Input
+          disabled={disabled}
           help="Jméno, příjmení a ostatní jména která nalezneš na svém občanském průkazu"
           label="Tvoje celé jméno"
           name="name"
@@ -41,6 +42,7 @@ export default class Signup extends Component {
           touched={submitted}
         />
         <Input
+          disabled={disabled}
           help={
             'Přes tento e-mail s vámi budeme komunikovat ohledně přihlášky. Určitě ' +
             'chceš vyplnit správný.'
@@ -54,6 +56,7 @@ export default class Signup extends Component {
           touched={submitted}
         />
         <Input
+          disabled={disabled}
           help={
             'Pokud zjistíme že se něco nepovedlo, tak ti budeme volat. Pokud telefon nevyplníš, ' +
             'bereš zodpovědnost na sebe.'
@@ -66,18 +69,20 @@ export default class Signup extends Component {
           touched={submitted}
         />
         <InputDate
+          disabled={disabled}
           help={
             'V pravidlech festivalu se dočtete o věkovém limitu. Musíme si ověřit váš věk také ' +
             'abychom vás mohli lépe vyúčtovat.'
           }
           label="Datum narození"
-          name="dob"
+          name="birthday"
           onChange={this.handleChange}
-          error={errors.dob}
-          value={values.dob}
+          error={errors.birthday}
+          value={values.birthday}
           touched={submitted}
         />
         <InputSelect
+          disabled={disabled}
           help={
             'Tento údaj použijeme pro malé sčítání improvizátorů, ale také při rozdělování ' +
             'mistností na spaní'
@@ -90,6 +95,7 @@ export default class Signup extends Component {
           touched={submitted}
         />
         <InputCheckbox
+          disabled={disabled}
           name="rules_accepted"
           label={rulesLabel}
           error={errors.rules_accepted}
@@ -97,6 +103,7 @@ export default class Signup extends Component {
           value={values.rules_accepted}
         />
         <InputCheckbox
+          disabled={disabled}
           name="newsletter"
           label="Chci dostávat e-mailem novinky o událostech Improligy"
           error={errors.newsletter}
@@ -104,6 +111,7 @@ export default class Signup extends Component {
           value={values.newsletter}
         />
         <Button
+          disabled={disabled}
           bsStyle="primary"
           loading={sending}
           type="submit"
@@ -114,6 +122,7 @@ export default class Signup extends Component {
 }
 
 Signup.propTypes = {
+  disabled: PropTypes.bool,
   errors: PropTypes.object.isRequired,
   form: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -124,6 +133,7 @@ Signup.propTypes = {
 };
 
 Signup.defaultProps = {
+  disabled: false,
   sending: false,
   submitted: false,
 };
