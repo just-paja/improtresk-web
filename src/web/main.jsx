@@ -11,8 +11,6 @@ const initialState = window.INITIAL_STATE;
 const store = configureStore(initialState);
 
 const render = (RootComponent) => {
-  store.runSaga(sagas);
-
   ReactDOM.render(
     <RootComponent
       history={browserHistory}
@@ -22,11 +20,20 @@ const render = (RootComponent) => {
   );
 };
 
+let sagaTask = store.runSaga(sagas);
 render(RootDefault);
 
 if (module.hot) {
   module.hot.accept('./components/root', () => {
     // eslint-disable-next-line global-require
     render(require('./components/root').default);
+  });
+  module.hot.accept('./sagas', () => {
+    // eslint-disable-next-line global-require
+    const reloadSagas = require('./sagas').default;
+    sagaTask.cancel();
+    sagaTask.done.then(() => {
+      sagaTask = store.runSaga(reloadSagas);
+    });
   });
 }
