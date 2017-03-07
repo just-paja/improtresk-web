@@ -31,7 +31,7 @@ describe('Form saga helpers', () => {
         name: 'Přespříliš Žluťoučký Kůň',
         email: 'test@example.com',
         phone: '+420 632-157-987',
-        dob: '1980-01-15',
+        birthday: '1980-01-15',
         rules_accepted: true,
       },
     }).value).to.eql(put({
@@ -51,13 +51,13 @@ describe('Form saga helpers', () => {
     expect(generator.next({
       valid: false,
       values: {
-        dob: '1970-01-01',
+        birthday: '1970-01-01',
         email: 'test@example.com',
         phone: '123456789',
         rules_accepted: true,
       },
     }).value).to.eql(signupValidator({
-      dob: '1970-01-01',
+      birthday: '1970-01-01',
       email: 'test@example.com',
       phone: '123456789',
       rules_accepted: true,
@@ -78,13 +78,13 @@ describe('Form saga helpers', () => {
     expect(generator.next({
       valid: false,
       values: {
-        dob: '1970-01-01',
+        birthday: '1970-01-01',
         email: 'test@example.com',
         phone: '123456789',
         rules_accepted: true,
       },
     }).value).to.eql(signupValidator({
-      dob: '1970-01-01',
+      birthday: '1970-01-01',
       email: 'test@example.com',
       phone: '123456789',
       rules_accepted: true,
