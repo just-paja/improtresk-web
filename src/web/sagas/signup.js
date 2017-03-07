@@ -1,7 +1,9 @@
 import { put, select, takeLatest } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 
 import { fetchResource } from './common';
 import { getForm } from '../selectors/forms';
+import { reverse } from '../routeTable';
 
 import * as api from '../api';
 import * as constants from '../constants/actions';
@@ -27,10 +29,12 @@ export function* sendSignup(action) {
 }
 
 export function* loginSignup(action) {
+  console.log(action);
   yield put({
     type: constants.SIGNUP_REGISTERED,
     data: action.data,
   });
+  yield put(push(reverse('participant:home')));
 }
 
 export function* signupOnFormSubmit() {
