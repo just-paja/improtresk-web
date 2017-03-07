@@ -5,6 +5,7 @@ import { expect } from 'chai';
 
 import {
   yearActive,
+  yearActiveNumber,
   yearCurrent,
   yearNext,
   yearsNotCurrent,
@@ -143,6 +144,33 @@ describe('News selectors', () => {
         id: 2,
         endDate: '2016-02-03',
       });
+    });
+  });
+  describe('yearActiveNumber', () => {
+    beforeEach(() => {
+      sinon.stub(moment, 'now');
+      moment.now.returns('2016-01-02T03:04:05.678');
+    });
+    afterEach(() => {
+      moment.now.restore();
+    });
+    it('returns current year number when available', () => {
+      expect(yearActiveNumber({
+        years: {
+          data: [
+            { id: 1, endDate: '2015-02-03' },
+            { id: 3, endDate: '2017-02-03', current: true, year: '2017' },
+            { id: 2, endDate: '2016-02-03' },
+          ],
+        },
+      })).to.equal('2017');
+    });
+    it('returns null when not available', () => {
+      expect(yearActiveNumber({
+        years: {
+          data: [],
+        },
+      })).to.equal(null);
     });
   });
 });

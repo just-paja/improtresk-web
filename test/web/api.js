@@ -41,6 +41,26 @@ describe('API helper', () => {
         expect(nock.isDone()).to.equal(true);
       });
   });
+  it('fetchLectors calls for list of meals', () => {
+    nock(apiSource)
+      .get('/lectors/')
+      .reply(200, []);
+
+    return api.fetchLectors({ apiSource })
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
+  it('fetchLectorRoles calls for list of meals', () => {
+    nock(apiSource)
+      .get('/lectorRoles/')
+      .reply(200, []);
+
+    return api.fetchLectorRoles({ apiSource })
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
   it('fetchMeals calls for list of meals', () => {
     nock(apiSource)
       .get('/meals/')
@@ -102,6 +122,16 @@ describe('API helper', () => {
       .reply(200, []);
 
     return api.fetchTips({ apiSource })
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
+  it('fetchWorkshopDifficulties calls for workshop detail', () => {
+    nock(apiSource)
+      .get('/workshopDifficulties/')
+      .reply(200, []);
+
+    return api.fetchWorkshopDifficulties({ apiSource })
       .then(() => {
         expect(nock.isDone()).to.equal(true);
       });
