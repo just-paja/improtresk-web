@@ -14,6 +14,7 @@ import Home from './containers/home';
 import Locations from './containers/locations';
 import NewsDetail from './containers/newsDetail';
 import NotFound from './components/notFound';
+import ParticipantHome from './components/pages/participant/home';
 import Schedule from './containers/schedule';
 import Signup from './containers/signup';
 import Tips from './containers/tips';
@@ -21,8 +22,9 @@ import WorkshopDetail from './containers/workshopDetail';
 import Workshops from './containers/workshops';
 
 import { urlTable } from './routeTable';
+import { validateLogin } from './session';
 
-export default function configureRoutes() {
+export default function configureRoutes(store) {
   return (
     <Route path={urlTable.home} component={App}>
       <IndexRoute component={Home} />
@@ -39,6 +41,9 @@ export default function configureRoutes() {
       <Route path={urlTable.tips} component={Tips} />
       <Route path={urlTable.workshops} component={Workshops} />
       <Route path={urlTable['workshops:item']} component={WorkshopDetail} />
+      <Route path="" onEnter={validateLogin(store.getState)} name="participant">
+        <Route path={urlTable['participant:home']} component={ParticipantHome} />
+      </Route>
       <Route path="*" component={NotFound} />
     </Route>
   );
