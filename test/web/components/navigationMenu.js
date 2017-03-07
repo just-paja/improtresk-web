@@ -79,6 +79,7 @@ describe('Navigation menu component', () => {
   it('renders with participant', () => {
     expect(shallow(
       <NavigationMenu
+        currentYear={{ year: '2017', topic: 'Kůže', current: true }}
         participant={{
           name: 'foo',
         }}
@@ -86,6 +87,29 @@ describe('Navigation menu component', () => {
       />
     ).node).to.eql(
       <Nav>
+        <NavDropdown id="navigation-dropdown" title="Pro účastníky">
+          <LinkContainer to="/pro-ucastniky/lokace">
+            <NavItem>Lokace</NavItem>
+          </LinkContainer>
+          <LinkContainer to="/pro-ucastniky/ubytovani">
+            <NavItem>Ubytování</NavItem>
+          </LinkContainer>
+          <LinkContainer to="/pro-ucastniky/jidlo">
+            <NavItem>Jídlo</NavItem>
+          </LinkContainer>
+          <LinkContainer to="/pro-ucastniky/poplatky">
+            <NavItem>Poplatky</NavItem>
+          </LinkContainer>
+          <LinkContainer to="/pro-ucastniky/podminky">
+            <NavItem>Podmínky</NavItem>
+          </LinkContainer>
+        </NavDropdown>
+        <LinkContainer to="/workshopy">
+          <NavItem>Workshopy</NavItem>
+        </LinkContainer>
+        <LinkContainer to="/program" >
+          <NavItem>Program</NavItem>
+        </LinkContainer>
         <NavDropdown id="navigation-dropdown" title="Archív">
           <NavItem disabled>Archív je prázdný</NavItem>
         </NavDropdown>

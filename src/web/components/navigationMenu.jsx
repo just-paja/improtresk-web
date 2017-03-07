@@ -36,9 +36,11 @@ const NavigationMenu = ({
     <LinkContainer key="workshops" to={reverse('workshops')}>
       <NavItem>Workshopy</NavItem>
     </LinkContainer>,
-    <LinkContainer key="signup" to={reverse('signup')}>
-      <NavItem>Přihláška</NavItem>
-    </LinkContainer>,
+    !participant ? (
+      <LinkContainer key="signup" to={reverse('signup')}>
+        <NavItem>Přihláška</NavItem>
+      </LinkContainer>
+    ) : null,
     <LinkContainer key="schedule" to={reverse('schedule')}>
       <NavItem>Program</NavItem>
     </LinkContainer>,
