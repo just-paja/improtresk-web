@@ -44,11 +44,6 @@ const AppHelmet = ({
       {
         rel: 'stylesheet',
         type: 'text/css',
-        href: '/static/bootswatch/sandstone/bootstrap.min.css',
-      },
-      {
-        rel: 'stylesheet',
-        type: 'text/css',
         href: '/static/font-awesome/css/font-awesome.min.css',
       },
       {
