@@ -23,6 +23,7 @@ class App extends Component {
       currentYear,
       errors,
       host,
+      participant,
       ready,
       location: { pathname },
       years,
@@ -43,7 +44,11 @@ class App extends Component {
           pathname={pathname}
           titleTemplate={titleTemplate}
         />
-        <Navigation currentYear={currentYear} years={years} />
+        <Navigation
+          currentYear={currentYear}
+          participant={participant}
+          years={years}
+        />
         <ProgressBar activeRequests={activeRequests} />
         {errors.length ? <AppErrors errors={errors} /> : children}
         <Footer partners={[]} />
@@ -67,6 +72,7 @@ App.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string,
   }).isRequired,
+  participant: PropTypes.object,
   onMount: PropTypes.func.isRequired,
   years: PropTypes.arrayOf(PropTypes.object),
 };
@@ -76,6 +82,7 @@ App.defaultProps = {
   children: null,
   currentYear: null,
   host: null,
+  participant: null,
   ready: false,
   route: null,
   years: null,
