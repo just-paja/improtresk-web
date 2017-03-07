@@ -10,7 +10,12 @@ export const getHost =
 export const getApiSource =
   createSelector(getSessionState, session => session.apiSource);
 
-export const isLoggedIn = createSelector(
+export const getParticipant = createSelector(
   getParticipantState,
-  participant => !!participant.data
+  participant => participant.data
+);
+
+export const isLoggedIn = createSelector(
+  getParticipant,
+  participant => !!participant
 );

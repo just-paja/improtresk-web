@@ -8,7 +8,7 @@ import {
   getAppErrors,
   isAppReady,
 } from '../selectors/app';
-import { getHost } from '../selectors/session';
+import { getHost, getParticipant } from '../selectors/session';
 import { yearCurrent, yearsNotCurrent } from '../selectors/years';
 
 import * as actions from '../constants/actions';
@@ -18,6 +18,7 @@ const mapStateToProps = state => ({
   errors: getAppErrors(state),
   host: getHost(state),
   currentYear: yearCurrent(state),
+  participant: getParticipant(state),
   years: yearsNotCurrent(state),
   ready: isAppReady(state),
 });
