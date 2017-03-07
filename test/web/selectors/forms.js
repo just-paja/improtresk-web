@@ -20,6 +20,7 @@ describe('Formsselectors', () => {
       forms: {},
     }, 'testForm')).to.eql({
       errors: {},
+      saved: false,
       submitted: false,
       loading: false,
       valid: true,
