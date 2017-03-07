@@ -15,26 +15,25 @@ const findDifficultyName = (difficulties, id) => {
   return difficulty ? difficulty.name : null;
 };
 
-const findPriceLevelName = (priceLevels, priceLevelId) => {
-  if (priceLevels) {
-    const priceLevel = priceLevels.find(priceLevelItem => priceLevelItem.id === priceLevelId);
-    if (priceLevel) {
-      return {
-        level: priceLevel.name,
-        takesEffectOn: priceLevel.takesEffectOn,
-        endsOn: priceLevel.endsOn,
-      };
-    }
+const mapPrices = priceLevels => (priceItem) => {
+  const priceLevelId = priceItem.price_level;
+  const priceLevel = priceLevels.find(priceLevelItem => priceLevelItem.id === priceLevelId);
+  if (priceLevel) {
+    return {
+      price: priceItem.price,
+      level: priceLevel.name,
+      takesEffectOn: priceLevel.takesEffectOn,
+      endsOn: priceLevel.endsOn,
+    };
   }
-  return {};
+  return null;
 };
 
 const mapWorkshopPrices = (prices, priceLevels) => (
-  prices ?
-    prices.map(priceItem => ({
-      price: priceItem.price,
-      ...findPriceLevelName(priceLevels, priceItem.price_level),
-    })) : []
+  prices && priceLevels ?
+    prices
+      .map(mapPrices(priceLevels))
+      .filter(item => item) : []
 );
 
 export const mapWorkshop = (lectors, roles, difficulties, priceLevels) => workshop => (

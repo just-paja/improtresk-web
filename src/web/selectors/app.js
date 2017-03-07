@@ -6,7 +6,7 @@ const getLectorRolesReady = state => state.lectors.roles.ready;
 const getWorkshopDifficultiesReady = state => state.workshops.difficulties.ready;
 const getYearsReady = state => state.years.ready;
 
-const countReducerFlags = (key, object = {}) =>
+const countReducerFlags = (key, object) =>
   Object.keys(object).reduce((count, objectKey) => {
     let total = count;
 

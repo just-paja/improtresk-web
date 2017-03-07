@@ -37,6 +37,16 @@ describe('Price selectors', () => {
             current: true,
             priceLevels: [
               {
+                id: 3,
+                name: 'Nejlepší',
+                takesEffectOn: '2015-11-02T03:04:05Z',
+              },
+              {
+                id: 4,
+                name: 'Chybná cenová hladina',
+                takesEffectOn: '2015-11-02T03:04:05Z',
+              },
+              {
                 id: 2,
                 name: 'Základní',
                 takesEffectOn: '2016-03-02T03:04:05Z',
@@ -51,6 +61,18 @@ describe('Price selectors', () => {
         ],
       },
     })).to.eql([
+      {
+        id: 4,
+        name: 'Chybná cenová hladina',
+        takesEffectOn: '2015-11-02T03:04:05Z',
+        endsOn: '2015-11-02T03:04:05Z',
+      },
+      {
+        id: 3,
+        name: 'Nejlepší',
+        takesEffectOn: '2015-11-02T03:04:05Z',
+        endsOn: '2016-01-02T03:04:05Z',
+      },
       {
         id: 1,
         name: 'Zlevněná',

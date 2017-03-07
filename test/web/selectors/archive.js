@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 
 import {
+  getCurrent,
   getArchivedYear,
   getArchivedYearTopic,
   getArchivedYearWorkshops,
@@ -8,6 +9,13 @@ import {
 } from '../../../src/web/selectors/archive';
 
 describe('Archive selectors', () => {
+  it('getCurrent returns id of displayed year', () => {
+    expect(getCurrent({
+      archive: {
+        current: 32,
+      },
+    })).to.equal(32);
+  });
   it('getArchivedYear returns year number when present', () => {
     expect(getArchivedYear({
       archive: {

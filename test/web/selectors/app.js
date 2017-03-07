@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import {
   countAppRequests,
   getAppErrors,
+  isAppReady,
 } from '../../../src/web/selectors/app';
 
 describe('Application selectors', () => {
@@ -38,11 +39,52 @@ describe('Application selectors', () => {
       workshops: {
         workshopDetail: {
           error: new Error('bar'),
+          data: [],
         },
       },
       news: {
         error: undefined,
       },
     })).to.eql(['foo', 'bar']);
+  });
+  it('isAppReady returns true when all required stuff is ready', () => {
+    expect(isAppReady({
+      lectors: {
+        list: {
+          ready: true,
+        },
+        roles: {
+          ready: true,
+        },
+      },
+      workshops: {
+        difficulties: {
+          ready: true,
+        },
+      },
+      years: {
+        ready: true,
+      },
+    })).to.equal(true);
+  });
+  it('isAppReady returns false when one is not ready', () => {
+    expect(isAppReady({
+      lectors: {
+        list: {
+          ready: true,
+        },
+        roles: {
+          ready: true,
+        },
+      },
+      workshops: {
+        difficulties: {
+          ready: false,
+        },
+      },
+      years: {
+        ready: true,
+      },
+    })).to.equal(false);
   });
 });

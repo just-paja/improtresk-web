@@ -23,7 +23,7 @@ export const getArchivedYearTopic = createSelector(
 export const getArchivedYearWorkshops = createSelector(
   [getArchiveData, getLectors, getLectorRoles, getWorkshopDifficulties, getPriceLevels],
   (current, lectors, roles, difficulties, priceLevels) => (current ? (
-    current.workshops.map(mapWorkshop(lectors, roles, difficulties, priceLevels)) || []
+    current.workshops.map(mapWorkshop(lectors, roles, difficulties, priceLevels))
   ) : [])
 );
 
