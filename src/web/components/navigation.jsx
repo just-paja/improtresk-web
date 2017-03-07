@@ -16,7 +16,7 @@ export default class Navigation extends Component {
   }
 
   render() {
-    const { currentYear, years } = this.props;
+    const { currentYear, participant, years } = this.props;
     return (
       <Navbar
         fixedTop
@@ -31,7 +31,11 @@ export default class Navigation extends Component {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-          <NavigationMenu currentYear={currentYear} years={years} />
+          <NavigationMenu
+            currentYear={currentYear}
+            participant={participant}
+            years={years}
+          />
         </Navbar.Collapse>
       </Navbar>
     );
@@ -40,10 +44,12 @@ export default class Navigation extends Component {
 
 Navigation.propTypes = {
   currentYear: PropTypes.object,
+  participant: PropTypes.object,
   years: PropTypes.arrayOf(PropTypes.object),
 };
 
 Navigation.defaultProps = {
   currentYear: null,
+  participant: null,
   years: null,
 };
