@@ -10,6 +10,25 @@ describe('Price selectors', () => {
       },
     })).to.eql([]);
   });
+  it('getPriceLevels returns empty array when year has no price levels', () => {
+    expect(getPriceLevels({
+      years: {
+        data: [
+          {
+            current: true,
+            priceLevels: [],
+          },
+        ],
+      },
+    })).to.eql([]);
+    expect(getPriceLevels({
+      years: {
+        data: [
+          { current: true },
+        ],
+      },
+    })).to.eql([]);
+  });
   it('getPriceLevels returns all price levels with ending dates', () => {
     expect(getPriceLevels({
       years: {

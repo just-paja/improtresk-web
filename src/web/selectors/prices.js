@@ -4,7 +4,7 @@ import { yearActive } from './years';
 
 export const getPriceLevels = createSelector(
   [yearActive],
-  year => (year ? year.priceLevels
+  year => (year && year.priceLevels ? year.priceLevels
     .slice()
     .sort((a, b) => {
       if (a.takesEffectOn > b.takesEffectOn) {
