@@ -43,4 +43,40 @@ describe('Navigation component', () => {
       </Navbar>
     );
   });
+  it('renders with participant', () => {
+    expect(shallow(
+      <Navigation
+        currentYear={null}
+        participant={{ name: 'foo' }}
+        years={[
+          { year: '2016', topic: 'Foo' },
+          { year: '2017', topic: 'Bar' },
+        ]}
+      />
+    ).node).to.eql(
+      <Navbar
+        expanded={false}
+        fixedTop
+        onSelect={() => {}}
+        onToggle={() => {}}
+      >
+        <Navbar.Header>
+          <Navbar.Brand>
+            <Link to="home">Improtřesk</Link>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <NavigationMenu
+            currentYear={null}
+            participant={{ name: 'foo' }}
+            years={[
+              { year: '2016', topic: 'Foo' },
+              { year: '2017', topic: 'Bar' },
+            ]}
+          />
+        </Navbar.Collapse>
+      </Navbar>
+    );
+  });
 });
