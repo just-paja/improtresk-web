@@ -9,7 +9,7 @@ const apiFetch = (url, { apiSource, ...params }) =>
   });
 
 export const fetchArchivedYear = ({ year, ...params }) =>
-  apiFetch(`years/${year}`, params);
+  apiFetch(`years/${year}/`, params);
 
 export const fetchAccomodation = params => apiFetch('accomodations/', params);
 
@@ -27,7 +27,7 @@ export const fetchNews = params => apiFetch('news/', params);
 export const fetchNewsDetail = ({ news, ...params }) =>
   apiFetch(`news/${news}/`, params);
 
-export const fetchText = ({ code, ...params }) => apiFetch(`texts/${code}`, params);
+export const fetchText = ({ code, ...params }) => apiFetch(`texts/${code}/`, params);
 
 export const fetchTips = params => apiFetch('tips/', params);
 
@@ -54,7 +54,7 @@ export const signup = ({ data, ...params }) => apiFetch('register/', {
 export const fetchParticipant = () => apiFetch('participant');
 
 export const updateParticipantLastAction = () =>
-  apiFetch('participant/updateLastAction', {
+  apiFetch('participant/updateLastAction/', {
     method: 'POST',
   });
 

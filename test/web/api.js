@@ -13,23 +13,23 @@ describe('API helper', () => {
 
   it('fetchAccomodation calls for accomodation', () => {
     nock(apiSource)
-    .get('/accomodations/')
-    .reply(200, []);
+      .get('/accomodations/')
+      .reply(200, []);
 
     return api.fetchAccomodation({ apiSource })
-    .then(() => {
-      expect(nock.isDone()).to.equal(true);
-    });
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
   });
   it('fetchArchivedYear calls for archived year', () => {
     nock(apiSource)
-    .get('/years/2016')
-    .reply(200, []);
+      .get('/years/2016/')
+      .reply(200, []);
 
     return api.fetchArchivedYear({ apiSource, year: 2016 })
-    .then(() => {
-      expect(nock.isDone()).to.equal(true);
-    });
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
   });
   it('fetchConditionsCurrent calls for current conditions', () => {
     nock(apiSource)
@@ -37,19 +37,19 @@ describe('API helper', () => {
       .reply(200, []);
 
     return api.fetchConditionsCurrent({ year: 2016, apiSource })
-    .then(() => {
-      expect(nock.isDone()).to.equal(true);
-    });
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
   });
   it('fetchMeals calls for list of meals', () => {
     nock(apiSource)
-    .get('/meals/')
-    .reply(200, []);
+      .get('/meals/')
+      .reply(200, []);
 
     return api.fetchMeals({ apiSource })
-    .then(() => {
-      expect(nock.isDone()).to.equal(true);
-    });
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
   });
   it('fetchNews calls for news', () => {
     nock(apiSource)
@@ -88,13 +88,13 @@ describe('API helper', () => {
   });
   it('fetchText calls for text', () => {
     nock(apiSource)
-    .get('/texts/food-intro-text')
-    .reply(200, {});
+      .get('/texts/food-intro-text/')
+      .reply(200, {});
 
     return api.fetchText({ apiSource, code: 'food-intro-text' })
-    .then(() => {
-      expect(nock.isDone()).to.equal(true);
-    });
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
   });
   it('fetchTips calls for tips', () => {
     nock(apiSource)
@@ -108,13 +108,23 @@ describe('API helper', () => {
   });
   it('fetchWorkshopDetail calls for workshop detail', () => {
     nock(apiSource)
-    .get('/years/2016/workshops/312/')
-    .reply(200, []);
+      .get('/years/2016/workshops/312/')
+      .reply(200, []);
 
     return api.fetchWorkshopDetail({ apiSource, workshop: 312, year: 2016 })
-    .then(() => {
-      expect(nock.isDone()).to.equal(true);
-    });
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
+  it('fetchWorkshopLocations calls for workshop locations', () => {
+    nock(apiSource)
+      .get('/years/2016/locations/')
+      .reply(200, []);
+
+    return api.fetchWorkshopLocations({ apiSource, year: 2016 })
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
   });
   it('fetchWorkshops calls for workshops', () => {
     nock(apiSource)
@@ -128,20 +138,35 @@ describe('API helper', () => {
   });
   it('fetchYears calls for news', () => {
     nock(apiSource)
-    .get('/years/')
-    .reply(200, []);
+      .get('/years/')
+      .reply(200, []);
 
     return api.fetchYears({ apiSource })
-    .then(() => {
-      expect(nock.isDone()).to.equal(true);
-    });
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
   });
   it('register posts register', () => {
     nock(apiSource)
-    .post('/register/')
-    .reply(201, {});
+      .post('/register/')
+      .reply(201, {});
 
     return api.signup({ apiSource, data: { foo: 'bar' } })
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
+
+  it('fetchMarker fetches marker from Google API', () => {
+    nock('https://maps.googleapis.com/maps/api')
+      .get('/geocode/json')
+      .query({
+        address: 'Nádražní 21',
+        key: 'AIzaSyABnfkdNP9H-wCCshO_ZRYxvGoCEozHxzg',
+      })
+      .reply(201, {});
+
+    return api.fetchMarker({ apiSource, address: 'Nádražní 21' })
     .then(() => {
       expect(nock.isDone()).to.equal(true);
     });
