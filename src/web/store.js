@@ -1,6 +1,9 @@
-import { createStore, applyMiddleware, compose } from 'redux';
 import createLogger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
+
+import { createStore, applyMiddleware, compose } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
+
 import createReducer from './reducers';
 
 export const sagaMiddleware = createSagaMiddleware();
@@ -17,10 +20,14 @@ const BROWSER_DEVELOPMENT = (
   process.env.IS_BROWSER // eslint-disable-line no-undef
 );
 
-export default function configureStore(initialState = {}, forceDebug = false) {
-  const middlewares = [
-    sagaMiddleware,
-  ];
+export default function configureStore(initialState = {}, forceDebug = false, history) {
+  const middlewares = [];
+
+  if (history) {
+    middlewares.push(routerMiddleware(history));
+  }
+
+  middlewares.push(sagaMiddleware);
 
   if (BROWSER_DEVELOPMENT) {
     middlewares.push(createLogger({ collapsed: true }));

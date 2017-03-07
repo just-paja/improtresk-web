@@ -8,7 +8,7 @@ import RootDefault from './components/root';
 import sagas from './sagas';
 
 const initialState = window.INITIAL_STATE;
-const store = configureStore(initialState);
+const store = configureStore(initialState, false, browserHistory);
 
 const render = (RootComponent) => {
   ReactDOM.render(
