@@ -76,4 +76,27 @@ describe('Navigation menu component', () => {
       </Nav>
     );
   });
+  it('renders with participant', () => {
+    expect(shallow(
+      <NavigationMenu
+        participant={{
+          name: 'foo',
+        }}
+        years={[]}
+      />
+    ).node).to.eql(
+      <Nav>
+        <NavDropdown id="navigation-dropdown" title="Archív">
+          <NavItem disabled>Archív je prázdný</NavItem>
+        </NavDropdown>
+        <LinkContainer to="/kontakt">
+          <NavItem>Kontakt</NavItem>
+        </LinkContainer>
+        <NavItem divider />
+        <LinkContainer to="/ucastnik">
+          <NavItem>foo</NavItem>
+        </LinkContainer>
+      </Nav>
+    );
+  });
 });

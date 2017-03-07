@@ -9,7 +9,12 @@ import PermaLinkContainer from './permaLinkContainer';
 
 import { reverse } from '../routeTable';
 
-const NavigationMenu = ({ currentYear, years, ...props }) => {
+const NavigationMenu = ({
+  currentYear,
+  participant,
+  years,
+  ...props
+}) => {
   const currentYearItems = currentYear ? [
     <NavDropdown key="participants" id="navigation-dropdown" title="Pro účastníky">
       <LinkContainer to={reverse('location')}>
@@ -62,17 +67,27 @@ const NavigationMenu = ({ currentYear, years, ...props }) => {
       <LinkContainer to={reverse('contact')}>
         <NavItem>Kontakt</NavItem>
       </LinkContainer>
+      {participant ? ([
+        <NavItem divider key="participant-divider" />,
+        <LinkContainer key="participant-link" to={reverse('participant:home')}>
+          <NavItem>{participant.name}</NavItem>
+        </LinkContainer>,
+      ]) : null}
     </Nav>
   );
 };
 
 NavigationMenu.propTypes = {
   currentYear: PropTypes.object,
+  participant: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }),
   years: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 NavigationMenu.defaultProps = {
   currentYear: null,
+  participant: null,
 };
 
 export default NavigationMenu;
