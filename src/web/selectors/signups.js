@@ -22,14 +22,26 @@ export const getForceOpen =
     years => years.forceOpen
   );
 
-export const areSignupsOpen = createSelector(
-  [getSignupsOpenDate, getSignupsCloseDate, getForceOpen],
-  (start, end, forceOpen) => {
+export const areSignupsClosed = createSelector(
+  [getSignupsCloseDate],
+  (end) => {
     const now = moment();
-    if (!start || !end) {
+    if (!end) {
       return false;
     }
 
-    return (now.isAfter(start) && now.isBefore(end)) || forceOpen;
+    return now.isAfter(end);
+  }
+);
+
+export const areSignupsOpen = createSelector(
+  [getSignupsOpenDate, getForceOpen, areSignupsClosed],
+  (start, forceOpen, alreadyClosed) => {
+    const now = moment();
+    if (!start) {
+      return false;
+    }
+
+    return (now.isAfter(start) || forceOpen) && !alreadyClosed;
   }
 );

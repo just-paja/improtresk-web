@@ -6,6 +6,7 @@ import Signup from '../components/pages/signup';
 import { yearCurrent } from '../selectors/years';
 import { getForm } from '../selectors/forms';
 import {
+  areSignupsClosed,
   areSignupsOpen,
   getSignupsCloseDate,
   getSignupsOpenDate,
@@ -17,6 +18,7 @@ const mapStateToProps = state => ({
   login: getForm(state, 'login'),
   signup: getForm(state, 'signup'),
   signupsCloseDate: getSignupsCloseDate(state),
+  signupsClosed: areSignupsClosed(state),
   signupsOpen: areSignupsOpen(state),
   signupsOpenDate: getSignupsOpenDate(state),
   ready: state.years.ready,
