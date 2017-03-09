@@ -20,12 +20,14 @@ export default class SignupPage extends Component {
       onLoginChange,
       onLoginSubmit,
       onSignupsChange,
+      signupsClosed,
       onSignupsOpen,
       onSignupsSubmit,
       signupsOpen,
       signupsOpenDate,
       ready,
       signup,
+      year,
     } = this.props;
 
     const title = 'Přihláška';
@@ -33,7 +35,84 @@ export default class SignupPage extends Component {
     if (!ready) {
       return null;
     }
-    /* eslint-disable no-nested-ternary */
+
+    let content;
+
+    if (signupsOpenDate) {
+      if (signupsClosed) {
+        content = (
+          <div>
+            <p>
+              Ajajaj, už je pozdě na přihlašování.
+            </p>
+            <div className={styles.signupsOpenDate}>
+              Přihlášky pro tento ročník jsou už uzavřeny
+            </div>
+          </div>
+        );
+      } else if (signupsOpen) {
+        content = (
+          <div>
+            <p>
+              Napřed tě musíme dostat do systému. Je to jen pár jednoduchých otázek na
+              které potřebujeme znát odpověď. Určitě by to nemělo zabrat víc jak pět
+              minut. <b>V druhém kroce</b> si můžeš poskládat Improtřesk tak jak ti
+              bude vyhovovat, tedy vybrat workshop, jídlo a ubytování.
+            </p>
+            <div className={styles.signupsOpenDate}>
+              <Countdown
+                date={year.startDate}
+                countdownMessage="Přihlášky se uzavřou"
+                readyMessage="Přihlášky jsou uzavřené"
+                suffix
+              />
+            </div>
+            <UserEntry
+              login={login}
+              onLoginChange={onLoginChange}
+              onLoginSubmit={onLoginSubmit}
+              onSignupChange={onSignupsChange}
+              onSignupSubmit={onSignupsSubmit}
+              signup={signup}
+            />
+          </div>
+        );
+      } else {
+        content = (
+          <div>
+            <p>
+              Přihlašování se na této stránce otevře
+              {' '}
+              <HumanDate date={signupsOpenDate} showTime />.
+              Do té doby máš šanci zvážit na jaký workshop chceš. Doporučujeme se přihlásit
+              spíš dřív, letos očekáváme davovou tlačenici.
+            </p>
+            <div className={styles.signupsOpenDate}>
+              <Countdown
+                date={signupsOpenDate}
+                countdownMessage="Přihlášky se otevřou"
+                onFinish={onSignupsOpen}
+                readyMessage="Přihlášky jsou otevřené"
+                suffix
+              />
+            </div>
+          </div>
+        );
+      }
+    } else {
+      content = (
+        <div>
+          <p>
+            Tento ročník ještě nemá vypsaný datum otevření přihlášek.
+            Sleduj Facebook a novinky ať se včas dozvíš kdy to bude.
+          </p>
+          <div className={styles.signupsOpenDate}>
+            Zatím nemáme datum otevření přihlášek
+          </div>
+        </div>
+      );
+    }
+
     return (
       <Container>
         <Helmet
@@ -43,54 +122,7 @@ export default class SignupPage extends Component {
           ]}
         />
         <h1>{title}</h1>
-        {
-          signupsOpen ? (
-            <div>
-              <p>
-                Napřed tě musíme dostat do systému. Je to jen pár jednoduchých otázek na
-                které potřebujeme znát odpověď. Určitě by to nemělo zabrat víc jak pět
-                minut. <b>V druhém kroce</b> si můžeš poskládat Improtřesk tak jak ti
-                bude vyhovovat, tedy vybrat workshop, jídlo a ubytování.
-              </p>
-              <UserEntry
-                login={login}
-                onLoginChange={onLoginChange}
-                onLoginSubmit={onLoginSubmit}
-                onSignupChange={onSignupsChange}
-                onSignupSubmit={onSignupsSubmit}
-                signup={signup}
-              />
-            </div>
-          ) : (
-            signupsOpenDate ? (
-              <div>
-                <p>
-                  Přihlašování se na této stránce otevře
-                  {' '}
-                  <HumanDate date={signupsOpenDate} showTime />.
-                  Do té doby máš šanci zvážit na jaký workshop chceš. Doporučujeme se přihlásit
-                  spíš dřív, letos očekáváme davovou tlačenici.
-                </p>
-                <div className={styles.signupsOpenDate}>
-                  <Countdown
-                    date={signupsOpenDate}
-                    countdownMessage="Přihlášky se otevřou"
-                    onFinish={onSignupsOpen}
-                    readyMessage="Přihlášky jsou otevřené"
-                    suffix
-                  />
-                </div>
-              </div>
-            ) : (
-              <div>
-                <p>Buď jdeš moc pozdě nebo moc brzo.</p>
-                <div className={styles.signupsOpenDate}>
-                  Přihlášky jsou v tuto chvíli uzavřeny
-                </div>
-              </div>
-            )
-          )
-        }
+        {content}
         <hr />
         <SignupHowto />
       </Container>
@@ -106,17 +138,23 @@ SignupPage.propTypes = {
   onSignupsChange: PropTypes.func.isRequired,
   onSignupsOpen: PropTypes.func,
   onSignupsSubmit: PropTypes.func.isRequired,
+  signupsClosed: PropTypes.bool,
   signupsOpen: PropTypes.bool,
   signupsOpenDate: PropTypes.string,
   ready: PropTypes.bool,
   signup: PropTypes.object,
+  year: PropTypes.shape({
+    startDate: PropTypes.string,
+  }),
 };
 
 SignupPage.defaultProps = {
   login: null,
   onSignupsOpen: null,
+  signupsClosed: false,
   signupsOpen: false,
   signupsOpenDate: null,
   ready: false,
   signup: null,
+  year: null,
 };
