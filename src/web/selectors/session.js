@@ -13,6 +13,9 @@ export const getApiSource =
 export const getApiAuth =
   createSelector(getSessionState, session => session.data);
 
+export const getAutoLoginStatus =
+  createSelector(getSessionState, session => session.autoLoginAttempted);
+
 export const getParticipant = createSelector(
   getParticipantState,
   participant => participant.data

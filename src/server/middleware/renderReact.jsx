@@ -55,7 +55,21 @@ export const getComponentTree = (store, renderProps) => (
   </Provider>
 );
 
+const getAuth = (req) => {
+  const authText = req.cookies && req.cookies.auth;
+  let auth;
+  if (authText) {
+    try {
+      auth = JSON.parse(authText);
+    } catch (e) {
+      auth = null;
+    }
+  }
+  return auth || {};
+};
+
 export const getStore = (req) => {
+  const auth = getAuth(req);
   const config = configure();
   const initialState = {
     device: {
@@ -67,6 +81,7 @@ export const getStore = (req) => {
     },
     session: {
       apiSource: config.apiSource,
+      data: auth,
     },
   };
 
