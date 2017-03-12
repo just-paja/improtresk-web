@@ -13,4 +13,11 @@ export const validateLogin = getState =>
     }
   };
 
+export const validateGuest = getState =>
+  (nextLocationState, replace) => {
+    if (isLoggedIn(getState())) {
+      replace(reverse('participant:home'));
+    }
+  };
+
 export default { validateLogin };
