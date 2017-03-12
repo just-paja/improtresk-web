@@ -39,7 +39,7 @@ describe('Routes', () => {
         <Route path="/pro-ucastniky/lokace" component={Locations} />
         <Route path="/novinky/:slug" component={NewsDetail} />
         <Route path="/program" component={Schedule} />
-        <Route path="/prihlaska" component={Signup} />
+        <Route path="/prihlaska" onEnter={() => {}} component={Signup} />
         <Route path="/pro-ucastniky/tipy" component={Tips} />
         <Route path="/workshopy" component={Workshops} />
         <Route path="/workshopy/:slug" component={WorkshopDetail} />

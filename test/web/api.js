@@ -186,6 +186,60 @@ describe('API helper', () => {
         expect(nock.isDone()).to.equal(true);
       });
   });
+  it('fetchParticipant calls for participant details', () => {
+    nock(apiSource, {
+      reqheaders: {
+        authorization: 'Bearer a23',
+      },
+    })
+      .get('/whoAmI/')
+      .reply(200, {
+        id: 1,
+        name: 'Keith Johnstonne',
+      });
+
+    return api.fetchParticipant({
+      apiSource,
+      auth: {
+        access_token: 'a23',
+      },
+    })
+      .then(res => res.json())
+      .then((json) => {
+        expect(json).to.eql({
+          id: 1,
+          name: 'Keith Johnstonne',
+        });
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
+  it('fetchParticipantOrders calls for participant orders', () => {
+    nock(apiSource, {
+      reqheaders: {
+        authorization: 'Bearer a23',
+      },
+    })
+      .get('/orders/')
+      .reply(200, {
+        id: 1,
+        name: 'Keith Johnstonne',
+      });
+
+    return api.fetchParticipantOrders({
+      apiSource,
+      auth: {
+        access_token: 'a23',
+      },
+    })
+      .then(res => res.json())
+      .then((json) => {
+        expect(json).to.eql({
+          id: 1,
+          name: 'Keith Johnstonne',
+        });
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
 
   it('fetchMarker fetches marker from Google API', () => {
     nock('https://maps.googleapis.com/maps/api')
