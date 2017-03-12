@@ -17,9 +17,14 @@ export const selectSignupSuccess = action =>
 export const selectLoginSubmit = action =>
   action.type === constants.FORM_SUBMIT_ALLOWED && action.form === 'login';
 
+const purifySignupValues = values => ({
+  ...values,
+  team_name: values.team_name ? values.team_name.value : null,
+});
+
 export function* sendSignup(action) {
   const form = yield select(getForm, action.form);
-  yield fork(sendForm, api.signup, action.form, form.values);
+  yield fork(sendForm, api.signup, action.form, purifySignupValues(form.values));
 }
 
 export function* sendLogin(action) {

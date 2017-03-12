@@ -39,6 +39,8 @@ describe('Form saga helpers', () => {
         phone: '+420 632-157-987',
         birthday: '1980-01-15',
         rules_accepted: true,
+        password: 'SomePassword',
+        passwordCheck: 'SomePassword',
       },
     }).value).to.eql(put({
       type: 'FORM_VALUES_VALIDATE',

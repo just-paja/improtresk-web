@@ -1,7 +1,10 @@
+import Col from 'react-bootstrap/lib/Col';
 import Form from 'react-bootstrap/lib/Form';
 import React, { Component, PropTypes } from 'react';
+import Row from 'react-bootstrap/lib/Row';
 
 import Button from './button';
+import FormErrors from './formErrors';
 import Link from './link';
 import Input from './input';
 import InputCheckbox from './inputCheckbox';
@@ -25,7 +28,7 @@ export default class Signup extends Component {
   }
 
   render() {
-    const { disabled, errors, sending, submitted, values } = this.props;
+    const { disabled, errors, sending, submitErrors, submitted, values } = this.props;
 
     const rulesLabel = <span>Souhlasím s <Link to="conditions">podmínkami festivalu</Link></span>;
 
@@ -64,6 +67,7 @@ export default class Signup extends Component {
           label="Telefonní číslo"
           name="phone"
           onChange={this.handleChange}
+          placeholder="000000000"
           error={errors.phone}
           value={values.phone}
           touched={submitted}
@@ -81,6 +85,30 @@ export default class Signup extends Component {
           value={values.birthday}
           touched={submitted}
         />
+        <Row>
+          <Col sm={6}>
+            <Input
+              disabled={disabled}
+              label="Heslo"
+              name="password"
+              onChange={this.handleChange}
+              error={errors.password}
+              value={values.password}
+              touched={submitted}
+            />
+          </Col>
+          <Col sm={6}>
+            <Input
+              disabled={disabled}
+              label="Kontrola hesla"
+              name="passwordCheck"
+              onChange={this.handleChange}
+              error={errors.passwordCheck}
+              value={values.passwordCheck}
+              touched={submitted}
+            />
+          </Col>
+        </Row>
         <InputSelect
           disabled={disabled}
           help={
@@ -110,6 +138,7 @@ export default class Signup extends Component {
           onChange={this.handleChange}
           value={values.newsletter}
         />
+        <FormErrors errors={submitErrors} />
         <Button
           disabled={disabled}
           bsStyle="primary"
@@ -129,11 +158,13 @@ Signup.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   values: PropTypes.object.isRequired,
   sending: PropTypes.bool,
+  submitErrors: PropTypes.arrayOf(PropTypes.string),
   submitted: PropTypes.bool,
 };
 
 Signup.defaultProps = {
   disabled: false,
   sending: false,
+  submitErrors: null,
   submitted: false,
 };

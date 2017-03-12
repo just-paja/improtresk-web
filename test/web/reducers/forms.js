@@ -243,7 +243,9 @@ describe('Forms reducer', () => {
         submitted: true,
         loading: false,
         valid: true,
-        errors: {},
+        errors: {
+          errors: ['foo'],
+        },
         submitErrors: ['foo'],
       },
     });

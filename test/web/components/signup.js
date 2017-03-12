@@ -1,11 +1,12 @@
 import React from 'react';
 import sinon from 'sinon';
 
-import { Form } from 'react-bootstrap';
+import { Col, Form, Row } from 'react-bootstrap';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import Button from '../../../src/web/components/button';
+import FormErrors from '../../../src/web/components/formErrors';
 import Link from '../../../src/web/components/link';
 import Input from '../../../src/web/components/input';
 import InputCheckbox from '../../../src/web/components/inputCheckbox';
@@ -73,6 +74,7 @@ describe('Signup Form component', () => {
           label="Telefonní číslo"
           name="phone"
           onChange={() => {}}
+          placeholder="000000000"
           error="phone error"
           value="phone value"
           touched={false}
@@ -90,6 +92,26 @@ describe('Signup Form component', () => {
           value="birthday value"
           touched={false}
         />
+        <Row>
+          <Col sm={6}>
+            <Input
+              disabled={false}
+              label="Heslo"
+              name="password"
+              onChange={() => {}}
+              touched={false}
+            />
+          </Col>
+          <Col sm={6}>
+            <Input
+              disabled={false}
+              label="Kontrola hesla"
+              name="passwordCheck"
+              onChange={() => {}}
+              touched={false}
+            />
+          </Col>
+        </Row>
         <InputSelect
           disabled={false}
           help={
@@ -118,6 +140,7 @@ describe('Signup Form component', () => {
           onChange={() => {}}
           value={false}
         />
+        <FormErrors />
         <Button
           disabled={false}
           bsStyle="primary"
@@ -167,6 +190,7 @@ describe('Signup Form component', () => {
           label="Telefonní číslo"
           name="phone"
           onChange={() => {}}
+          placeholder="000000000"
           touched={false}
         />
         <InputDate
@@ -180,6 +204,26 @@ describe('Signup Form component', () => {
           onChange={() => {}}
           touched={false}
         />
+        <Row>
+          <Col sm={6}>
+            <Input
+              disabled
+              label="Heslo"
+              name="password"
+              onChange={() => {}}
+              touched={false}
+            />
+          </Col>
+          <Col sm={6}>
+            <Input
+              disabled
+              label="Kontrola hesla"
+              name="passwordCheck"
+              onChange={() => {}}
+              touched={false}
+            />
+          </Col>
+        </Row>
         <InputSelect
           disabled
           help={
@@ -203,6 +247,7 @@ describe('Signup Form component', () => {
           label="Chci dostávat e-mailem novinky o událostech Improligy"
           onChange={() => {}}
         />
+        <FormErrors />
         <Button
           disabled
           bsStyle="primary"

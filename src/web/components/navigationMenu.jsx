@@ -1,3 +1,4 @@
+import FontAwesome from 'react-fontawesome';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import NavItem from 'react-bootstrap/lib/NavItem';
@@ -72,7 +73,7 @@ const NavigationMenu = ({
       {participant ? ([
         <NavItem divider key="participant-divider" />,
         <LinkContainer key="participant-link" to={reverse('participant:home')}>
-          <NavItem>{participant.name}</NavItem>
+          <NavItem><FontAwesome name="user" /> {participant.name}</NavItem>
         </LinkContainer>,
       ]) : null}
     </Nav>

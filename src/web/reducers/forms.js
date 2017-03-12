@@ -100,6 +100,7 @@ export default combined(defaultState, {
       [action.form]: {
         ...state[action.form],
         loading: false,
+        errors: action.data,
         submitErrors: action.data ? action.data.errors : null,
         saved: false,
       },

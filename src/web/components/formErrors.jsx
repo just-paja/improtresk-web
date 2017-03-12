@@ -11,7 +11,7 @@ const FormErrors = ({ errors }) => (
   errors ? (
     <div>
       {errors.map(error => (
-        <Alert bsStyle="danger">
+        <Alert key={error} bsStyle="danger">
           <FontAwesome name="exclamation-triangle" /> {
             messages[error] || `Neznámá chyba: ${error}`
           }
