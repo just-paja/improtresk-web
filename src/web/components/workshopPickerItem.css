@@ -1,0 +1,30 @@
+:local .box,
+:local .box:active,
+:local .box:focus {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  cursor: pointer;
+  color: #3e3f3a;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+:local .input {
+  font-size: 32px;
+  margin-right: 1rem;
+  text-align: center;
+  vertical-align: top;
+}
+
+:local .cleaner {
+  clear: both;
+}
+
+:local .selected .input {
+  color: #93c54b;
+}
+
+:local .workshop {
+  display: inline-block;
+  vertical-align: top;
+}
