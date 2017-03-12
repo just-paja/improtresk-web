@@ -28,10 +28,15 @@ const WorkshopDetail = ({ id, desc, difficulty, name, lectors, photos, prices })
           <ul>
             {prices.map(price => (
               <li key={price.name}>
+                od{' '}
                 <HumanDate date={price.takesEffectOn} />
-                {' - '}
-                <HumanDate date={price.endsOn} />:
-                {' '}
+                {price.endsOn ? (
+                  <span>
+                    {' - '}
+                    <HumanDate date={price.endsOn} />
+                  </span>
+                ) : null}
+                {': '}
                 <Price price={price.price} />
               </li>
             ))}
