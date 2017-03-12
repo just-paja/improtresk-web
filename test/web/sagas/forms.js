@@ -1,10 +1,16 @@
 import { expect } from 'chai';
-import { put, select, takeLatest } from 'redux-saga/effects';
+import { fork, put, select, takeLatest } from 'redux-saga/effects';
 
 import signupValidator from '../../../src/web/forms/signup';
 
 import { getForm } from '../../../src/web/selectors/forms';
-import { validateForm, validateFormOnValuesChange, validateAndSubmitForm } from '../../../src/web/sagas/forms';
+import { fetchResource } from '../../../src/web/sagas/common';
+import {
+  sendForm,
+  validateForm,
+  validateFormOnValuesChange,
+  validateAndSubmitForm,
+} from '../../../src/web/sagas/forms';
 
 describe('Form saga helpers', () => {
   it('validateForm validates signup form as valid when everything is green', () => {
@@ -95,5 +101,24 @@ describe('Form saga helpers', () => {
       valid: true,
     }));
     expect(generator.next().done).to.equal(true);
+  });
+  it('sendForm dispatches resource fetch', () => {
+    const apiAction = () => {};
+    const saga = sendForm(apiAction, 'login', {
+      email: 'mail@test.com',
+      password: 'foo',
+    });
+
+    expect(saga.next().value).to.eql(fork(fetchResource, apiAction, {
+      onStart: 'FORM_SUBMIT_STARTED',
+      onSuccess: 'FORM_SUBMIT_SUCCESS',
+      onError: 'FORM_SUBMIT_ERROR',
+      form: 'login',
+      data: {
+        email: 'mail@test.com',
+        password: 'foo',
+      },
+    }));
+    expect(saga.next().done).to.equal(true);
   });
 });

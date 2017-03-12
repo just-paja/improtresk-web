@@ -6,6 +6,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import Button from '../../../src/web/components/button';
+import FormErrors from '../../../src/web/components/formErrors';
 import Input from '../../../src/web/components/input';
 import Login from '../../../src/web/components/login';
 
@@ -17,21 +18,12 @@ describe('Login Form component', () => {
         onChange={() => {}}
         onSubmit={() => {}}
         errors={{
-          name: 'name error',
           email: 'email error',
-          phone: 'phone error',
-          birthday: 'birthday error',
-          team_name: 'team error',
-          rules_accepted: 'rules error',
+          password: 'password error',
         }}
         values={{
-          name: 'name value',
           email: 'email value',
-          phone: 'phone value',
-          birthday: 'birthday value',
-          team_name: 'team value',
-          rules_accepted: false,
-          newsletter: false,
+          password: 'test',
         }}
       />
     ).node).to.eql(
@@ -53,7 +45,10 @@ describe('Login Form component', () => {
           type="password"
           onChange={() => {}}
           touched={false}
+          value="test"
+          error="password error"
         />
+        <FormErrors />
         <Button
           bsStyle="primary"
           icon="key"
@@ -90,6 +85,7 @@ describe('Login Form component', () => {
           onChange={() => {}}
           touched={false}
         />
+        <FormErrors />
         <Button
           disabled
           bsStyle="primary"

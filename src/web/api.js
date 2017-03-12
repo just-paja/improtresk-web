@@ -51,6 +51,16 @@ export const signup = ({ data, ...params }) => apiFetch('register/', {
   body: JSON.stringify(data),
 });
 
+export const login = ({ data, ...params }) =>
+  fetch('/frontend/login', {
+    body: JSON.stringify(data),
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    ...params,
+  });
+
 export const fetchParticipant = () => apiFetch('participant');
 
 export const updateParticipantLastAction = () =>

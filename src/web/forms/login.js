@@ -9,7 +9,7 @@ const schema = {
       required: true,
       type: 'string',
     },
-    passwd: {
+    password: {
       maxLength: 255,
       message: 'Vyplň svoje heslo',
       required: true,

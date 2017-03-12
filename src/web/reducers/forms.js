@@ -53,6 +53,7 @@ export default combined(defaultState, {
     {
       [action.form]: {
         ...state[action.form],
+        submitErrors: [],
         submitted: true,
       },
     }
@@ -99,7 +100,7 @@ export default combined(defaultState, {
       [action.form]: {
         ...state[action.form],
         loading: false,
-        error: action.error,
+        submitErrors: action.data ? action.data.errors : null,
         saved: false,
       },
     }
