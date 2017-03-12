@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 import Container from '../../container';
+import OrderStatus from '../../orderStatus';
 
 class ParticipantHome extends Component {
   componentWillMount() {
@@ -8,7 +9,8 @@ class ParticipantHome extends Component {
   }
 
   render() {
-    const { ready, participant, yearNumber } = this.props;
+    const { order, participant, ready, yearNumber } = this.props;
+
     if (!ready) {
       return null;
     }
@@ -17,12 +19,14 @@ class ParticipantHome extends Component {
       <Container>
         <h1>Můj Improtřesk {yearNumber}</h1>
         <strong>{participant.name}</strong>
+        {order ? <OrderStatus {...order} /> : null}
       </Container>
     );
   }
 }
 
 ParticipantHome.propTypes = {
+  order: PropTypes.object,
   participant: PropTypes.shape({
     name: PropTypes.string,
   }),
@@ -32,6 +36,7 @@ ParticipantHome.propTypes = {
 };
 
 ParticipantHome.defaultProps = {
+  order: null,
   participant: null,
   ready: false,
   yearNumber: null,
