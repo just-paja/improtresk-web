@@ -1,5 +1,6 @@
 import deviceMiddleware from 'express-device';
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import winston from 'winston';
 
@@ -26,6 +27,7 @@ export default function server(userConfig = {}) {
   }
 
   app.use(deviceMiddleware.capture());
+  app.use(cookieParser());
   app.use(bodyParser.json());
   app.use(bodyParser.json({ type: 'application/json' }));
 

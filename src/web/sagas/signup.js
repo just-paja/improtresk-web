@@ -1,7 +1,10 @@
+import cookie from 'js-cookie';
+
 import { fork, put, select, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
 import { getForm } from '../selectors/forms';
+import { getApiAuth, getAutoLoginStatus } from '../selectors/session';
 import { reverse } from '../routeTable';
 import { sendForm } from './forms';
 
@@ -52,7 +55,27 @@ export function* login(action) {
     type: constants.PARTICIPANT_LOGIN,
     data: action.data,
   });
+  cookie.set('auth', action.data, { expires: 30 });
   yield put(push(reverse('participant:home')));
+}
+
+export function* loginWithCookie() {
+  const autoLoginAttempted = yield select(getAutoLoginStatus);
+
+  if (!autoLoginAttempted) {
+    let auth = yield select(getApiAuth);
+    if (!auth.access_token) {
+      auth = cookie.getJSON('auth');
+    }
+
+    if (auth) {
+      yield put({
+        type: constants.PARTICIPANT_LOGIN,
+        data: auth,
+      });
+    }
+    yield put({ type: constants.PARTICIPANT_LOGIN_AUTO });
+  }
 }
 
 export function* signupOnFormSubmit() {
@@ -71,9 +94,14 @@ export function* loginOnAction() {
   yield takeLatest(selectLoginSucess, login);
 }
 
+export function* loginOnMount() {
+  yield takeLatest(constants.APP_MOUNTED, loginWithCookie);
+}
+
 export default [
   loginOnAction,
   loginOnFormSubmit,
   loginOnSignup,
+  loginOnMount,
   signupOnFormSubmit,
 ];
