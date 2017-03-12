@@ -10,6 +10,9 @@ export const getHost =
 export const getApiSource =
   createSelector(getSessionState, session => session.apiSource);
 
+export const getApiAuth =
+  createSelector(getSessionState, session => session.data);
+
 export const getParticipant = createSelector(
   getParticipantState,
   participant => participant.data

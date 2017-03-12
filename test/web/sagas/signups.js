@@ -5,6 +5,7 @@ import { push } from 'react-router-redux';
 import { getForm } from '../../../src/web/selectors/forms';
 import { sendForm } from '../../../src/web/sagas/forms';
 import {
+  login,
   loginOnFormSubmit,
   loginOnSignup,
   loginSignup,
@@ -69,14 +70,25 @@ describe('Signup sagas', () => {
         name: 'Hugo Ventil',
       },
     });
-    expect(saga.next().value).to.eql(put({
-      type: 'SIGNUP_REGISTERED',
+    expect(saga.next().value).to.eql(select(getForm, 'signup'));
+    expect(saga.next({
+      values: {
+        email: 'test@localhost.com',
+        password: 'foo',
+      },
+    }).value).to.eql(fork(sendForm, api.login, 'login', {
+      email: 'test@localhost.com',
+      password: 'foo',
+    }));
+    expect(saga.next({
+      auth_token: 'asdf65a4sdf65asd4f',
+    }).value).to.eql(put({
+      type: 'PARTICIPANT_REGISTERED',
       data: {
         id: 1,
         name: 'Hugo Ventil',
       },
     }));
-    expect(saga.next().value).to.eql(put(push('/ucastnik')));
     expect(saga.next().done).to.equal(true);
   });
   it('signupOnFormSubmit creates actions', () => {
@@ -92,6 +104,22 @@ describe('Signup sagas', () => {
   it('loginOnFormSubmit creates actions', () => {
     const saga = loginOnFormSubmit();
     expect(saga.next().value).to.eql(takeLatest(selectLoginSubmit, sendLogin));
+    expect(saga.next().done).to.equal(true);
+  });
+  it('login creates actions', () => {
+    const saga = login({
+      data: {
+        auth_token: 'asdf65a4sdf65asd4f',
+      },
+    });
+
+    expect(saga.next().value).to.eql(put({
+      type: 'PARTICIPANT_LOGIN',
+      data: {
+        auth_token: 'asdf65a4sdf65asd4f',
+      },
+    }));
+    expect(saga.next().value).to.eql(put(push('/ucastnik')));
     expect(saga.next().done).to.equal(true);
   });
 });

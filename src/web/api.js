@@ -1,9 +1,10 @@
 import fetch from 'isomorphic-fetch';
 
-const apiFetch = (url, { apiSource, ...params }) =>
+const apiFetch = (url, { apiSource, headers = {}, ...params }) =>
   fetch(`${apiSource}/${url}`, {
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
+      ...headers,
     },
     ...params,
   });
@@ -61,7 +62,13 @@ export const login = ({ data, ...params }) =>
     ...params,
   });
 
-export const fetchParticipant = () => apiFetch('participant');
+export const fetchParticipant = ({ auth, ...params }) =>
+  apiFetch('whoAmI/', {
+    headers: {
+      Authorization: `Bearer ${auth.access_token}`,
+    },
+    ...params,
+  });
 
 export const updateParticipantLastAction = () =>
   apiFetch('participant/updateLastAction/', {

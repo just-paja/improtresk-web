@@ -17,6 +17,9 @@ export const selectSignupSuccess = action =>
 export const selectLoginSubmit = action =>
   action.type === constants.FORM_SUBMIT_ALLOWED && action.form === 'login';
 
+export const selectLoginSucess = action =>
+  action.type === constants.FORM_SUBMIT_SUCCESS && action.form === 'login';
+
 const purifySignupValues = values => ({
   ...values,
   team_name: values.team_name ? values.team_name.value : null,
@@ -33,8 +36,20 @@ export function* sendLogin(action) {
 }
 
 export function* loginSignup(action) {
+  const form = yield select(getForm, 'signup');
+  yield fork(sendForm, api.login, 'login', {
+    email: form.values.email,
+    password: form.values.password,
+  });
   yield put({
-    type: constants.SIGNUP_REGISTERED,
+    type: constants.PARTICIPANT_REGISTERED,
+    data: action.data,
+  });
+}
+
+export function* login(action) {
+  yield put({
+    type: constants.PARTICIPANT_LOGIN,
     data: action.data,
   });
   yield put(push(reverse('participant:home')));
@@ -52,7 +67,12 @@ export function* loginOnFormSubmit() {
   yield takeLatest(selectLoginSubmit, sendLogin);
 }
 
+export function* loginOnAction() {
+  yield takeLatest(selectLoginSucess, login);
+}
+
 export default [
+  loginOnAction,
   loginOnFormSubmit,
   loginOnSignup,
   signupOnFormSubmit,

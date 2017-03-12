@@ -95,6 +95,7 @@ export default class Signup extends Component {
               error={errors.password}
               value={values.password}
               touched={submitted}
+              type="password"
             />
           </Col>
           <Col sm={6}>
@@ -106,6 +107,7 @@ export default class Signup extends Component {
               error={errors.passwordCheck}
               value={values.passwordCheck}
               touched={submitted}
+              type="password"
             />
           </Col>
         </Row>

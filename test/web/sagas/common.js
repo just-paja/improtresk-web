@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { call, fork, put, select } from 'redux-saga/effects';
 
 import { fetchResource, fetchResourceIfNeeded } from '../../../src/web/sagas/common';
-import { getApiSource } from '../../../src/web/selectors/session';
+import { getApiAuth, getApiSource } from '../../../src/web/selectors/session';
 
 describe('Common saga helpers', () => {
   it('fetchResourceIfNeeded does not fetch when validity selector returns true', () => {
@@ -66,11 +66,13 @@ describe('Common saga helpers', () => {
     );
 
     expect(testFetch.next().value).to.eql(select(getApiSource));
-    expect(testFetch.next('http://localhost').value)
+    expect(testFetch.next('http://localhost').value).to.eql(select(getApiAuth));
+    expect(testFetch.next({ access_token: 'a23' }).value)
       .to.eql(put({ type: 'started', code: 'code' }));
     expect(testFetch.next().value)
       .to.eql(call(fetch, {
         apiSource: 'http://localhost',
+        auth: { access_token: 'a23' },
         code: 'code',
         type: 'REDUX_ACTION',
       }));
@@ -104,18 +106,18 @@ describe('Common saga helpers', () => {
     );
 
     expect(testFetch.next().value).to.eql(select(getApiSource));
-    expect(testFetch.next('http://localhost').value)
+    expect(testFetch.next('http://localhost').value).to.eql(select(getApiAuth));
+    expect(testFetch.next({ access_token: 'a23' }).value)
       .to.eql(put({ type: 'started', code: 'code' }));
     expect(testFetch.next().value)
       .to.eql(call(fetch, {
         apiSource: 'http://localhost',
+        auth: { access_token: 'a23' },
         code: 'code',
         type: 'REDUX_ACTION',
       }));
 
-    const response = { status: 204 };
-
-    expect(testFetch.next(response).value).to.eql([]);
+    expect(testFetch.next({ status: 204 }).value).to.eql([]);
     expect(testFetch.next([]).value).to.eql(put({
       type: 'succeeded',
       code: 'code',
@@ -136,11 +138,13 @@ describe('Common saga helpers', () => {
     );
 
     expect(testFetch.next().value).to.eql(select(getApiSource));
-    expect(testFetch.next('http://localhost').value)
+    expect(testFetch.next('http://localhost').value).to.eql(select(getApiAuth));
+    expect(testFetch.next({ access_token: 'a23' }).value)
       .to.eql(put({ type: 'started', code: 'code' }));
     expect(testFetch.next().value)
       .to.eql(call(fetch, {
         apiSource: 'http://localhost',
+        auth: { access_token: 'a23' },
         code: 'code',
         type: 'REDUX_ACTION',
       }));
@@ -172,11 +176,13 @@ describe('Common saga helpers', () => {
     );
 
     expect(testFetch.next().value).to.eql(select(getApiSource));
-    expect(testFetch.next('http://localhost').value)
+    expect(testFetch.next('http://localhost').value).to.eql(select(getApiAuth));
+    expect(testFetch.next({ access_token: 'a23' }).value)
       .to.eql(put({ type: 'started', code: 'code' }));
     expect(testFetch.next().value)
       .to.eql(call(fetch, {
         apiSource: 'http://localhost',
+        auth: { access_token: 'a23' },
         code: 'code',
         type: 'REDUX_ACTION',
       }));
@@ -208,11 +214,13 @@ describe('Common saga helpers', () => {
     );
 
     expect(testFetch.next().value).to.eql(select(getApiSource));
-    expect(testFetch.next('http://localhost').value)
+    expect(testFetch.next('http://localhost').value).to.eql(select(getApiAuth));
+    expect(testFetch.next({ access_token: 'a23' }).value)
       .to.eql(put({ type: 'started', code: 'code' }));
     expect(testFetch.next().value)
       .to.eql(call(fetch, {
         apiSource: 'http://localhost',
+        auth: { access_token: 'a23' },
         code: 'code',
         type: 'REDUX_ACTION',
       }));
