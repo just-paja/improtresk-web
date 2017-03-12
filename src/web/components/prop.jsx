@@ -2,10 +2,14 @@ import FontAwesome from 'react-fontawesome';
 import React, { PropTypes } from 'react';
 
 const Prop = ({ children, icon, label }) => (
-  <li>
-    <FontAwesome name={icon} /> {label}:{' '}
-    {children}
-  </li>
+  children ? (
+    <li>
+      {icon ? <FontAwesome name={icon} /> : null}
+      {icon ? ' ' : null}
+      {label}:{' '}
+      {children}
+    </li>
+  ) : null
 );
 
 Prop.propTypes = {
