@@ -8,14 +8,14 @@ import { sendForm } from './forms';
 import * as api from '../api';
 import * as constants from '../constants/actions';
 
-const formSelector = action =>
+export const selectSignupSubmit = action =>
   action.type === constants.FORM_SUBMIT_ALLOWED && action.form === 'signup';
 
-const loginSelector = action =>
-  action.type === constants.FORM_SUBMIT_ALLOWED && action.form === 'login';
-
-const formSuccessSelector = action =>
+export const selectSignupSuccess = action =>
   action.type === constants.FORM_SUBMIT_SUCCESS && action.form === 'signup';
+
+export const selectLoginSubmit = action =>
+  action.type === constants.FORM_SUBMIT_ALLOWED && action.form === 'login';
 
 export function* sendSignup(action) {
   const form = yield select(getForm, action.form);
@@ -36,15 +36,15 @@ export function* loginSignup(action) {
 }
 
 export function* signupOnFormSubmit() {
-  yield takeLatest(formSelector, sendSignup);
+  yield takeLatest(selectSignupSubmit, sendSignup);
 }
 
 export function* loginOnSignup() {
-  yield takeLatest(formSuccessSelector, loginSignup);
+  yield takeLatest(selectSignupSuccess, loginSignup);
 }
 
 export function* loginOnFormSubmit() {
-  yield takeLatest(loginSelector, sendLogin);
+  yield takeLatest(selectLoginSubmit, sendLogin);
 }
 
 export default [
