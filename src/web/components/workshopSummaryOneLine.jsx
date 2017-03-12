@@ -2,12 +2,11 @@ import React, { PropTypes } from 'react';
 
 const WorkshopSummaryOneLine = ({ name, lectors }) => (
   <div>
-    {name}:
-    {' '}
-    {
-      lectors
-        .map(lectorAssignment => `${lectorAssignment.lector.name} (${lectorAssignment.role})`)
-        .join(', ')
+    <strong>{name}</strong><br />
+    Lektoři:{' '}
+    {lectors
+      .map(lectorPosition => lectorPosition.lector.name)
+      .join(', ')
     }
   </div>
 );
