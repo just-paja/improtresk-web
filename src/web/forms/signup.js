@@ -27,6 +27,25 @@ const schema = {
       required: true,
       type: 'string',
     },
+    password: {
+      maxLength: 255,
+      messages: {
+        required: 'Jaké bude tvoje heslo?',
+        minLength: 'Heslo musí mít alespoň 5 znaků',
+      },
+      minLength: 5,
+      required: true,
+      type: 'string',
+    },
+    passwordCheck: {
+      conform: (value, formValues) => value === formValues.password,
+      messages: {
+        required: 'Jaké bude tvoje heslo?',
+        conform: 'Hesla nesouhlasí',
+      },
+      required: true,
+      type: 'string',
+    },
     birthday: {
       conform: value => moment().diff(value, 'years') > 18,
       maxLength: 32,

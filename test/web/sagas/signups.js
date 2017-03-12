@@ -35,10 +35,15 @@ describe('Signup sagas', () => {
       values: {
         email: 'mail@test.com',
         password: 'foo',
+        team_name: {
+          label: 'foo',
+          value: 'Test Team',
+        },
       },
     }).value).to.eql(fork(sendForm, api.signup, 'signup', {
       email: 'mail@test.com',
       password: 'foo',
+      team_name: 'Test Team',
     }));
     expect(saga.next().done).to.equal(true);
   });

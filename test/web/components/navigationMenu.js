@@ -1,3 +1,4 @@
+import FontAwesome from 'react-fontawesome';
 import React from 'react';
 
 import { expect } from 'chai';
@@ -118,7 +119,7 @@ describe('Navigation menu component', () => {
         </LinkContainer>
         <NavItem divider />
         <LinkContainer to="/ucastnik">
-          <NavItem>foo</NavItem>
+          <NavItem><FontAwesome name="user" /> foo</NavItem>
         </LinkContainer>
       </Nav>
     );
