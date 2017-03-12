@@ -22,7 +22,7 @@ import WorkshopDetail from './containers/workshopDetail';
 import Workshops from './containers/workshops';
 
 import { urlTable } from './routeTable';
-import { validateLogin } from './session';
+import { validateGuest, validateLogin } from './session';
 
 export default function configureRoutes(store) {
   return (
@@ -37,7 +37,7 @@ export default function configureRoutes(store) {
       <Route path={urlTable.location} component={Locations} />
       <Route path={urlTable['news:item']} component={NewsDetail} />
       <Route path={urlTable.schedule} component={Schedule} />
-      <Route path={urlTable.signup} component={Signup} />
+      <Route onEnter={validateGuest(store.getState)} path={urlTable.signup} component={Signup} />
       <Route path={urlTable.tips} component={Tips} />
       <Route path={urlTable.workshops} component={Workshops} />
       <Route path={urlTable['workshops:item']} component={WorkshopDetail} />
