@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import winston from 'winston';
 
 import configure from './config';
+import api from './api';
 import routerRender from './middleware/routerRender';
 import errorRender from './middleware/errorRender';
 import staticMiddleware from './middleware/static';
@@ -33,6 +34,7 @@ export default function server(userConfig = {}) {
     app.use(require('./middleware/dev').default);
   }
 
+  app.use('/frontend', api(config));
   app.use(routerRender);
   app.use(errorRender);
 

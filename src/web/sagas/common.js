@@ -11,12 +11,12 @@ export function* fetchResource(resource, { onStart, onSuccess, onError, ...args 
       ...args,
       apiSource,
     });
+    const data = yield res.status === 204 ? [] : res.json();
 
     if (res.status >= 200 && res.status < 300) {
-      const data = yield res.status === 204 ? [] : res.json();
       yield put({ ...args, type: onSuccess, data });
     } else {
-      yield put({ ...args, type: onError, error: res.error, status: res.status });
+      yield put({ ...args, type: onError, error: res.error, status: res.status, data });
     }
   } catch (error) {
     yield put({ type: onError, error, ...args });

@@ -2,6 +2,7 @@ import Form from 'react-bootstrap/lib/Form';
 import React, { Component, PropTypes } from 'react';
 
 import Button from './button';
+import FormErrors from './formErrors';
 import Input from './input';
 
 export default class Login extends Component {
@@ -21,7 +22,7 @@ export default class Login extends Component {
   }
 
   render() {
-    const { disabled, errors, sending, submitted, values } = this.props;
+    const { disabled, errors, sending, submitErrors, submitted, values } = this.props;
 
     return (
       <Form onSubmit={this.handleSubmit}>
@@ -45,6 +46,7 @@ export default class Login extends Component {
           value={values.password}
           touched={submitted}
         />
+        <FormErrors errors={submitErrors} />
         <Button
           bsStyle="primary"
           disabled={disabled}
@@ -65,11 +67,13 @@ Login.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   values: PropTypes.object.isRequired,
   sending: PropTypes.bool,
+  submitErrors: PropTypes.arrayOf(PropTypes.string),
   submitted: PropTypes.bool,
 };
 
 Login.defaultProps = {
   disabled: false,
   sending: false,
+  submitErrors: null,
   submitted: false,
 };

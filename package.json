@@ -41,6 +41,7 @@
     "express-device": "^0.4.2",
     "file-loader": "^0.10.1",
     "font-awesome": "^4.7.0",
+    "form-urlencoded": "^1.5.0",
     "isomorphic-fetch": "^2.2.1",
     "json-loader": "^0.5.4",
     "moment": "^2.17.1",

@@ -133,6 +133,7 @@ describe('Forms reducer', () => {
           foo: 'bar',
         },
         submitted: true,
+        submitErrors: [],
       },
     });
   });
@@ -229,7 +230,9 @@ describe('Forms reducer', () => {
       {
         type: 'FORM_SUBMIT_ERROR',
         form: 'testForm',
-        error: 'foo',
+        data: {
+          errors: ['foo'],
+        },
       }
     )).to.eql({
       testForm: {
@@ -241,7 +244,7 @@ describe('Forms reducer', () => {
         loading: false,
         valid: true,
         errors: {},
-        error: 'foo',
+        submitErrors: ['foo'],
       },
     });
   });

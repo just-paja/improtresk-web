@@ -1,5 +1,6 @@
-import { put, select, takeLatest } from 'redux-saga/effects';
+import { fork, put, select, takeLatest } from 'redux-saga/effects';
 
+import { fetchResource } from './common';
 import { getForm } from '../selectors/forms';
 
 import * as constants from '../constants/actions';
@@ -44,6 +45,19 @@ export function* validateFormOnValuesChange() {
 
 export function* validateFormOnSubmit() {
   yield takeLatest(constants.FORM_SUBMIT, validateAndSubmitForm);
+}
+
+export function* sendForm(apiResource, form, data) {
+  yield fork(fetchResource,
+    apiResource,
+    {
+      onStart: constants.FORM_SUBMIT_STARTED,
+      onSuccess: constants.FORM_SUBMIT_SUCCESS,
+      onError: constants.FORM_SUBMIT_ERROR,
+      form,
+      data,
+    }
+  );
 }
 
 export default [
