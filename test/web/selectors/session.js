@@ -26,8 +26,10 @@ describe('Session selectors', () => {
   it('getParticipant returns participant object', () => {
     expect(getParticipant({
       participant: {
-        data: {
-          id: 1,
+        details: {
+          data: {
+            id: 1,
+          },
         },
       },
     })).to.eql({
@@ -37,8 +39,10 @@ describe('Session selectors', () => {
   it('isLoggedIn returns true when participant is logged', () => {
     expect(isLoggedIn({
       participant: {
-        data: {
-          id: 1,
+        details: {
+          data: {
+            id: 1,
+          },
         },
       },
     })).to.equal(true);
@@ -46,7 +50,9 @@ describe('Session selectors', () => {
   it('isLoggedIn returns false when participant is not logged', () => {
     expect(isLoggedIn({
       participant: {
-        data: null,
+        details: {
+          data: null,
+        },
       },
     })).to.equal(false);
   });

@@ -14,7 +14,7 @@ import Home from './containers/home';
 import Locations from './containers/locations';
 import NewsDetail from './containers/newsDetail';
 import NotFound from './components/notFound';
-import ParticipantHome from './components/pages/participant/home';
+import ParticipantHome from './containers/participantHome';
 import Schedule from './containers/schedule';
 import Signup from './containers/signup';
 import Tips from './containers/tips';

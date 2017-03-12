@@ -9,6 +9,14 @@ const apiFetch = (url, { apiSource, headers = {}, ...params }) =>
     ...params,
   });
 
+const apiFetchAuthorized = (url, { auth, ...params }) =>
+  apiFetch(url, {
+    headers: {
+      Authorization: `Bearer ${auth.access_token}`,
+    },
+    ...params,
+  });
+
 export const fetchArchivedYear = ({ year, ...params }) =>
   apiFetch(`years/${year}/`, params);
 
@@ -62,18 +70,11 @@ export const login = ({ data, ...params }) =>
     ...params,
   });
 
-export const fetchParticipant = ({ auth, ...params }) =>
-  apiFetch('whoAmI/', {
-    headers: {
-      Authorization: `Bearer ${auth.access_token}`,
-    },
-    ...params,
-  });
+export const fetchParticipant = params => apiFetchAuthorized('whoAmI/', params);
 
-export const updateParticipantLastAction = () =>
-  apiFetch('participant/updateLastAction/', {
-    method: 'POST',
-  });
+export const fetchParticipantOrders = params => apiFetchAuthorized('orders/', params);
+
+export const updateParticipantLastAction = () => {};
 
 export const fetchMarker = ({ address, ...params }) => fetch(
   'https://maps.googleapis.com/maps/api/geocode/' +

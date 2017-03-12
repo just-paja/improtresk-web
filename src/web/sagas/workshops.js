@@ -66,7 +66,10 @@ export function* requireWorkshopLocations() {
 
 export function* requireWorkshops() {
   yield takeLatest(
-    constants.WORKSHOPS_MOUNTED,
+    [
+      constants.WORKSHOPS_MOUNTED,
+      constants.REQUEST_PARTICIPANT_DETAILS,
+    ],
     requireYearsWorkshops
   );
 }

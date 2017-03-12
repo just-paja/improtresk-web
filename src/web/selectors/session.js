@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const getParticipantState = state => state.participant;
+const getParticipantState = state => state.participant.details;
 const getSessionState = state => state.session;
 const getServerState = state => state.server;
 
