@@ -1,7 +1,15 @@
+import { combined } from './common';
+
+import * as constants from '../constants/actions';
+
 const defaultState = {
   apiSource: '',
+  data: {},
 };
 
-const server = (state = defaultState) => state;
-
-export default server;
+export default combined(defaultState, {
+  [constants.PARTICIPANT_LOGIN]: (state, action) => ({
+    ...state,
+    data: action.data,
+  }),
+});

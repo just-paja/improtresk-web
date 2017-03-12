@@ -98,6 +98,7 @@ describe('Signup Form component', () => {
               disabled={false}
               label="Heslo"
               name="password"
+              type="password"
               onChange={() => {}}
               touched={false}
             />
@@ -107,6 +108,7 @@ describe('Signup Form component', () => {
               disabled={false}
               label="Kontrola hesla"
               name="passwordCheck"
+              type="password"
               onChange={() => {}}
               touched={false}
             />
@@ -210,6 +212,7 @@ describe('Signup Form component', () => {
               disabled
               label="Heslo"
               name="password"
+              type="password"
               onChange={() => {}}
               touched={false}
             />
@@ -219,6 +222,7 @@ describe('Signup Form component', () => {
               disabled
               label="Kontrola hesla"
               name="passwordCheck"
+              type="password"
               onChange={() => {}}
               touched={false}
             />
