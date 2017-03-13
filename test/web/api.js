@@ -41,7 +41,7 @@ describe('API helper', () => {
         expect(nock.isDone()).to.equal(true);
       });
   });
-  it('fetchLectors calls for list of meals', () => {
+  it('fetchLectors calls for list of lectors', () => {
     nock(apiSource)
       .get('/lectors/')
       .reply(200, []);
@@ -51,7 +51,7 @@ describe('API helper', () => {
         expect(nock.isDone()).to.equal(true);
       });
   });
-  it('fetchLectorRoles calls for list of meals', () => {
+  it('fetchLectorRoles calls for list of lector roles', () => {
     nock(apiSource)
       .get('/lectorRoles/')
       .reply(200, []);
@@ -63,10 +63,10 @@ describe('API helper', () => {
   });
   it('fetchMeals calls for list of meals', () => {
     nock(apiSource)
-      .get('/meals/')
+      .get('/years/2017/meals/')
       .reply(200, []);
 
-    return api.fetchMeals({ apiSource })
+    return api.fetchMeals({ apiSource, year: '2017' })
       .then(() => {
         expect(nock.isDone()).to.equal(true);
       });
@@ -92,7 +92,7 @@ describe('API helper', () => {
         expect(nock.isDone()).to.equal(true);
       });
   });
-  it('fetchNewsDetail calls for news', () => {
+  it('fetchNewsDetail calls for news detail', () => {
     nock(apiSource)
       .get('/news/1/')
       .reply(200, {
@@ -126,7 +126,7 @@ describe('API helper', () => {
         expect(nock.isDone()).to.equal(true);
       });
   });
-  it('fetchWorkshopDifficulties calls for workshop detail', () => {
+  it('fetchWorkshopDifficulties calls for workshop difficulties', () => {
     nock(apiSource)
       .get('/workshopDifficulties/')
       .reply(200, []);
@@ -166,7 +166,7 @@ describe('API helper', () => {
         expect(nock.isDone()).to.equal(true);
       });
   });
-  it('fetchYears calls for news', () => {
+  it('fetchYears calls for years', () => {
     nock(apiSource)
       .get('/years/')
       .reply(200, []);
