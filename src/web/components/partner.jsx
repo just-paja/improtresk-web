@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 const Partner = ({ name, logo }) => (
   <div>
-    <img alt={`${name}, logo`} src={{ logo }} />
+    <img alt={`${name}, logo`} src={logo} />
   </div>
 );
 
