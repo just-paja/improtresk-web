@@ -113,4 +113,7 @@ describe('Signup Button component', () => {
       );
     });
   });
+  it('renders empty without start date', () => {
+    expect(shallow(<SignupButton />).node).to.eql(null);
+  });
 });
