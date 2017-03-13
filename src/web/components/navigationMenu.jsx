@@ -71,7 +71,7 @@ const NavigationMenu = ({
         <NavItem>Kontakt</NavItem>
       </LinkContainer>
       {participant ? ([
-        <NavItem divider key="participant-divider" />,
+        <NavItem key="participant-divider" />,
         <LinkContainer key="participant-link" to={reverse('participant:home')}>
           <NavItem><FontAwesome name="user" /> {participant.name}</NavItem>
         </LinkContainer>,

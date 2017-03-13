@@ -16,9 +16,14 @@ Prop.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
-  ]).isRequired,
-  icon: PropTypes.string.isRequired,
+  ]),
+  icon: PropTypes.string,
   label: PropTypes.string.isRequired,
+};
+
+Prop.defaultProps = {
+  children: null,
+  icon: null,
 };
 
 export default Prop;

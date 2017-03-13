@@ -117,7 +117,7 @@ describe('Navigation menu component', () => {
         <LinkContainer to="/kontakt">
           <NavItem>Kontakt</NavItem>
         </LinkContainer>
-        <NavItem divider />
+        <NavItem />
         <LinkContainer to="/ucastnik">
           <NavItem><FontAwesome name="user" /> foo</NavItem>
         </LinkContainer>

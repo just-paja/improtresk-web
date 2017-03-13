@@ -5,7 +5,7 @@ import Prop from './prop';
 
 import styles from './workshopSummaryOneLine.css';
 
-const WorkshopSummaryOneLine = ({ capacity, name, lectors }) => (
+const WorkshopSummaryOneLine = ({ capacity, hideCapacity, name, lectors }) => (
   <div>
     <strong>{name}</strong><br />
     <ul className={classnames('list-unstyled', styles.list)}>
@@ -14,13 +14,14 @@ const WorkshopSummaryOneLine = ({ capacity, name, lectors }) => (
           .map(lectorPosition => lectorPosition.lector.name)
           .join(', ')}
       </Prop>
-      <Prop label="Kapacita">{capacity}</Prop>
+      {hideCapacity ? null : <Prop label="Kapacita">{capacity}</Prop>}
     </ul>
   </div>
 );
 
 WorkshopSummaryOneLine.propTypes = {
   capacity: PropTypes.number,
+  hideCapacity: PropTypes.bool,
   lectors: PropTypes.arrayOf(PropTypes.shape({
     lector: PropTypes.shape({
       name: PropTypes.tring,
@@ -32,6 +33,7 @@ WorkshopSummaryOneLine.propTypes = {
 
 WorkshopSummaryOneLine.defaultProps = {
   capacity: null,
+  hideCapacity: false,
 };
 
 export default WorkshopSummaryOneLine;

@@ -55,6 +55,7 @@ describe('Workshop Detail page component', () => {
           Component={WorkshopSummaryOneLine}
           data={[]}
           emptyMessage="Bohužel nemáme záznamy"
+          extra={{ hideCapacity: true }}
         />
       </Container>
     );
