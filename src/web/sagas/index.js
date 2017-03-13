@@ -13,6 +13,7 @@ import meals from './meals';
 import news from './news';
 import participant from './participant';
 import signup from './signup';
+import teams from './teams';
 import texts from './texts';
 import tips from './tips';
 import years from './years';
@@ -32,6 +33,7 @@ const sagas = [
   ...news,
   ...participant,
   ...signup,
+  ...teams,
   ...texts,
   ...tips,
   ...years,

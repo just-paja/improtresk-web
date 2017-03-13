@@ -27,6 +27,7 @@ export default class SignupPage extends Component {
       signupsOpenDate,
       ready,
       signup,
+      teams,
       year,
     } = this.props;
 
@@ -74,6 +75,7 @@ export default class SignupPage extends Component {
               onSignupChange={onSignupsChange}
               onSignupSubmit={onSignupsSubmit}
               signup={signup}
+              teams={teams}
             />
           </div>
         );
@@ -143,6 +145,7 @@ SignupPage.propTypes = {
   signupsOpenDate: PropTypes.string,
   ready: PropTypes.bool,
   signup: PropTypes.object,
+  teams: PropTypes.arrayOf(PropTypes.object).isRequired,
   year: PropTypes.shape({
     startDate: PropTypes.string,
   }),

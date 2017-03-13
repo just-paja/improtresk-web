@@ -12,6 +12,7 @@ import news from './news';
 import participant from './participant';
 import server from './server';
 import session from './session';
+import teams from './teams';
 import texts from './texts';
 import tips from './tips';
 import workshops from './workshops';
@@ -31,6 +32,7 @@ export default function createReducer() {
     participant,
     server,
     session,
+    teams,
     texts,
     tips,
     workshops,

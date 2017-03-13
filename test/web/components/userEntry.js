@@ -26,6 +26,7 @@ describe('User Entry component', () => {
           errors: {},
           values: { name: 'foo' },
         }}
+        teams={[]}
       />
     ).node).to.eql(
       <Row>
@@ -50,6 +51,7 @@ describe('User Entry component', () => {
             form="signup"
             onChange={() => {}}
             onSubmit={() => {}}
+            teams={[]}
             values={{ name: 'foo' }}
           />
         </Col>
@@ -72,6 +74,7 @@ describe('User Entry component', () => {
           errors: {},
           values: { name: 'foo' },
         }}
+        teams={[]}
       />
     ).node).to.eql(
       <Row>
@@ -97,6 +100,7 @@ describe('User Entry component', () => {
             form="signup"
             onChange={() => {}}
             onSubmit={() => {}}
+            teams={[]}
             values={{ name: 'foo' }}
           />
         </Col>
@@ -119,6 +123,7 @@ describe('User Entry component', () => {
           loading: true,
           values: { name: 'foo' },
         }}
+        teams={[]}
       />
     ).node).to.eql(
       <Row>
@@ -144,6 +149,7 @@ describe('User Entry component', () => {
             loading
             onChange={() => {}}
             onSubmit={() => {}}
+            teams={[]}
             values={{ name: 'foo' }}
           />
         </Col>

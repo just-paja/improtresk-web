@@ -4,6 +4,7 @@ import * as constants from '../constants/actions';
 
 const defaultState = {
   data: null,
+  loading: false,
 };
 
 export default combined(defaultState, {

@@ -5,6 +5,7 @@ import Signup from '../components/pages/signup';
 
 import { yearCurrent } from '../selectors/years';
 import { getForm } from '../selectors/forms';
+import { getTeamOptions } from '../selectors/teams';
 import {
   areSignupsClosed,
   areSignupsOpen,
@@ -23,6 +24,7 @@ const mapStateToProps = state => ({
   signupsOpenDate: getSignupsOpenDate(state),
   ready: state.years.ready,
   revalidate: state.session.revalidated,
+  teams: getTeamOptions(state),
   year: yearCurrent(state),
 });
 
