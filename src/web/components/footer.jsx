@@ -33,7 +33,7 @@ const Footer = ({ currentYear, partners }) => (
           </ul>
         </Col>
       </Row>
-      {partners.map(partner => <Partner {...partner} />)}
+      {partners.map(partner => <Partner key={partner.name} {...partner} />)}
       <p className="text-center">
         &copy; <a href="https://improliga.cz">Česká improvizační liga</a> {currentYear ? currentYear.year : null}
       </p>
