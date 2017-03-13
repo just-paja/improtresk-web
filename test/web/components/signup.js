@@ -29,6 +29,7 @@ describe('Signup Form component', () => {
           team_name: 'team error',
           rules_accepted: 'rules error',
         }}
+        teams={[]}
         values={{
           name: 'name value',
           email: 'email value',
@@ -123,6 +124,7 @@ describe('Signup Form component', () => {
           label="Tvoje skupina"
           name="team_name"
           onChange={() => {}}
+          options={[]}
           error="team error"
           value="team value"
           touched={false}
@@ -158,6 +160,7 @@ describe('Signup Form component', () => {
         onChange={() => {}}
         onSubmit={() => {}}
         errors={{}}
+        teams={[]}
         values={{}}
         disabled
       />
@@ -236,6 +239,7 @@ describe('Signup Form component', () => {
           }
           label="Tvoje skupina"
           name="team_name"
+          options={[]}
           onChange={() => {}}
           touched={false}
         />
@@ -268,6 +272,7 @@ describe('Signup Form component', () => {
         onChange={changeSpy}
         onSubmit={() => {}}
         errors={{}}
+        teams={[]}
         values={{}}
       />
     );
@@ -286,6 +291,7 @@ describe('Signup Form component', () => {
         onChange={() => {}}
         onSubmit={submitSpy}
         errors={{}}
+        teams={[]}
         values={{}}
       />
     );

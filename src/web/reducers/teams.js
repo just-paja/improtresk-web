@@ -8,7 +8,7 @@ const defaultState = {
 };
 
 export default combined(defaultState, {
-  [constants.PARTICIPANT_ORDERS_FETCH_STARTED]: fetchStart,
-  [constants.PARTICIPANT_ORDERS_FETCH_SUCCESS]: fetchSuccess,
-  [constants.PARTICIPANT_ORDERS_FETCH_ERROR]: fetchError,
+  [constants.TEAMS_FETCH_STARTED]: fetchStart,
+  [constants.TEAMS_FETCH_SUCCESS]: fetchSuccess,
+  [constants.TEAMS_FETCH_ERROR]: fetchError,
 });

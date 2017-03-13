@@ -14,6 +14,7 @@ const UserEntry = ({
   onLoginSubmit,
   onSignupChange,
   onSignupSubmit,
+  teams,
   signup,
 }) => {
   const disabled = !!(login.loading || signup.loading);
@@ -38,6 +39,7 @@ const UserEntry = ({
           form="signup"
           onChange={onSignupChange}
           onSubmit={onSignupSubmit}
+          teams={teams}
           {...signup}
         />
       </Col>
@@ -51,6 +53,7 @@ UserEntry.propTypes = {
   onLoginSubmit: PropTypes.func.isRequired,
   onSignupChange: PropTypes.func.isRequired,
   onSignupSubmit: PropTypes.func.isRequired,
+  teams: PropTypes.arrayOf(PropTypes.object).isRequired,
   signup: PropTypes.object,
 };
 

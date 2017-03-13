@@ -28,7 +28,15 @@ export default class Signup extends Component {
   }
 
   render() {
-    const { disabled, errors, sending, submitErrors, submitted, values } = this.props;
+    const {
+      disabled,
+      errors,
+      sending,
+      submitErrors,
+      submitted,
+      teams,
+      values,
+    } = this.props;
 
     const rulesLabel = <span>Souhlasím s <Link to="conditions">podmínkami festivalu</Link></span>;
 
@@ -123,6 +131,7 @@ export default class Signup extends Component {
           error={errors.team_name}
           value={values.team_name}
           touched={submitted}
+          options={teams}
         />
         <InputCheckbox
           disabled={disabled}
@@ -161,6 +170,7 @@ Signup.propTypes = {
   values: PropTypes.object.isRequired,
   sending: PropTypes.bool,
   submitErrors: PropTypes.arrayOf(PropTypes.string),
+  teams: PropTypes.arrayOf(PropTypes.object).isRequired,
   submitted: PropTypes.bool,
 };
 
