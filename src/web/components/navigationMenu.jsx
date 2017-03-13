@@ -51,7 +51,7 @@ const NavigationMenu = ({
     <Nav {...props}>
       {currentYearItems}
       <NavDropdown id="navigation-dropdown" title="Archív">
-        {(years.length ?
+        {(years && years.length ?
           years.map(yearRun => (
             <PermaLinkContainer
               id={yearRun.year}
@@ -85,12 +85,13 @@ NavigationMenu.propTypes = {
   participant: PropTypes.shape({
     name: PropTypes.string.isRequired,
   }),
-  years: PropTypes.arrayOf(PropTypes.object).isRequired,
+  years: PropTypes.arrayOf(PropTypes.object),
 };
 
 NavigationMenu.defaultProps = {
   currentYear: null,
   participant: null,
+  years: null,
 };
 
 export default NavigationMenu;

@@ -62,11 +62,17 @@ describe('Navigation menu component', () => {
     );
   });
   it('renders empty', () => {
-    expect(shallow(
-      <NavigationMenu
-        years={[]}
-      />
-    ).node).to.eql(
+    expect(shallow(<NavigationMenu years={[]} />).node).to.eql(
+      <Nav>
+        <NavDropdown id="navigation-dropdown" title="Archív">
+          <NavItem disabled>Archív je prázdný</NavItem>
+        </NavDropdown>
+        <LinkContainer to="/kontakt">
+          <NavItem>Kontakt</NavItem>
+        </LinkContainer>
+      </Nav>
+    );
+    expect(shallow(<NavigationMenu />).node).to.eql(
       <Nav>
         <NavDropdown id="navigation-dropdown" title="Archív">
           <NavItem disabled>Archív je prázdný</NavItem>
