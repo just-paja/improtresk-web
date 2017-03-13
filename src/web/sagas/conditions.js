@@ -9,17 +9,19 @@ import * as constants from '../constants/actions';
 
 export function* fetchYearsConditions() {
   const year = yield select(yearActiveNumber);
-  yield fork(
-    fetchResourceIfNeeded,
-    api.fetchConditionsCurrent,
-    isValid,
-    {
-      onStart: constants.CONDITIONS_CURRENT_FETCH_STARTED,
-      onSuccess: constants.CONDITIONS_CURRENT_FETCH_SUCCESS,
-      onError: constants.CONDITIONS_CURRENT_FETCH_ERROR,
-      year,
-    }
-  );
+  if (year) {
+    yield fork(
+      fetchResourceIfNeeded,
+      api.fetchConditionsCurrent,
+      isValid,
+      {
+        onStart: constants.CONDITIONS_CURRENT_FETCH_STARTED,
+        onSuccess: constants.CONDITIONS_CURRENT_FETCH_SUCCESS,
+        onError: constants.CONDITIONS_CURRENT_FETCH_ERROR,
+        year,
+      }
+    );
+  }
 }
 export function* fetchConditions() {
   yield takeLatest(
