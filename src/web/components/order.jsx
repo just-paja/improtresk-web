@@ -23,8 +23,12 @@ export default class Order extends Component {
     const { workshops, values } = this.props;
     return (
       <div>
-        <h2>Vyber si workshop</h2>
-        <p>Vyber si jeden workshop, víc jich za jeden Improtřesk nestihneš.</p>
+        <h2>Přihlášení na workshop</h2>
+        <p>
+          Vyber si jeden workshop, víc jich za jeden Improtřesk nestihneš.
+          Na workshop budeš místo na workshopu máš jisté až v momentě kdy nám
+          přijdou peníze na účet.
+        </p>
         <Form onSubmit={this.handleSubmit}>
           <WorkshopPicker
             name="workshop"
