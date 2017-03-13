@@ -15,7 +15,10 @@ describe('Meals sagas', () => {
   it('fetchMealsOnMount creates fetch actions', () => {
     const saga = fetchMealsOnMount();
     expect(saga.next().value).to.eql(takeLatest(
-      'FOOD_MOUNTED',
+      [
+        'FOOD_MOUNTED',
+        'REQUEST_PARTICIPANT_DETAILS',
+      ],
       fetchResourceIfNeeded,
       api.fetchMeals,
       isValid,
