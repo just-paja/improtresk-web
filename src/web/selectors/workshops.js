@@ -20,6 +20,7 @@ const mapPrices = priceLevels => (priceItem) => {
   const priceLevel = priceLevels.find(priceLevelItem => priceLevelItem.id === priceLevelId);
   if (priceLevel) {
     return {
+      id: priceItem.id,
       price: priceItem.price,
       level: priceLevel.name,
       takesEffectOn: priceLevel.takesEffectOn,

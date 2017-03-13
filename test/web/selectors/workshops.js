@@ -71,10 +71,12 @@ describe('Workshops selectors', () => {
               lectors: [],
               prices: [
                 {
+                  id: 4,
                   price_level: 1,
                   price: 200,
                 },
                 {
+                  id: 6,
                   price_level: 2,
                   price: 400,
                 },
@@ -110,12 +112,14 @@ describe('Workshops selectors', () => {
         lectors: [],
         prices: [
           {
+            id: 4,
             endsOn: '2016-03-02T03:04:05Z',
             level: 'Zlevněná',
             price: 200,
             takesEffectOn: '2016-01-02T03:04:05Z',
           },
           {
+            id: 6,
             endsOn: null,
             level: 'Základní',
             price: 400,
