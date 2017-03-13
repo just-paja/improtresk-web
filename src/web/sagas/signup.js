@@ -20,7 +20,7 @@ export const selectSignupSuccess = action =>
 export const selectLoginSubmit = action =>
   action.type === constants.FORM_SUBMIT_ALLOWED && action.form === 'login';
 
-export const selectLoginSucess = action =>
+export const selectLoginSuccess = action =>
   action.type === constants.FORM_SUBMIT_SUCCESS && action.form === 'login';
 
 const purifySignupValues = values => ({
@@ -91,7 +91,7 @@ export function* loginOnFormSubmit() {
 }
 
 export function* loginOnAction() {
-  yield takeLatest(selectLoginSucess, login);
+  yield takeLatest(selectLoginSuccess, login);
 }
 
 export function* loginOnMount() {
