@@ -8,7 +8,7 @@ import { shallow } from 'enzyme';
 import FormErrors from '../../../src/web/components/formErrors';
 
 describe('FormErrors component', () => {
-  it('renders without current year', () => {
+  it('renders', () => {
     expect(shallow(
       <FormErrors
         errors={['Cannot save data', 'unauthorized', 'api-error']}
@@ -29,5 +29,10 @@ describe('FormErrors component', () => {
         </Alert>
       </div>
     );
+  });
+  it('renders empty without errors', () => {
+    expect(shallow(
+      <FormErrors />
+    ).node).to.eql(null);
   });
 });
