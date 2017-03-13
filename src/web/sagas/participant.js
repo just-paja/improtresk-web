@@ -1,7 +1,12 @@
+import cookie from 'js-cookie';
+
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
-import { fetchResourceIfNeeded } from './common';
+import {
+  fetchResource,
+  fetchResourceIfNeeded,
+} from './common';
 import { reverse } from '../routeTable';
 import {
   shouldFetchParticipant,
@@ -46,7 +51,29 @@ export function* fetchParticipantOnLogin() {
   );
 }
 
+export function* logout() {
+  cookie.set('auth', null);
+  yield call(
+    fetchResource,
+    api.logout,
+    {
+      onStart: constants.PARTICIPANT_TOKEN_REVOKE_START,
+      onSuccess: constants.PARTICIPANT_TOKEN_REVOKE_SUCCESS,
+      onError: constants.PARTICIPANT_TOKEN_REVOKE_ERROR,
+    }
+  );
+  yield put(push(reverse('signup')));
+}
+
+export function* logoutOnAction() {
+  yield takeLatest(
+    constants.PARTICIPANT_LOGOUT,
+    logout
+  );
+}
+
 export default [
   fetchParticipantOnLogin,
   fetchParticipantOrdersOnRequest,
+  logoutOnAction,
 ];

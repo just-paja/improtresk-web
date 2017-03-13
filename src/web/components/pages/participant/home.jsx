@@ -1,8 +1,10 @@
+import Button from 'react-bootstrap/lib/Button';
 import React, { Component, PropTypes } from 'react';
 
 import Container from '../../container';
 import Order from '../../order';
 import OrderStatus from '../../orderStatus';
+import Prop from '../../prop';
 
 class ParticipantHome extends Component {
   componentWillMount() {
@@ -11,6 +13,7 @@ class ParticipantHome extends Component {
 
   render() {
     const {
+      onLogout,
       onWorkshopPickerChange,
       onWorkshopPickerSubmit,
       order,
@@ -28,7 +31,14 @@ class ParticipantHome extends Component {
     return (
       <Container>
         <h1>Můj Improtřesk {yearNumber}</h1>
-        <strong>{participant.name}</strong>
+        <ul className="list-unstyled">
+          <Prop label="Jméno">
+            {participant.name}&nbsp;&nbsp;&nbsp;
+            <Button bsSize="xsmall" onClick={onLogout} tabIndex={0}>Odhlásit</Button>
+          </Prop>
+          <Prop label="Tým">{participant.team}</Prop>
+        </ul>
+        <hr />
         {order ?
           <OrderStatus {...order} /> :
           <Order
@@ -49,6 +59,7 @@ ParticipantHome.propTypes = {
   participant: PropTypes.shape({
     name: PropTypes.string,
   }),
+  onLogout: PropTypes.func.isRequired,
   onWorkshopPickerChange: PropTypes.func.isRequired,
   onWorkshopPickerSubmit: PropTypes.func.isRequired,
   onMount: PropTypes.func.isRequired,

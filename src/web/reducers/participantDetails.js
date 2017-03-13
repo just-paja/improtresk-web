@@ -14,6 +14,12 @@ export default combined(defaultState, {
     ready: true,
     valid: true,
   }),
+  [constants.PARTICIPANT_LOGOUT]: state => ({
+    ...state,
+    data: null,
+    ready: false,
+    valid: false,
+  }),
   [constants.PARTICIPANT_FETCH_STARTED]: fetchStart,
   [constants.PARTICIPANT_FETCH_SUCCESS]: fetchSuccess,
   [constants.PARTICIPANT_FETCH_ERROR]: fetchError,

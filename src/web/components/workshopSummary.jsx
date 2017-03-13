@@ -32,7 +32,7 @@ const WorkshopSummary = ({ id, desc, difficulty, name, lectors }) => (
       {desc.substr(0, 255)}...
     </div>
     <PermaLink id={id} title={name} to="workshops:item">
-      <Button>Více informací</Button>
+      <Button bsSize="small">Více informací</Button>
     </PermaLink>
   </div>
 );

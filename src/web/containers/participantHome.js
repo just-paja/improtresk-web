@@ -27,6 +27,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   onMount: () => ({ type: actions.REQUEST_PARTICIPANT_DETAILS }),
+  onLogout: () => ({ type: actions.PARTICIPANT_LOGOUT }),
   onWorkshopPickerChange: (form, field, value) => ({
     type: actions.FORM_FIELD_CHANGE,
     form,
