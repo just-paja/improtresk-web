@@ -88,7 +88,6 @@ export default combined(defaultState, {
     {
       [action.form]: {
         ...state[action.form],
-        values: {},
         loading: false,
         saved: true,
       },
