@@ -1,7 +1,7 @@
 import { takeLatest } from 'redux-saga/effects';
 
 import { fetchResourceIfNeeded } from './common';
-import { isValid } from '../selectors/accomodation';
+import { isValid } from '../selectors/archive';
 
 import * as api from '../api';
 import * as constants from '../constants/actions';
