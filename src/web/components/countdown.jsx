@@ -41,7 +41,7 @@ export default class Countdown extends Component {
       <span>
         {this.state.remaining <= 0 ?
           readyMessage :
-          `${countdownMessage ? `${countdownMessage} ` : null}${duration.humanize(suffix)}`}
+          `${countdownMessage ? `${countdownMessage} ` : ''}${duration.humanize(suffix)}`}
       </span>
     );
   }
