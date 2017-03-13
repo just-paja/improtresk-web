@@ -1,14 +1,13 @@
 import Col from 'react-bootstrap/lib/Col';
-import FontAwesome from 'react-fontawesome';
 import Markdown from 'react-markdown';
 import React, { PropTypes } from 'react';
 import Row from 'react-bootstrap/lib/Row';
 
 import Gallery from './gallery';
-import HumanDate from './humanDate';
 import LectorSummary from './lectorSummary';
 import PermaLink from './permaLink';
-import Price from './price';
+import PriceList from './priceList';
+import Prop from './prop';
 
 const WorkshopDetail = ({ id, desc, difficulty, name, lectors, photos, prices }) => (
   <div>
@@ -17,32 +16,10 @@ const WorkshopDetail = ({ id, desc, difficulty, name, lectors, photos, prices })
     </h1>
 
     <ul className="list-unstyled">
-      {difficulty ?
-        <li>
-          <FontAwesome name="hand-rock-o" /> {difficulty}
-        </li> : null
-      }
-      {prices.length ?
-        <li>
-          <FontAwesome name="money" /> Cena:
-          <ul>
-            {prices.map(price => (
-              <li key={price.name}>
-                od{' '}
-                <HumanDate date={price.takesEffectOn} />
-                {price.endsOn ? (
-                  <span>
-                    {' - '}
-                    <HumanDate date={price.endsOn} />
-                  </span>
-                ) : null}
-                {': '}
-                <Price price={price.price} />
-              </li>
-            ))}
-          </ul>
-        </li> : null
-      }
+      <Prop icon="hand-rock-o" label="Náročnost">{difficulty}</Prop>
+      <Prop icon="money" label="Cena">
+        {prices.length ? <PriceList prices={prices} /> : null}
+      </Prop>
     </ul>
     <div>
       <Markdown source={desc} />
@@ -70,7 +47,8 @@ WorkshopDetail.propTypes = {
   name: PropTypes.string.isRequired,
   photos: PropTypes.arrayOf(PropTypes.object).isRequired,
   prices: PropTypes.arrayOf(PropTypes.shape({
-    endsOn: PropTypes.number,
+    id: PropTypes.number,
+    endsOn: PropTypes.string,
     price: PropTypes.number.isRequired,
     takesEffectOn: PropTypes.string.isRequired,
   })).isRequired,

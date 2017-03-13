@@ -1,5 +1,4 @@
 import Col from 'react-bootstrap/lib/Col';
-import FontAwesome from 'react-fontawesome';
 import Markdown from 'react-markdown';
 import React from 'react';
 import Row from 'react-bootstrap/lib/Row';
@@ -10,6 +9,8 @@ import { shallow } from 'enzyme';
 import Gallery from '../../../src/web/components/gallery';
 import LectorSummary from '../../../src/web/components/lectorSummary';
 import PermaLink from '../../../src/web/components/permaLink';
+import PriceList from '../../../src/web/components/priceList';
+import Prop from '../../../src/web/components/prop';
 import WorkshopDetail from '../../../src/web/components/workshopDetail';
 
 describe('Workshop Detail component', () => {
@@ -17,18 +18,23 @@ describe('Workshop Detail component', () => {
     expect(shallow(
       <WorkshopDetail
         id={12}
-        desc={
-          'Na workshopu se zaměříme na práci s tělem, nonverbální herectví a pantomimu. ' +
-          'Budeme se věnovat fyzickému tréninku a technikám k ovládnutí svého těla a ' +
-          'celkovému propojení se svým tělem na jevišti. S tím souvisí i cvičení na jevištní ' +
-          'přítomnost, dech, pohled a temporytmus. Podíváme se také na techniku imaginární ' +
-          'pantomimy jako chůze na místě, práce s imaginárním objektem a další. Zkusíme si' +
-          'základy nonverbálního herectví, tvorbu divadelní postavy podle jejího fyzična a' +
-          'práci s hereckým partnerem...zkrátka uvidíme, co všechno stihneme.'}
+        desc="Na workshopu se zaměříme na práci s tělem, nonverbální."
         difficulty="Pro všechny"
         name="Pantomima a fyzické divadlo"
         photos={[]}
-        prices={[]}
+        prices={[
+          {
+            name: 'Zlevněná',
+            takesEffectOn: '2016-01-02',
+            endsOn: '2016-01-05',
+            price: 1200,
+          },
+          {
+            name: 'Základní',
+            takesEffectOn: '2016-01-05',
+            price: 1900,
+          },
+        ]}
         lectors={[
           {
             id: 5,
@@ -50,24 +56,28 @@ describe('Workshop Detail component', () => {
         </h1>
 
         <ul className="list-unstyled">
-          <li>
-            <FontAwesome name="hand-rock-o" />{' '}
-            Pro všechny
-          </li>
+          <Prop icon="hand-rock-o" label="Náročnost">Pro všechny</Prop>
+          <Prop icon="money" label="Cena">
+            <PriceList
+              prices={[
+                {
+                  name: 'Zlevněná',
+                  takesEffectOn: '2016-01-02',
+                  endsOn: '2016-01-05',
+                  price: 1200,
+                },
+                {
+                  name: 'Základní',
+                  takesEffectOn: '2016-01-05',
+                  price: 1900,
+                },
+              ]}
+            />
+          </Prop>
         </ul>
 
         <div>
-          <Markdown
-            source={
-              'Na workshopu se zaměříme na práci s tělem, nonverbální herectví a pantomimu. ' +
-              'Budeme se věnovat fyzickému tréninku a technikám k ovládnutí svého těla a ' +
-              'celkovému propojení se svým tělem na jevišti. S tím souvisí i cvičení na jevištní ' +
-              'přítomnost, dech, pohled a temporytmus. Podíváme se také na techniku imaginární ' +
-              'pantomimy jako chůze na místě, práce s imaginárním objektem a další. Zkusíme si' +
-              'základy nonverbálního herectví, tvorbu divadelní postavy podle jejího fyzična a' +
-              'práci s hereckým partnerem...zkrátka uvidíme, co všechno stihneme.'
-            }
-          />
+          <Markdown source="Na workshopu se zaměříme na práci s tělem, nonverbální." />
         </div>
 
         <Gallery photos={[]} />
@@ -82,6 +92,39 @@ describe('Workshop Detail component', () => {
             />
           </Col>
         </Row>
+      </div>
+    );
+  });
+  it('renders without prices', () => {
+    expect(shallow(
+      <WorkshopDetail
+        id={12}
+        desc="Na workshopu se zaměříme na práci s tělem, nonverbální."
+        difficulty="Pro všechny"
+        name="Pantomima a fyzické divadlo"
+        photos={[]}
+        prices={[]}
+        lectors={[]}
+      />
+    ).node).to.eql(
+      <div>
+        <h1>
+          <PermaLink id={12} title="Pantomima a fyzické divadlo" to="workshops:item">
+            Pantomima a fyzické divadlo
+          </PermaLink>
+        </h1>
+
+        <ul className="list-unstyled">
+          <Prop icon="hand-rock-o" label="Náročnost">Pro všechny</Prop>
+          <Prop icon="money" label="Cena"></Prop>
+        </ul>
+
+        <div>
+          <Markdown source="Na workshopu se zaměříme na práci s tělem, nonverbální." />
+        </div>
+
+        <Gallery photos={[]} />
+        <Row />
       </div>
     );
   });
