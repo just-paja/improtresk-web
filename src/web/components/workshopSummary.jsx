@@ -1,10 +1,10 @@
 import Button from 'react-bootstrap/lib/Button';
-import FontAwesome from 'react-fontawesome';
 import React, { PropTypes } from 'react';
 
 
 import LectorListSummary from './lectorListSummary';
 import PermaLink from './permaLink';
+import Prop from './prop';
 
 const WorkshopSummary = ({ id, desc, difficulty, name, lectors }) => (
   <div>
@@ -20,13 +20,7 @@ const WorkshopSummary = ({ id, desc, difficulty, name, lectors }) => (
           name={lectorPosition.lector.name}
         />
       ))}
-      {difficulty ?
-        <li>
-          <FontAwesome name="hand-rock-o" />
-          {' '}
-          {difficulty}
-        </li> : null
-      }
+      <Prop icon="hand-rock-o" label="Náročnost">{difficulty}</Prop>
     </ul>
     <div>
       {desc.substr(0, 255)}...
