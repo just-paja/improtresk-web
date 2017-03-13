@@ -47,6 +47,7 @@ export default class ArchivedYear extends Component {
           Component={WorkshopSummaryOneLine}
           data={workshops}
           emptyMessage="Bohužel nemáme záznamy"
+          extra={{ hideCapacity: true }}
         />
       </Container>
     );
