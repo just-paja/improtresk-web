@@ -17,9 +17,11 @@ describe('Workshop List component', () => {
             desc: 'Na workshopu se zaměříme na práci s tělem, nonverbální herectví a pantomimu.',
             difficulty: 'Pro všechny',
             name: 'Pantomima a fyzické divadlo',
-            lector: {
-              name: 'Vojtěch Svoboda',
-            },
+            lectors: [
+              {
+                name: 'Vojtěch Svoboda',
+              },
+            ],
           },
         ]}
       />
@@ -31,9 +33,11 @@ describe('Workshop List component', () => {
             desc="Na workshopu se zaměříme na práci s tělem, nonverbální herectví a pantomimu."
             difficulty="Pro všechny"
             name="Pantomima a fyzické divadlo"
-            lector={{
-              name: 'Vojtěch Svoboda',
-            }}
+            lectors={[
+              {
+                name: 'Vojtěch Svoboda',
+              },
+            ]}
           />
         </Col>
       </Row>

@@ -24,12 +24,14 @@ describe('Workshop Detail component', () => {
         photos={[]}
         prices={[
           {
+            id: 2,
             name: 'Zlevněná',
             takesEffectOn: '2016-01-02',
             endsOn: '2016-01-05',
             price: 1200,
           },
           {
+            id: 5,
             name: 'Základní',
             takesEffectOn: '2016-01-05',
             price: 1900,
@@ -61,12 +63,14 @@ describe('Workshop Detail component', () => {
             <PriceList
               prices={[
                 {
+                  id: 2,
                   name: 'Zlevněná',
                   takesEffectOn: '2016-01-02',
                   endsOn: '2016-01-05',
                   price: 1200,
                 },
                 {
+                  id: 5,
                   name: 'Základní',
                   takesEffectOn: '2016-01-05',
                   price: 1900,
@@ -116,7 +120,7 @@ describe('Workshop Detail component', () => {
 
         <ul className="list-unstyled">
           <Prop icon="hand-rock-o" label="Náročnost">Pro všechny</Prop>
-          <Prop icon="money" label="Cena"></Prop>
+          <Prop icon="money" label="Cena" />
         </ul>
 
         <div>

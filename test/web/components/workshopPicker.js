@@ -18,11 +18,15 @@ describe('WorkshopPicker component', () => {
         value={21}
         workshops={[
           {
+            capacity: 12,
             id: 21,
+            lectors: [],
             name: 'Longformy',
           },
           {
+            capacity: 19,
             id: 32,
+            lectors: [],
             name: 'Kontaktní improvizace',
           },
         ]}
@@ -31,7 +35,9 @@ describe('WorkshopPicker component', () => {
       <Row>
         <Col key={21} sm={6} lg={4}>
           <WorkshopPickerItem
+            capacity={12}
             id={21}
+            lectors={[]}
             name="Longformy"
             onChange={() => {}}
             selected
@@ -39,7 +45,9 @@ describe('WorkshopPicker component', () => {
         </Col>
         <Col key={21} sm={6} lg={4}>
           <WorkshopPickerItem
+            capacity={19}
             id={32}
+            lectors={[]}
             name="Kontaktní improvizace"
             onChange={() => {}}
             selected={false}
@@ -57,8 +65,10 @@ describe('WorkshopPicker component', () => {
         value={21}
         workshops={[
           {
+            capacity: 12,
             id: 21,
             name: 'Longformy',
+            lectors: [],
           },
         ]}
       />
