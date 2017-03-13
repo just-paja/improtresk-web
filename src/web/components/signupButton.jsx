@@ -64,12 +64,13 @@ const SignupButton = ({ endAt, startAt, alreadyFull }) => {
 
 SignupButton.propTypes = {
   alreadyFull: PropTypes.bool,
-  endAt: PropTypes.string.isRequired,
+  endAt: PropTypes.string,
   startAt: PropTypes.string,
 };
 
 SignupButton.defaultProps = {
   alreadyFull: false,
+  endAt: null,
   startAt: null,
 };
 
