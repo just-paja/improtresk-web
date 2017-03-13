@@ -79,4 +79,14 @@ describe('Navigation component', () => {
       </Navbar>
     );
   });
+  it('saves expanded state on toggle', () => {
+    const comp = shallow(<Navigation />);
+    comp.find(Navbar).simulate('toggle', true);
+    expect(comp.state()).to.eql({ expanded: true });
+  });
+  it('saves collapsed state on toggle', () => {
+    const comp = shallow(<Navigation />);
+    comp.find(Navbar).simulate('toggle', false);
+    expect(comp.state()).to.eql({ expanded: false });
+  });
 });
