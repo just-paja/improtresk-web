@@ -29,7 +29,7 @@ export default class WorkshopPickerItem extends Component {
         onClick={this.handleChange}
       >
         <span className={styles.input}>
-          <FontAwesome name={selected ? 'check-square-o' : 'square-o'} />
+          <FontAwesome name={selected ? 'check-square' : 'square'} />
         </span>
         <div className={styles.workshop}>
           <WorkshopSummaryOneLine

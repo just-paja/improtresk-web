@@ -25,7 +25,7 @@ describe('WorkshopPickerItem component', () => {
         onClick={() => {}}
       >
         <span className="workshopPickerItem-input">
-          <FontAwesome name="square-o" />
+          <FontAwesome name="square" />
         </span>
         <div className="workshopPickerItem-workshop">
           <WorkshopSummaryOneLine
@@ -54,7 +54,7 @@ describe('WorkshopPickerItem component', () => {
         onClick={() => {}}
       >
         <span className="workshopPickerItem-input">
-          <FontAwesome name="check-square-o" />
+          <FontAwesome name="check-square" />
         </span>
         <div className="workshopPickerItem-workshop">
           <WorkshopSummaryOneLine

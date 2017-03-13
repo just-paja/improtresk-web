@@ -1,5 +1,6 @@
 import Form from 'react-bootstrap/lib/Form';
 import React, { Component, PropTypes } from 'react';
+import Well from 'react-bootstrap/lib/Well';
 
 import WorkshopPicker from './workshopPicker';
 
@@ -30,12 +31,14 @@ export default class Order extends Component {
           přijdou peníze na účet.
         </p>
         <Form onSubmit={this.handleSubmit}>
-          <WorkshopPicker
-            name="workshop"
-            onChange={this.handleChange}
-            value={values.workshop}
-            workshops={workshops}
-          />
+          <Well>
+            <WorkshopPicker
+              name="workshop"
+              onChange={this.handleChange}
+              value={values.workshop}
+              workshops={workshops}
+            />
+          </Well>
         </Form>
       </div>
     );
