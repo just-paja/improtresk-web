@@ -34,4 +34,25 @@ describe('Tip List component', () => {
       </Row>
     );
   });
+  it('renders empty with empty message', () => {
+    expect(shallow(
+      <ObjectList
+        Component={Tip}
+        data={[]}
+        emptyMessage="Empty!"
+      />
+    ).node).to.eql(
+      <div>Empty!</div>
+    );
+  });
+  it('renders empty without empty message', () => {
+    expect(shallow(
+      <ObjectList
+        Component={Tip}
+        data={[]}
+      />
+    ).node).to.eql(
+      <Row />
+    );
+  });
 });
