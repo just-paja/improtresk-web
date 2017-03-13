@@ -24,6 +24,9 @@
   color: #93c54b;
 }
 
+:local .unselected {
+}
+
 :local .workshop {
   display: inline-block;
   vertical-align: top;
