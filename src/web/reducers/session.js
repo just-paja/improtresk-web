@@ -17,4 +17,8 @@ export default combined(defaultState, {
     ...state,
     data: action.data,
   }),
+  [constants.PARTICIPANT_TOKEN_REVOKE_START]: state => ({
+    ...state,
+    data: {},
+  }),
 });

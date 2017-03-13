@@ -67,7 +67,7 @@ describe('Workshop Summary component', () => {
         </div>
 
         <PermaLink id={12} title="Pantomima a fyzické divadlo" to="workshops:item">
-          <Button>Více informací</Button>
+          <Button bsSize="small">Více informací</Button>
         </PermaLink>
       </div>
     );

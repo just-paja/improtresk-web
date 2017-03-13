@@ -70,6 +70,16 @@ export const login = ({ data, ...params }) =>
     ...params,
   });
 
+export const logout = ({ auth, ...params }) =>
+  fetch('/frontend/logout', {
+    body: JSON.stringify({ token: auth.access_token }),
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    ...params,
+  });
+
 export const fetchParticipant = params => apiFetchAuthorized('whoAmI/', params);
 
 export const fetchParticipantOrders = params => apiFetchAuthorized('orders/', params);

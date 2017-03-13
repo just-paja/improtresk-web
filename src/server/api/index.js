@@ -12,9 +12,13 @@ export default ({
 }) => {
   const app = express();
   const url = parse(apiAuthSource);
+  const base = url.pathname;
   url.auth = `${apiId}:${apiSecret}`;
-  url.pathname = `${url.pathname}/token/`;
+  url.pathname = `${base}/token/`;
   const urlLogin = format(url);
+
+  url.pathname = `${base}/revoke_token/`;
+  const urlLogout = format(url);
 
   app.post('/login', (req, res) => {
     if (!req.body.email || !req.body.password) {
@@ -62,6 +66,36 @@ export default ({
         });
       });
   });
+
+  app.post('/logout', (req, res) =>
+    fetch(urlLogout, {
+      method: 'post',
+      headers: {
+        Accept: 'application/json; charset=utf-8',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+      },
+      body: encodeForm({
+        client_id: apiId,
+        client_secret: apiSecret,
+        token: req.body.token,
+      }),
+    })
+      .then((apiRes) => {
+        if (apiRes.status === 200) {
+          return res.status(204).send();
+        }
+        return res.status(400).send({
+          errors: ['unauthorized'],
+        });
+      })
+      .catch((e) => {
+        winston.error(e);
+        res.status(500).send({
+          errors: ['api-error'],
+          message: e.message,
+        });
+      })
+  );
 
   return app;
 };
