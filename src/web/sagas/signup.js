@@ -48,6 +48,10 @@ export function* loginSignup(action) {
     type: constants.PARTICIPANT_REGISTERED,
     data: action.data,
   });
+  yield put({
+    type: constants.FORM_VALUES_CLEAR,
+    form: 'signup',
+  });
 }
 
 export function* login(action) {
@@ -56,6 +60,10 @@ export function* login(action) {
     data: action.data,
   });
   cookie.set('auth', action.data, { expires: 30 });
+  yield put({
+    type: constants.FORM_VALUES_CLEAR,
+    form: 'login',
+  });
   yield put(push(reverse('participant:home')));
 }
 

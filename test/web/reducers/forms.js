@@ -248,4 +248,30 @@ describe('Forms reducer', () => {
       },
     });
   });
+  it('clears form values on clear', () => {
+    expect(forms(
+      {
+        testForm: {
+          errors: {},
+          submitted: true,
+          valid: true,
+          values: { foo: 'bar' },
+        },
+      },
+      {
+        type: 'FORM_VALUES_CLEAR',
+        form: 'testForm',
+        data: {
+          errors: ['foo'],
+        },
+      }
+    )).to.eql({
+      testForm: {
+        errors: {},
+        submitted: true,
+        valid: true,
+        values: {},
+      },
+    });
+  });
 });

@@ -124,6 +124,10 @@ describe('Signup sagas', () => {
         name: 'Hugo Ventil',
       },
     }));
+    expect(saga.next().value).to.eql(put({
+      type: 'FORM_VALUES_CLEAR',
+      form: 'signup',
+    }));
     expect(saga.next().done).to.equal(true);
   });
   it('signupOnFormSubmit creates actions', () => {
@@ -189,7 +193,7 @@ describe('Signup sagas', () => {
     expect(saga.next({}).value).to.eql(put({ type: 'PARTICIPANT_LOGIN_AUTO' }));
     expect(saga.next().done).to.equal(true);
   });
-  it('login creates actions', () => {
+  it('login creates login actions', () => {
     const saga = login({
       data: {
         auth_token: 'asdf65a4sdf65asd4f',
@@ -201,6 +205,10 @@ describe('Signup sagas', () => {
       data: {
         auth_token: 'asdf65a4sdf65asd4f',
       },
+    }));
+    expect(saga.next().value).to.eql(put({
+      type: 'FORM_VALUES_CLEAR',
+      form: 'login',
     }));
     expect(saga.next().value).to.eql(put(push('/ucastnik')));
     expect(saga.next().done).to.equal(true);
