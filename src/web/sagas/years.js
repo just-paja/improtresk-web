@@ -1,6 +1,7 @@
 import { takeLatest } from 'redux-saga/effects';
 
 import { fetchResourceIfNeeded } from './common';
+import { shouldFetchYears } from '../selectors/years';
 
 import * as api from '../api';
 import * as constants from '../constants/actions';
@@ -15,7 +16,7 @@ export function* fetchYearsOnMount() {
     ],
     fetchResourceIfNeeded,
     api.fetchYears,
-    state => state.years.valid,
+    shouldFetchYears,
     {
       onStart: constants.YEARS_FETCH_STARTED,
       onSuccess: constants.YEARS_FETCH_SUCCESS,
