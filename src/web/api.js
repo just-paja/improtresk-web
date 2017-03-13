@@ -29,7 +29,8 @@ export const fetchLectorRoles = params => apiFetch('lectorRoles/', params);
 
 export const fetchLectors = params => apiFetch('lectors/', params);
 
-export const fetchMeals = params => apiFetch('meals/', params);
+export const fetchMeals = ({ year, ...params }) =>
+  apiFetch(`years/${year}/meals/`, params);
 
 export const fetchNews = params => apiFetch('news/', params);
 
