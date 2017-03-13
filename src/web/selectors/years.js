@@ -53,3 +53,8 @@ export const yearActiveNumber = createSelector(
   [yearActive],
   activeYear => (activeYear ? activeYear.year : null)
 );
+
+export const shouldFetchYears = createSelector(
+  getYearsState,
+  years => years.valid
+);
