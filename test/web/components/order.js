@@ -7,16 +7,19 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import Order from '../../../src/web/components/order';
+import InputCheckbox from '../../../src/web/components/inputCheckbox';
 import WorkshopPicker from '../../../src/web/components/workshopPicker';
 
 describe('Order form component', () => {
   it('renders', () => {
     expect(shallow(
       <Order
+        errors={{}}
         form="order"
         onChange={() => {}}
         onSubmit={() => {}}
         values={{
+          accomodation: true,
           workshop: 42,
         }}
         workshops={[
@@ -35,6 +38,7 @@ describe('Order form component', () => {
         <Form onSubmit={() => {}}>
           <Well>
             <WorkshopPicker
+              disabled={false}
               name="workshop"
               onChange={() => {}}
               value={42}
@@ -44,6 +48,13 @@ describe('Order form component', () => {
               ]}
             />
           </Well>
+          <InputCheckbox
+            disabled={false}
+            label="Mám zájem o ubytování v hotelu"
+            name="accomodation"
+            onChange={() => {}}
+            value
+          />
         </Form>
       </div>
     );
@@ -52,6 +63,7 @@ describe('Order form component', () => {
     const changeSpy = sinon.spy();
     const comp = shallow(
       <Order
+        errors={{}}
         form="order"
         onChange={changeSpy}
         onSubmit={() => {}}
@@ -75,6 +87,7 @@ describe('Order form component', () => {
     const preventDefaultSpy = sinon.spy();
     const comp = shallow(
       <Order
+        errors={{}}
         form="order"
         onChange={() => {}}
         onSubmit={submitSpy}
