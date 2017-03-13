@@ -1,12 +1,12 @@
-import FontAwesome from 'react-fontawesome';
 import React from 'react';
 
 import { Button } from 'react-bootstrap';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import PermaLink from '../../../src/web/components/permaLink';
 import LectorListSummary from '../../../src/web/components/lectorListSummary';
+import PermaLink from '../../../src/web/components/permaLink';
+import Prop from '../../../src/web/components/prop';
 import WorkshopSummary from '../../../src/web/components/workshopSummary';
 
 describe('Workshop Summary component', () => {
@@ -52,11 +52,7 @@ describe('Workshop Summary component', () => {
             name="Martin Vlk"
             position="Doprovodný lektor"
           />
-          <li>
-            <FontAwesome name="hand-rock-o" />
-            {' '}
-            Pro všechny
-          </li>
+          <Prop icon="hand-rock-o" label="Náročnost">Pro všechny</Prop>
         </ul>
 
         <div>
