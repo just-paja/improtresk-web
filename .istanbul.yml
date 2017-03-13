@@ -1,0 +1,15 @@
+instrumentation:
+  root: src
+  include-all-sources: true
+  excludes: [
+    'server/main.js',
+    'server/mainCss.js',
+    'server/mainServer.js',
+    'server/middleware/dev.js',
+    'web/main.js',
+    'web/store.js',
+  ]
+
+  extensions:
+    - .jsx
+    - .js
