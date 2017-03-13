@@ -10,7 +10,10 @@ import * as texts from '../constants/texts';
 
 export function* fetchMealsOnMount() {
   yield takeLatest(
-    constants.FOOD_MOUNTED,
+    [
+      constants.FOOD_MOUNTED,
+      constants.REQUEST_PARTICIPANT_DETAILS,
+    ],
     fetchResourceIfNeeded,
     api.fetchMeals,
     isValid,
