@@ -206,9 +206,7 @@ describe('Forms reducer', () => {
       }
     )).to.eql({
       testForm: {
-        values: {
-          foo: 'bar',
-        },
+        values: {},
         submitted: true,
         saved: true,
         loading: false,
