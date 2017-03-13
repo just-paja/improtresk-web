@@ -42,7 +42,12 @@ export default function server(userConfig = {}) {
 
   app.ready = new Promise((resolve) => {
     app.server = app.listen(config.port, () => {
-      winston.log('info', `Started server on port ${config.port}`);
+      winston.log('warn', `Started server on port ${config.port}`);
+      winston.log('warn', `Data API: ${config.apiSource}`);
+      winston.log('warn', `Auth API: ${config.apiAuthSource}`);
+      if (config.proxy) {
+        winston.log('warn', 'Behind trusted proxy');
+      }
       resolve();
     });
   });
