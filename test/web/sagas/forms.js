@@ -7,9 +7,10 @@ import { getForm } from '../../../src/web/selectors/forms';
 import { fetchResource } from '../../../src/web/sagas/common';
 import {
   sendForm,
-  validateForm,
-  validateFormOnValuesChange,
   validateAndSubmitForm,
+  validateForm,
+  validateFormOnSubmit,
+  validateFormOnValuesChange,
 } from '../../../src/web/sagas/forms';
 
 describe('Form saga helpers', () => {
@@ -49,6 +50,11 @@ describe('Form saga helpers', () => {
       valid: true,
     }));
     expect(generator.next().done).to.equal(true);
+  });
+  it('validateFormOnSubmit creates validate action', () => {
+    const saga = validateFormOnSubmit();
+    expect(saga.next().value).to.eql(takeLatest('FORM_SUBMIT', validateAndSubmitForm));
+    expect(saga.next().done).to.equal(true);
   });
   it('validateAndSubmitForm validates and blocks invalid form submit', () => {
     const generator = validateAndSubmitForm({
