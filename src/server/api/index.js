@@ -22,9 +22,9 @@ export default ({
 
   app.post('/login', (req, res) => {
     if (!req.body.email || !req.body.password) {
-      return res.send(400, {
-        message: 'Invalid request',
-      });
+      return res
+        .status(400)
+        .send({ messages: ['invalid-request'] });
     }
 
     return fetch(urlLogin, {
