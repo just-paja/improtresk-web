@@ -38,18 +38,20 @@ export function* fetchPerformersOnMount() {
 export function* fetchPerformerDetail() {
   const year = yield select(yearActiveNumber);
   const performer = yield select(getPerformerDetailId);
-  yield fork(
-    fetchResourceIfNeeded,
-    api.fetchPerformerDetail,
-    shouldFetchDetail,
-    {
-      onStart: constants.PERFORMER_DETAIL_FETCH_STARTED,
-      onSuccess: constants.PERFORMER_DETAIL_FETCH_SUCCESS,
-      onError: constants.PERFORMER_DETAIL_FETCH_ERROR,
-      year,
-      performer,
-    }
-  );
+  if (year && performer) {
+    yield fork(
+      fetchResourceIfNeeded,
+      api.fetchPerformerDetail,
+      shouldFetchDetail,
+      {
+        onStart: constants.PERFORMER_DETAIL_FETCH_STARTED,
+        onSuccess: constants.PERFORMER_DETAIL_FETCH_SUCCESS,
+        onError: constants.PERFORMER_DETAIL_FETCH_ERROR,
+        year,
+        performer,
+      }
+    );
+  }
 }
 
 export function* fetchPerformerDetailOnMount() {
