@@ -12,11 +12,12 @@ import locations from './locations';
 import meals from './meals';
 import news from './news';
 import participant from './participant';
+import performers from './performers';
 import signup from './signup';
 import teams from './teams';
 import tips from './tips';
-import years from './years';
 import workshops from './workshops';
+import years from './years';
 
 const sagas = [
   ...accomodation,
@@ -31,11 +32,12 @@ const sagas = [
   ...meals,
   ...news,
   ...participant,
+  ...performers,
   ...signup,
   ...teams,
   ...tips,
-  ...years,
   ...workshops,
+  ...years,
 ];
 
 export default function* () {

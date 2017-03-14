@@ -106,6 +106,26 @@ describe('API helper', () => {
         expect(nock.isDone()).to.equal(true);
       });
   });
+  it('fetchPerformers calls for performers', () => {
+    nock(apiSource)
+      .get('/years/2017/performers/')
+      .reply(200, []);
+
+    return api.fetchPerformers({ apiSource, year: '2017' })
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
+  it('fetchPerformerDetail calls for performers detail', () => {
+    nock(apiSource)
+      .get('/years/2017/performers/1/')
+      .reply(200, {});
+
+    return api.fetchPerformerDetail({ apiSource, performer: 1, year: '2017' })
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
   it('fetchText calls for text', () => {
     nock(apiSource)
       .get('/texts/food-intro-text/')

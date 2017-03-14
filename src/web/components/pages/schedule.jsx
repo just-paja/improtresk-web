@@ -1,14 +1,17 @@
+import Alert from 'react-bootstrap/lib/Alert';
 import React, { Component, PropTypes } from 'react';
 
 import Container from '../container';
+import ObjectList from '../objectList';
+import PerformerListItem from '../performerListItem';
 
-export default class Home extends Component {
+export default class Schedule extends Component {
   componentWillMount() {
     this.props.onMount();
   }
 
   render() {
-    const { ready } = this.props;
+    const { performers, ready } = this.props;
 
     if (!ready) {
       return null;
@@ -17,17 +20,23 @@ export default class Home extends Component {
     return (
       <Container>
         <h1>Program</h1>
-        <p>Program pro tento ročník zatím není zveřejněný.</p>
+        <Alert bsStyle="info">Program pro tento ročník zatím není zveřejněný.</Alert>
+        <h2>Účinkující</h2>
+        <ObjectList
+          Component={PerformerListItem}
+          data={performers}
+        />
       </Container>
     );
   }
 }
 
-Home.propTypes = {
+Schedule.propTypes = {
   onMount: PropTypes.func.isRequired,
+  performers: PropTypes.arrayOf(PropTypes.object).isRequired,
   ready: PropTypes.bool,
 };
 
-Home.defaultProps = {
+Schedule.defaultProps = {
   ready: false,
 };

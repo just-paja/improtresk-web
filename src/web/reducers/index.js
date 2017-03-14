@@ -10,6 +10,7 @@ import lectors from './lectors';
 import meals from './meals';
 import news from './news';
 import participant from './participant';
+import performers from './performers';
 import server from './server';
 import session from './session';
 import teams from './teams';
@@ -30,6 +31,7 @@ export default function createReducer() {
     meals,
     news,
     participant,
+    performers,
     server,
     session,
     teams,

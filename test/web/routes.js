@@ -3,8 +3,8 @@ import React from 'react';
 import { expect } from 'chai';
 import { IndexRoute, Route } from 'react-router';
 
-import App from '../../src/web/containers/app';
 import Accomodations from '../../src/web/containers/accomodations';
+import App from '../../src/web/containers/app';
 import ArchivedYear from '../../src/web/containers/archivedYear';
 import Conditions from '../../src/web/containers/conditions';
 import Contact from '../../src/web/containers/contact';
@@ -15,6 +15,7 @@ import Locations from '../../src/web/containers/locations';
 import NewsDetail from '../../src/web/containers/newsDetail';
 import NotFound from '../../src/web/components/notFound';
 import ParticipantHome from '../../src/web/components/pages/participant/home';
+import PerformerDetail from '../../src/web/containers/performerDetail';
 import Schedule from '../../src/web/containers/schedule';
 import Signup from '../../src/web/containers/signup';
 import Tips from '../../src/web/containers/tips';
@@ -30,19 +31,20 @@ describe('Routes', () => {
     })).to.eql(
       <Route path="/" component={App}>
         <IndexRoute component={Home} />
-        <Route path="/pro-ucastniky/ubytovani" component={Accomodations} />
-        <Route path="/archiv/:slug" component={ArchivedYear} />
-        <Route path="/pro-ucastniky/podminky" component={Conditions} />
-        <Route path="/kontakt" component={Contact} />
-        <Route path="/pro-ucastniky/poplatky" component={Fees} />
-        <Route path="/pro-ucastniky/jidlo" component={Food} />
-        <Route path="/pro-ucastniky/lokace" component={Locations} />
-        <Route path="/novinky/:slug" component={NewsDetail} />
-        <Route path="/program" component={Schedule} />
-        <Route path="/prihlaska" onEnter={() => {}} component={Signup} />
-        <Route path="/pro-ucastniky/tipy" component={Tips} />
-        <Route path="/workshopy" component={Workshops} />
-        <Route path="/workshopy/:slug" component={WorkshopDetail} />
+        <Route component={Accomodations} path="/pro-ucastniky/ubytovani" />
+        <Route component={ArchivedYear} path="/archiv/:slug" />
+        <Route component={Conditions} path="/pro-ucastniky/podminky" />
+        <Route component={Contact} path="/kontakt" />
+        <Route component={Fees} path="/pro-ucastniky/poplatky" />
+        <Route component={Food} path="/pro-ucastniky/jidlo" />
+        <Route component={Locations} path="/pro-ucastniky/lokace" />
+        <Route component={NewsDetail} path="/novinky/:slug" />
+        <Route component={PerformerDetail} path="/ucinkujici/:slug" />
+        <Route component={Schedule} path="/program" />
+        <Route component={Signup} path="/prihlaska" onEnter={() => {}} />
+        <Route component={Tips} path="/pro-ucastniky/tipy" />
+        <Route component={WorkshopDetail} path="/workshopy/:slug" />
+        <Route component={Workshops} path="/workshopy" />
         <Route path="" onEnter={() => {}} name="participant">
           <Route path="/ucastnik" component={ParticipantHome} />
         </Route>
