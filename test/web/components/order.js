@@ -1,13 +1,17 @@
+import Col from 'react-bootstrap/lib/Col';
 import Form from 'react-bootstrap/lib/Form';
 import React from 'react';
+import Row from 'react-bootstrap/lib/Row';
 import sinon from 'sinon';
 import Well from 'react-bootstrap/lib/Well';
 
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
+import Button from '../../../src/web/components/button';
 import Order from '../../../src/web/components/order';
 import InputCheckbox from '../../../src/web/components/inputCheckbox';
+import MealPicker from '../../../src/web/components/mealPicker';
 import WorkshopPicker from '../../../src/web/components/workshopPicker';
 
 describe('Order form component', () => {
@@ -16,6 +20,13 @@ describe('Order form component', () => {
       <Order
         errors={{}}
         form="order"
+        meals={[
+          {
+            id: 1325,
+            date: '2017-05-06',
+            name: 'lunch',
+          },
+        ]}
         onChange={() => {}}
         onSubmit={() => {}}
         values={{
@@ -36,25 +47,46 @@ describe('Order form component', () => {
           přijdou peníze na účet.
         </p>
         <Form onSubmit={() => {}}>
-          <Well>
-            <WorkshopPicker
-              disabled={false}
-              name="workshop"
-              onChange={() => {}}
-              value={42}
-              workshops={[
-                { id: 42, name: 'Longformy' },
-                { id: 43, name: 'Hlasová průprava' },
-              ]}
-            />
-          </Well>
-          <InputCheckbox
+          <WorkshopPicker
             disabled={false}
-            label="Mám zájem o ubytování v hotelu"
-            name="accomodation"
+            name="workshop"
             onChange={() => {}}
-            value
+            value={42}
+            workshops={[
+              { id: 42, name: 'Longformy' },
+              { id: 43, name: 'Hlasová průprava' },
+            ]}
           />
+          <Well>
+            <Row>
+              <Col md={6}>
+                <h3>Stravování</h3>
+                <p>Zaškrtni na který den chceš zařídit jídlo od nás.</p>
+                <MealPicker
+                  name="meals"
+                  meals={[
+                    {
+                      id: 1325,
+                      date: '2017-05-06',
+                      name: 'lunch',
+                    },
+                  ]}
+                  onChange={() => {}}
+                />
+              </Col>
+              <Col md={6}>
+                <h3>Ubytování</h3>
+                <InputCheckbox
+                  disabled={false}
+                  label="Mám zájem o ubytování v hotelu"
+                  name="accomodation"
+                  onChange={() => {}}
+                  value
+                />
+              </Col>
+            </Row>
+          </Well>
+          <Button type="submit">Pokračovat</Button>
         </Form>
       </div>
     );

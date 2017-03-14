@@ -2,6 +2,7 @@ import classnames from 'classnames';
 import FontAwesome from 'react-fontawesome';
 import React, { Component, PropTypes } from 'react';
 
+import ProgressBar from './progressBar';
 import WorkshopSummaryOneLine from './workshopSummaryOneLine';
 
 import styles from './workshopPickerItem.css';
@@ -44,6 +45,14 @@ export default class WorkshopPickerItem extends Component {
           lectors={lectors}
           reserved={reserved}
         />
+        <div className={styles.progress}>
+          <ProgressBar
+            local
+            max={capacity}
+            min={0}
+            now={assigned + reserved}
+          />
+        </div>
         {selected ? (
           <span className={styles.check}>
             <FontAwesome name="check-circle" />

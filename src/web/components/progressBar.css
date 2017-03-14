@@ -1,6 +1,9 @@
 :local .appProgressBar {
   border-radius: 0;
   height: 3px;
+}
+
+:local .fixed {
   left: 0;
   margin: 0;
   position: fixed;

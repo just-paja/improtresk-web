@@ -25,9 +25,6 @@ describe('Workshop Summary One Line component', () => {
         <h3 className="workshopSummaryOneLine-heading">Pantomima a fyzické divadlo</h3>
         <ul className="list-unstyled workshopSummaryOneLine-list">
           <Prop label="Lektoři">Vojtěch Svoboda, Martin Skot</Prop>
-          <Prop label="Kapacita">12</Prop>
-          <Prop label="Zaplněné">10</Prop>
-          <Prop label="Nezaplacené">1</Prop>
           <Prop label="Volná místa">1</Prop>
         </ul>
       </div>

@@ -13,6 +13,7 @@ class ParticipantHome extends Component {
 
   render() {
     const {
+      meals,
       onLogout,
       onOrderMount,
       onOrderUnmount,
@@ -45,6 +46,7 @@ class ParticipantHome extends Component {
           <OrderStatus {...order} /> :
           <Order
             form="order"
+            meals={meals}
             onMount={onOrderMount}
             onUnmount={onOrderUnmount}
             onChange={onWorkshopPickerChange}
@@ -59,6 +61,7 @@ class ParticipantHome extends Component {
 }
 
 ParticipantHome.propTypes = {
+  meals: PropTypes.arrayOf(PropTypes.object).isRequired,
   order: PropTypes.object,
   participant: PropTypes.shape({
     name: PropTypes.string,

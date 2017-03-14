@@ -11,6 +11,10 @@ const HumanDate = ({ date, showTime, showYear }) => {
   const format = showTime ?
     `${formatDate} ${dateTypes.FORMAT_HUMAN_TIME}` : formatDate;
 
+  if (!date) {
+    return null;
+  }
+
   return (<span>{moment(date).format(format)}</span>);
 };
 
