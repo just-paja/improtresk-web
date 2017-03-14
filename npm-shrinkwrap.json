@@ -4265,7 +4265,7 @@
     },
     "react-images": {
       "version": "0.5.2",
-      "from": "react-images@>=0.5.2 <0.6.0",
+      "from": "react-images@0.5.2",
       "resolved": "http://registry.npmjs.org/react-images/-/react-images-0.5.2.tgz"
     },
     "react-input-autosize": {

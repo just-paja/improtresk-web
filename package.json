@@ -32,7 +32,7 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "bootswatch": "^3.3.7",
-    "classnames": "http://registry.npmjs.org/classnames/-/classnames-2.2.5.tgz",
+    "classnames": "^2.2.5",
     "cookie-parser": "^1.4.3",
     "crossing": "^1.2.1",
     "css-loader": "^0.27.2",
