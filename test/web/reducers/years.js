@@ -11,6 +11,12 @@ describe('Years reducer', () => {
     });
   });
 
+  it('force opens signups on SIGNUPS_OPEN', () => {
+    expect(years({}, { type: 'SIGNUPS_OPEN' })).to.eql({
+      forceOpen: true,
+    });
+  });
+
   it('marks as loading on YEARS_FETCH_STARTED', () => {
     expect(years({}, { type: 'YEARS_FETCH_STARTED' })).to.eql({
       loading: true,
