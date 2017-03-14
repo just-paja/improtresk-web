@@ -7,21 +7,22 @@
   cursor: pointer;
   display: block;
   margin-bottom: 1rem;
-  min-height: 220px;
-  padding: 1.75rem;
+  min-height: 180px;
+  padding: 1.75rem 1.75rem 3rem;
   position: relative;
 }
 
 :local .box:hover {
-  background: rgba(255,255,255,.3);
+  background: rgba(62,63,58,.05);
   color: #3e3f3a;
   text-decoration: none;
 }
 
 :local .selected,
 :local .selected:active,
-:local .selected:focus {
-  background: rgba(255,255,255,.4);
+:local .selected:focus,
+:local .selected:hover {
+  background: rgba(147,197,75,.25);
   border-color: #93c54b;
   text-decoration: none;
 }
@@ -30,9 +31,16 @@
 }
 
 :local .check {
-  bottom: 2rem;
+  bottom: 2.25rem;
   color: #93c54b;
   font-size: 48px;
   position: absolute;
-  right: 2rem;
+  right: 1.75rem;
+}
+
+:local .progress {
+  position: absolute;
+  left: 1.75rem;
+  right: 1.75rem;
+  bottom: -.5rem;
 }

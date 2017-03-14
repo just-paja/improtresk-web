@@ -13,7 +13,7 @@ describe('ProgressBar component', () => {
     ).node).to.eql(
       <BootstrapProgressBar
         active
-        className="progressBar-appProgressBar"
+        className="progressBar-appProgressBar progressBar-fixed"
         now={100 / 11}
         striped={false}
       />
@@ -22,6 +22,18 @@ describe('ProgressBar component', () => {
   it('renders as idle', () => {
     expect(shallow(
       <ProgressBar activeRequests={0} />
+    ).node).to.eql(
+      <BootstrapProgressBar
+        active={false}
+        className="progressBar-appProgressBar progressBar-fixed"
+        now={100}
+        striped={false}
+      />
+    );
+  });
+  it('renders as local', () => {
+    expect(shallow(
+      <ProgressBar local activeRequests={0} />
     ).node).to.eql(
       <BootstrapProgressBar
         active={false}

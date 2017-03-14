@@ -5,6 +5,7 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
+import ProgressBar from '../../../src/web/components/progressBar';
 import WorkshopPickerItem from '../../../src/web/components/workshopPickerItem';
 import WorkshopSummaryOneLine from '../../../src/web/components/workshopSummaryOneLine';
 
@@ -35,6 +36,14 @@ describe('WorkshopPickerItem component', () => {
           capacity={12}
           reserved={3}
         />
+        <div className="workshopPickerItem-progress">
+          <ProgressBar
+            local
+            max={12}
+            min={0}
+            now={5}
+          />
+        </div>
       </a>
     );
   });
@@ -59,6 +68,14 @@ describe('WorkshopPickerItem component', () => {
           lectors={[]}
           capacity={12}
         />
+        <div className="workshopPickerItem-progress">
+          <ProgressBar
+            local
+            max={12}
+            min={0}
+            now={0}
+          />
+        </div>
         <span className="workshopPickerItem-check">
           <FontAwesome name="check-circle" />
         </span>
