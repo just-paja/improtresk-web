@@ -16,12 +16,13 @@ export default class MealPicker extends Component {
   }
 
   render() {
-    const { meals, value } = this.props;
+    const { disabled, meals, value } = this.props;
     return (
       <div>
         {meals.map(meal =>
           <MealPickerItem
             date={meal.date}
+            disabled={disabled}
             selected={value.indexOf(meal.id) > -1}
             key={meal.id}
             id={meal.id}
@@ -35,6 +36,7 @@ export default class MealPicker extends Component {
 }
 
 MealPicker.propTypes = {
+  disabled: PropTypes.bool,
   meals: PropTypes.arrayOf(PropTypes.object).isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -42,5 +44,7 @@ MealPicker.propTypes = {
 };
 
 MealPicker.defaultProps = {
+  error: null,
+  disabled: false,
   value: [],
 };
