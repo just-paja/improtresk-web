@@ -6,7 +6,7 @@ import React, { Component, PropTypes } from 'react';
 import Row from 'react-bootstrap/lib/Row';
 
 import Container from '../container';
-import FoodTime from '../foodTime';
+import FoodMenu from '../foodMenu';
 
 export default class Food extends Component {
   componentWillMount() {
@@ -14,7 +14,7 @@ export default class Food extends Component {
   }
 
   render() {
-    const { foodTimes, intro, ready } = this.props;
+    const { meals, intro, ready } = this.props;
     const title = 'Stravování';
 
     if (!ready) {
@@ -33,13 +33,17 @@ export default class Food extends Component {
         <Row>
           <Col md={6}>
             <Markdown source={intro} />
-            <ul>
-              {foodTimes.map(foodTime =>
-                <li key={foodTime.id}>
-                  <FoodTime {...foodTime} />
-                </li>
-              )}
-            </ul>
+            <h2>Jídelníček</h2>
+            {meals.map(meal => (
+              <FoodMenu
+                date={meal.date}
+                food={meal.food}
+                id={meal.id}
+                key={meal.id}
+                name={meal.name}
+                soups={meal.soups}
+              />
+            ))}
           </Col>
           <Col md={6}>
             <Image responsive src="/static/theme/2017/bg-food.jpg" />
@@ -53,7 +57,12 @@ export default class Food extends Component {
 Food.propTypes = {
   onMount: PropTypes.func.isRequired,
   ready: PropTypes.bool,
-  foodTimes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  meals: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    food: PropTypes.arrayOf(PropTypes.object),
+  })).isRequired,
   intro: PropTypes.string.isRequired,
 };
 
