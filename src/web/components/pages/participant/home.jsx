@@ -14,6 +14,8 @@ class ParticipantHome extends Component {
   render() {
     const {
       onLogout,
+      onOrderMount,
+      onOrderUnmount,
       onWorkshopPickerChange,
       onWorkshopPickerSubmit,
       order,
@@ -43,6 +45,8 @@ class ParticipantHome extends Component {
           <OrderStatus {...order} /> :
           <Order
             form="order"
+            onMount={onOrderMount}
+            onUnmount={onOrderUnmount}
             onChange={onWorkshopPickerChange}
             onSubmit={onWorkshopPickerSubmit}
             workshops={workshops}
@@ -60,6 +64,8 @@ ParticipantHome.propTypes = {
     name: PropTypes.string,
   }),
   onLogout: PropTypes.func.isRequired,
+  onOrderMount: PropTypes.func.isRequired,
+  onOrderUnmount: PropTypes.func.isRequired,
   onWorkshopPickerChange: PropTypes.func.isRequired,
   onWorkshopPickerSubmit: PropTypes.func.isRequired,
   onMount: PropTypes.func.isRequired,
