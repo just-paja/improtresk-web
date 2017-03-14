@@ -28,6 +28,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
   onMount: () => ({ type: actions.REQUEST_PARTICIPANT_DETAILS }),
   onLogout: () => ({ type: actions.PARTICIPANT_LOGOUT }),
+  onOrderMount: () => ({ type: actions.ORDER_FORM_MOUNTED }),
+  onOrderUnmount: () => ({ type: actions.ORDER_FORM_UNMOUNTED }),
   onWorkshopPickerChange: (form, field, value) => ({
     type: actions.FORM_FIELD_CHANGE,
     form,

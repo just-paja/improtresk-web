@@ -12,6 +12,14 @@ export default class Order extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.props.onMount();
+  }
+
+  componentWillUnmount() {
+    this.props.onUnmount();
+  }
+
   handleChange(name, value) {
     this.props.onChange(this.props.form, name, value);
   }
@@ -59,6 +67,8 @@ Order.propTypes = {
   disabled: PropTypes.bool,
   errors: PropTypes.object.isRequired,
   form: PropTypes.string.isRequired,
+  onMount: PropTypes.func.isRequired,
+  onUnmount: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   values: PropTypes.object.isRequired,

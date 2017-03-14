@@ -2,6 +2,7 @@ import { fork } from 'redux-saga/effects';
 
 import accomodation from './accomodation';
 import archive from './archive';
+import capacity from './capacity';
 import conditions from './conditions';
 import fees from './fees';
 import forms from './forms';
@@ -22,6 +23,7 @@ import years from './years';
 const sagas = [
   ...accomodation,
   ...archive,
+  ...capacity,
   ...conditions,
   ...fees,
   ...forms,

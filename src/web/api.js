@@ -22,6 +22,9 @@ export const fetchArchivedYear = ({ year, ...params }) =>
 
 export const fetchAccomodation = params => apiFetch('accomodations/', params);
 
+export const fetchCapacity = ({ year, ...params }) =>
+  apiFetch(`years/${year}/capacity/`, params);
+
 export const fetchConditionsCurrent = ({ year, ...params }) =>
   apiFetch(`years/${year}/rules/latest/`, params);
 

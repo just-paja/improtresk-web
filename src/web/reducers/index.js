@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 
 import accomodation from './accomodation';
 import archive from './archive';
+import capacity from './capacity';
 import conditions from './conditions';
 import device from './device';
 import forms from './forms';
@@ -23,6 +24,7 @@ export default function createReducer() {
   return combineReducers({
     accomodation,
     archive,
+    capacity,
     conditions,
     device,
     forms,
