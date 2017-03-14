@@ -17,12 +17,14 @@ export default class MealPickerItem extends Component {
   render() {
     const {
       date,
+      disabled,
       name,
       selected,
     } = this.props;
     return (
       <div>
         <InputCheckbox
+          disabled={disabled}
           name={name}
           onChange={this.handleChange}
           label={<Meal date={date} name={name} />}
@@ -34,6 +36,7 @@ export default class MealPickerItem extends Component {
 }
 
 MealPickerItem.propTypes = {
+  disabled: PropTypes.bool,
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
@@ -42,5 +45,6 @@ MealPickerItem.propTypes = {
 };
 
 MealPickerItem.defaultProps = {
+  disabled: false,
   selected: false,
 };

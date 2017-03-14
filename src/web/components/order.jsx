@@ -51,6 +51,7 @@ export default class Order extends Component {
             disabled={disabled}
             name="workshop"
             onChange={this.handleChange}
+            error={errors.workshop}
             value={values.workshop}
             workshops={workshops}
           />
@@ -58,11 +59,16 @@ export default class Order extends Component {
             <Row>
               <Col sm={6} lg={4}>
                 <h3>Stravování</h3>
-                <p>Zaškrtni na který den chceš zařídit jídlo od nás.</p>
+                <p>
+                  Zaškrtni na který den chceš zařídit jídlo od nás. Na výběr z
+                  jídelního menu a dostaneš před začátkem festivalu.
+                </p>
                 <MealPicker
+                  disabled={disabled}
                   name="meals"
                   meals={meals}
                   onChange={this.handleChange}
+                  error={errors.meals}
                   value={values.meals}
                 />
                 <h3>Ubytování</h3>

@@ -65,7 +65,10 @@ describe('Order form component', () => {
             <Row>
               <Col sm={6} lg={4}>
                 <h3>Stravování</h3>
-                <p>Zaškrtni na který den chceš zařídit jídlo od nás.</p>
+                <p>
+                  Zaškrtni na který den chceš zařídit jídlo od nás. Na výběr z
+                  jídelního menu a dostaneš před začátkem festivalu.
+                </p>
                 <MealPicker
                   name="meals"
                   meals={[

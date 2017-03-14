@@ -1,3 +1,4 @@
+import Alert from 'react-bootstrap/lib/Alert';
 import Col from 'react-bootstrap/lib/Col';
 import React, { Component, PropTypes } from 'react';
 import Row from 'react-bootstrap/lib/Row';
@@ -15,7 +16,7 @@ export default class WorkshopPicker extends Component {
   }
 
   render() {
-    const { workshops, value } = this.props;
+    const { error, workshops, value } = this.props;
     return (
       <Row>
         {workshops.map(workshop => (
@@ -33,12 +34,18 @@ export default class WorkshopPicker extends Component {
             />
           </Col>
         ))}
+        {error ? (
+          <Col xs={12}>
+            <Alert bsStyle="danger">{error}</Alert>
+          </Col>
+        ) : null}
       </Row>
     );
   }
 }
 
 WorkshopPicker.propTypes = {
+  error: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.number,
@@ -46,5 +53,6 @@ WorkshopPicker.propTypes = {
 };
 
 WorkshopPicker.defaultProps = {
+  error: null,
   value: null,
 };

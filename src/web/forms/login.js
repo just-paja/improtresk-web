@@ -1,4 +1,4 @@
-import { validate } from 'revalidator';
+import validator from './validator';
 
 const schema = {
   properties: {
@@ -18,13 +18,4 @@ const schema = {
   },
 };
 
-export default (values) => {
-  const status = validate(values, schema);
-  return {
-    ...status,
-    errors: status.errors.reduce((errorStatus, field) => ({
-      ...errorStatus,
-      [field.property]: field.message,
-    }), {}),
-  };
-};
+export default validator(schema);
