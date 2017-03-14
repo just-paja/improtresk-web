@@ -14,5 +14,5 @@ export const getCapacity = createSelector(
 
 export const getWorkshopCapacity = createSelector(
   getCapacityState,
-  capacity => capacity.data.workshops || []
+  capacity => (capacity.data && capacity.data.workshops ? capacity.data.workshops : [])
 );

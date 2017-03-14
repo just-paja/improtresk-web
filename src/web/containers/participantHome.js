@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import ParticipantHome from '../components/pages/participant/home';
 
 import { getForm } from '../selectors/forms';
+import { getOrderFormPrice } from '../selectors/orders';
 import {
   getParticipant,
   getParticipantLatestOrder,
@@ -15,6 +16,7 @@ import { yearActiveNumber } from '../selectors/years';
 import * as actions from '../constants/actions';
 
 const mapStateToProps = state => ({
+  price: getOrderFormPrice(state),
   meals: getMeals(state),
   order: getParticipantLatestOrder(state),
   orderForm: getForm(state, 'order'),

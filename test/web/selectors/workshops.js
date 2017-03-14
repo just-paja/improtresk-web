@@ -16,6 +16,7 @@ import {
 describe('Workshops selectors', () => {
   it('workshopsAll returns all workshops stored', () => {
     expect(workshopsAll({
+      capacity: {},
       lectors: {
         list: {
           data: [],
@@ -52,6 +53,7 @@ describe('Workshops selectors', () => {
   });
   it('workshopsAll returns all workshops with price levels mapped', () => {
     expect(workshopsAll({
+      capacity: {},
       lectors: {
         list: {
           data: [],
@@ -131,6 +133,7 @@ describe('Workshops selectors', () => {
   });
   it('workshopsAll returns all workshops with difficulty mapped', () => {
     expect(workshopsAll({
+      capacity: {},
       lectors: {
         list: {
           data: [],
@@ -179,6 +182,7 @@ describe('Workshops selectors', () => {
   });
   it('workshopsAll returns all workshops with lectors mapped', () => {
     expect(workshopsAll({
+      capacity: {},
       lectors: {
         list: {
           data: [
@@ -242,6 +246,7 @@ describe('Workshops selectors', () => {
   });
   it('workshopsAll returns all workshops without prices when levels are not available', () => {
     expect(workshopsAll({
+      capacity: {},
       lectors: {
         list: {
           data: [],
@@ -292,6 +297,7 @@ describe('Workshops selectors', () => {
   });
   it('workshopsAll returns all workshops without difficulties when not available', () => {
     expect(workshopsAll({
+      capacity: {},
       lectors: {
         list: {
           data: [],

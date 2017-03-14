@@ -1,4 +1,6 @@
+import Alert from 'react-bootstrap/lib/Alert';
 import Col from 'react-bootstrap/lib/Col';
+import FontAwesome from 'react-fontawesome';
 import Form from 'react-bootstrap/lib/Form';
 import React, { Component, PropTypes } from 'react';
 import Row from 'react-bootstrap/lib/Row';
@@ -7,6 +9,7 @@ import Well from 'react-bootstrap/lib/Well';
 import Button from './button';
 import InputCheckbox from './inputCheckbox';
 import MealPicker from './mealPicker';
+import Price from './price';
 import WorkshopPicker from './workshopPicker';
 
 export default class Order extends Component {
@@ -34,7 +37,7 @@ export default class Order extends Component {
   }
 
   render() {
-    const { disabled, errors, meals, values, workshops } = this.props;
+    const { price, disabled, errors, meals, values, workshops } = this.props;
     return (
       <div>
         <h2>Přihlášení na workshop</h2>
@@ -53,7 +56,7 @@ export default class Order extends Component {
           />
           <Well>
             <Row>
-              <Col md={6}>
+              <Col sm={6} lg={4}>
                 <h3>Stravování</h3>
                 <p>Zaškrtni na který den chceš zařídit jídlo od nás.</p>
                 <MealPicker
@@ -62,8 +65,6 @@ export default class Order extends Component {
                   onChange={this.handleChange}
                   value={values.meals}
                 />
-              </Col>
-              <Col md={6}>
                 <h3>Ubytování</h3>
                 <InputCheckbox
                   disabled={disabled}
@@ -73,6 +74,23 @@ export default class Order extends Component {
                   onChange={this.handleChange}
                   value={values.accomodation}
                 />
+              </Col>
+              <Col sm={6} lg={4}>
+                <h3>Metoda platby</h3>
+                <p>
+                  V tuto chvíli je možné platit jedině bankovním
+                  převodem <FontAwesome name="frown-o" />. Detaily
+                  platby jsou v dalším kroku objednávky.
+                </p>
+                {price ? (
+                  <Alert bsStyle="info">
+                    <big>
+                      Částka k zaplacení:
+                      {' '}
+                      <Price price={price} />
+                    </big>
+                  </Alert>
+                ) : null}
               </Col>
             </Row>
           </Well>
@@ -84,6 +102,7 @@ export default class Order extends Component {
 }
 
 Order.propTypes = {
+  price: PropTypes.number,
   disabled: PropTypes.bool,
   errors: PropTypes.object.isRequired,
   form: PropTypes.string.isRequired,
@@ -97,5 +116,6 @@ Order.propTypes = {
 };
 
 Order.defaultProps = {
+  price: null,
   disabled: false,
 };
