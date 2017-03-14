@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 
-import { mealsAll, isValid } from '../../../src/web/selectors/food';
+import { getMeals, isValid } from '../../../src/web/selectors/food';
 
 describe('Meals selectors', () => {
-  it('mealsAll returns all news stored', () => {
-    expect(mealsAll({
+  it('getMeals returns all news stored', () => {
+    expect(getMeals({
       meals: {
         data: [
           { id: 1 },
