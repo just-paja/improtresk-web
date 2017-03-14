@@ -5,7 +5,7 @@ import { fetchTextsIfNeeded } from './texts';
 import * as constants from '../constants/actions';
 import * as texts from '../constants/texts';
 
-export function* requestWorkshopLocationsIntro() {
+export function* fetchTextsOnMount() {
   yield takeLatest(
     constants.REQUEST_WORKSHOP_LOCATIONS,
     fetchTextsIfNeeded,
@@ -14,5 +14,5 @@ export function* requestWorkshopLocationsIntro() {
 }
 
 export default [
-  requestWorkshopLocationsIntro,
+  fetchTextsOnMount,
 ];
