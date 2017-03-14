@@ -21,11 +21,14 @@ export default class WorkshopPicker extends Component {
         {workshops.map(workshop => (
           <Col key={workshop.id} sm={6} lg={4}>
             <WorkshopPickerItem
-              id={workshop.id}
+              assigned={workshop.assigned}
               capacity={workshop.capacity}
+              freeSpots={workshop.freeSpots}
+              id={workshop.id}
               lectors={workshop.lectors}
               name={workshop.name}
               onChange={this.handleChange}
+              reserved={workshop.reserved}
               selected={value === workshop.id}
             />
           </Col>

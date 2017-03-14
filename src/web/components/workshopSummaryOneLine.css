@@ -1,3 +1,7 @@
 :local .list {
   margin-bottom: 0;
 }
+
+:local .heading {
+  margin-top: 0;
+}
