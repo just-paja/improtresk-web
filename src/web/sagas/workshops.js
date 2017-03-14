@@ -13,19 +13,21 @@ import { yearActiveNumber } from '../selectors/years';
 import * as api from '../api';
 import * as constants from '../constants/actions';
 
-function* requireYearsWorkshops() {
+export function* requireYearsWorkshops() {
   const year = yield select(yearActiveNumber);
-  yield fork(
-    fetchResourceIfNeeded,
-    api.fetchWorkshops,
-    shouldFetchList,
-    {
-      onStart: constants.WORKSHOPS_FETCH_STARTED,
-      onSuccess: constants.WORKSHOPS_FETCH_SUCCESS,
-      onError: constants.WORKSHOPS_FETCH_ERROR,
-      year,
-    }
-  );
+  if (year) {
+    yield fork(
+      fetchResourceIfNeeded,
+      api.fetchWorkshops,
+      shouldFetchList,
+      {
+        onStart: constants.WORKSHOPS_FETCH_STARTED,
+        onSuccess: constants.WORKSHOPS_FETCH_SUCCESS,
+        onError: constants.WORKSHOPS_FETCH_ERROR,
+        year,
+      }
+    );
+  }
 }
 
 export function* requireWorkshopDifficulties() {
@@ -42,19 +44,21 @@ export function* requireWorkshopDifficulties() {
   );
 }
 
-function* requireYearsWorkshopLocations() {
+export function* requireYearsWorkshopLocations() {
   const year = yield select(yearActiveNumber);
-  yield fork(
-    fetchResourceIfNeeded,
-    api.fetchWorkshopLocations,
-    shouldFetchLocations,
-    {
-      onStart: constants.WORKSHOP_LOCATIONS_FETCH_STARTED,
-      onSuccess: constants.WORKSHOP_LOCATIONS_FETCH_SUCCESS,
-      onError: constants.WORKSHOP_LOCATIONS_FETCH_ERROR,
-      year,
-    }
-  );
+  if (year) {
+    yield fork(
+      fetchResourceIfNeeded,
+      api.fetchWorkshopLocations,
+      shouldFetchLocations,
+      {
+        onStart: constants.WORKSHOP_LOCATIONS_FETCH_STARTED,
+        onSuccess: constants.WORKSHOP_LOCATIONS_FETCH_SUCCESS,
+        onError: constants.WORKSHOP_LOCATIONS_FETCH_ERROR,
+        year,
+      }
+    );
+  }
 }
 
 export function* requireWorkshopLocations() {
@@ -77,18 +81,20 @@ export function* requireWorkshops() {
 export function* requireYearsWorkshopDetail() {
   const year = yield select(yearActiveNumber);
   const workshop = yield select(getWorkshopDetailId);
-  yield fork(
-    fetchResourceIfNeeded,
-    api.fetchWorkshopDetail,
-    shouldFetchDetail,
-    {
-      onStart: constants.WORKSHOP_DETAIL_FETCH_STARTED,
-      onSuccess: constants.WORKSHOP_DETAIL_FETCH_SUCCESS,
-      onError: constants.WORKSHOP_DETAIL_FETCH_ERROR,
-      year,
-      workshop,
-    }
-  );
+  if (year && workshop) {
+    yield fork(
+      fetchResourceIfNeeded,
+      api.fetchWorkshopDetail,
+      shouldFetchDetail,
+      {
+        onStart: constants.WORKSHOP_DETAIL_FETCH_STARTED,
+        onSuccess: constants.WORKSHOP_DETAIL_FETCH_SUCCESS,
+        onError: constants.WORKSHOP_DETAIL_FETCH_ERROR,
+        year,
+        workshop,
+      }
+    );
+  }
 }
 
 export function* requireWorkshopDetail() {
