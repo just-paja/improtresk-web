@@ -248,6 +248,34 @@ describe('Forms reducer', () => {
       },
     });
   });
+  it('updates form loading status on submit error when data are missing', () => {
+    expect(forms(
+      {
+        testForm: {
+          errors: {},
+          submitted: true,
+          valid: true,
+          values: { foo: 'bar' },
+        },
+      },
+      {
+        type: 'FORM_SUBMIT_ERROR',
+        form: 'testForm',
+      }
+    )).to.eql({
+      testForm: {
+        values: {
+          foo: 'bar',
+        },
+        saved: false,
+        submitted: true,
+        loading: false,
+        valid: true,
+        errors: undefined,
+        submitErrors: null,
+      },
+    });
+  });
   it('clears form values on clear', () => {
     expect(forms(
       {
