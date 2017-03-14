@@ -1,4 +1,4 @@
-import { combined, fetchStart, fetchError, fetchSuccess } from './common';
+import { combined, fetchStart, fetchError } from './common';
 
 import * as constants from '../constants/actions';
 
@@ -18,7 +18,17 @@ export default combined(defaultState, {
   }),
   [constants.GEOCODE_LOCATION_FETCH_SUCCESS]: (state, action) => ({
     ...state,
-    [action.address]: fetchSuccess(state[action.address], action),
+    [action.address]: {
+      ...state[action.address],
+      loading: false,
+      ready: true,
+      valid: true,
+      data:
+        action.data &&
+        action.data.results &&
+        action.data.results[0] ?
+          action.data.results[0].geometry.location : null,
+    },
   }),
   [constants.GEOCODE_LOCATION_FETCH_ERROR]: (state, action) => ({
     ...state,
