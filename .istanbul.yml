@@ -8,6 +8,7 @@ instrumentation:
     'server/middleware/dev.js',
     'web/main.js',
     'web/store.js',
+    'web/sagas/index.js',
   ]
 
   extensions:
