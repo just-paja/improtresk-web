@@ -7,6 +7,11 @@ const getNewsDetailState = state => state.news.detail;
 
 export const newsAll = createSelector(getNewsListState, news => news.data);
 
+export const getNewsDetailId = createSelector(
+  getNewsDetailState,
+  detail => detail.id
+);
+
 export const getNewsDetail = createSelector(getNewsDetailState, detail => detail.data);
 
 export const shouldFetchList = createSelector(getNewsListState, isStateValid);
