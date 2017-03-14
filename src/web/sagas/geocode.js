@@ -1,5 +1,6 @@
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, fork, select, takeLatest } from 'redux-saga/effects';
 
+import { fetchResourceIfNeeded } from './common';
 import { isStateValid } from '../selectors/common';
 import {
   getAllAddresses,
@@ -9,29 +10,18 @@ import {
 import * as api from '../api';
 import * as constants from '../constants/actions';
 
-function* fetchMarker(address) {
-  yield put({
-    type: constants.GEOCODE_LOCATION_FETCH_STARTED,
-    address,
-  });
-
-  try {
-    const res = yield call(api.fetchMarker, {
+export function* fetchMarker(address) {
+  yield fork(
+    fetchResourceIfNeeded,
+    api.fetchMarker,
+    isStateValid,
+    {
+      onStart: 'GEOCODE_LOCATION_FETCH_STARTED',
+      onSuccess: 'GEOCODE_LOCATION_FETCH_SUCCESS',
+      onError: 'GEOCODE_LOCATION_FETCH_ERROR',
       address,
-    });
-    const data = yield res.json();
-    yield put({
-      type: constants.GEOCODE_LOCATION_FETCH_SUCCESS,
-      address,
-      data: data.results[0].geometry.location,
-    });
-  } catch (error) {
-    yield put({
-      type: constants.GEOCODE_LOCATION_FETCH_ERROR,
-      address,
-      error,
-    });
-  }
+    }
+  );
 }
 
 export function* fetchAllMarkers() {
