@@ -39,7 +39,7 @@ describe('WorkshopPicker component', () => {
       />
     ).node).to.eql(
       <Row>
-        <Col key={21} xs={6} lg={4}>
+        <Col key={21} sm={6} lg={4}>
           <WorkshopPickerItem
             assigned={2}
             capacity={12}
@@ -52,7 +52,7 @@ describe('WorkshopPicker component', () => {
             selected
           />
         </Col>
-        <Col key={21} xs={6} lg={4}>
+        <Col key={21} sm={6} lg={4}>
           <WorkshopPickerItem
             assigned={0}
             capacity={19}
