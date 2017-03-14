@@ -18,7 +18,15 @@ export default class WorkshopPickerItem extends Component {
   }
 
   render() {
-    const { capacity, lectors, name, selected } = this.props;
+    const {
+      assigned,
+      capacity,
+      freeSpots,
+      lectors,
+      name,
+      reserved,
+      selected,
+    } = this.props;
     return (
       <a
         className={classnames(
@@ -28,31 +36,40 @@ export default class WorkshopPickerItem extends Component {
         tabIndex={0}
         onClick={this.handleChange}
       >
-        <span className={styles.input}>
-          <FontAwesome name={selected ? 'check-square' : 'square'} />
-        </span>
-        <div className={styles.workshop}>
-          <WorkshopSummaryOneLine
-            name={name}
-            lectors={lectors}
-            capacity={capacity}
-          />
-        </div>
+        <WorkshopSummaryOneLine
+          assigned={assigned}
+          capacity={capacity}
+          freeSpots={freeSpots}
+          name={name}
+          lectors={lectors}
+          reserved={reserved}
+        />
+        {selected ? (
+          <span className={styles.check}>
+            <FontAwesome name="check-circle" />
+          </span>
+        ) : null}
       </a>
     );
   }
 }
 
 WorkshopPickerItem.propTypes = {
-  id: PropTypes.number.isRequired,
+  assigned: PropTypes.number,
   capacity: PropTypes.number,
+  id: PropTypes.number.isRequired,
+  freeSpots: PropTypes.number,
   lectors: PropTypes.arrayOf(PropTypes.object).isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  reserved: PropTypes.number,
   selected: PropTypes.bool,
 };
 
 WorkshopPickerItem.defaultProps = {
-  capacity: false,
+  assigned: null,
+  capacity: null,
+  freeSpots: null,
+  reserved: null,
   selected: false,
 };

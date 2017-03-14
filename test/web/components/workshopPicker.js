@@ -18,16 +18,22 @@ describe('WorkshopPicker component', () => {
         value={21}
         workshops={[
           {
+            assigned: 2,
             capacity: 12,
+            freeSpots: 7,
             id: 21,
             lectors: [],
             name: 'Longformy',
+            reserved: 3,
           },
           {
+            assigned: 0,
             capacity: 19,
+            freeSpots: 19,
             id: 32,
             lectors: [],
             name: 'Kontaktní improvizace',
+            reserved: 0,
           },
         ]}
       />
@@ -35,21 +41,27 @@ describe('WorkshopPicker component', () => {
       <Row>
         <Col key={21} sm={6} lg={4}>
           <WorkshopPickerItem
+            assigned={2}
             capacity={12}
+            freeSpots={7}
             id={21}
             lectors={[]}
             name="Longformy"
             onChange={() => {}}
+            reserved={3}
             selected
           />
         </Col>
         <Col key={21} sm={6} lg={4}>
           <WorkshopPickerItem
+            assigned={0}
             capacity={19}
+            freeSpots={19}
             id={32}
             lectors={[]}
             name="Kontaktní improvizace"
             onChange={() => {}}
+            reserved={0}
             selected={false}
           />
         </Col>

@@ -12,11 +12,14 @@ describe('WorkshopPickerItem component', () => {
   it('renders', () => {
     expect(shallow(
       <WorkshopPickerItem
+        assigned={2}
         id={230}
         capacity={12}
+        freeSpots={7}
         lectors={[]}
         name="Longformy"
         onChange={() => {}}
+        reserved={3}
       />
     ).node).to.eql(
       <a
@@ -24,16 +27,14 @@ describe('WorkshopPickerItem component', () => {
         tabIndex={0}
         onClick={() => {}}
       >
-        <span className="workshopPickerItem-input">
-          <FontAwesome name="square" />
-        </span>
-        <div className="workshopPickerItem-workshop">
-          <WorkshopSummaryOneLine
-            name="Longformy"
-            lectors={[]}
-            capacity={12}
-          />
-        </div>
+        <WorkshopSummaryOneLine
+          assigned={2}
+          freeSpots={7}
+          name="Longformy"
+          lectors={[]}
+          capacity={12}
+          reserved={3}
+        />
       </a>
     );
   });
@@ -53,16 +54,14 @@ describe('WorkshopPickerItem component', () => {
         tabIndex={0}
         onClick={() => {}}
       >
-        <span className="workshopPickerItem-input">
-          <FontAwesome name="check-square" />
+        <WorkshopSummaryOneLine
+          name="Longformy"
+          lectors={[]}
+          capacity={12}
+        />
+        <span className="workshopPickerItem-check">
+          <FontAwesome name="check-circle" />
         </span>
-        <div className="workshopPickerItem-workshop">
-          <WorkshopSummaryOneLine
-            name="Longformy"
-            lectors={[]}
-            capacity={12}
-          />
-        </div>
       </a>
     );
   });

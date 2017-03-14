@@ -11,3 +11,8 @@ export const getCapacity = createSelector(
   getCapacityState,
   capacity => capacity.data
 );
+
+export const getWorkshopCapacity = createSelector(
+  getCapacityState,
+  capacity => capacity.data.workshops || []
+);
