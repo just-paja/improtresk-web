@@ -1,22 +1,23 @@
 import Crossing from 'crossing';
 
 export const urlTable = {
-  home: '/',
-  accomodation: '/pro-ucastniky/ubytovani',
-  food: '/pro-ucastniky/jidlo',
-  fees: '/pro-ucastniky/poplatky',
-  tips: '/pro-ucastniky/tipy',
-  conditions: '/pro-ucastniky/podminky',
-  location: '/pro-ucastniky/lokace',
-  workshops: '/workshopy',
-  'workshops:item': '/workshopy/:slug',
-  drive: '/jizdomat',
-  'news:item': '/novinky/:slug',
-  signup: '/prihlaska',
-  schedule: '/program',
-  contact: '/kontakt',
   'archive:year': '/archiv/:slug',
+  'news:item': '/novinky/:slug',
   'participant:home': '/ucastnik',
+  'performers:item': '/ucinkujici/:slug',
+  'workshops:item': '/workshopy/:slug',
+  accomodation: '/pro-ucastniky/ubytovani',
+  conditions: '/pro-ucastniky/podminky',
+  contact: '/kontakt',
+  drive: '/jizdomat',
+  fees: '/pro-ucastniky/poplatky',
+  food: '/pro-ucastniky/jidlo',
+  home: '/',
+  location: '/pro-ucastniky/lokace',
+  schedule: '/program',
+  signup: '/prihlaska',
+  tips: '/pro-ucastniky/tipy',
+  workshops: '/workshopy',
 };
 
 export const resolver = new Crossing(new RegExp(':([A-Za-z0-9-_%]{1,})'));

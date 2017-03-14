@@ -37,6 +37,12 @@ export const fetchNews = params => apiFetch('news/', params);
 export const fetchNewsDetail = ({ news, ...params }) =>
   apiFetch(`news/${news}/`, params);
 
+export const fetchPerformers = ({ year, ...params }) =>
+  apiFetch(`years/${year}/performers/`, params);
+
+export const fetchPerformerDetail = ({ performer, year, ...params }) =>
+  apiFetch(`years/${year}/performers/${performer}/`, params);
+
 export const fetchTeams = params => apiFetch('teams/', params);
 
 export const fetchText = ({ code, ...params }) => apiFetch(`texts/${code}/`, params);

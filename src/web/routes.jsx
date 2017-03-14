@@ -15,6 +15,7 @@ import Locations from './containers/locations';
 import NewsDetail from './containers/newsDetail';
 import NotFound from './components/notFound';
 import ParticipantHome from './containers/participantHome';
+import PerformerDetail from './containers/performerDetail';
 import Schedule from './containers/schedule';
 import Signup from './containers/signup';
 import Tips from './containers/tips';
@@ -28,19 +29,20 @@ export default function configureRoutes(store) {
   return (
     <Route path={urlTable.home} component={App}>
       <IndexRoute component={Home} />
-      <Route path={urlTable.accomodation} component={Accomodations} />
-      <Route path={urlTable['archive:year']} component={ArchivedYear} />
-      <Route path={urlTable.conditions} component={Conditions} />
-      <Route path={urlTable.contact} component={Contact} />
-      <Route path={urlTable.fees} component={Fees} />
-      <Route path={urlTable.food} component={Food} />
-      <Route path={urlTable.location} component={Locations} />
-      <Route path={urlTable['news:item']} component={NewsDetail} />
-      <Route path={urlTable.schedule} component={Schedule} />
-      <Route onEnter={validateGuest(store.getState)} path={urlTable.signup} component={Signup} />
-      <Route path={urlTable.tips} component={Tips} />
-      <Route path={urlTable.workshops} component={Workshops} />
-      <Route path={urlTable['workshops:item']} component={WorkshopDetail} />
+      <Route component={Accomodations} path={urlTable.accomodation} />
+      <Route component={ArchivedYear} path={urlTable['archive:year']} />
+      <Route component={Conditions} path={urlTable.conditions} />
+      <Route component={Contact} path={urlTable.contact} />
+      <Route component={Fees} path={urlTable.fees} />
+      <Route component={Food} path={urlTable.food} />
+      <Route component={Locations} path={urlTable.location} />
+      <Route component={NewsDetail} path={urlTable['news:item']} />
+      <Route component={PerformerDetail} path={urlTable['performers:item']} />
+      <Route component={Schedule} path={urlTable.schedule} />
+      <Route component={Signup} onEnter={validateGuest(store.getState)} path={urlTable.signup} />
+      <Route component={Tips} path={urlTable.tips} />
+      <Route component={WorkshopDetail} path={urlTable['workshops:item']} />
+      <Route component={Workshops} path={urlTable.workshops} />
       <Route path="" onEnter={validateLogin(store.getState)} name="participant">
         <Route path={urlTable['participant:home']} component={ParticipantHome} />
       </Route>
