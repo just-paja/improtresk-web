@@ -1,4 +1,6 @@
+import Alert from 'react-bootstrap/lib/Alert';
 import Col from 'react-bootstrap/lib/Col';
+import FontAwesome from 'react-fontawesome';
 import Form from 'react-bootstrap/lib/Form';
 import React from 'react';
 import Row from 'react-bootstrap/lib/Row';
@@ -10,6 +12,7 @@ import { shallow } from 'enzyme';
 
 import Button from '../../../src/web/components/button';
 import Order from '../../../src/web/components/order';
+import Price from '../../../src/web/components/price';
 import InputCheckbox from '../../../src/web/components/inputCheckbox';
 import MealPicker from '../../../src/web/components/mealPicker';
 import WorkshopPicker from '../../../src/web/components/workshopPicker';
@@ -18,6 +21,7 @@ describe('Order form component', () => {
   it('renders', () => {
     expect(shallow(
       <Order
+        price={1200}
         errors={{}}
         form="order"
         meals={[
@@ -59,7 +63,7 @@ describe('Order form component', () => {
           />
           <Well>
             <Row>
-              <Col md={6}>
+              <Col sm={6} lg={4}>
                 <h3>Stravování</h3>
                 <p>Zaškrtni na který den chceš zařídit jídlo od nás.</p>
                 <MealPicker
@@ -73,8 +77,6 @@ describe('Order form component', () => {
                   ]}
                   onChange={() => {}}
                 />
-              </Col>
-              <Col md={6}>
                 <h3>Ubytování</h3>
                 <InputCheckbox
                   disabled={false}
@@ -83,6 +85,21 @@ describe('Order form component', () => {
                   onChange={() => {}}
                   value
                 />
+              </Col>
+              <Col sm={6} lg={4}>
+                <h3>Metoda platby</h3>
+                <p>
+                  V tuto chvíli je možné platit jedině bankovním
+                  převodem <FontAwesome name="frown-o" />. Detaily
+                  platby jsou v dalším kroku objednávky.
+                </p>
+                <Alert bsStyle="info">
+                  <big>
+                    Částka k zaplacení:
+                    {' '}
+                    <Price price={1200} />
+                  </big>
+                </Alert>
               </Col>
             </Row>
           </Well>

@@ -13,6 +13,7 @@ class ParticipantHome extends Component {
 
   render() {
     const {
+      price,
       meals,
       onLogout,
       onOrderMount,
@@ -51,6 +52,7 @@ class ParticipantHome extends Component {
             onUnmount={onOrderUnmount}
             onChange={onWorkshopPickerChange}
             onSubmit={onWorkshopPickerSubmit}
+            price={price}
             workshops={workshops}
             {...orderForm}
           />
@@ -62,6 +64,7 @@ class ParticipantHome extends Component {
 
 ParticipantHome.propTypes = {
   meals: PropTypes.arrayOf(PropTypes.object).isRequired,
+  price: PropTypes.number,
   order: PropTypes.object,
   participant: PropTypes.shape({
     name: PropTypes.string,
@@ -79,6 +82,7 @@ ParticipantHome.propTypes = {
 };
 
 ParticipantHome.defaultProps = {
+  price: null,
   order: null,
   participant: null,
   ready: false,
