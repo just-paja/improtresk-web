@@ -31,8 +31,12 @@ const OrderStatus = ({
       workshop={workshop}
       year={year}
     />
-    <h3>Částka k zaplacení</h3>
-    <big><Price price={price} /></big>
+    { !paid ? (
+      <div>
+        <h3>Částka k zaplacení</h3>
+        <big><Price price={price} /></big>
+      </div>
+    ) : null}
     { showPaymentDetails ? (
       <div>
         <h3>Platba</h3>
