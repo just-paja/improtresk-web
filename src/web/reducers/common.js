@@ -25,3 +25,8 @@ export const fetchError = (state, action) => ({
   ready: true,
   error: action.error,
 });
+
+export const invalidate = state => ({
+  ...state,
+  valid: false,
+});
