@@ -21,4 +21,8 @@ export default combined(defaultState, {
     ...state,
     data: {},
   }),
+  [constants.MAGIC_DOOR_TOKEN]: state => ({
+    ...state,
+    forceOpenSignups: true,
+  }),
 });

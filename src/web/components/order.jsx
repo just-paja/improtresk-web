@@ -74,11 +74,11 @@ export default class Order extends Component {
                 <h3>Ubytování</h3>
                 <InputCheckbox
                   disabled={disabled}
-                  name="accomodation"
+                  name="accomodationInfo"
                   label="Mám zájem o ubytování v hotelu"
-                  error={errors.accomodation}
+                  error={errors.accomodationInfo}
                   onChange={this.handleChange}
-                  value={values.accomodation}
+                  value={values.accomodationInfo}
                 />
               </Col>
               <Col sm={6} lg={4}>

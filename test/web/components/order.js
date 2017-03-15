@@ -34,7 +34,7 @@ describe('Order form component', () => {
         onChange={() => {}}
         onSubmit={() => {}}
         values={{
-          accomodation: true,
+          accomodationInfo: true,
           workshop: 42,
         }}
         workshops={[
@@ -84,7 +84,7 @@ describe('Order form component', () => {
                 <InputCheckbox
                   disabled={false}
                   label="Mám zájem o ubytování v hotelu"
-                  name="accomodation"
+                  name="accomodationInfo"
                   onChange={() => {}}
                   value
                 />
