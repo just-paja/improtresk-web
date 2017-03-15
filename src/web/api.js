@@ -85,6 +85,12 @@ export const orderCancel = ({ order, ...params }) =>
     method: 'DELETE',
   });
 
+export const orderConfirm = ({ order, ...params }) =>
+  apiFetchAuthorized(`orders/${order}/?confirm`, {
+    ...params,
+    method: 'GET',
+  });
+
 export const login = ({ data, ...params }) =>
   fetch('/frontend/login', {
     body: JSON.stringify(data),
