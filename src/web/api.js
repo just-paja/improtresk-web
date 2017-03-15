@@ -79,6 +79,12 @@ export const orderCreate = ({ data, ...params }) =>
     body: JSON.stringify(data),
   });
 
+export const orderCancel = ({ order, ...params }) =>
+  apiFetchAuthorized(`orders/${order}/`, {
+    ...params,
+    method: 'DELETE',
+  });
+
 export const login = ({ data, ...params }) =>
   fetch('/frontend/login', {
     body: JSON.stringify(data),

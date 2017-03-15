@@ -3,8 +3,11 @@ import { push } from 'react-router-redux';
 
 import { getForm } from '../selectors/forms';
 import { getCheapestAccomodation } from '../selectors/accomodation';
+import { getParticipantUnconfirmedOrder } from '../selectors/participant';
 import { yearActiveNumber } from '../selectors/years';
 import { reverse } from '../routeTable';
+
+import { fetchResource } from './common';
 import { sendForm } from './forms';
 
 import * as api from '../api';
@@ -30,6 +33,22 @@ export function* orderSetDefaults() {
   });
 }
 
+export function* orderCancel() {
+  const order = yield select(getParticipantUnconfirmedOrder);
+  if (order) {
+    yield fork(
+      fetchResource,
+      api.orderCancel,
+      {
+        onStart: constants.ORDER_CANCEL_FETCH_STARTED,
+        onSuccess: constants.ORDER_CANCEL_FETCH_SUCCESS,
+        onError: constants.ORDER_CANCEL_FETCH_ERROR,
+        order: order.id,
+      }
+    );
+  }
+}
+
 export function* orderSubmit() {
   const form = yield select(getForm, 'order');
   yield fork(sendForm, api.orderCreate, 'order', form.values);
@@ -43,10 +62,29 @@ export function* orderConfirmRedirect(action) {
   yield put(push(reverse('participant:confirm')));
 }
 
+export function* orderCancelRedirect() {
+  yield put({ type: constants.ORDER_CANCELED });
+  yield put(push(reverse('participant:home')));
+}
+
 export function* bindOrderConfirmRedirect() {
   yield takeLatest(
     selectOrderSubmit,
     orderSubmit
+  );
+}
+
+export function* bindOrderCancelRedirect() {
+  yield takeLatest(
+    constants.ORDER_CANCEL_FETCH_SUCCESS,
+    orderCancelRedirect
+  );
+}
+
+export function* bindOrderCancel() {
+  yield takeLatest(
+    constants.ORDER_CANCEL_REQUESTED,
+    orderCancel
   );
 }
 
@@ -70,5 +108,7 @@ export function* bindOrderSetDefaults() {
 export default [
   bindOrderSetDefaults,
   bindOrderSubmit,
+  bindOrderCancel,
+  bindOrderCancelRedirect,
   bindOrderConfirmRedirect,
 ];

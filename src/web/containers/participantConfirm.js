@@ -23,8 +23,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   onMount: () => ({ type: actions.REQUEST_PARTICIPANT_DETAILS }),
-  onOrderCancel: () => ({ type: actions.ORDER_CANCELED }),
-  onOrderConfirm: () => ({ type: actions.ORDER_CONFIRMED }),
+  onOrderCancel: () => ({ type: actions.ORDER_CANCEL_REQUESTED }),
+  onOrderConfirm: () => ({ type: actions.ORDER_CONFIRM_REQUESTED }),
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ParticipantConfirm);

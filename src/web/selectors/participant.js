@@ -72,7 +72,9 @@ export const getParticipantLatestOrder = createSelector(
     getMeals,
   ],
   (orders, workshops, meals) => {
-    const sortedOrders = sortOrders(orders);
+    const sortedOrders = sortOrders(orders.filter(
+      order => !order.canceled
+    ));
     return sortedOrders.length > 0 ?
       mapOrders(workshops, meals)(sortedOrders[0]) :
       null;
@@ -86,7 +88,9 @@ export const getParticipantUnconfirmedOrder = createSelector(
     getMeals,
   ],
   (orders, workshops, meals) => {
-    const unconfirmedOrders = sortOrders(orders.filter(order => !order.confirmed));
+    const unconfirmedOrders = sortOrders(orders.filter(
+      order => !order.confirmed && !order.paid && !order.canceled
+    ));
     return unconfirmedOrders.length > 0 ?
       mapOrders(workshops, meals)(unconfirmedOrders[0]) :
       null;
