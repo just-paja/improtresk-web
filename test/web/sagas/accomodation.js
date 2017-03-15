@@ -15,7 +15,10 @@ describe('Accomodation sagas', () => {
   it('fetchAccomodationOnMount creates fetch actions', () => {
     const saga = fetchAccomodationOnMount();
     expect(saga.next().value).to.eql(takeLatest(
-      'ACCOMODATION_MOUNTED',
+      [
+        'ACCOMODATION_MOUNTED',
+        'REQUEST_PARTICIPANT_DETAILS',
+      ],
       fetchResourceIfNeeded,
       api.fetchAccomodation,
       isValid,
@@ -30,10 +33,7 @@ describe('Accomodation sagas', () => {
   it('fetchTextsOnMount creates fetch actions', () => {
     const saga = fetchTextsOnMount();
     expect(saga.next().value).to.eql(takeLatest(
-      [
-        'ACCOMODATION_MOUNTED',
-        'REQUEST_PARTICIPANT_DETAILS',
-      ],
+      'ACCOMODATION_MOUNTED',
       fetchTextsIfNeeded,
       ['accomodation-intro']
     ));

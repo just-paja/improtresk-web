@@ -15,6 +15,7 @@ import Locations from '../../src/web/containers/locations';
 import NewsDetail from '../../src/web/containers/newsDetail';
 import NotFound from '../../src/web/components/notFound';
 import ParticipantHome from '../../src/web/components/pages/participant/home';
+import ParticipantConfirm from '../../src/web/components/pages/participant/confirm';
 import PerformerDetail from '../../src/web/containers/performerDetail';
 import Schedule from '../../src/web/containers/schedule';
 import Signup from '../../src/web/containers/signup';
@@ -46,6 +47,7 @@ describe('Routes', () => {
         <Route component={WorkshopDetail} path="/workshopy/:slug" />
         <Route component={Workshops} path="/workshopy" />
         <Route path="" onEnter={() => {}} name="participant">
+          <Route path="/ucastnik/potvrzeni" component={ParticipantConfirm} />
           <Route path="/ucastnik" component={ParticipantHome} />
         </Route>
         <Route path="*" component={NotFound} />
