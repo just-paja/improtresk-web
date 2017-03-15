@@ -17,7 +17,7 @@ const PaymentDetails = ({ price, symvar }) => (
 
 PaymentDetails.propTypes = {
   price: PropTypes.number.isRequired,
-  symvar: PropTypes.number.isRequired,
+  symvar: PropTypes.string.isRequired,
 };
 
 export default PaymentDetails;
