@@ -4,6 +4,7 @@ export const urlTable = {
   'archive:year': '/archiv/:slug',
   'news:item': '/novinky/:slug',
   'participant:home': '/ucastnik',
+  'participant:confirm': '/ucastnik/potvrzeni',
   'performers:item': '/ucinkujici/:slug',
   'workshops:item': '/workshopy/:slug',
   accomodation: '/pro-ucastniky/ubytovani',

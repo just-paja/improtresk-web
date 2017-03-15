@@ -12,6 +12,7 @@ import lectors from './lectors';
 import locations from './locations';
 import meals from './meals';
 import news from './news';
+import orders from './orders';
 import participant from './participant';
 import performers from './performers';
 import signup from './signup';
@@ -33,6 +34,7 @@ const sagas = [
   ...locations,
   ...meals,
   ...news,
+  ...orders,
   ...participant,
   ...performers,
   ...signup,

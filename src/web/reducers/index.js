@@ -10,6 +10,7 @@ import geocode from './geocode';
 import lectors from './lectors';
 import meals from './meals';
 import news from './news';
+import orders from './orders';
 import participant from './participant';
 import performers from './performers';
 import server from './server';
@@ -32,6 +33,7 @@ export default function createReducer() {
     lectors,
     meals,
     news,
+    orders,
     participant,
     performers,
     server,

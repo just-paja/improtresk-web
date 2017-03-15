@@ -10,7 +10,10 @@ import * as texts from '../constants/texts';
 
 export function* fetchAccomodationOnMount() {
   yield takeLatest(
-    constants.ACCOMODATION_MOUNTED,
+    [
+      constants.ACCOMODATION_MOUNTED,
+      constants.REQUEST_PARTICIPANT_DETAILS,
+    ],
     fetchResourceIfNeeded,
     api.fetchAccomodation,
     isValid,

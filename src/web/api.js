@@ -72,6 +72,13 @@ export const signup = ({ data, ...params }) => apiFetch('register/', {
   body: JSON.stringify(data),
 });
 
+export const orderCreate = ({ data, ...params }) =>
+  apiFetchAuthorized('orders/', {
+    ...params,
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+
 export const login = ({ data, ...params }) =>
   fetch('/frontend/login', {
     body: JSON.stringify(data),
