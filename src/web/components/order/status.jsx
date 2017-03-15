@@ -18,10 +18,14 @@ const Header = ({
     return <Label bsStyle="success">Zařazeno na workshop</Label>;
   }
 
+  if (paid) {
+    return <Label bsStyle="info">Zaplaceno, čeká na zařazení</Label>;
+  }
+
   if (confirmed) {
     return (
       <span>
-        <Label bsStyle="primary">Potvrzeno uživatelem</Label>
+        <Label bsStyle="warn">Potvrzeno uživatelem</Label>
         {!assigned && !paid ? (
           <span>
             {' '}
@@ -34,7 +38,7 @@ const Header = ({
 
   return (
     <span>
-      <Label bsStyle="warning">Nepotvrzeno</Label>
+      <Label bsStyle="danger">Nepotvrzeno</Label>
       {' '}
       <Timeout endsAt={endsAt} />
     </span>
