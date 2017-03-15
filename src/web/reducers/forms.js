@@ -47,6 +47,16 @@ export default combined(defaultState, {
       },
     }
   )),
+  [constants.FORM_VALUES_SET]: workWithForm((state, action) => Object.assign(
+    {},
+    state,
+    {
+      [action.form]: {
+        ...state[action.form],
+        values: { ...action.values },
+      },
+    }
+  )),
   [constants.FORM_VALUES_CLEAR]: workWithForm((state, action) => Object.assign(
     {},
     state,
