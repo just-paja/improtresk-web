@@ -1,4 +1,3 @@
-import Button from 'react-bootstrap/lib/Button';
 import React, { Component, PropTypes } from 'react';
 
 import Container from '../../container';
@@ -30,13 +29,13 @@ class ParticipantHome extends Component {
     return (
       <Container>
         <h1>Potvrzení objednávky</h1>
-        <OrderStatus soft {...order} year={year} />
-        <Button onClick={onOrderCancel}>Zrušit objednávku</Button>
-        <Button
-          className="pull-right"
-          bsStyle="primary"
-          onClick={onOrderConfirm}
-        >Potvrdit objednávku</Button>
+        <OrderStatus
+          {...order}
+          onCancel={onOrderCancel}
+          onConfirm={onOrderConfirm}
+          soft
+          year={year}
+        />
       </Container>
     );
   }

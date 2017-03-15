@@ -16,24 +16,28 @@ export default class WorkshopPicker extends Component {
   }
 
   render() {
-    const { error, workshops, value } = this.props;
+    const { disabled, error, workshops, value } = this.props;
     return (
       <Row>
-        {workshops.map(workshop => (
-          <Col key={workshop.id} sm={6} lg={4}>
-            <WorkshopPickerItem
-              assigned={workshop.assigned}
-              capacity={workshop.capacity}
-              freeSpots={workshop.freeSpots}
-              id={workshop.id}
-              lectors={workshop.lectors}
-              name={workshop.name}
-              onChange={this.handleChange}
-              reserved={workshop.reserved}
-              selected={value === workshop.id}
-            />
-          </Col>
-        ))}
+        {workshops
+          .filter(workshop => !workshop.fullyAssigned)
+          .map(workshop => (
+            <Col key={workshop.id} sm={6} lg={4}>
+              <WorkshopPickerItem
+                assigned={workshop.assigned}
+                capacity={workshop.capacity}
+                disabled={disabled || workshop.fullyReserved}
+                freeSpots={workshop.freeSpots}
+                id={workshop.id}
+                lectors={workshop.lectors}
+                name={workshop.name}
+                onChange={this.handleChange}
+                reserved={workshop.reserved}
+                selected={value === workshop.id}
+              />
+            </Col>
+          ))
+        }
         {error ? (
           <Col xs={12}>
             <Alert bsStyle="danger">{error}</Alert>
@@ -45,6 +49,7 @@ export default class WorkshopPicker extends Component {
 }
 
 WorkshopPicker.propTypes = {
+  disabled: PropTypes.bool,
   error: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -53,6 +58,7 @@ WorkshopPicker.propTypes = {
 };
 
 WorkshopPicker.defaultProps = {
+  disabled: false,
   error: null,
   value: null,
 };

@@ -14,14 +14,17 @@ export default class WorkshopPickerItem extends Component {
   }
 
   handleChange() {
-    const { id, onChange, selected } = this.props;
-    onChange(selected ? null : id);
+    const { id, disabled, onChange, selected } = this.props;
+    if (!disabled) {
+      onChange(selected ? null : id);
+    }
   }
 
   render() {
     const {
       assigned,
       capacity,
+      disabled,
       freeSpots,
       lectors,
       name,
@@ -32,7 +35,11 @@ export default class WorkshopPickerItem extends Component {
       <a
         className={classnames(
           styles.box,
-          selected ? styles.selected : styles.unselected
+          {
+            [styles.selected]: !disabled && selected,
+            [styles.unselected]: disabled || !selected,
+            [styles.disabled]: disabled,
+          }
         )}
         tabIndex={0}
         onClick={this.handleChange}
@@ -53,7 +60,7 @@ export default class WorkshopPickerItem extends Component {
             now={assigned + reserved}
           />
         </div>
-        {selected ? (
+        {!disabled && selected ? (
           <span className={styles.check}>
             <FontAwesome name="check-circle" />
           </span>
@@ -66,6 +73,7 @@ export default class WorkshopPickerItem extends Component {
 WorkshopPickerItem.propTypes = {
   assigned: PropTypes.number,
   capacity: PropTypes.number,
+  disabled: PropTypes.bool,
   id: PropTypes.number.isRequired,
   freeSpots: PropTypes.number,
   lectors: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -78,6 +86,7 @@ WorkshopPickerItem.propTypes = {
 WorkshopPickerItem.defaultProps = {
   assigned: null,
   capacity: null,
+  disabled: false,
   freeSpots: null,
   reserved: null,
   selected: false,

@@ -3,7 +3,10 @@ import { push } from 'react-router-redux';
 
 import { getForm } from '../selectors/forms';
 import { getCheapestAccomodation } from '../selectors/accomodation';
-import { getParticipantUnconfirmedOrder } from '../selectors/participant';
+import {
+  getParticipantLatestOrder,
+  getParticipantUnconfirmedOrder,
+} from '../selectors/participant';
 import { yearActiveNumber } from '../selectors/years';
 import { reverse } from '../routeTable';
 
@@ -34,7 +37,7 @@ export function* orderSetDefaults() {
 }
 
 export function* orderCancel() {
-  const order = yield select(getParticipantUnconfirmedOrder);
+  const order = yield select(getParticipantLatestOrder);
   if (order) {
     yield fork(
       fetchResource,

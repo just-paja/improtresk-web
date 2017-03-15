@@ -16,6 +16,8 @@ class ParticipantHome extends Component {
       price,
       meals,
       onLogout,
+      onOrderCancel,
+      onOrderConfirm,
       onOrderMount,
       onOrderUnmount,
       onWorkshopPickerChange,
@@ -46,6 +48,9 @@ class ParticipantHome extends Component {
         {order ?
           <OrderStatus
             {...order}
+            assigned={!!participant.assigned_workshop}
+            onCancel={onOrderCancel}
+            onConfirm={onOrderConfirm}
             showPaymentDetails
             showPaymentStatus
           /> :
@@ -74,6 +79,8 @@ ParticipantHome.propTypes = {
     name: PropTypes.string,
   }),
   onLogout: PropTypes.func.isRequired,
+  onOrderCancel: PropTypes.func.isRequired,
+  onOrderConfirm: PropTypes.func.isRequired,
   onOrderMount: PropTypes.func.isRequired,
   onOrderUnmount: PropTypes.func.isRequired,
   onWorkshopPickerChange: PropTypes.func.isRequired,

@@ -52,7 +52,11 @@ describe('Participant sagas', () => {
   it('fetchParticipantOrdersOnRequest creates fetch actions', () => {
     const saga = fetchParticipantOrdersOnRequest();
     expect(saga.next().value).to.eql(takeLatest(
-      'REQUEST_PARTICIPANT_DETAILS',
+      [
+        'REQUEST_PARTICIPANT_DETAILS',
+        'ORDER_CREATED',
+        'ORDER_CANCELED',
+      ],
       fetchResourceIfNeeded,
       api.fetchParticipantOrders,
       shouldFetchParticipantOrders,
