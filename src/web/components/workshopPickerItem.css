@@ -12,7 +12,8 @@
   position: relative;
 }
 
-:local .box:hover {
+:local .box:hover,
+:local .box:focus {
   background: rgba(62,63,58,.05);
   color: #3e3f3a;
   text-decoration: none;
@@ -43,4 +44,11 @@
   left: 1.75rem;
   right: 1.75rem;
   bottom: -.5rem;
+}
+
+:local .disabled,
+:local .disabled:active,
+:local .disabled:focus,
+:local .disabled:hover {
+  opacity: .4;
 }

@@ -32,7 +32,11 @@ export function* fetchParticipantShowHome() {
 
 export function* fetchParticipantOrdersOnRequest() {
   yield takeLatest(
-    constants.REQUEST_PARTICIPANT_DETAILS,
+    [
+      constants.REQUEST_PARTICIPANT_DETAILS,
+      constants.ORDER_CREATED,
+      constants.ORDER_CANCELED,
+    ],
     fetchResourceIfNeeded,
     api.fetchParticipantOrders,
     shouldFetchParticipantOrders,

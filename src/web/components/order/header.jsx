@@ -6,6 +6,7 @@ import Prop from '../prop';
 import Status from './status';
 
 const Header = ({
+  assigned,
   confirmed,
   canceled,
   endsAt,
@@ -17,6 +18,7 @@ const Header = ({
   <ul className="list-unstyled">
     <Prop label="Stav">
       <Status
+        assigned={assigned}
         confirmed={confirmed}
         canceled={canceled}
         paid={paid}
@@ -36,6 +38,7 @@ const Header = ({
 );
 
 Header.propTypes = {
+  assigned: PropTypes.bool,
   canceled: PropTypes.bool,
   paid: PropTypes.bool,
   confirmed: PropTypes.bool,
@@ -56,6 +59,7 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
+  assigned: false,
   canceled: false,
   confirmed: false,
   endsAt: null,

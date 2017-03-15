@@ -1,3 +1,4 @@
+import Button from 'react-bootstrap/lib/Button';
 import React, { PropTypes } from 'react';
 import Well from 'react-bootstrap/lib/Well';
 
@@ -7,10 +8,13 @@ import PaymentDetails from './order/paymentDetails';
 import Price from './price';
 
 const OrderStatus = ({
+  assigned,
   confirmed,
   canceled,
   endsAt,
   meals,
+  onCancel,
+  onConfirm,
   overPaid,
   paid,
   price,
@@ -23,6 +27,7 @@ const OrderStatus = ({
   <Well>
     <h2>Moje objednávka</h2>
     <OrderHeader
+      assigned={assigned}
       canceled={canceled}
       confirmed={confirmed}
       endsAt={endsAt}
@@ -37,7 +42,7 @@ const OrderStatus = ({
         <big><Price price={price} /></big>
       </div>
     ) : null}
-    { showPaymentDetails ? (
+    { !paid && confirmed && showPaymentDetails ? (
       <div>
         <h3>Platba</h3>
         <PaymentDetails
@@ -53,6 +58,19 @@ const OrderStatus = ({
         overPaid={overPaid}
       />
     ) : null}
+
+    <hr />
+    <Button
+      bsSize={confirmed ? 'small' : null}
+      onClick={onCancel}
+    >Zrušit objednávku</Button>
+    {!confirmed ? (
+      <Button
+        className="pull-right"
+        bsStyle="primary"
+        onClick={onConfirm}
+      >Potvrdit objednávku</Button>
+    ) : null}
   </Well>
 );
 
@@ -62,8 +80,11 @@ OrderStatus.propTypes = {
   price: PropTypes.number.isRequired,
   paid: PropTypes.bool,
   overPaid: PropTypes.bool,
+  assigned: PropTypes.bool,
   confirmed: PropTypes.bool,
   canceled: PropTypes.bool,
+  onCancel: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
   meals: PropTypes.arrayOf(PropTypes.object).isRequired,
   showPaymentDetails: PropTypes.bool,
   showPaymentStatus: PropTypes.bool,
@@ -82,6 +103,7 @@ OrderStatus.propTypes = {
 };
 
 OrderStatus.defaultProps = {
+  assigned: false,
   canceled: false,
   confirmed: false,
   endsAt: null,

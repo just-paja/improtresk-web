@@ -41,17 +41,24 @@ const mapWorkshopPrices = (prices, priceLevels) => (
 const mapCapacity = (workshop, capacity) => {
   if (capacity) {
     const entry = capacity.find(cap => cap.id === workshop.id);
+
     if (entry) {
+      const freeSpots = Math.max(0, (
+        entry.capacity -
+        entry.number_of_reservations -
+        entry.number_of_unpaid_reservations
+      ));
+
       return {
         ...workshop,
+        capacity: entry.capacity,
         assigned: entry.number_of_reservations,
         reserved: entry.number_of_unpaid_reservations,
-        freeSpots:
-          Math.max(0, (
-            workshop.capacity -
-            entry.number_of_reservations -
-            entry.number_of_unpaid_reservations
-          )),
+        fullyAssigned: entry.number_of_reservations >= entry.capacity,
+        fullyReserved:
+          entry.number_of_reservations < entry.capacity &&
+          freeSpots === 0,
+        freeSpots,
       };
     }
   }
@@ -59,8 +66,8 @@ const mapCapacity = (workshop, capacity) => {
   return workshop;
 };
 
-export const mapWorkshop = (lectors, roles, difficulties, priceLevels, capacity) => workshop => (
-  workshop ?
+export const mapWorkshop = (lectors, roles, difficulties, priceLevels, capacity) => (workshop) => {
+  const data = workshop ?
     mapCapacity({
       ...workshop,
       difficulty: findDifficultyName(difficulties, workshop.difficulty),
@@ -70,8 +77,9 @@ export const mapWorkshop = (lectors, roles, difficulties, priceLevels, capacity)
         role: findLectorRoleName(roles, lectorPosition.role),
       })),
       prices: mapWorkshopPrices(workshop.prices, priceLevels),
-    }, capacity) : null
-);
+    }, capacity) : null;
+  return data;
+};
 
 export const getWorkshopDifficulties = createSelector(
   getWorkshopDifficultiesState,
@@ -88,6 +96,7 @@ export const workshopsDetail = createSelector(
   (workshop, lectors, roles, difficulties, priceLevels) =>
     mapWorkshop(lectors, roles, difficulties, priceLevels)(workshop.data)
 );
+
 export const workshopsAll = createSelector(
   [
     getWorkshopListState,
@@ -98,7 +107,9 @@ export const workshopsAll = createSelector(
     getWorkshopCapacity,
   ],
   (workshops, lectors, roles, difficulties, priceLevels, capacity) =>
-    workshops.data.map(mapWorkshop(lectors, roles, difficulties, priceLevels, capacity))
+    workshops.data.map(
+      mapWorkshop(lectors, roles, difficulties, priceLevels, capacity)
+    )
 );
 
 export const getLocations = createSelector(
