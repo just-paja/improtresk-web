@@ -83,6 +83,7 @@ describe('Signup selectors', () => {
   });
   it('areSignupsOpen returns false when year signup start date is not available', () => {
     expect(areSignupsOpen({
+      session: {},
       years: {
         data: [
           {
@@ -97,6 +98,7 @@ describe('Signup selectors', () => {
   });
   it('areSignupsOpen returns false when year signup start date is after current time', () => {
     expect(areSignupsOpen({
+      session: {},
       years: {
         data: [
           {
@@ -112,6 +114,7 @@ describe('Signup selectors', () => {
   });
   it('areSignupsOpen returns false when year signup end date is not available', () => {
     expect(areSignupsOpen({
+      session: {},
       years: {
         data: [
           {
@@ -126,6 +129,7 @@ describe('Signup selectors', () => {
   });
   it('areSignupsOpen returns false when year signup end date is before current time', () => {
     expect(areSignupsOpen({
+      session: {},
       years: {
         data: [
           {
@@ -141,6 +145,7 @@ describe('Signup selectors', () => {
   });
   it('areSignupsOpen returns true when year signup start date is before and end date after current time', () => {
     expect(areSignupsOpen({
+      session: {},
       years: {
         data: [
           {

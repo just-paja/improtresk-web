@@ -4,6 +4,8 @@ import { createSelector } from 'reselect';
 
 import { yearCurrent } from './years';
 
+const getSessionData = state => state.session;
+
 export const getSignupsCloseDate =
   createSelector(
     yearCurrent,
@@ -35,8 +37,12 @@ export const areSignupsClosed = createSelector(
 );
 
 export const areSignupsOpen = createSelector(
-  [getSignupsOpenDate, getForceOpen, areSignupsClosed],
-  (start, forceOpen, alreadyClosed) => {
+  [getSignupsOpenDate, getForceOpen, areSignupsClosed, getSessionData],
+  (start, forceOpen, alreadyClosed, session) => {
+    if (session.forceOpenSignups) {
+      return true;
+    }
+
     const now = moment();
     if (!start) {
       return false;
