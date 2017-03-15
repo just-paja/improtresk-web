@@ -49,6 +49,22 @@ export function* orderCancel() {
   }
 }
 
+export function* orderConfirm() {
+  const order = yield select(getParticipantUnconfirmedOrder);
+  if (order) {
+    yield fork(
+      fetchResource,
+      api.orderConfirm,
+      {
+        onStart: constants.ORDER_CONFIRM_FETCH_STARTED,
+        onSuccess: constants.ORDER_CONFIRM_FETCH_SUCCESS,
+        onError: constants.ORDER_CONFIRM_FETCH_ERROR,
+        order: order.id,
+      }
+    );
+  }
+}
+
 export function* orderSubmit() {
   const form = yield select(getForm, 'order');
   yield fork(sendForm, api.orderCreate, 'order', form.values);
@@ -74,9 +90,12 @@ export function* bindOrderConfirmRedirect() {
   );
 }
 
-export function* bindOrderCancelRedirect() {
+export function* bindOrderHomeRedirect() {
   yield takeLatest(
-    constants.ORDER_CANCEL_FETCH_SUCCESS,
+    [
+      constants.ORDER_CANCEL_FETCH_SUCCESS,
+      constants.ORDER_CONFIRM_FETCH_SUCCESS,
+    ],
     orderCancelRedirect
   );
 }
@@ -85,6 +104,13 @@ export function* bindOrderCancel() {
   yield takeLatest(
     constants.ORDER_CANCEL_REQUESTED,
     orderCancel
+  );
+}
+
+export function* bindOrderConfirm() {
+  yield takeLatest(
+    constants.ORDER_CONFIRM_REQUESTED,
+    orderConfirm
   );
 }
 
@@ -106,9 +132,10 @@ export function* bindOrderSetDefaults() {
 }
 
 export default [
+  bindOrderCancel,
+  bindOrderConfirm,
+  bindOrderConfirmRedirect,
+  bindOrderHomeRedirect,
   bindOrderSetDefaults,
   bindOrderSubmit,
-  bindOrderCancel,
-  bindOrderCancelRedirect,
-  bindOrderConfirmRedirect,
 ];
