@@ -29,7 +29,7 @@ const Header = ({
     </Prop>
     <Prop label="Jídlo">
       {meals.length ? (
-        meals.map(meal => <Meal name={meal.name} date={meal.date} />)
+        meals.map(meal => <Meal key={meal.id} name={meal.name} date={meal.date} />)
       ) : null}
     </Prop>
   </ul>
