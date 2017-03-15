@@ -1,61 +1,54 @@
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import React, { PropTypes } from 'react';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
 import Well from 'react-bootstrap/lib/Well';
 
-import Countdown from './countdown';
-import HumanDate from './humanDate';
+import OrderHeader from './order/header';
 import OrderPaymentStatus from './orderPaymentStatus';
+import PaymentDetails from './order/paymentDetails';
 import Price from './price';
-import Prop from './prop';
-import WorkshopSummaryOneLine from './workshopSummaryOneLine';
 
 const OrderStatus = ({
+  confirmed,
   canceled,
   endsAt,
+  meals,
   overPaid,
   paid,
   price,
+  showPaymentDetails,
+  showPaymentStatus,
   symvar,
   workshop,
+  year,
 }) => (
   <Well>
     <h2>Moje objednávka</h2>
-    <OverlayTrigger
-      placement="bottom"
-      overlay={
-        <Tooltip id="reservation-trigger-tooltip">
-          Pokud vám vyprší rezervace na workshop dřív než přijde platba, tak
-          vaše místo nabídneme někomu dalšímu.
-        </Tooltip>
-      }
-    >
-      <big>
-        <Countdown countdownMessage="Vyprší za" date={endsAt} />:{' '}
-        <HumanDate date={endsAt} showTime />
-      </big>
-    </OverlayTrigger>
-    {workshop ? (
-      <WorkshopSummaryOneLine
-        name={workshop.name}
-        lectors={workshop.lectors}
+    <OrderHeader
+      canceled={canceled}
+      confirmed={confirmed}
+      endsAt={endsAt}
+      meals={meals}
+      paid={paid}
+      workshop={workshop}
+      year={year}
+    />
+    <h3>Částka k zaplacení</h3>
+    <big><Price price={price} /></big>
+    { showPaymentDetails ? (
+      <div>
+        <h3>Platba</h3>
+        <PaymentDetails
+          price={price}
+          symvar={symvar}
+        />
+      </div>
+    ) : null}
+    {showPaymentStatus ? (
+      <OrderPaymentStatus
+        canceled={canceled}
+        paid={paid}
+        overPaid={overPaid}
       />
     ) : null}
-    <h3>Platba</h3>
-    <ul>
-      <Prop icon="bank" label="Číslo účtu">
-        2800754192/2010
-      </Prop>
-      <Prop icon="money" label="Částka k zaplacení">
-        <Price price={price} />
-      </Prop>
-      <Prop icon="key" label="Variabilní symbol">{symvar}</Prop>
-    </ul>
-    <OrderPaymentStatus
-      canceled={canceled}
-      paid={paid}
-      overPaid={overPaid}
-    />
   </Well>
 );
 
@@ -65,12 +58,12 @@ OrderStatus.propTypes = {
   price: PropTypes.number.isRequired,
   paid: PropTypes.bool,
   overPaid: PropTypes.bool,
+  confirmed: PropTypes.bool,
   canceled: PropTypes.bool,
-  // reservation: PropTypes.shape({
-  //   mealReservation: PropTypes.arrayOf(PropTypes.object),
-  //   workshopPrice: PropTypes.number,
-  //   accomodation: PropTypes.number,
-  // }),
+  meals: PropTypes.arrayOf(PropTypes.object).isRequired,
+  showPaymentDetails: PropTypes.bool,
+  showPaymentStatus: PropTypes.bool,
+  year: PropTypes.object,
   workshop: PropTypes.shape({
     name: PropTypes.string,
     lectors: PropTypes.arrayOf(PropTypes.shape({
@@ -86,11 +79,15 @@ OrderStatus.propTypes = {
 
 OrderStatus.defaultProps = {
   canceled: false,
+  confirmed: false,
   endsAt: null,
   overPaid: false,
   paid: false,
   reservation: null,
+  showPaymentDetails: false,
+  showPaymentStatus: false,
   workshop: null,
+  year: null,
 };
 
 export default OrderStatus;

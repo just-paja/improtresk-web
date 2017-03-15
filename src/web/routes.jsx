@@ -15,6 +15,7 @@ import Locations from './containers/locations';
 import NewsDetail from './containers/newsDetail';
 import NotFound from './components/notFound';
 import ParticipantHome from './containers/participantHome';
+import ParticipantConfirm from './containers/participantConfirm';
 import PerformerDetail from './containers/performerDetail';
 import Schedule from './containers/schedule';
 import Signup from './containers/signup';
@@ -44,6 +45,7 @@ export default function configureRoutes(store) {
       <Route component={WorkshopDetail} path={urlTable['workshops:item']} />
       <Route component={Workshops} path={urlTable.workshops} />
       <Route path="" onEnter={validateLogin(store.getState)} name="participant">
+        <Route path={urlTable['participant:confirm']} component={ParticipantConfirm} />
         <Route path={urlTable['participant:home']} component={ParticipantHome} />
       </Route>
       <Route path="*" component={NotFound} />

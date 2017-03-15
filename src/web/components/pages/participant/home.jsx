@@ -44,7 +44,11 @@ class ParticipantHome extends Component {
         </ul>
         <hr />
         {order ?
-          <OrderStatus {...order} /> :
+          <OrderStatus
+            {...order}
+            showPaymentDetails
+            showPaymentStatus
+          /> :
           <Order
             form="order"
             meals={meals}
