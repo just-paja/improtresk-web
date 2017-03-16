@@ -8,6 +8,7 @@ import Well from 'react-bootstrap/lib/Well';
 
 import AccomodationPicker from './accomodationPicker';
 import Button from './button';
+import Link from './link';
 import MealPicker from './mealPicker';
 import Price from './price';
 import WorkshopPicker from './workshopPicker';
@@ -66,7 +67,7 @@ export default class Order extends Component {
           <Well>
             <Row>
               <Col sm={6} lg={4}>
-                <h3>Stravování</h3>
+                <h3><Link to="food">Stravování</Link></h3>
                 <p>
                   Zaškrtni na který den chceš zařídit jídlo od nás. Na výběr z
                   jídelního menu a dostaneš před začátkem festivalu.
@@ -81,7 +82,7 @@ export default class Order extends Component {
                 />
               </Col>
               <Col sm={6} lg={4}>
-                <h3>Ubytování</h3>
+                <h3><Link to="accomodation">Ubytování</Link></h3>
                 <p>
                   <b>Ubytování se platí zvlášť</b>, tedy až na checkinu a v hotovosti.
                   Základní ubytování je zdarma.

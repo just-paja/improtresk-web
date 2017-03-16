@@ -38,7 +38,7 @@ AccomodationPicker.propTypes = {
   accomodation: PropTypes.arrayOf(PropTypes.object).isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.arrayOf(PropTypes.number),
+  value: PropTypes.number,
 };
 
 AccomodationPicker.defaultProps = {

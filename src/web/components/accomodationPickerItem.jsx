@@ -46,7 +46,7 @@ AccomodationPickerItem.propTypes = {
   disabled: PropTypes.bool,
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  price: PropTypes.bool.isRequired,
+  price: PropTypes.number.isRequired,
   parentName: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   selected: PropTypes.bool,
