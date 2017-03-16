@@ -12,6 +12,10 @@ export default class Countdown extends Component {
     }, 1000);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ remaining: this.getRemainingTime(nextProps.date) });
+  }
+
   componentWillUpdate() {
     if (this.interval && this.state.remaining <= 0) {
       this.stopInterval();
@@ -25,8 +29,8 @@ export default class Countdown extends Component {
     this.stopInterval();
   }
 
-  getRemainingTime() {
-    return Math.max(0, moment(this.props.date).diff(moment()));
+  getRemainingTime(date) {
+    return Math.max(0, moment(date || this.props.date).diff(moment()));
   }
 
   stopInterval() {
