@@ -2,6 +2,7 @@ import { fork, put, select, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
 import { getForm } from '../selectors/forms';
+import { workshopsAll } from '../selectors/workshops';
 import { getCheapestAccomodation } from '../selectors/accomodation';
 import {
   getParticipantLatestOrder,
@@ -134,7 +135,32 @@ export function* bindOrderSetDefaults() {
   );
 }
 
+export function* interceptInvalidWorkshop() {
+  const form = yield select(getForm, 'order');
+  const workshops = yield select(workshopsAll);
+  const selectedWorkshop = workshops.find(
+    workshop => workshop.id === form.values.workshop
+  );
+
+  if (selectedWorkshop && selectedWorkshop.freeSpots === 0) {
+    yield put({
+      type: constants.FORM_FIELD_CHANGE,
+      form: 'order',
+      field: 'workshop',
+      value: null,
+    });
+  }
+}
+
+export function* bindInterceptInvalidWorkshop() {
+  yield takeLatest(
+    constants.YEAR_CAPACITY_FETCH_SUCCESS,
+    interceptInvalidWorkshop
+  );
+}
+
 export default [
+  bindInterceptInvalidWorkshop,
   bindOrderCancel,
   bindOrderConfirm,
   bindOrderConfirmRedirect,
