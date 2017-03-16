@@ -13,7 +13,7 @@ class ParticipantHome extends Component {
 
   render() {
     const {
-      price,
+      accomodation,
       meals,
       onLogout,
       onOrderCancel,
@@ -25,6 +25,7 @@ class ParticipantHome extends Component {
       order,
       orderForm,
       participant,
+      price,
       ready,
       workshops,
       yearNumber,
@@ -55,6 +56,7 @@ class ParticipantHome extends Component {
             showPaymentStatus
           /> :
           <Order
+            accomodation={accomodation}
             form="order"
             meals={meals}
             onMount={onOrderMount}
@@ -72,22 +74,21 @@ class ParticipantHome extends Component {
 }
 
 ParticipantHome.propTypes = {
+  accomodation: PropTypes.arrayOf(PropTypes.object).isRequired,
   meals: PropTypes.arrayOf(PropTypes.object).isRequired,
-  price: PropTypes.number,
-  order: PropTypes.object,
-  participant: PropTypes.shape({
-    name: PropTypes.string,
-  }),
   onLogout: PropTypes.func.isRequired,
+  onMount: PropTypes.func.isRequired,
   onOrderCancel: PropTypes.func.isRequired,
   onOrderConfirm: PropTypes.func.isRequired,
   onOrderMount: PropTypes.func.isRequired,
   onOrderUnmount: PropTypes.func.isRequired,
   onWorkshopPickerChange: PropTypes.func.isRequired,
   onWorkshopPickerSubmit: PropTypes.func.isRequired,
-  onMount: PropTypes.func.isRequired,
-  ready: PropTypes.bool,
+  order: PropTypes.object,
   orderForm: PropTypes.object.isRequired,
+  participant: PropTypes.shape({ name: PropTypes.string }),
+  price: PropTypes.number,
+  ready: PropTypes.bool,
   workshops: PropTypes.arrayOf(PropTypes.object).isRequired,
   yearNumber: PropTypes.string,
 };
