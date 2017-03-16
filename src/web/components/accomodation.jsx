@@ -7,7 +7,7 @@ import Gallery from './gallery';
 import Price from './price';
 import Prop from './prop';
 
-const Accomodation = ({ address, available, capacity, name, price, text, photos }) => (
+const Accomodation = ({ address, available, capacity, name, price, desc, photos }) => (
   <div>
     <h2>{name}</h2>
     <ul className="list-unstyled">
@@ -24,7 +24,7 @@ const Accomodation = ({ address, available, capacity, name, price, text, photos 
       </Prop>
     </ul>
 
-    <Markdown source={text} />
+    <Markdown source={desc} />
     <Gallery photos={photos} />
   </div>
 );
@@ -36,7 +36,7 @@ Accomodation.propTypes = {
   name: PropTypes.string.isRequired,
   photos: PropTypes.arrayOf(PropTypes.object).isRequired,
   price: PropTypes.number,
-  text: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
 };
 
 Accomodation.defaultProps = {
