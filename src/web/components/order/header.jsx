@@ -6,6 +6,7 @@ import Prop from '../prop';
 import Status from './status';
 
 const Header = ({
+  accomodation,
   assigned,
   confirmed,
   canceled,
@@ -34,10 +35,14 @@ const Header = ({
         meals.map(meal => <Meal key={meal.id} name={meal.name} date={meal.date} />)
       ) : null}
     </Prop>
+    <Prop label="Ubytování">
+      {accomodation ? accomodation.name : null}
+    </Prop>
   </ul>
 );
 
 Header.propTypes = {
+  accomodation: PropTypes.object,
   assigned: PropTypes.bool,
   canceled: PropTypes.bool,
   paid: PropTypes.bool,
@@ -59,6 +64,7 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
+  accomodation: null,
   assigned: false,
   canceled: false,
   confirmed: false,

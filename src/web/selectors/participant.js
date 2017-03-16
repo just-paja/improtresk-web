@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 
 import { isStateValid } from './common';
+import { accomodationAll } from './accomodation';
 import { getMeals } from './food';
 import { workshopsAll } from './workshops';
 
@@ -27,6 +28,15 @@ export const getParticipantOrders = createSelector(
   state => state.data
 );
 
+export const mapOrderAccomodation = (reservation, accomodationList) => {
+  if (!reservation || !reservation.accomodation) {
+    return null;
+  }
+  return accomodationList.find(
+    a => a.id === reservation.accomodation
+  ) || null;
+};
+
 const mapOrderMeals = (reservation, meals) => {
   if (!reservation || !reservation.mealReservation) {
     return [];
@@ -46,8 +56,9 @@ const mapOrderWorkshop = (reservation, workshops) => {
   return workshop;
 };
 
-export const mapOrders = (workshops, meals) => order => ({
+export const mapOrders = (workshops, meals, accomodationList) => order => ({
   ...order,
+  accomodation: mapOrderAccomodation(order.reservation, accomodationList),
   endsAt: order.reservation ? order.reservation.endsAt : null,
   meals: mapOrderMeals(order.reservation, meals),
   workshop: mapOrderWorkshop(order.reservation, workshops),
@@ -70,13 +81,14 @@ export const getParticipantLatestOrder = createSelector(
     getParticipantOrders,
     workshopsAll,
     getMeals,
+    accomodationAll,
   ],
-  (orders, workshops, meals) => {
+  (orders, workshops, meals, accomodationList) => {
     const sortedOrders = sortOrders(orders.filter(
       order => !order.canceled
     ));
     return sortedOrders.length > 0 ?
-      mapOrders(workshops, meals)(sortedOrders[0]) :
+      mapOrders(workshops, meals, accomodationList)(sortedOrders[0]) :
       null;
   }
 );
@@ -86,13 +98,14 @@ export const getParticipantUnconfirmedOrder = createSelector(
     getParticipantOrders,
     workshopsAll,
     getMeals,
+    accomodationAll,
   ],
-  (orders, workshops, meals) => {
+  (orders, workshops, meals, accomodationList) => {
     const unconfirmedOrders = sortOrders(orders.filter(
       order => !order.confirmed && !order.paid && !order.canceled
     ));
     return unconfirmedOrders.length > 0 ?
-      mapOrders(workshops, meals)(unconfirmedOrders[0]) :
+      mapOrders(workshops, meals, accomodationList)(unconfirmedOrders[0]) :
       null;
   }
 );

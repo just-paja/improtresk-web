@@ -12,6 +12,7 @@ import { shallow } from 'enzyme';
 
 import AccomodationPicker from '../../../src/web/components/accomodationPicker';
 import Button from '../../../src/web/components/button';
+import Link from '../../../src/web/components/link';
 import MealPicker from '../../../src/web/components/mealPicker';
 import Order from '../../../src/web/components/order';
 import Price from '../../../src/web/components/price';
@@ -65,7 +66,7 @@ describe('Order form component', () => {
           <Well>
             <Row>
               <Col sm={6} lg={4}>
-                <h3>Stravování</h3>
+                <h3><Link to="food">Stravování</Link></h3>
                 <p>
                   Zaškrtni na který den chceš zařídit jídlo od nás. Na výběr z
                   jídelního menu a dostaneš před začátkem festivalu.
@@ -83,7 +84,7 @@ describe('Order form component', () => {
                 />
               </Col>
               <Col sm={6} lg={4}>
-                <h3>Ubytování</h3>
+                <h3><Link to="accomodation">Ubytování</Link></h3>
                 <p>
                   <b>Ubytování se platí zvlášť</b>, tedy až na checkinu a v
                   hotovosti. Základní ubytování je zdarma.

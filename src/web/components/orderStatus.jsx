@@ -8,6 +8,7 @@ import PaymentDetails from './order/paymentDetails';
 import Price from './price';
 
 const OrderStatus = ({
+  accomodation,
   assigned,
   confirmed,
   canceled,
@@ -27,6 +28,7 @@ const OrderStatus = ({
   <Well>
     <h2>Moje objednávka</h2>
     <OrderHeader
+      accomodation={accomodation}
       assigned={assigned}
       canceled={canceled}
       confirmed={confirmed}
@@ -77,6 +79,7 @@ const OrderStatus = ({
 );
 
 OrderStatus.propTypes = {
+  accomodation: PropTypes.object,
   symvar: PropTypes.string.isRequired,
   endsAt: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
@@ -105,6 +108,7 @@ OrderStatus.propTypes = {
 };
 
 OrderStatus.defaultProps = {
+  accomodation: null,
   assigned: false,
   canceled: false,
   confirmed: false,
