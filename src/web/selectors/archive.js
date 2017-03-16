@@ -27,5 +27,7 @@ export const getArchivedYearWorkshops = createSelector(
   ) : [])
 );
 
-
-export const isValid = state => isStateValid(getArchiveState(state));
+export const isValid = createSelector(
+  getArchiveState,
+  state => isStateValid(state) && state.data && state.current === state.data.year
+);

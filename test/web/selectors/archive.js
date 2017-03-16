@@ -109,6 +109,14 @@ describe('Archive selectors', () => {
   });
 
   it('isValid returns true when in valid state', () => {
-    expect(isValid({ archive: { valid: true } })).to.equal(true);
+    expect(isValid({
+      archive: {
+        current: '2017',
+        data: {
+          year: '2017',
+        },
+        valid: true,
+      },
+    })).to.equal(true);
   });
 });
