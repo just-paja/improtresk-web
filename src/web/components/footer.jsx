@@ -27,7 +27,7 @@ const Footer = ({ currentYear, partners }) => (
             <NavItem href="mailto:info@improtresk.cz" title="Uživatelská a technická podpora">
               <FontAwesome name="envelope" />
             </NavItem>
-            <NavItem href="tel:+420 735 061 801" title="Nouzový telefon">
+            <NavItem href="tel:+420 728 376 440" title="Kontaktní telefon">
               <FontAwesome name="phone" />
             </NavItem>
           </ul>
