@@ -21,7 +21,7 @@ describe('Address component', () => {
         name="Dům Kultury Milevsko"
         photos={[]}
         price={200}
-        text="Some long description"
+        desc="Some long description"
       />
     ).node).to.eql(
       <div>
