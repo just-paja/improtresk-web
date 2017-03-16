@@ -10,17 +10,18 @@ import Well from 'react-bootstrap/lib/Well';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
+import AccomodationPicker from '../../../src/web/components/accomodationPicker';
 import Button from '../../../src/web/components/button';
+import MealPicker from '../../../src/web/components/mealPicker';
 import Order from '../../../src/web/components/order';
 import Price from '../../../src/web/components/price';
-import InputCheckbox from '../../../src/web/components/inputCheckbox';
-import MealPicker from '../../../src/web/components/mealPicker';
 import WorkshopPicker from '../../../src/web/components/workshopPicker';
 
 describe('Order form component', () => {
   it('renders', () => {
     expect(shallow(
       <Order
+        accomodation={[]}
         price={1200}
         errors={{}}
         form="order"
@@ -80,32 +81,41 @@ describe('Order form component', () => {
                   ]}
                   onChange={() => {}}
                 />
-                <h3>Ubytování</h3>
-                <InputCheckbox
-                  disabled={false}
-                  label="Mám zájem o ubytování v hotelu"
-                  name="accomodationInfo"
-                  onChange={() => {}}
-                  value
-                />
               </Col>
               <Col sm={6} lg={4}>
-                <h3>Metoda platby</h3>
+                <h3>Ubytování</h3>
                 <p>
-                  V tuto chvíli je možné platit jedině bankovním
-                  převodem <FontAwesome name="frown-o" />. Detaily
-                  platby jsou v dalším kroku objednávky.
+                  <b>Ubytování se platí zvlášť</b>, tedy až na checkinu a v
+                  hotovosti. Základní ubytování je zdarma.
                 </p>
-                <Alert bsStyle="info">
-                  <big>
-                    Částka k zaplacení:
-                    {' '}
-                    <Price price={1200} />
-                  </big>
-                </Alert>
+
+                <AccomodationPicker
+                  accomodation={[]}
+                  disabled={false}
+                  name="accomodation"
+                  onChange={() => {}}
+                  value={[]}
+                />
               </Col>
             </Row>
           </Well>
+          <Row>
+            <Col sm={6} lg={4}>
+              <h3>Metoda platby</h3>
+              <p>
+                V tuto chvíli je možné platit jedině bankovním
+                převodem <FontAwesome name="frown-o" />. Detaily
+                platby jsou v dalším kroku objednávky.
+              </p>
+              <Alert bsStyle="success">
+                <big>
+                  Částka k zaplacení:
+                  {' '}
+                  <Price price={1200} />
+                </big>
+              </Alert>
+            </Col>
+          </Row>
           <Button type="submit">Pokračovat</Button>
         </Form>
       </div>

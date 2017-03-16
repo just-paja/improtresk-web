@@ -9,6 +9,7 @@ import {
   getParticipant,
   getParticipantLatestOrder,
  } from '../selectors/participant';
+import { accomodationAll } from '../selectors/accomodation';
 import { getMeals } from '../selectors/food';
 import { workshopsAll } from '../selectors/workshops';
 import { yearActiveNumber } from '../selectors/years';
@@ -16,6 +17,7 @@ import { yearActiveNumber } from '../selectors/years';
 import * as actions from '../constants/actions';
 
 const mapStateToProps = state => ({
+  accomodation: accomodationAll(state),
   price: getOrderFormPrice(state),
   meals: getMeals(state),
   order: getParticipantLatestOrder(state),

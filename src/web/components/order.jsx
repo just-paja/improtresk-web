@@ -6,8 +6,8 @@ import React, { Component, PropTypes } from 'react';
 import Row from 'react-bootstrap/lib/Row';
 import Well from 'react-bootstrap/lib/Well';
 
+import AccomodationPicker from './accomodationPicker';
 import Button from './button';
-import InputCheckbox from './inputCheckbox';
 import MealPicker from './mealPicker';
 import Price from './price';
 import WorkshopPicker from './workshopPicker';
@@ -37,7 +37,15 @@ export default class Order extends Component {
   }
 
   render() {
-    const { price, disabled, errors, meals, values, workshops } = this.props;
+    const {
+      accomodation,
+      disabled,
+      errors,
+      meals,
+      price,
+      values,
+      workshops,
+    } = this.props;
     return (
       <div>
         <h2>Přihlášení na workshop</h2>
@@ -71,35 +79,43 @@ export default class Order extends Component {
                   error={errors.meals}
                   value={values.meals}
                 />
-                <h3>Ubytování</h3>
-                <InputCheckbox
-                  disabled={disabled}
-                  name="accomodationInfo"
-                  label="Mám zájem o ubytování v hotelu"
-                  error={errors.accomodationInfo}
-                  onChange={this.handleChange}
-                  value={values.accomodationInfo}
-                />
               </Col>
               <Col sm={6} lg={4}>
-                <h3>Metoda platby</h3>
+                <h3>Ubytování</h3>
                 <p>
-                  V tuto chvíli je možné platit jedině bankovním
-                  převodem <FontAwesome name="frown-o" />. Detaily
-                  platby jsou v dalším kroku objednávky.
+                  <b>Ubytování se platí zvlášť</b>, tedy až na checkinu a v hotovosti.
+                  Základní ubytování je zdarma.
                 </p>
-                {price ? (
-                  <Alert bsStyle="info">
-                    <big>
-                      Částka k zaplacení:
-                      {' '}
-                      <Price price={price} />
-                    </big>
-                  </Alert>
-                ) : null}
+                <AccomodationPicker
+                  accomodation={accomodation}
+                  disabled={disabled}
+                  error={errors.accomodation}
+                  onChange={this.handleChange}
+                  name="accomodation"
+                  value={values.accomodation}
+                />
               </Col>
             </Row>
           </Well>
+          <Row>
+            <Col sm={6} lg={4}>
+              <h3>Metoda platby</h3>
+              <p>
+                V tuto chvíli je možné platit jedině bankovním
+                převodem <FontAwesome name="frown-o" />. Detaily
+                platby jsou v dalším kroku objednávky.
+              </p>
+              {price ? (
+                <Alert bsStyle="success">
+                  <big>
+                    Částka k zaplacení:
+                    {' '}
+                    <Price price={price} />
+                  </big>
+                </Alert>
+              ) : null}
+            </Col>
+          </Row>
           <Button type="submit">Pokračovat</Button>
         </Form>
       </div>
@@ -108,6 +124,7 @@ export default class Order extends Component {
 }
 
 Order.propTypes = {
+  accomodation: PropTypes.arrayOf(PropTypes.object).isRequired,
   price: PropTypes.number,
   disabled: PropTypes.bool,
   errors: PropTypes.object.isRequired,
