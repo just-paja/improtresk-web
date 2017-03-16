@@ -25,7 +25,7 @@ const Header = ({
   if (confirmed) {
     return (
       <span>
-        <Label bsStyle="warn">Potvrzeno uživatelem</Label>
+        <Label bsStyle="warning">Potvrzeno uživatelem</Label>
         {!assigned && !paid ? (
           <span>
             {' '}
