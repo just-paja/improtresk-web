@@ -1,14 +1,14 @@
-import { takeLatest } from 'redux-saga/effects';
+import { fork, select, takeLatest } from 'redux-saga/effects';
 
 import { fetchResourceIfNeeded } from './common';
-import { isValid } from '../selectors/archive';
+import { getCurrent, isValid } from '../selectors/archive';
 
 import * as api from '../api';
 import * as constants from '../constants/actions';
 
-export function* fetchArchivedYearOnMount() {
-  yield takeLatest(
-    constants.ARCHIVED_YEAR_MOUNTED,
+export function* fetchArchivedYear() {
+  const year = yield select(getCurrent);
+  yield fork(
     fetchResourceIfNeeded,
     api.fetchArchivedYear,
     isValid,
@@ -16,10 +16,18 @@ export function* fetchArchivedYearOnMount() {
       onStart: constants.ARCHIVED_YEAR_FETCH_STARTED,
       onSuccess: constants.ARCHIVED_YEAR_FETCH_SUCCESS,
       onError: constants.ARCHIVED_YEAR_FETCH_ERROR,
+      year,
     }
   );
 }
 
+export function* bindFetchArchivedYear() {
+  yield takeLatest(
+    constants.ARCHIVED_YEAR_MOUNTED,
+    fetchArchivedYear
+  );
+}
+
 export default [
-  fetchArchivedYearOnMount,
+  bindFetchArchivedYear,
 ];
