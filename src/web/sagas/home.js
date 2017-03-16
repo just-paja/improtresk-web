@@ -21,7 +21,7 @@ export function* fetchTextsOnMount() {
 }
 
 export function* openVandaDoor() {
-  if (window.location.href.indexOf('magicDoorToken') !== -1) {
+  if (typeof window !== 'undefined' && window.location.href.indexOf('magicDoorToken') !== -1) {
     const { magicDoorToken } = parseUrl(window.location.href, true).query;
 
     if (magicDoorToken === constants.MAGIC_DOOR_TOKEN) {
