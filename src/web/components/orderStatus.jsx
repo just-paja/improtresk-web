@@ -60,11 +60,13 @@ const OrderStatus = ({
     ) : null}
 
     <hr />
-    <Button
-      bsSize={confirmed ? 'small' : null}
-      onClick={onCancel}
-    >Zrušit objednávku</Button>
-    {!confirmed ? (
+    {!paid ? (
+      <Button
+        bsSize={confirmed ? 'small' : null}
+        onClick={onCancel}
+      >Zrušit objednávku</Button>
+    ) : null}
+    {!confirmed && !paid ? (
       <Button
         className="pull-right"
         bsStyle="primary"
