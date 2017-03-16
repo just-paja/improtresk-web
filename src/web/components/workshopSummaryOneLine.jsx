@@ -6,10 +6,13 @@ import Prop from './prop';
 import styles from './workshopSummaryOneLine.css';
 
 const WorkshopSummaryOneLine = ({
+  assigned,
+  capacity,
   freeSpots,
   hideCapacity,
   name,
   lectors,
+  reserved,
 }) => (
   <div>
     <h3 className={styles.heading}>{name}</h3>
@@ -19,14 +22,19 @@ const WorkshopSummaryOneLine = ({
           .map(lectorPosition => lectorPosition.lector.name)
           .join(', ')}
       </Prop>
-      {hideCapacity ? null : (
-        <Prop label="Volná místa">{freeSpots}</Prop>
-      )}
+      {hideCapacity ? null : [
+        <Prop label="Volná místa">{freeSpots}/{capacity}</Prop>,
+        <Prop label="Potvrzená místa">{assigned}</Prop>,
+        <Prop label="Dočasně rezervovaná místa">{reserved}</Prop>,
+      ]}
     </ul>
   </div>
 );
 
 WorkshopSummaryOneLine.propTypes = {
+  assigned: PropTypes.number,
+  capacity: PropTypes.number,
+  reserved: PropTypes.number,
   freeSpots: PropTypes.number,
   hideCapacity: PropTypes.bool,
   lectors: PropTypes.arrayOf(PropTypes.shape({
