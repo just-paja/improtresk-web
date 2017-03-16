@@ -47,7 +47,7 @@ export default class Contact extends Component {
               </li>
               <li>
                 <FontAwesome name="phone" />{' '}
-                Nouzový telefon: <a href="tel:+420 735 061 801">+420 735 061 801</a>
+                Kontaktní telefon telefon: <a href="tel:+420 728 376 440">+420 728 376 440</a>
               </li>
               <li>
                 <FontAwesome name="facebook-official" />{' '}
