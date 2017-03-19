@@ -20,13 +20,12 @@ export default class WorkshopPicker extends Component {
     return (
       <Row>
         {workshops
-          .filter(workshop => !workshop.fullyAssigned)
           .map(workshop => (
             <Col key={workshop.id} sm={6} lg={4}>
               <WorkshopPickerItem
                 assigned={workshop.assigned}
                 capacity={workshop.capacity}
-                disabled={disabled || workshop.fullyReserved}
+                disabled={disabled || workshop.fullyAssigned || workshop.fullyReserved}
                 freeSpots={workshop.freeSpots}
                 id={workshop.id}
                 lectors={workshop.lectors}
