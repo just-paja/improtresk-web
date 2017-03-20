@@ -12,8 +12,11 @@ export const shouldFetchList = createSelector(getLectorListState, isStateValid);
 export const shouldFetchRoles = createSelector(getLectorRolesState, isStateValid);
 
 export const findLectorRoleName = (roles, id) => {
-  const role = roles.find(roleRecord => roleRecord.id === id);
-  return role ? role.name : null;
+  if (roles) {
+    const role = roles.find(roleRecord => roleRecord.id === id);
+    return role ? role.name : null;
+  }
+  return null;
 };
 
 export default { shouldFetchList };
