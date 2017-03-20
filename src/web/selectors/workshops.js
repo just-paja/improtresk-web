@@ -12,21 +12,26 @@ const getWorkshopListState = state => state.workshops.list;
 const getWorkshopLocationsState = state => state.workshops.locations;
 
 const findDifficultyName = (difficulties, id) => {
-  const difficulty = difficulties.find(record => record.id === id);
-  return difficulty ? difficulty.name : null;
+  if (difficulties) {
+    const difficulty = difficulties.find(record => record.id === id);
+    return difficulty ? difficulty.name : null;
+  }
+  return null;
 };
 
 const mapPrices = priceLevels => (priceItem) => {
   const priceLevelId = priceItem.price_level;
-  const priceLevel = priceLevels.find(priceLevelItem => priceLevelItem.id === priceLevelId);
-  if (priceLevel) {
-    return {
-      id: priceItem.id,
-      price: priceItem.price,
-      level: priceLevel.name,
-      takesEffectOn: priceLevel.takesEffectOn,
-      endsOn: priceLevel.endsOn,
-    };
+  if (priceLevels) {
+    const priceLevel = priceLevels.find(priceLevelItem => priceLevelItem.id === priceLevelId);
+    if (priceLevel) {
+      return {
+        id: priceItem.id,
+        price: priceItem.price,
+        level: priceLevel.name,
+        takesEffectOn: priceLevel.takesEffectOn,
+        endsOn: priceLevel.endsOn,
+      };
+    }
   }
   return null;
 };
@@ -73,7 +78,7 @@ export const mapWorkshop = (lectors, roles, difficulties, priceLevels, capacity)
       difficulty: findDifficultyName(difficulties, workshop.difficulty),
       lectors: workshop.lectors.map(lectorPosition => ({
         id: lectorPosition.id,
-        lector: lectors.find(lector => lectorPosition.lector === lector.id),
+        lector: lectors ? lectors.find(lector => lectorPosition.lector === lector.id) : null,
         role: findLectorRoleName(roles, lectorPosition.role),
       })),
       prices: mapWorkshopPrices(workshop.prices, priceLevels),
