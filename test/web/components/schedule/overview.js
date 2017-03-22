@@ -1,4 +1,6 @@
+import Col from 'react-bootstrap/lib/Col';
 import React from 'react';
+import Row from 'react-bootstrap/lib/Row';
 
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
@@ -36,45 +38,51 @@ describe('ScheduleOverview component', () => {
         <div className="overview-hours">
           <ScheduleHours min={8} max={11} />
         </div>
-        <div className="overview-days">
-          <ScheduleDay
-            date="2017-02-03T00:00:00Z"
-            rowHeight={2}
-            events={[
-              {
-                id: 1,
-                name: 'Morning foo',
-                startAt: '2017-02-03T08:00:00Z',
-                endAt: '2017-02-03T10:00:00Z',
-                workshops: [],
-              },
-            ]}
-            maxHour={11}
-            minHour={8}
-          />
-          <ScheduleDay
-            date="2017-02-04T00:00:00Z"
-            rowHeight={2}
-            events={[
-              {
-                id: 2,
-                name: 'Morning foo',
-                startAt: '2017-02-04T08:00:00Z',
-                endAt: '2017-02-04T11:00:00Z',
-                workshops: [],
-              },
-            ]}
-            maxHour={11}
-            minHour={8}
-          />
-          <ScheduleDay
-            date="2017-02-05T00:00:00Z"
-            rowHeight={2}
-            events={[]}
-            maxHour={11}
-            minHour={8}
-          />
-        </div>
+        <Row className="overview-days">
+          <Col md={4} lg={3}>
+            <ScheduleDay
+              date="2017-02-03T00:00:00Z"
+              rowHeight={2}
+              events={[
+                {
+                  id: 1,
+                  name: 'Morning foo',
+                  startAt: '2017-02-03T08:00:00Z',
+                  endAt: '2017-02-03T10:00:00Z',
+                  workshops: [],
+                },
+              ]}
+              maxHour={11}
+              minHour={8}
+            />
+          </Col>
+          <Col md={4} lg={3}>
+            <ScheduleDay
+              date="2017-02-04T00:00:00Z"
+              rowHeight={2}
+              events={[
+                {
+                  id: 2,
+                  name: 'Morning foo',
+                  startAt: '2017-02-04T08:00:00Z',
+                  endAt: '2017-02-04T11:00:00Z',
+                  workshops: [],
+                },
+              ]}
+              maxHour={11}
+              minHour={8}
+            />
+          </Col>
+          <Col md={4} lg={3}>
+            <ScheduleDay
+              date="2017-02-05T00:00:00Z"
+              rowHeight={2}
+              events={[]}
+              maxHour={11}
+              minHour={8}
+            />
+          </Col>
+        </Row>
       </div>
     );
   });
