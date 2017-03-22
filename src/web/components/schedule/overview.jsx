@@ -9,18 +9,17 @@ const ScheduleOverview = ({
   events,
   rowHeight,
 }) => {
-  const hours = [];
   const days = [];
   const currentDate = moment(startAt);
 
-  while (currentDate.isBefore(endAt)) {
+  while (currentDate.isBefore(endAt) || currentDate.isSame(endAt)) {
     const dayEvents = events.filter(event =>
       currentDate.isSame(event.startAt, 'day') ||
       currentDate.isSame(event.endAt, 'day')
     );
     days.push(
       <ScheduleDay
-        date={currentDate.toString()}
+        date={currentDate.utc().format(moment.RFC_8601)}
         events={dayEvents}
         rowHeight={rowHeight}
       />
@@ -30,8 +29,7 @@ const ScheduleOverview = ({
 
   return (
     <div>
-      <div>{hours}</div>
-      <div>{days}</div>
+      {days}
     </div>
   );
 };
