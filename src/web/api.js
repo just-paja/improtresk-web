@@ -54,6 +54,9 @@ export const fetchTips = params => apiFetch('tips/', params);
 
 export const fetchYears = params => apiFetch('years/', params);
 
+export const fetchScheduleEvents = ({ year, ...params }) =>
+  apiFetch(`years/${year}/schedule/`, params);
+
 export const fetchWorkshopDetail = ({ workshop, year, ...params }) =>
   apiFetch(`years/${year}/workshops/${workshop}/`, params);
 
