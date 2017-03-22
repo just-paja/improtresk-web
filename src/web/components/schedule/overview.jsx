@@ -1,5 +1,7 @@
+import Col from 'react-bootstrap/lib/Col';
 import moment from 'moment';
 import React, { PropTypes } from 'react';
+import Row from 'react-bootstrap/lib/Row';
 
 import ScheduleHours from './hours';
 import ScheduleDay from './day';
@@ -35,14 +37,15 @@ const ScheduleOverview = ({
     );
     const dateFormatted = currentDate.utc().format(moment.RFC_8601);
     days.push(
-      <ScheduleDay
-        date={dateFormatted}
-        events={dayEvents}
-        key={dateFormatted}
-        maxHour={maxHour}
-        minHour={minHour}
-        rowHeight={rowHeight}
-      />
+      <Col md={4} lg={3} key={dateFormatted}>
+        <ScheduleDay
+          date={dateFormatted}
+          events={dayEvents}
+          maxHour={maxHour}
+          minHour={minHour}
+          rowHeight={rowHeight}
+        />
+      </Col>
     );
     currentDate.add(1, 'day');
   }
@@ -52,7 +55,7 @@ const ScheduleOverview = ({
       <div className={styles.hours}>
         <ScheduleHours max={maxHour} min={minHour} />
       </div>
-      <div className={styles.days}>{days}</div>
+      <Row className={styles.days}>{days}</Row>
     </div>
   );
 };
