@@ -32,6 +32,10 @@ export default class Schedule extends Component {
         <ObjectList
           Component={PerformerListItem}
           data={performers}
+          colProps={{
+            sm: 6,
+            md: 4,
+          }}
         />
       </Container>
     );

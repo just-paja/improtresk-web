@@ -1,0 +1,36 @@
+:local .container {
+  display: block;
+  position: relative;
+}
+
+:local .header {
+  max-height: 150px;
+}
+
+:local .title {
+  align-items:center;
+  background: rgba(255,255,255,.75);
+  bottom: 0;
+  display:flex;
+  justify-content:center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: background 0.5s, color 0.5s;
+}
+
+:local .text {
+  color: #3e3f3a;
+  font-size: 200%;
+  text-align: center;
+  text-decoration: none;
+}
+
+:local .title:hover {
+  background: rgba(255,255,255,0);
+}
+
+:local .title:hover .text {
+  color: #fff;
+}

@@ -5,6 +5,11 @@
   position: relative;
 }
 
+:local .cover {
+  background-size: cover;
+  background-position: center center;
+}
+
 :local .image {
   display: block;
   visibility: hidden;
