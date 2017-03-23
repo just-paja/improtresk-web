@@ -15,6 +15,13 @@
 }
 
 @media (min-width: 992px) {
+  :local .box {
+    text-align: center;
+    align-items:center;
+    display:flex;
+    justify-content:center;
+  }
+
   :local .container {
     position: relative;
   }
