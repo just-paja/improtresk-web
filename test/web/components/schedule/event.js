@@ -15,15 +15,23 @@ describe('ScheduleEvent component', () => {
         name="Morning foo"
         startAt="2016-02-03T08:00:00"
         endAt="2016-02-03T10:00:00"
+        minHour={7}
         rowHeight={2}
+        workshops={[]}
       />
     ).node).to.eql(
-      <div style={{ height: 4 }}>
-        <div>Morning foo</div>
-        <HumanTimeRange
-          start="2016-02-03T08:00:00"
-          end="2016-02-03T10:00:00"
-        />
+      <div className="event-container">
+        <div className="event-boxWrapper" style={{ left: '0%', top: 2, width: '99%' }}>
+          <div className="event-box" style={{ minHeight: 4 }}>
+            <div className="event-boxShell">
+              <div>Morning foo</div>
+              <HumanTimeRange
+                start="2016-02-03T08:00:00"
+                end="2016-02-03T10:00:00"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     );
   });
@@ -38,27 +46,22 @@ describe('ScheduleEvent component', () => {
           name: 'Žáci po škole',
           slug: 'zaci-po-skole',
         }}
+        minHour={7}
         rowHeight={2}
+        workshops={[]}
       />
     ).node).to.eql(
-      <div style={{ height: 4 }}>
-        <div>Morning foo</div>
-        <HumanTimeRange
-          start="2016-02-03T08:00:00"
-          end="2016-02-03T10:00:00"
-        />
-        <div>
-          <hr />
-          <ul className="list-unstyled">
-            <li>
-              <Link
-                to="performers:item"
-                params={{ slug: 'zaci-po-skole' }}
-              >
-                Žáci po škole
-              </Link>
-            </li>
-          </ul>
+      <div className="event-container">
+        <div className="event-boxWrapper" style={{ left: '0%', top: 2, width: '99%' }}>
+          <div className="event-box event-withPerformers" style={{ minHeight: 4 }}>
+            <div className="event-boxShell">
+              <div>Morning foo</div>
+              <HumanTimeRange
+                start="2016-02-03T08:00:00"
+                end="2016-02-03T10:00:00"
+              />
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -69,6 +72,8 @@ describe('ScheduleEvent component', () => {
         name="Morning foo"
         startAt="2016-02-03T08:00:00"
         endAt="2016-02-03T10:00:00"
+        minHour={7}
+        rowHeight={2}
         workshops={[
           {
             id: 214,
@@ -79,37 +84,19 @@ describe('ScheduleEvent component', () => {
             name: 'Rytmus a hlasy',
           },
         ]}
-        rowHeight={2}
       />
     ).node).to.eql(
-      <div style={{ height: 4 }}>
-        <div>Morning foo</div>
-        <HumanTimeRange
-          start="2016-02-03T08:00:00"
-          end="2016-02-03T10:00:00"
-        />
-        <div>
-          <hr />
-          <ul className="list-unstyled">
-            <li>
-              <PermaLink
-                id={214}
-                to="workshops:item"
-                title="Divadlo Fórum"
-              >
-                Divadlo Fórum
-              </PermaLink>
-            </li>
-            <li>
-              <PermaLink
-                id={215}
-                to="workshops:item"
-                title="Rytmus a hlasy"
-              >
-                Rytmus a hlasy
-              </PermaLink>
-            </li>
-          </ul>
+      <div className="event-container">
+        <div className="event-boxWrapper" style={{ left: '0%', top: 2, width: '99%' }}>
+          <div className="event-box event-withWorkshops" style={{ minHeight: 4 }}>
+            <div className="event-boxShell">
+              <div>Morning foo</div>
+              <HumanTimeRange
+                start="2016-02-03T08:00:00"
+                end="2016-02-03T10:00:00"
+              />
+            </div>
+          </div>
         </div>
       </div>
     );

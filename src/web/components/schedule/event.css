@@ -1,0 +1,53 @@
+:local .box {
+  background-color: #999;
+}
+
+:local .withWorkshops {
+  background-color: #93c54b;
+}
+
+:local .withPerformers {
+  background-color: #29abe0;
+}
+
+:local .boxShell {
+  padding: 1rem;
+}
+
+@media (min-width: 992px) {
+  :local .container {
+    position: relative;
+  }
+
+  :local .boxWrapper {
+    position: absolute;
+  }
+
+  :local .boxShell {
+    font-size: 85%;
+    padding: 1rem;
+  }
+
+  :local .boxShell hr {
+    margin: 1rem 0;
+  }
+
+  :local .boxShell a {
+    color: #000;
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 992px) {
+  :local .container {
+    margin-bottom: 1rem;
+  }
+
+  :local .boxWrapper {
+    width: auto !important;
+  }
+
+  :local .box {
+    min-height: 0 !important;
+  }
+}

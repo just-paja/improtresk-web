@@ -34,53 +34,60 @@ describe('ScheduleOverview component', () => {
         rowHeight={2}
       />
     ).node).to.eql(
-      <div>
-        <div className="overview-hours">
-          <ScheduleHours min={8} max={11} />
-        </div>
-        <Row className="overview-days">
-          <Col md={4} lg={3}>
-            <ScheduleDay
-              date="2017-02-03T00:00:00Z"
-              rowHeight={2}
-              events={[
-                {
-                  id: 1,
-                  name: 'Morning foo',
-                  startAt: '2017-02-03T08:00:00Z',
-                  endAt: '2017-02-03T10:00:00Z',
-                  workshops: [],
-                },
-              ]}
-              maxHour={11}
-              minHour={8}
-            />
+      <div className="overview-container">
+        <Row className="overview-agenda">
+          <Col sm={0} md={1} className="overview-hourStretch hidden-xs hidden-sm">
+            <ScheduleHours min={7} max={12} rowHeight={2} />
           </Col>
-          <Col md={4} lg={3}>
-            <ScheduleDay
-              date="2017-02-04T00:00:00Z"
-              rowHeight={2}
-              events={[
-                {
-                  id: 2,
-                  name: 'Morning foo',
-                  startAt: '2017-02-04T08:00:00Z',
-                  endAt: '2017-02-04T11:00:00Z',
-                  workshops: [],
-                },
-              ]}
-              maxHour={11}
-              minHour={8}
-            />
+          <Col sm={0} md={1} className="overview-hoursOverlay hidden-xs hidden-sm">
+            <ScheduleHours min={7} max={12} rowHeight={2} />
           </Col>
-          <Col md={4} lg={3}>
-            <ScheduleDay
-              date="2017-02-05T00:00:00Z"
-              rowHeight={2}
-              events={[]}
-              maxHour={11}
-              minHour={8}
-            />
+          <Col className="overview-days" md={11} sm={12}>
+            <Row className="overview-daysOverlay">
+              <Col xs={12} sm={6} md={3} className="overview-day">
+                <ScheduleDay
+                  date="2017-02-03T00:00:00Z"
+                  rowHeight={2}
+                  events={[
+                    {
+                      id: 1,
+                      name: 'Morning foo',
+                      startAt: '2017-02-03T08:00:00Z',
+                      endAt: '2017-02-03T10:00:00Z',
+                      workshops: [],
+                    },
+                  ]}
+                  maxHour={12}
+                  minHour={7}
+                />
+              </Col>
+              <Col xs={12} sm={6} md={3} className="overview-day">
+                <ScheduleDay
+                  date="2017-02-04T00:00:00Z"
+                  rowHeight={2}
+                  events={[
+                    {
+                      id: 2,
+                      name: 'Morning foo',
+                      startAt: '2017-02-04T08:00:00Z',
+                      endAt: '2017-02-04T11:00:00Z',
+                      workshops: [],
+                    },
+                  ]}
+                  maxHour={12}
+                  minHour={7}
+                />
+              </Col>
+              <Col xs={12} sm={6} md={3} className="overview-day">
+                <ScheduleDay
+                  date="2017-02-05T00:00:00Z"
+                  rowHeight={2}
+                  events={[]}
+                  maxHour={12}
+                  minHour={7}
+                />
+              </Col>
+            </Row>
           </Col>
         </Row>
       </div>

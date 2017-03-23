@@ -1,7 +1,29 @@
-:local .hours {
-
+:local .container {
+  padding-top: 20px;
 }
 
-:local .days {
+@media (min-width: 992px) {
+  :local .hoursOverlay,
+  :local .daysOverlay {
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    top: 0;
+    width: auto;
+  }
 
+  :local .hourStretch {
+    visibility: hidden;
+  }
+
+  :local .agenda,
+  :local .days {
+    position: relative;
+  }
+}
+
+@media (max-width: 992px) {
+  :local .day {
+    margin-bottom: 40px;
+  }
 }
