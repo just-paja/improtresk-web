@@ -26,6 +26,12 @@ describe('Polls sagas', () => {
     global.localStorage = undefined;
   });
 
+  it('selectVoteSuccess selects poll success', () => {
+    expect(selectVoteSuccess({
+      type: 'FORM_SUBMIT_SUCCESS',
+      form: 'poll',
+    })).to.equal(true);
+  });
   it('bindVote submits vote', () => {
     const saga = bindVote();
     expect(saga.next().value).to.eql(takeLatest('POLL_VOTE', vote));

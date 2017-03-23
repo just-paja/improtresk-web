@@ -8,16 +8,24 @@ import styles from './day.css';
 const isInDateRange = (dateStr, start, end) => {
   const date = moment(dateStr);
   return (
-    date.isAfter(start) &&
-    date.isBefore(end)
+    (
+      date.isAfter(start) ||
+      date.isSame(start)
+    ) &&
+    (
+      date.isBefore(end) ||
+      date.isSame(end)
+    )
   );
 };
 
 const getCrossingCount = (event, events) => events
   .filter(otherEvent => (
-    event.id !== otherEvent.id && (
+    event.id !== otherEvent.id &&
+    event.endAt !== otherEvent.startAt &&
+    event.startAt !== otherEvent.endAt && (
       isInDateRange(otherEvent.startAt, event.startAt, event.endAt) ||
-      isInDateRange(otherEvent.endAt, event.startAt, event.endAt)
+      isInDateRange(otherEvent.endAt, event.startAt, event.endAt, true)
     )
   ))
   .length;

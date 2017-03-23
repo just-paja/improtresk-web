@@ -129,4 +129,20 @@ describe('Form saga helpers', () => {
     }));
     expect(saga.next().done).to.equal(true);
   });
+  it('sendForm dispatches resource fetch with params', () => {
+    const apiAction = () => {};
+    const saga = sendForm(apiAction, 'login', { email: 'mail@test.com' }, { foo: 'bar' });
+
+    expect(saga.next().value).to.eql(fork(fetchResource, apiAction, {
+      onStart: 'FORM_SUBMIT_STARTED',
+      onSuccess: 'FORM_SUBMIT_SUCCESS',
+      onError: 'FORM_SUBMIT_ERROR',
+      form: 'login',
+      data: {
+        email: 'mail@test.com',
+      },
+      foo: 'bar',
+    }));
+    expect(saga.next().done).to.equal(true);
+  });
 });

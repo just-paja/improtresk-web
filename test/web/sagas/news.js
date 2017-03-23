@@ -50,6 +50,11 @@ describe('News sagas', () => {
     ));
     expect(saga.next().done).to.equal(true);
   });
+  it('fetchNewsDetail fetches nothing without id', () => {
+    const saga = fetchNewsDetail();
+    expect(saga.next().value).to.eql(select(getNewsDetailId));
+    expect(saga.next(null).done).to.equal(true);
+  });
   it('fetchNewsDetailOnMount creates binds fetch actions', () => {
     const saga = fetchNewsDetailOnMount();
     expect(saga.next().value).to.eql(takeLatest(

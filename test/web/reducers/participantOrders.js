@@ -39,4 +39,19 @@ describe('Participant Orders reducer', () => {
       error: 'error',
     });
   });
+  it('invalidates data on cancel', () => {
+    expect(participantOrders({}, { type: 'ORDER_CANCELED' })).to.eql({
+      valid: false,
+    });
+  });
+  it('invalidates data on create', () => {
+    expect(participantOrders({}, { type: 'ORDER_CREATED' })).to.eql({
+      valid: false,
+    });
+  });
+  it('invalidates data on logout', () => {
+    expect(participantOrders({}, { type: 'PARTICIPANT_LOGOUT' })).to.eql({
+      valid: false,
+    });
+  });
 });

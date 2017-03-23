@@ -142,7 +142,7 @@ export function* interceptInvalidWorkshop() {
     workshop => workshop.id === form.values.workshop
   );
 
-  if (selectedWorkshop && selectedWorkshop.freeSpots === 0) {
+  if (!selectedWorkshop || selectedWorkshop.freeSpots === 0) {
     yield put({
       type: constants.FORM_FIELD_CHANGE,
       form: 'order',
