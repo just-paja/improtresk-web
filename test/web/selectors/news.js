@@ -1,4 +1,8 @@
+import sinon from 'sinon';
+
 import { expect } from 'chai';
+
+import * as transformers from '../../../src/web/transformers/news';
 
 import {
   newsAll,
@@ -7,11 +11,22 @@ import {
 } from '../../../src/web/selectors/news';
 
 describe('News selectors', () => {
+  beforeEach(() => {
+    sinon.stub(transformers, 'aggregateNewsData');
+  });
+
+  afterEach(() => {
+    transformers.aggregateNewsData.restore();
+  });
+
   it('getNewsDetail returns all news stored', () => {
+    transformers.aggregateNewsData.returns({ id: 1 });
     expect(getNewsDetail({
       news: {
         detail: {
-          data: { id: 1 },
+          data: {
+            id: 1,
+          },
         },
       },
     })).to.eql({ id: 1 });

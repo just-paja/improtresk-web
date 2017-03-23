@@ -1,9 +1,15 @@
+import Breadcrumb from 'react-bootstrap/lib/Breadcrumb';
+import Col from 'react-bootstrap/lib/Col';
 import Helmet from 'react-helmet';
 import Markdown from 'react-markdown';
 import React, { Component, PropTypes } from 'react';
+import Row from 'react-bootstrap/lib/Row';
+import Well from 'react-bootstrap/lib/Well';
 
 import Container from '../container';
 import Gallery from '../gallery';
+import Link from '../link';
+import LinkServiceList from '../linkServiceList';
 import NotFound from '../notFound';
 
 import { idFromSlug } from '../../routeTable';
@@ -47,7 +53,22 @@ export default class PerformerDetail extends Component {
         />
 
         <h1>{performer.name}</h1>
-        <Markdown source={performer.text} />
+        <Breadcrumb>
+          <li><Link to="schedule">Program</Link></li>
+          <li className="active">
+            <Link to="performers:item" params={{ slug: performer.slug }}>{performer.name}</Link>
+          </li>
+        </Breadcrumb>
+        <Row>
+          <Col md={8}>
+            <Markdown source={performer.text} />
+          </Col>
+          <Col md={4}>
+            <Well>
+              <LinkServiceList links={performer.links} />
+            </Well>
+          </Col>
+        </Row>
         <Gallery photos={performer.photos} />
       </Container>
     );

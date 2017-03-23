@@ -3,8 +3,6 @@ import React, { Component, PropTypes } from 'react';
 
 import SurveyAnswer from './answer';
 
-const hasVoted = id => !!localStorage.getItem(`votedPoll${id}`);
-
 export default class Question extends Component {
   constructor() {
     super();
@@ -19,9 +17,9 @@ export default class Question extends Component {
     const {
       answers,
       closed,
-      form,
-      id,
+      loading,
       question,
+      voted,
       votes,
     } = this.props;
     return (
@@ -30,12 +28,15 @@ export default class Question extends Component {
         <ListGroup>
           {answers.map(answer => (
             <SurveyAnswer
-              id={answer.id}
               closed={closed}
-              disabled={form.loading || form.saved || hasVoted(id)}
+              description={answer.description}
+              disabled={voted}
+              id={answer.id}
               key={answer.id}
+              links={answer.links}
+              image={answer.image}
+              loading={loading}
               onVote={this.handleVote}
-              performer={answer.performer}
               text={answer.text}
               votes={answer.answerCount}
               votesTotal={votes}
@@ -55,13 +56,16 @@ Question.propTypes = {
     answerCount: PropTypes.number.isRequired,
   })).isRequired,
   closed: PropTypes.bool,
-  form: PropTypes.object.isRequired,
   id: PropTypes.number.isRequired,
+  loading: PropTypes.bool,
   onVote: PropTypes.func.isRequired,
   question: PropTypes.string.isRequired,
+  voted: PropTypes.bool,
   votes: PropTypes.number.isRequired,
 };
 
 Question.defaultProps = {
   closed: false,
+  loading: false,
+  voted: false,
 };
