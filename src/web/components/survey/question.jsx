@@ -19,6 +19,7 @@ export default class Question extends Component {
       closed,
       form,
       question,
+      votes,
     } = this.props;
     return (
       <div>
@@ -33,7 +34,8 @@ export default class Question extends Component {
               onVote={this.handleVote}
               performer={answer.performer}
               text={answer.text}
-              votes={answer.votes}
+              votes={answer.answerCount}
+              votesTotal={votes}
             />
           ))}
         </ListGroup>
@@ -54,6 +56,7 @@ Question.propTypes = {
   id: PropTypes.number.isRequired,
   onVote: PropTypes.func.isRequired,
   question: PropTypes.string.isRequired,
+  votes: PropTypes.number.isRequired,
 };
 
 Question.defaultProps = {

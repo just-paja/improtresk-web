@@ -18,10 +18,11 @@ export default class SurveyAnswer extends Component {
 
   render() {
     const {
-      text,
       disabled,
-      votes,
       performer,
+      text,
+      votes,
+      votesTotal,
     } = this.props;
 
     return (
@@ -41,9 +42,11 @@ export default class SurveyAnswer extends Component {
             </h4>
             {(performer ?
               <SurveyPerformer links={performer.links} /> :
-              text
+              null
             )}
-            {votes}
+            <div>
+              Pro: {votes}/{votesTotal}
+            </div>
           </Col>
           <Col xs={12} sm={3}>
             <Button
@@ -67,6 +70,7 @@ SurveyAnswer.propTypes = {
   performer: PropTypes.object,
   text: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
+  votesTotal: PropTypes.number.isRequired,
 };
 
 SurveyAnswer.defaultProps = {
