@@ -1,11 +1,13 @@
 import { fork, select, takeLatest } from 'redux-saga/effects';
 
 import { fetchResourceIfNeeded } from './common';
+import { fetchTextsIfNeeded } from './texts';
 import { isValid } from '../selectors/schedule';
 import { yearActiveNumber } from '../selectors/years';
 
 import * as api from '../api';
 import * as constants from '../constants/actions';
+import * as texts from '../constants/texts';
 
 export function* fetchYearsSchedule() {
   const year = yield select(yearActiveNumber);
@@ -31,6 +33,18 @@ export function* bindFetchYearsSchedule() {
   );
 }
 
+export function* bindFetchTexts() {
+  yield takeLatest(
+    constants.SCHEDULE_MOUNTED,
+    fetchTextsIfNeeded,
+    [
+      texts.SCHEDULE_INTRO,
+    ]
+
+  );
+}
+
 export default [
   bindFetchYearsSchedule,
+  bindFetchTexts,
 ];

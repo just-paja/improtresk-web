@@ -1,4 +1,4 @@
-import Alert from 'react-bootstrap/lib/Alert';
+import Markdown from 'react-markdown';
 import React, { Component, PropTypes } from 'react';
 
 import Container from '../container';
@@ -12,7 +12,7 @@ export default class Schedule extends Component {
   }
 
   render() {
-    const { performers, ready, scheduleEvents, year } = this.props;
+    const { intro, performers, ready, scheduleEvents, year } = this.props;
 
     if (!ready) {
       return null;
@@ -21,7 +21,7 @@ export default class Schedule extends Component {
     return (
       <Container>
         <h1>Program</h1>
-        <Alert bsStyle="info">Program pro tento ročník se zatím formuje.</Alert>
+        <Markdown source={intro} />
         <ScheduleOverview
           endAt={year.endDate}
           events={scheduleEvents}
@@ -41,6 +41,7 @@ export default class Schedule extends Component {
 Schedule.propTypes = {
   onMount: PropTypes.func.isRequired,
   performers: PropTypes.arrayOf(PropTypes.object).isRequired,
+  intro: PropTypes.string,
   scheduleEvents: PropTypes.arrayOf(PropTypes.object).isRequired,
   ready: PropTypes.bool,
   year: PropTypes.shape({
@@ -50,6 +51,7 @@ Schedule.propTypes = {
 };
 
 Schedule.defaultProps = {
+  intro: null,
   ready: false,
   year: null,
 };
