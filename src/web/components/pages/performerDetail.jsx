@@ -64,9 +64,11 @@ export default class PerformerDetail extends Component {
             <Markdown source={performer.text} />
           </Col>
           <Col md={4}>
-            <Well>
-              <LinkServiceList links={performer.links} />
-            </Well>
+            {performer.links.length ? (
+              <Well>
+                <LinkServiceList links={performer.links} />
+              </Well>
+            ) : null}
           </Col>
         </Row>
         <Gallery photos={performer.photos} />
