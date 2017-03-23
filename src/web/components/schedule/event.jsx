@@ -24,22 +24,34 @@ const ScheduleEvent = ({
     (moment(startAt).hours() + (moment(startAt).minutes() / 60)) - minHour
   ) * rowHeight;
   const left = `${crossingPosition * crossingUnit}%`;
+  const image = performer && performer.frontImage ?
+    performer.frontImage : null;
+  const bgStyle = {};
+
+  if (image) {
+    bgStyle.backgroundImage = `url(${image})`;
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.boxWrapper} style={{ left, top, width }}>
         <div
           className={classnames(styles.box, {
             [styles.withPerformers]: !!performer,
+            [styles.withPerformerPhoto]: !!image,
             [styles.withWorkshops]: !!workshops.length,
           })}
           style={{ minHeight }}
         >
+          <div className={styles.boxOverlay} style={bgStyle} />
           <div className={styles.boxShell}>
-            <div>{name}</div>
-            <HumanTimeRange
-              start={startAt}
-              end={endAt}
-            />
+            <div>
+              <div>{name}</div>
+              <HumanTimeRange
+                start={startAt}
+                end={endAt}
+              />
+            </div>
           </div>
         </div>
       </div>
