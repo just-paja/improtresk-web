@@ -72,6 +72,7 @@ export function* requireWorkshops() {
   yield takeLatest(
     [
       constants.WORKSHOPS_MOUNTED,
+      constants.SCHEDULE_MOUNTED,
       constants.REQUEST_PARTICIPANT_DETAILS,
     ],
     requireYearsWorkshops
