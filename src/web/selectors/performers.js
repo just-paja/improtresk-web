@@ -26,6 +26,6 @@ export const getPerformerDetail = createSelector(
 );
 
 export const shouldFetchDetail = createSelector(
-  getPerformersDetailState,
-  isStateValid
+  [getPerformersDetailState, getPerformerDetailId],
+  (detail, id) => isStateValid(detail) && detail.data.id === id
 );
