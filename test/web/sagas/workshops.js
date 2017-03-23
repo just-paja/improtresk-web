@@ -51,6 +51,7 @@ describe('Workshop sagas', () => {
     expect(saga.next().value).to.eql(takeLatest(
       [
         'WORKSHOPS_MOUNTED',
+        'SCHEDULE_MOUNTED',
         'REQUEST_PARTICIPANT_DETAILS',
       ],
       requireYearsWorkshops
