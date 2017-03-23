@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { takeLatest } from 'redux-saga/effects';
+import { call, select, takeLatest } from 'redux-saga/effects';
 
 import { fetchResourceIfNeeded } from '../../../src/web/sagas/common';
 import {
@@ -8,6 +8,8 @@ import {
   fetchNewsDetailOnMount,
 } from '../../../src/web/sagas/news';
 import {
+  getNewsDetailId,
+  shouldFetchDetail,
   shouldFetchList,
 } from '../../../src/web/selectors/news';
 
@@ -28,6 +30,22 @@ describe('News sagas', () => {
         onStart: 'NEWS_FETCH_STARTED',
         onSuccess: 'NEWS_FETCH_SUCCESS',
         onError: 'NEWS_FETCH_ERROR',
+      }
+    ));
+    expect(saga.next().done).to.equal(true);
+  });
+  it('fetchNewsDetail creates fetch actions', () => {
+    const saga = fetchNewsDetail();
+    expect(saga.next().value).to.eql(select(getNewsDetailId));
+    expect(saga.next(45).value).to.eql(call(
+      fetchResourceIfNeeded,
+      api.fetchNewsDetail,
+      shouldFetchDetail,
+      {
+        onStart: 'NEWS_DETAIL_FETCH_STARTED',
+        onSuccess: 'NEWS_DETAIL_FETCH_SUCCESS',
+        onError: 'NEWS_DETAIL_FETCH_ERROR',
+        news: 45,
       }
     ));
     expect(saga.next().done).to.equal(true);
