@@ -6,6 +6,30 @@ describe('Forms reducer', () => {
   it('returns default state', () => {
     expect(forms()).to.eql({});
   });
+  it('updates form values', () => {
+    expect(forms(
+      {
+        testForm: {
+          values: {
+            foo: 'bar',
+          },
+        },
+      },
+      {
+        type: 'FORM_VALUES_SET',
+        form: 'testForm',
+        values: {
+          foo: 'bax',
+        },
+      }
+    )).to.eql({
+      testForm: {
+        values: {
+          foo: 'bax',
+        },
+      },
+    });
+  });
   it('updates form field value', () => {
     expect(forms(
       {
@@ -183,6 +207,32 @@ describe('Forms reducer', () => {
           foo: 'bar',
         },
         submitted: true,
+        loading: true,
+        valid: true,
+        errors: {},
+      },
+    });
+  });
+  it('updates form loading status on submit start', () => {
+    expect(forms(
+      {
+        testForm: {
+          errors: {},
+          saved: false,
+          submitted: true,
+          valid: true,
+          values: { foo: 'bar' },
+        },
+      },
+      {
+        type: 'FORM_SUBMIT_STARTED',
+        form: 'testForm',
+      }
+    )).to.eql({
+      testForm: {
+        values: { foo: 'bar' },
+        submitted: true,
+        saved: false,
         loading: true,
         valid: true,
         errors: {},

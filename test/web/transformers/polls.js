@@ -38,6 +38,36 @@ describe('Poll transformers', () => {
       performer: null,
     });
   });
+  it('aggregatePollAnswerData aggregates null for performer without photos', () => {
+    expect(transformers.aggregatePollAnswerData({
+      id: 5,
+      text: 'Answer text',
+      performer: {
+        text: 'foo',
+        links: [
+          {
+            id: 78,
+            name: 'Channel',
+            service: 'youtube',
+          },
+        ],
+        photos: [],
+      },
+    })).to.eql({
+      id: 5,
+      description: 'foo',
+      text: 'Answer text',
+      image: null,
+      links: [
+        {
+          id: 78,
+          name: 'Channel',
+          service: 'youtube',
+        },
+      ],
+      performer: null,
+    });
+  });
   it('aggregatePollAnswerData does not change answer with no performer', () => {
     const answer = {
       id: 6,

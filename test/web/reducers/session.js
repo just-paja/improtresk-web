@@ -28,4 +28,9 @@ describe('Years reducer', () => {
       data: {},
     });
   });
+  it('opens magic door', () => {
+    expect(session({}, { type: 'idui1raKzie8QuieKei6exeiOhsaeva4vooL4ao3ahx8EiquLoothei3Ha9shaki' })).to.eql({
+      forceOpenSignups: true,
+    });
+  });
 });

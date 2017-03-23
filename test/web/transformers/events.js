@@ -19,10 +19,16 @@ describe('Event transformers', () => {
       },
     ]);
   });
-  it('aggregatePerformer returns first image url', () => {
+  it('aggregateWorkshops aggregates empty array without workshop data', () => {
+    expect(transformers.aggregateWorkshops([1])).to.eql([]);
+  });
+  it('aggregatePerformer aggregates null with unknown performer', () => {
     expect(transformers.aggregatePerformer(1, [])).to.equal(null);
   });
-  it('aggregatePerformer returns first image url', () => {
+  it('aggregatePerformer aggregates null without performer data', () => {
+    expect(transformers.aggregatePerformer(1)).to.equal(null);
+  });
+  it('aggregatePerformer aggregates performer', () => {
     expect(transformers.aggregatePerformer(1, [
       {
         id: 1,
