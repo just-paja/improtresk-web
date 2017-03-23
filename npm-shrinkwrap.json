@@ -3320,6 +3320,12 @@
       "from": "moment@>=2.17.1 <3.0.0",
       "resolved": "http://registry.npmjs.org/moment/-/moment-2.17.1.tgz"
     },
+    "moment-timezone": {
+      "version": "0.5.11",
+      "from": "moment-timezone@latest",
+      "resolved": "http://registry.npmjs.org/moment-timezone/-/moment-timezone-0.5.11.tgz",
+      "dev": true
+    },
     "ms": {
       "version": "0.7.2",
       "from": "ms@0.7.2",

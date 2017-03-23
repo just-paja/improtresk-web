@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import Col from 'react-bootstrap/lib/Col';
 import moment from 'moment';
 import React, { PropTypes } from 'react';
@@ -20,8 +21,8 @@ const ScheduleOverview = ({
   let maxHour;
 
   events.forEach((event) => {
-    const eventStartAt = moment(event.startAt).utc();
-    const eventEndAt = moment(event.endAt).utc();
+    const eventStartAt = moment(event.startAt);
+    const eventEndAt = moment(event.endAt);
     if (!minHour || minHour > eventStartAt.hours()) {
       minHour = eventStartAt.hours();
     }
@@ -30,14 +31,17 @@ const ScheduleOverview = ({
     }
   });
 
+  minHour = Math.max(0, minHour - 1);
+  maxHour = Math.min(23, maxHour + 1);
+
   while (currentDate.isBefore(endAt) || currentDate.isSame(endAt)) {
     const dayEvents = events.filter(event =>
       currentDate.isSame(event.startAt, 'day') ||
       currentDate.isSame(event.endAt, 'day')
     );
-    const dateFormatted = currentDate.utc().format(moment.RFC_8601);
+    const dateFormatted = currentDate.format(moment.RFC_8601);
     days.push(
-      <Col md={4} lg={3} key={dateFormatted}>
+      <Col xs={12} sm={6} md={3} key={dateFormatted} className={styles.day}>
         <ScheduleDay
           date={dateFormatted}
           events={dayEvents}
@@ -51,11 +55,28 @@ const ScheduleOverview = ({
   }
 
   return (
-    <div>
-      <div className={styles.hours}>
-        <ScheduleHours max={maxHour} min={minHour} />
-      </div>
-      <Row className={styles.days}>{days}</Row>
+    <div className={styles.container}>
+      <Row className={styles.agenda}>
+        <Col sm={0} md={1} className={classnames(styles.hours, styles.hourStretch, 'hidden-xs', 'hidden-sm')}>
+          <ScheduleHours
+            max={maxHour}
+            min={minHour}
+            rowHeight={rowHeight}
+          />
+        </Col>
+        <Col sm={0} md={1} className={classnames(styles.hours, styles.hoursOverlay, 'hidden-xs', 'hidden-sm')}>
+          <ScheduleHours
+            max={maxHour}
+            min={minHour}
+            rowHeight={rowHeight}
+          />
+        </Col>
+        <Col sm={12} md={11} className={styles.days}>
+          <Row className={styles.daysOverlay}>
+            {days}
+          </Row>
+        </Col>
+      </Row>
     </div>
   );
 };

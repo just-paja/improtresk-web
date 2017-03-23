@@ -25,7 +25,7 @@ export default class Schedule extends Component {
         <ScheduleOverview
           endAt={year.endDate}
           events={scheduleEvents}
-          rowHeight={24}
+          rowHeight={64}
           startAt={year.startDate}
         />
         <h2>Účinkující</h2>
