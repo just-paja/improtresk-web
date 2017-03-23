@@ -1,15 +1,14 @@
 import { expect } from 'chai';
-import { select, takeLatest } from 'redux-saga/effects';
+import { takeLatest } from 'redux-saga/effects';
 
 import { fetchResourceIfNeeded } from '../../../src/web/sagas/common';
 import {
   fetchNewsOnMount,
+  fetchNewsDetail,
   fetchNewsDetailOnMount,
 } from '../../../src/web/sagas/news';
 import {
-  getNewsDetailId,
   shouldFetchList,
-  shouldFetchDetail,
 } from '../../../src/web/selectors/news';
 
 import * as api from '../../../src/web/api';
@@ -33,26 +32,12 @@ describe('News sagas', () => {
     ));
     expect(saga.next().done).to.equal(true);
   });
-  it('fetchNewsDetailOnMount creates fetch actions with news id', () => {
+  it('fetchNewsDetailOnMount creates binds fetch actions', () => {
     const saga = fetchNewsDetailOnMount();
-    expect(saga.next().value).to.eql(select(getNewsDetailId));
-    expect(saga.next(67).value).to.eql(takeLatest(
+    expect(saga.next().value).to.eql(takeLatest(
       'NEWS_DETAIL_MOUNTED',
-      fetchResourceIfNeeded,
-      api.fetchNewsDetail,
-      shouldFetchDetail,
-      {
-        onStart: 'NEWS_DETAIL_FETCH_STARTED',
-        onSuccess: 'NEWS_DETAIL_FETCH_SUCCESS',
-        onError: 'NEWS_DETAIL_FETCH_ERROR',
-        news: 67,
-      }
+      fetchNewsDetail
     ));
-    expect(saga.next().done).to.equal(true);
-  });
-  it('fetchNewsDetailOnMount creates no action without news id', () => {
-    const saga = fetchNewsDetailOnMount();
-    expect(saga.next().value).to.eql(select(getNewsDetailId));
     expect(saga.next().done).to.equal(true);
   });
 });

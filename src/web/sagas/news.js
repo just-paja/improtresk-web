@@ -1,4 +1,4 @@
-import { select, takeLatest } from 'redux-saga/effects';
+import { call, select, takeLatest } from 'redux-saga/effects';
 
 import { fetchResourceIfNeeded } from './common';
 import {
@@ -27,11 +27,10 @@ export function* fetchNewsOnMount() {
   );
 }
 
-export function* fetchNewsDetailOnMount() {
+export function* fetchNewsDetail() {
   const news = yield select(getNewsDetailId);
   if (news) {
-    yield takeLatest(
-      constants.NEWS_DETAIL_MOUNTED,
+    yield call(
       fetchResourceIfNeeded,
       api.fetchNewsDetail,
       shouldFetchDetail,
@@ -43,6 +42,13 @@ export function* fetchNewsDetailOnMount() {
       }
     );
   }
+}
+
+export function* fetchNewsDetailOnMount() {
+  yield takeLatest(
+    constants.NEWS_DETAIL_MOUNTED,
+    fetchNewsDetail
+  );
 }
 
 
