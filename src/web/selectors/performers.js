@@ -2,12 +2,14 @@ import { createSelector } from 'reselect';
 
 import { isStateValid } from './common';
 
+import { aggregatePerformerData } from '../transformers/performers';
+
 const getPerformersDetailState = state => state.performers.detail;
 const getPerformersListState = state => state.performers.list;
 
 export const getPerformers = createSelector(
   getPerformersListState,
-  performers => performers.data
+  performers => performers.data.map(aggregatePerformerData)
 );
 
 export const shouldFetchPerformers = createSelector(
@@ -22,7 +24,7 @@ export const getPerformerDetailId = createSelector(
 
 export const getPerformerDetail = createSelector(
   getPerformersDetailState,
-  performer => performer.data
+  performer => aggregatePerformerData(performer.data)
 );
 
 export const shouldFetchDetail = createSelector(

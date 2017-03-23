@@ -2,12 +2,12 @@ import Col from 'react-bootstrap/lib/Col';
 import Row from 'react-bootstrap/lib/Row';
 import React, { PropTypes } from 'react';
 
-const ObjectList = ({ Component, data, emptyMessage, extra, md }) => (
+const ObjectList = ({ colProps, Component, data, emptyMessage, extra, md }) => (
   data.length === 0 && emptyMessage ?
     (<div>{emptyMessage}</div>) : (
       <Row>
         {data.map(object => (
-          <Col key={object.id} md={md}>
+          <Col key={object.id} md={md} {...colProps}>
             <Component {...object} {...extra} />
           </Col>
         ))}
@@ -16,6 +16,7 @@ const ObjectList = ({ Component, data, emptyMessage, extra, md }) => (
 );
 
 ObjectList.propTypes = {
+  colProps: PropTypes.object,
   Component: PropTypes.func.isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   emptyMessage: PropTypes.string,
@@ -24,6 +25,7 @@ ObjectList.propTypes = {
 };
 
 ObjectList.defaultProps = {
+  colProps: {},
   emptyMessage: null,
   extra: {},
   md: 6,
