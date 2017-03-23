@@ -3,9 +3,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import Link from '../../../../src/web/components/link';
 import HumanTimeRange from '../../../../src/web/components/humanTimeRange';
-import PermaLink from '../../../../src/web/components/permaLink';
 import ScheduleEvent from '../../../../src/web/components/schedule/event';
 
 describe('ScheduleEvent component', () => {
@@ -23,12 +21,15 @@ describe('ScheduleEvent component', () => {
       <div className="event-container">
         <div className="event-boxWrapper" style={{ left: '0%', top: 2, width: '99%' }}>
           <div className="event-box" style={{ minHeight: 4 }}>
+            <div className="event-boxOverlay" style={{}} />
             <div className="event-boxShell">
-              <div>Morning foo</div>
-              <HumanTimeRange
-                start="2016-02-03T08:00:00"
-                end="2016-02-03T10:00:00"
-              />
+              <div>
+                <div>Morning foo</div>
+                <HumanTimeRange
+                  start="2016-02-03T08:00:00"
+                  end="2016-02-03T10:00:00"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -45,6 +46,7 @@ describe('ScheduleEvent component', () => {
           id: 213,
           name: 'Žáci po škole',
           slug: 'zaci-po-skole',
+          frontImage: 'http://example.com/front-image',
         }}
         minHour={7}
         rowHeight={2}
@@ -53,13 +55,22 @@ describe('ScheduleEvent component', () => {
     ).node).to.eql(
       <div className="event-container">
         <div className="event-boxWrapper" style={{ left: '0%', top: 2, width: '99%' }}>
-          <div className="event-box event-withPerformers" style={{ minHeight: 4 }}>
+          <div
+            className="event-box event-withPerformers event-withPerformerPhoto"
+            style={{ minHeight: 4 }}
+          >
+            <div
+              className="event-boxOverlay"
+              style={{ backgroundImage: 'url(http://example.com/front-image)' }}
+            />
             <div className="event-boxShell">
-              <div>Morning foo</div>
-              <HumanTimeRange
-                start="2016-02-03T08:00:00"
-                end="2016-02-03T10:00:00"
-              />
+              <div>
+                <div>Morning foo</div>
+                <HumanTimeRange
+                  start="2016-02-03T08:00:00"
+                  end="2016-02-03T10:00:00"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -89,12 +100,15 @@ describe('ScheduleEvent component', () => {
       <div className="event-container">
         <div className="event-boxWrapper" style={{ left: '0%', top: 2, width: '99%' }}>
           <div className="event-box event-withWorkshops" style={{ minHeight: 4 }}>
+            <div className="event-boxOverlay" style={{}} />
             <div className="event-boxShell">
-              <div>Morning foo</div>
-              <HumanTimeRange
-                start="2016-02-03T08:00:00"
-                end="2016-02-03T10:00:00"
-              />
+              <div>
+                <div>Morning foo</div>
+                <HumanTimeRange
+                  start="2016-02-03T08:00:00"
+                  end="2016-02-03T10:00:00"
+                />
+              </div>
             </div>
           </div>
         </div>

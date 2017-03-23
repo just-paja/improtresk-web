@@ -1,7 +1,10 @@
 import { createSelector } from 'reselect';
 
+import { getPerformers } from './performers';
 import { workshopsAll } from './workshops';
 import { isStateValid } from './common';
+
+import { aggregateEventData } from '../transformers/events';
 
 const getScheduleState = state => state.schedule;
 
@@ -20,17 +23,10 @@ export const isValid = createSelector(
   isStateValid
 );
 
-const mapWorkshops = workshops => event => ({
-  ...event,
-  workshops: event.workshops
-    .map(item => workshops.find(ws => ws.id === item) || null)
-    .filter(item => item),
-});
-
 export const getScheduleEvents = createSelector(
-  [getScheduleState, workshopsAll],
-  (state, workshops) =>
+  [getScheduleState, workshopsAll, getPerformers],
+  (state, workshops, performers) =>
     state.data
-      .map(mapWorkshops(workshops))
+      .map(aggregateEventData(workshops, performers))
       .sort(sortByDate)
 );
