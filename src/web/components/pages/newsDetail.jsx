@@ -67,7 +67,7 @@ export default class NewsDetail extends Component {
           ]}
         />
         <Row>
-          <Col md={8}>
+          <Col md={9}>
             <h1>{newsDetail.name}</h1>
             <Markdown source={newsDetail.text} />
             {newsDetail.poll ? (
@@ -84,7 +84,7 @@ export default class NewsDetail extends Component {
             ) : null}
             <Gallery photos={newsDetail.photos} />
           </Col>
-          <Col md={4}>
+          <Col md={3}>
             <h2>Ostatní novinky</h2>
             <News news={news} />
           </Col>

@@ -1,11 +1,13 @@
 import Col from 'react-bootstrap/lib/Col';
-import Image from 'react-bootstrap/lib/Image';
 import Markdown from 'react-markdown';
 import React, { Component, PropTypes } from 'react';
 import Row from 'react-bootstrap/lib/Row';
 
 import Button from '../button';
+import ImageHeader from '../imageHeader';
 import LinkServiceList from '../linkServiceList';
+
+import styles from './answer.css';
 
 export default class SurveyAnswer extends Component {
   constructor() {
@@ -33,15 +35,21 @@ export default class SurveyAnswer extends Component {
     return (
       <li className="list-group-item">
         <Row>
-          <Col xs={4} sm={2} md={3}>
-            {image ? <Image src={image} responsive /> : null}
+          <Col sm={3} className={styles.imageContainer}>
+            {image ? (
+              <ImageHeader
+                className={styles.image}
+                image={image}
+                cover
+              />
+            ) : null}
           </Col>
-          <Col xs={8} sm={7} md={6}>
+          <Col sm={6}>
             <h4 className="list-group-item-heading">{text}</h4>
             {links ? <LinkServiceList inline links={links} /> : null}
             <div>Pro: {votes}/{votesTotal}</div>
           </Col>
-          <Col xs={12} sm={3}>
+          <Col sm={3}>
             {closed ? null : (
               <Button
                 bsSize="small"

@@ -1,0 +1,9 @@
+:local .image {
+  max-height: 250px;
+}
+
+@media(max-width: 768px) {
+  :local .imageContainer {
+    margin-bottom: 2rem;
+  }
+}
