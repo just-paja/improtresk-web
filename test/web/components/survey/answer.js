@@ -1,5 +1,4 @@
 import Col from 'react-bootstrap/lib/Col';
-import Image from 'react-bootstrap/lib/Image';
 import Markdown from 'react-markdown';
 import React from 'react';
 import Row from 'react-bootstrap/lib/Row';
@@ -9,6 +8,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import Button from '../../../../src/web/components/button';
+import ImageHeader from '../../../../src/web/components/imageHeader';
 import LinkServiceList from '../../../../src/web/components/linkServiceList';
 import SurveyAnswer from '../../../../src/web/components/survey/answer';
 
@@ -34,13 +34,14 @@ describe('SurveyAnswer component', () => {
     ).node).to.eql(
       <li className="list-group-item">
         <Row>
-          <Col xs={4} sm={2} md={3}>
-            <Image
-              src="http://example.com/image.png"
-              responsive
+          <Col sm={3} className="answer-imageContainer">
+            <ImageHeader
+              className="answer-image"
+              cover
+              image="http://example.com/image.png"
             />
           </Col>
-          <Col xs={8} sm={7} md={6}>
+          <Col sm={6}>
             <h4 className="list-group-item-heading">
               Answer text
             </h4>
@@ -56,7 +57,7 @@ describe('SurveyAnswer component', () => {
             />
             <div>Pro: 13/53</div>
           </Col>
-          <Col xs={12} sm={3}>
+          <Col sm={3}>
             <Button
               bsSize="small"
               className="pull-right"
@@ -87,14 +88,14 @@ describe('SurveyAnswer component', () => {
     ).node).to.eql(
       <li className="list-group-item">
         <Row>
-          <Col xs={4} sm={2} md={3} />
-          <Col xs={8} sm={7} md={6}>
+          <Col sm={3} className="answer-imageContainer" />
+          <Col sm={6}>
             <h4 className="list-group-item-heading">Answer text</h4>
             <div>
               Pro: 13/53
             </div>
           </Col>
-          <Col xs={12} sm={3}>
+          <Col sm={3}>
             <Button
               bsSize="small"
               className="pull-right"
@@ -121,14 +122,14 @@ describe('SurveyAnswer component', () => {
     ).node).to.eql(
       <li className="list-group-item">
         <Row>
-          <Col xs={4} sm={2} md={3} />
-          <Col xs={8} sm={7} md={6}>
+          <Col sm={3} className="answer-imageContainer" />
+          <Col sm={6}>
             <h4 className="list-group-item-heading">Answer text</h4>
             <div>
               Pro: 13/53
             </div>
           </Col>
-          <Col xs={12} sm={3}>
+          <Col sm={3}>
             <Button
               bsSize="small"
               className="pull-right"
@@ -155,14 +156,14 @@ describe('SurveyAnswer component', () => {
     ).node).to.eql(
       <li className="list-group-item">
         <Row>
-          <Col xs={4} sm={2} md={3} />
-          <Col xs={8} sm={7} md={6}>
+          <Col sm={3} className="answer-imageContainer" />
+          <Col sm={6}>
             <h4 className="list-group-item-heading">Answer text</h4>
             <div>
               Pro: 13/53
             </div>
           </Col>
-          <Col xs={12} sm={3} />
+          <Col sm={3} />
         </Row>
       </li>
     );
