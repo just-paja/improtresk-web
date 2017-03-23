@@ -12,6 +12,8 @@ import SurveyQuestion from '../survey/question';
 
 import { idFromSlug } from '../../routeTable';
 
+const hasVoted = id => !!localStorage.getItem(`votedPoll${id}`);
+
 export default class NewsDetail extends Component {
   componentWillMount() {
     this.props.onMount(idFromSlug(this.props.routeParams.slug));
@@ -73,9 +75,10 @@ export default class NewsDetail extends Component {
                 answers={newsDetail.poll.answers}
                 closed={newsDetail.poll.closed}
                 id={newsDetail.poll.id}
+                loading={poll.loading}
                 onVote={onPollVote}
-                form={poll}
                 question={newsDetail.poll.question}
+                voted={poll.saved || hasVoted(newsDetail.poll.id)}
                 votes={newsDetail.poll.answerCount}
               />
             ) : null}
