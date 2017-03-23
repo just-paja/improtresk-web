@@ -1,9 +1,13 @@
 import { call, takeLatest } from 'redux-saga/effects';
 
 import { sendForm } from './forms';
+import { fetchNewsDetail } from './news';
 
 import * as api from '../api';
 import * as constants from '../constants/actions';
+
+export const selectVoteSuccess = action =>
+  action.type === constants.FORM_SUBMIT_SUCCESS && action.form === 'poll';
 
 export function* vote(action) {
   yield call(
@@ -13,12 +17,18 @@ export function* vote(action) {
     { answer: action.answer },
     { survey: action.survey }
   );
+  yield localStorage.setItem(`votedPoll${action.survey}`, true);
 }
 
 export function* bindVote() {
   yield takeLatest(constants.POLL_VOTE, vote);
 }
 
+export function* bindReloadNewsDetail() {
+  yield takeLatest(selectVoteSuccess, fetchNewsDetail);
+}
+
 export default [
   bindVote,
+  bindReloadNewsDetail,
 ];

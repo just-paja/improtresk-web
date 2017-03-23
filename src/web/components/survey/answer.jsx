@@ -53,6 +53,7 @@ export default class SurveyAnswer extends Component {
               bsSize="small"
               className="pull-right"
               disabled={disabled}
+              title={disabled ? 'Už jsi hlasoval' : null}
               icon="thumbs-up"
               onClick={this.handleVote}
             >Hlasovat</Button>
