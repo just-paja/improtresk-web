@@ -5,10 +5,10 @@ import React, { PropTypes } from 'react';
 
 import styles from './button.css';
 
-const Button = ({ children, disabled, icon, loading, ...other }) => (
+const Button = ({ children, className, disabled, icon, loading, ...other }) => (
   <BootstrapButton
     {...other}
-    className={styles.buttonSize}
+    className={classnames(className, styles.buttonSize)}
     disabled={loading || disabled}
   >
     <FontAwesome
@@ -20,6 +20,7 @@ const Button = ({ children, disabled, icon, loading, ...other }) => (
 );
 
 Button.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
@@ -31,6 +32,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  className: null,
   children: null,
   disabled: false,
   icon: 'floppy-o',

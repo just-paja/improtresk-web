@@ -8,6 +8,7 @@ import Container from '../container';
 import Gallery from '../gallery';
 import News from '../news';
 import NotFound from '../notFound';
+import SurveyQuestion from '../survey/question';
 
 import { idFromSlug } from '../../routeTable';
 
@@ -23,7 +24,7 @@ export default class NewsDetail extends Component {
   }
 
   render() {
-    const { news, newsDetail, ready } = this.props;
+    const { poll, onPollVote, news, newsDetail, ready } = this.props;
 
     if (!ready) {
       return null;
@@ -67,6 +68,16 @@ export default class NewsDetail extends Component {
           <Col md={8}>
             <h1>{newsDetail.name}</h1>
             <Markdown source={newsDetail.text} />
+            {newsDetail.poll ? (
+              <SurveyQuestion
+                answers={newsDetail.poll.answers}
+                closed={newsDetail.poll.closed}
+                id={newsDetail.poll.id}
+                onVote={onPollVote}
+                form={poll}
+                question={newsDetail.poll.question}
+              />
+            ) : null}
             <Gallery photos={newsDetail.photos} />
           </Col>
           <Col md={4}>
@@ -83,6 +94,8 @@ NewsDetail.propTypes = {
   news: PropTypes.arrayOf(PropTypes.object).isRequired,
   newsDetail: PropTypes.object,
   onMount: PropTypes.func.isRequired,
+  onPollVote: PropTypes.func.isRequired,
+  poll: PropTypes.object.isRequired,
   ready: PropTypes.bool,
   routeParams: PropTypes.object.isRequired,
 };

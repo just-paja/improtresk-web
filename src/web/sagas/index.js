@@ -15,6 +15,7 @@ import news from './news';
 import orders from './orders';
 import participant from './participant';
 import performers from './performers';
+import polls from './polls';
 import schedule from './schedule';
 import signup from './signup';
 import teams from './teams';
@@ -38,6 +39,7 @@ const sagas = [
   ...orders,
   ...participant,
   ...performers,
+  ...polls,
   ...schedule,
   ...signup,
   ...teams,

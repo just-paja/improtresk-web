@@ -102,6 +102,17 @@ export default combined(defaultState, {
       },
     }
   )),
+  [constants.FORM_SUBMIT_STARTED]: workWithForm((state, action) => Object.assign(
+    {},
+    state,
+    {
+      [action.form]: {
+        ...state[action.form],
+        loading: true,
+        saved: false,
+      },
+    }
+  )),
   [constants.FORM_SUBMIT_SUCCESS]: workWithForm((state, action) => Object.assign(
     {},
     state,
