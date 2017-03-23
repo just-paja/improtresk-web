@@ -76,6 +76,7 @@ export default class NewsDetail extends Component {
                 onVote={onPollVote}
                 form={poll}
                 question={newsDetail.poll.question}
+                votes={newsDetail.poll.answerCount}
               />
             ) : null}
             <Gallery photos={newsDetail.photos} />
