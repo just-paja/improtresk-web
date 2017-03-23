@@ -8,14 +8,8 @@ import styles from './day.css';
 const isInDateRange = (dateStr, start, end) => {
   const date = moment(dateStr);
   return (
-    (
-      date.isAfter(start) ||
-      date.isSame(start)
-    ) &&
-    (
-      date.isBefore(end) ||
-      date.isSame(end)
-    )
+    date.isAfter(start) &&
+    date.isBefore(end)
   );
 };
 
