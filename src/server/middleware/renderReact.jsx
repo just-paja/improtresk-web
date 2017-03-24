@@ -100,6 +100,7 @@ export const renderMarkupAndWait = (req, store, componentTree) => {
   store.subscribe(() => {
     if (!resolved) {
       const ready = isAppReady(store.getState());
+      winston.log('silly', 'READY STATE UPDATE', ready);
       if (ready) {
         resolved = true;
         renderToString(componentTree);
@@ -109,14 +110,18 @@ export const renderMarkupAndWait = (req, store, componentTree) => {
     }
   });
 
+  winston.log('debug', `INITIAL RENDER: ${req.url}`);
   renderToString(componentTree);
   return Promise.all([
     waitForConfig,
     rootTask.done,
-  ]).then(() => ({
-    markup: renderToString(componentTree),
-    state: store.getState(),
-  }));
+  ]).then(() => {
+    winston.log('debug', `REACT RENDER STRING: ${req.url}`);
+    return ({
+      markup: renderToString(componentTree),
+      state: store.getState(),
+    });
+  });
 };
 
 export const renderInHtml = markupAndState => renderToStaticMarkup(pageBase({
@@ -126,6 +131,7 @@ export const renderInHtml = markupAndState => renderToStaticMarkup(pageBase({
 }));
 
 export const respondWithHtml = (req, res, markupAndState) => {
+  winston.log('silly', 'REACT RENDER STATIC', req.url);
   try {
     return res.send(renderInHtml(markupAndState));
   } catch (e) {

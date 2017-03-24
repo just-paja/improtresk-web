@@ -20,6 +20,7 @@ export const renderAndRespond = (req, res, ErrorComponent) => {
   const store = getStore(req);
   const componentTree = <ErrorComponent />;
 
+  winston.log('silly', 'RENDER ERROR', req.url);
   return renderMarkupAndWait(req, store, componentTree)
     .then(markupAndState => respondWithHtml(req, res, markupAndState));
 };
@@ -29,6 +30,8 @@ export default (err, req, res, next) => {
   if (res.statusCode === 200) {
     res.status(404);
   }
+
+  winston.log('error', err);
 
   try {
     return renderAndRespond(req, res, getTemplate(res.statusCode));
