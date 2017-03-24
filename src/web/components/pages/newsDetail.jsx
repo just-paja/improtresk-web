@@ -12,7 +12,8 @@ import SurveyQuestion from '../survey/question';
 
 import { idFromSlug } from '../../routeTable';
 
-const hasVoted = id => !!localStorage.getItem(`votedPoll${id}`);
+const hasVoted = id =>
+  global.localStorage && !!global.localStorage.getItem(`votedPoll${id}`);
 
 export default class NewsDetail extends Component {
   componentWillMount() {
