@@ -20,7 +20,7 @@ export default function server(userConfig = {}) {
     app.set('trust proxy', 'loopback');
   }
 
-  app.use('/static', staticMiddleware);
+  app.use('/static', staticMiddleware());
 
   if (process.env.NODE_ENV === 'production') {
     app.use('/assets', express.static('dist/frontend'));
