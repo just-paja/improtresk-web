@@ -17,11 +17,18 @@ export function* vote(action) {
     { answer: action.answer },
     { survey: action.survey }
   );
+}
+
+export function* voteStore(action) {
   yield localStorage.setItem(`votedPoll${action.survey}`, true);
 }
 
 export function* bindVote() {
   yield takeLatest(constants.POLL_VOTE, vote);
+}
+
+export function* bindVoteStore() {
+  yield takeLatest(selectVoteSuccess, voteStore);
 }
 
 export function* bindReloadNewsDetail() {
@@ -30,5 +37,6 @@ export function* bindReloadNewsDetail() {
 
 export default [
   bindVote,
+  bindVoteStore,
   bindReloadNewsDetail,
 ];
