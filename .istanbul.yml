@@ -9,6 +9,7 @@ instrumentation:
     'web/main.js',
     'web/store.js',
     'web/sagas/index.js',
+    'web/forms/index.js',
   ]
 
   extensions:
