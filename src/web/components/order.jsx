@@ -44,6 +44,7 @@ export default class Order extends Component {
       errors,
       meals,
       price,
+      submitted,
       values,
       workshops,
     } = this.props;
@@ -61,6 +62,7 @@ export default class Order extends Component {
             name="workshop"
             onChange={this.handleChange}
             error={errors.workshop}
+            touched={submitted}
             value={values.workshop}
             workshops={workshops}
           />
@@ -135,11 +137,13 @@ Order.propTypes = {
   onUnmount: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  submitted: PropTypes.bool,
   values: PropTypes.object.isRequired,
   workshops: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 Order.defaultProps = {
-  price: null,
   disabled: false,
+  price: null,
+  submitted: false,
 };

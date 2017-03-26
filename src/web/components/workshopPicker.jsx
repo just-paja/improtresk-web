@@ -8,15 +8,19 @@ import WorkshopPickerItem from './workshopPickerItem';
 export default class WorkshopPicker extends Component {
   constructor() {
     super();
+    this.state = {
+      touched: false,
+    };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(value) {
+    this.state.touched = true;
     this.props.onChange(this.props.name, value);
   }
 
   render() {
-    const { disabled, error, workshops, value } = this.props;
+    const { disabled, error, touched, workshops, value } = this.props;
     return (
       <Row>
         {workshops
@@ -41,7 +45,7 @@ export default class WorkshopPicker extends Component {
             </Col>
           ))
         }
-        {error ? (
+        {(touched || this.state.touched) && error ? (
           <Col xs={12}>
             <Alert bsStyle="danger">{error}</Alert>
           </Col>
@@ -56,6 +60,7 @@ WorkshopPicker.propTypes = {
   error: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  touched: PropTypes.bool,
   value: PropTypes.number,
   workshops: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
@@ -63,5 +68,6 @@ WorkshopPicker.propTypes = {
 WorkshopPicker.defaultProps = {
   disabled: false,
   error: null,
+  touched: false,
   value: null,
 };
