@@ -100,7 +100,7 @@ export default class NewsDetail extends Component {
               <Gallery photos={newsDetail.photos} />
               <footer>
                 Zveřejněno{' '}
-                <time pubdate dateTime={newsDetail.updatedAt}>
+                <time dateTime={newsDetail.updatedAt}>
                   <HumanDate date={newsDetail.updatedAt} showYear />
                 </time>
               </footer>
