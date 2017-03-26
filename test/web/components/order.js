@@ -35,6 +35,7 @@ describe('Order form component', () => {
         ]}
         onChange={() => {}}
         onSubmit={() => {}}
+        submitted={false}
         values={{
           accomodationInfo: true,
           workshop: 42,
@@ -57,6 +58,7 @@ describe('Order form component', () => {
             disabled={false}
             name="workshop"
             onChange={() => {}}
+            touched={false}
             value={42}
             workshops={[
               { id: 42, name: 'Longformy' },
