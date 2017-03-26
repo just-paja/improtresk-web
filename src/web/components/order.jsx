@@ -6,12 +6,12 @@ import React, { Component, PropTypes } from 'react';
 import Row from 'react-bootstrap/lib/Row';
 import Well from 'react-bootstrap/lib/Well';
 
-import AccomodationPicker from './accomodationPicker';
+import AccomodationPicker from './inputs/accomodationPicker';
 import Button from './button';
 import Link from './link';
-import MealPicker from './mealPicker';
+import MealPicker from './inputs/mealPicker';
 import Price from './price';
-import WorkshopPicker from './workshopPicker';
+import WorkshopPicker from './inputs/workshopPicker';
 
 export default class Order extends Component {
   constructor() {

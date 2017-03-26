@@ -4,8 +4,8 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import Input from '../../../src/web/components/input';
-import InputDate, { formatValue } from '../../../src/web/components/inputDate';
+import Input from '../../../../src/web/components/inputs/input';
+import InputDate, { formatValue } from '../../../../src/web/components/inputs/inputDate';
 
 describe('Input Date component', () => {
   it('transforms date into proper format', () => {

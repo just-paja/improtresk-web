@@ -5,9 +5,9 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import ProgressBar from '../../../src/web/components/progressBar';
-import WorkshopPickerItem from '../../../src/web/components/workshopPickerItem';
-import WorkshopSummaryOneLine from '../../../src/web/components/workshopSummaryOneLine';
+import ProgressBar from '../../../../src/web/components/progressBar';
+import WorkshopPickerItem from '../../../../src/web/components/inputs/workshopPickerItem';
+import WorkshopSummaryOneLine from '../../../../src/web/components/workshopSummaryOneLine';
 
 describe('WorkshopPickerItem component', () => {
   it('renders', () => {

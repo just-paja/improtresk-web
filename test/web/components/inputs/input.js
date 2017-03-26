@@ -8,7 +8,7 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import Input from '../../../src/web/components/input';
+import Input from '../../../../src/web/components/inputs/input';
 
 describe('Input component', () => {
   it('renders as text input', () => {
