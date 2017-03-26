@@ -169,6 +169,7 @@ describe('Years selectors', () => {
     afterEach(() => {
       moment.now.restore();
     });
+
     it('returns current year number when available', () => {
       expect(yearActiveNumber({
         years: {
