@@ -2,7 +2,7 @@ import FormGroup from 'react-bootstrap/lib/FormGroup';
 import React, { Component, PropTypes } from 'react';
 
 import InputRadio from './inputRadio';
-import Price from './price';
+import Price from '../price';
 
 export default class AccomodationPickerItem extends Component {
   constructor() {

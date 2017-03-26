@@ -2,8 +2,8 @@ import classnames from 'classnames';
 import FontAwesome from 'react-fontawesome';
 import React, { Component, PropTypes } from 'react';
 
-import ProgressBar from './progressBar';
-import WorkshopSummaryOneLine from './workshopSummaryOneLine';
+import ProgressBar from '../progressBar';
+import WorkshopSummaryOneLine from '../workshopSummaryOneLine';
 
 import styles from './workshopPickerItem.css';
 

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
-import Meal from './meal';
-import Price from './price';
+import Meal from '../meal';
+import Price from '../price';
 import InputCheckbox from './inputCheckbox';
 
 export default class MealPickerItem extends Component {

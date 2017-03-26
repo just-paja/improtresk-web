@@ -6,8 +6,8 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import WorkshopPicker from '../../../src/web/components/workshopPicker';
-import WorkshopPickerItem from '../../../src/web/components/workshopPickerItem';
+import WorkshopPicker from '../../../../src/web/components/inputs/workshopPicker';
+import WorkshopPickerItem from '../../../../src/web/components/inputs/workshopPickerItem';
 
 describe('WorkshopPicker component', () => {
   it('renders', () => {
