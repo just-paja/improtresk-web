@@ -4,6 +4,7 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 
 import {
+  shouldFetchYears,
   yearActive,
   yearActiveNumber,
   yearCurrent,
@@ -12,7 +13,7 @@ import {
   yearsAll,
 } from '../../../src/web/selectors/years';
 
-describe('News selectors', () => {
+describe('Years selectors', () => {
   it('yearsAll returns all news stored', () => {
     expect(yearsAll({
       years: {
@@ -48,6 +49,20 @@ describe('News selectors', () => {
         ],
       },
     })).to.equal(null);
+  });
+  it('shouldFetchYears returns true when years are valid', () => {
+    expect(shouldFetchYears({
+      years: {
+        valid: true,
+      },
+    })).to.equal(true);
+  });
+  it('shouldFetchYears returns false when years are not valid', () => {
+    expect(shouldFetchYears({
+      years: {
+        valid: false,
+      },
+    })).to.equal(false);
   });
   describe('yearNext', () => {
     beforeEach(() => {

@@ -42,7 +42,7 @@ describe('Archive selectors', () => {
       },
     })).to.equal(null);
   });
-  it('getArchivedYearWorkshops returns year number when present', () => {
+  it('getArchivedYearWorkshops returns archived year workshops when present', () => {
     expect(getArchivedYearWorkshops({
       archive: {
         data: {
@@ -54,6 +54,7 @@ describe('Archive selectors', () => {
           ],
         },
       },
+      capacity: {},
       lectors: {
         list: {
           data: [],
@@ -72,6 +73,7 @@ describe('Archive selectors', () => {
       },
     })).to.eql([
       {
+        capacityStatus: {},
         difficulty: null,
         lectors: [],
         prices: [],
@@ -83,6 +85,7 @@ describe('Archive selectors', () => {
     expect(getArchivedYearWorkshops({
       archive: {
       },
+      capacity: {},
       lectors: {
         list: {
           data: [],
