@@ -120,10 +120,8 @@ describe('Signup selectors', () => {
           {
             id: 1,
             current: true,
-            startDate: '2016-01-01',
           },
         ],
-        forceOpen: false,
       },
     })).to.equal(false);
   });
@@ -142,6 +140,23 @@ describe('Signup selectors', () => {
         forceOpen: false,
       },
     })).to.equal(false);
+  });
+  it('areSignupsOpen returns true when forced', () => {
+    expect(areSignupsOpen({
+      session: {
+        forceOpenSignups: true,
+      },
+      years: {
+        data: [
+          {
+            id: 1,
+            current: true,
+            startDate: '2016-02-01',
+            startSignupsAt: '2016-01-01T03:04:05',
+          },
+        ],
+      },
+    })).to.equal(true);
   });
   it('areSignupsOpen returns true when year signup start date is before and end date after current time', () => {
     expect(areSignupsOpen({
