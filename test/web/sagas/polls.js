@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { call, takeLatest } from 'redux-saga/effects';
 
 import { sendForm } from '../../../src/web/sagas/forms';
-import { fetchNewsDetail } from '../../../src/web/sagas/news';
+import { invalidate } from '../../../src/web/sagas/news';
 
 import {
   bindReloadNewsDetail,
@@ -48,7 +48,7 @@ describe('Polls sagas', () => {
     const saga = bindReloadNewsDetail();
     expect(saga.next().value).to.eql(takeLatest(
       selectVoteSuccess,
-      fetchNewsDetail
+      invalidate
     ));
     expect(saga.next().done).to.equal(true);
   });

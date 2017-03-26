@@ -1,7 +1,7 @@
 import { call, takeLatest } from 'redux-saga/effects';
 
 import { sendForm } from './forms';
-import { fetchNewsDetail } from './news';
+import { invalidate } from './news';
 
 import * as api from '../api';
 import * as constants from '../constants/actions';
@@ -32,7 +32,7 @@ export function* bindVoteStore() {
 }
 
 export function* bindReloadNewsDetail() {
-  yield takeLatest(selectVoteSuccess, fetchNewsDetail);
+  yield takeLatest(selectVoteSuccess, invalidate);
 }
 
 export default [
