@@ -7,6 +7,7 @@ import * as transformers from '../../../src/web/transformers/news';
 import {
   newsAll,
   getNewsDetail,
+  getNewsDetailId,
   shouldFetchDetail,
 } from '../../../src/web/selectors/news';
 
@@ -19,6 +20,15 @@ describe('News selectors', () => {
     transformers.aggregateNewsData.restore();
   });
 
+  it('getNewsDetail returns selected news detail id', () => {
+    expect(getNewsDetailId({
+      news: {
+        detail: {
+          id: 1,
+        },
+      },
+    })).to.equal(1);
+  });
   it('getNewsDetail returns all news stored', () => {
     transformers.aggregateNewsData.returns({ id: 1 });
     expect(getNewsDetail({
