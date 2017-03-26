@@ -3,6 +3,8 @@ import { expect } from 'chai';
 import {
   getHost,
   getApiSource,
+  getApiAuth,
+  getAutoLoginStatus,
   getParticipant,
   isLoggedIn,
 } from '../../../src/web/selectors/session';
@@ -22,6 +24,24 @@ describe('Session selectors', () => {
         apiSource: 'https://api.improtresk.cz',
       },
     })).to.equal('https://api.improtresk.cz');
+  });
+  it('getApiAuth returns app API source', () => {
+    expect(getApiAuth({
+      session: {
+        data: {
+          token: 'foo',
+        },
+      },
+    })).to.eql({
+      token: 'foo',
+    });
+  });
+  it('getAutoLoginStatus returns app API source', () => {
+    expect(getAutoLoginStatus({
+      session: {
+        autoLoginAttempted: true,
+      },
+    })).to.equal(true);
   });
   it('getParticipant returns participant object', () => {
     expect(getParticipant({

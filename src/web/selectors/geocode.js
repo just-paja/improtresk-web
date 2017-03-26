@@ -9,7 +9,9 @@ export const getAllAddresses = createSelector(
 
 export const isReady = createSelector(
   [getGeocodeState],
-  geocode => Object.keys(geocode).every(location => !!geocode[location].ready)
+  geocode => Object
+    .keys(geocode)
+    .every(location => !!(geocode[location] && geocode[location].ready))
 );
 
 export default { getAllAddresses };
