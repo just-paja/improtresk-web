@@ -14,11 +14,9 @@ const Capacity = ({
     return <span>{reserved} dočasných rezervací</span>;
   }
 
-  if (!reserved) {
-    return <span>{freeSpots} volných míst</span>;
-  }
-
-  return <span>{freeSpots} volných míst, {reserved} dočasných rezervací</span>;
+  return (
+    <span>{freeSpots} volných míst, {reserved} dočasných rezervací</span>
+  );
 };
 
 Capacity.propTypes = {

@@ -6,35 +6,35 @@ import { shallow } from 'enzyme';
 import Capacity from '../../../src/web/components/capacity';
 
 describe('Capacity component', () => {
-  it('renders 15 of 20', () => {
+  it('free spots by default', () => {
     expect(shallow(
-      <Capacity available={15} capacity={20} />
+      <Capacity freeSpots={15} />
     ).node).to.eql(
-      <span>15 z 20</span>
+      <span>15 volných míst</span>
     );
   });
 
-  it('renders 20', () => {
+  it('free and reserved spots', () => {
     expect(shallow(
-      <Capacity available={null} capacity={20} />
+      <Capacity freeSpots={15} reserved={5} />
     ).node).to.eql(
-      <span>20</span>
+      <span>15 volných míst, 5 dočasných rezervací</span>
     );
   });
 
-  it('renders default blocked message', () => {
+  it('fully reserved with reserved spots', () => {
     expect(shallow(
-      <Capacity available={0} capacity={20} />
+      <Capacity fullyReserved reserved={5} />
     ).node).to.eql(
-      <span>obsazeno</span>
+      <span>5 dočasných rezervací</span>
     );
   });
 
   it('renders custom blocked message', () => {
     expect(shallow(
-      <Capacity available={0} blockedMessage="foo" capacity={20} />
+      <Capacity fullyAssigned />
     ).node).to.eql(
-      <span>foo</span>
+      <span>Plně obsazeno</span>
     );
   });
 });
