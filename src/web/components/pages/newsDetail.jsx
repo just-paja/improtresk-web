@@ -6,6 +6,7 @@ import React, { Component, PropTypes } from 'react';
 
 import Container from '../container';
 import Gallery from '../gallery';
+import HumanDate from '../humanDate';
 import News from '../news';
 import NotFound from '../notFound';
 import SurveyQuestion from '../survey/question';
@@ -43,12 +44,24 @@ export default class NewsDetail extends Component {
           name={newsDetail.name}
           meta={[
             {
+              property: 'og:type',
+              content: 'article',
+            },
+            {
               property: 'og:name',
               content: newsDetail.name,
             },
             {
               property: 'og:description',
               content: `${newsDetail.text.substr(0, 127)}...`,
+            },
+            {
+              property: 'og:published_time',
+              content: news.createdAt,
+            },
+            {
+              property: 'og:modified_time',
+              content: news.updatedAt,
             },
             ...newsDetail.photos.reduce((data, photo) => ([
               ...data,
@@ -69,21 +82,29 @@ export default class NewsDetail extends Component {
         />
         <Row>
           <Col md={9}>
-            <h1>{newsDetail.name}</h1>
-            <Markdown source={newsDetail.text} />
-            {newsDetail.poll ? (
-              <SurveyQuestion
-                answers={newsDetail.poll.answers}
-                closed={newsDetail.poll.closed}
-                id={newsDetail.poll.id}
-                loading={poll.loading}
-                onVote={onPollVote}
-                question={newsDetail.poll.question}
-                voted={poll.saved || hasVoted(newsDetail.poll.id)}
-                votes={newsDetail.poll.answerCount}
-              />
-            ) : null}
-            <Gallery photos={newsDetail.photos} />
+            <article>
+              <header><h1>{newsDetail.name}</h1></header>
+              <Markdown source={newsDetail.text} />
+              {newsDetail.poll ? (
+                <SurveyQuestion
+                  answers={newsDetail.poll.answers}
+                  closed={newsDetail.poll.closed}
+                  id={newsDetail.poll.id}
+                  loading={poll.loading}
+                  onVote={onPollVote}
+                  question={newsDetail.poll.question}
+                  voted={poll.saved || hasVoted(newsDetail.poll.id)}
+                  votes={newsDetail.poll.answerCount}
+                />
+              ) : null}
+              <Gallery photos={newsDetail.photos} />
+              <footer>
+                Zveřejněno{' '}
+                <time pubdate dateTime={newsDetail.updatedAt}>
+                  <HumanDate date={newsDetail.updatedAt} showYear />
+                </time>
+              </footer>
+            </article>
           </Col>
           <Col md={3}>
             <h2>Ostatní novinky</h2>
