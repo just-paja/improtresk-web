@@ -3,6 +3,7 @@ instrumentation:
   include-all-sources: true
   excludes: [
     'server/main.js',
+    'server/config.js',
     'server/mainCss.js',
     'server/mainServer.js',
     'server/middleware/dev.js',
