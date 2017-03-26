@@ -5,7 +5,7 @@ import { fetchResourceIfNeeded } from '../../../src/web/sagas/common';
 import {
   fetchNewsOnMount,
   fetchNewsDetail,
-  fetchNewsDetailOnMount,
+  bindfetchNewsDetail,
 } from '../../../src/web/sagas/news';
 import {
   getNewsDetailId,
@@ -55,10 +55,13 @@ describe('News sagas', () => {
     expect(saga.next().value).to.eql(select(getNewsDetailId));
     expect(saga.next(null).done).to.equal(true);
   });
-  it('fetchNewsDetailOnMount creates binds fetch actions', () => {
-    const saga = fetchNewsDetailOnMount();
+  it('bindfetchNewsDetail creates binds fetch actions', () => {
+    const saga = bindfetchNewsDetail();
     expect(saga.next().value).to.eql(takeLatest(
-      'NEWS_DETAIL_MOUNTED',
+      [
+        'NEWS_DETAIL_MOUNTED',
+        'NEWS_DETAIL_INVALIDATE',
+      ],
       fetchNewsDetail
     ));
     expect(saga.next().done).to.equal(true);
