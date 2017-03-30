@@ -6,7 +6,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import Button from '../../../../src/web/components/button';
-import Input from '../../../../src/web/components/input';
+import Input from '../../../../src/web/components/inputs/input';
 import ChangePassword from '../../../../src/web/components/participant/changePassword';
 
 
