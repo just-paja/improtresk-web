@@ -21,6 +21,7 @@ describe('Capacity sagas', () => {
     const saga = bindPollCapacityStart();
     expect(saga.next().value).to.eql(takeLatest(
       [
+        'ACCOMODATION_MOUNTED',
         'ORDER_FORM_MOUNTED',
         'WORKSHOPS_MOUNTED',
       ],
@@ -32,6 +33,7 @@ describe('Capacity sagas', () => {
     const saga = bindPollCapacityStop();
     expect(saga.next().value).to.eql(takeLatest(
       [
+        'ACCOMODATION_UNMOUNTED',
         'ORDER_FORM_UNMOUNTED',
         'WORKSHOPS_UNMOUNTED',
       ],

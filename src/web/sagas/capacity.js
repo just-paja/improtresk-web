@@ -51,6 +51,7 @@ export function* bindPollCapacity() {
 export function* bindPollCapacityStart() {
   yield takeLatest(
     [
+      constants.ACCOMODATION_MOUNTED,
       constants.ORDER_FORM_MOUNTED,
       constants.WORKSHOPS_MOUNTED,
     ],
@@ -61,6 +62,7 @@ export function* bindPollCapacityStart() {
 export function* bindPollCapacityStop() {
   yield takeLatest(
     [
+      constants.ACCOMODATION_UNMOUNTED,
       constants.ORDER_FORM_UNMOUNTED,
       constants.WORKSHOPS_UNMOUNTED,
     ],

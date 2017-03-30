@@ -17,7 +17,12 @@ describe('Address component', () => {
       <Accomodation
         address="Nádražní 846, 399 01 Milevsko"
         available={15}
-        capacity={20}
+        capacityStatus={{
+          assigned: 10,
+          capacity: 20,
+          freeSpots: 5,
+          reserved: 5,
+        }}
         name="Dům Kultury Milevsko"
         photos={[]}
         price={200}
@@ -34,7 +39,12 @@ describe('Address component', () => {
             <Price freeMessage="V ceně přihlášky" price={200} />
           </Prop>
           <Prop label="Volná místa" icon="bed">
-            <Capacity available={15} capacity={20} />
+            <Capacity
+              assigned={10}
+              capacity={20}
+              freeSpots={5}
+              reserved={5}
+            />
           </Prop>
         </ul>
 

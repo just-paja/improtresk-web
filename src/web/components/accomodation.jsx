@@ -7,7 +7,19 @@ import Gallery from './gallery';
 import Price from './price';
 import Prop from './prop';
 
-const Accomodation = ({ address, available, capacity, name, price, desc, photos }) => (
+const Accomodation = ({
+  address,
+  capacityStatus: {
+    assigned,
+    capacity,
+    freeSpots,
+    reserved,
+  },
+  name,
+  price,
+  desc,
+  photos,
+}) => (
   <div>
     <h2>{name}</h2>
     <ul className="list-unstyled">
@@ -20,7 +32,12 @@ const Accomodation = ({ address, available, capacity, name, price, desc, photos 
         <Price freeMessage="V ceně přihlášky" price={price} />
       </Prop>
       <Prop label="Volná místa" icon="bed">
-        <Capacity available={available} capacity={capacity} />
+        <Capacity
+          assigned={assigned}
+          capacity={capacity}
+          freeSpots={freeSpots}
+          reserved={reserved}
+        />
       </Prop>
     </ul>
 
@@ -31,8 +48,12 @@ const Accomodation = ({ address, available, capacity, name, price, desc, photos 
 
 Accomodation.propTypes = {
   address: PropTypes.string,
-  available: PropTypes.number,
-  capacity: PropTypes.number.isRequired,
+  capacityStatus: PropTypes.shape({
+    assigned: PropTypes.number,
+    capacity: PropTypes.number,
+    freeSpots: PropTypes.number,
+    reserved: PropTypes.number,
+  }).isRequired,
   name: PropTypes.string.isRequired,
   photos: PropTypes.arrayOf(PropTypes.object).isRequired,
   price: PropTypes.number,

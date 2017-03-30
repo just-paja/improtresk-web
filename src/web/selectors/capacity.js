@@ -12,6 +12,11 @@ export const getCapacity = createSelector(
   capacity => capacity.data
 );
 
+export const getAccomodationCapacity = createSelector(
+  getCapacityState,
+  capacity => (capacity.data && capacity.data.accomodation ? capacity.data.accomodation : [])
+);
+
 export const getWorkshopCapacity = createSelector(
   getCapacityState,
   capacity => (capacity.data && capacity.data.workshops ? capacity.data.workshops : [])
