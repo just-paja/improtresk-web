@@ -16,7 +16,7 @@ const ForgottenPassword = ({
         <h1>Zapomenuté heslo</h1>
         <p>
           Vyplň svůj e-mail pod kterým se normálně přihlašuješ, zašleme ti na něj
-          e-mail s dalšími kroky ke změně hesla.
+          zprávu s dalšími kroky vedoucími ke změně hesla.
         </p>
         <ResetPassword
           errors={resetPassword.errors}
