@@ -1,7 +1,8 @@
-import Button from 'react-bootstrap/lib/Button';
 import React, { PropTypes } from 'react';
 import Well from 'react-bootstrap/lib/Well';
 
+import Button from './button';
+import Link from './link';
 import OrderHeader from './order/header';
 import OrderPaymentStatus from './orderPaymentStatus';
 import PaymentDetails from './order/paymentDetails';
@@ -38,6 +39,11 @@ const OrderStatus = ({
       workshop={workshop}
       year={year}
     />
+    { confirmed ? (
+      <Link to="participant:changeWorkshop">
+        <Button icon="magic">Změnit workshop</Button>
+      </Link>
+    ) : null }
     { !paid ? (
       <div>
         <h3>Částka k zaplacení</h3>
@@ -65,6 +71,7 @@ const OrderStatus = ({
     {!paid ? (
       <Button
         bsSize={confirmed ? 'small' : null}
+        icon="ban"
         onClick={onCancel}
       >Zrušit objednávku</Button>
     ) : null}

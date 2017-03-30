@@ -2,6 +2,7 @@ import classnames from 'classnames';
 import React, { PropTypes } from 'react';
 
 import Prop from './prop';
+import Capacity from './capacity';
 
 import styles from './workshopSummaryOneLine.css';
 
@@ -22,11 +23,14 @@ const WorkshopSummaryOneLine = ({
           .map(lectorPosition => lectorPosition.lector.name)
           .join(', ')}
       </Prop>
-      {hideCapacity ? null : [
-        <Prop label="Volná místa">{freeSpots}/{capacity}</Prop>,
-        <Prop label="Potvrzená místa">{assigned}</Prop>,
-        <Prop label="Dočasně rezervovaná místa">{reserved}</Prop>,
-      ]}
+      {hideCapacity ? null : (
+        <Capacity
+          assigned={assigned}
+          capacity={capacity}
+          freeSpots={freeSpots}
+          reserved={reserved}
+        />
+      )}
     </ul>
   </div>
 );

@@ -7,6 +7,7 @@ export const urlTable = {
   'participant:confirm': '/ucastnik/potvrzeni',
   'participant:forgottenPassword': '/zapomenute-heslo',
   'participant:changePassword': '/ucastnik/zmena-hesla',
+  'participant:changeWorkshop': '/ucastnik/zmena-workshopu',
   'participant:newPassword': '/nove-heslo',
   'performers:item': '/ucinkujici/:slug',
   'workshops:item': '/workshopy/:slug',

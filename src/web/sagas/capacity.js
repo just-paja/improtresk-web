@@ -21,7 +21,7 @@ export function* pollCapacity() {
         year,
       }
     );
-    yield call(delay, 10000);
+    yield call(delay, 8000);
     const polling = yield select(isPolling);
     if (polling) {
       yield put({ type: constants.YEAR_CAPACITY_POLL_CYCLE_FINISHED });
@@ -54,6 +54,7 @@ export function* bindPollCapacityStart() {
       constants.ACCOMODATION_MOUNTED,
       constants.ORDER_FORM_MOUNTED,
       constants.WORKSHOPS_MOUNTED,
+      constants.PARTICIPANT_WORKSHOP_CHANGE_MOUNTED,
     ],
     pollCapacityStart
   );
@@ -65,6 +66,7 @@ export function* bindPollCapacityStop() {
       constants.ACCOMODATION_UNMOUNTED,
       constants.ORDER_FORM_UNMOUNTED,
       constants.WORKSHOPS_UNMOUNTED,
+      constants.PARTICIPANT_WORKSHOP_CHANGE_UNMOUNTED,
     ],
     pollCapacityStop
   );
