@@ -69,42 +69,42 @@ export const fetchWorkshopDifficulties = ({ ...params }) =>
 export const fetchWorkshops = ({ year, ...params }) =>
   apiFetch(`years/${year}/workshops/`, params);
 
-export const pollVote = ({ survey, data, ...params }) =>
+export const pollVote = ({ survey, formData, ...params }) =>
   apiFetch(`polls/${survey}/vote/`, {
     ...params,
     method: 'POST',
-    body: JSON.stringify(data),
+    body: JSON.stringify(formData),
   });
 
-export const signup = ({ data, ...params }) => apiFetch('register/', {
+export const signup = ({ formData, ...params }) => apiFetch('register/', {
   ...params,
   method: 'POST',
-  body: JSON.stringify(data),
+  body: JSON.stringify(formData),
 });
 
-export const resetPassword = ({ data, ...params }) => apiFetch('password-reset/', {
+export const resetPassword = ({ formData, ...params }) => apiFetch('password-reset/', {
   ...params,
   method: 'POST',
-  body: JSON.stringify(data),
+  body: JSON.stringify(formData),
 });
 
-export const changePassword = ({ data, ...params }) => apiFetch('password-change/', {
+export const changePassword = ({ formData, ...params }) => apiFetch('password-change/', {
   ...params,
   method: 'POST',
-  body: JSON.stringify(data),
+  body: JSON.stringify(formData),
 });
 
-export const newPassword = ({ data, ...params }) => apiFetch('password-create/', {
+export const newPassword = ({ formData, ...params }) => apiFetch('password-create/', {
   ...params,
   method: 'POST',
-  body: JSON.stringify(data),
+  body: JSON.stringify(formData),
 });
 
-export const orderCreate = ({ data, ...params }) =>
+export const orderCreate = ({ formData, ...params }) =>
   apiFetchAuthorized('orders/', {
     ...params,
     method: 'POST',
-    body: JSON.stringify(data),
+    body: JSON.stringify(formData),
   });
 
 export const orderCancel = ({ order, ...params }) =>
@@ -119,9 +119,9 @@ export const orderConfirm = ({ order, ...params }) =>
     method: 'GET',
   });
 
-export const login = ({ data, ...params }) =>
+export const login = ({ formData, ...params }) =>
   fetch('/frontend/login', {
-    body: JSON.stringify(data),
+    body: JSON.stringify(formData),
     method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',

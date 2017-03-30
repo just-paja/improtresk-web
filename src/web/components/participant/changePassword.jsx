@@ -2,6 +2,7 @@ import Form from 'react-bootstrap/lib/Form';
 import React, { Component, PropTypes } from 'react';
 
 import Button from '../button';
+import FormErrors from '../formErrors';
 import Input from '../inputs/input';
 
 export default class ChangePassword extends Component {
@@ -25,6 +26,7 @@ export default class ChangePassword extends Component {
       errors,
       loading,
       newPassword,
+      submitErrors,
       values,
     } = this.props;
 
@@ -56,6 +58,7 @@ export default class ChangePassword extends Component {
           type="password"
           value={values.newPasswordConfirm}
         />
+        <FormErrors errors={submitErrors} />
         <Button loading={loading} type="submit">Změnit heslo</Button>
       </Form>
     );
@@ -69,6 +72,7 @@ ChangePassword.propTypes = {
   newPassword: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  submitErrors: PropTypes.arrayOf(PropTypes.string),
   values: PropTypes.shape({
     email: PropTypes.string,
   }).isRequired,
@@ -77,4 +81,5 @@ ChangePassword.propTypes = {
 ChangePassword.defaultProps = {
   loading: false,
   newPassword: false,
+  submitErrors: null,
 };

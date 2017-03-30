@@ -47,7 +47,7 @@ export function* validateFormOnSubmit() {
   yield takeLatest(constants.FORM_SUBMIT, validateAndSubmitForm);
 }
 
-export function* sendForm(apiResource, form, data, params = {}) {
+export function* sendForm(apiResource, form, formData, params = {}) {
   yield fork(fetchResource,
     apiResource,
     {
@@ -55,7 +55,7 @@ export function* sendForm(apiResource, form, data, params = {}) {
       onSuccess: constants.FORM_SUBMIT_SUCCESS,
       onError: constants.FORM_SUBMIT_ERROR,
       form,
-      data,
+      formData,
       ...params,
     }
   );

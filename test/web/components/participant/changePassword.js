@@ -6,6 +6,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import Button from '../../../../src/web/components/button';
+import FormErrors from '../../../../src/web/components/formErrors';
 import Input from '../../../../src/web/components/inputs/input';
 import ChangePassword from '../../../../src/web/components/participant/changePassword';
 
@@ -47,6 +48,7 @@ describe('Participant ChangePassword component', () => {
           type="password"
           value="newPasswordConfirm"
         />
+        <FormErrors errors={null} />
         <Button loading={false} type="submit">Změnit heslo</Button>
       </Form>
     );
@@ -80,6 +82,7 @@ describe('Participant ChangePassword component', () => {
           type="password"
           value="newPasswordConfirm"
         />
+        <FormErrors errors={null} />
         <Button loading={false} type="submit">Změnit heslo</Button>
       </Form>
     );
@@ -95,6 +98,9 @@ describe('Participant ChangePassword component', () => {
         form="changePassword"
         onChange={() => {}}
         onSubmit={() => {}}
+        submitErrors={[
+          'foo',
+        ]}
         values={{
           oldPassword: '',
           newPassword: '',
@@ -127,6 +133,7 @@ describe('Participant ChangePassword component', () => {
           type="password"
           value=""
         />
+        <FormErrors errors={['foo']} />
         <Button loading={false} type="submit">Změnit heslo</Button>
       </Form>
     );
@@ -168,6 +175,7 @@ describe('Participant ChangePassword component', () => {
           type="password"
           value="newPasswordConfirm"
         />
+        <FormErrors errors={null} />
         <Button loading type="submit">Změnit heslo</Button>
       </Form>
     );

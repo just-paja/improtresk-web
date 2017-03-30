@@ -5,6 +5,7 @@ import React, { PropTypes } from 'react';
 const messages = {
   unauthorized: 'Neplatná kombinace uživatelského jména nebo hesla',
   'api-error': 'Chyba komunikace s API',
+  'invalid-token': 'Neplatný token, operace nebyla autorizována',
 };
 
 const FormErrors = ({ errors }) => (

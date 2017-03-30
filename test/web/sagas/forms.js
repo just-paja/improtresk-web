@@ -122,7 +122,7 @@ describe('Form saga helpers', () => {
       onSuccess: 'FORM_SUBMIT_SUCCESS',
       onError: 'FORM_SUBMIT_ERROR',
       form: 'login',
-      data: {
+      formData: {
         email: 'mail@test.com',
         password: 'foo',
       },
@@ -138,7 +138,7 @@ describe('Form saga helpers', () => {
       onSuccess: 'FORM_SUBMIT_SUCCESS',
       onError: 'FORM_SUBMIT_ERROR',
       form: 'login',
-      data: {
+      formData: {
         email: 'mail@test.com',
       },
       foo: 'bar',

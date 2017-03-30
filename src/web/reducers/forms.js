@@ -4,6 +4,18 @@ import * as constants from '../constants/actions';
 
 const defaultState = {};
 
+const getSubmitErrors = (action) => {
+  if (action.error) {
+    return [action.error.message];
+  }
+
+  if (action.data && action.data.errors) {
+    return action.data.errors;
+  }
+
+  return null;
+};
+
 export const defaultFormState = {
   errors: {},
   saved: false,
@@ -64,6 +76,8 @@ export default combined(defaultState, {
       [action.form]: {
         ...state[action.form],
         values: {},
+        submitted: false,
+        saved: false,
       },
     }
   )),
@@ -131,8 +145,8 @@ export default combined(defaultState, {
       [action.form]: {
         ...state[action.form],
         loading: false,
-        errors: action.data,
-        submitErrors: action.data ? action.data.errors : null,
+        errors: action.data || {},
+        submitErrors: getSubmitErrors(action),
         saved: false,
       },
     }

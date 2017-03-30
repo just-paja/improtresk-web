@@ -19,6 +19,10 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     value,
   }),
   onResetPasswordSubmit: form => ({ type: actions.FORM_SUBMIT, form }),
+  onUnmount: form => ({
+    type: actions.FORM_VALUES_CLEAR,
+    form,
+  }),
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ForgottenPassword);

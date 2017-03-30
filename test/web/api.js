@@ -231,7 +231,7 @@ describe('API helper', () => {
       .post('/polls/4/vote/', { vote: 5 })
       .reply(200, []);
 
-    return api.pollVote({ apiSource, survey: 4, data: { vote: 5 } })
+    return api.pollVote({ apiSource, survey: 4, formData: { vote: 5 } })
       .then(() => {
         expect(nock.isDone()).to.equal(true);
       });

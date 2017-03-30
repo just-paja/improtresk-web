@@ -321,8 +321,37 @@ describe('Forms reducer', () => {
         submitted: true,
         loading: false,
         valid: true,
-        errors: undefined,
+        errors: {},
         submitErrors: null,
+      },
+    });
+  });
+  it('updates form loading status on submit error from error message', () => {
+    expect(forms(
+      {
+        testForm: {
+          errors: {},
+          submitted: true,
+          valid: true,
+          values: { foo: 'bar' },
+        },
+      },
+      {
+        type: 'FORM_SUBMIT_ERROR',
+        form: 'testForm',
+        error: new Error('foo'),
+      }
+    )).to.eql({
+      testForm: {
+        values: {
+          foo: 'bar',
+        },
+        saved: false,
+        submitted: true,
+        loading: false,
+        valid: true,
+        errors: {},
+        submitErrors: ['foo'],
       },
     });
   });
@@ -346,7 +375,8 @@ describe('Forms reducer', () => {
     )).to.eql({
       testForm: {
         errors: {},
-        submitted: true,
+        submitted: false,
+        saved: false,
         valid: true,
         values: {},
       },
