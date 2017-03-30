@@ -22,7 +22,7 @@ const schema = {
       type: 'string',
     },
     newPasswordConfirm: {
-      conform: (value, formValues) => value === formValues.password,
+      conform: (value, formValues) => value === formValues.newPassword,
       messages: {
         required: 'Jaké bude tvoje nové heslo?',
         conform: 'Hesla nesouhlasí',
