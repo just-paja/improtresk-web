@@ -10,6 +10,7 @@ import Conditions from './containers/conditions';
 import Contact from './containers/contact';
 import Fees from './containers/fees';
 import Food from './containers/food';
+import ForgottenPassword from './containers/participant/forgottenPassword';
 import Home from './containers/home';
 import Locations from './containers/locations';
 import NewsDetail from './containers/newsDetail';
@@ -36,6 +37,7 @@ export default function configureRoutes(store) {
       <Route component={Contact} path={urlTable.contact} />
       <Route component={Fees} path={urlTable.fees} />
       <Route component={Food} path={urlTable.food} />
+      <Route component={ForgottenPassword} path={urlTable['participant:forgottenPassword']} />
       <Route component={Locations} path={urlTable.location} />
       <Route component={NewsDetail} path={urlTable['news:item']} />
       <Route component={PerformerDetail} path={urlTable['performers:item']} />
