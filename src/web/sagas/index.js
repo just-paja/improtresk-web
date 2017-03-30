@@ -14,7 +14,7 @@ import meals from './meals';
 import news from './news';
 import orders from './orders';
 import participant from './participant';
-import participantPassword from './participanPassword';
+import participantPassword from './participantPassword';
 import performers from './performers';
 import polls from './polls';
 import schedule from './schedule';
