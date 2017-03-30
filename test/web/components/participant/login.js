@@ -53,7 +53,7 @@ describe('Login Form component', () => {
         <FormErrors />
         <Button
           bsStyle="primary"
-          icon="key"
+          icon="sign-in"
           type="submit"
         >Přihlásit</Button>
         <Link className="pull-right" to="participant:forgottenPassword">
@@ -94,7 +94,7 @@ describe('Login Form component', () => {
         <Button
           disabled
           bsStyle="primary"
-          icon="key"
+          icon="sign-in"
           type="submit"
         >Přihlásit</Button>
         <Link className="pull-right" to="participant:forgottenPassword">

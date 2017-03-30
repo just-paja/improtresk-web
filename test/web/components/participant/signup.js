@@ -148,6 +148,7 @@ describe('Signup Form component', () => {
         <Button
           disabled={false}
           bsStyle="primary"
+          icon="user-plus"
           type="submit"
         >Zaregistrovat</Button>
       </Form>
@@ -259,6 +260,7 @@ describe('Signup Form component', () => {
         <Button
           disabled
           bsStyle="primary"
+          icon="user-plus"
           type="submit"
         >Zaregistrovat</Button>
       </Form>
