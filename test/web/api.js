@@ -293,7 +293,7 @@ describe('API helper', () => {
         authorization: 'Bearer a23',
       },
     })
-      .get('/whoAmI/')
+      .get('/user/')
       .reply(200, {
         id: 1,
         name: 'Keith Johnstonne',
