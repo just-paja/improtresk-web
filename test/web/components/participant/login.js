@@ -5,10 +5,10 @@ import { Form } from 'react-bootstrap';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import Button from '../../../src/web/components/button';
-import FormErrors from '../../../src/web/components/formErrors';
-import Input from '../../../src/web/components/inputs/input';
-import Login from '../../../src/web/components/login';
+import Button from '../../../../src/web/components/button';
+import FormErrors from '../../../../src/web/components/formErrors';
+import Input from '../../../../src/web/components/inputs/input';
+import Login from '../../../../src/web/components/participant/login';
 
 describe('Login Form component', () => {
   it('renders form', () => {

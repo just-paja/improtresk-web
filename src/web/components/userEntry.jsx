@@ -4,8 +4,8 @@ import Row from 'react-bootstrap/lib/Row';
 import Well from 'react-bootstrap/lib/Well';
 
 
-import Login from './login';
-import Signup from './signup';
+import Login from './participant/login';
+import Signup from './participant/signup';
 
 
 const UserEntry = ({

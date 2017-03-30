@@ -1,9 +1,9 @@
 import Form from 'react-bootstrap/lib/Form';
 import React, { Component, PropTypes } from 'react';
 
-import Button from './button';
-import FormErrors from './formErrors';
-import Input from './inputs/input';
+import Button from '../button';
+import FormErrors from '../formErrors';
+import Input from '../inputs/input';
 
 export default class Login extends Component {
   constructor() {
