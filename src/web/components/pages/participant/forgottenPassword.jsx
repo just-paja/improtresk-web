@@ -1,3 +1,4 @@
+import Alert from 'react-bootstrap/lib/Alert';
 import Col from 'react-bootstrap/lib/Col';
 import React, { PropTypes } from 'react';
 import Row from 'react-bootstrap/lib/Row';
@@ -18,14 +19,19 @@ const ForgottenPassword = ({
           Vyplň svůj e-mail pod kterým se normálně přihlašuješ, zašleme ti na něj
           zprávu s dalšími kroky vedoucími ke změně hesla.
         </p>
-        <ResetPassword
-          errors={resetPassword.errors}
-          form="resetPassword"
-          loading={resetPassword.loading}
-          onChange={onResetPasswordChange}
-          onSubmit={onResetPasswordSubmit}
-          values={resetPassword.values}
-        />
+        {resetPassword.saved ? (
+          <Alert bsStyle="success">
+            <h4>Povedlo se!</h4>
+            <p>Na tvojí adresu jsme odeslali e-mail s instrukcemi ke změně hesla.</p>
+          </Alert>
+        ) : (
+          <ResetPassword
+            form="resetPassword"
+            onChange={onResetPasswordChange}
+            onSubmit={onResetPasswordSubmit}
+            {...resetPassword}
+          />
+        )}
       </Col>
     </Row>
   </Container>
