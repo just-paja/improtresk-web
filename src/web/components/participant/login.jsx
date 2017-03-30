@@ -1,9 +1,11 @@
+import FontAwesome from 'react-fontawesome';
 import Form from 'react-bootstrap/lib/Form';
 import React, { Component, PropTypes } from 'react';
 
 import Button from '../button';
 import FormErrors from '../formErrors';
 import Input from '../inputs/input';
+import Link from '../link';
 
 export default class Login extends Component {
   constructor() {
@@ -54,6 +56,9 @@ export default class Login extends Component {
           loading={sending}
           type="submit"
         >Přihlásit</Button>
+        <Link className="pull-right" to="participant:forgottenPassword">
+          <FontAwesome className="fa-fw" name="key" /> Zapomenuté heslo
+        </Link>
       </Form>
     );
   }

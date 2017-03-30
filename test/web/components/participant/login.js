@@ -1,3 +1,4 @@
+import FontAwesome from 'react-fontawesome';
 import React from 'react';
 import sinon from 'sinon';
 
@@ -8,6 +9,7 @@ import { shallow } from 'enzyme';
 import Button from '../../../../src/web/components/button';
 import FormErrors from '../../../../src/web/components/formErrors';
 import Input from '../../../../src/web/components/inputs/input';
+import Link from '../../../../src/web/components/link';
 import Login from '../../../../src/web/components/participant/login';
 
 describe('Login Form component', () => {
@@ -54,6 +56,9 @@ describe('Login Form component', () => {
           icon="key"
           type="submit"
         >Přihlásit</Button>
+        <Link className="pull-right" to="participant:forgottenPassword">
+          <FontAwesome className="fa-fw" name="key" /> Zapomenuté heslo
+        </Link>
       </Form>
     );
   });
@@ -92,6 +97,9 @@ describe('Login Form component', () => {
           icon="key"
           type="submit"
         >Přihlásit</Button>
+        <Link className="pull-right" to="participant:forgottenPassword">
+          <FontAwesome className="fa-fw" name="key" /> Zapomenuté heslo
+        </Link>
       </Form>
     );
   });
