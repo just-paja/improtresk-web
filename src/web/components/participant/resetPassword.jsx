@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/lib/Form';
 import React, { Component, PropTypes } from 'react';
 
 import Button from '../button';
-import Input from '../input';
+import Input from '../inputs/input';
 
 export default class ResetPassword extends Component {
   constructor() {
