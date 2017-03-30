@@ -1,26 +1,38 @@
 import React, { PropTypes } from 'react';
 
-const Capacity = ({ available, blockedMessage, capacity }) => {
-  if (available === null) {
-    return <span>{capacity}</span>;
+const Capacity = ({
+  reserved,
+  fullyAssigned,
+  fullyReserved,
+  freeSpots,
+}) => {
+  if (fullyAssigned) {
+    return <span>Plně obsazeno</span>;
   }
 
-  if (available === 0) {
-    return <span>{blockedMessage}</span>;
+  if (fullyReserved) {
+    return <span>{reserved} dočasných rezervací</span>;
   }
 
-  return <span>{available} z {capacity}</span>;
+  if (!reserved) {
+    return <span>{freeSpots} volných míst</span>;
+  }
+
+  return <span>{freeSpots} volných míst, {reserved} dočasných rezervací</span>;
 };
 
 Capacity.propTypes = {
-  available: PropTypes.number,
-  blockedMessage: PropTypes.string,
-  capacity: PropTypes.number.isRequired,
+  freeSpots: PropTypes.number,
+  fullyAssigned: PropTypes.bool,
+  fullyReserved: PropTypes.bool,
+  reserved: PropTypes.number,
 };
 
 Capacity.defaultProps = {
-  available: false,
-  blockedMessage: 'obsazeno',
+  freeSpots: 0,
+  fullyAssigned: false,
+  fullyReserved: false,
+  reserved: 0,
 };
 
 export default Capacity;

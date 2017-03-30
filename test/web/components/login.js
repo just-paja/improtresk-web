@@ -7,7 +7,7 @@ import { shallow } from 'enzyme';
 
 import Button from '../../../src/web/components/button';
 import FormErrors from '../../../src/web/components/formErrors';
-import Input from '../../../src/web/components/input';
+import Input from '../../../src/web/components/inputs/input';
 import Login from '../../../src/web/components/login';
 
 describe('Login Form component', () => {

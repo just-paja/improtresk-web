@@ -1,9 +1,8 @@
 import { createSelector } from 'reselect';
 
 import { isStateValid } from './common';
-import { getLectorRoles, getLectors } from './lectors';
-import { getPriceLevels } from './prices';
-import { getWorkshopDifficulties, mapWorkshop } from './workshops';
+import { getWorkshopRelatedData } from './workshops';
+import { aggregateWorkshopData } from '../transformers/workshops';
 
 const getArchiveState = state => state.archive;
 const getArchiveData = state => getArchiveState(state).data;
@@ -21,9 +20,9 @@ export const getArchivedYearTopic = createSelector(
 );
 
 export const getArchivedYearWorkshops = createSelector(
-  [getArchiveData, getLectors, getLectorRoles, getWorkshopDifficulties, getPriceLevels],
+  [getArchiveData, ...getWorkshopRelatedData()],
   (current, lectors, roles, difficulties, priceLevels) => (current ? (
-    current.workshops.map(mapWorkshop(lectors, roles, difficulties, priceLevels))
+    current.workshops.map(aggregateWorkshopData(lectors, roles, difficulties, priceLevels))
   ) : [])
 );
 

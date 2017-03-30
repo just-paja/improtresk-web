@@ -2,89 +2,15 @@ import { createSelector } from 'reselect';
 
 import { isStateValid } from './common';
 import { getWorkshopCapacity } from './capacity';
-import { findLectorRoleName, getLectorRoles, getLectors } from './lectors';
+import { getLectorRoles, getLectors } from './lectors';
 import { getPriceLevels } from './prices';
+import { aggregateWorkshopData } from '../transformers/workshops';
 
 const getGeocodeState = state => state.geocode;
 const getWorkshopDetailState = state => state.workshops.detail;
 const getWorkshopDifficultiesState = state => state.workshops.difficulties;
 const getWorkshopListState = state => state.workshops.list;
 const getWorkshopLocationsState = state => state.workshops.locations;
-
-const findDifficultyName = (difficulties, id) => {
-  if (difficulties) {
-    const difficulty = difficulties.find(record => record.id === id);
-    return difficulty ? difficulty.name : null;
-  }
-  return null;
-};
-
-const mapPrices = priceLevels => (priceItem) => {
-  const priceLevelId = priceItem.price_level;
-  if (priceLevels) {
-    const priceLevel = priceLevels.find(priceLevelItem => priceLevelItem.id === priceLevelId);
-    if (priceLevel) {
-      return {
-        id: priceItem.id,
-        price: priceItem.price,
-        level: priceLevel.name,
-        takesEffectOn: priceLevel.takesEffectOn,
-        endsOn: priceLevel.endsOn,
-      };
-    }
-  }
-  return null;
-};
-
-const mapWorkshopPrices = (prices, priceLevels) => (
-  prices && priceLevels ?
-    prices
-      .map(mapPrices(priceLevels))
-      .filter(item => item) : []
-);
-
-const mapCapacity = (workshop, capacity) => {
-  if (capacity) {
-    const entry = capacity.find(cap => cap.id === workshop.id);
-
-    if (entry) {
-      const freeSpots = Math.max(0, (
-        entry.capacity -
-        entry.number_of_reservations -
-        entry.number_of_unpaid_reservations
-      ));
-
-      return {
-        ...workshop,
-        capacity: entry.capacity,
-        assigned: entry.number_of_reservations,
-        reserved: entry.number_of_unpaid_reservations,
-        fullyAssigned: entry.number_of_reservations >= entry.capacity,
-        fullyReserved:
-          entry.number_of_reservations < entry.capacity &&
-          freeSpots === 0,
-        freeSpots,
-      };
-    }
-  }
-
-  return workshop;
-};
-
-export const mapWorkshop = (lectors, roles, difficulties, priceLevels, capacity) => (workshop) => {
-  const data = workshop ?
-    mapCapacity({
-      ...workshop,
-      difficulty: findDifficultyName(difficulties, workshop.difficulty),
-      lectors: workshop.lectors.map(lectorPosition => ({
-        id: lectorPosition.id,
-        lector: lectors ? lectors.find(lector => lectorPosition.lector === lector.id) : null,
-        role: findLectorRoleName(roles, lectorPosition.role),
-      })),
-      prices: mapWorkshopPrices(workshop.prices, priceLevels),
-    }, capacity) : null;
-  return data;
-};
 
 export const getWorkshopDifficulties = createSelector(
   getWorkshopDifficultiesState,
@@ -96,24 +22,25 @@ export const getWorkshopDetailId = createSelector(
   state => state.id
 );
 
+export const getWorkshopRelatedData = () => [
+  getLectors,
+  getLectorRoles,
+  getWorkshopDifficulties,
+  getPriceLevels,
+  getWorkshopCapacity,
+];
+
 export const workshopsDetail = createSelector(
-  [getWorkshopDetailState, getLectors, getLectorRoles, getWorkshopDifficulties, getPriceLevels],
-  (workshop, lectors, roles, difficulties, priceLevels) =>
-    mapWorkshop(lectors, roles, difficulties, priceLevels)(workshop.data)
+  [getWorkshopDetailState, ...getWorkshopRelatedData()],
+  (detail, lectors, roles, difficulties, priceLevels, capacity) =>
+    aggregateWorkshopData(lectors, roles, difficulties, priceLevels, capacity)(detail.data)
 );
 
 export const workshopsAll = createSelector(
-  [
-    getWorkshopListState,
-    getLectors,
-    getLectorRoles,
-    getWorkshopDifficulties,
-    getPriceLevels,
-    getWorkshopCapacity,
-  ],
+  [getWorkshopListState, ...getWorkshopRelatedData()],
   (workshops, lectors, roles, difficulties, priceLevels, capacity) =>
     workshops.data.map(
-      mapWorkshop(lectors, roles, difficulties, priceLevels, capacity)
+      aggregateWorkshopData(lectors, roles, difficulties, priceLevels, capacity)
     )
 );
 

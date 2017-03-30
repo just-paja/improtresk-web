@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-
 import newsDetail from '../../../src/web/reducers/newsDetail';
 
 describe('News detail reducer', () => {

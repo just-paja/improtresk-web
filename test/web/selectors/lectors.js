@@ -21,7 +21,10 @@ describe('Lector selectors', () => {
       2
     )).to.equal('bar');
   });
-  it('findLectorRoleName returns null when not available', () => {
+  it('findLectorRoleName returns null when role data are not available', () => {
+    expect(findLectorRoleName(null, 3)).to.equal(null);
+  });
+  it('findLectorRoleName returns null when role is not available', () => {
     expect(findLectorRoleName(
       [
         { id: 1, name: 'foo' },

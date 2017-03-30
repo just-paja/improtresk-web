@@ -4,7 +4,6 @@ import { Button } from 'react-bootstrap';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import LectorListSummary from '../../../src/web/components/lectorListSummary';
 import PermaLink from '../../../src/web/components/permaLink';
 import Prop from '../../../src/web/components/prop';
 import WorkshopSummary from '../../../src/web/components/workshopSummary';
@@ -46,15 +45,10 @@ describe('Workshop Summary component', () => {
         </h2>
 
         <ul className="list-unstyled">
-          <LectorListSummary
-            name="Vojtěch Svoboda"
-            position="Hlavní lektor"
-          />
-          <LectorListSummary
-            name="Martin Vlk"
-            position="Doprovodný lektor"
-          />
+          <Prop icon="user" label="Hlavní lektor">Vojtěch Svoboda</Prop>
+          <Prop icon="user" label="Doprovodný lektor">Martin Vlk</Prop>
           <Prop icon="hand-rock-o" label="Náročnost">Pro všechny</Prop>
+          <Prop icon="balance-scale" label="Kapacita" />
         </ul>
 
         <div>

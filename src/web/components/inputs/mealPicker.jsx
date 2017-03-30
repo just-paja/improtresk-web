@@ -27,6 +27,7 @@ export default class MealPicker extends Component {
             key={meal.id}
             id={meal.id}
             name={meal.name}
+            price={meal.price}
             onChange={this.handleChange}
           />
         )}
@@ -37,7 +38,11 @@ export default class MealPicker extends Component {
 
 MealPicker.propTypes = {
   disabled: PropTypes.bool,
-  meals: PropTypes.arrayOf(PropTypes.object).isRequired,
+  meals: PropTypes.arrayOf(PropTypes.shape({
+    date: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.number,
+  })).isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.arrayOf(PropTypes.number),

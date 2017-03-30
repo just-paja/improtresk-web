@@ -4,13 +4,15 @@ import { expect } from 'chai';
 import { call, takeLatest } from 'redux-saga/effects';
 
 import { sendForm } from '../../../src/web/sagas/forms';
-import { fetchNewsDetail } from '../../../src/web/sagas/news';
+import { invalidate } from '../../../src/web/sagas/news';
 
 import {
   bindReloadNewsDetail,
   bindVote,
+  bindVoteStore,
   selectVoteSuccess,
   vote,
+  voteStore,
 } from '../../../src/web/sagas/polls';
 
 import * as api from '../../../src/web/api';
@@ -37,11 +39,16 @@ describe('Polls sagas', () => {
     expect(saga.next().value).to.eql(takeLatest('POLL_VOTE', vote));
     expect(saga.next().done).to.equal(true);
   });
+  it('bindVoteStore binds voteStore', () => {
+    const saga = bindVoteStore();
+    expect(saga.next().value).to.eql(takeLatest(selectVoteSuccess, voteStore));
+    expect(saga.next().done).to.equal(true);
+  });
   it('bindReloadNewsDetail reloads news detail on vote success', () => {
     const saga = bindReloadNewsDetail();
     expect(saga.next().value).to.eql(takeLatest(
       selectVoteSuccess,
-      fetchNewsDetail
+      invalidate
     ));
     expect(saga.next().done).to.equal(true);
   });
@@ -57,6 +64,10 @@ describe('Polls sagas', () => {
       { answer: 5 },
       { survey: 9 }
     ));
+    expect(saga.next().done).to.equal(true);
+  });
+  it('vote submits vote as form', () => {
+    const saga = voteStore({ survey: 9 });
     saga.next();
     expect(localStorage.setItem.args).to.eql([
       ['votedPoll9', true],

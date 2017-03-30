@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 
 import Button from './button';
 import FormErrors from './formErrors';
-import Input from './input';
+import Input from './inputs/input';
 
 export default class Login extends Component {
   constructor() {

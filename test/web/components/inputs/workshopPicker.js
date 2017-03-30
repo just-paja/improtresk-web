@@ -6,8 +6,8 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import WorkshopPicker from '../../../src/web/components/workshopPicker';
-import WorkshopPickerItem from '../../../src/web/components/workshopPickerItem';
+import WorkshopPicker from '../../../../src/web/components/inputs/workshopPicker';
+import WorkshopPickerItem from '../../../../src/web/components/inputs/workshopPickerItem';
 
 describe('WorkshopPicker component', () => {
   it('renders', () => {
@@ -18,22 +18,26 @@ describe('WorkshopPicker component', () => {
         value={21}
         workshops={[
           {
-            assigned: 2,
-            capacity: 12,
-            freeSpots: 7,
             id: 21,
             lectors: [],
             name: 'Longformy',
-            reserved: 3,
+            capacityStatus: {
+              assigned: 2,
+              capacity: 12,
+              freeSpots: 7,
+              reserved: 3,
+            },
           },
           {
-            assigned: 0,
-            capacity: 19,
-            freeSpots: 19,
             id: 32,
             lectors: [],
             name: 'Kontaktní improvizace',
-            reserved: 0,
+            capacityStatus: {
+              assigned: 0,
+              capacity: 19,
+              freeSpots: 19,
+              reserved: 0,
+            },
           },
         ]}
       />
@@ -77,10 +81,12 @@ describe('WorkshopPicker component', () => {
         value={21}
         workshops={[
           {
-            capacity: 12,
-            id: 21,
             name: 'Longformy',
+            id: 21,
             lectors: [],
+            capacityStatus: {
+              capacity: 12,
+            },
           },
         ]}
       />

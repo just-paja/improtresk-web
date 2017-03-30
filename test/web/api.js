@@ -31,6 +31,16 @@ describe('API helper', () => {
         expect(nock.isDone()).to.equal(true);
       });
   });
+  it('fetchCapacity calls for festival capacity', () => {
+    nock(apiSource)
+      .get('/years/2016/capacity/')
+      .reply(200, []);
+
+    return api.fetchCapacity({ year: 2016, apiSource })
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
   it('fetchConditionsCurrent calls for current conditions', () => {
     nock(apiSource)
       .get('/years/2016/rules/latest/')
@@ -116,12 +126,32 @@ describe('API helper', () => {
         expect(nock.isDone()).to.equal(true);
       });
   });
+  it('fetchScheduleEvents calls for schedule events', () => {
+    nock(apiSource)
+      .get('/years/2017/schedule/')
+      .reply(200, []);
+
+    return api.fetchScheduleEvents({ apiSource, year: '2017' })
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
   it('fetchPerformerDetail calls for performers detail', () => {
     nock(apiSource)
       .get('/years/2017/performers/1/')
       .reply(200, {});
 
     return api.fetchPerformerDetail({ apiSource, performer: 1, year: '2017' })
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
+  it('fetchTeams calls for teams', () => {
+    nock(apiSource)
+      .get('/teams/')
+      .reply(200, {});
+
+    return api.fetchTeams({ apiSource })
       .then(() => {
         expect(nock.isDone()).to.equal(true);
       });
@@ -196,12 +226,63 @@ describe('API helper', () => {
         expect(nock.isDone()).to.equal(true);
       });
   });
+  it('pollVote posts poll vote', () => {
+    nock(apiSource)
+      .post('/polls/4/vote/', { vote: 5 })
+      .reply(200, []);
+
+    return api.pollVote({ apiSource, survey: 4, data: { vote: 5 } })
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
   it('register posts register', () => {
     nock(apiSource)
       .post('/register/')
       .reply(201, {});
 
     return api.signup({ apiSource, data: { foo: 'bar' } })
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
+  it('orderConfirm posts order confirm', () => {
+    nock(apiSource, {
+      reqheaders: {
+        authorization: 'Bearer a23',
+      },
+    })
+      .get('/orders/1/')
+      .query({ confirm: undefined })
+      .reply(200, {});
+
+    return api.orderConfirm({
+      order: 1,
+      apiSource,
+      auth: {
+        access_token: 'a23',
+      },
+    })
+      .then(() => {
+        expect(nock.isDone()).to.equal(true);
+      });
+  });
+  it('orderCancel posts order confirm', () => {
+    nock(apiSource, {
+      reqheaders: {
+        authorization: 'Bearer a23',
+      },
+    })
+      .delete('/orders/1/')
+      .reply(200, {});
+
+    return api.orderCancel({
+      order: 1,
+      apiSource,
+      auth: {
+        access_token: 'a23',
+      },
+    })
       .then(() => {
         expect(nock.isDone()).to.equal(true);
       });

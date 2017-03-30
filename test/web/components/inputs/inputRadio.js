@@ -1,70 +1,70 @@
 import React from 'react';
 import sinon from 'sinon';
 
-import { Checkbox, FormGroup, HelpBlock } from 'react-bootstrap';
+import { Radio, FormGroup, HelpBlock } from 'react-bootstrap';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import InputCheckbox from '../../../src/web/components/inputCheckbox';
+import InputRadio from '../../../../src/web/components/inputs/inputRadio';
 
-describe('Input Checkbox component', () => {
+describe('InputRadio component', () => {
   it('renders input component', () => {
     expect(shallow(
-      <InputCheckbox
+      <InputRadio
         label="Input label"
         name="test-input"
       />
     ).node).to.eql(
       <FormGroup validationState={null}>
-        <Checkbox
+        <Radio
           name="test-input"
           onBlur={null}
           onChange={() => {}}
           checked={false}
-        >Input label</Checkbox>
+        >Input label</Radio>
       </FormGroup>
     );
   });
   it('renders input component with help message', () => {
     expect(shallow(
-      <InputCheckbox
+      <InputRadio
         help="foo"
         label="Input label"
         name="test-input"
       />
     ).node).to.eql(
       <FormGroup validationState={null}>
-        <Checkbox
+        <Radio
           name="test-input"
           onBlur={null}
           onChange={() => {}}
           checked={false}
-        >Input label</Checkbox>
+        >Input label</Radio>
         <HelpBlock>foo</HelpBlock>
       </FormGroup>
     );
   });
   it('renders input component in non-error state when not touched', () => {
     expect(shallow(
-      <InputCheckbox
+      <InputRadio
         error="foo"
         label="Input label"
         name="test-input"
       />
     ).node).to.eql(
       <FormGroup validationState={null}>
-        <Checkbox
+        <Radio
           name="test-input"
           onBlur={null}
           onChange={() => {}}
           checked={false}
-        >Input label</Checkbox>
+        >Input label</Radio>
       </FormGroup>
     );
   });
   it('renders input component in error state', () => {
     expect(shallow(
-      <InputCheckbox
+      <InputRadio
         error="foo"
         label="Input label"
         name="test-input"
@@ -72,12 +72,12 @@ describe('Input Checkbox component', () => {
       />
     ).node).to.eql(
       <FormGroup validationState="error">
-        <Checkbox
+        <Radio
           name="test-input"
           onBlur={null}
           onChange={() => {}}
           checked={false}
-        >Input label</Checkbox>
+        >Input label</Radio>
         <HelpBlock>foo</HelpBlock>
       </FormGroup>
     );
@@ -85,7 +85,7 @@ describe('Input Checkbox component', () => {
   it('triggers onChange with input name and value', () => {
     const changeSpy = sinon.spy();
     const comp = shallow(
-      <InputCheckbox
+      <InputRadio
         error="foo"
         label="Input label"
         name="test-input"
@@ -93,7 +93,7 @@ describe('Input Checkbox component', () => {
       />
     );
 
-    comp.find('Checkbox').simulate('change', { target: { checked: true } });
+    comp.find('Radio').simulate('change', { target: { checked: true } });
     expect(changeSpy.args).to.eql([
       ['test-input', true],
     ]);

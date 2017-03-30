@@ -3,12 +3,14 @@ instrumentation:
   include-all-sources: true
   excludes: [
     'server/main.js',
+    'server/config.js',
     'server/mainCss.js',
     'server/mainServer.js',
     'server/middleware/dev.js',
-    'web/main.js',
+    'web/main.jsx',
     'web/store.js',
     'web/sagas/index.js',
+    'web/forms/index.js',
   ]
 
   extensions:

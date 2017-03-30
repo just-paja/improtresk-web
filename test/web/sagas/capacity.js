@@ -20,7 +20,10 @@ describe('Capacity sagas', () => {
   it('bindPollCapacityStart binds poll capacity start', () => {
     const saga = bindPollCapacityStart();
     expect(saga.next().value).to.eql(takeLatest(
-      'ORDER_FORM_MOUNTED',
+      [
+        'ORDER_FORM_MOUNTED',
+        'WORKSHOPS_MOUNTED',
+      ],
       pollCapacityStart
     ));
     expect(saga.next().done).to.equal(true);
@@ -28,7 +31,10 @@ describe('Capacity sagas', () => {
   it('bindPollCapacityStop binds poll capacity stop', () => {
     const saga = bindPollCapacityStop();
     expect(saga.next().value).to.eql(takeLatest(
-      'ORDER_FORM_UNMOUNTED',
+      [
+        'ORDER_FORM_UNMOUNTED',
+        'WORKSHOPS_UNMOUNTED',
+      ],
       pollCapacityStop
     ));
     expect(saga.next().done).to.equal(true);
