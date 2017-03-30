@@ -7,8 +7,8 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import UserEntry from '../../../src/web/components/userEntry';
-import Login from '../../../src/web/components/login';
-import Signup from '../../../src/web/components/signup';
+import Login from '../../../src/web/components/participant/login';
+import Signup from '../../../src/web/components/participant/signup';
 
 describe('User Entry component', () => {
   it('renders', () => {

@@ -3,13 +3,13 @@ import Form from 'react-bootstrap/lib/Form';
 import React, { Component, PropTypes } from 'react';
 import Row from 'react-bootstrap/lib/Row';
 
-import Button from './button';
-import FormErrors from './formErrors';
-import Link from './link';
-import Input from './inputs/input';
-import InputCheckbox from './inputs/inputCheckbox';
-import InputDate from './inputs/inputDate';
-import InputSelect from './inputs/inputSelect';
+import Button from '../button';
+import FormErrors from '../formErrors';
+import Link from '../link';
+import Input from '../inputs/input';
+import InputCheckbox from '../inputs/inputCheckbox';
+import InputDate from '../inputs/inputDate';
+import InputSelect from '../inputs/inputSelect';
 
 export default class Signup extends Component {
   constructor() {

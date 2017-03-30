@@ -5,14 +5,14 @@ import { Col, Form, Row } from 'react-bootstrap';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import Button from '../../../src/web/components/button';
-import FormErrors from '../../../src/web/components/formErrors';
-import Link from '../../../src/web/components/link';
-import Input from '../../../src/web/components/inputs/input';
-import InputCheckbox from '../../../src/web/components/inputs/inputCheckbox';
-import InputDate from '../../../src/web/components/inputs/inputDate';
-import InputSelect from '../../../src/web/components/inputs/inputSelect';
-import Signup from '../../../src/web/components/signup';
+import Button from '../../../../src/web/components/button';
+import FormErrors from '../../../../src/web/components/formErrors';
+import Link from '../../../../src/web/components/link';
+import Input from '../../../../src/web/components/inputs/input';
+import InputCheckbox from '../../../../src/web/components/inputs/inputCheckbox';
+import InputDate from '../../../../src/web/components/inputs/inputDate';
+import InputSelect from '../../../../src/web/components/inputs/inputSelect';
+import Signup from '../../../../src/web/components/participant/signup';
 
 describe('Signup Form component', () => {
   it('renders form', () => {
