@@ -11,13 +11,13 @@ const ForgottenPassword = ({
   onResetPasswordSubmit,
 }) => (
   <Container>
-    <h1>Zapomenuté heslo</h1>
-    <p>
-      Vyplň svůj e-mail pod kterým se normálně přihlašuješ, zašleme ti na něj
-      e-mail s dalšími kroky ke změně hesla.
-    </p>
     <Row>
-      <Col md={4} mdOffset={4}>
+      <Col md={6} mdOffset={3}>
+        <h1>Zapomenuté heslo</h1>
+        <p>
+          Vyplň svůj e-mail pod kterým se normálně přihlašuješ, zašleme ti na něj
+          e-mail s dalšími kroky ke změně hesla.
+        </p>
         <ResetPassword
           errors={resetPassword.errors}
           form="resetPassword"
