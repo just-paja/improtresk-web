@@ -17,6 +17,9 @@ import NotFound from '../../src/web/components/notFound';
 import ParticipantHome from '../../src/web/components/pages/participant/home';
 import ParticipantConfirm from '../../src/web/components/pages/participant/confirm';
 import PerformerDetail from '../../src/web/containers/performerDetail';
+import ForgottenPassword from '../../src/web/containers/participant/forgottenPassword';
+import ChangePassword from '../../src/web/containers/participant/changePassword';
+import NewPassword from '../../src/web/containers/participant/newPassword';
 import Schedule from '../../src/web/containers/schedule';
 import Signup from '../../src/web/containers/signup';
 import Tips from '../../src/web/containers/tips';
@@ -38,6 +41,8 @@ describe('Routes', () => {
         <Route component={Contact} path="/kontakt" />
         <Route component={Fees} path="/pro-ucastniky/poplatky" />
         <Route component={Food} path="/pro-ucastniky/jidlo" />
+        <Route component={ForgottenPassword} path="/zapomenute-heslo" />
+        <Route component={NewPassword} path="/nove-heslo" />
         <Route component={Locations} path="/pro-ucastniky/lokace" />
         <Route component={NewsDetail} path="/novinky/:slug" />
         <Route component={PerformerDetail} path="/ucinkujici/:slug" />
@@ -49,6 +54,7 @@ describe('Routes', () => {
         <Route path="" onEnter={() => {}} name="participant">
           <Route path="/ucastnik/potvrzeni" component={ParticipantConfirm} />
           <Route path="/ucastnik" component={ParticipantHome} />
+          <Route path="/ucastnik/zmena-hesla" component={ChangePassword} />
         </Route>
         <Route path="*" component={NotFound} />
       </Route>

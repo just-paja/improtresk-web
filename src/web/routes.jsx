@@ -17,6 +17,8 @@ import NewsDetail from './containers/newsDetail';
 import NotFound from './components/notFound';
 import ParticipantHome from './containers/participantHome';
 import ParticipantConfirm from './containers/participantConfirm';
+import ChangePassword from './containers/participant/changePassword';
+import NewPassword from './containers/participant/newPassword';
 import PerformerDetail from './containers/performerDetail';
 import Schedule from './containers/schedule';
 import Signup from './containers/signup';
@@ -38,6 +40,7 @@ export default function configureRoutes(store) {
       <Route component={Fees} path={urlTable.fees} />
       <Route component={Food} path={urlTable.food} />
       <Route component={ForgottenPassword} path={urlTable['participant:forgottenPassword']} />
+      <Route component={NewPassword} path={urlTable['participant:newPassword']} />
       <Route component={Locations} path={urlTable.location} />
       <Route component={NewsDetail} path={urlTable['news:item']} />
       <Route component={PerformerDetail} path={urlTable['performers:item']} />
@@ -49,6 +52,7 @@ export default function configureRoutes(store) {
       <Route path="" onEnter={validateLogin(store.getState)} name="participant">
         <Route path={urlTable['participant:confirm']} component={ParticipantConfirm} />
         <Route path={urlTable['participant:home']} component={ParticipantHome} />
+        <Route path={urlTable['participant:changePassword']} component={ChangePassword} />
       </Route>
       <Route path="*" component={NotFound} />
     </Route>

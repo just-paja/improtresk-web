@@ -82,6 +82,24 @@ export const signup = ({ data, ...params }) => apiFetch('register/', {
   body: JSON.stringify(data),
 });
 
+export const resetPassword = ({ data, ...params }) => apiFetch('password-reset/', {
+  ...params,
+  method: 'POST',
+  body: JSON.stringify(data),
+});
+
+export const changePassword = ({ data, ...params }) => apiFetch('password-change/', {
+  ...params,
+  method: 'POST',
+  body: JSON.stringify(data),
+});
+
+export const newPassword = ({ data, ...params }) => apiFetch('password-create/', {
+  ...params,
+  method: 'POST',
+  body: JSON.stringify(data),
+});
+
 export const orderCreate = ({ data, ...params }) =>
   apiFetchAuthorized('orders/', {
     ...params,

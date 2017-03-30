@@ -6,6 +6,8 @@ export const urlTable = {
   'participant:home': '/ucastnik',
   'participant:confirm': '/ucastnik/potvrzeni',
   'participant:forgottenPassword': '/zapomenute-heslo',
+  'participant:changePassword': '/ucastnik/zmena-hesla',
+  'participant:newPassword': '/nove-heslo',
   'performers:item': '/ucinkujici/:slug',
   'workshops:item': '/workshopy/:slug',
   accomodation: '/pro-ucastniky/ubytovani',
