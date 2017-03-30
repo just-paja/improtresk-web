@@ -5,6 +5,7 @@ export const urlTable = {
   'news:item': '/novinky/:slug',
   'participant:home': '/ucastnik',
   'participant:confirm': '/ucastnik/potvrzeni',
+  'participant:forgottenPassword': '/zapomenute-heslo',
   'performers:item': '/ucinkujici/:slug',
   'workshops:item': '/workshopy/:slug',
   accomodation: '/pro-ucastniky/ubytovani',
