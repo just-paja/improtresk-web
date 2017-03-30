@@ -13,7 +13,7 @@ import {
   selectPasswordChangeSubmit,
   selectPasswordNewSubmit,
   selectPasswordResetSubmit,
-} from '../../../src/web/sagas/participanPassword';
+} from '../../../src/web/sagas/participantPassword';
 
 import * as api from '../../../src/web/api';
 
