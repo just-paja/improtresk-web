@@ -4,9 +4,9 @@ import React, { PropTypes } from 'react';
 const Prop = ({ children, icon, label }) => (
   children ? (
     <li>
-      {icon ? <FontAwesome name={icon} /> : null}
+      {icon ? <FontAwesome className="fa-fw" name={icon} /> : null}
       {icon ? ' ' : null}
-      {label}:{' '}
+      <b>{label}:</b>{' '}
       {children}
     </li>
   ) : null

@@ -5,7 +5,7 @@ const pageBase = ({
   js,
   markup,
   helmet: { title, base, meta, link, script },
-  state = {},
+  state,
 }) => (
   <html lang="cs">
     <head>
@@ -39,8 +39,8 @@ const pageBase = ({
 );
 
 pageBase.propTypes = {
-  css: PropTypes.object,
-  js: PropTypes.object,
+  css: PropTypes.arrayOf(PropTypes.string),
+  js: PropTypes.arrayOf(PropTypes.string),
   markup: PropTypes.string,
   state: PropTypes.object,
   helmet: PropTypes.shape({
@@ -56,7 +56,7 @@ pageBase.defaultProps = {
   css: [],
   js: [],
   markup: null,
-  state: undefined,
+  state: {},
 };
 
 export default pageBase;

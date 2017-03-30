@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 
 import Timeout from './timeout';
 
-const Header = ({
+const OrderStatus = ({
   canceled,
   confirmed,
   assigned,
@@ -26,12 +26,10 @@ const Header = ({
     return (
       <span>
         <Label bsStyle="warning">Potvrzeno uživatelem</Label>
-        {!assigned && !paid ? (
-          <span>
-            {' '}
-            <Timeout endsAt={endsAt} />
-          </span>
-        ) : null}
+        <span>
+          {' '}
+          <Timeout endsAt={endsAt} />
+        </span>
       </span>
     );
   }
@@ -45,7 +43,7 @@ const Header = ({
   );
 };
 
-Header.propTypes = {
+OrderStatus.propTypes = {
   assigned: PropTypes.bool,
   canceled: PropTypes.bool,
   confirmed: PropTypes.bool,
@@ -53,7 +51,7 @@ Header.propTypes = {
   endsAt: PropTypes.string.isRequired,
 };
 
-Header.defaultProps = {
+OrderStatus.defaultProps = {
   assigned: false,
   canceled: false,
   confirmed: false,
@@ -61,4 +59,4 @@ Header.defaultProps = {
   paid: false,
 };
 
-export default Header;
+export default OrderStatus;

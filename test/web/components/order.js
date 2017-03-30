@@ -10,13 +10,13 @@ import Well from 'react-bootstrap/lib/Well';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import AccomodationPicker from '../../../src/web/components/accomodationPicker';
+import AccomodationPicker from '../../../src/web/components/inputs/accomodationPicker';
 import Button from '../../../src/web/components/button';
 import Link from '../../../src/web/components/link';
-import MealPicker from '../../../src/web/components/mealPicker';
+import MealPicker from '../../../src/web/components/inputs/mealPicker';
 import Order from '../../../src/web/components/order';
 import Price from '../../../src/web/components/price';
-import WorkshopPicker from '../../../src/web/components/workshopPicker';
+import WorkshopPicker from '../../../src/web/components/inputs/workshopPicker';
 
 describe('Order form component', () => {
   it('renders', () => {
@@ -35,6 +35,7 @@ describe('Order form component', () => {
         ]}
         onChange={() => {}}
         onSubmit={() => {}}
+        submitted={false}
         values={{
           accomodationInfo: true,
           workshop: 42,
@@ -57,6 +58,7 @@ describe('Order form component', () => {
             disabled={false}
             name="workshop"
             onChange={() => {}}
+            touched={false}
             value={42}
             workshops={[
               { id: 42, name: 'Longformy' },

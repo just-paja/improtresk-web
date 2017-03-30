@@ -4,8 +4,8 @@ import { Creatable } from 'react-select';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import Input from '../../../src/web/components/input';
-import InputSelect from '../../../src/web/components/inputSelect';
+import Input from '../../../../src/web/components/inputs/input';
+import InputSelect from '../../../../src/web/components/inputs/inputSelect';
 
 describe('Input Select component', () => {
   it('renders input component', () => {

@@ -12,7 +12,7 @@ describe('Prop component', () => {
       <Prop label="Prop Label" icon="Prop Icon">foo</Prop>
     ).node).to.eql(
       <li>
-        <FontAwesome name="Prop Icon" /> Prop Label:{' '}
+        <FontAwesome className="fa-fw" name="Prop Icon" /> <b>Prop Label:</b>{' '}
         foo
       </li>
     );
@@ -22,7 +22,7 @@ describe('Prop component', () => {
       <Prop label="Prop Label">foo</Prop>
     ).node).to.eql(
       <li>
-        Prop Label:{' '}
+        <b>Prop Label:</b>{' '}
         foo
       </li>
     );

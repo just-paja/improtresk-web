@@ -1,9 +1,11 @@
 import express from 'express';
 
-const app = express();
+export default () => {
+  const app = express();
 
-app.use('/theme', express.static('static'));
-app.use('/font-awesome', express.static('node_modules/font-awesome'));
-app.use('/bootswatch', express.static('node_modules/bootswatch'));
+  app.use('/theme', express.static('static'));
+  app.use('/font-awesome', express.static('node_modules/font-awesome'));
+  app.use('/bootswatch', express.static('node_modules/bootswatch'));
 
-export default app;
+  return app;
+};

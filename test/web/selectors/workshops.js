@@ -1,10 +1,20 @@
 import { expect } from 'chai';
 
+import { getPriceLevels } from '../../../src/web/selectors/prices';
+import { getWorkshopCapacity } from '../../../src/web/selectors/capacity';
+
+import {
+  getLectorRoles,
+  getLectors,
+} from '../../../src/web/selectors/lectors';
+
 import {
   getAddresses,
   getLocationMarkers,
   getLocations,
   getWorkshopDetailId,
+  getWorkshopDifficulties,
+  getWorkshopRelatedData,
   shouldFetchDetail,
   shouldFetchDifficulties,
   shouldFetchList,
@@ -14,6 +24,15 @@ import {
 } from '../../../src/web/selectors/workshops';
 
 describe('Workshops selectors', () => {
+  it('getWorkshopRelatedData returns all workshop data sources', () => {
+    const related = getWorkshopRelatedData();
+    expect(related[0]).to.equal(getLectors);
+    expect(related[1]).to.equal(getLectorRoles);
+    expect(related[2]).to.equal(getWorkshopDifficulties);
+    expect(related[3]).to.equal(getPriceLevels);
+    expect(related[4]).to.equal(getWorkshopCapacity);
+    expect(related.length).to.equal(5);
+  });
   it('workshopsAll returns all workshops stored', () => {
     expect(workshopsAll({
       capacity: {},
@@ -45,293 +64,7 @@ describe('Workshops selectors', () => {
     })).to.eql([
       {
         id: 1,
-        difficulty: null,
-        lectors: [],
-        prices: [],
-      },
-    ]);
-  });
-  it('workshopsAll returns all workshops with price levels mapped', () => {
-    expect(workshopsAll({
-      capacity: {},
-      lectors: {
-        list: {
-          data: [],
-        },
-        roles: {
-          data: [],
-        },
-      },
-      workshops: {
-        difficulties: {
-          data: [],
-        },
-        list: {
-          data: [
-            {
-              id: 1,
-              lectors: [],
-              prices: [
-                {
-                  id: 4,
-                  price_level: 1,
-                  price: 200,
-                },
-                {
-                  id: 6,
-                  price_level: 2,
-                  price: 400,
-                },
-              ],
-            },
-          ],
-        },
-      },
-      years: {
-        data: [
-          {
-            year: '2016',
-            current: true,
-            priceLevels: [
-              {
-                id: 1,
-                name: 'Zlevněná',
-                takesEffectOn: '2016-01-02T03:04:05Z',
-              },
-              {
-                id: 2,
-                name: 'Základní',
-                takesEffectOn: '2016-03-02T03:04:05Z',
-              },
-            ],
-          },
-        ],
-      },
-    })).to.eql([
-      {
-        id: 1,
-        difficulty: null,
-        lectors: [],
-        prices: [
-          {
-            id: 4,
-            endsOn: '2016-03-02T03:04:05Z',
-            level: 'Zlevněná',
-            price: 200,
-            takesEffectOn: '2016-01-02T03:04:05Z',
-          },
-          {
-            id: 6,
-            endsOn: null,
-            level: 'Základní',
-            price: 400,
-            takesEffectOn: '2016-03-02T03:04:05Z',
-          },
-        ],
-      },
-    ]);
-  });
-  it('workshopsAll returns all workshops with difficulty mapped', () => {
-    expect(workshopsAll({
-      capacity: {},
-      lectors: {
-        list: {
-          data: [],
-        },
-        roles: {
-          data: [],
-        },
-      },
-      workshops: {
-        difficulties: {
-          data: [
-            {
-              id: 2,
-              name: 'Pro začátečníky',
-            },
-          ],
-        },
-        list: {
-          data: [
-            {
-              id: 1,
-              difficulty: 2,
-              lectors: [],
-              prices: [],
-            },
-          ],
-        },
-      },
-      years: {
-        data: [
-          {
-            year: '2016',
-            current: true,
-            priceLevels: [],
-          },
-        ],
-      },
-    })).to.eql([
-      {
-        id: 1,
-        difficulty: 'Pro začátečníky',
-        lectors: [],
-        prices: [],
-      },
-    ]);
-  });
-  it('workshopsAll returns all workshops with lectors mapped', () => {
-    expect(workshopsAll({
-      capacity: {},
-      lectors: {
-        list: {
-          data: [
-            {
-              id: 1,
-              name: 'Jana Machalíková',
-            },
-          ],
-        },
-        roles: {
-          data: [
-            {
-              id: 1,
-              name: 'Hlavní lektor',
-            },
-          ],
-        },
-      },
-      workshops: {
-        difficulties: {
-          data: [],
-        },
-        list: {
-          data: [
-            {
-              id: 1,
-              lectors: [
-                { id: 1, lector: 1, role: 1 },
-              ],
-              prices: [],
-            },
-          ],
-        },
-      },
-      years: {
-        data: [
-          {
-            year: '2016',
-            current: true,
-            priceLevels: [],
-          },
-        ],
-      },
-    })).to.eql([
-      {
-        id: 1,
-        difficulty: null,
-        lectors: [
-          {
-            id: 1,
-            lector: {
-              id: 1,
-              name: 'Jana Machalíková',
-            },
-            role: 'Hlavní lektor',
-          },
-        ],
-        prices: [],
-      },
-    ]);
-  });
-  it('workshopsAll returns all workshops without prices when levels are not available', () => {
-    expect(workshopsAll({
-      capacity: {},
-      lectors: {
-        list: {
-          data: [],
-        },
-        roles: {
-          data: [],
-        },
-      },
-      workshops: {
-        difficulties: {
-          data: [],
-        },
-        list: {
-          data: [
-            {
-              id: 1,
-              lectors: [],
-              prices: [
-                {
-                  price_level: 1,
-                  price: 200,
-                },
-                {
-                  price_level: 2,
-                  price: 400,
-                },
-              ],
-            },
-          ],
-        },
-      },
-      years: {
-        data: [
-          {
-            year: '2016',
-            current: true,
-          },
-        ],
-      },
-    })).to.eql([
-      {
-        id: 1,
-        difficulty: null,
-        lectors: [],
-        prices: [],
-      },
-    ]);
-  });
-  it('workshopsAll returns all workshops without difficulties when not available', () => {
-    expect(workshopsAll({
-      capacity: {},
-      lectors: {
-        list: {
-          data: [],
-        },
-        roles: {
-          data: [],
-        },
-      },
-      workshops: {
-        difficulties: {
-          data: [],
-        },
-        list: {
-          data: [
-            {
-              id: 1,
-              difficulty: 32,
-              lectors: [],
-              prices: [],
-            },
-          ],
-        },
-      },
-      years: {
-        data: [
-          {
-            year: '2016',
-            current: true,
-          },
-        ],
-      },
-    })).to.eql([
-      {
-        id: 1,
+        capacityStatus: {},
         difficulty: null,
         lectors: [],
         prices: [],
@@ -348,6 +81,7 @@ describe('Workshops selectors', () => {
           data: [],
         },
       },
+      capacity: [],
       workshops: {
         detail: {
           data: {
@@ -366,6 +100,7 @@ describe('Workshops selectors', () => {
       },
     })).to.eql({
       id: 1,
+      capacityStatus: {},
       difficulty: null,
       name: 'foo',
       lectors: [],
@@ -382,6 +117,7 @@ describe('Workshops selectors', () => {
           data: [],
         },
       },
+      capacity: [],
       workshops: {
         detail: {
           data: null,

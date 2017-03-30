@@ -9,6 +9,10 @@ export default class Workshops extends Component {
     this.props.onMount();
   }
 
+  componentWillUnmount() {
+    this.props.onUnmount();
+  }
+
   render() {
     const { ready, workshops } = this.props;
     const title = 'Workshopy';
@@ -34,6 +38,7 @@ export default class Workshops extends Component {
 
 Workshops.propTypes = {
   onMount: PropTypes.func.isRequired,
+  onUnmount: PropTypes.func.isRequired,
   ready: PropTypes.bool,
   workshops: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

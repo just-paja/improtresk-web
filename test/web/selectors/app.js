@@ -47,6 +47,23 @@ describe('Application selectors', () => {
       },
     })).to.eql(['foo', 'bar']);
   });
+  it('getAppErrors all fatal errors', () => {
+    expect(getAppErrors({
+      accomodation: {
+        error: new Error('foo'),
+        id: 123,
+      },
+      workshops: {
+        workshopDetail: {
+          error: new Error('bar'),
+          data: [],
+        },
+      },
+      news: {
+        error: undefined,
+      },
+    })).to.eql(['foo', 'bar']);
+  });
   it('isAppReady returns true when all required stuff is ready', () => {
     expect(isAppReady({
       lectors: {

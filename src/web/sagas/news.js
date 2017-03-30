@@ -1,4 +1,4 @@
-import { call, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import { fetchResourceIfNeeded } from './common';
 import {
@@ -44,15 +44,23 @@ export function* fetchNewsDetail() {
   }
 }
 
-export function* fetchNewsDetailOnMount() {
+export function* bindfetchNewsDetail() {
   yield takeLatest(
-    constants.NEWS_DETAIL_MOUNTED,
+    [
+      constants.NEWS_DETAIL_MOUNTED,
+      constants.NEWS_DETAIL_INVALIDATE,
+    ],
     fetchNewsDetail
   );
 }
 
 
+export function* invalidate() {
+  yield put({ type: constants.NEWS_DETAIL_INVALIDATE });
+}
+
+
 export default [
   fetchNewsOnMount,
-  fetchNewsDetailOnMount,
+  bindfetchNewsDetail,
 ];
