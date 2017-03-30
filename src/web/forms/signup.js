@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-import validator from './validator';
+import validator, { emailField } from './validator';
 
 const schema = {
   properties: {
@@ -14,13 +14,7 @@ const schema = {
       required: true,
       type: 'string',
     },
-    email: {
-      format: 'email',
-      maxLength: 255,
-      message: 'Vyplň svůj kontaktní e-mail v podporovaném tvaru',
-      required: true,
-      type: 'string',
-    },
+    email: emailField,
     phone: {
       maxLength: 32,
       message: 'Vyplň svoje mobilní telefonní číslo',
