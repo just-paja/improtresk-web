@@ -24,6 +24,7 @@ describe('Capacity sagas', () => {
         'ACCOMODATION_MOUNTED',
         'ORDER_FORM_MOUNTED',
         'WORKSHOPS_MOUNTED',
+        'PARTICIPANT_WORKSHOP_CHANGE_MOUNTED',
       ],
       pollCapacityStart
     ));
@@ -36,6 +37,7 @@ describe('Capacity sagas', () => {
         'ACCOMODATION_UNMOUNTED',
         'ORDER_FORM_UNMOUNTED',
         'WORKSHOPS_UNMOUNTED',
+        'PARTICIPANT_WORKSHOP_CHANGE_UNMOUNTED',
       ],
       pollCapacityStop
     ));
@@ -92,7 +94,7 @@ describe('Capacity sagas', () => {
         year: '2017',
       }
     ));
-    expect(saga.next().value).to.eql(call(delay, 10000));
+    expect(saga.next().value).to.eql(call(delay, 8000));
     expect(saga.next().value).to.eql(select(isPolling));
     expect(saga.next(false).done).to.equal(true);
   });
@@ -110,7 +112,7 @@ describe('Capacity sagas', () => {
         year: '2017',
       }
     ));
-    expect(saga.next().value).to.eql(call(delay, 10000));
+    expect(saga.next().value).to.eql(call(delay, 8000));
     expect(saga.next().value).to.eql(select(isPolling));
     expect(saga.next(true).value).to.eql(put({
       type: 'YEAR_CAPACITY_POLL_CYCLE_FINISHED',

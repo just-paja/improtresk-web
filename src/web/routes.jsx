@@ -18,6 +18,7 @@ import NotFound from './components/notFound';
 import ParticipantHome from './containers/participantHome';
 import ParticipantConfirm from './containers/participantConfirm';
 import ChangePassword from './containers/participant/changePassword';
+import ChangeWorkshop from './containers/participant/changeWorkshop';
 import NewPassword from './containers/participant/newPassword';
 import PerformerDetail from './containers/performerDetail';
 import Schedule from './containers/schedule';
@@ -53,6 +54,7 @@ export default function configureRoutes(store) {
         <Route path={urlTable['participant:confirm']} component={ParticipantConfirm} />
         <Route path={urlTable['participant:home']} component={ParticipantHome} />
         <Route path={urlTable['participant:changePassword']} component={ChangePassword} />
+        <Route path={urlTable['participant:changeWorkshop']} component={ChangeWorkshop} />
       </Route>
       <Route path="*" component={NotFound} />
     </Route>
