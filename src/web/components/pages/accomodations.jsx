@@ -11,6 +11,10 @@ export default class Accomodations extends Component {
     this.props.onMount();
   }
 
+  componentWillUnmount() {
+    this.props.onUnmount();
+  }
+
   render() {
     const { accomodations, intro, ready } = this.props;
     const title = 'Ubytování';
@@ -40,6 +44,7 @@ export default class Accomodations extends Component {
 
 Accomodations.propTypes = {
   onMount: PropTypes.func.isRequired,
+  onUnmount: PropTypes.func.isRequired,
   ready: PropTypes.bool,
   accomodations: PropTypes.arrayOf(PropTypes.object),
   intro: PropTypes.string.isRequired,

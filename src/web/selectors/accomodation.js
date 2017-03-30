@@ -1,11 +1,17 @@
 import { createSelector } from 'reselect';
 
 import { isStateValid } from './common';
+import { getAccomodationCapacity } from './capacity';
+import { aggregateAccomodationData } from '../transformers/accomodation';
 
 const getAccomodationState = state => state.accomodation;
 
 export const accomodationAll =
-  createSelector(getAccomodationState, accomodation => accomodation.data);
+  createSelector(
+    [getAccomodationState, getAccomodationCapacity],
+    (accomodation, capacity) =>
+      accomodation.data.map(aggregateAccomodationData(capacity))
+  );
 
 export const getCheapestAccomodation =
   createSelector(

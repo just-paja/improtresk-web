@@ -35,7 +35,9 @@ describe('Participant selectors', () => {
     const aggregatorStub = sinon.stub().returnsArg(0);
     transformers.aggregateOrderData.returns(aggregatorStub);
     expect(getParticipantLatestOrder({
-      accomodation: {},
+      accomodation: {
+        data: [],
+      },
       capacity: {},
       meals: {},
       lectors: {
@@ -84,7 +86,9 @@ describe('Participant selectors', () => {
     const aggregatorStub = sinon.stub().returnsArg(0);
     transformers.aggregateOrderData.returns(aggregatorStub);
     expect(getParticipantLatestOrder({
-      accomodation: {},
+      accomodation: {
+        data: [],
+      },
       capacity: {},
       meals: {},
       lectors: {
@@ -113,7 +117,9 @@ describe('Participant selectors', () => {
     const aggregatorStub = sinon.stub().returnsArg(0);
     transformers.aggregateOrderData.returns(aggregatorStub);
     expect(getParticipantUnconfirmedOrder({
-      accomodation: {},
+      accomodation: {
+        data: [],
+      },
       capacity: {},
       meals: {},
       lectors: {
@@ -177,7 +183,9 @@ describe('Participant selectors', () => {
     const aggregatorStub = sinon.stub().returnsArg(0);
     transformers.aggregateOrderData.returns(aggregatorStub);
     expect(getParticipantUnconfirmedOrder({
-      accomodation: {},
+      accomodation: {
+        data: [],
+      },
       capacity: {},
       meals: {},
       lectors: {

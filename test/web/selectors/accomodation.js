@@ -7,15 +7,21 @@ import {
 } from '../../../src/web/selectors/accomodation';
 
 describe('Accomodation selectors', () => {
-  it('accomodationAll returns all news stored', () => {
+  it('accomodationAll returns all accomodation stored', () => {
     expect(accomodationAll({
       accomodation: {
         data: [
           { id: 1 },
         ],
       },
+      capacity: {
+        data: [],
+      },
     })).to.eql([
-      { id: 1 },
+      {
+        id: 1,
+        capacityStatus: {},
+      },
     ]);
   });
 
@@ -32,6 +38,9 @@ describe('Accomodation selectors', () => {
   it('getCheapestAccomodation returns null when there is no accomodation', () => {
     expect(getCheapestAccomodation({
       accomodation: {
+        data: [],
+      },
+      capacity: {
         data: [],
       },
     })).to.equal(null);
@@ -55,9 +64,13 @@ describe('Accomodation selectors', () => {
           },
         ],
       },
+      capacity: {
+        data: [],
+      },
     })).to.eql({
       id: 3,
       price: 0,
+      capacityStatus: {},
     });
   });
 });
