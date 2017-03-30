@@ -139,7 +139,7 @@ export const logout = ({ auth, ...params }) =>
     ...params,
   });
 
-export const fetchParticipant = params => apiFetchAuthorized('whoAmI/', params);
+export const fetchParticipant = params => apiFetchAuthorized('user/', params);
 
 export const fetchParticipantOrders = params => apiFetchAuthorized('orders/', params);
 

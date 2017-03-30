@@ -1,6 +1,6 @@
 import { call, select, takeLatest } from 'redux-saga/effects';
 
-import { fetchResource } from './common';
+import { sendForm } from './forms';
 import { getForm } from '../selectors/forms';
 
 import * as api from '../api';
@@ -18,42 +18,30 @@ export const selectPasswordNewSubmit = action =>
 export function* passwordReset() {
   const password = yield select(getForm, 'resetPassword');
   yield call(
-    fetchResource,
+    sendForm,
     api.resetPassword,
-    {
-      onStart: constants.PARTICIPANT_PASSWORD_RESET_STARTED,
-      onSuccess: constants.PARTICIPANT_PASSWORD_RESET_SUCCESS,
-      onError: constants.PARTICIPANT_PASSWORD_RESET_ERROR,
-      data: password.values,
-    }
+    'resetPassword',
+    password.values
   );
 }
 
 export function* passwordNew() {
   const password = yield select(getForm, 'newPassword');
   yield call(
-    fetchResource,
+    sendForm,
     api.newPassword,
-    {
-      onStart: constants.PARTICIPANT_PASSWORD_NEW_STARTED,
-      onSuccess: constants.PARTICIPANT_PASSWORD_NEW_SUCCESS,
-      onError: constants.PARTICIPANT_PASSWORD_NEW_ERROR,
-      data: password.values,
-    }
+    'newPassword',
+    password.values
   );
 }
 
 export function* passwordChange() {
   const password = yield select(getForm, 'changePassword');
   yield call(
-    fetchResource,
+    sendForm,
     api.changePassword,
-    {
-      onStart: constants.PARTICIPANT_PASSWORD_CHANGE_STARTED,
-      onSuccess: constants.PARTICIPANT_PASSWORD_CHANGE_SUCCESS,
-      onError: constants.PARTICIPANT_PASSWORD_CHANGE_ERROR,
-      data: password.values,
-    }
+    'changePassword',
+    password.values
   );
 }
 

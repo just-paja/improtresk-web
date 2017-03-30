@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { call, select, takeLatest } from 'redux-saga/effects';
 
-import { fetchResource } from '../../../src/web/sagas/common';
+import { sendForm } from '../../../src/web/sagas/forms';
 import { getForm } from '../../../src/web/selectors/forms';
 import {
   bindPasswordChangeSubmit,
@@ -50,16 +50,10 @@ describe('Participant sagas', () => {
         newPassword: 'foo',
       },
     }).value).to.eql(call(
-      fetchResource,
+      sendForm,
       api.newPassword,
-      {
-        onStart: 'PARTICIPANT_PASSWORD_NEW_STARTED',
-        onSuccess: 'PARTICIPANT_PASSWORD_NEW_SUCCESS',
-        onError: 'PARTICIPANT_PASSWORD_NEW_ERROR',
-        data: {
-          newPassword: 'foo',
-        },
-      }
+      'newPassword',
+      { newPassword: 'foo' }
     ));
     expect(saga.next().done).to.equal(true);
   });
@@ -72,16 +66,12 @@ describe('Participant sagas', () => {
         newPassword: 'bar',
       },
     }).value).to.eql(call(
-      fetchResource,
+      sendForm,
       api.changePassword,
+      'changePassword',
       {
-        onStart: 'PARTICIPANT_PASSWORD_CHANGE_STARTED',
-        onSuccess: 'PARTICIPANT_PASSWORD_CHANGE_SUCCESS',
-        onError: 'PARTICIPANT_PASSWORD_CHANGE_ERROR',
-        data: {
-          oldPassword: 'foo',
-          newPassword: 'bar',
-        },
+        oldPassword: 'foo',
+        newPassword: 'bar',
       }
     ));
     expect(saga.next().done).to.equal(true);
@@ -94,15 +84,11 @@ describe('Participant sagas', () => {
         email: 'foo@bar.com',
       },
     }).value).to.eql(call(
-      fetchResource,
+      sendForm,
       api.resetPassword,
+      'resetPassword',
       {
-        onStart: 'PARTICIPANT_PASSWORD_RESET_STARTED',
-        onSuccess: 'PARTICIPANT_PASSWORD_RESET_SUCCESS',
-        onError: 'PARTICIPANT_PASSWORD_RESET_ERROR',
-        data: {
-          email: 'foo@bar.com',
-        },
+        email: 'foo@bar.com',
       }
     ));
     expect(saga.next().done).to.equal(true);
