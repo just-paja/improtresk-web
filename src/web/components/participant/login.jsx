@@ -52,7 +52,7 @@ export default class Login extends Component {
         <Button
           bsStyle="primary"
           disabled={disabled}
-          icon="key"
+          icon="sign-in"
           loading={sending}
           type="submit"
         >Přihlásit</Button>

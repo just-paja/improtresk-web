@@ -153,6 +153,7 @@ export default class Signup extends Component {
         <Button
           disabled={disabled}
           bsStyle="primary"
+          icon="user-plus"
           loading={sending}
           type="submit"
         >Zaregistrovat</Button>
