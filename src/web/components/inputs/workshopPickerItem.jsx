@@ -60,12 +60,12 @@ export default class WorkshopPickerItem extends Component {
             now={assigned + reserved}
           />
         </div>
-        {!disabled && selected ? (
+        {selected ? (
           <span className={styles.check}>
             <FontAwesome className="fa-fw" name="check-circle" />
           </span>
         ) : null}
-        {freeSpots === 0 ? (
+        {!selected && freeSpots === 0 ? (
           <span className={classnames(styles.check, styles.full)}>
             <FontAwesome className="fa-fw" name="minus-circle" />
           </span>

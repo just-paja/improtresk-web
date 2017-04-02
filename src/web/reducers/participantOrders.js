@@ -9,6 +9,7 @@ const defaultState = {
 
 export default combined(defaultState, {
   [constants.ORDER_CREATED]: invalidate,
+  [constants.ORDER_CHANGED]: invalidate,
   [constants.ORDER_CANCELED]: invalidate,
   [constants.PARTICIPANT_LOGOUT]: invalidate,
   [constants.PARTICIPANT_ORDERS_FETCH_STARTED]: fetchStart,

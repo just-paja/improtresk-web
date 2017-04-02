@@ -23,6 +23,16 @@ export const selectOrderSubmit = action =>
 export const selectOrderSuccess = action =>
   action.type === constants.FORM_SUBMIT_SUCCESS && action.form === 'order';
 
+export const selectChangeWorkshopSubmit = action =>
+  action.type === constants.FORM_SUBMIT_ALLOWED && action.form === 'changeWorkshop';
+
+export const selectChangeWorkshopSuccess = action =>
+  action.type === constants.FORM_SUBMIT_SUCCESS && action.form === 'changeWorkshop';
+
+export function* redirectHome() {
+  yield put(push(reverse('participant:home')));
+}
+
 export function* orderSetDefaults() {
   const year = yield select(yearActiveNumber);
   const accomodation = yield select(getCheapestAccomodation);
@@ -84,7 +94,31 @@ export function* orderConfirmRedirect(action) {
 
 export function* orderCancelRedirect() {
   yield put({ type: constants.ORDER_CANCELED });
-  yield put(push(reverse('participant:home')));
+  yield fork(redirectHome);
+}
+
+export function* orderChangeRedirect() {
+  yield put({ type: constants.ORDER_CHANGED });
+  yield fork(redirectHome);
+}
+
+export function* orderChangeSetDefaults() {
+  const order = yield select(getParticipantLatestOrder);
+  yield put({
+    form: 'changeWorkshop',
+    type: constants.FORM_VALUES_SET,
+    values: {
+      workshop: order.workshop.id,
+    },
+  });
+}
+
+export function* orderChangeWorkshopSubmit() {
+  const form = yield select(getForm, 'changeWorkshop');
+  const order = yield select(getParticipantLatestOrder);
+  yield fork(sendForm, api.orderChangeWorkshop, 'changeWorkshop', form.values, {
+    order: order.id,
+  });
 }
 
 export function* bindOrderConfirmRedirect() {
@@ -142,12 +176,43 @@ export function* interceptInvalidWorkshop() {
     workshop => workshop.id === form.values.workshop
   );
 
-  if (!selectedWorkshop || selectedWorkshop.freeSpots === 0) {
+  if (
+    form.values.workshop &&
+    (
+      !selectedWorkshop ||
+      selectedWorkshop.capacityStatus.freeSpots === 0
+    )
+  ) {
     yield put({
       type: constants.FORM_FIELD_CHANGE,
       form: 'order',
       field: 'workshop',
       value: null,
+    });
+  }
+}
+
+export function* interceptInvalidWorkshopChange() {
+  const order = yield select(getParticipantLatestOrder);
+  const form = yield select(getForm, 'changeWorkshop');
+  const workshops = yield select(workshopsAll);
+  const selectedWorkshop = workshops.find(
+    workshop => workshop.id === form.values.workshop
+  );
+
+  if (
+    !selectedWorkshop ||
+    (
+      form.values.workshop &&
+      order.workshop.id !== form.values.workshop &&
+      selectedWorkshop.capacityStatus.freeSpots === 0
+    )
+  ) {
+    yield put({
+      type: constants.FORM_FIELD_CHANGE,
+      form: 'changeWorkshop',
+      field: 'workshop',
+      value: order.workshop.id,
     });
   }
 }
@@ -159,8 +224,32 @@ export function* bindInterceptInvalidWorkshop() {
   );
 }
 
+export function* bindInterceptInvalidWorkshopChange() {
+  yield takeLatest(
+    constants.YEAR_CAPACITY_FETCH_SUCCESS,
+    interceptInvalidWorkshopChange
+  );
+}
+
+export function* bindChangeWorkshopSubmit() {
+  yield takeLatest(selectChangeWorkshopSubmit, orderChangeWorkshopSubmit);
+}
+
+export function* bindChangeWorkshopSuccess() {
+  yield takeLatest(selectChangeWorkshopSuccess, orderChangeRedirect);
+}
+
+export function* bindChangeWorkshopSetDefaults() {
+  yield takeLatest(constants.PARTICIPANT_WORKSHOP_CHANGE_MOUNTED, orderChangeSetDefaults);
+}
+
+
 export default [
+  bindChangeWorkshopSetDefaults,
+  bindChangeWorkshopSubmit,
+  bindChangeWorkshopSuccess,
   bindInterceptInvalidWorkshop,
+  bindInterceptInvalidWorkshopChange,
   bindOrderCancel,
   bindOrderConfirm,
   bindOrderConfirmRedirect,
