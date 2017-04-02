@@ -108,7 +108,7 @@ export function* orderChangeSetDefaults() {
     form: 'changeWorkshop',
     type: constants.FORM_VALUES_SET,
     values: {
-      workshop: order.workshop.id,
+      workshop: order ? order.workshop.id : null,
     },
   });
 }
@@ -196,6 +196,7 @@ export function* interceptInvalidWorkshopChange() {
   const order = yield select(getParticipantLatestOrder);
   const form = yield select(getForm, 'changeWorkshop');
   const workshops = yield select(workshopsAll);
+
   const selectedWorkshop = workshops.find(
     workshop => workshop.id === form.values.workshop
   );
@@ -212,7 +213,7 @@ export function* interceptInvalidWorkshopChange() {
       type: constants.FORM_FIELD_CHANGE,
       form: 'changeWorkshop',
       field: 'workshop',
-      value: order.workshop.id,
+      value: order ? order.workshop.id : null,
     });
   }
 }
