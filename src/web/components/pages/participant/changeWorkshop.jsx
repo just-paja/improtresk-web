@@ -30,6 +30,11 @@ export default class ChangeWorkshopPage extends Component {
           pouze workshopy které ještě nejsou plné. Pokud ti systém dovolí se přehlásit, je to
           okamžitá záležitost o které ti přijde e-mail.
         </p>
+        <h2>Výměna místa</h2>
+        <p>
+          Protože systém dovoluje měnit workshopy pouze pokud je volná kapacita. Pokud
+          sis domluvil parťáka se kterým si chceš vyměnit místo na workshopu, tak nám napiš.
+        </p>
         <hr />
         <h2>Tvůj nový workshop</h2>
         <ChangeWorkshop
