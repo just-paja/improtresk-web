@@ -25,7 +25,7 @@ export default class WorkshopPicker extends Component {
       <Row>
         {workshops
           .map(workshop => (
-            <Col sm={6} lg={4}>
+            <Col key={workshop.id} sm={6} lg={4}>
               <WorkshopPickerItem
                 assigned={workshop.capacityStatus.assigned}
                 capacity={workshop.capacityStatus.capacity}
