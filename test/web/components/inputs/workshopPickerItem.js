@@ -77,7 +77,43 @@ describe('WorkshopPickerItem component', () => {
           />
         </div>
         <span className="workshopPickerItem-check">
-          <FontAwesome name="check-circle" />
+          <FontAwesome className="fa-fw" name="check-circle" />
+        </span>
+      </a>
+    );
+  });
+  it('renders full', () => {
+    expect(shallow(
+      <WorkshopPickerItem
+        id={230}
+        capacity={12}
+        lectors={[]}
+        name="Longformy"
+        onChange={() => {}}
+        freeSpots={0}
+      />
+    ).node).to.eql(
+      <a
+        className="workshopPickerItem-box workshopPickerItem-unselected"
+        tabIndex={0}
+        onClick={() => {}}
+      >
+        <WorkshopSummaryOneLine
+          name="Longformy"
+          lectors={[]}
+          freeSpots={0}
+          capacity={12}
+        />
+        <div className="workshopPickerItem-progress">
+          <ProgressBar
+            local
+            max={12}
+            min={0}
+            now={0}
+          />
+        </div>
+        <span className="workshopPickerItem-check workshopPickerItem-full">
+          <FontAwesome className="fa-fw" name="minus-circle" />
         </span>
       </a>
     );
