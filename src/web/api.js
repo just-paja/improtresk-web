@@ -119,6 +119,13 @@ export const orderConfirm = ({ order, ...params }) =>
     method: 'GET',
   });
 
+export const orderChangeWorkshop = ({ formData, order, ...params }) =>
+  apiFetchAuthorized(`orders/${order}/`, {
+    ...params,
+    body: JSON.stringify(formData),
+    method: 'PATCH',
+  });
+
 export const login = ({ formData, ...params }) =>
   fetch('/frontend/login', {
     body: JSON.stringify(formData),

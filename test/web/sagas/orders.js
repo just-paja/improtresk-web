@@ -27,6 +27,7 @@ import {
   orderConfirmRedirect,
   orderSetDefaults,
   orderSubmit,
+  redirectHome,
   selectOrderSubmit,
   selectOrderSuccess,
 } from '../../../src/web/sagas/orders';
@@ -135,7 +136,9 @@ describe('Schedule sagas', () => {
     expect(saga.next([
       {
         id: 9,
-        freeSpots: 0,
+        capacityStatus: {
+          freeSpots: 0,
+        },
       },
     ]).value).to.eql(put({
       type: 'FORM_FIELD_CHANGE',
@@ -156,14 +159,16 @@ describe('Schedule sagas', () => {
     expect(saga.next([
       {
         id: 9,
-        freeSpots: 1,
+        capacityStatus: {
+          freeSpots: 1,
+        },
       },
     ]).done).to.equal(true);
   });
   it('orderCancelRedirect redirecs to home', () => {
     const saga = orderCancelRedirect();
     expect(saga.next().value).to.eql(put({ type: 'ORDER_CANCELED' }));
-    expect(saga.next().value).to.eql(put(push('/ucastnik')));
+    expect(saga.next().value).to.eql(fork(redirectHome));
     expect(saga.next().done).to.equal(true);
   });
   it('orderConfirmRedirect redirecs to order confirm', () => {
