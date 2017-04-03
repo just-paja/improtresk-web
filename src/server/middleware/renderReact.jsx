@@ -124,11 +124,15 @@ export const renderMarkupAndWait = (req, store, componentTree) => {
   });
 };
 
-export const renderInHtml = markupAndState => renderToStaticMarkup(pageBase({
-  helmet: Helmet.rewind(),
-  ...markupAndState,
-  ...assets,
-}));
+export const renderInHtml = (markupAndState) => {
+  const markup = renderToStaticMarkup(pageBase({
+    helmet: Helmet.rewind(),
+    ...markupAndState,
+    ...assets,
+  }));
+
+  return `<!DOCTYPE html>${markup}`;
+};
 
 export const respondWithHtml = (req, res, markupAndState) => {
   winston.log('silly', 'REACT RENDER STATIC', req.url);
