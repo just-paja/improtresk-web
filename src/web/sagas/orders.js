@@ -205,6 +205,8 @@ export function* interceptInvalidWorkshopChange() {
     !selectedWorkshop ||
     (
       form.values.workshop &&
+      order &&
+      order.workshop &&
       order.workshop.id !== form.values.workshop &&
       selectedWorkshop.capacityStatus.freeSpots === 0
     )
