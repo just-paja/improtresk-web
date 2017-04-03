@@ -30,6 +30,7 @@
   },
   "homepage": "https://improtresk.cz",
   "dependencies": {
+    "babel-polyfill": "http://registry.npmjs.org/babel-polyfill/-/babel-polyfill-6.23.0.tgz",
     "body-parser": "^1.17.1",
     "bootswatch": "^3.3.7",
     "classnames": "^2.2.5",

@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -6,6 +8,7 @@ import { browserHistory } from 'react-router';
 import configureStore from './store';
 import RootDefault from './components/root';
 import sagas from './sagas';
+
 
 const initialState = window.INITIAL_STATE;
 const store = configureStore(initialState, false, browserHistory);
