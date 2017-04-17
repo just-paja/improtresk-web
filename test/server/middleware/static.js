@@ -15,7 +15,6 @@ describe('Static server middleware', () => {
   });
 
   it('binds theme files as static', () => {
-    express.static.reset();
     staticMiddleware();
     expect(express.static.args).to.eql([
       ['static'],
