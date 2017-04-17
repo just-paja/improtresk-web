@@ -13,7 +13,11 @@ const WorkshopSummary = ({ id, capacityStatus, desc, difficulty, name, lectors }
 
     <ul className="list-unstyled">
       {lectors.map(lectorPosition => (
-        <Prop icon="user" label={lectorPosition.role}>{lectorPosition.lector.name}</Prop>
+        <Prop
+          key={lectorPosition.id}
+          icon="user"
+          label={lectorPosition.role}
+        >{lectorPosition.lector.name}</Prop>
       ))}
       <Prop icon="hand-rock-o" label="Náročnost">{difficulty}</Prop>
       <Prop icon="balance-scale" label="Kapacita">
