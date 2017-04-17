@@ -1,8 +1,9 @@
 import { expect } from 'chai';
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
 import { fetchResource, fetchResourceIfNeeded } from '../../../src/web/sagas/common';
+import { getApiAuth } from '../../../src/web/selectors/session';
 import {
   shouldFetchParticipant,
   shouldFetchParticipantOrders,
@@ -34,9 +35,17 @@ describe('Participant sagas', () => {
     ));
     expect(saga.next().done).to.equal(true);
   });
+  it('fetchParticipantShowHome fetches nothing without auth', () => {
+    const saga = fetchParticipantShowHome();
+    expect(saga.next().value).to.eql(select(getApiAuth));
+    expect(saga.next().done).to.equal(true);
+  });
   it('fetchParticipantShowHome creates fetch actions', () => {
     const saga = fetchParticipantShowHome();
-    expect(saga.next().value).to.eql(call(
+    expect(saga.next().value).to.eql(select(getApiAuth));
+    expect(saga.next({
+      access_token: 'foo',
+    }).value).to.eql(call(
       fetchResourceIfNeeded,
       api.fetchParticipant,
       shouldFetchParticipant,
