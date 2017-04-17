@@ -2,6 +2,7 @@ instrumentation:
   root: src
   include-all-sources: true
   excludes: [
+    'server/index.js',
     'server/main.js',
     'server/config.js',
     'server/mainCss.js',
