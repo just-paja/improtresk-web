@@ -1,9 +1,11 @@
+import FontAwesome from 'react-fontawesome';
 import React, { PropTypes } from 'react';
 import Well from 'react-bootstrap/lib/Well';
 
 import Button from './button';
 import Link from './link';
-import OrderHeader from './order/header';
+import Meal from './meal';
+import Status from './order/status';
 import OrderPaymentStatus from './orderPaymentStatus';
 import PaymentDetails from './order/paymentDetails';
 import Price from './price';
@@ -24,42 +26,64 @@ const OrderStatus = ({
   showPaymentStatus,
   symvar,
   workshop,
-  year,
 }) => (
   <Well>
     <h2>Moje objednávka</h2>
-    <OrderHeader
-      accomodation={accomodation}
+    <Status
       assigned={assigned}
-      canceled={canceled}
       confirmed={confirmed}
-      endsAt={endsAt}
-      meals={meals}
+      canceled={canceled}
       paid={paid}
-      workshop={workshop}
-      year={year}
+      endsAt={endsAt}
     />
-    { confirmed ? (
-      <Link to="participant:changeWorkshop">
-        <Button icon="magic">Změnit workshop</Button>
-      </Link>
-    ) : null }
+    <h3>
+      <FontAwesome className="fa-fw" name="street-view" /> Workshop
+      { confirmed ? (
+        <small>
+          {' '}|{' '}
+          <Link to="participant:changeWorkshop">Změnit workshop</Link>
+        </small>
+      ) : null}
+    </h3>
+    <p>{workshop.name || 'Nevybráno'}</p>
+
+    <h3>
+      <FontAwesome className="fa-fw" name="cutlery" /> Jídlo
+      { confirmed ? (
+        <small>
+          {' '}|{' '}
+          <Link to="participant:changeWorkshop">Vybrat jídlo</Link>
+        </small>
+      ) : null }
+    </h3>
+    <p>
+      {meals.length ? (
+        meals.map(meal => <Meal key={meal.id} name={meal.name} date={meal.date} />)
+      ) : null}
+    </p>
+    <h3>
+      <FontAwesome className="fa-fw" name="bed" /> Ubytování
+    </h3>
+    <p>{accomodation ? accomodation.name : null}</p>
+
     { !paid ? (
       <div>
-        <h3>Částka k zaplacení</h3>
+        <h3>
+          <FontAwesome className="fa-fw" name="money" /> Částka k zaplacení
+        </h3>
         <big><Price price={price} /></big>
       </div>
     ) : null}
     { !paid && confirmed && showPaymentDetails ? (
       <div>
-        <h3>Platba</h3>
+        <h3><FontAwesome className="fa-fw" name="exchange" /> Platba</h3>
         <PaymentDetails
           price={price}
           symvar={symvar}
         />
       </div>
     ) : null}
-    {showPaymentStatus ? (
+    {!paid && showPaymentStatus ? (
       <OrderPaymentStatus
         canceled={canceled}
         paid={paid}
@@ -100,7 +124,6 @@ OrderStatus.propTypes = {
   meals: PropTypes.arrayOf(PropTypes.object).isRequired,
   showPaymentDetails: PropTypes.bool,
   showPaymentStatus: PropTypes.bool,
-  year: PropTypes.object,
   workshop: PropTypes.shape({
     name: PropTypes.string,
     lectors: PropTypes.arrayOf(PropTypes.shape({

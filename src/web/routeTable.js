@@ -8,6 +8,7 @@ export const urlTable = {
   'participant:forgottenPassword': '/zapomenute-heslo',
   'participant:changePassword': '/ucastnik/zmena-hesla',
   'participant:changeWorkshop': '/ucastnik/zmena-workshopu',
+  'participant:changeFood': '/ucastnik/vyber-jidla',
   'participant:newPassword': '/nove-heslo',
   'performers:item': '/ucinkujici/:slug',
   'workshops:item': '/workshopy/:slug',
