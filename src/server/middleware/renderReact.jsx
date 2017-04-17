@@ -19,7 +19,9 @@ import { isAppReady } from '../../web/selectors/app';
 const assetTypes = ['css', 'js'];
 const assets = {
   js: [],
-  css: [],
+  css: [
+    '/static/theme/styles/page.css',
+  ],
 };
 
 if (process.env.NODE_ENV === 'production') {
@@ -41,12 +43,12 @@ if (process.env.NODE_ENV === 'production') {
     .forEach((asset) => {
       assetTypes.forEach((type) => {
         if (assetsRaw[asset][type]) {
-          assets[type].push(assetsRaw[asset][type]);
+          assets[type].push(`/assets/${assetsRaw[asset][type]}`);
         }
       });
     });
 } else {
-  assets.js.push('app.js');
+  assets.js.push('/assets/app.js');
 }
 
 export const getComponentTree = (store, renderProps) => (

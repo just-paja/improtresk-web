@@ -18,7 +18,7 @@ const pageBase = ({
       {link.toComponent()}
       {script.toComponent()}
       {css.map(asset =>
-        <link key={asset} type="text/css" rel="stylesheet" href={`/assets/${asset}`} />
+        <link key={asset} type="text/css" rel="stylesheet" href={asset} />
       )}
       {/* eslint-disable react/no-danger */}
       <script
@@ -33,7 +33,7 @@ const pageBase = ({
       {/* eslint-disable react/no-danger */}
       <div id="appContent" dangerouslySetInnerHTML={{ __html: markup }} />
       {/* eslint-enable react/no-danger */}
-      {js.map(asset => <script src={`/assets/${asset}`} key={asset} />)}
+      {js.map(asset => <script src={asset} key={asset} />)}
     </body>
   </html>
 );

@@ -10,8 +10,8 @@ describe('PageBase component', () => {
   it('renders', () => {
     expect(shallow(
       <PageBase
-        css={['test.css']}
-        js={['test.js']}
+        css={['/assets/test.css']}
+        js={['/assets/test.js']}
         markup="foo"
         state={{
           testState: 'foo',
