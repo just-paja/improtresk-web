@@ -1,11 +1,12 @@
 import { expect } from 'chai';
-import { call, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import { fetchResourceIfNeeded } from '../../../src/web/sagas/common';
 import {
   fetchNewsOnMount,
   fetchNewsDetail,
   bindfetchNewsDetail,
+  invalidate,
 } from '../../../src/web/sagas/news';
 import {
   getNewsDetailId,
@@ -64,6 +65,13 @@ describe('News sagas', () => {
       ],
       fetchNewsDetail
     ));
+    expect(saga.next().done).to.equal(true);
+  });
+  it('invalidate creates invalidate action', () => {
+    const saga = invalidate();
+    expect(saga.next().value).to.eql(put({
+      type: 'NEWS_DETAIL_INVALIDATE',
+    }));
     expect(saga.next().done).to.equal(true);
   });
 });

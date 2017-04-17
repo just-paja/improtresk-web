@@ -193,30 +193,30 @@ export function* interceptInvalidWorkshop() {
 }
 
 export function* interceptInvalidWorkshopChange() {
-  const order = yield select(getParticipantLatestOrder);
   const form = yield select(getForm, 'changeWorkshop');
+  const order = yield select(getParticipantLatestOrder);
   const workshops = yield select(workshopsAll);
 
   const selectedWorkshop = workshops.find(
     workshop => workshop.id === form.values.workshop
   );
 
-  if (
-    !selectedWorkshop ||
-    (
-      form.values.workshop &&
-      order &&
-      order.workshop &&
-      order.workshop.id !== form.values.workshop &&
-      selectedWorkshop.capacityStatus.freeSpots === 0
-    )
-  ) {
-    yield put({
-      type: constants.FORM_FIELD_CHANGE,
-      form: 'changeWorkshop',
-      field: 'workshop',
-      value: order ? order.workshop.id : null,
-    });
+  if (order && order.workshop) {
+    if (
+      !selectedWorkshop ||
+      (
+        form.values.workshop &&
+        order.workshop.id !== form.values.workshop &&
+        selectedWorkshop.capacityStatus.freeSpots === 0
+      )
+    ) {
+      yield put({
+        type: constants.FORM_FIELD_CHANGE,
+        form: 'changeWorkshop',
+        field: 'workshop',
+        value: order.workshop.id,
+      });
+    }
   }
 }
 

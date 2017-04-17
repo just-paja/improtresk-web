@@ -54,11 +54,9 @@ export function* bindfetchNewsDetail() {
   );
 }
 
-
 export function* invalidate() {
   yield put({ type: constants.NEWS_DETAIL_INVALIDATE });
 }
-
 
 export default [
   fetchNewsOnMount,

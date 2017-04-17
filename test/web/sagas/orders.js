@@ -13,7 +13,11 @@ import { sendForm } from '../../../src/web/sagas/forms';
 import { workshopsAll } from '../../../src/web/selectors/workshops';
 import { yearActiveNumber } from '../../../src/web/selectors/years';
 import {
+  bindChangeWorkshopSetDefaults,
+  bindChangeWorkshopSubmit,
+  bindChangeWorkshopSuccess,
   bindInterceptInvalidWorkshop,
+  bindInterceptInvalidWorkshopChange,
   bindOrderCancel,
   bindOrderConfirm,
   bindOrderConfirmRedirect,
@@ -21,13 +25,19 @@ import {
   bindOrderSetDefaults,
   bindOrderSubmit,
   interceptInvalidWorkshop,
+  interceptInvalidWorkshopChange,
   orderCancel,
   orderCancelRedirect,
   orderConfirm,
   orderConfirmRedirect,
+  orderChangeRedirect,
+  orderChangeSetDefaults,
+  orderChangeWorkshopSubmit,
   orderSetDefaults,
   orderSubmit,
   redirectHome,
+  selectChangeWorkshopSubmit,
+  selectChangeWorkshopSuccess,
   selectOrderSubmit,
   selectOrderSuccess,
 } from '../../../src/web/sagas/orders';
@@ -45,6 +55,18 @@ describe('Schedule sagas', () => {
     expect(selectOrderSuccess({
       type: 'FORM_SUBMIT_SUCCESS',
       form: 'order',
+    })).to.equal(true);
+  });
+  it('selectChangeWorkshopSuccess binds form submit', () => {
+    expect(selectChangeWorkshopSuccess({
+      type: 'FORM_SUBMIT_SUCCESS',
+      form: 'changeWorkshop',
+    })).to.equal(true);
+  });
+  it('selectChangeWorkshopSubmit binds form submit', () => {
+    expect(selectChangeWorkshopSubmit({
+      type: 'FORM_SUBMIT_ALLOWED',
+      form: 'changeWorkshop',
     })).to.equal(true);
   });
   it('bindOrderSubmit binds form submit', () => {
@@ -101,11 +123,43 @@ describe('Schedule sagas', () => {
     ));
     expect(saga.next().done).to.equal(true);
   });
+  it('bindChangeWorkshopSubmit binds form submit', () => {
+    const saga = bindChangeWorkshopSubmit();
+    expect(saga.next().value).to.eql(takeLatest(
+      selectChangeWorkshopSubmit,
+      orderChangeWorkshopSubmit
+    ));
+    expect(saga.next().done).to.equal(true);
+  });
+  it('bindChangeWorkshopSuccess binds form submit', () => {
+    const saga = bindChangeWorkshopSuccess();
+    expect(saga.next().value).to.eql(takeLatest(
+      selectChangeWorkshopSuccess,
+      orderChangeRedirect
+    ));
+    expect(saga.next().done).to.equal(true);
+  });
+  it('bindChangeWorkshopSetDefaults binds form submit', () => {
+    const saga = bindChangeWorkshopSetDefaults();
+    expect(saga.next().value).to.eql(takeLatest(
+      'PARTICIPANT_WORKSHOP_CHANGE_MOUNTED',
+      orderChangeSetDefaults
+    ));
+    expect(saga.next().done).to.equal(true);
+  });
   it('bindInterceptInvalidWorkshop binds form submit', () => {
     const saga = bindInterceptInvalidWorkshop();
     expect(saga.next().value).to.eql(takeLatest(
       'YEAR_CAPACITY_FETCH_SUCCESS',
       interceptInvalidWorkshop
+    ));
+    expect(saga.next().done).to.equal(true);
+  });
+  it('bindInterceptInvalidWorkshopChange binds form submit', () => {
+    const saga = bindInterceptInvalidWorkshopChange();
+    expect(saga.next().value).to.eql(takeLatest(
+      'YEAR_CAPACITY_FETCH_SUCCESS',
+      interceptInvalidWorkshopChange
     ));
     expect(saga.next().done).to.equal(true);
   });
@@ -165,6 +219,118 @@ describe('Schedule sagas', () => {
       },
     ]).done).to.equal(true);
   });
+  it('interceptInvalidWorkshopChange does nothing without order', () => {
+    const saga = interceptInvalidWorkshopChange();
+    expect(saga.next().value).to.eql(select(getForm, 'changeWorkshop'));
+    expect(saga.next({
+      values: {
+        workshop: 3,
+      },
+    }).value).to.eql(select(getParticipantLatestOrder));
+    expect(saga.next().value).to.eql(select(workshopsAll));
+    expect(saga.next([
+      {
+        id: 3,
+        capacityStatus: {
+          freeSpots: 0,
+        },
+      },
+    ]).done).to.eql(true);
+  });
+  it('interceptInvalidWorkshopChange does nothing without order workshop', () => {
+    const saga = interceptInvalidWorkshopChange();
+    expect(saga.next().value).to.eql(select(getForm, 'changeWorkshop'));
+    expect(saga.next({
+      values: {
+        workshop: 3,
+      },
+    }).value).to.eql(select(getParticipantLatestOrder));
+    expect(saga.next({ id: 1 }).value).to.eql(select(workshopsAll));
+    expect(saga.next([
+      {
+        id: 3,
+        capacityStatus: {
+          freeSpots: 0,
+        },
+      },
+    ]).done).to.eql(true);
+  });
+  it('interceptInvalidWorkshopChange does nothing when order workshop is same as selected', () => {
+    const saga = interceptInvalidWorkshopChange();
+    expect(saga.next().value).to.eql(select(getForm, 'changeWorkshop'));
+    expect(saga.next({
+      values: {
+        workshop: 3,
+      },
+    }).value).to.eql(select(getParticipantLatestOrder));
+    expect(saga.next({ id: 1, workshop: { id: 3 } }).value).to.eql(select(workshopsAll));
+    expect(saga.next([
+      {
+        id: 3,
+        capacityStatus: {
+          freeSpots: 0,
+        },
+      },
+    ]).done).to.eql(true);
+  });
+  it('interceptInvalidWorkshopChange does nothing when selected workshop has free spots', () => {
+    const saga = interceptInvalidWorkshopChange();
+    expect(saga.next().value).to.eql(select(getForm, 'changeWorkshop'));
+    expect(saga.next({
+      values: {
+        workshop: 6,
+      },
+    }).value).to.eql(select(getParticipantLatestOrder));
+    expect(saga.next({ id: 1, workshop: { id: 3 } }).value).to.eql(select(workshopsAll));
+    expect(saga.next([
+      {
+        id: 6,
+        capacityStatus: {
+          freeSpots: 1,
+        },
+      },
+    ]).done).to.eql(true);
+  });
+  it('interceptInvalidWorkshopChange resets value to order settings when no workshop is selected', () => {
+    const saga = interceptInvalidWorkshopChange();
+    expect(saga.next().value).to.eql(select(getForm, 'changeWorkshop'));
+    expect(saga.next({ values: {} }).value).to.eql(select(getParticipantLatestOrder));
+    expect(saga.next({ id: 1, workshop: { id: 3 } }).value).to.eql(select(workshopsAll));
+    expect(saga.next([]).value).to.eql(put({
+      type: 'FORM_FIELD_CHANGE',
+      form: 'changeWorkshop',
+      field: 'workshop',
+      value: 3,
+    }));
+  });
+  it('interceptInvalidWorkshopChange resets form value when selected workshop has no free spots', () => {
+    const saga = interceptInvalidWorkshopChange();
+    expect(saga.next().value).to.eql(select(getForm, 'changeWorkshop'));
+    expect(saga.next({
+      values: {
+        workshop: 6,
+      },
+    }).value).to.eql(select(getParticipantLatestOrder));
+    expect(saga.next({
+      id: 1,
+      workshop: {
+        id: 3,
+      },
+    }).value).to.eql(select(workshopsAll));
+    expect(saga.next([
+      {
+        id: 6,
+        capacityStatus: {
+          freeSpots: 0,
+        },
+      },
+    ]).value).to.eql(put({
+      type: 'FORM_FIELD_CHANGE',
+      form: 'changeWorkshop',
+      field: 'workshop',
+      value: 3,
+    }));
+  });
   it('orderCancelRedirect redirecs to home', () => {
     const saga = orderCancelRedirect();
     expect(saga.next().value).to.eql(put({ type: 'ORDER_CANCELED' }));
@@ -211,6 +377,63 @@ describe('Schedule sagas', () => {
   it('orderConfirm does nothing without order', () => {
     const saga = orderConfirm();
     expect(saga.next().value).to.eql(select(getParticipantUnconfirmedOrder));
+    expect(saga.next(null).done).to.equal(true);
+  });
+  it('orderChangeRedirect sends notice to store redirects home', () => {
+    const saga = orderChangeRedirect();
+    expect(saga.next().value).to.eql(put({
+      type: 'ORDER_CHANGED',
+    }));
+    expect(saga.next().value).to.eql(fork(redirectHome));
+    expect(saga.next(null).done).to.equal(true);
+  });
+  it('orderChangeSetDefaults sets default values for workshop change form when workshop is not available', () => {
+    const saga = orderChangeSetDefaults();
+    expect(saga.next().value).to.eql(select(getParticipantLatestOrder));
+    expect(saga.next().value).to.eql(put({
+      form: 'changeWorkshop',
+      type: 'FORM_VALUES_SET',
+      values: {
+        workshop: null,
+      },
+    }));
+    expect(saga.next(null).done).to.equal(true);
+  });
+  it('orderChangeSetDefaults sets default values for workshop change form when workshop is available', () => {
+    const saga = orderChangeSetDefaults();
+    expect(saga.next().value).to.eql(select(getParticipantLatestOrder));
+    expect(saga.next({
+      workshop: {
+        id: 9,
+      },
+    }).value).to.eql(put({
+      form: 'changeWorkshop',
+      type: 'FORM_VALUES_SET',
+      values: {
+        workshop: 9,
+      },
+    }));
+    expect(saga.next(null).done).to.equal(true);
+  });
+  it('orderChangeWorkshopSubmit sets default values for workshop change form when workshop is available', () => {
+    const saga = orderChangeWorkshopSubmit();
+    expect(saga.next().value).to.eql(select(getForm, 'changeWorkshop'));
+    expect(saga.next({
+      values: {
+        workshop: 9,
+      },
+    }).value).to.eql(select(getParticipantLatestOrder));
+    expect(saga.next({
+      id: 13,
+    }).value).to.eql(fork(
+      sendForm,
+      api.orderChangeWorkshop,
+      'changeWorkshop',
+      { workshop: 9 },
+      {
+        order: 13,
+      }
+    ));
     expect(saga.next(null).done).to.equal(true);
   });
   it('orderCancel sends order cancel', () => {
@@ -261,6 +484,11 @@ describe('Schedule sagas', () => {
         year: '2017',
       },
     }));
+    expect(saga.next().done).to.equal(true);
+  });
+  it('redirectHome triggers redirect home', () => {
+    const saga = redirectHome();
+    expect(saga.next().value).to.eql(put(push('/ucastnik')));
     expect(saga.next().done).to.equal(true);
   });
 });
