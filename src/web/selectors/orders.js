@@ -3,6 +3,7 @@ import moment from 'moment';
 import { createSelector } from 'reselect';
 
 import { getForm } from './forms';
+import { getParticipantLatestOrder } from './participant';
 import { workshopsAll } from './workshops';
 import { getMeals } from './food';
 
@@ -49,5 +50,21 @@ export const getOrderFormPrice = createSelector(
   calculatePrice
 );
 
+export const getOrderedMeals = createSelector(
+  [getParticipantLatestOrder, getMeals],
+  (order, meals) => {
+    if (!order || !order.reservation) {
+      return [];
+    }
+    return order.reservation.mealReservation.map((mealReservation) => {
+      const meal = meals.find(item => item.id === mealReservation.meal);
 
-export default { getOrderFormPrice };
+      if (meal) {
+        const food = meal.foods.find(item => item.id === mealReservation.food);
+        const soup = meal.soups.find(item => item.id === mealReservation.soup);
+      }
+
+      return null;
+    });
+  }
+);

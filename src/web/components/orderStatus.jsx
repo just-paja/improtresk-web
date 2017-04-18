@@ -4,7 +4,7 @@ import Well from 'react-bootstrap/lib/Well';
 
 import Button from './button';
 import Link from './link';
-import Meal from './meal';
+import FoodSummary from './order/foodSummary';
 import Status from './order/status';
 import OrderPaymentStatus from './orderPaymentStatus';
 import PaymentDetails from './order/paymentDetails';
@@ -56,11 +56,7 @@ const OrderStatus = ({
         </small>
       ) : null }
     </h3>
-    <p>
-      {meals.length ? (
-        meals.map(meal => <Meal key={meal.id} name={meal.name} date={meal.date} />)
-      ) : null}
-    </p>
+    <FoodSummary meals={meals} />
     <h3>
       <FontAwesome className="fa-fw" name="bed" /> Ubytování
     </h3>

@@ -3,7 +3,10 @@ import sinon from 'sinon';
 
 import { expect } from 'chai';
 
-import { getOrderFormPrice } from '../../../src/web/selectors/orders';
+import {
+  getOrderFormPrice,
+  getOrderedMeals,
+} from '../../../src/web/selectors/orders';
 
 describe('Order selectors', () => {
   beforeEach(() => {
@@ -366,5 +369,181 @@ describe('Order selectors', () => {
         ],
       },
     })).to.equal(400);
+  });
+  it('getOrderedMeals returns empty array without order', () => {
+    expect(getOrderedMeals({
+      meals: {
+        data: [
+          {
+            id: 1,
+            name: 'lunch',
+            date: '2016-04-03',
+            foods: [
+              { id: 1 },
+              { id: 2 },
+            ],
+            soup: [
+              { id: 100 },
+              { id: 200 },
+            ],
+          },
+          {
+            id: 2,
+            name: 'lunch',
+            date: '2016-04-03',
+            foods: [
+              { id: 3 },
+              { id: 4 },
+            ],
+            soup: [
+              { id: 300 },
+              { id: 400 },
+            ],
+          },
+        ],
+      },
+      accomodation: {
+        data: [],
+      },
+      capacity: {
+        data: [],
+      },
+      workshops: {
+        difficulties: {
+          data: [],
+        },
+        list: {
+          data: [],
+        },
+      },
+      years: {
+        data: [],
+      },
+      lectors: {
+        list: {
+          data: [],
+        },
+        roles: {
+          data: [],
+        },
+      },
+      participant: {
+        orders: {
+          data: [],
+        },
+      },
+    })).to.eql([]);
+  });
+  it('getOrderedMeals returns meals with groupped food', () => {
+    expect(getOrderedMeals({
+      meals: {
+        data: [
+          {
+            id: 1,
+            name: 'lunch',
+            date: '2016-04-03',
+            foods: [
+              { id: 1 },
+              { id: 2 },
+            ],
+            soup: [
+              { id: 100 },
+              { id: 200 },
+            ],
+          },
+          {
+            id: 2,
+            name: 'lunch',
+            date: '2016-04-03',
+            foods: [
+              { id: 3 },
+              { id: 4 },
+            ],
+            soup: [
+              { id: 300 },
+              { id: 400 },
+            ],
+          },
+        ],
+      },
+      accomodation: {
+        data: [],
+      },
+      capacity: {
+        data: [],
+      },
+      workshops: {
+        difficulties: {
+          data: [],
+        },
+        list: {
+          data: [],
+        },
+      },
+      years: {
+        data: [],
+      },
+      lectors: {
+        list: {
+          data: [],
+        },
+        roles: {
+          data: [],
+        },
+      },
+      participant: {
+        orders: {
+          data: [
+            {
+              id: 10,
+              reservation: {
+                id: 17,
+                mealReservation: [
+                  {
+                    id: 90,
+                    meal: 1,
+                    food: 1,
+                    soup: 200,
+                  },
+                  {
+                    id: 90,
+                    meal: 2,
+                    food: 4,
+                    soup: 400,
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    })).to.eql([
+      {
+        id: 1,
+        name: 'lunch',
+        date: '2016-04-03',
+        foods: [
+          { id: 1 },
+          { id: 2 },
+        ],
+        soups: [
+          { id: 100 },
+          { id: 200 },
+        ],
+      },
+      {
+        id: 2,
+        name: 'lunch',
+        date: '2016-04-03',
+        foods: [
+          { id: 3 },
+          { id: 4 },
+        ],
+        soups: [
+          { id: 300 },
+          { id: 400 },
+        ],
+      },
+    ]);
   });
 });
