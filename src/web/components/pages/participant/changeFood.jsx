@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 
 import Container from '../../container';
-import ChangeWorkshop from '../../participant/changeWorkshop';
+import ChangeFood from '../../participant/changeFood';
 
-export default class ChangeWorkshopPage extends Component {
+export default class ChangeFoodPage extends Component {
   componentWillMount() {
     this.props.onMount();
   }
@@ -23,7 +23,7 @@ export default class ChangeWorkshopPage extends Component {
 
     return (
       <Container>
-        <h1>Změna workshopu</h1>
+        <h1>Výběr jídla</h1>
         <p>
           V tuhle chvíli jsi přihlášený na workshopu <b>{order.workshop.name}</b>. Nabízíme ti
           možnost se přehlásit na jiný. Tak se mrkni co je ještě v nabídce. Dostupné jsou
@@ -37,7 +37,7 @@ export default class ChangeWorkshopPage extends Component {
         </p>
         <hr />
         <h2>Tvůj nový workshop</h2>
-        <ChangeWorkshop
+        <ChangeFood
           form="changeWorkshop"
           onChange={onChangeWorkshopChange}
           onSubmit={onChangeWorkshopSubmit}
@@ -49,7 +49,7 @@ export default class ChangeWorkshopPage extends Component {
   }
 }
 
-ChangeWorkshopPage.propTypes = {
+ChangeFoodPage.propTypes = {
   changeWorkshop: PropTypes.object.isRequired,
   order: PropTypes.object.isRequired,
   onChangeWorkshopChange: PropTypes.func.isRequired,

@@ -50,6 +50,7 @@ class ParticipantHome extends Component {
           <OrderStatus
             {...order}
             assigned={!!participant.assigned_workshop}
+            meals={meals}
             onCancel={onOrderCancel}
             onConfirm={onOrderConfirm}
             showPaymentDetails

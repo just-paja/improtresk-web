@@ -4,13 +4,15 @@ import { bindActionCreators } from 'redux';
 import ParticipantHome from '../components/pages/participant/home';
 
 import { getForm } from '../selectors/forms';
-import { getOrderFormPrice } from '../selectors/orders';
+import {
+  getOrderFormPrice,
+  getOrderedMeals,
+} from '../selectors/orders';
 import {
   getParticipant,
   getParticipantLatestOrder,
  } from '../selectors/participant';
 import { accomodationAll } from '../selectors/accomodation';
-import { getMeals } from '../selectors/food';
 import { workshopsAll } from '../selectors/workshops';
 import { yearActiveNumber } from '../selectors/years';
 
@@ -19,7 +21,7 @@ import * as actions from '../constants/actions';
 const mapStateToProps = state => ({
   accomodation: accomodationAll(state),
   price: getOrderFormPrice(state),
-  meals: getMeals(state),
+  meals: getOrderedMeals(state),
   order: getParticipantLatestOrder(state),
   orderForm: getForm(state, 'order'),
   participant: getParticipant(state),

@@ -60,8 +60,11 @@ export const getOrderedMeals = createSelector(
       const meal = meals.find(item => item.id === mealReservation.meal);
 
       if (meal) {
-        const food = meal.foods.find(item => item.id === mealReservation.food);
-        const soup = meal.soups.find(item => item.id === mealReservation.soup);
+        return {
+          ...meal,
+          orderedFood: meal.food.find(item => item.id === mealReservation.food),
+          orderedSoup: meal.soups.find(item => item.id === mealReservation.soup),
+        };
       }
 
       return null;

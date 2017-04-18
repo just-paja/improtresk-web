@@ -17,7 +17,7 @@ describe('OrderedMeal component', () => {
       />
     ).node).to.eql(
       <div>
-        <strong>Oběd <HumanDate date="2016-01-02" /></strong>
+        <h4>Oběd <HumanDate date="2016-01-02" /></h4>
         <div>Polévka: Květáková</div>
         <div>Hlavní chod: Svíčková</div>
       </div>

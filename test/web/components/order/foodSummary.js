@@ -1,4 +1,6 @@
+import Col from 'react-bootstrap/lib/Col';
 import React from 'react';
+import Row from 'react-bootstrap/lib/Row';
 
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
@@ -14,30 +16,34 @@ describe('FoodSummary component', () => {
           {
             name: 'lunch',
             date: '2016-01-02',
-            soup: { name: 'Květáková' },
-            food: { name: 'Svíčková' },
+            orderedSoup: { name: 'Květáková' },
+            orderedFood: { name: 'Svíčková' },
           },
           {
             name: 'dinner',
             date: '2016-01-02',
-            food: { name: 'Svíčková' },
+            orderedFood: { name: 'Svíčková' },
           },
         ]}
       />
     ).node).to.eql(
-      <div>
-        <OrderedMeal
-          name="lunch"
-          date="2016-01-02"
-          soup="Květáková"
-          food="Svíčková"
-        />
-        <OrderedMeal
-          name="dinner"
-          date="2016-01-02"
-          food="Svíčková"
-        />
-      </div>
+      <Row>
+        <Col sm={4}>
+          <OrderedMeal
+            name="lunch"
+            date="2016-01-02"
+            soup="Květáková"
+            food="Svíčková"
+          />
+        </Col>
+        <Col sm={4}>
+          <OrderedMeal
+            name="dinner"
+            date="2016-01-02"
+            food="Svíčková"
+          />
+        </Col>
+      </Row>
     );
   });
 });

@@ -442,11 +442,11 @@ describe('Order selectors', () => {
             id: 1,
             name: 'lunch',
             date: '2016-04-03',
-            foods: [
+            food: [
               { id: 1 },
               { id: 2 },
             ],
-            soup: [
+            soups: [
               { id: 100 },
               { id: 200 },
             ],
@@ -455,11 +455,11 @@ describe('Order selectors', () => {
             id: 2,
             name: 'lunch',
             date: '2016-04-03',
-            foods: [
+            food: [
               { id: 3 },
               { id: 4 },
             ],
-            soup: [
+            soups: [
               { id: 300 },
               { id: 400 },
             ],
@@ -522,7 +522,9 @@ describe('Order selectors', () => {
         id: 1,
         name: 'lunch',
         date: '2016-04-03',
-        foods: [
+        orderedFood: { id: 1 },
+        orderedSoup: { id: 200 },
+        food: [
           { id: 1 },
           { id: 2 },
         ],
@@ -535,7 +537,9 @@ describe('Order selectors', () => {
         id: 2,
         name: 'lunch',
         date: '2016-04-03',
-        foods: [
+        orderedFood: { id: 4 },
+        orderedSoup: { id: 400 },
+        food: [
           { id: 3 },
           { id: 4 },
         ],
