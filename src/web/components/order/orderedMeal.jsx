@@ -15,8 +15,8 @@ const OrderedMeal = ({
 }) => (
   <div>
     <h4>{names[name]} <HumanDate date={date} /></h4>
-    <div>Polévka: {soup || <span className="text-danger">Nevybráno</span>}</div>
-    <div>Hlavní chod: {food || <span className="text-danger">Nevybráno</span>}</div>
+    <div>Polévka: {soup || <span className="text-danger">Zatím nevybráno</span>}</div>
+    <div>Hlavní chod: {food || <span className="text-danger">Zatím nevybráno</span>}</div>
   </div>
 );
 
