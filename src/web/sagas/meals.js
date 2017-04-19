@@ -31,6 +31,7 @@ export function* fetchMealsOnMount() {
     [
       constants.FOOD_MOUNTED,
       constants.REQUEST_PARTICIPANT_DETAILS,
+      constants.PARTICIPANT_FOOD_CHANGE_MOUNTED,
     ],
     fetchYearsMeals
   );

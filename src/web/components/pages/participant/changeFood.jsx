@@ -14,35 +14,26 @@ export default class ChangeFoodPage extends Component {
 
   render() {
     const {
-      changeWorkshop,
-      order,
-      onChangeWorkshopChange,
-      onChangeWorkshopSubmit,
-      workshops,
+      changeFood,
+      onChangeFoodChange,
+      onChangeFoodSubmit,
+      meals,
+      ready,
     } = this.props;
+
+    if (!ready) {
+      return null;
+    }
 
     return (
       <Container>
         <h1>Výběr jídla</h1>
-        <p>
-          V tuhle chvíli jsi přihlášený na workshopu <b>{order.workshop.name}</b>. Nabízíme ti
-          možnost se přehlásit na jiný. Tak se mrkni co je ještě v nabídce. Dostupné jsou
-          pouze workshopy které ještě nejsou plné. Pokud ti systém dovolí se přehlásit, je to
-          okamžitá záležitost o které ti přijde e-mail.
-        </p>
-        <h2>Výměna místa</h2>
-        <p>
-          Protože systém dovoluje měnit workshopy pouze pokud je volná kapacita. Pokud
-          sis domluvil parťáka se kterým si chceš vyměnit místo na workshopu, tak nám napiš.
-        </p>
-        <hr />
-        <h2>Tvůj nový workshop</h2>
         <ChangeFood
-          form="changeWorkshop"
-          onChange={onChangeWorkshopChange}
-          onSubmit={onChangeWorkshopSubmit}
-          workshops={workshops}
-          {...changeWorkshop}
+          form="changeFood"
+          onChange={onChangeFoodChange}
+          onSubmit={onChangeFoodSubmit}
+          meals={meals}
+          {...changeFood}
         />
       </Container>
     );
@@ -50,11 +41,15 @@ export default class ChangeFoodPage extends Component {
 }
 
 ChangeFoodPage.propTypes = {
-  changeWorkshop: PropTypes.object.isRequired,
-  order: PropTypes.object.isRequired,
-  onChangeWorkshopChange: PropTypes.func.isRequired,
-  onChangeWorkshopSubmit: PropTypes.func.isRequired,
+  changeFood: PropTypes.object.isRequired,
+  onChangeFoodChange: PropTypes.func.isRequired,
+  onChangeFoodSubmit: PropTypes.func.isRequired,
   onMount: PropTypes.func.isRequired,
   onUnmount: PropTypes.func.isRequired,
-  workshops: PropTypes.arrayOf(PropTypes.object).isRequired,
+  meals: PropTypes.arrayOf(PropTypes.object).isRequired,
+  ready: PropTypes.bool,
+};
+
+ChangeFoodPage.defaultProps = {
+  ready: false,
 };

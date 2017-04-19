@@ -52,6 +52,8 @@ describe('Workshop sagas', () => {
       [
         'WORKSHOPS_MOUNTED',
         'SCHEDULE_MOUNTED',
+        'PARTICIPANT_WORKSHOP_CHANGE_MOUNTED',
+        'REQUEST_PARTICIPANT_DETAILS',
         'REQUEST_PARTICIPANT_DETAILS',
       ],
       requireYearsWorkshops

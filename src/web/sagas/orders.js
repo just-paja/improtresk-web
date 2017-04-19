@@ -4,6 +4,7 @@ import { push } from 'react-router-redux';
 import { getForm } from '../selectors/forms';
 import { workshopsAll } from '../selectors/workshops';
 import { getCheapestAccomodation } from '../selectors/accomodation';
+import { getOrderedMeals } from '../selectors/orders';
 import {
   getParticipantLatestOrder,
   getParticipantUnconfirmedOrder,
@@ -28,6 +29,12 @@ export const selectChangeWorkshopSubmit = action =>
 
 export const selectChangeWorkshopSuccess = action =>
   action.type === constants.FORM_SUBMIT_SUCCESS && action.form === 'changeWorkshop';
+
+export const selectChangeFoodSubmit = action =>
+  action.type === constants.FORM_SUBMIT_ALLOWED && action.form === 'changeFood';
+
+export const selectChangeFoodSuccess = action =>
+  action.type === constants.FORM_SUBMIT_SUCCESS && action.form === 'changeFood';
 
 export function* redirectHome() {
   yield put(push(reverse('participant:home')));
@@ -113,10 +120,41 @@ export function* orderChangeSetDefaults() {
   });
 }
 
+export function* orderChangeFoodSetDefaults() {
+  const meals = yield select(getOrderedMeals);
+  const values = meals.reduce((accumulator, meal) => ({
+    ...accumulator,
+    [meal.id]: {
+      food: meal.orderedFood ? meal.orderedFood.id : null,
+      soup: meal.orderedFood ? meal.orderedSoup.id : null,
+    },
+  }), {});
+  yield put({
+    form: 'changeFood',
+    type: constants.FORM_VALUES_SET,
+    values,
+  });
+}
+
 export function* orderChangeWorkshopSubmit() {
   const form = yield select(getForm, 'changeWorkshop');
   const order = yield select(getParticipantLatestOrder);
   yield fork(sendForm, api.orderChangeWorkshop, 'changeWorkshop', form.values, {
+    order: order.id,
+  });
+}
+
+export function* orderChangeFoodSubmit() {
+  const form = yield select(getForm, 'changeFood');
+  const order = yield select(getParticipantLatestOrder);
+  const values = Object.keys(form.values).reduce((accumulator, mealId) => ({
+    foods: [...accumulator.foods, form.values[mealId].food].filter(item => !!item),
+    soups: [...accumulator.soups, form.values[mealId].soup].filter(item => !!item),
+  }), {
+    foods: [],
+    soups: [],
+  });
+  yield fork(sendForm, api.orderChangeFood, 'changeFood', values, {
     order: order.id,
   });
 }
@@ -238,16 +276,38 @@ export function* bindChangeWorkshopSubmit() {
   yield takeLatest(selectChangeWorkshopSubmit, orderChangeWorkshopSubmit);
 }
 
+export function* bindChangeFoodSubmit() {
+  yield takeLatest(selectChangeFoodSubmit, orderChangeFoodSubmit);
+}
+
 export function* bindChangeWorkshopSuccess() {
   yield takeLatest(selectChangeWorkshopSuccess, orderChangeRedirect);
+}
+
+export function* bindChangeFoodSuccess() {
+  yield takeLatest(selectChangeFoodSuccess, orderChangeRedirect);
 }
 
 export function* bindChangeWorkshopSetDefaults() {
   yield takeLatest(constants.PARTICIPANT_WORKSHOP_CHANGE_MOUNTED, orderChangeSetDefaults);
 }
 
+export function* bindChangeFoodSetDefaults() {
+  yield takeLatest(
+    [
+      constants.MEALS_FETCH_SUCCESS,
+      constants.PARTICIPANT_ORDERS_FETCH_SUCCESS,
+      constants.PARTICIPANT_FOOD_CHANGE_MOUNTED,
+    ],
+    orderChangeFoodSetDefaults
+  );
+}
+
 
 export default [
+  bindChangeFoodSetDefaults,
+  bindChangeFoodSubmit,
+  bindChangeFoodSuccess,
   bindChangeWorkshopSetDefaults,
   bindChangeWorkshopSubmit,
   bindChangeWorkshopSuccess,

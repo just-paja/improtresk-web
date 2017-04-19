@@ -126,6 +126,13 @@ export const orderChangeWorkshop = ({ formData, order, ...params }) =>
     method: 'PATCH',
   });
 
+export const orderChangeFood = ({ formData, order, ...params }) =>
+  apiFetchAuthorized(`ordersFood/${order}/`, {
+    ...params,
+    body: JSON.stringify(formData),
+    method: 'PATCH',
+  });
+
 export const login = ({ formData, ...params }) =>
   fetch('/frontend/login', {
     body: JSON.stringify(formData),

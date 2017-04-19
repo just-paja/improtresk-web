@@ -1,3 +1,4 @@
+export { default as changeFood } from './changeFood';
 export { default as changePassword } from './changePassword';
 export { default as changeWorkshop } from './changeWorkshop';
 export { default as login } from './login';

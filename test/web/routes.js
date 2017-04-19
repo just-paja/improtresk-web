@@ -19,6 +19,7 @@ import ParticipantConfirm from '../../src/web/components/pages/participant/confi
 import PerformerDetail from '../../src/web/containers/performerDetail';
 import ForgottenPassword from '../../src/web/containers/participant/forgottenPassword';
 import ChangePassword from '../../src/web/containers/participant/changePassword';
+import ChangeFood from '../../src/web/containers/participant/changeFood';
 import ChangeWorkshop from '../../src/web/containers/participant/changeWorkshop';
 import NewPassword from '../../src/web/containers/participant/newPassword';
 import Schedule from '../../src/web/containers/schedule';
@@ -56,6 +57,7 @@ describe('Routes', () => {
           <Route path="/ucastnik/potvrzeni" component={ParticipantConfirm} />
           <Route path="/ucastnik" component={ParticipantHome} />
           <Route path="/ucastnik/zmena-hesla" component={ChangePassword} />
+          <Route path="/ucastnik/vyber-jidla" component={ChangeFood} />
           <Route path="/ucastnik/zmena-workshopu" component={ChangeWorkshop} />
         </Route>
         <Route path="*" component={NotFound} />

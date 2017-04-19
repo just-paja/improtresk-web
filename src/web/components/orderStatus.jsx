@@ -52,7 +52,7 @@ const OrderStatus = ({
       { confirmed ? (
         <small>
           {' '}|{' '}
-          <Link to="participant:changeWorkshop">Vybrat jídlo</Link>
+          <Link to="participant:changeFood">Vybrat jídlo</Link>
         </small>
       ) : null }
     </h3>

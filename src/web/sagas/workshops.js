@@ -73,6 +73,8 @@ export function* requireWorkshops() {
     [
       constants.WORKSHOPS_MOUNTED,
       constants.SCHEDULE_MOUNTED,
+      constants.PARTICIPANT_WORKSHOP_CHANGE_MOUNTED,
+      constants.REQUEST_PARTICIPANT_DETAILS,
       constants.REQUEST_PARTICIPANT_DETAILS,
     ],
     requireYearsWorkshops

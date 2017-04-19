@@ -63,6 +63,7 @@ describe('Participant sagas', () => {
     expect(saga.next().value).to.eql(takeLatest(
       [
         'REQUEST_PARTICIPANT_DETAILS',
+        'PARTICIPANT_FOOD_CHANGE_MOUNTED',
         'ORDER_CREATED',
         'ORDER_CANCELED',
       ],

@@ -39,6 +39,7 @@ export function* fetchParticipantOrdersOnRequest() {
   yield takeLatest(
     [
       constants.REQUEST_PARTICIPANT_DETAILS,
+      constants.PARTICIPANT_FOOD_CHANGE_MOUNTED,
       constants.ORDER_CREATED,
       constants.ORDER_CANCELED,
     ],

@@ -20,6 +20,7 @@ describe('Meals sagas', () => {
       [
         'FOOD_MOUNTED',
         'REQUEST_PARTICIPANT_DETAILS',
+        'PARTICIPANT_FOOD_CHANGE_MOUNTED',
       ],
       fetchYearsMeals
     ));
