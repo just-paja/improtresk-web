@@ -8,11 +8,13 @@ import {
   getParticipantUnconfirmedOrder,
 } from '../selectors/participant';
 import { yearActive } from '../selectors/years';
+import { getOrderedMeals } from '../selectors/orders';
 
 import * as actions from '../constants/actions';
 
 const mapStateToProps = state => ({
   order: getParticipantUnconfirmedOrder(state),
+  meals: getOrderedMeals(state),
   participant: getParticipant(state),
   year: yearActive(state),
   ready:

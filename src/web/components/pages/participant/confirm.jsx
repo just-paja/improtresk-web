@@ -11,6 +11,7 @@ class ParticipantHome extends Component {
 
   render() {
     const {
+      meals,
       onOrderCancel,
       onOrderConfirm,
       order,
@@ -31,6 +32,7 @@ class ParticipantHome extends Component {
         <h1>Potvrzení objednávky</h1>
         <OrderStatus
           {...order}
+          meals={meals}
           onCancel={onOrderCancel}
           onConfirm={onOrderConfirm}
           soft
@@ -42,6 +44,7 @@ class ParticipantHome extends Component {
 }
 
 ParticipantHome.propTypes = {
+  meals: PropTypes.arrayOf(PropTypes.object).isRequired,
   order: PropTypes.object,
   onOrderCancel: PropTypes.func.isRequired,
   onOrderConfirm: PropTypes.func.isRequired,
