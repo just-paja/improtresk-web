@@ -15,6 +15,7 @@ class ParticipantHome extends Component {
     const {
       accomodation,
       meals,
+      mealsAvailable,
       onLogout,
       onOrderCancel,
       onOrderConfirm,
@@ -59,7 +60,7 @@ class ParticipantHome extends Component {
           <Order
             accomodation={accomodation}
             form="order"
-            meals={meals}
+            meals={mealsAvailable}
             onMount={onOrderMount}
             onUnmount={onOrderUnmount}
             onChange={onWorkshopPickerChange}
@@ -77,6 +78,7 @@ class ParticipantHome extends Component {
 ParticipantHome.propTypes = {
   accomodation: PropTypes.arrayOf(PropTypes.object).isRequired,
   meals: PropTypes.arrayOf(PropTypes.object).isRequired,
+  mealsAvailable: PropTypes.arrayOf(PropTypes.object).isRequired,
   onLogout: PropTypes.func.isRequired,
   onMount: PropTypes.func.isRequired,
   onOrderCancel: PropTypes.func.isRequired,

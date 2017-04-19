@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import ParticipantHome from '../components/pages/participant/home';
 
 import { getForm } from '../selectors/forms';
+import { getMeals } from '../selectors/food';
 import {
   getOrderFormPrice,
   getOrderedMeals,
@@ -22,6 +23,7 @@ const mapStateToProps = state => ({
   accomodation: accomodationAll(state),
   price: getOrderFormPrice(state),
   meals: getOrderedMeals(state),
+  mealsAvailable: getMeals(state),
   order: getParticipantLatestOrder(state),
   orderForm: getForm(state, 'order'),
   participant: getParticipant(state),
