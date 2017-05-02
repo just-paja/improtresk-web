@@ -50,7 +50,7 @@ export const fetchTeams = params => apiFetch('teams/', params);
 
 export const fetchText = ({ code, ...params }) => apiFetch(`texts/${code}/`, params);
 
-export const fetchTips = params => apiFetch('tips/', params);
+export const fetchTips = params => apiFetch('traveling-tips/', params);
 
 export const fetchYears = params => apiFetch('years/', params);
 

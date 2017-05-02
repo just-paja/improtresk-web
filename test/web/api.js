@@ -168,7 +168,7 @@ describe('API helper', () => {
   });
   it('fetchTips calls for tips', () => {
     nock(apiSource)
-      .get('/tips/')
+      .get('/traveling-tips/')
       .reply(200, []);
 
     return api.fetchTips({ apiSource })
