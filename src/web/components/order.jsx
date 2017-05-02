@@ -42,6 +42,7 @@ export default class Order extends Component {
       accomodation,
       disabled,
       errors,
+      foodPickCloseDate,
       meals,
       price,
       submitted,
@@ -76,6 +77,7 @@ export default class Order extends Component {
                 </p>
                 <MealPicker
                   disabled={disabled}
+                  foodPickCloseDate={foodPickCloseDate}
                   name="meals"
                   meals={meals}
                   onChange={this.handleChange}
@@ -131,6 +133,7 @@ Order.propTypes = {
   price: PropTypes.number,
   disabled: PropTypes.bool,
   errors: PropTypes.object.isRequired,
+  foodPickCloseDate: PropTypes.string,
   form: PropTypes.string.isRequired,
   meals: PropTypes.arrayOf(PropTypes.object).isRequired,
   onMount: PropTypes.func.isRequired,
@@ -144,6 +147,7 @@ Order.propTypes = {
 
 Order.defaultProps = {
   disabled: false,
+  foodPickCloseDate: null,
   price: null,
   submitted: false,
 };

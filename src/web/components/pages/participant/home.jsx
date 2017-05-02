@@ -61,6 +61,7 @@ class ParticipantHome extends Component {
           /> :
           <Order
             accomodation={accomodation}
+            foodPickCloseDate={foodPickCloseDate}
             form="order"
             meals={mealsAvailable}
             onMount={onOrderMount}

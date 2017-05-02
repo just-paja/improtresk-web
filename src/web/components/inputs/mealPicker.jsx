@@ -1,3 +1,5 @@
+import Alert from 'react-bootstrap/lib/Alert';
+import moment from 'moment';
 import React, { Component, PropTypes } from 'react';
 
 import MealPickerItem from './mealPickerItem';
@@ -16,7 +18,17 @@ export default class MealPicker extends Component {
   }
 
   render() {
-    const { disabled, meals, value } = this.props;
+    const { disabled, foodPickCloseDate, meals, value } = this.props;
+    const foodPickClosed = foodPickCloseDate && moment().isAfter(foodPickCloseDate);
+
+    if (foodPickClosed) {
+      return (
+        <Alert bsStyle="warning">
+          Výběr jídla je v tuto chvíli již uzavřen.
+        </Alert>
+      );
+    }
+
     return (
       <div>
         {meals.map(meal =>
@@ -38,6 +50,7 @@ export default class MealPicker extends Component {
 
 MealPicker.propTypes = {
   disabled: PropTypes.bool,
+  foodPickCloseDate: PropTypes.string,
   meals: PropTypes.arrayOf(PropTypes.shape({
     date: PropTypes.string,
     name: PropTypes.string,
@@ -50,6 +63,7 @@ MealPicker.propTypes = {
 
 MealPicker.defaultProps = {
   error: null,
+  foodPickCloseDate: null,
   disabled: false,
   value: [],
 };
