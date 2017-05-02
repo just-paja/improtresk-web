@@ -37,6 +37,9 @@ describe('Navigation menu component', () => {
           <LinkContainer to="/pro-ucastniky/podminky">
             <NavItem>Podmínky</NavItem>
           </LinkContainer>
+          <LinkContainer to="/pro-ucastniky/tipy">
+            <NavItem>Tipy</NavItem>
+          </LinkContainer>
         </NavDropdown>
         <LinkContainer to="/workshopy">
           <NavItem>Workshopy</NavItem>
@@ -109,6 +112,9 @@ describe('Navigation menu component', () => {
           </LinkContainer>
           <LinkContainer to="/pro-ucastniky/podminky">
             <NavItem>Podmínky</NavItem>
+          </LinkContainer>
+          <LinkContainer to="/pro-ucastniky/tipy">
+            <NavItem>Tipy</NavItem>
           </LinkContainer>
         </NavDropdown>
         <LinkContainer to="/workshopy">

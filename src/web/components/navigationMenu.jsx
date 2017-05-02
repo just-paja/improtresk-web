@@ -33,6 +33,9 @@ const NavigationMenu = ({
       <LinkContainer to={reverse('conditions')}>
         <NavItem>Podmínky</NavItem>
       </LinkContainer>
+      <LinkContainer to={reverse('tips')}>
+        <NavItem>Tipy</NavItem>
+      </LinkContainer>
     </NavDropdown>,
     <LinkContainer key="workshops" to={reverse('workshops')}>
       <NavItem>Workshopy</NavItem>
