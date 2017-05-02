@@ -58,3 +58,8 @@ export const shouldFetchYears = createSelector(
   getYearsState,
   years => years.valid
 );
+
+export const getFoodOrdersCloseDate = createSelector(
+  yearActive,
+  year => year.endFoodPickingAt
+);

@@ -23,8 +23,8 @@ const OrderedMeal = ({
 OrderedMeal.propTypes = {
   name: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  food: PropTypes.string,
-  soup: PropTypes.string,
+  food: PropTypes.node,
+  soup: PropTypes.node,
 };
 
 OrderedMeal.defaultProps = {

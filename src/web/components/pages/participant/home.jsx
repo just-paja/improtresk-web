@@ -14,6 +14,7 @@ class ParticipantHome extends Component {
   render() {
     const {
       accomodation,
+      foodPickCloseDate,
       meals,
       mealsAvailable,
       onLogout,
@@ -51,6 +52,7 @@ class ParticipantHome extends Component {
           <OrderStatus
             {...order}
             assigned={!!participant.assigned_workshop}
+            foodPickCloseDate={foodPickCloseDate}
             meals={meals}
             onCancel={onOrderCancel}
             onConfirm={onOrderConfirm}
@@ -77,6 +79,7 @@ class ParticipantHome extends Component {
 
 ParticipantHome.propTypes = {
   accomodation: PropTypes.arrayOf(PropTypes.object).isRequired,
+  foodPickCloseDate: PropTypes.string,
   meals: PropTypes.arrayOf(PropTypes.object).isRequired,
   mealsAvailable: PropTypes.arrayOf(PropTypes.object).isRequired,
   onLogout: PropTypes.func.isRequired,
@@ -97,9 +100,10 @@ ParticipantHome.propTypes = {
 };
 
 ParticipantHome.defaultProps = {
-  price: null,
+  foodPickCloseDate: null,
   order: null,
   participant: null,
+  price: null,
   ready: false,
   yearNumber: null,
 };

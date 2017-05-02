@@ -1,4 +1,5 @@
 import FontAwesome from 'react-fontawesome';
+import moment from 'moment';
 import React, { PropTypes } from 'react';
 import Well from 'react-bootstrap/lib/Well';
 
@@ -16,6 +17,7 @@ const OrderStatus = ({
   confirmed,
   canceled,
   endsAt,
+  foodPickCloseDate,
   meals,
   onCancel,
   onConfirm,
@@ -26,89 +28,97 @@ const OrderStatus = ({
   showPaymentStatus,
   symvar,
   workshop,
-}) => (
-  <Well>
-    <h2>Moje objednávka</h2>
-    <Status
-      assigned={assigned}
-      confirmed={confirmed}
-      canceled={canceled}
-      paid={paid}
-      endsAt={endsAt}
-    />
-    <h3>
-      <FontAwesome className="fa-fw" name="street-view" /> Workshop
-      { confirmed ? (
-        <small>
-          {' '}|{' '}
-          <Link to="participant:changeWorkshop">Změnit workshop</Link>
-        </small>
-      ) : null}
-    </h3>
-    <p>{workshop.name || 'Nevybráno'}</p>
+}) => {
+  const foodPickClosed = foodPickCloseDate && moment().isAfter(foodPickCloseDate);
 
-    <h3>
-      <FontAwesome className="fa-fw" name="cutlery" /> Jídlo
-      { confirmed ? (
-        <small>
-          {' '}|{' '}
-          <Link to="participant:changeFood">Vybrat jídlo</Link>
-        </small>
-      ) : null }
-    </h3>
-    <FoodSummary meals={meals} />
-    <h3>
-      <FontAwesome className="fa-fw" name="bed" /> Ubytování
-    </h3>
-    <p>{accomodation ? accomodation.name : null}</p>
-
-    { !paid ? (
-      <div>
-        <h3>
-          <FontAwesome className="fa-fw" name="money" /> Částka k zaplacení
-        </h3>
-        <big><Price price={price} /></big>
-      </div>
-    ) : null}
-    { !paid && confirmed && showPaymentDetails ? (
-      <div>
-        <h3><FontAwesome className="fa-fw" name="exchange" /> Platba</h3>
-        <PaymentDetails
-          price={price}
-          symvar={symvar}
-        />
-      </div>
-    ) : null}
-    {!paid && showPaymentStatus ? (
-      <OrderPaymentStatus
+  return (
+    <Well>
+      <h2>Moje objednávka</h2>
+      <Status
+        assigned={assigned}
+        confirmed={confirmed}
         canceled={canceled}
         paid={paid}
-        overPaid={overPaid}
+        endsAt={endsAt}
       />
-    ) : null}
+      <h3>
+        <FontAwesome className="fa-fw" name="street-view" /> Workshop
+        { confirmed ? (
+          <small>
+            {' '}|{' '}
+            <Link to="participant:changeWorkshop">Změnit workshop</Link>
+          </small>
+        ) : null}
+      </h3>
+      <p>{workshop.name || 'Nevybráno'}</p>
 
-    <hr />
-    {!paid ? (
-      <Button
-        bsSize={confirmed ? 'small' : null}
-        icon="ban"
-        onClick={onCancel}
-      >Zrušit objednávku</Button>
-    ) : null}
-    {!confirmed && !paid ? (
-      <Button
-        className="pull-right"
-        bsStyle="primary"
-        onClick={onConfirm}
-      >Potvrdit objednávku</Button>
-    ) : null}
-  </Well>
-);
+      <h3>
+        <FontAwesome className="fa-fw" name="cutlery" /> Jídlo
+        { confirmed ? (
+          <small>
+            {' '}|{' '}
+            { foodPickClosed ?
+              <span>Již nelze změnit</span> :
+              <Link to="participant:changeFood">Vybrat jídlo</Link>
+            }
+          </small>
+        ) : null }
+      </h3>
+      <FoodSummary closed={foodPickClosed} meals={meals} />
+      <h3>
+        <FontAwesome className="fa-fw" name="bed" /> Ubytování
+      </h3>
+      <p>{accomodation ? accomodation.name : null}</p>
+
+      { !paid ? (
+        <div>
+          <h3>
+            <FontAwesome className="fa-fw" name="money" /> Částka k zaplacení
+          </h3>
+          <big><Price price={price} /></big>
+        </div>
+      ) : null}
+      { !paid && confirmed && showPaymentDetails ? (
+        <div>
+          <h3><FontAwesome className="fa-fw" name="exchange" /> Platba</h3>
+          <PaymentDetails
+            price={price}
+            symvar={symvar}
+          />
+        </div>
+      ) : null}
+      {!paid && showPaymentStatus ? (
+        <OrderPaymentStatus
+          canceled={canceled}
+          paid={paid}
+          overPaid={overPaid}
+        />
+      ) : null}
+
+      <hr />
+      {!paid ? (
+        <Button
+          bsSize={confirmed ? 'small' : null}
+          icon="ban"
+          onClick={onCancel}
+        >Zrušit objednávku</Button>
+      ) : null}
+      {!confirmed && !paid ? (
+        <Button
+          className="pull-right"
+          bsStyle="primary"
+          onClick={onConfirm}
+        >Potvrdit objednávku</Button>
+      ) : null}
+    </Well>
+  );
+};
 
 OrderStatus.propTypes = {
   accomodation: PropTypes.object,
   symvar: PropTypes.string.isRequired,
   endsAt: PropTypes.string.isRequired,
+  foodPickCloseDate: PropTypes.string,
   price: PropTypes.number.isRequired,
   paid: PropTypes.bool,
   overPaid: PropTypes.bool,
@@ -139,6 +149,7 @@ OrderStatus.defaultProps = {
   canceled: false,
   confirmed: false,
   endsAt: null,
+  foodPickCloseDate: null,
   overPaid: false,
   paid: false,
   reservation: null,

@@ -4,22 +4,38 @@ import Row from 'react-bootstrap/lib/Row';
 
 import OrderedMeal from './orderedMeal';
 
+const defaultFood = <small className="text-muted">Výchozí</small>;
+
 const FoodSummary = ({
+  closed,
   meals,
 }) => (
   meals.length ?
     (
       <Row>
-        {meals.map(meal => (
-          <Col key={meal.id} sm={4}>
-            <OrderedMeal
-              name={meal.name}
-              date={meal.date}
-              food={meal.orderedFood ? meal.orderedFood.name : null}
-              soup={meal.orderedSoup ? meal.orderedSoup.name : null}
-            />
-          </Col>
-        ))}
+        {meals.map((meal) => {
+          let food = closed ? defaultFood : null;
+          let soup = closed ? defaultFood : null;
+
+          if (meal.orderedFood) {
+            food = meal.orderedFood.name;
+          }
+
+          if (meal.orderedSoup) {
+            soup = meal.orderedSoup.name;
+          }
+
+          return (
+            <Col key={meal.id} sm={4}>
+              <OrderedMeal
+                name={meal.name}
+                date={meal.date}
+                food={food}
+                soup={soup}
+              />
+            </Col>
+          );
+        })}
       </Row>
     ) :
     (
@@ -28,7 +44,12 @@ const FoodSummary = ({
   );
 
 FoodSummary.propTypes = {
+  closed: PropTypes.bool,
   meals: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+FoodSummary.defaultProps = {
+  closed: false,
 };
 
 export default FoodSummary;
