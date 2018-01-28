@@ -82,7 +82,6 @@
 }
 :local .topic i {
   color: rgba(229,246,255,.9);
-  display: inline-block;
   font-size: 5rem;
   font-style: normal;
   margin: 0 auto;
@@ -107,6 +106,7 @@
   width: 100%;
   z-index: 1;
   text-shadow:
+    rgb(197,229,246) 0 0 2px,
     rgb(197,229,246) 0 0 2rem,
     #1d80b6 0 0 3rem,
     rgb(197,229,246) 0 0 4rem,
