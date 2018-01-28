@@ -24,6 +24,7 @@
   padding: 12rem 0 0;
   position: relative;
   background: #060606;
+  min-height: 377px;
 }
 
 :local .textOverlay {
@@ -85,22 +86,25 @@
   font-size: 5rem;
   font-style: normal;
   margin: 0 auto;
-  text-align: center;
-  text-shadow: rgba(166,227,255,0.95) 0 0 1px;
   position: relative;
+  text-align: center;
+  text-shadow: #a6e3ff 0 0 1px;
+  transform: translateZ(0);
   z-index: 2;
 }
 :local .topic:before {
-  display: block;
-  width: 100%;
-  color: transparent;
-  font-size: 5rem;
   border-radius: 40px;
+  color: transparent;
+  content: 'Otevreno nonstop';
+  display: block;
+  font-size: 5rem;
+  font-weight: 400;
+  left: 0;
   margin: 0 auto;
   position: absolute;
-  left: 0;
   top: 0;
-  content: 'OTEVŘENO NONSTOP';
+  transform: translateZ(0);
+  width: 100%;
   z-index: 1;
   text-shadow:
     rgb(197,229,246) 0 0 2rem,
