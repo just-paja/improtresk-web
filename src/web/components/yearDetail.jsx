@@ -10,8 +10,16 @@ import styles from './yearDetail.css';
 
 const YearDetail = ({ current, endDate, startDate, startSignupsAt, topic, year }) => (
   <div className={classnames('text-center', styles.container)}>
+    <div className={styles.textOverlay}>
+      <div className={styles.textOverlayHorizontalLimit}>
+        <div className={styles.textOverlayBackground} />
+      </div>
+    </div>
     <div className={styles.text}>
-      <h1>Improtřesk {year} <small className={styles.topic}><i>{topic}</i></small></h1>
+      <h1>
+        <span className={styles.year}>Improtřesk {year}</span>
+        <small className={styles.topic}><i>{topic}</i></small>
+      </h1>
       <div className={styles.upcomingDate}>
         <HumanDateRange
           end={endDate}

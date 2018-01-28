@@ -23,10 +23,19 @@ describe('Year Detail component', () => {
       />
     ).node).to.eql(
       <div className="text-center yearDetail-container">
+        <div className="yearDetail-textOverlay">
+          <div className="yearDetail-textOverlayHorizontalLimit">
+            <div className="yearDetail-textOverlayBackground" />
+          </div>
+        </div>
+
         <div className="yearDetail-text">
-          <h1>Improtřesk 2019 <small className="yearDetail-topic">
-            <i>Porno je taky improvizace</i>
-          </small></h1>
+          <h1>
+            <span className="yearDetail-year">Improtřesk 2019 </span>
+            <small className="yearDetail-topic">
+              <i>Porno je taky improvizace</i>
+            </small>
+          </h1>
           <div className="yearDetail-upcomingDate">
             <HumanDateRange
               end="2019-05-09"
@@ -61,10 +70,19 @@ describe('Year Detail component', () => {
       />
     ).node).to.eql(
       <div className="text-center yearDetail-container">
+        <div className="yearDetail-textOverlay">
+          <div className="yearDetail-textOverlayHorizontalLimit">
+            <div className="yearDetail-textOverlayBackground" />
+          </div>
+        </div>
+
         <div className="yearDetail-text">
-          <h1>Improtřesk 2019 <small className="yearDetail-topic">
-            <i>Porno je taky improvizace</i>
-          </small></h1>
+          <h1>
+            <span className="yearDetail-year">Improtřesk 2019 </span>
+            <small className="yearDetail-topic">
+              <i>Porno je taky improvizace</i>
+            </small>
+          </h1>
           <div className="yearDetail-upcomingDate">
             <HumanDateRange
               end="2019-05-09"

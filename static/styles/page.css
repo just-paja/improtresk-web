@@ -1,3 +1,8 @@
 html, body, #appContent {
   height: 100%;
 }
+
+@font-face {
+  src: url(/static/theme/2018/fonts/neo-neon.otf);
+  font-family: 'NeoNeon';
+}

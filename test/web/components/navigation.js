@@ -21,6 +21,7 @@ describe('Navigation component', () => {
     ).node).to.eql(
       <Navbar
         expanded={false}
+        inverse
         fixedTop
         onSelect={() => {}}
         onToggle={() => {}}
@@ -56,6 +57,7 @@ describe('Navigation component', () => {
     ).node).to.eql(
       <Navbar
         expanded={false}
+        inverse
         fixedTop
         onSelect={() => {}}
         onToggle={() => {}}

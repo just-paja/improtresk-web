@@ -22,6 +22,7 @@ export default class Navigation extends Component {
         fixedTop
         onSelect={this.toggleMenu}
         onToggle={this.toggleMenu}
+        inverse
         expanded={this.state.expanded}
       >
         <Navbar.Header>

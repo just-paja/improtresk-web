@@ -1,11 +1,57 @@
+@keyframes :local(neon) {
+  0% {
+    opacity: 1;
+  }
+
+  12% {
+    opacity: 0.8;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+
+  85% {
+    opacity: 1;
+  }
+}
+
 :local .container {
-  background-color: #d1ccd0;
-  background-image: url(/static/theme/2017/bg-neck.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: left top;
   padding: 12rem 0;
   position: relative;
+  background: #060606;
+}
+
+:local .textOverlay {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+
+:local .textOverlayHorizontalLimit {
+  position: relative;
+  max-width: 650px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+:local .textOverlayBackground {
+  position: absolute;
+  background: radial-gradient(rgba(33,141,193, .65), #060606 70%) #060606;
+  animation-duration: 0.1s;
+  animation-name: neon;
+  animation-iteration-count: infinite;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
 }
 
 @media(min-width: 1350px) {
@@ -22,18 +68,69 @@
 }
 
 :local .topic {
-  display: block;
+  background: radial-gradient(#fff, rgba(0,0,0,0) 50%);
   color: inherit;
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  width: 35rem;
+  font-family: 'NeoNeon';
+}
+:local .topic i {
+  color: rgba(229,246,255,.9);
+  display: inline-block;
+  font-size: 5rem;
+  font-style: normal;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+:local .topic:before {
+  display: block;
+  width: 100%;
+  color: transparent;
+  font-size: 5rem;
+  border-radius: 40px;
+  margin: 0 auto;
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: 'OTEVRENO NONSTOP';
+  z-index: 1;
+  text-shadow:
+    #fff 0 0 1px,
+    rgb(197,229,246) 0 0 2rem,
+    #1d80b6 0 0 3rem,
+    rgb(197,229,246) 0 0 4rem,
+    #1d80b6 0 0 5rem,
+    #1d80b6 0 0 6rem,
+    #1d80b6 0 0 7rem,
+    #1d80b6 0 0 8rem,
+    #1d80b6 0 0 9rem,
+    #1d80b6 0 0 10rem,
+    #1d80b6 0 0 11rem,
+    #1d80b6 0 0 12rem,
+    #ffffff 0 0 13rem,
+    #1d80b6 0 0 14rem,
+    #1d80b6 0 0 15rem,
+    #1d80b6 0 0 16rem,
+    #1d80b6 0 0 17rem;
 }
 
 :local .upcomingDate {
   font-size: 24px;
   margin-bottom: 1rem;
+  position: relative;
+  bottom: -3.5rem;
 }
 
 :local .text {
-  text-shadow:
-    rgba(255, 255, 255, .75) 0 0 1px,
-    rgba(216, 211, 191, .75) 0 0 2px,
-    rgba(216, 211, 191,  .5) 0 0 5px;
+  z-index: 2;
+  position: relative;
+}
+
+:local .year {
+  position: relative;
+  top: -7rem;
 }

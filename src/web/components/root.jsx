@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import { Router } from 'react-router';
 import { Provider } from 'react-redux';
 
-import 'bootswatch/sandstone/bootstrap.min.css';
+import 'bootswatch/cyborg/bootstrap.min.css';
 
 import configureRoutes from '../routes';
 
