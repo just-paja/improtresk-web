@@ -1,6 +1,3 @@
-import Col from 'react-bootstrap/lib/Col';
-import Grid from 'react-bootstrap/lib/Grid';
-import Row from 'react-bootstrap/lib/Row';
 import React from 'react';
 
 import { expect } from 'chai';
@@ -44,17 +41,11 @@ describe('Year Detail component', () => {
           </div>
         </div>
         <div className="yearDetail-buttons">
-          <Grid>
-            <Row>
-              <Col xs={8} xsOffset={4} sm={6} smOffset={6} md={4} mdOffset={8}>
-                <SignupButton
-                  startAt="2019-03-01T00:00:00"
-                  endAt="2019-05-06"
-                  alreadyFull={false}
-                />
-              </Col>
-            </Row>
-          </Grid>
+          <SignupButton
+            startAt="2019-03-01T00:00:00"
+            endAt="2019-05-06"
+            alreadyFull={false}
+          />
         </div>
       </div>
     );

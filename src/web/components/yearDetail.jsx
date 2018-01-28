@@ -1,7 +1,4 @@
 import classnames from 'classnames';
-import Col from 'react-bootstrap/lib/Col';
-import Grid from 'react-bootstrap/lib/Grid';
-import Row from 'react-bootstrap/lib/Row';
 import React, { PropTypes } from 'react';
 
 import HumanDateRange from './humanDateRange';
@@ -29,17 +26,11 @@ const YearDetail = ({ current, endDate, startDate, startSignupsAt, topic, year }
     </div>
     {current ? (
       <div className={styles.buttons}>
-        <Grid>
-          <Row>
-            <Col xs={8} xsOffset={4} sm={6} smOffset={6} md={4} mdOffset={8}>
-              <SignupButton
-                startAt={startSignupsAt}
-                endAt={startDate}
-                alreadyFull={false}
-              />
-            </Col>
-          </Row>
-        </Grid>
+        <SignupButton
+          startAt={startSignupsAt}
+          endAt={startDate}
+          alreadyFull={false}
+        />
       </div>
     ) : (
       <p className={styles.text}>Sledujte novinky na stránkách Improtřesku</p>

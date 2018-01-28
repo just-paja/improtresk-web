@@ -51,7 +51,7 @@ const SignupButton = ({ endAt, startAt, alreadyFull }) => {
   return (
     <div>
       {(showStartDate ?
-        <Alert bsStyle="warning">
+        <Alert bsStyle="info">
           Přihlašování se otevře <HumanDate date={startAt} showTime />
         </Alert> :
         <LinkContainer to={reverse('signup')}>

@@ -21,7 +21,7 @@
 }
 
 :local .container {
-  padding: 12rem 0;
+  padding: 12rem 0 0;
   position: relative;
   background: #060606;
 }
@@ -44,7 +44,7 @@
 
 :local .textOverlayBackground {
   position: absolute;
-  background: radial-gradient(rgba(33,141,193, .65), rgba(0,0,0,0) 70%);
+  background: radial-gradient(ellipse, rgba(33,141,193, .65) 0, rgba(0,0,0,0) 70%);
   animation-duration: 0.1s;
   animation-name: neon;
   animation-iteration-count: infinite;
@@ -61,10 +61,13 @@
 }
 
 :local .buttons {
-  position: absolute;
   left: 0;
   right: 0;
   bottom: 2rem;
+  z-index: 10;
+  position: relative;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 :local .topic {
@@ -122,13 +125,17 @@
 :local .upcomingDate {
   font-size: 24px;
   margin-bottom: 1rem;
+  z-index: 2;
   position: relative;
+  color: #fff;
+  opacity: .75;
   bottom: -3.5rem;
 }
 
 :local .text {
   z-index: 2;
   position: relative;
+  margin-bottom: 10rem;
 }
 
 :local .year {

@@ -31,7 +31,7 @@ describe('Signup Button component', () => {
       ).node).to.eql(
         <div>
           <Alert
-            bsStyle="warning"
+            bsStyle="info"
           >Přihlašování se otevře <HumanDate date="2016-03-01" showTime /></Alert>
         </div>
       );
