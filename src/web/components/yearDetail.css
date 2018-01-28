@@ -44,7 +44,7 @@
 
 :local .textOverlayBackground {
   position: absolute;
-  background: radial-gradient(rgba(33,141,193, .65), #060606 70%) #060606;
+  background: radial-gradient(rgba(33,141,193, .65), rgba(0,0,0,0) 70%);
   animation-duration: 0.1s;
   animation-name: neon;
   animation-iteration-count: infinite;
@@ -83,6 +83,7 @@
   font-style: normal;
   margin: 0 auto;
   text-align: center;
+  text-shadow: rgba(166,227,255,0.95) 0 0 1px;
   position: relative;
   z-index: 2;
 }
@@ -96,10 +97,9 @@
   position: absolute;
   left: 0;
   top: 0;
-  content: 'OTEVRENO NONSTOP';
+  content: 'OTEVŘENO NONSTOP';
   z-index: 1;
   text-shadow:
-    #fff 0 0 1px,
     rgb(197,229,246) 0 0 2rem,
     #1d80b6 0 0 3rem,
     rgb(197,229,246) 0 0 4rem,
@@ -115,7 +115,8 @@
     #1d80b6 0 0 14rem,
     #1d80b6 0 0 15rem,
     #1d80b6 0 0 16rem,
-    #1d80b6 0 0 17rem;
+    #1d80b6 0 0 17rem,
+    #1d80b6 0 0 20rem;
 }
 
 :local .upcomingDate {
