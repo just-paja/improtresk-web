@@ -9,7 +9,6 @@ html, body, #appContent {
 }
 
 body h1,
-body h2,
-body h3 {
+body h2 {
   font-family: 'NeoNeon';
 }

@@ -6,6 +6,7 @@
 [![Issue Count](https://codeclimate.com/github/just-paja/improtresk-web/badges/issue_count.svg)](https://codeclimate.com/github/just-paja/improtresk-web)
 [![dependencies Status](https://david-dm.org/just-paja/improtresk-web/status.svg)](https://david-dm.org/just-paja/improtresk-web)
 [![devDependencies Status](https://david-dm.org/just-paja/improtresk-web/dev-status.svg)](https://david-dm.org/just-paja/improtresk-web?type=dev)
+[![Known Vulnerabilities](https://snyk.io/test/github/just-paja/improtresk-web/badge.svg)](https://snyk.io/test/github/just-paja/improtresk-web)
 
 This is frontend for website of first and biggest Czech improvisation festival based on React, Redux and Express. It allows festival participants to check out what is coming up in next year and reconcile what has been on the festival in previous years. Users - Participants choose from list of workshops they will attend on after signing up and pay full workshop price using various payment methods.
 

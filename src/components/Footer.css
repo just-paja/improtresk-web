@@ -1,0 +1,12 @@
+:local .footer {
+  padding: 1rem 0 1rem;
+  border-top: 1px solid #111;
+}
+
+:local .social {
+  font-size: 24px;
+}
+
+:local .social li {
+  margin-right: .5rem;
+}

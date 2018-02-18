@@ -1,0 +1,108 @@
+workspace_root: &workspace_root
+  ~/repo
+
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:9-stretch
+
+version: 2
+jobs:
+  install:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - dependencies-{{ checksum "package.json" }}
+          - dependencies-
+      - run:
+          name: Install dependencies
+          command: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: *workspace_root
+          paths:
+            - .
+
+  build:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: *workspace_root
+
+      - run:
+          name: Build artifacts
+          command: npm run build
+
+  test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: *workspace_root
+
+      - run:
+          name: Run tests
+          command: npm test -- --coverage
+
+      - run:
+          name: Publish coverage
+          command: ./node_modules/.bin/codeclimate-test-reporter < coverage/lcov.info
+
+  deploy-to-staging:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: *workspace_root
+
+      - run:
+          name: Deploy to Staging
+          command: ./bin/deploy staging
+
+  deploy-to-production:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: *workspace_root
+
+      - run:
+          name: Deploy to Production
+          command: ./bin/deploy production
+
+workflows:
+  version: 2
+  build-n-deploy:
+    jobs:
+      - install
+      - build:
+          requires:
+            - install
+          filters:
+            tags:
+              only: /[0-9]+\.[0-9]+\.[0-9]+/
+      - test:
+          requires:
+            - install
+          filters:
+            tags:
+              only: /[0-9]+\.[0-9]+\.[0-9]+/
+      - deploy-to-staging:
+          requires:
+            - build
+            - test
+          filters:
+            branches:
+              only: master
+      - deploy-to-production:
+          requires:
+            - build
+            - test
+          filters:
+            tags:
+              only: /[0-9]+\.[0-9]+\.[0-9]+/
+            branches:
+              ignore: /.*/

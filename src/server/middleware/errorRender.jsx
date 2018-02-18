@@ -1,8 +1,8 @@
 import React from 'react';
 import winston from 'winston';
 
-import NotFound from '../../web/components/notFound';
-import GeneralError from '../../web/components/generalError';
+import NotFound from '../../pages/NotFound';
+import GeneralError from '../../components/GeneralError';
 
 import {
   getStore,
@@ -22,11 +22,16 @@ export const renderAndRespond = (req, res, ErrorComponent) => {
 
   winston.log('silly', 'RENDER ERROR', req.url);
   return renderMarkupAndWait(req, store, componentTree)
-    .then(markupAndState => respondWithHtml(req, res, markupAndState));
+    .then(markupAndState => respondWithHtml(req, res, markupAndState))
+    .catch((error) => {
+      winston.log('error', error);
+      return res.status(500).send('Internal server errror');
+    });
 };
 
 // eslint-disable-next-line no-unused-vars
 export default (err, req, res, next) => {
+  res.status(500);
   if (res.statusCode === 200) {
     res.status(404);
   }

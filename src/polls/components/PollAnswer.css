@@ -1,0 +1,12 @@
+:local .image {
+  max-height: 250px;
+}
+
+:local .score {
+}
+
+@media(max-width: 768px) {
+  :local .imageContainer {
+    margin-bottom: 2rem;
+  }
+}

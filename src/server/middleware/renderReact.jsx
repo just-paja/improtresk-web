@@ -3,18 +3,21 @@ import Helmet from 'react-helmet';
 import path from 'path';
 import React from 'react';
 import winston from 'winston';
+import { parse as parseLanguages } from 'accept-language-parser';
 
 import { END } from 'redux-saga';
 import { Provider } from 'react-redux';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
-import { RouterContext } from 'react-router';
+import { StaticRouter } from 'react-router';
 
+import App from '../../containers/App';
 import configure from '../config';
-import configureStore from '../../web/store';
+import configureStore from '../../store';
 import pageBase from '../components/pageBase';
-import sagas from '../../web/sagas';
 
-import { isAppReady } from '../../web/selectors/app';
+
+import { serverSagas } from '../../sagas';
+import { getAppProgress } from '../../selectors/app';
 
 const assetTypes = ['css', 'js'];
 const assets = {
@@ -51,9 +54,11 @@ if (process.env.NODE_ENV === 'production') {
   assets.js.push('/assets/app.js');
 }
 
-export const getComponentTree = (store, renderProps) => (
+export const getComponentTree = (req, store, context) => (
   <Provider store={store}>
-    <RouterContext {...renderProps} />
+    <StaticRouter context={context} location={req.url}>
+      <App />
+    </StaticRouter>
   </Provider>
 );
 
@@ -80,6 +85,14 @@ export const getStore = (req) => {
     server: {
       host: req.hostname,
       protocol: req.protocol,
+      pathLang: req.path.split('/')[1] || null,
+      acceptsLanguages: parseLanguages(req.headers['accept-language'])
+        .map((item) => {
+          if (item.region) {
+            return `${item.code}-${item.region}`;
+          }
+          return item.code;
+        }),
     },
     session: {
       apiSource: config.apiSource,
@@ -87,11 +100,11 @@ export const getStore = (req) => {
     },
   };
 
-  return configureStore(initialState, config.logLevel === 'info');
+  return configureStore(initialState);
 };
 
 export const renderMarkupAndWait = (req, store, componentTree) => {
-  const rootTask = store.sagaMiddleware.run(sagas);
+  const rootTask = store.sagaMiddleware.run(serverSagas);
   let resolved = false;
   let resolve;
 
@@ -101,19 +114,27 @@ export const renderMarkupAndWait = (req, store, componentTree) => {
 
   store.subscribe(() => {
     if (!resolved) {
-      const ready = isAppReady(store.getState());
+      const ready = !getAppProgress(store.getState()).loading;
       winston.log('silly', 'READY STATE UPDATE', ready);
       if (ready) {
         resolved = true;
         renderToString(componentTree);
         store.dispatch(END);
         resolve();
+        winston.log('silly', 'SAGAS READY');
       }
     }
   });
+  store.dispatch({ type: 'SILLY_INIT' });
 
   winston.log('debug', `INITIAL RENDER: ${req.url}`);
-  renderToString(componentTree);
+  try {
+    renderToString(componentTree);
+  } catch (error) {
+    winston.log('error', error);
+    return Promise.reject(error);
+  }
+  winston.log('silly', `WAIT FOR STORE: ${req.url}`);
   return Promise.all([
     waitForConfig,
     rootTask.done,
@@ -136,8 +157,11 @@ export const renderInHtml = (markupAndState) => {
   return `<!DOCTYPE html>${markup}`;
 };
 
-export const respondWithHtml = (req, res, markupAndState) => {
+export const respondWithHtml = (req, res, markupAndState, routerContext) => {
   winston.log('silly', 'REACT RENDER STATIC', req.url);
+  if (routerContext && routerContext.action === 'REPLACE') {
+    return res.redirect(routerContext.url);
+  }
   try {
     return res.send(renderInHtml(markupAndState));
   } catch (e) {

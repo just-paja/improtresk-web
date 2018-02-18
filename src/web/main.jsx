@@ -1,21 +1,25 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'babel-polyfill';
 
+import createHistory from 'history/createBrowserHistory';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 
-import configureStore from './store';
-import RootDefault from './components/root';
-import sagas from './sagas';
+import configureStore from '../store';
+import RootDefault from '../components/Root';
+import sagas from '../sagas';
 
 
 const initialState = window.INITIAL_STATE;
-const store = configureStore(initialState, false, browserHistory);
+const browserHistory = createHistory();
+const store = configureStore(initialState, browserHistory);
+
+syncHistoryWithStore(browserHistory, store);
 
 const render = (RootComponent) => {
-  ReactDOM.render(
+  ReactDOM.hydrate(
     <RootComponent
       history={browserHistory}
       store={store}
@@ -28,13 +32,13 @@ let sagaTask = store.runSaga(sagas);
 render(RootDefault);
 
 if (module.hot) {
-  module.hot.accept('./components/root', () => {
+  module.hot.accept('../components/Root', () => {
     // eslint-disable-next-line global-require
-    render(require('./components/root').default);
+    render(require('../components/Root').default);
   });
-  module.hot.accept('./sagas', () => {
+  module.hot.accept('../sagas', () => {
     // eslint-disable-next-line global-require
-    const reloadSagas = require('./sagas').default;
+    const reloadSagas = require('../sagas').default;
     sagaTask.cancel();
     sagaTask.done.then(() => {
       sagaTask = store.runSaga(reloadSagas);

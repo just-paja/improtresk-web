@@ -2,7 +2,7 @@
   "plugins": [
     "react",
     "filenames",
-    "mocha"
+    "jest"
   ],
   "parserOptions": {
     "ecmaVersion": 7,
@@ -14,7 +14,8 @@
   "extends": "airbnb",
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
   "rules": {
     "comma-dangle": [2, {
@@ -24,6 +25,9 @@
       "exports": "always-multiline",
       "functions": "ignore"
     }],
+    "object-curly-newline": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "function-paren-newline": 0,
     "react/forbid-prop-types": [2, { "forbid": ["any", "array"] }]
   }
 }
