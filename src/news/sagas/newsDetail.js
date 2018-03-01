@@ -17,6 +17,7 @@ export function* fetchNewsDetail() {
         fail: constants.NEWS_DETAIL_FETCH_ERROR,
       },
       actionData: { newsId },
+      params: { newsId },
     });
   }
 }

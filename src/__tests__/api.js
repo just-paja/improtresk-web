@@ -117,7 +117,7 @@ describe('API helper', () => {
         createdAt: '2016-11-29T18:29:31',
       });
 
-    return api.fetchNewsDetail({ apiSource, news: 1 })
+    return api.fetchNewsDetail({ apiSource, newsId: 'news-detail-1' })
       .then(() => {
         expect(nock.isDone()).toBe(true);
       });

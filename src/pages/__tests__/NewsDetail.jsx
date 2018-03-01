@@ -55,7 +55,7 @@ describe('NewsDetail container', () => {
         },
       },
     });
-    comp = shallow(<NewsDetail />, {
+    comp = shallow(<NewsDetail match={{ params: { slug: 'news-detail-45' } }} />, {
       context: { store },
     });
   });
@@ -83,7 +83,7 @@ describe('NewsDetail container', () => {
   it('triggers news detail entered action', () => {
     comp.dive();
     expect(store.getActions()).toEqual([
-      { type: 'PAGE_NEWS_DETAIL_ENTERED' },
+      { type: 'PAGE_NEWS_DETAIL_ENTERED', slug: 'news-detail-45' },
     ]);
   });
 });

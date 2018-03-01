@@ -27,5 +27,5 @@ const mapDispatchToProps = {
 export default mapPageProgress(connect(mapStateToProps, mapDispatchToProps)(NewsDetail), {
   matchParam: 'slug',
   progressSelector: getNewsDetailProgress,
-  onResourceChange: () => ({ type: constants.PAGE_NEWS_DETAIL_ENTERED }),
+  onResourceChange: slug => ({ type: constants.PAGE_NEWS_DETAIL_ENTERED, slug }),
 });

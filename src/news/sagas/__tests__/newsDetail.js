@@ -19,6 +19,7 @@ describe('News Detail sagas', () => {
           fail: 'NEWS_DETAIL_FETCH_ERROR',
         },
         actionData: { newsId: 45 },
+        params: { newsId: 45 },
       })
     );
     expect(saga.next().done).toBe(true);

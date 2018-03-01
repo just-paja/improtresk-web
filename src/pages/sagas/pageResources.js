@@ -5,6 +5,7 @@ import { ACCOMODATION_REQUIRED } from '../../accomodation/constants';
 import { MEALS_REQUIRED } from '../../food/constants';
 import {
   NEWS_REQUIRED,
+  NEWS_DETAIL_REQUIRED,
 } from '../../news/constants';
 import {
   TEAMS_REQUIRED,
@@ -41,6 +42,10 @@ export function* requireFood() {
 
 export function* requireNews() {
   yield put({ type: NEWS_REQUIRED });
+}
+
+export function* requireNewsDetail(action) {
+  yield put({ type: NEWS_DETAIL_REQUIRED, slug: action.slug });
 }
 
 export function* requireYearDetail(action) {
@@ -113,6 +118,13 @@ export function* onLocationsEnter() {
   );
 }
 
+export function* onNewsDetailEnter() {
+  yield takeLatest(
+    constants.PAGE_NEWS_DETAIL_ENTERED,
+    requireNewsDetail
+  );
+}
+
 export function* onWorkshopListEnter() {
   yield takeLatest(
     constants.PAGE_WORKSHOPS_ENTERED,
@@ -154,6 +166,7 @@ export default [
   onConditionsEnter,
   onFoodEnter,
   onHomeEnter,
+  onNewsDetailEnter,
   onLocationsEnter,
   onSignupEnter,
   onWorkshopDetailEnter,
