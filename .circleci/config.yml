@@ -39,6 +39,11 @@ jobs:
           name: Build artifacts
           command: npm run build
 
+      - persist_to_workspace:
+          root: *workspace_root
+          paths:
+            - .
+
   test:
     <<: *defaults
     steps:
