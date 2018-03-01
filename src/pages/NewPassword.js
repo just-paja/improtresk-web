@@ -1,35 +1,27 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-import NewPassword from '../../components/pages/participant/newPassword';
+import NewPassword from './components/NewPassword';
 
-import { getForm } from '../../selectors/forms';
+import { getForm } from '../forms/selectors';
 
-import * as actions from '../../constants/actions';
+import {
+  formChange,
+  formClear,
+  formDefine,
+  formSubmit,
+} from '../forms/actions';
 
 const mapStateToProps = state => ({
   newPassword: getForm(state, 'newPassword'),
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  onMount: token => ({
-    type: actions.FORM_VALUES_SET,
-    form: 'newPassword',
-    values: {
-      token,
-    },
+const mapDispatchToProps = {
+  onMount: token => formDefine('newPassword', {
+    token,
   }),
-  onNewPasswordChange: (form, field, value) => ({
-    type: actions.FORM_FIELD_CHANGE,
-    form,
-    field,
-    value,
-  }),
-  onNewPasswordSubmit: form => ({ type: actions.FORM_SUBMIT, form }),
-  onUnmount: form => ({
-    type: actions.FORM_VALUES_CLEAR,
-    form,
-  }),
-}, dispatch);
+  onNewPasswordChange: formChange,
+  onNewPasswordSubmit: formSubmit,
+  onUnmount: formClear,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewPassword);

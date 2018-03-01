@@ -23,7 +23,7 @@ import Home from '../pages/Home';
 import LanguageRedirect from '../pages/LanguageRedirect';
 import Locations from '../pages/Locations';
 import Navigation from './Navigation';
-// import NewPassword from '../pages/newPassword';
+import NewPassword from '../pages/NewPassword';
 import NewsDetail from '../pages/NewsDetail';
 import NotFound from '../pages/NotFound';
 // import ParticipantConfirm from '../pages/participantConfirm';
@@ -81,6 +81,7 @@ class App extends Component {
         <Route key={`${lang}participantForgottenPassword`} component={ForgottenPassword} path={getUrlPattern(routeLang, 'participantForgottenPassword')} />,
         <Route key={`${lang}location`} component={Locations} path={getUrlPattern(routeLang, 'location')} />,
         <Route key={`${lang}newsDetail`} component={NewsDetail} path={getUrlPattern(routeLang, 'newsDetail')} />,
+        <Route key={`${lang}newPassword`} component={NewPassword} path={getUrlPattern(routeLang, 'participantNewPassword')} />,
         <Route key={`${lang}signup`} component={Signup} path={getUrlPattern(routeLang, 'signup')} />,
         <Route key={`${lang}tips`} component={Tips} path={getUrlPattern(routeLang, 'tips')} />,
         <Route key={`${lang}workshops`} component={Workshops} exact path={getUrlPattern(routeLang, 'workshops')} />,
@@ -146,8 +147,6 @@ export default App;
 
 
 /*
-<Route component={NewPassword} path={urlTable['participantNewPassword']} />
-<Route component={NewsDetail} path={urlTable['newsDetail']} />
 <Route component={PerformerDetail} path={urlTable['performerDetail']} />
 <Route component={Schedule} path={urlTable.schedule} />
 <Route
