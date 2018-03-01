@@ -43,8 +43,8 @@ describe('News detail reducer', () => {
   });
 
   it('saves detail id on NEWS_DETAIL_REQUIRED', () => {
-    expect(newsDetail({}, { type: 'NEWS_DETAIL_REQUIRED', news: 1 })).toMatchObject({
-      id: 1,
+    expect(newsDetail({}, { type: 'NEWS_DETAIL_REQUIRED', slug: 'news-detail-1' })).toMatchObject({
+      id: 'news-detail-1',
     });
   });
 });
