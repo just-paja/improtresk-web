@@ -24,7 +24,7 @@ import LanguageRedirect from '../pages/LanguageRedirect';
 import Locations from '../pages/Locations';
 import Navigation from './Navigation';
 // import NewPassword from '../pages/newPassword';
-// import NewsDetail from '../pages/newsDetail';
+import NewsDetail from '../pages/NewsDetail';
 import NotFound from '../pages/NotFound';
 // import ParticipantConfirm from '../pages/participantConfirm';
 // import ParticipantHome from '../pages/participantHome';
@@ -80,6 +80,7 @@ class App extends Component {
         <Route key={`${lang}food`} component={Food} path={getUrlPattern(routeLang, 'food')} />,
         <Route key={`${lang}participantForgottenPassword`} component={ForgottenPassword} path={getUrlPattern(routeLang, 'participantForgottenPassword')} />,
         <Route key={`${lang}location`} component={Locations} path={getUrlPattern(routeLang, 'location')} />,
+        <Route key={`${lang}newsDetail`} component={NewsDetail} path={getUrlPattern(routeLang, 'newsDetail')} />,
         <Route key={`${lang}signup`} component={Signup} path={getUrlPattern(routeLang, 'signup')} />,
         <Route key={`${lang}tips`} component={Tips} path={getUrlPattern(routeLang, 'tips')} />,
         <Route key={`${lang}workshops`} component={Workshops} exact path={getUrlPattern(routeLang, 'workshops')} />,

@@ -1,27 +1,31 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import mapPageProgress from './mapPageProgress';
 
-import NewsDetail from '../components/pages/newsDetail';
+import NewsDetail from './components/NewsDetail';
 
-import { newsAll, getNewsDetail } from '../selectors/news';
-import { getForm } from '../selectors/forms';
+import { getNewsList, getNewsDetail } from '../news/selectors';
+import { getForm } from '../forms/selectors';
+import { getNewsDetailProgress } from './selectors';
 
-import * as actions from '../constants/actions';
+import * as constants from './constants';
 
 const mapStateToProps = state => ({
   poll: getForm(state, 'poll'),
-  news: newsAll(state),
+  news: getNewsList(state),
   newsDetail: getNewsDetail(state),
   ready: state.news.detail.ready && state.news.list.ready,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  onMount: news => ({ type: actions.NEWS_DETAIL_MOUNTED, news }),
+const mapDispatchToProps = {
   onPollVote: (survey, answer) => ({
-    type: actions.POLL_VOTE,
+    type: constants.POLL_VOTE,
     survey,
     answer,
   }),
-}, dispatch);
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewsDetail);
+export default mapPageProgress(connect(mapStateToProps, mapDispatchToProps)(NewsDetail), {
+  matchParam: 'slug',
+  progressSelector: getNewsDetailProgress,
+  onResourceChange: () => ({ type: constants.PAGE_NEWS_DETAIL_ENTERED }),
+});
