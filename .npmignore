@@ -5,3 +5,5 @@
 /webpack
 /circle.yml
 /mocha.js
+/config
+/scripts
