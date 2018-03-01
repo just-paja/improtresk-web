@@ -7,7 +7,7 @@ import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import Link from '../containers/Link';
+import LinkContainer from '../containers/LinkContainer';
 import NavigationMenu from './NavigationMenu';
 
 export default class Navigation extends Component {
@@ -26,9 +26,11 @@ export default class Navigation extends Component {
     return (
       <Navbar color="dark" fixed="top" expand="md">
         <Container>
-          <NavbarBrand>
-            <Link to="home">Improtřesk</Link>
-          </NavbarBrand>
+          <LinkContainer to="home">
+            <NavbarBrand href="/">
+              Improtřesk
+            </NavbarBrand>
+          </LinkContainer>
           <Button className="d-md-none" onClick={this.toggleMenu}>
             <FontAwesome name="bars" />
           </Button>

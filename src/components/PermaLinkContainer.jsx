@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { ResourceId } from 'react-saga-rest/lib/proptypes';
-import { LinkContainer } from 'react-router-bootstrap';
 import { remove } from 'diacritics';
 
-import { reverse } from '../routeTable';
+import LinkContainer from '../containers/LinkContainer';
+
 import { Children } from '../proptypes';
 
 const transformToSlug = str =>
@@ -15,31 +15,31 @@ const transformToSlug = str =>
     .replace(/[^a-z0-9-]/g, '')
     .substr(0, 48);
 
-const PermaLink = ({ id, children, lang, title, to, routeParams, ...other }) => (
+const PermaLinkContainer = ({ id, children, title, to, routeParams, ...other }) => (
   <LinkContainer
-    to={reverse(lang, to, {
+    to={to}
+    routeParams={{
       ...routeParams,
       slug: `${transformToSlug(title)}-${id}`,
-    })}
+    }}
     {...other}
   >
     {children}
   </LinkContainer>
 );
 
-PermaLink.propTypes = {
+PermaLinkContainer.propTypes = {
   children: Children,
   id: ResourceId.isRequired,
-  lang: PropTypes.string.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   routeParams: PropTypes.object,
   title: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
 };
 
-PermaLink.defaultProps = {
+PermaLinkContainer.defaultProps = {
   children: null,
   routeParams: null,
 };
 
-export default PermaLink;
+export default PermaLinkContainer;

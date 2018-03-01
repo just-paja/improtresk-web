@@ -23,6 +23,7 @@ export default {
     oops: 'Jejda',
     loadingFailed: 'Selhalo načítání objektu',
     missingErrorDetails: 'Nemáme k chybě žádné další detaily',
+    success: 'Úspěch',
   },
   menu: {
     archive: 'Archiv',

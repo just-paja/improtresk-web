@@ -103,7 +103,7 @@ export default class OrderForm extends Component {
                 <FontAwesome name="frown-o" />
               </p>
               {price ? (
-                <Alert bsStyle="success">
+                <Alert color="success">
                   <big>
                     {translate('orders.priceToPay')}:
                     {' '}

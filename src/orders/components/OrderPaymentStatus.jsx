@@ -9,18 +9,18 @@ const OrderPaymentStatus = ({
   translate,
 }) => {
   if (canceled) {
-    return <Alert bsStyle="info">{translate('orders.paymentCanceled')}</Alert>;
+    return <Alert color="info">{translate('orders.paymentCanceled')}</Alert>;
   }
 
   if (overPaid) {
-    return <Alert bsStyle="success">{translate('orders.overpaid')}!</Alert>;
+    return <Alert color="success">{translate('orders.overpaid')}!</Alert>;
   }
 
   if (paid) {
-    return <Alert bsStyle="success">{translate('orders.paid')}</Alert>;
+    return <Alert color="success">{translate('orders.paid')}</Alert>;
   }
 
-  return <Alert bsStyle="danger">{translate('orders.unpaid')}</Alert>;
+  return <Alert color="danger">{translate('orders.unpaid')}</Alert>;
 };
 
 OrderPaymentStatus.propTypes = {

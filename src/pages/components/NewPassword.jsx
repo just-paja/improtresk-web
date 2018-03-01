@@ -31,7 +31,7 @@ export default class NewPassword extends Component {
               Vyplň svoje staré heslo, nové heslo a zopakuj pro kontrolu. Znáš to.
             </p>
             {newPassword.saved ? (
-              <Alert bsStyle="success">
+              <Alert color="success">
                 <h4>Povedlo se!</h4>
                 <p>
                   Tvoje heslo bylo úspěšně změněno. Můžeš se s ním teď přihlásit.

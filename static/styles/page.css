@@ -1,5 +1,10 @@
 html, body, #appContent {
   height: 100%;
+  min-width: 320px;
+}
+
+.app-content {
+  min-height: 240px;
 }
 
 @font-face {
@@ -11,4 +16,34 @@ html, body, #appContent {
 body h1,
 body h2 {
   font-family: 'NeoNeon';
+}
+
+body h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+body h1.decent {
+  font-size: 3rem;
+}
+
+.card {
+  box-shadow:
+    rgba(42,159,214,.25) 0 0 2px,
+    rgba(42,159,214,.25) 0 0 4rem;
+}
+
+.col-wrap {
+  margin-bottom: 1.5rem;
+}
+
+@media screen and (max-width: 576px) {
+  body .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  body .card {
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
 }

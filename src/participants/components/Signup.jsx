@@ -142,7 +142,7 @@ export default class Signup extends Component {
         <FormErrors errors={submitErrors} />
         <Button
           disabled={disabled}
-          bsStyle="primary"
+          color="primary"
           icon="user-plus"
           loading={sending}
           type="submit"

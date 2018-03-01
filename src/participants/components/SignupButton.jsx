@@ -58,13 +58,13 @@ const SignupButton = ({
   return (
     <div>
       {(showStartDate ?
-        <Alert bsStyle="info">
+        <Alert color="info">
           <Message name="participants.signupsWillOpen" />
           {' '}
           <HumanDate date={startAt} showTime />
         </Alert> :
         <LinkContainer to="signup">
-          <Button disabled={disabled} bsStyle="primary">
+          <Button disabled={disabled} color="primary">
             <Message name={textButton} />
           </Button>
         </LinkContainer>

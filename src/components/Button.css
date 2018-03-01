@@ -1,9 +1,8 @@
 :local .buttonSize {
   font-size: 14px;
-  padding: 1rem 1.5rem;
 }
 
 :local .buttonFa {
-  margin-right: .8rem;
+  margin-right: .5rem;
   font-size: 16px;
 }

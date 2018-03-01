@@ -30,7 +30,7 @@ import NotFound from '../pages/NotFound';
 // import ParticipantHome from '../pages/participantHome';
 // import PerformerDetail from '../pages/performerDetail';
 import ProgressBar from './ProgressBar';
-// import Schedule from '../pages/schedule';
+import Schedule from '../pages/Schedule';
 import Signup from '../pages/Signup';
 import Tips from '../pages/Tips';
 import WorkshopDetail from '../pages/WorkshopDetailPage';
@@ -82,6 +82,7 @@ class App extends Component {
         <Route key={`${lang}location`} component={Locations} path={getUrlPattern(routeLang, 'location')} />,
         <Route key={`${lang}newsDetail`} component={NewsDetail} path={getUrlPattern(routeLang, 'newsDetail')} />,
         <Route key={`${lang}newPassword`} component={NewPassword} path={getUrlPattern(routeLang, 'participantNewPassword')} />,
+        <Route key={`${lang}schedule`} component={Schedule} path={getUrlPattern(routeLang, 'schedule')} />,
         <Route key={`${lang}signup`} component={Signup} path={getUrlPattern(routeLang, 'signup')} />,
         <Route key={`${lang}tips`} component={Tips} path={getUrlPattern(routeLang, 'tips')} />,
         <Route key={`${lang}workshops`} component={Workshops} exact path={getUrlPattern(routeLang, 'workshops')} />,
@@ -148,7 +149,6 @@ export default App;
 
 /*
 <Route component={PerformerDetail} path={urlTable['performerDetail']} />
-<Route component={Schedule} path={urlTable.schedule} />
 <Route
 path={urlTable['participantConfirmOrder']}
 component={ParticipantConfirm}

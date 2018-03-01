@@ -1,23 +1,41 @@
 import Alert from 'reactstrap/lib/Alert';
-import Col from 'reactstrap/lib/Col';
-import Row from 'reactstrap/lib/Row';
+import ListGroup from 'reactstrap/lib/ListGroup';
+import ListGroupItem from 'reactstrap/lib/ListGroupItem';
+import ListGroupItemHeading from 'reactstrap/lib/ListGroupItemHeading';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Capacity from '../../components/Capacity';
+import Flex from '../../components/Flex';
 import Message from '../../containers/Message';
-import WorkshopSummary from './WorkshopSummary';
+import PermaLinkContainer from '../../components/PermaLinkContainer';
 
 const WorkshopList = ({ workshops }) => (
   workshops.length > 0 ? (
-    <Row>
+    <ListGroup>
       {workshops.map(workshop => (
-        <Col key={workshop.id} md={6}>
-          <WorkshopSummary {...workshop} />
-        </Col>
+        <PermaLinkContainer
+          key={workshop.id}
+          to="workshopDetail"
+          id={workshop.id}
+          title={workshop.name}
+        >
+          <ListGroupItem tag="a" md={6}>
+            <ListGroupItemHeading>
+              {workshop.name}
+            </ListGroupItemHeading>
+            <Flex justify="between">
+              <span>
+                {workshop.lectors.map(lectorRole => lectorRole.lector.name).join(', ')}
+              </span>
+              <Capacity {...workshop.capacityStatus} />
+            </Flex>
+          </ListGroupItem>
+        </PermaLinkContainer>
       ))}
-    </Row>
+    </ListGroup>
   ) : (
-    <Alert bsStyle="info">
+    <Alert color="info">
       <Message name="workshops.empty" />
     </Alert>
   )

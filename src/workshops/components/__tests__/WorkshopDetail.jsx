@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import WorkshopDetail from '../WorkshopDetail';
 
 describe('Workshop Detail component', () => {
-  it('renders link to detail', () => {
+  it('renders main heading', () => {
     const comp = shallow(
       <WorkshopDetail
         id={12}
@@ -41,7 +41,7 @@ describe('Workshop Detail component', () => {
         ]}
       />
     );
-    expect(comp.find('PermaLink')).toHaveProp('to', 'workshopDetail');
+    expect(comp.find('h1')).toHaveText('Pantomima a fyzické divadlo');
   });
 
   it('renders without prices', () => {

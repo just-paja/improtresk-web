@@ -8,7 +8,7 @@ import { logWarning } from '../clientLogger';
 import * as actions from '../constants';
 import * as locales from '../locales';
 
-import { getLang, getPreferredLanguages } from '../selectors/locales';
+import { getPreferredLanguages } from '../selectors/locales';
 
 const getLangFromLocale = (locale) => {
   if (locale) {
@@ -45,15 +45,13 @@ export function* selectedLanguageChanged(action) {
 
 export function* selectLang(action) {
   const availableLangs = Object.keys(locales);
-  const currentLang = yield select(getLang);
-  const language = getPreferredLanguage(availableLangs, 'en', action.languages);
-  if (currentLang !== language) {
-    yield put({
-      type: actions.SESSION_SET_LANGUAGE,
-      language,
-    });
-    yield call(selectedLanguageChanged, { language });
-  }
+  // const currentLang = yield select(getLang);
+  const language = getPreferredLanguage(availableLangs, 'cs', action.languages);
+  yield put({
+    type: actions.SESSION_SET_LANGUAGE,
+    language,
+  });
+  yield call(selectedLanguageChanged, { language });
 }
 
 export function* selectDefaultLang() {

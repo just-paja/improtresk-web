@@ -30,7 +30,7 @@ export default class ResetPassword extends Component {
     } = this.props;
 
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form className="was-walidated" onSubmit={this.handleSubmit}>
         <Input
           type="email"
           name="email"
@@ -38,6 +38,7 @@ export default class ResetPassword extends Component {
           value={values.email}
           error={errors.email}
           disabled={loading}
+          required
           onChange={this.handleChange}
         />
         <Button loading={loading} type="submit">

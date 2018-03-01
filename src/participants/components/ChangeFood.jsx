@@ -49,7 +49,7 @@ export default class ChangeFood extends Component {
           <Button icon="ban">Zrušit změnu</Button>
         </Link>
         <Button
-          bsStyle="primary"
+          color="primary"
           className="pull-right"
           loading={loading}
           type="submit"

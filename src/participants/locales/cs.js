@@ -1,5 +1,6 @@
 export default {
   participants: {
+    entry: 'Vstup do systému',
     alreadyRegistered: 'Už jsem zaregistrovaný',
     dateOfBirth: 'Datum narození',
     dateOfBirthHelp: 'V pravidlech festivalu se dočtete o věkovém limitu. Musíme si ověřit váš věk také abychom vás mohli lépe vyúčtovat.',
@@ -8,6 +9,8 @@ export default {
     fullName: 'Tvoje celé jméno',
     fullNameHelp: 'Jméno, příjmení a ostatní jména která nalezneš na svém občanském průkazu',
     forgottenPassword: 'Zapomenuté heslo',
+    forgottenPasswordHelp: 'Vyplň svůj e-mail pod kterým se normálně přihlašuješ, zašleme ti na něj zprávu s dalšími kroky vedoucími ke změně hesla.',
+    passwordChangeEmailSent: 'Na tvojí adresu jsme odeslali e-mail s instrukcemi ke změně hesla.',
     login: 'Přihlásit',
     newsletter: 'Chci dostávat e-mailem novinky o událostech Improligy',
     password: 'Heslo',
@@ -24,6 +27,7 @@ export default {
     signupToFestival: 'Přihlásit na Improtřesk',
     team: 'Tvoje skupina',
     teamHelp: 'Tento údaj použijeme pro malé sčítání improvizátorů, ale také při rozdělování mistností na spaní',
-
+    mightHaveAccountHelp: 'Je možné, že už máš účet z minulého ročníku. Ušetříš si čas tím, že nebudeš muset znovu vyplňovat registrační formulář.',
+    newUserHelp: 'Zaregistruj se u nás a dostaneš přístup k přihlašovacímu formuláři. Tento krok je zdarma.',
   },
 };

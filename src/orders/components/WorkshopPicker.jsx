@@ -49,7 +49,7 @@ export default class WorkshopPicker extends Component {
         }
         {(touched || this.state.touched) && error ? (
           <Col xs={12}>
-            <Alert bsStyle="danger">{error}</Alert>
+            <Alert color="danger">{error}</Alert>
           </Col>
         ) : null}
       </Row>

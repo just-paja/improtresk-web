@@ -2,13 +2,12 @@ import NavItem from 'reactstrap/lib/NavItem';
 import React from 'react';
 
 import { shallow } from 'enzyme';
-import { LinkContainer } from 'react-router-bootstrap';
 
 import PermaLinkContainer from '../PermaLinkContainer';
 
 describe('Permanent Link Container component', () => {
-  it('renders', () => {
-    expect(shallow(
+  it('renders link container', () => {
+    const comp = shallow(
       <PermaLinkContainer
         lang="cs"
         id={1}
@@ -17,13 +16,10 @@ describe('Permanent Link Container component', () => {
       >
         <NavItem>bar</NavItem>
       </PermaLinkContainer>
-    ).getElement()).toEqual(
-      <LinkContainer
-        to="/cs/novinky/presprilis-zlutoucky-kun-upel-dabelske-ody-1"
-      >
-        <NavItem>bar</NavItem>
-      </LinkContainer>
     );
+    expect(comp.find('Connect(LinkContainer)')).toHaveProp('routeParams', {
+      slug: 'presprilis-zlutoucky-kun-upel-dabelske-ody-1',
+    });
   });
 
   it('does not fail when given no route params', () => {

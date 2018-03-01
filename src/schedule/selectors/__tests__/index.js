@@ -7,7 +7,7 @@ describe('Schedule selectors', () => {
   it('isScheduleEventListRequired returns false when valid', () => {
     expect(isScheduleEventListRequired({
       schedule: {
-        eventList: {
+        events: {
           valid: true,
         },
       },
@@ -17,7 +17,7 @@ describe('Schedule selectors', () => {
   it('isScheduleEventListRequired returns true when invalid', () => {
     expect(isScheduleEventListRequired({
       schedule: {
-        eventList: {
+        events: {
           valid: false,
         },
       },
@@ -32,7 +32,7 @@ describe('Schedule selectors', () => {
         },
       },
       schedule: {
-        eventList: {
+        events: {
           data: [
             {
               id: 3,

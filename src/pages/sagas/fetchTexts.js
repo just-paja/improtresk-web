@@ -53,6 +53,14 @@ export function* fetchLocationsTexts() {
   );
 }
 
+export function* fetchScheduleTexts() {
+  yield takeLatest(
+    constants.PAGE_SCHEDULE_ENTERED,
+    fetchTextsIfRequired,
+    [texts.SCHEDULE_INTRO]
+  );
+}
+
 export function* fetchTipsTexts() {
   yield takeLatest(
     constants.PAGE_TIPS_ENTERED,
@@ -66,5 +74,6 @@ export default [
   fetchFoodTexts,
   fetchHomeTexts,
   fetchLocationsTexts,
+  fetchScheduleTexts,
   fetchTipsTexts,
 ];

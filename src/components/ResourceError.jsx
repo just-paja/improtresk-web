@@ -6,7 +6,7 @@ import ErrorSummary from './ErrorSummary';
 import Message from '../containers/Message';
 
 const ResourceError = ({ error }) => (
-  <Alert bsStyle="danger">
+  <Alert color="danger">
     <h3><Message name="generic.oops" /></h3>
     <details>
       <summary><Message name="generic.loadingFailed" /></summary>

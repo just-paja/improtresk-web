@@ -65,7 +65,7 @@ describe('FoodMenu component', () => {
           data={[]}
           md={12}
         />
-        <Alert bsStyle="info">Jídelníček pro tento den ještě připravujeme</Alert>
+        <Alert color="info">Jídelníček pro tento den ještě připravujeme</Alert>
       </div>
     );
   });
@@ -96,7 +96,7 @@ describe('FoodMenu component', () => {
           ]}
           md={12}
         />
-        <Alert bsStyle="info">Jídelníček pro tento den ještě připravujeme</Alert>
+        <Alert color="info">Jídelníček pro tento den ještě připravujeme</Alert>
       </div>
     );
   });
@@ -127,7 +127,7 @@ describe('FoodMenu component', () => {
           data={[]}
           md={12}
         />
-        <Alert bsStyle="info">Jídelníček pro tento den ještě připravujeme</Alert>
+        <Alert color="info">Jídelníček pro tento den ještě připravujeme</Alert>
       </div>
     );
   });

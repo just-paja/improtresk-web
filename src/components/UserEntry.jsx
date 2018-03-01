@@ -1,30 +1,46 @@
 import Col from 'reactstrap/lib/Col';
 import Card from 'reactstrap/lib/Card';
-import CardBlock from 'reactstrap/lib/CardBlock';
+import CardBody from 'reactstrap/lib/CardBody';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import Row from 'reactstrap/lib/Row';
 
+import Button from '../components/Button';
 import Message from '../containers/Message';
 import Login from '../participants/components/Login';
 import Signup from '../participants/components/Signup';
 
-const UserEntry = ({
-  login,
-  onLoginChange,
-  onLoginSubmit,
-  onSignupChange,
-  onSignupSubmit,
-  teams,
-  signup,
-}) => {
-  const disabled = !!(login.loading || signup.loading);
-  return (
-    <Row>
-      <Col md={6}>
-        <h2><Message name="participants.alreadyRegistered" /></h2>
+export default class UserEntry extends Component {
+  constructor() {
+    super();
+    this.handleEntrySelection = this.handleEntrySelection.bind(this);
+    this.state = { selection: null };
+  }
+
+  handleEntrySelection(selection) {
+    this.setState({ selection });
+  }
+
+  render() {
+    const {
+      login,
+      onLoginChange,
+      onLoginSubmit,
+      onSignupChange,
+      onSignupSubmit,
+      teams,
+      signup,
+    } = this.props;
+
+    const disabled = !!(login.loading || signup.loading);
+
+    if (!this.state.selection) {
+      return (
         <Card>
-          <CardBlock>
+          <CardBody>
+            <p>
+              <Message name="participants.mightHaveAccountHelp" />
+            </p>
             <Login
               disabled={disabled}
               form="login"
@@ -32,23 +48,34 @@ const UserEntry = ({
               onSubmit={onLoginSubmit}
               {...login}
             />
-          </CardBlock>
+            <hr />
+            <p>
+              <Message name="participants.newUserHelp" />
+            </p>
+            <Button color="primary" size="lg" icon="wpforms">
+              <Message name="participants.registration" />
+            </Button>
+          </CardBody>
         </Card>
-      </Col>
-      <Col md={6}>
-        <h2><Message name="participants.registration" /></h2>
-        <Signup
-          disabled={disabled}
-          form="signup"
-          onChange={onSignupChange}
-          onSubmit={onSignupSubmit}
-          teams={teams}
-          {...signup}
-        />
-      </Col>
-    </Row>
-  );
-};
+      );
+    }
+    return (
+      <Row>
+        <Col md={6}>
+          <h2><Message name="participants.registration" /></h2>
+          <Signup
+            disabled={disabled}
+            form="signup"
+            onChange={onSignupChange}
+            onSubmit={onSignupSubmit}
+            teams={teams}
+            {...signup}
+          />
+        </Col>
+      </Row>
+    );
+  }
+}
 
 UserEntry.propTypes = {
   login: PropTypes.object,
@@ -64,5 +91,3 @@ UserEntry.defaultProps = {
   login: null,
   signup: null,
 };
-
-export default UserEntry;

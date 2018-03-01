@@ -1,4 +1,4 @@
-import { select } from 'redux-saga/effects';
+import { call, select } from 'redux-saga/effects';
 import {
   fetchResource as restFetchResource,
   fetchResourceIfRequired as restFetchResourceIfRequired,
@@ -9,7 +9,7 @@ import { getApiAuth, getApiSource } from '../selectors';
 export function* fetchResource(resource, { params, ...props }) {
   const apiSource = yield select(getApiSource);
   const auth = yield select(getApiAuth);
-  yield restFetchResource(resource, {
+  yield call(restFetchResource, resource, {
     ...props,
     params: {
       ...params,
@@ -22,7 +22,7 @@ export function* fetchResource(resource, { params, ...props }) {
 export function* fetchResourceIfRequired(resource, { params, ...props }) {
   const apiSource = yield select(getApiSource);
   const auth = yield select(getApiAuth);
-  yield restFetchResourceIfRequired(resource, {
+  yield call(restFetchResourceIfRequired, resource, {
     ...props,
     params: {
       ...params,

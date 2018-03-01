@@ -13,7 +13,7 @@ const Workshops = ({ translate, workshops }) => (
         { property: 'og:title', content: translate('pages.workshops') },
       ]}
     />
-    <h1>{translate('pages.workshops')}</h1>
+    <h1 className="decent">{translate('pages.workshops')}</h1>
     <WorkshopList workshops={workshops} />
   </Container>
 );

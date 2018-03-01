@@ -8,6 +8,7 @@ import * as orders from '../orders/locales';
 import * as pages from '../pages/locales';
 import * as participants from '../participants/locales';
 import * as polls from '../polls/locales';
+import * as schedule from '../schedule/locales';
 import * as workshops from '../workshops/locales';
 
 const modules = [
@@ -18,6 +19,7 @@ const modules = [
   participants,
   pages,
   polls,
+  schedule,
   workshops,
 ];
 

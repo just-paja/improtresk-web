@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import DropdownToggle from 'reactstrap/lib/DropdownToggle';
 import DropdownMenu from 'reactstrap/lib/DropdownMenu';
+import DropdownItem from 'reactstrap/lib/DropdownItem';
 import UncontrolledDropdown from 'reactstrap/lib/UncontrolledDropdown';
 
 import { LinkContainer } from 'react-router-bootstrap';
@@ -32,48 +33,36 @@ const NavigationMenu = ({
         <Message name="menu.forParticipants" />
       </DropdownToggle>
       <DropdownMenu>
-        <NavItem>
+        <DropdownItem>
           <LinkContainer to={reverse(lang, 'location')}>
-            <NavLink>
-              <Message name="menu.locations" />
-            </NavLink>
+            <NavLink><Message name="menu.locations" /></NavLink>
           </LinkContainer>
-        </NavItem>
-        <NavItem>
+        </DropdownItem>
+        <DropdownItem>
           <LinkContainer to={reverse(lang, 'accomodation')}>
-            <NavLink>
-              <Message name="menu.accomodation" />
-            </NavLink>
+            <NavLink><Message name="menu.accomodation" /></NavLink>
           </LinkContainer>
-        </NavItem>
-        <NavItem>
+        </DropdownItem>
+        <DropdownItem>
           <LinkContainer to={reverse(lang, 'food')}>
-            <NavLink>
-              <Message name="menu.food" />
-            </NavLink>
+            <NavLink><Message name="menu.food" /></NavLink>
           </LinkContainer>
-        </NavItem>
-        <NavItem>
+        </DropdownItem>
+        <DropdownItem>
           <LinkContainer to={reverse(lang, 'fees')}>
-            <NavLink>
-              <Message name="menu.fees" />
-            </NavLink>
+            <NavLink><Message name="menu.fees" /></NavLink>
           </LinkContainer>
-        </NavItem>
-        <NavItem>
+        </DropdownItem>
+        <DropdownItem>
           <LinkContainer to={reverse(lang, 'conditions')}>
-            <NavLink>
-              <Message name="menu.conditions" />
-            </NavLink>
+            <NavLink><Message name="menu.conditions" /></NavLink>
           </LinkContainer>
-        </NavItem>
-        <NavItem>
+        </DropdownItem>
+        <DropdownItem>
           <LinkContainer to={reverse(lang, 'tips')}>
-            <NavLink>
-              <Message name="menu.tips" />
-            </NavLink>
+            <NavLink><Message name="menu.tips" /></NavLink>
           </LinkContainer>
-        </NavItem>
+        </DropdownItem>
       </DropdownMenu>
     </UncontrolledDropdown>,
     <NavItem key="workshops">
@@ -84,23 +73,19 @@ const NavigationMenu = ({
     !participant ? (
       <NavItem key="signup">
         <LinkContainer to={reverse(lang, 'signup')}>
-          <NavLink>
-            <Message name="menu.signup" />
-          </NavLink>
+          <NavLink><Message name="menu.signup" /></NavLink>
         </LinkContainer>
       </NavItem>
     ) : null,
     <NavItem key="schedule">
       <LinkContainer to={reverse(lang, 'schedule')}>
-        <NavLink>
-          <Message name="menu.schedule" />
-        </NavLink>
+        <NavLink><Message name="menu.schedule" /></NavLink>
       </LinkContainer>
     </NavItem>,
   ] : null;
 
   return (
-    <Nav {...props}>
+    <Nav navbar {...props}>
       {currentYearItems}
       <UncontrolledDropdown nav inNavbar>
         <DropdownToggle nav caret>
@@ -109,7 +94,7 @@ const NavigationMenu = ({
         <DropdownMenu>
           {(years && years.length ?
             years.map(yearRun => (
-              <NavItem key={yearRun.id}>
+              <DropdownItem key={yearRun.id}>
                 <PermaLinkContainer
                   id={yearRun.year}
                   lang={lang}
@@ -118,9 +103,9 @@ const NavigationMenu = ({
                 >
                   <NavLink>{yearRun.year} - {yearRun.topic}</NavLink>
                 </PermaLinkContainer>
-              </NavItem>
+              </DropdownItem>
             )) :
-            <NavItem disabled><Message name="menu.archiveEmpty" /></NavItem>
+            <DropdownItem disabled><Message name="menu.archiveEmpty" /></DropdownItem>
           )}
         </DropdownMenu>
       </UncontrolledDropdown>

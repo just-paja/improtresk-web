@@ -10,6 +10,8 @@ import {
 import {
   TEAMS_REQUIRED,
 } from '../../participants/constants';
+import { SCHEDULE_EVENTS_REQUIRED } from '../../schedule/constants';
+import { PERFORMERS_REQUIRED } from '../../performers/constants';
 import {
   WORKSHOPS_REQUIRED,
   WORKSHOP_DETAIL_REQUIRED,
@@ -20,7 +22,6 @@ import {
   YEAR_CAPACITY_POLL_STOP_REQUIRED,
   YEAR_CAPACITY_REQUIRED,
   YEAR_CONDITIONS_REQUIRED,
-  YEARS_REQUIRED,
 } from '../../years/constants';
 
 export function* disableCapacityPoll() {
@@ -53,8 +54,13 @@ export function* requireYearDetail(action) {
   yield put({ type: YEAR_ARCHIVE_DETAIL_REQUIRED, year: action.year });
 }
 
-export function* requireSignupPageResources(action) {
-  yield put({ type: YEARS_REQUIRED, year: action.year });
+export function* requireSchedulePageResources() {
+  yield put({ type: WORKSHOPS_REQUIRED });
+  yield put({ type: SCHEDULE_EVENTS_REQUIRED });
+  yield put({ type: PERFORMERS_REQUIRED });
+}
+
+export function* requireSignupPageResources() {
   yield put({ type: TEAMS_REQUIRED });
 }
 
@@ -126,6 +132,13 @@ export function* onNewsDetailEnter() {
   );
 }
 
+export function* onSchedulePageEnter() {
+  yield takeLatest(
+    constants.PAGE_SCHEDULE_ENTERED,
+    requireSchedulePageResources
+  );
+}
+
 export function* onWorkshopListEnter() {
   yield takeLatest(
     constants.PAGE_WORKSHOPS_ENTERED,
@@ -169,6 +182,7 @@ export default [
   onHomeEnter,
   onNewsDetailEnter,
   onLocationsEnter,
+  onSchedulePageEnter,
   onSignupEnter,
   onWorkshopDetailEnter,
   onWorkshopListEnter,

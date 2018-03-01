@@ -24,7 +24,7 @@ const sortByDate = (a, b) => {
 };
 
 
-export const getScheduleEventListState = state => state.schedule.eventList;
+export const getScheduleEventListState = state => state.schedule.events;
 export const isScheduleEventListRequired = isRequired(getScheduleEventListState);
 
 export const getScheduleEventList = transformData(getScheduleEventListState, {

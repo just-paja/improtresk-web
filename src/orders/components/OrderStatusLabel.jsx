@@ -13,21 +13,21 @@ const OrderStatus = ({
   translate,
 }) => {
   if (canceled) {
-    return <Label bsStyle="danger">{translate('orders.canceled')}</Label>;
+    return <Label color="danger">{translate('orders.canceled')}</Label>;
   }
 
   if (assigned) {
-    return <Label bsStyle="success">{translate('orders.assigned')}</Label>;
+    return <Label color="success">{translate('orders.assigned')}</Label>;
   }
 
   if (paid) {
-    return <Label bsStyle="info">{translate('orders.waitingToBeAssigned')}</Label>;
+    return <Label color="info">{translate('orders.waitingToBeAssigned')}</Label>;
   }
 
   if (confirmed) {
     return (
       <span>
-        <Label bsStyle="warning">{translate('orders.waitingToBePaid')}</Label>
+        <Label color="warning">{translate('orders.waitingToBePaid')}</Label>
         <span>
           {' '}
           <OrderTimeout endsAt={endsAt} translate={translate} />
@@ -38,7 +38,7 @@ const OrderStatus = ({
 
   return (
     <span>
-      <Label bsStyle="danger">{translate('orders.unconfirmed')}</Label>
+      <Label color="danger">{translate('orders.unconfirmed')}</Label>
       {' '}
       <OrderTimeout endsAt={endsAt} translate={translate} />
     </span>

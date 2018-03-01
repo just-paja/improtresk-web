@@ -59,7 +59,6 @@ export default class Login extends Component {
         />
         <FormErrors errors={submitErrors} />
         <Button
-          bsStyle="primary"
           disabled={disabled}
           icon="sign-in"
           loading={sending}

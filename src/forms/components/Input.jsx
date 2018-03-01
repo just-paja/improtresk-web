@@ -59,16 +59,18 @@ export default class Input extends Component {
     const touched = this.isTouched();
 
     return (
-      <FormGroup validationState={(touched && error) ? 'error' : null}>
+      <FormGroup>
         <Label>{label}</Label>
         <InputControl
           {...other}
+          className={error ? 'is-invalid' : null}
           maxLength={maxLength}
           name={name}
           onBlur={this.handleBlur}
           onChange={this.handleChange}
           type={type}
           value={value || ''}
+          invalid={error || undefined}
         />
         {touched && error ? <FormFeedback>{error}</FormFeedback> : null}
         {help ? <FormText>{help}</FormText> : null}

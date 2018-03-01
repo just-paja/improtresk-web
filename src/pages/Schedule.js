@@ -1,30 +1,27 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-import Schedule from '../components/pages/schedule';
+import mapPageProgress from './mapPageProgress';
+import Schedule from './components/Schedule';
 
-import { getPerformers } from '../selectors/performers';
-import { getScheduleEvents } from '../selectors/schedule';
-import { getText, readyTexts } from '../selectors/texts';
-import { yearCurrent } from '../selectors/years';
+import { getPerformerList } from '../performers/selectors';
+import { getScheduleEventList } from '../schedule/selectors';
+import { getText } from '../texts/selectors';
+import { yearCurrent } from '../years/selectors';
+import { getScheduleProgress } from './selectors';
 
-import * as actions from '../constants/actions';
-import * as texts from '../constants/texts';
+import * as actions from './constants';
+import * as texts from '../texts/constants';
+
+const selectIntroText = getText(texts.SCHEDULE_INTRO);
 
 const mapStateToProps = state => ({
-  intro: getText(state, texts.SCHEDULE_INTRO),
-  performers: getPerformers(state),
-  ready:
-    state.performers.list.ready &&
-    state.schedule.ready &&
-    state.years.ready &&
-    readyTexts(state, [texts.SCHEDULE_INTRO]),
-  scheduleEvents: getScheduleEvents(state),
+  intro: selectIntroText(state),
+  performers: getPerformerList(state),
+  scheduleEvents: getScheduleEventList(state),
   year: yearCurrent(state),
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  onMount: () => ({ type: actions.SCHEDULE_MOUNTED }),
-}, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Schedule);
+export default mapPageProgress(connect(mapStateToProps)(Schedule), {
+  progressSelector: getScheduleProgress,
+  onResourceChange: () => ({ type: actions.PAGE_SCHEDULE_ENTERED }),
+});

@@ -26,7 +26,7 @@ export default class MealPicker extends Component {
 
     if (foodPickClosed) {
       return (
-        <Alert bsStyle="warning">
+        <Alert color="warning">
           Výběr jídla je v tuto chvíli již uzavřen.
         </Alert>
       );

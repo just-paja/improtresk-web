@@ -16,6 +16,12 @@ export const Children = PropTypes.oneOfType([
   PropTypes.arrayOf(PropTypes.node),
 ]);
 
+export const ClassName = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.arrayOf(PropTypes.string),
+  PropTypes.objectOf(PropTypes.string),
+]);
+
 export const Accomodation = PropTypes.shape({
   id: ResourceId.isRequired,
   name: PropTypes.string.isRequired,

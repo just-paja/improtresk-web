@@ -1,5 +1,6 @@
-import { all, call, fork } from 'redux-saga/effects';
+import keepAlive from 'redux-saga-restart';
 
+import { all, call, fork } from 'redux-saga/effects';
 import { logError, logWarning } from '../clientLogger';
 
 import app from './app';
@@ -13,7 +14,7 @@ import locales from './locales';
 import news from '../news/sagas';
 // import orders from './orders';
 import participants from '../participants/sagas';
-// import performers from './performers';
+import performers from '../performers/sagas';
 import pages from '../pages/sagas';
 // import polls from './polls';
 import schedule from '../schedule/sagas';
@@ -37,7 +38,7 @@ const sagas = [
   // ...orders,
   ...pages,
   ...participants,
-  // ...performers,
+  ...performers,
   // ...polls,
   ...schedule,
   ...texts,
@@ -46,22 +47,21 @@ const sagas = [
   ...years,
 ];
 
-const keepAlive = generator => function* restart(...args) {
-  while (true) {
-    try {
-      yield call(generator, ...args);
-    } catch (error) {
-      error.sagaName = generator.name;
-      logError(error);
-      logWarning(`Restarted route ${generator.name}`);
-    }
-  }
-};
+function* onEachError(next, error) {
+  yield logWarning(error);
+}
+
+function* onFail(error) {
+  yield logError(error);
+}
 
 export function* serverSagas() {
-  yield all(sagas.map(saga => fork(saga)));
+  yield all(sagas.map(saga => call(saga)));
 }
 
 export default function* rootSaga() {
-  yield all(sagas.map(saga => fork(keepAlive(saga))));
+  yield all(sagas.map(saga => fork(keepAlive(saga, {
+    onEachError,
+    onFail,
+  }))));
 }

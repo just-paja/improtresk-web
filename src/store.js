@@ -8,10 +8,8 @@ import reducers from './reducers';
 
 export const sagaMiddleware = createSagaMiddleware();
 
-const BROWSER_DEVELOPMENT = (
-  process.env.NODE_ENV !== 'production' && // eslint-disable-line no-undef
-  process.env.IS_BROWSER // eslint-disable-line no-undef
-);
+const DEVELOPMENT = process.env.NODE_ENV !== 'production'; // eslint-disable-line no-undef
+const IS_BROWSER = !!process.env.IS_BROWSER; // eslint-disable-line no-undef
 
 export default function configureStore(initialState = {}, history) {
   const middlewares = [];
@@ -22,11 +20,19 @@ export default function configureStore(initialState = {}, history) {
 
   middlewares.push(sagaMiddleware);
 
-  if (BROWSER_DEVELOPMENT) {
-    middlewares.push(createLogger({
-      collapsed: true,
-      diff: true,
-    }));
+  if (DEVELOPMENT) {
+    if (IS_BROWSER) {
+      middlewares.push(createLogger({
+        collapsed: true,
+        diff: true,
+      }));
+    } else {
+      middlewares.push(() => next => (action) => {
+        // eslint-disable-next-line no-console
+        console.log(action.type);
+        next(action);
+      });
+    }
   }
 
   const enhancers = [

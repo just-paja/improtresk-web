@@ -1,3 +1,6 @@
+import Card from 'reactstrap/lib/Card';
+import CardBody from 'reactstrap/lib/CardBody';
+import CardTitle from 'reactstrap/lib/CardTitle';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -6,7 +9,7 @@ import Markdown from 'react-markdown';
 import Gallery from '../../components/Gallery';
 
 const LectorSummary = ({ name, position, about, photos }) => (
-  <div>
+  <Card>
     <Helmet
       meta={[
         ...photos.reduce((data, photo) => ([
@@ -26,14 +29,16 @@ const LectorSummary = ({ name, position, about, photos }) => (
         ]), []),
       ]}
     />
-    <h2>
-      {name}<br />
-      <small>{position}</small>
-    </h2>
 
-    <Markdown source={about} />
-    <Gallery photos={photos} />
-  </div>
+    <CardBody>
+      <CardTitle tag="h3">
+        {name}
+      </CardTitle>
+      <p><strong>{position}</strong></p>
+      <Markdown source={about} />
+      <Gallery photos={photos} />
+    </CardBody>
+  </Card>
 );
 
 LectorSummary.propTypes = {

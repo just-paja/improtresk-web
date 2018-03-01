@@ -18,8 +18,8 @@ describe('Navigation component', () => {
       />
     );
 
-    expect(comp.find('Connect(Link)').filter({ children: 'Improtřesk' }))
-      .toHaveProp('to', 'home');
+    expect(comp.find('NavbarBrand').filter({ children: 'Improtřesk' }))
+      .toHaveProp('href', '/');
   });
 
   it('renders navigation menu', () => {

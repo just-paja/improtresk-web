@@ -1,3 +1,5 @@
+import Card from 'reactstrap/lib/Card';
+import CardBody from 'reactstrap/lib/CardBody';
 import Col from 'reactstrap/lib/Col';
 import Markdown from 'react-markdown';
 import PropTypes from 'prop-types';
@@ -7,43 +9,47 @@ import Row from 'reactstrap/lib/Row';
 import Gallery from '../../components/Gallery';
 import Message from '../../containers/Message';
 import LectorSummary from './LectorSummary';
-import PermaLink from '../../components/PermaLink';
 import PriceList from '../../years/components/PriceList';
 import Prop from '../../components/Prop';
 
-const WorkshopDetail = ({ id, desc, difficulty, name, lectors, photos, prices }) => (
+const WorkshopDetail = ({ desc, difficulty, name, lectors, photos, prices }) => (
   <div>
-    <h1>
-      <PermaLink id={id} title={name} to="workshopDetail">{name}</PermaLink>
-    </h1>
-
-    <ul className="list-unstyled">
-      <Prop icon="hand-rock-o" label={<Message name="workshops.difficulty" />}>{difficulty}</Prop>
-      <Prop icon="money" label={<Message name="workshops.price" />}>
-        {prices.length ? <PriceList prices={prices} /> : null}
-      </Prop>
-    </ul>
-    <div>
-      <Markdown source={desc} />
-    </div>
-    <Gallery photos={photos} />
+    <h1 className="decent">{name}</h1>
     <Row>
-      {lectors.map(lectorPosition => (
-        <Col key={lectorPosition.id} md={6}>
+      <Col className="col-wrap" xs="12" md="6">
+        <Card>
+          <CardBody>
+            <ul className="list-unstyled">
+              <Prop icon="hand-rock-o" label={<Message name="workshops.difficulty" />}>
+                {difficulty}
+              </Prop>
+              <Prop icon="money" label={<Message name="workshops.price" />}>
+                {prices.length ? <PriceList prices={prices} /> : null}
+              </Prop>
+            </ul>
+            <div>
+              <Markdown source={desc} />
+            </div>
+            <Gallery photos={photos} />
+          </CardBody>
+        </Card>
+      </Col>
+      <Col xs="12" md="6">
+        {lectors.map(lectorPosition => (
           <LectorSummary
+            key={lectorPosition.id}
             name={lectorPosition.lector.name}
             about={lectorPosition.lector.about}
             photos={lectorPosition.lector.photos}
             position={lectorPosition.role}
           />
-        </Col>
-      ))}
+        ))}
+      </Col>
     </Row>
   </div>
 );
 
 WorkshopDetail.propTypes = {
-  id: PropTypes.number.isRequired,
   desc: PropTypes.string.isRequired,
   difficulty: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

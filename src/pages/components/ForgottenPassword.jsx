@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Row from 'reactstrap/lib/Row';
 
 import Container from '../../components/Container';
+import Message from '../../containers/Message';
 import ResetPassword from '../../participants/components/ResetPassword';
 
 export default class ForgottenPassword extends Component {
@@ -21,16 +22,17 @@ export default class ForgottenPassword extends Component {
     return (
       <Container>
         <Row>
-          <Col md={6} mdOffset={3}>
-            <h1>Zapomenuté heslo</h1>
+          <Col md={{ size: 6, offset: 3 }}>
+            <h1><Message name="participants.forgottenPassword" /></h1>
             <p>
-              Vyplň svůj e-mail pod kterým se normálně přihlašuješ, zašleme ti na něj
-              zprávu s dalšími kroky vedoucími ke změně hesla.
+              <Message name="participants.forgottenPasswordHelp" />
             </p>
             {resetPassword.saved ? (
-              <Alert bsStyle="success">
-                <h4>Povedlo se!</h4>
-                <p>Na tvojí adresu jsme odeslali e-mail s instrukcemi ke změně hesla.</p>
+              <Alert color="success">
+                <h4><Message name="generic.success" /></h4>
+                <p>
+                  <Message name="participants.passwordChangeEmailSent" />
+                </p>
               </Alert>
             ) : (
               <ResetPassword

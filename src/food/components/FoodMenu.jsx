@@ -20,7 +20,7 @@ const FoodMenu = ({ id, name, date, food, soups }) => (
       md={12}
     />
     {(!soups.length || !food.length) ? (
-      <Alert bsStyle="info">Jídelníček pro tento den ještě připravujeme</Alert>
+      <Alert color="info">Jídelníček pro tento den ještě připravujeme</Alert>
     ) : null}
   </div>
 );

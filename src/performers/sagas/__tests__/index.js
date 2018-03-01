@@ -8,7 +8,7 @@ import {
   isPerformerDetailRequired,
 } from '../../selectors';
 
-import * as sagas from '../performers';
+import * as sagas from '..';
 import * as api from '../../../api';
 
 describe('Performers sagas', () => {

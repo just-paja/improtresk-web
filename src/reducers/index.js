@@ -9,6 +9,8 @@ import forms from '../forms/reducers';
 import geocode from '../reducers/geocode';
 import news from '../news/reducers';
 import participants from '../participants/reducers';
+import performers from '../performers/reducers';
+import schedule from '../schedule/reducers';
 import server from '../reducers/server';
 import session from './session';
 import texts from '../texts/reducers';
@@ -24,7 +26,9 @@ export default combineReducers({
   locale,
   news,
   participants,
+  performers,
   routing,
+  schedule,
   server,
   session,
   texts,

@@ -1,5 +1,5 @@
 import Card from 'reactstrap/lib/Card';
-import CardBlock from 'reactstrap/lib/CardBlock';
+import CardBody from 'reactstrap/lib/CardBody';
 import Helmet from 'react-helmet';
 import Col from 'reactstrap/lib/Col';
 import Markdown from 'react-markdown';
@@ -69,7 +69,7 @@ const NewsDetail = ({
         <article>
           <header><h1>{newsDetail.name}</h1></header>
           <Card>
-            <CardBlock>
+            <CardBody>
               <Markdown source={newsDetail.text} />
               {newsDetail.poll ? (
                 <PollQuestion
@@ -91,7 +91,7 @@ const NewsDetail = ({
                   <HumanDate date={newsDetail.updatedAt} showYear />
                 </time>
               </footer>
-            </CardBlock>
+            </CardBody>
           </Card>
         </article>
       </Col>

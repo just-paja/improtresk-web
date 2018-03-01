@@ -50,7 +50,6 @@ describe('Input component', () => {
       />
     );
 
-    expect(comp.find('FormGroup')).toHaveProp('validationState', 'error');
     expect(comp.find({
       children: 'This is the input error!',
     })).toHaveLength(1);

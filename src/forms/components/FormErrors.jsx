@@ -26,7 +26,7 @@ const FormErrors = ({ errors, translate }) => (
           );
         }
         return (
-          <Alert key={error} bsStyle="danger">
+          <Alert key={error} color="danger">
             <FontAwesome name="exclamation-triangle" />
             {' '}
             <span>{message}</span>

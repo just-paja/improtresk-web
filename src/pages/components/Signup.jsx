@@ -1,6 +1,8 @@
+import Col from 'reactstrap/lib/Col';
 import Helmet from 'react-helmet';
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import Row from 'reactstrap/lib/Row';
 
 import Container from '../../components/Container';
 import Countdown from '../../components/Countdown';
@@ -118,8 +120,12 @@ export default class Signup extends Component {
             { property: 'og:title', content: title },
           ]}
         />
-        <h1>{title}</h1>
-        {content}
+        <Row>
+          <Col md={{ size: 6, offset: 3 }}>
+            <h1 className="decent">{title}</h1>
+            {content}
+          </Col>
+        </Row>
         <hr />
         <SignupHowto />
       </Container>

@@ -108,7 +108,7 @@ const OrderStatus = ({
       {!confirmed && !paid ? (
         <Button
           className="pull-right"
-          bsStyle="primary"
+          color="primary"
           onClick={onConfirm}
         >
           Potvrdit objednávku
