@@ -1,3 +1,5 @@
+import Card from 'reactstrap/lib/Card';
+import CardBlock from 'reactstrap/lib/CardBlock';
 import Helmet from 'react-helmet';
 import Col from 'reactstrap/lib/Col';
 import Markdown from 'react-markdown';
@@ -8,6 +10,7 @@ import PropTypes from 'prop-types';
 import Container from '../../components/Container';
 import Gallery from '../../components/Gallery';
 import HumanDate from '../../components/HumanDate';
+import Message from '../../containers/Message';
 import News from '../../news/components/NewsList';
 import PollQuestion from '../../polls/components/PollQuestion';
 
@@ -65,30 +68,35 @@ const NewsDetail = ({
       <Col md={9}>
         <article>
           <header><h1>{newsDetail.name}</h1></header>
-          <Markdown source={newsDetail.text} />
-          {newsDetail.poll ? (
-            <PollQuestion
-              answers={newsDetail.poll.answers}
-              closed={newsDetail.poll.closed}
-              id={newsDetail.poll.id}
-              loading={poll.loading}
-              onVote={onPollVote}
-              question={newsDetail.poll.question}
-              voted={poll.saved || hasVoted(newsDetail.poll.id)}
-              votes={newsDetail.poll.answerCount}
-            />
-          ) : null}
-          <Gallery photos={newsDetail.photos} />
-          <footer>
-            Zveřejněno{' '}
-            <time dateTime={newsDetail.updatedAt}>
-              <HumanDate date={newsDetail.updatedAt} showYear />
-            </time>
-          </footer>
+          <Card>
+            <CardBlock>
+              <Markdown source={newsDetail.text} />
+              {newsDetail.poll ? (
+                <PollQuestion
+                  answers={newsDetail.poll.answers}
+                  closed={newsDetail.poll.closed}
+                  id={newsDetail.poll.id}
+                  loading={poll.loading}
+                  onVote={onPollVote}
+                  question={newsDetail.poll.question}
+                  voted={poll.saved || hasVoted(newsDetail.poll.id)}
+                  votes={newsDetail.poll.answerCount}
+                />
+              ) : null}
+              <Gallery photos={newsDetail.photos} />
+              <footer>
+                <Message name="news.published" />
+                {' '}
+                <time dateTime={newsDetail.updatedAt}>
+                  <HumanDate date={newsDetail.updatedAt} showYear />
+                </time>
+              </footer>
+            </CardBlock>
+          </Card>
         </article>
       </Col>
       <Col md={3}>
-        <h2>Ostatní novinky</h2>
+        <h2><Message name="news.older" /></h2>
         <News news={news} />
       </Col>
     </Row>

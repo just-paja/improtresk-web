@@ -1,4 +1,4 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 import * as constants from '../constants';
 import { ACCOMODATION_REQUIRED } from '../../accomodation/constants';
@@ -46,6 +46,7 @@ export function* requireNews() {
 
 export function* requireNewsDetail(action) {
   yield put({ type: NEWS_DETAIL_REQUIRED, slug: action.slug });
+  yield call(requireNews);
 }
 
 export function* requireYearDetail(action) {

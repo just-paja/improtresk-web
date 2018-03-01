@@ -13,7 +13,6 @@ const mapStateToProps = state => ({
   poll: getForm(state, 'poll'),
   news: getNewsList(state),
   newsDetail: getNewsDetail(state),
-  ready: state.news.detail.ready && state.news.list.ready,
 });
 
 const mapDispatchToProps = {

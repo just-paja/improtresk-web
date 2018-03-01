@@ -3,6 +3,7 @@ import defaultEn from './en';
 
 import * as accomodation from '../accomodation/locales';
 import * as forms from '../forms/locales';
+import * as news from '../news/locales';
 import * as orders from '../orders/locales';
 import * as pages from '../pages/locales';
 import * as participants from '../participants/locales';
@@ -12,6 +13,7 @@ import * as workshops from '../workshops/locales';
 const modules = [
   accomodation,
   forms,
+  news,
   orders,
   participants,
   pages,
