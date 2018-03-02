@@ -121,7 +121,7 @@ export default class Signup extends Component {
           ]}
         />
         <Row>
-          <Col md={{ size: 6, offset: 3 }}>
+          <Col md={{ size: 8, offset: 2 }} lg={{ size: 6, offset: 3 }}>
             <h1 className="decent">{title}</h1>
             {content}
           </Col>
