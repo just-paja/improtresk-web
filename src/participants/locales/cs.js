@@ -1,5 +1,6 @@
 export default {
   participants: {
+    festivalTerms: 'Podmínky festivalu',
     entry: 'Vstup do systému',
     alreadyRegistered: 'Už jsem zaregistrovaný',
     dateOfBirth: 'Datum narození',
@@ -29,5 +30,17 @@ export default {
     teamHelp: 'Tento údaj použijeme pro malé sčítání improvizátorů, ale také při rozdělování mistností na spaní',
     mightHaveAccountHelp: 'Je možné, že už máš účet z minulého ročníku. Ušetříš si čas tím, že nebudeš muset znovu vyplňovat registrační formulář.',
     newUserHelp: 'Zaregistruj se u nás a dostaneš přístup k přihlašovacímu formuláři. Tento krok je zdarma.',
+    signupHowtoHeading: 'Jak na to?',
+    signupHowtoProcess: 'O přihlášení na workshop na Improtřesku ti pošleme e-mail, takže je dobré vyplnit svojí skutečnou e-mailovou adresu. Stejně tak se bude hodit k sledování stavu řihlášky, objednání obědů a dalším věcem.',
+    signupRegistrationHeading: 'Registrace',
+    signupRegistrationInfo: 'Všechny údaje nutně potřebujeme abychom mohli Improtřesk pořádně vyúčtovat. Není třeba se bát, neposkytujeme je nikdy třetím stranám. Přihláška s nesprávně vyplněnými údaji riskuje vyřazení bez vrácení peněz a za správnost vyplnění zodpovídáš ty.',
+    workshopRegistrationHeading: 'Přihlášení na workshop',
+    workshopRegistrationProcess: 'Vybereš si workshop podle nabídky a aktuální obsazenosti. Pokud bude obsazeno, nebude se tam dát přihlásit. Může se stát, že přihlásíš a nezaplatíš. Potom tvoje místo na workshopu automaticky po nějaké lhůtě nabídneme ostatním. To je důvod proč budou počty míst na workshopu skákat nahoru a dolů.',
+    paymentHeading: 'Platba a potvrzení e-mailem',
+    paymentProcess: 'Platbu za přihlášku lze provést buď bankovním převodem a nebo kartou online.',
+    workshopRegistrationNecessary: 'Na workshopu nejsi, dokud nedostaneš potvrzovací e-mail. Vznikne-li na cestě nějaký problém, tak se nám ozvi.',
+    contact: 'Kontakt',
+    lunchRegistrationHeading: 'Výběr obědů',
+    lunchRegistrationProcess: 'Jaké jídlo bude na výběr budeme znát až později po přihlášce, třeba někdy v&nbsp;dubnu. Dáme ti vědět e-mailem. Stačí se přihlásit a vybrat.',
   },
 };
