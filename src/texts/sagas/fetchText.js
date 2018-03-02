@@ -11,7 +11,7 @@ export function* fetchTextIfRequired(code) {
     fetchResourceIfRequired,
     api.fetchText,
     {
-      isRequired: isTextRequired,
+      isRequired: isTextRequired(code),
       actions: {
         start: constants.TEXT_FETCH_STARTED,
         success: constants.TEXT_FETCH_SUCCESS,

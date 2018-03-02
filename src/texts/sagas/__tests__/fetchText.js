@@ -1,7 +1,6 @@
 import { all, fork } from 'redux-saga/effects';
 
 import { fetchResourceIfRequired } from '../../../sagas/api';
-import { isTextRequired } from '../../selectors';
 
 import * as sagas from '..';
 import * as api from '../../../api';
@@ -20,11 +19,10 @@ describe('Text sagas', () => {
 
   it('fetchTextIfRequired forks fetchResourceIfRequired for all texts', () => {
     const gen = sagas.fetchTextIfRequired('foo');
-    expect(gen.next().value).toEqual(fork(
+    expect(gen.next().value).toMatchObject(fork(
       fetchResourceIfRequired,
       api.fetchText,
       {
-        isRequired: isTextRequired,
         actions: {
           start: 'TEXT_FETCH_STARTED',
           success: 'TEXT_FETCH_SUCCESS',
