@@ -1,29 +1,23 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-import ParticipantHome from '../components/pages/participant/home';
+import ParticipantHome from './components/ParticipantHome';
+import mapPageProgress from './mapPageProgress';
 
-import { getForm } from '../selectors/forms';
-import { getMeals } from '../selectors/food';
-import {
-  getOrderFormPrice,
-  getOrderedMeals,
-} from '../selectors/orders';
-import {
-  getParticipant,
-  getParticipantLatestOrder,
- } from '../selectors/participant';
-import { accomodationAll } from '../selectors/accomodation';
-import { workshopsAll } from '../selectors/workshops';
-import {
-  getFoodOrdersCloseDate,
-  yearActiveNumber,
-} from '../selectors/years';
+import { formChange, formSubmit } from '../forms/actions';
+import { getForm } from '../forms/selectors';
+import { getMeals } from '../food/selectors';
+import { getOrderFormPrice, getOrderedMeals } from '../orders/selectors';
+import { getParticipant, getParticipantLatestOrder } from '../participants/selectors';
+import { getAccomodationList } from '../accomodation/selectors';
+import { workshopsAll } from '../workshops/selectors';
+import { getFoodOrdersCloseDate, yearActiveNumber } from '../years/selectors';
 
-import * as actions from '../constants/actions';
+import { getParticipantHomeProgress } from './selectors';
+
+import * as actions from './constants';
 
 const mapStateToProps = state => ({
-  accomodation: accomodationAll(state),
+  accomodation: getAccomodationList(state),
   foodPickCloseDate: getFoodOrdersCloseDate(state),
   price: getOrderFormPrice(state),
   meals: getOrderedMeals(state),
@@ -31,28 +25,16 @@ const mapStateToProps = state => ({
   order: getParticipantLatestOrder(state),
   orderForm: getForm(state, 'order'),
   participant: getParticipant(state),
-  ready:
-    state.participant.details.ready &&
-    state.participant.orders.ready &&
-    state.workshops.list.ready,
   workshops: workshopsAll(state),
   yearNumber: yearActiveNumber(state),
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  onLogout: () => ({ type: actions.PARTICIPANT_LOGOUT }),
-  onMount: () => ({ type: actions.REQUEST_PARTICIPANT_DETAILS }),
-  onOrderCancel: () => ({ type: actions.ORDER_CANCEL_REQUESTED }),
-  onOrderConfirm: () => ({ type: actions.ORDER_CONFIRM_REQUESTED }),
-  onOrderMount: () => ({ type: actions.ORDER_FORM_MOUNTED }),
-  onOrderUnmount: () => ({ type: actions.ORDER_FORM_UNMOUNTED }),
-  onWorkshopPickerChange: (form, field, value) => ({
-    type: actions.FORM_FIELD_CHANGE,
-    form,
-    field,
-    value,
-  }),
-  onWorkshopPickerSubmit: form => ({ type: actions.FORM_SUBMIT, form }),
-}, dispatch);
+const mapDispatchToProps = {
+  onWorkshopPickerChange: formChange,
+  onWorkshopPickerSubmit: formSubmit,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ParticipantHome);
+export default mapPageProgress(connect(mapStateToProps, mapDispatchToProps)(ParticipantHome), {
+  progressSelector: getParticipantHomeProgress,
+  onResourceChange: () => ({ type: actions.PAGE_PARTICIPANT_HOME_ENTERED }),
+});

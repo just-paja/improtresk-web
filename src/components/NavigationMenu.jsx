@@ -85,7 +85,7 @@ const NavigationMenu = ({
   ] : null;
 
   return (
-    <Nav navbar {...props}>
+    <Nav className="w-100" navbar {...props}>
       {currentYearItems}
       <UncontrolledDropdown nav inNavbar>
         <DropdownToggle nav caret>
@@ -117,8 +117,7 @@ const NavigationMenu = ({
         </LinkContainer>
       </NavItem>
       {participant ? ([
-        <NavItem divider key="participant-divider" />,
-        <NavItem key="participant-link">
+        <NavItem className="pull-right ml-auto" key="participant-link">
           <LinkContainer to={reverse(lang, 'participantHome')}>
             <NavLink><FontAwesome name="user" /> {participant.name}</NavLink>
           </LinkContainer>

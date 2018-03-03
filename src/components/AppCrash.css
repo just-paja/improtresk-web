@@ -1,0 +1,11 @@
+:local .container {
+  padding-top: 10%;
+}
+
+:local .dialog {
+  text-align: center;
+}
+
+:local .dialog p {
+  font-size: 1.25rem;
+}

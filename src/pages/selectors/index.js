@@ -4,6 +4,7 @@ export * from './food';
 export * from './home';
 export * from './locations';
 export * from './news';
+export * from './participants';
 export * from './schedule';
 export * from './signups';
 export * from './tips';

@@ -1,6 +1,8 @@
 /* eslint-disable no-template-curly-in-string */
 export default {
   app: {
+    oops: 'Jejda',
+    crash: 'Něco se nám v Improtřeskové aplikaci porouchalo. Nejlepší bude, když nám o tom napíšete zprávu.',
     somethingWentWrong: 'Ale né! Něco se pokazilo',
     errorHelp: 'Stránku se nepovedlo vykreslit, protože na cestě mezi klávesnicí a databází došlo k nějaké chybě. Zkuste svůj požadavek zachvíli zopakovat a když se chyba bude opakovat, tak nám napište.',
     whatWentWrong: 'Co se pokazilo',

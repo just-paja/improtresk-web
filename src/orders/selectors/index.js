@@ -8,6 +8,8 @@ import { getAccomodationList } from '../../accomodation/selectors';
 import { getWorkshopList } from '../../workshops/selectors';
 import { getMealList } from '../../food/selectors';
 
+export const getOrderListState = state => state.orders.list;
+
 const sortOrders = orders => orders
   .slice(0)
   .sort((a, b) => {
@@ -48,8 +50,6 @@ export const aggregateWorkshop = (item, workshops) => {
   }
   return ({ ...item, workshop });
 };
-
-export const getOrderListState = state => state.orders.list;
 
 export const isOrderListRequired = isRequired(getOrderListState);
 

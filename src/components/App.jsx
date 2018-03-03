@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import { ErrorType, ResourceProgress } from 'react-saga-rest/lib/proptypes';
 
 import Accomodation from '../pages/Accomodation';
+import AppCrash from './AppCrash';
 import AppErrors from './AppErrors';
 import AppHelmet from './AppHelmet';
 import AppLoader from './AppLoader';
@@ -66,7 +67,7 @@ class App extends Component {
     }
 
     if (progress.failed) {
-      return <div>App failed</div>;
+      return <AppCrash />;
     }
 
     const routes = [

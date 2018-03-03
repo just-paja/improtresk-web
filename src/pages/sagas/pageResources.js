@@ -54,6 +54,10 @@ export function* requireYearDetail(action) {
   yield put({ type: YEAR_ARCHIVE_DETAIL_REQUIRED, year: action.year });
 }
 
+export function* requireParticipantOrderData() {
+  yield put({ type: 'STUB ' });
+}
+
 export function* requireSchedulePageResources() {
   yield put({ type: WORKSHOPS_REQUIRED });
   yield put({ type: SCHEDULE_EVENTS_REQUIRED });
@@ -129,6 +133,13 @@ export function* onNewsDetailEnter() {
   yield takeLatest(
     constants.PAGE_NEWS_DETAIL_ENTERED,
     requireNewsDetail
+  );
+}
+
+export function* onParticipantHomeEnter() {
+  yield takeLatest(
+    constants.PAGE_PARTICIPANT_HOME_ENTERED,
+    requireParticipantOrderData
   );
 }
 
