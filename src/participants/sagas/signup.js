@@ -2,10 +2,10 @@ import cookie from 'js-cookie';
 
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 
-import { getForm } from '../../forms/selectors';
 import { getApiAuth, getAutoLoginStatus } from '../../selectors/session';
 import { sendForm } from '../../forms/sagas/sendForm';
 import { redirectHome } from '../../sagas/redirects';
+import { getLoginForm, getSignupForm } from '../selectors';
 
 import {
   FORM_SUBMIT_ALLOWED,
@@ -35,17 +35,17 @@ const purifySignupValues = values => ({
 });
 
 export function* sendSignup(action) {
-  const form = yield select(getForm, action.form);
+  const form = yield select(getSignupForm);
   yield call(sendForm, api.signup, action.form, purifySignupValues(form.values));
 }
 
 export function* sendLogin(action) {
-  const form = yield select(getForm, action.form);
+  const form = yield select(getLoginForm);
   yield call(sendForm, api.login, action.form, form.values);
 }
 
 export function* loginSignup(action) {
-  const form = yield select(getForm, 'signup');
+  const form = yield select(getSignupForm);
   yield call(sendForm, api.login, 'login', {
     email: form.values.email,
     password: form.values.password,
@@ -85,6 +85,11 @@ export function* loginWithCookie() {
     if (auth) {
       yield put({
         type: constants.PARTICIPANT_LOGIN,
+        data: auth,
+      });
+    } else {
+      yield put({
+        type: constants.PARTICIPANT_LOGOUT,
         data: auth,
       });
     }

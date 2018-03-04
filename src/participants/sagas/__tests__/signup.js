@@ -3,12 +3,12 @@ import sinon from 'sinon';
 
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 
-import { getForm } from '../../../forms/selectors';
 import {
   getApiAuth,
   getAutoLoginStatus,
 } from '../../../selectors/session';
 import { sendForm } from '../../../forms/sagas/sendForm';
+import { getLoginForm, getSignupForm } from '../../selectors';
 import { redirectHome } from '../../../sagas/redirects';
 
 import * as sagas from '..';
@@ -41,7 +41,7 @@ describe('Signup sagas', () => {
 
   it('sendSignup creates form submit actions', () => {
     const gen = sagas.sendSignup({ type: 'REDUX_ACTION', form: 'signup' });
-    expect(gen.next().value).toEqual(select(getForm, 'signup'));
+    expect(gen.next().value).toEqual(select(getSignupForm));
     expect(gen.next({
       values: {
         email: 'mail@test.com',
@@ -61,7 +61,7 @@ describe('Signup sagas', () => {
 
   it('sendSignup creates form submit actions without team name', () => {
     const gen = sagas.sendSignup({ type: 'REDUX_ACTION', form: 'signup' });
-    expect(gen.next().value).toEqual(select(getForm, 'signup'));
+    expect(gen.next().value).toEqual(select(getSignupForm));
     expect(gen.next({
       values: {
         email: 'mail@test.com',
@@ -77,7 +77,7 @@ describe('Signup sagas', () => {
 
   it('sendLogin creates form submit actions', () => {
     const gen = sagas.sendLogin({ type: 'REDUX_ACTION', form: 'login' });
-    expect(gen.next().value).toEqual(select(getForm, 'login'));
+    expect(gen.next().value).toEqual(select(getLoginForm));
     expect(gen.next({
       values: {
         email: 'mail@test.com',
@@ -98,7 +98,7 @@ describe('Signup sagas', () => {
         name: 'Hugo Ventil',
       },
     });
-    expect(gen.next().value).toEqual(select(getForm, 'signup'));
+    expect(gen.next().value).toEqual(select(getSignupForm));
     expect(gen.next({
       values: {
         email: 'test@localhost.com',
@@ -187,11 +187,12 @@ describe('Signup sagas', () => {
     expect(gen.next().done).toBe(true);
   });
 
-  it('loginOnWithCookie creates no login action with empty cookie auth data', () => {
+  it('loginOnWithCookie creates logout action with empty cookie auth data', () => {
     cookie.getJSON.returns(null);
     const gen = sagas.loginWithCookie();
     expect(gen.next().value).toEqual(select(getAutoLoginStatus));
     expect(gen.next(false).value).toEqual(select(getApiAuth));
+    expect(gen.next({}).value).toEqual(put({ type: 'PARTICIPANT_LOGOUT', data: null }));
     expect(gen.next({}).value).toEqual(put({ type: 'PARTICIPANT_LOGIN_AUTO' }));
     expect(gen.next().done).toBe(true);
   });

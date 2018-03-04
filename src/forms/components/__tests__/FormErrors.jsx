@@ -9,7 +9,9 @@ describe('FormErrors component', () => {
     const comp = shallow(
       <FormErrors
         errors={['Cannot save data']}
-        translate={msg => msg}
+        translate={() => {
+          throw new Error('Unknown message');
+        }}
       />
     );
 

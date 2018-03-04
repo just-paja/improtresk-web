@@ -18,11 +18,11 @@ const FormErrors = ({ errors, translate }) => (
         }
         if (translation) {
           message = (
-            <span>
-              <Message name="forms.unknownError" />
-              {' '}
-              <span>{translation}</span>
-            </span>
+            <span>{translation}</span>
+          );
+        } else {
+          message = (
+            <Message name="forms.unknownError" />
           );
         }
         return (

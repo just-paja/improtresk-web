@@ -23,7 +23,7 @@ export function* validateForm(action) {
 
 export function* validateAndAllowFormSubmit(action) {
   const validator = getFormValidator(action.form);
-  const form = yield select(getForm, action.form);
+  const form = yield select(getForm(action.form));
   let status = { valid: true };
 
   if (validator) {

@@ -25,7 +25,7 @@ export default combine(defaultState, {
     ...state,
     data: null,
     ready: false,
-    valid: false,
+    valid: true,
   }),
   [constants.PARTICIPANT_FETCH_STARTED]: fetchStart,
   [constants.PARTICIPANT_FETCH_SUCCESS]: fetchSuccess,

@@ -1,8 +1,7 @@
 import sinon from 'sinon';
 
-import { put, select, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 
-import { getForm } from '../../selectors';
 import * as validators from '../../validators';
 import * as sagas from '..';
 
@@ -63,7 +62,7 @@ describe('Form saga helpers', () => {
       valid: false,
     }));
 
-    expect(gen.next().value).toEqual(select(getForm, 'signup'));
+    gen.next();
     expect(gen.next({ values: {} }).value).toEqual(put({
       type: 'FORM_SUBMIT_PREVENTED',
       form: 'signup',
@@ -77,7 +76,7 @@ describe('Form saga helpers', () => {
       form: 'xxx',
     });
 
-    expect(gen.next().value).toEqual(select(getForm, 'xxx'));
+    gen.next();
     expect(gen.next({ valid: true }).value).toEqual(put({
       type: 'FORM_SUBMIT_ALLOWED',
       form: 'xxx',

@@ -33,7 +33,10 @@ export const FormError = PropTypes.oneOfType([
 
 export const FormData = PropTypes.shape({
   changedFields: PropTypes.arrayOf(PropTypes.string),
-  fieldErrors: PropTypes.objectOf(FormError).isRequired,
+  fieldErrors: PropTypes.objectOf(
+    FormError,
+    PropTypes.arrayOf(FormError)
+  ).isRequired,
   changed: PropTypes.bool,
   loading: PropTypes.bool,
   valid: PropTypes.bool,

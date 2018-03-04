@@ -48,7 +48,7 @@ describe('participantDetail reducer', () => {
   it('drops data on PARTICIPANT_LOGOUT', () => {
     expect(participantDetail({}, { type: 'PARTICIPANT_LOGOUT' })).toMatchObject({
       data: null,
-      valid: false,
+      valid: true,
     });
   });
 });
