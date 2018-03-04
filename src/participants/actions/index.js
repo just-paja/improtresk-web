@@ -4,4 +4,6 @@ export const requireParticipant = () => ({
   type: constants.PARTICIPANT_LOGIN,
 });
 
-export default {};
+export const logout = () => ({
+  type: constants.PARTICIPANT_LOGOUT,
+});
