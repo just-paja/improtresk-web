@@ -29,6 +29,7 @@ import NewsDetail from '../pages/NewsDetail';
 import NotFound from '../pages/NotFound';
 // import ParticipantConfirm from '../pages/participantConfirm';
 import ParticipantHome from '../pages/ParticipantHome';
+import ParticipantRegistration from '../pages/ParticipantRegistration';
 import PrivateRoute from '../containers/PrivateRoute';
 // import PerformerDetail from '../pages/performerDetail';
 import ProgressBar from './ProgressBar';
@@ -89,7 +90,8 @@ class App extends Component {
         <Route key={`${lang}tips`} component={Tips} path={getUrlPattern(routeLang, 'tips')} />,
         <Route key={`${lang}workshops`} component={Workshops} exact path={getUrlPattern(routeLang, 'workshops')} />,
         <Route key={`${lang}workshopDetail`} component={WorkshopDetail} path={getUrlPattern(routeLang, 'workshopDetail')} />,
-        <PrivateRoute key={`${lang}participantHome`} path={getUrlPattern(lang, 'participantHome')} component={ParticipantHome} />,
+        <PrivateRoute key={`${lang}participantHome`} exact path={getUrlPattern(lang, 'participantHome')} component={ParticipantHome} />,
+        <PrivateRoute key={`${lang}participantRegistration`} exact path={getUrlPattern(lang, 'participantRegistration')} component={ParticipantRegistration} />,
       ]),
       <Route key="languageRedirect" exact path="/" component={LanguageRedirect} />,
       <Route key="notfound" component={NotFound} />,

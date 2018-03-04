@@ -8,12 +8,12 @@ import Row from 'reactstrap/lib/Row';
 
 import AccomodationPicker from './AccomodationPicker';
 import Button from '../../components/Button';
-import Link from '../../containers/Link';
+import Message from '../../containers/Message';
 import MealPicker from './MealPicker';
 import Price from '../../components/Price';
 import WorkshopPicker from './WorkshopPicker';
 
-import { Accomodation, Meal, Workshop } from '../../proptypes';
+import { Accomodation, FormData, Meal, Workshop } from '../../proptypes';
 
 export default class OrderForm extends Component {
   constructor() {
@@ -22,90 +22,82 @@ export default class OrderForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    this.props.onMount();
-  }
-
-  componentWillUnmount() {
-    this.props.onUnmount();
-  }
-
   handleChange(name, value) {
-    this.props.onChange(this.props.form, name, value);
+    this.props.onChange(this.props.formData.formName, name, value);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onSubmit(this.props.form);
+    this.props.onSubmit(this.props.formData.formName);
   }
 
   render() {
     const {
       accomodation,
-      disabled,
-      errors,
       foodPickCloseDate,
+      formData,
       meals,
       price,
-      submitted,
-      translate,
-      values,
       workshops,
     } = this.props;
     return (
       <div>
-        <h2>{translate('orders.workshop')}</h2>
-        <p>{translate('orders.workshopHelp')}</p>
         <Form onSubmit={this.handleSubmit}>
-          <WorkshopPicker
-            disabled={disabled}
-            name="workshop"
-            onChange={this.handleChange}
-            error={errors.workshop}
-            touched={submitted}
-            value={values.workshop}
-            workshops={workshops}
-          />
-          <div className="former-well">
-            <Row>
-              <Col sm={6} lg={4}>
-                <h3><Link to="food">{translate('orders.food')}</Link></h3>
-                <p>{translate('orders.foodHelp')}</p>
-                <MealPicker
-                  disabled={disabled}
-                  foodPickCloseDate={foodPickCloseDate}
-                  name="meals"
-                  meals={meals}
-                  onChange={this.handleChange}
-                  error={errors.meals}
-                  value={values.meals}
-                />
-              </Col>
-              <Col sm={6} lg={4}>
-                <h3><Link to="accomodation">{translate('orders.accomodation')}</Link></h3>
-                <p>{translate('orders.accomodationHelp')}</p>
-                <AccomodationPicker
-                  accomodation={accomodation}
-                  disabled={disabled}
-                  error={errors.accomodation}
-                  onChange={this.handleChange}
-                  name="accomodation"
-                  value={values.accomodation}
-                />
-              </Col>
-            </Row>
-          </div>
+          <Row>
+            <Col className="mb-3" xs={12} xl={6}>
+              <h3><Message name="orders.workshop" /></h3>
+              <p><Message name="orders.workshopHelp" /></p>
+              <WorkshopPicker
+                disabled={formData.loading}
+                name="workshop"
+                onChange={this.handleChange}
+                error={formData.fieldErrors.workshop}
+                touched={formData.submitted}
+                value={formData.values.workshop}
+                workshops={workshops}
+              />
+            </Col>
+            <Col xs={12} xl={6}>
+              <Row>
+                <Col xs={12} md={6} xl={12}>
+                  <h3><Message name="orders.food" /></h3>
+                  <p><Message name="orders.foodHelp" /></p>
+                  <MealPicker
+                    disabled={formData.loading}
+                    foodPickCloseDate={foodPickCloseDate}
+                    name="meals"
+                    meals={meals}
+                    onChange={this.handleChange}
+                    error={formData.fieldErrors.meals}
+                    value={formData.values.meals}
+                  />
+                </Col>
+                <Col xs={12} md={6} xl={12}>
+                  <h3><Message name="orders.accomodation" /></h3>
+                  <p><Message name="orders.accomodationHelp" /></p>
+                  <AccomodationPicker
+                    accomodation={accomodation}
+                    disabled={formData.loading}
+                    error={formData.fieldErrors.accomodation}
+                    onChange={this.handleChange}
+                    name="accomodation"
+                    value={formData.values.accomodation}
+                  />
+                </Col>
+              </Row>
+            </Col>
+          </Row>
           <Row>
             <Col sm={6} lg={4}>
-              <h3>{translate('orders.paymentMethod')}</h3>
+              <h3><Message name="orders.paymentMethod" /></h3>
               <p>
-                {translate('orders.paymentMethod')}
+                <Message name="orders.paymentMethod" />
                 <FontAwesome name="frown-o" />
               </p>
               {price ? (
                 <Alert color="success">
                   <big>
-                    {translate('orders.priceToPay')}:
+                    <Message name="orders.priceToPay" />:
                     {' '}
                     <Price price={price} />
                   </big>
@@ -113,7 +105,7 @@ export default class OrderForm extends Component {
               ) : null}
             </Col>
           </Row>
-          <Button type="submit">{translate('orders.continue')}</Button>
+          <Button type="submit"><Message name="orders.continue" /></Button>
         </Form>
       </div>
     );
@@ -122,25 +114,16 @@ export default class OrderForm extends Component {
 
 OrderForm.propTypes = {
   accomodation: PropTypes.arrayOf(Accomodation).isRequired,
+  formData: FormData.isRequired,
   price: PropTypes.number,
-  disabled: PropTypes.bool,
-  errors: PropTypes.object.isRequired,
   foodPickCloseDate: PropTypes.string,
-  form: PropTypes.string.isRequired,
   meals: PropTypes.arrayOf(Meal).isRequired,
-  onMount: PropTypes.func.isRequired,
-  onUnmount: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  submitted: PropTypes.bool,
-  translate: PropTypes.func.isRequired,
-  values: PropTypes.object.isRequired,
   workshops: PropTypes.arrayOf(Workshop).isRequired,
 };
 
 OrderForm.defaultProps = {
-  disabled: false,
   foodPickCloseDate: null,
   price: null,
-  submitted: false,
 };

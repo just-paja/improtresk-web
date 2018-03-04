@@ -9,18 +9,19 @@ describe('Login Form component', () => {
   it('renders email and password input', () => {
     const comp = shallow(
       <Login
-        translate={msg => msg}
-        form="signup"
+        formData={{
+          formName: 'signup',
+          fieldErrors: {
+            email: 'email error',
+            password: 'password error',
+          },
+          values: {
+            email: 'email value',
+            password: 'test',
+          },
+        }}
         onChange={() => {}}
         onSubmit={() => {}}
-        errors={{
-          email: 'email error',
-          password: 'password error',
-        }}
-        values={{
-          email: 'email value',
-          password: 'test',
-        }}
       />
     );
     expect(comp.find('[name="email"]')).toHaveLength(1);
@@ -30,12 +31,13 @@ describe('Login Form component', () => {
   it('renders inputs disabled when form is disabled', () => {
     const comp = shallow(
       <Login
-        translate={msg => msg}
-        form="signup"
+        formData={{
+          formName: 'signup',
+          fieldErrors: {},
+          values: {},
+        }}
         onChange={() => {}}
         onSubmit={() => {}}
-        errors={{}}
-        values={{}}
         disabled
       />
     );
@@ -47,12 +49,13 @@ describe('Login Form component', () => {
     const changeSpy = sinon.spy();
     const comp = shallow(
       <Login
-        translate={msg => msg}
-        form="signup"
+        formData={{
+          formName: 'signup',
+          fieldErrors: {},
+          values: {},
+        }}
         onChange={changeSpy}
         onSubmit={() => {}}
-        errors={{}}
-        values={{}}
       />
     );
 
@@ -67,12 +70,13 @@ describe('Login Form component', () => {
     const submitSpy = sinon.spy();
     const comp = shallow(
       <Login
-        translate={msg => msg}
-        form="signup"
+        formData={{
+          formName: 'signup',
+          fieldErrors: {},
+          values: {},
+        }}
         onChange={() => {}}
         onSubmit={submitSpy}
-        errors={{}}
-        values={{}}
       />
     );
 

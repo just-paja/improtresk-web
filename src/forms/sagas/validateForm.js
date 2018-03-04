@@ -16,7 +16,7 @@ export function* validateForm(action) {
   const validator = getFormValidator(action.form);
 
   if (validator) {
-    const form = yield select(getForm, action.form);
+    const form = yield select(getForm(action.form));
     yield put(validateAction(action.form, form.values, validator));
   }
 }

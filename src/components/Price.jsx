@@ -15,7 +15,7 @@ Price.propTypes = {
 };
 
 Price.defaultProps = {
-  freeMessage: 'price.free',
+  freeMessage: 'generic.free',
 };
 
 export default Price;

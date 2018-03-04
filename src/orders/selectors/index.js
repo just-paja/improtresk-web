@@ -4,9 +4,14 @@ import { createSelector } from 'reselect';
 import { isRequired, getProgress, transformData } from 'react-saga-rest';
 
 import { getForm } from '../../forms/selectors';
-import { getAccomodationList } from '../../accomodation/selectors';
-import { getWorkshopList } from '../../workshops/selectors';
-import { getMealList } from '../../food/selectors';
+import { getAccomodationList, getAccomodationListState } from '../../accomodation/selectors';
+import { getMealList, getMealListState } from '../../food/selectors';
+import {
+  getWorkshopList,
+  getWorkshopListState,
+  getLectorListState,
+  getLectorRolesState,
+} from '../../workshops/selectors';
 
 export const getOrderListState = state => state.orders.list;
 
@@ -90,7 +95,15 @@ export const getUnconfirmedOrder = createSelector(
   ) || null
 );
 
-const getOrderForm = state => getForm(state, 'order').values;
+export const getOrderForm = getForm('order');
+
+export const getOrderFormProgress = getProgress(
+  getAccomodationListState,
+  getMealListState,
+  getWorkshopListState,
+  getLectorListState,
+  getLectorRolesState
+);
 
 const getWorkshopPrice = (prices) => {
   const filteredPrices = prices
@@ -103,11 +116,11 @@ const getWorkshopPrice = (prices) => {
   return filteredPrices[0] || null;
 };
 
-const calculatePrice = (values, workshops, meals) => {
+const calculatePrice = (form, workshops, meals) => {
   let price = 0;
 
-  if (values.workshop) {
-    const workshopEntry = workshops.find(ws => ws.id === values.workshop);
+  if (form.values.workshop) {
+    const workshopEntry = workshops.find(ws => ws.id === form.values.workshop);
 
     if (workshopEntry) {
       const workshopPrice = getWorkshopPrice(workshopEntry.prices);
@@ -117,8 +130,8 @@ const calculatePrice = (values, workshops, meals) => {
     }
   }
 
-  if (values.meals && values.meals.length) {
-    price += values.meals.reduce((accumulator, current) => {
+  if (form.values.meals && form.values.meals.length) {
+    price += form.values.meals.reduce((accumulator, current) => {
       const meal = meals.find(m => m.id === current);
       return meal ? accumulator + meal.price : accumulator;
     }, 0);

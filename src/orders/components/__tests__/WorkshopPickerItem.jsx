@@ -6,7 +6,7 @@ import { shallow } from 'enzyme';
 import WorkshopPickerItem from '../WorkshopPickerItem';
 
 describe('WorkshopPickerItem component', () => {
-  it('renders workshop summary', () => {
+  it('renders workshop name', () => {
     const comp = shallow((
       <WorkshopPickerItem
         assigned={2}
@@ -19,28 +19,7 @@ describe('WorkshopPickerItem component', () => {
         reserved={3}
       />
     ));
-    expect(comp.find('WorkshopSummaryOneLine').props()).toMatchObject({
-      assigned: 2,
-      capacity: 12,
-      freeSpots: 7,
-      lectors: [],
-      name: 'Longformy',
-      reserved: 3,
-    });
-  });
-
-  it('renders selected button', () => {
-    const comp = shallow((
-      <WorkshopPickerItem
-        id={230}
-        capacity={12}
-        lectors={[]}
-        name="Longformy"
-        onChange={() => {}}
-        selected
-      />
-    ));
-    expect(comp.find('Button').prop('className')).toContain('selected');
+    expect(comp.find({ children: 'Longformy' })).toHaveLength(1);
   });
 
   it('renders minus icon when full', () => {
@@ -69,7 +48,7 @@ describe('WorkshopPickerItem component', () => {
         selected
       />
     ));
-    comp.find('Button').simulate('click');
+    comp.find('ListGroupItem').simulate('click');
     expect(changeSpy.args).toEqual([
       [null],
     ]);
@@ -87,7 +66,7 @@ describe('WorkshopPickerItem component', () => {
       />
     ));
 
-    comp.find('Button').simulate('click');
+    comp.find('ListGroupItem').simulate('click');
     expect(changeSpy.args).toEqual([
       [230],
     ]);
@@ -106,7 +85,7 @@ describe('WorkshopPickerItem component', () => {
       />
     ));
 
-    comp.find('Button').simulate('click');
+    comp.find('ListGroupItem').simulate('click');
     expect(changeSpy.called).toBeFalsy();
   });
 });

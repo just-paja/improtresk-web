@@ -1,6 +1,12 @@
+import { createSelector } from 'reselect';
 import { defaultFormState } from '../reducers';
 
-export const getForm = (state, form) =>
-  state.forms[form] || Object.assign({}, defaultFormState);
+export const getForm = form => createSelector(
+  state => state.forms[form],
+  formState => ({ formName: form, ...(formState || defaultFormState) })
+);
 
-export const isFormValid = (state, form) => !!getForm(state, form).valid;
+export const isFormValid = formName => createSelector(
+  getForm(formName),
+  form => form.valid
+);

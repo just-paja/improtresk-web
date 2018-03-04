@@ -12,7 +12,7 @@ describe('Price component', () => {
 
   it('renders free with default message', () => {
     const comp = shallow(<Price price={0} />);
-    expect(comp.find('Connect(Message)[name="price.free"]')).toHaveLength(1);
+    expect(comp.find('Connect(Message)[name="generic.free"]')).toHaveLength(1);
   });
 
   it('renders free with custom message', () => {

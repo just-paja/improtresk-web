@@ -37,7 +37,7 @@ describe('Form saga helpers', () => {
     const gen = sagas.validateForm({
       form: 'testForm',
     });
-    expect(gen.next().value).toEqual(select(getForm, 'testForm'));
+    gen.next();
     expect(gen.next({
       values: {},
     }).value).toEqual(put({

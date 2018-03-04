@@ -1,5 +1,3 @@
-import { getPriceLevels, getWorkshopCapacity } from '../../../years/selectors';
-
 import * as selectors from '..';
 
 describe('Workshops selectors', () => {
@@ -59,18 +57,8 @@ describe('Workshops selectors', () => {
     });
   });
 
-  it('getWorkshopRelatedData returns all workshop data sources', () => {
-    const related = selectors.getWorkshopRelatedData();
-    expect(related[0]).toBe(selectors.getLectors);
-    expect(related[1]).toBe(selectors.getLectorRoles);
-    expect(related[2]).toBe(selectors.getDifficultyList);
-    expect(related[3]).toBe(getPriceLevels);
-    expect(related[4]).toBe(getWorkshopCapacity);
-    expect(related.length).toBe(5);
-  });
-
-  it('workshopsAll returns all workshops stored', () => {
-    expect(selectors.workshopsAll({
+  it('getWorkshopList returns all workshops stored', () => {
+    expect(selectors.getWorkshopList({
       workshops: {
         difficulties: {
           data: [],

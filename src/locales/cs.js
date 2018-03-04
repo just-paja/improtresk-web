@@ -22,6 +22,7 @@ export default {
     objectNotFoundHelp: 'Znáte to. Stránka neexistuje, takže nemáme co vám zobrazit.',
   },
   generic: {
+    free: 'Zdarma',
     oops: 'Jejda',
     loadingFailed: 'Selhalo načítání objektu',
     missingErrorDetails: 'Nemáme k chybě žádné další detaily',

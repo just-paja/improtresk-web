@@ -2,22 +2,24 @@ import { getForm, isFormValid } from '..';
 
 describe('Formsselectors', () => {
   it('getForm returns form data', () => {
-    expect(getForm({
+    expect(getForm('testForm')({
       forms: {
         testForm: {
           values: { foo: 'bar' },
         },
       },
-    }, 'testForm')).toEqual({
+    })).toEqual({
+      formName: 'testForm',
       values: { foo: 'bar' },
     });
   });
 
   it('getForm returns default form state when data are not specified', () => {
-    expect(getForm({
+    expect(getForm('testForm')({
       forms: {},
-    }, 'testForm')).toEqual({
-      errors: {},
+    })).toEqual({
+      formName: 'testForm',
+      fieldErrors: {},
       saved: false,
       submitted: false,
       loading: false,
@@ -27,23 +29,23 @@ describe('Formsselectors', () => {
   });
 
   it('isFormValid returns true when form is in valid state', () => {
-    expect(isFormValid({ forms: {} }, 'testForm')).toBe(true);
-    expect(isFormValid({
+    expect(isFormValid('testForm')({ forms: {} })).toBe(true);
+    expect(isFormValid('testForm')({
       forms: {
         testForm: {
           valid: true,
         },
       },
-    }, 'testForm')).toBe(true);
+    })).toBe(true);
   });
 
   it('isFormValid returns false when form is in invalid state', () => {
-    expect(isFormValid({
+    expect(isFormValid('testForm')({
       forms: {
         testForm: {
           valid: false,
         },
       },
-    }, 'testForm')).toBe(false);
+    })).toBe(false);
   });
 });

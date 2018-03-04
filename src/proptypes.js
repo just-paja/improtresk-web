@@ -22,6 +22,25 @@ export const ClassName = PropTypes.oneOfType([
   PropTypes.objectOf(PropTypes.string),
 ]);
 
+export const FormError = PropTypes.oneOfType([
+  PropTypes.shape({
+    property: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
+    invalidValue: PropTypes.string,
+  }),
+  PropTypes.string,
+]);
+
+export const FormData = PropTypes.shape({
+  changedFields: PropTypes.arrayOf(PropTypes.string),
+  fieldErrors: PropTypes.objectOf(FormError).isRequired,
+  changed: PropTypes.bool,
+  loading: PropTypes.bool,
+  valid: PropTypes.bool,
+  submitError: FormError,
+  values: PropTypes.object,
+});
+
 export const Accomodation = PropTypes.shape({
   id: ResourceId.isRequired,
   name: PropTypes.string.isRequired,
@@ -31,6 +50,12 @@ export const Accomodation = PropTypes.shape({
 export const Lector = PropTypes.shape({
   id: ResourceId.isRequired,
   name: PropTypes.string.isRequired,
+});
+
+export const LectorInRole = PropTypes.shape({
+  id: ResourceId.isRequired,
+  lector: Lector.isRequired,
+  role: PropTypes.string.isRequired,
 });
 
 export const Meal = PropTypes.shape({
@@ -85,6 +110,6 @@ export const PollAnswer = PropTypes.shape({
 export const Workshop = PropTypes.shape({
   capacityStatus: CapacityStatus.isRequired,
   id: ResourceId.isRequired,
-  lectors: PropTypes.arrayOf(Lector).isRequired,
+  lectors: PropTypes.arrayOf(LectorInRole).isRequired,
   name: PropTypes.string.isRequired,
 });

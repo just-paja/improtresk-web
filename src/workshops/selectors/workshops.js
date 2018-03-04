@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
-import { isRequired, getData, getProp } from 'react-saga-rest';
+import { isRequired, getData, getProp, transformData } from 'react-saga-rest';
 
-import { aggregateLectorsData, getLectorRoles, getLectors } from './lectors';
+import { getLectorRolesState, getLectorListState } from './lectors';
 import { aggregateCapacityData, getWorkshopCapacity, getPriceLevels } from '../../years/selectors';
 
 export const getDifficultiesState = state => state.workshops.difficulties;
@@ -19,8 +19,8 @@ export const getDifficultyList = getData(getDifficultiesState);
 export const getWorkshopDetailId = getProp(getWorkshopDetailState, 'id');
 
 export const getWorkshopRelatedData = () => [
-  getLectors,
-  getLectorRoles,
+  getLectorListState,
+  getLectorRolesState,
   getDifficultyList,
   getPriceLevels,
   getWorkshopCapacity,
@@ -43,13 +43,40 @@ export const getLocationMarkers = createSelector(
     }))
 );
 
-export const aggregateWorkshopDifficultyName = (id, difficulties) => {
-  if (difficulties) {
-    const difficulty = difficulties.find(record => record.id === id);
-    return difficulty ? difficulty.name : null;
+export const findLectorRoleName = (roles, id) => {
+  if (roles) {
+    const role = roles.find(roleRecord => roleRecord.id === id);
+    return role ? role.name : null;
   }
   return null;
 };
+
+export const transformLectorRole = (lectors, roles) => (lectorPosition) => {
+  if (lectorPosition && lectors && roles) {
+    const lector = lectors.find(lectorItem => lectorPosition.lector === lectorItem.id);
+    const role = findLectorRoleName(roles, lectorPosition.role);
+    if (lector && role) {
+      return {
+        id: lectorPosition.id,
+        lector,
+        role,
+      };
+    }
+  }
+  return null;
+};
+
+export const transformLectorRoles = (workshop, lectorsAndRoles) => (workshop ? ({
+  ...workshop,
+  lectors: workshop.lectors
+    .map(transformLectorRole(lectorsAndRoles.lectors, lectorsAndRoles.roles))
+    .filter(item => item),
+}) : null);
+
+export const transformWorkshopDifficultyName = (workshop, difficulties) => (workshop ? ({
+  ...workshop,
+  difficulty: difficulties.find(record => record.id === workshop.id) || null,
+}) : null);
 
 export const aggregateWorkshopPriceLevelData = priceLevels => (priceItem) => {
   const priceLevelId = priceItem.price_level;
@@ -68,48 +95,46 @@ export const aggregateWorkshopPriceLevelData = priceLevels => (priceItem) => {
   return null;
 };
 
-export const aggregateWorkshopPriceData = (prices, priceLevels) => (
-  prices && priceLevels ?
-    prices
+export const transformWorkshopPriceData = (workshop, priceLevels) => (workshop ? ({
+  ...workshop,
+  prices: workshop.prices && priceLevels ?
+    workshop.prices
       .map(aggregateWorkshopPriceLevelData(priceLevels))
-      .filter(item => item) : []
-);
+      .filter(item => item) : [],
+}) : null);
 
-export const aggregateWorkshopData = (
-  lectors,
-  roles,
-  difficulties,
-  priceLevels,
-  capacity
-) => workshop => (
-  workshop ? ({
-    ...workshop,
-    capacityStatus: aggregateCapacityData(workshop.id, capacity) || {},
-    difficulty: aggregateWorkshopDifficultyName(workshop.difficulty, difficulties),
-    lectors: aggregateLectorsData(workshop.lectors, lectors, roles),
-    prices: aggregateWorkshopPriceData(workshop.prices, priceLevels),
-  }) : null
-);
+const getLectorsAndRoles = getData({
+  lectors: getLectorListState,
+  roles: getLectorRolesState,
+});
 
+const workshopTransformations = [
+  {
+    select: getLectorsAndRoles,
+    transform: transformLectorRoles,
+  },
+  {
+    select: getDifficultyList,
+    transform: transformWorkshopDifficultyName,
+  },
+  {
+    select: getPriceLevels,
+    transform: transformWorkshopPriceData,
+  },
+  {
+    select: getWorkshopCapacity,
+    transform: (workshop, capacityData) => (workshop ? ({
+      ...workshop,
+      capacityStatus: aggregateCapacityData(workshop.id, capacityData) || {},
+    }) : null),
+  },
+];
 
-export const workshopsDetail = createSelector(
-  [getWorkshopDetailState, ...getWorkshopRelatedData()],
-  (detail, lectors, roles, difficulties, priceLevels, capacity) =>
-    aggregateWorkshopData(lectors, roles, difficulties, priceLevels, capacity)(detail.data)
-);
+export const workshopsDetail = transformData(getWorkshopDetailState, workshopTransformations);
 
-export const getWorkshopList = createSelector(
-  [getWorkshopListState, ...getWorkshopRelatedData()],
-  (workshops, lectors, roles, difficulties, priceLevels, capacity) =>
-    workshops.data.map(
-      aggregateWorkshopData(lectors, roles, difficulties, priceLevels, capacity)
-    )
-);
-export const workshopsAll = getWorkshopList;
+export const getWorkshopList = transformData(getWorkshopListState, workshopTransformations);
 
-export const getArchivedYearWorkshops = createSelector(
-  [state => state.years.archive, ...getWorkshopRelatedData()],
-  (current, lectors, roles, difficulties, priceLevels) => (current ? (
-    current.workshops.map(aggregateWorkshopData(lectors, roles, difficulties, priceLevels))
-  ) : [])
+export const getArchivedYearWorkshops = transformData(
+  state => state.years.archive.workshops,
+  workshopTransformations
 );

@@ -1,3 +1,4 @@
+import Col from 'reactstrap/lib/Col';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
@@ -18,7 +19,7 @@ export default class AccomodationPicker extends Component {
   render() {
     const { disabled, name, accomodation, value } = this.props;
     return (
-      <div>
+      <Col xs={12}>
         {accomodation.map(house => (
           <AccomodationPickerItem
             disabled={disabled}
@@ -31,7 +32,7 @@ export default class AccomodationPicker extends Component {
             onChange={this.handleChange}
           />
         ))}
-      </div>
+      </Col>
     );
   }
 }

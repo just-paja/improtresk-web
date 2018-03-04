@@ -10,27 +10,29 @@ describe('Signup Form component', () => {
     const comp = shallow(
       <Signup
         translate={msg => msg}
-        form="signup"
+        formData={{
+          formName: 'signup',
+          fieldErrors: {
+            name: 'name error',
+            email: 'email error',
+            phone: 'phone error',
+            birthday: 'birthday error',
+            team_name: 'team error',
+            rules_accepted: 'rules error',
+          },
+          values: {
+            name: 'name value',
+            email: 'email value',
+            phone: 'phone value',
+            birthday: 'birthday value',
+            team_name: 'team value',
+            rules_accepted: false,
+            newsletter: false,
+          },
+        }}
         onChange={() => {}}
         onSubmit={() => {}}
-        errors={{
-          name: 'name error',
-          email: 'email error',
-          phone: 'phone error',
-          birthday: 'birthday error',
-          team_name: 'team error',
-          rules_accepted: 'rules error',
-        }}
         teams={[]}
-        values={{
-          name: 'name value',
-          email: 'email value',
-          phone: 'phone value',
-          birthday: 'birthday value',
-          team_name: 'team value',
-          rules_accepted: false,
-          newsletter: false,
-        }}
       />
     );
 
@@ -46,12 +48,14 @@ describe('Signup Form component', () => {
     const comp = shallow(
       <Signup
         translate={msg => msg}
-        form="signup"
+        formData={{
+          formName: 'signup',
+          fieldErrors: {},
+          values: {},
+        }}
         onChange={() => {}}
         onSubmit={() => {}}
-        errors={{}}
         teams={[]}
-        values={{}}
         disabled
       />
     );
@@ -69,12 +73,14 @@ describe('Signup Form component', () => {
     const comp = shallow(
       <Signup
         translate={msg => msg}
-        form="signup"
+        formData={{
+          formName: 'signup',
+          fieldErrors: {},
+          values: {},
+        }}
         onChange={changeSpy}
         onSubmit={() => {}}
-        errors={{}}
         teams={[]}
-        values={{}}
       />
     );
 
@@ -90,12 +96,14 @@ describe('Signup Form component', () => {
     const comp = shallow(
       <Signup
         translate={msg => msg}
-        form="signup"
+        formData={{
+          formName: 'signup',
+          fieldErrors: {},
+          values: {},
+        }}
         onChange={() => {}}
         onSubmit={submitSpy}
-        errors={{}}
         teams={[]}
-        values={{}}
       />
     );
 

@@ -32,5 +32,7 @@ export default {
     waitingToBePaid: 'Čeká na zaplacení',
     workshopHeading: 'Přihlášení na workshop',
     workshopHelp: 'Vyber si jeden workshop, víc jich za jeden Improtřesk nestihneš. Na workshop budeš místo na workshopu máš jisté až v momentě kdy nám přijdou peníze na účet.',
+    workshop: 'Výběr workshopu',
+    register: 'Registrace',
   },
 };

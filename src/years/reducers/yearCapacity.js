@@ -11,6 +11,7 @@ const defaultState = {
 export default combine(defaultState, {
   [constants.YEAR_CAPACITY_FETCH_STARTED]: fetchStart,
   [constants.YEAR_CAPACITY_FETCH_SUCCESS]: fetchSuccess,
+  [constants.YEAR_CAPACITY_UPDATE_SUCCESS]: fetchSuccess,
   [constants.YEAR_CAPACITY_FETCH_ERROR]: fetchError,
   [constants.YEAR_CAPACITY_POLL_START]: state => ({
     ...state,

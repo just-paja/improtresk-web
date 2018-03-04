@@ -32,6 +32,12 @@ describe('ParticipantHome container', () => {
           data: [],
         },
       },
+      participants: {
+        detail: {
+          data: null,
+          valid: true,
+        },
+      },
       years: {
         capacity: {
           data: [],
@@ -63,16 +69,6 @@ describe('ParticipantHome container', () => {
       valid: true,
       errors: [],
     });
-  });
-
-  it('provides accomodation list', () => {
-    expect(comp.dive().dive().find('ParticipantHome')).toHaveProp('accomodationList', [
-      {
-        id: 5,
-        name: 'Something new',
-        capacityStatus: {},
-      },
-    ]);
   });
 
   it('triggers home mounted action on mount', () => {

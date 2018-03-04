@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Row from 'reactstrap/lib/Row';
 
+import { FormData } from '../../proptypes';
+
 import Button from '../../components/Button';
 import FormErrors from '../../forms/containers/FormErrors';
 import Input from '../../forms/components/Input';
@@ -21,23 +23,19 @@ export default class Signup extends Component {
   }
 
   handleChange(name, value) {
-    this.props.onChange(this.props.form, name, value);
+    this.props.onChange(this.props.formData.formName, name, value);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onSubmit(this.props.form);
+    this.props.onSubmit(this.props.formData.formName);
   }
 
   render() {
     const {
       disabled,
-      errors,
-      sending,
-      submitErrors,
-      submitted,
+      formData,
       teams,
-      values,
     } = this.props;
 
     const rulesLabel = <span>Souhlasím s <Link to="conditions">podmínkami festivalu</Link></span>;
@@ -45,106 +43,106 @@ export default class Signup extends Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         <Input
-          disabled={disabled}
+          disabled={disabled || formData.loading}
           help={<Message name="participants.fullNameHelp" />}
           label={<Message name="participants.fullName" />}
           name="name"
           onChange={this.handleChange}
-          error={errors.name}
-          value={values.name}
-          touched={submitted}
+          error={formData.fieldErrors.name}
+          value={formData.values.name}
+          touched={formData.submitted}
         />
         <Input
-          disabled={disabled}
+          disabled={disabled || formData.loading}
           help={<Message name="participants.emailHelp" />}
           label={<Message name="participants.email" />}
           name="email"
           onChange={this.handleChange}
           type="email"
-          error={errors.email}
-          value={values.email}
-          touched={submitted}
+          error={formData.fieldErrors.email}
+          value={formData.values.email}
+          touched={formData.submitted}
         />
         <Input
-          disabled={disabled}
+          disabled={disabled || formData.loading}
           help={<Message name="participants.phoneNumberHelp" />}
           label={<Message name="participants.phoneNumber" />}
           name="phone"
           onChange={this.handleChange}
           placeholder="000000000"
-          error={errors.phone}
-          value={values.phone}
-          touched={submitted}
+          error={formData.fieldErrors.phone}
+          value={formData.values.phone}
+          touched={formData.submitted}
         />
         <InputDate
-          disabled={disabled}
+          disabled={disabled || formData.loading}
           help={<Message name="participants.dateOfBirthHelp" />}
           label={<Message name="participants.dateOfBirth" />}
           name="birthday"
           onChange={this.handleChange}
-          error={errors.birthday}
-          value={values.birthday}
-          touched={submitted}
+          error={formData.fieldErrors.birthday}
+          value={formData.values.birthday}
+          touched={formData.submitted}
         />
         <Row>
           <Col sm={6}>
             <Input
-              disabled={disabled}
+              disabled={disabled || formData.loading}
               label={<Message name="participants.password" />}
               name="password"
               onChange={this.handleChange}
-              error={errors.password}
-              value={values.password}
-              touched={submitted}
+              error={formData.fieldErrors.password}
+              value={formData.values.password}
+              touched={formData.submitted}
               type="password"
             />
           </Col>
           <Col sm={6}>
             <Input
-              disabled={disabled}
+              disabled={disabled || formData.loading}
               label={<Message name="participants.passwordCheck" />}
               name="passwordCheck"
               onChange={this.handleChange}
-              error={errors.passwordCheck}
-              value={values.passwordCheck}
-              touched={submitted}
+              error={formData.fieldErrors.passwordCheck}
+              value={formData.values.passwordCheck}
+              touched={formData.submitted}
               type="password"
             />
           </Col>
         </Row>
         <InputSelect
-          disabled={disabled}
+          disabled={disabled || formData.loading}
           help={<Message name="participants.teamHelp" />}
           label={<Message name="participants.team" />}
           name="team_name"
           onChange={this.handleChange}
-          error={errors.team_name}
-          value={values.team_name}
-          touched={submitted}
+          error={formData.fieldErrors.team_name}
+          value={formData.values.team_name}
+          touched={formData.submitted}
           options={teams}
         />
         <InputCheckbox
-          disabled={disabled}
+          disabled={disabled || formData.loading}
           name="rules_accepted"
           label={rulesLabel}
-          error={errors.rules_accepted}
+          error={formData.fieldErrors.rules_accepted}
           onChange={this.handleChange}
-          value={values.rules_accepted}
+          value={formData.values.rules_accepted}
         />
         <InputCheckbox
-          disabled={disabled}
+          disabled={disabled || formData.loading}
           name="newsletter"
           label={<Message name="participants.newsletter" />}
-          error={errors.newsletter}
+          error={formData.fieldErrors.newsletter}
           onChange={this.handleChange}
-          value={values.newsletter}
+          value={formData.values.newsletter}
         />
-        <FormErrors errors={submitErrors} />
+        <FormErrors errors={formData.submitErrors} />
         <Button
-          disabled={disabled}
+          disabled={disabled || formData.loading}
           color="primary"
           icon="user-plus"
-          loading={sending}
+          loading={formData.loading}
           type="submit"
         >
           <Message name="participants.register" />
@@ -156,20 +154,12 @@ export default class Signup extends Component {
 
 Signup.propTypes = {
   disabled: PropTypes.bool,
-  errors: PropTypes.object.isRequired,
-  form: PropTypes.string.isRequired,
+  formData: FormData.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  sending: PropTypes.bool,
-  submitErrors: PropTypes.arrayOf(PropTypes.string),
-  submitted: PropTypes.bool,
   teams: PropTypes.arrayOf(PropTypes.object).isRequired,
-  values: PropTypes.object.isRequired,
 };
 
 Signup.defaultProps = {
   disabled: false,
-  sending: false,
-  submitErrors: null,
-  submitted: false,
 };

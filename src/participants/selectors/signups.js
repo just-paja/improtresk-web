@@ -2,6 +2,7 @@ import moment from 'moment';
 
 import { createSelector } from 'reselect';
 
+import { getForm } from '../../forms/selectors';
 import { yearCurrent } from '../../years/selectors';
 
 const getSessionData = state => state.session;
@@ -51,3 +52,6 @@ export const areSignupsOpen = createSelector(
     return (now.isAfter(start) || forceOpen) && !alreadyClosed;
   }
 );
+
+export const getLoginForm = getForm('login');
+export const getSignupForm = getForm('signup');

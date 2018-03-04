@@ -3,6 +3,8 @@ import Form from 'reactstrap/lib/Form';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { FormData } from '../../proptypes';
+
 import Button from '../../components/Button';
 import FormErrors from '../../forms/containers/FormErrors';
 import Input from '../../forms/components/Input';
@@ -17,51 +19,44 @@ export default class Login extends Component {
   }
 
   handleChange(name, value) {
-    this.props.onChange(this.props.form, name, value);
+    this.props.onChange(this.props.formData.formName, name, value);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onSubmit(this.props.form);
+    this.props.onSubmit(this.props.formData.formName);
   }
 
   render() {
-    const {
-      disabled,
-      errors,
-      sending,
-      submitErrors,
-      submitted,
-      values,
-    } = this.props;
+    const { disabled, formData } = this.props;
 
     return (
       <Form onSubmit={this.handleSubmit}>
         <Input
-          disabled={disabled}
+          disabled={disabled || formData.loading}
           label={<Message name="participants.email" />}
           name="email"
           onChange={this.handleChange}
           type="email"
-          error={errors.email}
-          value={values.email}
-          touched={submitted}
+          error={formData.fieldErrors.email}
+          value={formData.values.email}
+          touched={formData.submitted}
         />
         <Input
-          disabled={disabled}
+          disabled={disabled || formData.loading}
           label={<Message name="participants.password" />}
           name="password"
           onChange={this.handleChange}
           type="password"
-          error={errors.password}
-          value={values.password}
-          touched={submitted}
+          error={formData.fieldErrors.password}
+          value={formData.values.password}
+          touched={formData.submitted}
         />
-        <FormErrors errors={submitErrors} />
+        <FormErrors errors={formData.submitErrors} />
         <Button
-          disabled={disabled}
+          disabled={disabled || formData.loading}
           icon="sign-in"
-          loading={sending}
+          loading={disabled || formData.loading}
           type="submit"
         >
           {<Message name="participants.login" />}
@@ -78,19 +73,11 @@ export default class Login extends Component {
 
 Login.propTypes = {
   disabled: PropTypes.bool,
-  errors: PropTypes.object.isRequired,
-  form: PropTypes.string.isRequired,
+  formData: FormData.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  sending: PropTypes.bool,
-  submitErrors: PropTypes.arrayOf(PropTypes.string),
-  submitted: PropTypes.bool,
-  values: PropTypes.object.isRequired,
 };
 
 Login.defaultProps = {
   disabled: false,
-  sending: false,
-  submitErrors: null,
-  submitted: false,
 };

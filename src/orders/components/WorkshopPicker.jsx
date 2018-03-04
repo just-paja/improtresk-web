@@ -1,8 +1,7 @@
 import Alert from 'reactstrap/lib/Alert';
-import Col from 'reactstrap/lib/Col';
+import ListGroup from 'reactstrap/lib/ListGroup';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Row from 'reactstrap/lib/Row';
 
 import WorkshopPickerItem from './WorkshopPickerItem';
 
@@ -23,10 +22,10 @@ export default class WorkshopPicker extends Component {
   render() {
     const { disabled, error, touched, workshops, value } = this.props;
     return (
-      <Row>
-        {workshops
-          .map(workshop => (
-            <Col key={workshop.id} sm={6} lg={4}>
+      <div>
+        <ListGroup>
+          {workshops
+            .map(workshop => (
               <WorkshopPickerItem
                 assigned={workshop.capacityStatus.assigned}
                 capacity={workshop.capacityStatus.capacity}
@@ -44,15 +43,13 @@ export default class WorkshopPicker extends Component {
                 reserved={workshop.capacityStatus.reserved}
                 selected={value === workshop.id}
               />
-            </Col>
-          ))
-        }
+            ))
+          }
+        </ListGroup>
         {(touched || this.state.touched) && error ? (
-          <Col xs={12}>
-            <Alert color="danger">{error}</Alert>
-          </Col>
+          <Alert color="danger">{error}</Alert>
         ) : null}
-      </Row>
+      </div>
     );
   }
 }

@@ -6,11 +6,12 @@ import Signup from './components/Signup';
 import { formChange, formSubmit } from '../forms/actions';
 
 import { yearCurrent } from '../years/selectors';
-import { getForm } from '../forms/selectors';
 import { getSignupPageProgress } from './selectors';
 import {
   areSignupsClosed,
   areSignupsOpen,
+  getLoginForm,
+  getSignupForm,
   getSignupsCloseDate,
   getSignupsOpenDate,
   getTeamOptions,
@@ -20,8 +21,8 @@ import {
 import * as actions from './constants';
 
 const mapStateToProps = state => ({
-  login: getForm(state, 'login'),
-  signup: getForm(state, 'signup'),
+  login: getLoginForm(state),
+  signup: getSignupForm(state),
   signupsCloseDate: getSignupsCloseDate(state),
   signupsClosed: areSignupsClosed(state),
   signupsOpen: areSignupsOpen(state),

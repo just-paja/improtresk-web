@@ -4,6 +4,8 @@ import { Children } from '../proptypes';
 
 import { logError } from '../clientLogger';
 
+import AppCrash from './AppCrash';
+
 export default class CrashHandler extends Component {
   constructor() {
     super();
@@ -17,7 +19,7 @@ export default class CrashHandler extends Component {
 
   render() {
     if (this.state.error) {
-      return <div>Holly shit, something went wrong!</div>;
+      return <AppCrash />;
     }
 
     return <div>{this.props.children}</div>;

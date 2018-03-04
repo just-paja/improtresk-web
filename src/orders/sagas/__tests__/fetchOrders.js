@@ -1,4 +1,4 @@
-import { call, takeLatest } from 'redux-saga/effects';
+import { call, takeEvery } from 'redux-saga/effects';
 
 import { fetchResourceIfRequired } from '../../../sagas/api';
 import { isOrderListRequired } from '../../selectors';
@@ -24,7 +24,7 @@ describe('Orders fetch sagas', () => {
 
   it('requireOrderList requires order list', () => {
     const gen = sagas.requireOrderList();
-    expect(gen.next().value).toEqual(takeLatest(
+    expect(gen.next().value).toEqual(takeEvery(
       'ORDERS_REQUIRED',
       sagas.fetchOrderList
     ));

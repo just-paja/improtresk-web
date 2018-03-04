@@ -109,7 +109,7 @@ describe('Forms reducer', () => {
       }
     )).toEqual({
       testForm: {
-        errors: {},
+        fieldErrors: {},
         loading: false,
         saved: false,
         submitted: false,
@@ -140,7 +140,7 @@ describe('Forms reducer', () => {
           foo: 'bar',
         },
         valid: true,
-        errors: {},
+        fieldErrors: {},
       },
     });
   });
@@ -189,7 +189,7 @@ describe('Forms reducer', () => {
         submitted: true,
         loading: false,
         valid: false,
-        errors: {},
+        fieldErrors: {},
       },
     });
   });
@@ -216,7 +216,7 @@ describe('Forms reducer', () => {
         submitted: true,
         loading: true,
         valid: true,
-        errors: {},
+        fieldErrors: {},
       },
     });
   });
@@ -225,7 +225,7 @@ describe('Forms reducer', () => {
     expect(forms(
       {
         testForm: {
-          errors: {},
+          fieldErrors: {},
           saved: false,
           submitted: true,
           valid: true,
@@ -243,7 +243,7 @@ describe('Forms reducer', () => {
         saved: false,
         loading: true,
         valid: true,
-        errors: {},
+        fieldErrors: {},
       },
     });
   });
@@ -252,7 +252,7 @@ describe('Forms reducer', () => {
     expect(forms(
       {
         testForm: {
-          errors: {},
+          fieldErrors: {},
           saved: false,
           submitted: true,
           valid: true,
@@ -270,7 +270,7 @@ describe('Forms reducer', () => {
         saved: true,
         loading: false,
         valid: true,
-        errors: {},
+        fieldErrors: {},
       },
     });
   });
@@ -279,7 +279,7 @@ describe('Forms reducer', () => {
     expect(forms(
       {
         testForm: {
-          errors: {},
+          fieldErrors: {},
           submitted: true,
           valid: true,
           values: { foo: 'bar' },
@@ -301,7 +301,7 @@ describe('Forms reducer', () => {
         submitted: true,
         loading: false,
         valid: true,
-        errors: {
+        fieldErrors: {
           errors: ['foo'],
         },
         submitErrors: ['foo'],
@@ -313,7 +313,7 @@ describe('Forms reducer', () => {
     expect(forms(
       {
         testForm: {
-          errors: {},
+          fieldErrors: {},
           submitted: true,
           valid: true,
           values: { foo: 'bar' },
@@ -332,7 +332,7 @@ describe('Forms reducer', () => {
         submitted: true,
         loading: false,
         valid: true,
-        errors: {},
+        fieldErrors: {},
         submitErrors: null,
       },
     });
@@ -342,7 +342,7 @@ describe('Forms reducer', () => {
     expect(forms(
       {
         testForm: {
-          errors: {},
+          fieldErrors: {},
           submitted: true,
           valid: true,
           values: { foo: 'bar' },
@@ -362,7 +362,7 @@ describe('Forms reducer', () => {
         submitted: true,
         loading: false,
         valid: true,
-        errors: {},
+        fieldErrors: {},
         submitErrors: ['foo'],
       },
     });
@@ -372,7 +372,7 @@ describe('Forms reducer', () => {
     expect(forms(
       {
         testForm: {
-          errors: {},
+          fieldErrors: {},
           submitted: true,
           valid: true,
           values: { foo: 'bar' },
@@ -387,7 +387,7 @@ describe('Forms reducer', () => {
       }
     )).toEqual({
       testForm: {
-        errors: {},
+        fieldErrors: {},
         submitted: false,
         saved: false,
         valid: true,

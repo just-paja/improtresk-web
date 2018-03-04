@@ -43,10 +43,9 @@ export default class UserEntry extends Component {
             </p>
             <Login
               disabled={disabled}
-              form="login"
+              formData={login}
               onChange={onLoginChange}
               onSubmit={onLoginSubmit}
-              {...login}
             />
             <hr />
             <p>
@@ -65,11 +64,10 @@ export default class UserEntry extends Component {
           <h2><Message name="participants.registration" /></h2>
           <Signup
             disabled={disabled}
-            form="signup"
+            formData={signup}
             onChange={onSignupChange}
             onSubmit={onSignupSubmit}
             teams={teams}
-            {...signup}
           />
         </Col>
       </Row>

@@ -37,7 +37,7 @@ describe('InputRadio component', () => {
         name="test-input"
       />
     );
-    expect(comp.find('FormGroup').prop('validationState')).toBe(null);
+    expect(comp.find('FormFeedback')).toHaveLength(0);
   });
 
   it('renders input component in error state', () => {
@@ -49,7 +49,9 @@ describe('InputRadio component', () => {
         touched
       />
     );
-    expect(comp.find('FormGroup').prop('validationState')).toBe('error');
+    expect(comp.find({
+      children: 'foo',
+    })).toHaveLength(1);
   });
 
   it('triggers onChange with input name and value', () => {

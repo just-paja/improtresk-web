@@ -16,12 +16,12 @@ const WorkshopDetail = ({ desc, difficulty, name, lectors, photos, prices }) => 
   <div>
     <h1 className="decent">{name}</h1>
     <Row>
-      <Col className="col-wrap" xs="12" md="6">
+      <Col className="col-wrap" xs="12" lg="6">
         <Card>
           <CardBody>
             <ul className="list-unstyled">
               <Prop icon="hand-rock-o" label={<Message name="workshops.difficulty" />}>
-                {difficulty}
+                {difficulty.name}
               </Prop>
               <Prop icon="money" label={<Message name="workshops.price" />}>
                 {prices.length ? <PriceList prices={prices} /> : null}
@@ -34,7 +34,7 @@ const WorkshopDetail = ({ desc, difficulty, name, lectors, photos, prices }) => 
           </CardBody>
         </Card>
       </Col>
-      <Col xs="12" md="6">
+      <Col xs="12" lg="6">
         {lectors.map(lectorPosition => (
           <LectorSummary
             key={lectorPosition.id}

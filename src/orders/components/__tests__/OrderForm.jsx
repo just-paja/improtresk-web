@@ -12,8 +12,15 @@ describe('OrderForm component', () => {
       <OrderForm
         accomodation={[]}
         price={1200}
-        errors={{}}
-        form="order"
+        formData={{
+          formName: 'order',
+          fieldErrors: {},
+          submitted: false,
+          values: {
+            accomodationInfo: true,
+            workshop: 42,
+          },
+        }}
         meals={[
           {
             id: 1325,
@@ -23,14 +30,6 @@ describe('OrderForm component', () => {
         ]}
         onChange={() => {}}
         onSubmit={() => {}}
-        onMount={() => {}}
-        onUnmount={() => {}}
-        submitted={false}
-        values={{
-          accomodationInfo: true,
-          workshop: 42,
-        }}
-        translate={msg => msg}
         workshops={[
           { id: 42, name: 'Longformy', capacityStatus: {}, lectors: [] },
           { id: 43, name: 'Hlasová průprava', capacityStatus: {}, lectors: [] },
@@ -45,8 +44,14 @@ describe('OrderForm component', () => {
       <OrderForm
         accomodation={[]}
         price={1200}
-        errors={{}}
-        form="order"
+        formData={{
+          formName: 'order',
+          fieldErrors: {},
+          values: {
+            accomodationInfo: true,
+            workshop: 42,
+          },
+        }}
         meals={[
           {
             id: 1325,
@@ -56,14 +61,7 @@ describe('OrderForm component', () => {
         ]}
         onChange={() => {}}
         onSubmit={() => {}}
-        onMount={() => {}}
-        onUnmount={() => {}}
         submitted={false}
-        values={{
-          accomodationInfo: true,
-          workshop: 42,
-        }}
-        translate={msg => msg}
         workshops={[
           { id: 42, name: 'Longformy', capacityStatus: {}, lectors: [] },
           { id: 43, name: 'Hlasová průprava', capacityStatus: {}, lectors: [] },
@@ -78,8 +76,15 @@ describe('OrderForm component', () => {
       <OrderForm
         accomodation={[]}
         price={1200}
-        errors={{}}
-        form="order"
+        formData={{
+          formName: 'order',
+          fieldErrors: {},
+          submitted: false,
+          values: {
+            accomodationInfo: true,
+            workshop: 42,
+          },
+        }}
         meals={[
           {
             id: 1325,
@@ -89,14 +94,6 @@ describe('OrderForm component', () => {
         ]}
         onChange={() => {}}
         onSubmit={() => {}}
-        onMount={() => {}}
-        onUnmount={() => {}}
-        submitted={false}
-        values={{
-          accomodationInfo: true,
-          workshop: 42,
-        }}
-        translate={msg => msg}
         workshops={[
           { id: 42, name: 'Longformy', capacityStatus: {}, lectors: [] },
           { id: 43, name: 'Hlasová průprava', capacityStatus: {}, lectors: [] },
@@ -112,16 +109,15 @@ describe('OrderForm component', () => {
       <OrderForm
         accomodation={[]}
         meals={[]}
-        errors={{}}
-        form="order"
+        formData={{
+          formName: 'order',
+          fieldErrors: {},
+          values: {
+            workshop: 42,
+          },
+        }}
         onChange={changeSpy}
         onSubmit={() => {}}
-        onMount={() => {}}
-        onUnmount={() => {}}
-        values={{
-          workshop: 42,
-        }}
-        translate={msg => msg}
         workshops={[
           { id: 42, name: 'Longformy', capacityStatus: {}, lectors: [] },
           { id: 43, name: 'Hlasová průprava', capacityStatus: {}, lectors: [] },
@@ -142,16 +138,15 @@ describe('OrderForm component', () => {
       <OrderForm
         accomodation={[]}
         meals={[]}
-        errors={{}}
-        form="order"
+        formData={{
+          formName: 'order',
+          fieldErrors: {},
+          values: {
+            workshop: 42,
+          },
+        }}
         onChange={() => {}}
         onSubmit={submitSpy}
-        onMount={() => {}}
-        onUnmount={() => {}}
-        values={{
-          workshop: 42,
-        }}
-        translate={msg => msg}
         workshops={[
           { id: 42, name: 'Longformy', capacityStatus: {}, lectors: [] },
           { id: 43, name: 'Hlasová průprava', capacityStatus: {}, lectors: [] },
@@ -166,32 +161,5 @@ describe('OrderForm component', () => {
       ['order'],
     ]);
     expect(preventDefaultSpy.calledOnce).toBe(true);
-  });
-
-  it('triggers onUnmount on component unmount', () => {
-    const unmountSpy = sinon.spy();
-    const comp = shallow(
-      <OrderForm
-        accomodation={[]}
-        meals={[]}
-        errors={{}}
-        form="order"
-        onChange={() => {}}
-        onSubmit={() => {}}
-        onMount={() => {}}
-        onUnmount={unmountSpy}
-        values={{
-          workshop: 42,
-        }}
-        translate={msg => msg}
-        workshops={[
-          { id: 42, name: 'Longformy', capacityStatus: {}, lectors: [] },
-          { id: 43, name: 'Hlasová průprava', capacityStatus: {}, lectors: [] },
-        ]}
-      />
-    );
-
-    comp.instance().componentWillUnmount();
-    expect(unmountSpy.calledOnce).toBe(true);
   });
 });

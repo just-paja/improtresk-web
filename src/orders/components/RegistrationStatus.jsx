@@ -17,14 +17,14 @@ const RegistrationStatus = ({
   if (!activeOrder) {
     if (!moment().isBefore(registrationsCloseDate)) {
       return (
-        <Alert color="danger">
+        <Alert color="warning">
           <Message name="orders.registrationClosed" />
         </Alert>
       );
     }
     return (
       <div className="text-center">
-        <Alert color="danger">
+        <Alert color="warning">
           <Message name="orders.notRegisteredToWorkshop" />
         </Alert>
         <p><SignupCountdown /></p>

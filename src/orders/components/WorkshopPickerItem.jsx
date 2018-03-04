@@ -1,11 +1,12 @@
-import classnames from 'classnames';
 import FontAwesome from 'react-fontawesome';
 import React, { Component } from 'react';
+import ListGroupItem from 'reactstrap/lib/ListGroupItem';
+import ListGroupItemHeading from 'reactstrap/lib/ListGroupItemHeading';
 import PropTypes from 'prop-types';
 
-import Button from '../../components/Button';
+import Capacity from '../../components/Capacity';
+import Flex from '../../components/Flex';
 import ProgressBar from '../../components/ProgressBar';
-import WorkshopSummaryOneLine from '../../workshops/components/WorkshopSummaryOneLine';
 
 import styles from './WorkshopPickerItem.css';
 
@@ -34,45 +35,45 @@ export default class WorkshopPickerItem extends Component {
       selected,
     } = this.props;
     return (
-      <Button
-        className={classnames(
-          styles.box,
-          {
-            [styles.selected]: !disabled && selected,
-            [styles.unselected]: disabled || !selected,
-            [styles.disabled]: disabled,
-          }
-        )}
+      <ListGroupItem
+        active={!disabled && selected}
+        disabled={disabled}
         tabIndex={0}
         onClick={this.handleChange}
       >
-        <WorkshopSummaryOneLine
-          assigned={assigned}
-          capacity={capacity}
-          freeSpots={freeSpots}
-          name={name}
-          lectors={lectors}
-          reserved={reserved}
-        />
-        <div className={styles.progress}>
+        <ListGroupItemHeading className={styles.heading}>
+          <Flex alignItems="center">
+            {freeSpots > 0 || selected ? (
+              <FontAwesome className="fa-fw" name={selected ? 'check-square' : 'square-o'} />
+            ) : null}
+            {!selected && !freeSpots ? (
+              <FontAwesome className="fa-fw" name="minus-circle" />
+            ) : null}
+            <span>{name}</span>
+          </Flex>
+        </ListGroupItemHeading>
+        <Flex justify="between" minSize="md">
+          <div>
+            {lectors
+              .map(lectorPosition => lectorPosition.lector.name)
+              .join(', ')}
+          </div>
+          <Capacity
+            assigned={assigned}
+            capacity={capacity}
+            freeSpots={freeSpots}
+            reserved={reserved}
+          />
+        </Flex>
+        <div>
           <ProgressBar
             local
             max={capacity}
             min={0}
-            now={assigned + reserved}
+            value={assigned + reserved}
           />
         </div>
-        {selected ? (
-          <span className={styles.check}>
-            <FontAwesome className="fa-fw" name="check-circle" />
-          </span>
-        ) : null}
-        {!selected && freeSpots === 0 ? (
-          <span className={classnames(styles.check, styles.full)}>
-            <FontAwesome className="fa-fw" name="minus-circle" />
-          </span>
-        ) : null}
-      </Button>
+      </ListGroupItem>
     );
   }
 }

@@ -17,7 +17,7 @@ const getSubmitErrors = (action) => {
 };
 
 export const defaultFormState = {
-  errors: {},
+  fieldErrors: {},
   saved: false,
   submitted: false,
   loading: false,
@@ -55,7 +55,7 @@ export default combine(defaultState, {
       [action.form]: {
         ...state[action.form],
         valid: action.valid,
-        errors: action.errors,
+        fieldErrors: action.errors,
       },
     }
   )),
@@ -100,7 +100,7 @@ export default combine(defaultState, {
         ...state[action.form],
         loading: true,
         valid: action.valid,
-        errors: action.errors,
+        fieldErrors: action.errors,
       },
     }
   )),
@@ -112,7 +112,7 @@ export default combine(defaultState, {
         ...state[action.form],
         loading: false,
         valid: action.valid,
-        errors: action.errors,
+        fieldErrors: action.errors,
       },
     }
   )),
@@ -145,7 +145,7 @@ export default combine(defaultState, {
       [action.form]: {
         ...state[action.form],
         loading: false,
-        errors: action.data || {},
+        fieldErrors: action.data || {},
         submitErrors: getSubmitErrors(action),
         saved: false,
       },

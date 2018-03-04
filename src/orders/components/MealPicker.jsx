@@ -1,4 +1,5 @@
 import Alert from 'reactstrap/lib/Alert';
+import Col from 'reactstrap/lib/Col';
 import moment from 'moment';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -33,7 +34,7 @@ export default class MealPicker extends Component {
     }
 
     return (
-      <div>
+      <Col xs={12}>
         {meals.map(meal => (
           <MealPickerItem
             date={meal.date}
@@ -46,7 +47,7 @@ export default class MealPicker extends Component {
             onChange={this.handleChange}
           />
         ))}
-      </div>
+      </Col>
     );
   }
 }

@@ -35,7 +35,6 @@ describe('Input Checkbox component', () => {
         name="test-input"
       />
     );
-    expect(comp.find('FormGroup')).not.toHaveProp('validationState', 'error');
     expect(comp.find({
       children: 'This is the input error!',
     })).toHaveLength(0);
@@ -50,7 +49,6 @@ describe('Input Checkbox component', () => {
         touched
       />
     );
-    expect(comp.find('FormGroup')).toHaveProp('validationState', 'error');
     expect(comp.find({
       children: 'This is the input error!',
     })).toHaveLength(1);
