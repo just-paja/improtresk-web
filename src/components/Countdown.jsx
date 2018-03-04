@@ -2,6 +2,8 @@ import moment from 'moment';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import Message from '../containers/Message';
+
 export default class Countdown extends Component {
   componentWillMount() {
     this.setState({ remaining: this.getRemainingTime() });
@@ -42,13 +44,17 @@ export default class Countdown extends Component {
   render() {
     const { countdownMessage, readyMessage, suffix } = this.props;
     const duration = moment.duration(this.state.remaining);
-    return (
-      <span>
-        {this.state.remaining <= 0 ?
-          readyMessage :
-          `${countdownMessage ? `${countdownMessage} ` : ''}${duration.humanize(suffix)}`}
-      </span>
-    );
+    if (this.state.remaining <= 0) {
+      return <Message name={readyMessage} />;
+    }
+
+    if (countdownMessage) {
+      return (
+        <Message name={countdownMessage} data={{ duration: duration.humanize(suffix) }} />
+      );
+    }
+
+    return <span>{duration.humanize(suffix)}</span>;
   }
 }
 
@@ -56,14 +62,13 @@ Countdown.propTypes = {
   countdownMessage: PropTypes.string,
   date: PropTypes.string.isRequired,
   onFinish: PropTypes.func,
-  readyMessage: PropTypes.string,
+  readyMessage: PropTypes.string.isRequired,
   suffix: PropTypes.bool,
 };
 
 Countdown.defaultProps = {
   countdownMessage: '',
   onFinish: null,
-  readyMessage: 'a je to',
   suffix: false,
 };
 

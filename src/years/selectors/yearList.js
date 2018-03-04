@@ -37,6 +37,18 @@ export const yearCurrent = createSelector(
   years => years.find(item => item.current) || null
 );
 
+const getYearProp = (year, prop) => (year ? (year[prop] || null) : null);
+
+export const getRegistrationCloseDate = createSelector(
+  yearCurrent,
+  year => getYearProp(year, 'startDate')
+);
+
+export const getRegistrationOpenDate = createSelector(
+  yearCurrent,
+  year => getYearProp(year, 'startSignupsAt')
+);
+
 export const yearNext = createSelector(
   yearsAll,
   (years) => {

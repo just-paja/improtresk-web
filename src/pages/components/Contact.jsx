@@ -27,7 +27,7 @@ export default class Contact extends Component {
         />
         <h1 className="text-center">Kontakt</h1>
         <Row>
-          <Col md={{ size: 8, offset: 2 }}>
+          <Col md={{ size: 10, offset: 1 }} lg={{ size: 8, offset: 2 }}>
             <Card>
               <CardBody>
                 <p>

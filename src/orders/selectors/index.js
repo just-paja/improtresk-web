@@ -78,6 +78,11 @@ export const getLatestOrder = createSelector(
   orders => orders[0] || null
 );
 
+export const getActiveOrder = createSelector(
+  getOrderList,
+  orders => orders[0] || null
+);
+
 export const getUnconfirmedOrder = createSelector(
   getOrderList,
   orders => orders.find(

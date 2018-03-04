@@ -1,4 +1,4 @@
-import { call, takeLatest } from 'redux-saga/effects';
+import { call, takeEvery } from 'redux-saga/effects';
 
 import { fetchResourceIfRequired } from '../../sagas/api';
 import { isOrderListRequired } from '../selectors';
@@ -18,7 +18,7 @@ export function* fetchOrderList() {
 }
 
 export function* requireOrderList() {
-  yield takeLatest(
+  yield takeEvery(
     constants.ORDERS_REQUIRED,
     fetchOrderList
   );

@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import Row from 'reactstrap/lib/Row';
 
 import Container from '../../components/Container';
-import Countdown from '../../components/Countdown';
+import SignupCountdown from '../../years/containers/SignupCountdown';
 import HumanDate from '../../components/HumanDate';
 import UserEntry from '../../components/UserEntry';
 import SignupHowto from '../../participants/components/SignupHowto';
@@ -29,7 +29,6 @@ export default class Signup extends Component {
       signupsOpenDate,
       signup,
       teams,
-      year,
     } = this.props;
 
     const title = 'Přihláška';
@@ -58,12 +57,7 @@ export default class Signup extends Component {
               bude vyhovovat, tedy vybrat workshop, jídlo a ubytování.
             </p>
             <div className={styles.signupsOpenDate}>
-              <Countdown
-                date={year.startDate}
-                countdownMessage="Přihlášky se uzavřou"
-                readyMessage="Přihlášky jsou uzavřené"
-                suffix
-              />
+              <SignupCountdown onOpen={onSignupsOpen} />
             </div>
             <UserEntry
               login={login}
@@ -87,13 +81,7 @@ export default class Signup extends Component {
               spíš dřív, letos očekáváme davovou tlačenici.
             </p>
             <div className={styles.signupsOpenDate}>
-              <Countdown
-                date={signupsOpenDate}
-                countdownMessage="Přihlášky se otevřou"
-                onFinish={onSignupsOpen}
-                readyMessage="Přihlášky jsou otevřené"
-                suffix
-              />
+              <SignupCountdown onOpen={onSignupsOpen} />
             </div>
           </div>
         );
@@ -145,9 +133,6 @@ Signup.propTypes = {
   signupsOpenDate: PropTypes.string,
   signup: PropTypes.object,
   teams: PropTypes.arrayOf(PropTypes.object).isRequired,
-  year: PropTypes.shape({
-    startDate: PropTypes.string,
-  }),
 };
 
 Signup.defaultProps = {
@@ -157,5 +142,4 @@ Signup.defaultProps = {
   signupsOpen: false,
   signupsOpenDate: null,
   signup: null,
-  year: null,
 };

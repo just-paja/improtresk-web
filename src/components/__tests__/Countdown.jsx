@@ -18,24 +18,28 @@ describe('Countdown component', () => {
     clock.restore();
   });
 
-  it('renders', () => {
-    expect(shallow(
+  it('renders time remaining message', () => {
+    const comp = shallow(
       <Countdown
-        countdownMessage="Time remaining"
+        countdownMessage="timeRemaining"
+        readyMessage="ready"
         date="2016-11-22T10:00:00Z"
         suffix
       />
-    )).toMatchElement(
-      <span>Time remaining in 10 hours</span>
     );
+    expect(comp.find('Connect(Message)')).toHaveProp('name', 'timeRemaining');
+    expect(comp.find('Connect(Message)')).toHaveProp('data', {
+      duration: 'in 10 hours',
+    });
   });
 
-  it('renders without countdown message', () => {
+  it('renders just remaining duration without countdown message', () => {
     const humanized = moment.duration(
       moment('2016-11-22T10:00:00Z').diff(moment())
     ).humanize(true);
     expect(shallow(
       <Countdown
+        readyMessage="ready"
         date="2016-11-22T10:00:00Z"
         suffix
       />
@@ -44,17 +48,16 @@ describe('Countdown component', () => {
     );
   });
 
-  it('renders ready', () => {
-    expect(shallow(
+  it('renders ready message', () => {
+    const comp = shallow(
       <Countdown
-        countdownMessage="Time remaining"
-        readyMessage="Finished"
+        countdownMessage="timeRemaining"
+        readyMessage="finished"
         date="2016-11-22T00:00:00Z"
         suffix
       />
-    ).getElement()).toEqual(
-      <span>Finished</span>
     );
+    expect(comp.find('Connect(Message)')).toHaveProp('name', 'finished');
   });
 
   it('renders after a second', () => {

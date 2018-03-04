@@ -10,6 +10,7 @@ import * as participants from '../participants/locales';
 import * as polls from '../polls/locales';
 import * as schedule from '../schedule/locales';
 import * as workshops from '../workshops/locales';
+import * as years from '../years/locales';
 
 const modules = [
   accomodation,
@@ -21,6 +22,7 @@ const modules = [
   polls,
   schedule,
   workshops,
+  years,
 ];
 
 const buildLanguage = (lang, defaultMessages) => modules.reduce((aggr, module) => ({
