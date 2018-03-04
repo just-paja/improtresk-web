@@ -145,6 +145,20 @@ export const getOrderFormPrice = createSelector(
   calculatePrice
 );
 
+const calculateAccomodationPrice = (form, accomodation) => {
+  if (form && form.values.accomodation) {
+    console.log(accomodation);
+  }
+  return 0;
+};
+
+export const getOrderFormAccomodationPrice = transformData(getOrderForm, [
+  {
+    select: getAccomodationList,
+    transform: calculateAccomodationPrice,
+  },
+]);
+
 export const getOrderedMeals = createSelector(
   [getLatestOrder, getMealList],
   (order, meals) => {

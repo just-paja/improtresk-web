@@ -1,4 +1,4 @@
-import { call, select, takeLatest } from 'redux-saga/effects';
+import { call, select, takeEvery } from 'redux-saga/effects';
 
 import { fetchResource, fetchResourceIfRequired } from '../../../sagas/api';
 import { getApiAuth } from '../../../selectors/session';
@@ -18,7 +18,7 @@ import * as api from '../../../api';
 describe('Participant sagas', () => {
   it.skip('fetchParticipantOnLogin creates fetch actions', () => {
     const saga = fetchParticipantOnLogin();
-    expect(saga.next().value).toEqual(takeLatest(
+    expect(saga.next().value).toEqual(takeEvery(
       'PARTICIPANT_LOGIN',
       fetchParticipantShowHome
     ));
@@ -27,7 +27,7 @@ describe('Participant sagas', () => {
 
   it('logoutOnAction creates fetch actions', () => {
     const saga = logoutOnAction();
-    expect(saga.next().value).toEqual(takeLatest(
+    expect(saga.next().value).toEqual(takeEvery(
       'PARTICIPANT_LOGOUT',
       logout
     ));

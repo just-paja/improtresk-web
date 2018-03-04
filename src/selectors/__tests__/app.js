@@ -80,6 +80,12 @@ describe('Application selectors', () => {
           },
         },
       },
+      participants: {
+        detail: {
+          data: {},
+          valid: true,
+        },
+      },
       years: {
         loading: false,
         valid: true,

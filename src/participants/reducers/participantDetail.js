@@ -10,6 +10,7 @@ import * as constants from '../constants';
 const defaultState = {
   data: null,
   loading: false,
+  valid: false,
 };
 
 export default combine(defaultState, {

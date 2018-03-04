@@ -1,9 +1,9 @@
-import Alert from 'reactstrap/lib/Alert';
+import Card from 'reactstrap/lib/Card';
+import CardBody from 'reactstrap/lib/CardBody';
 import Col from 'reactstrap/lib/Col';
-import FontAwesome from 'react-fontawesome';
 import Form from 'reactstrap/lib/Form';
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import Row from 'reactstrap/lib/Row';
 
 import AccomodationPicker from './AccomodationPicker';
@@ -87,24 +87,15 @@ export default class OrderForm extends Component {
               </Row>
             </Col>
           </Row>
-          <Row>
-            <Col sm={6} lg={4}>
-              <h3><Message name="orders.paymentMethod" /></h3>
-              <p>
-                <Message name="orders.paymentMethod" />
-                <FontAwesome name="frown-o" />
-              </p>
-              {price ? (
-                <Alert color="success">
-                  <big>
-                    <Message name="orders.priceToPay" />:
-                    {' '}
-                    <Price price={price} />
-                  </big>
-                </Alert>
-              ) : null}
-            </Col>
-          </Row>
+          <Card>
+            <CardBody>
+              <big>
+                <Message name="orders.priceToPay" />:
+                {' '}
+                <Price price={price} />
+              </big>
+            </CardBody>
+          </Card>
           <Button type="submit"><Message name="orders.continue" /></Button>
         </Form>
       </div>

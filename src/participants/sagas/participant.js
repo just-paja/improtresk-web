@@ -1,6 +1,6 @@
 import cookie from 'js-cookie';
 
-import { call, select, takeLatest } from 'redux-saga/effects';
+import { call, select, takeEvery } from 'redux-saga/effects';
 
 import { fetchResource, fetchResourceIfRequired } from '../../sagas/api';
 import { getApiAuth } from '../../selectors/session';
@@ -27,7 +27,7 @@ export function* fetchParticipantShowHome() {
 }
 
 export function* requireParticipant() {
-  yield takeLatest(
+  yield takeEvery(
     constants.PARTICIPANT_LOGIN,
     fetchParticipantShowHome
   );
@@ -46,7 +46,7 @@ export function* logout() {
 }
 
 export function* logoutOnAction() {
-  yield takeLatest(
+  yield takeEvery(
     constants.PARTICIPANT_LOGOUT,
     logout
   );

@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import { getProgress } from 'react-saga-rest';
 
+import { getParticipantDetailState } from '../participants/selectors';
 import {
   getLectorListState,
   getLectorRolesState,
@@ -30,7 +31,8 @@ export const getAppProgress = getProgress(
   getLectorListState,
   getLectorRolesState,
   getDifficultiesState,
-  getYearListState
+  getYearListState,
+  getParticipantDetailState
 );
 
 export const countAppRequests = createSelector(

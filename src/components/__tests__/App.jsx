@@ -9,12 +9,11 @@ describe('App component', () => {
     const comp = shallow(
       <App
         lang="cs"
-        progress={{ loading: true }}
+        progress={{ loading: true, valid: true }}
         host="http://foo"
         onMount={() => {}}
         currentYear={{ year: '2016', topic: 'Kůže' }}
         errors={[]}
-        ready={false}
         location={{ pathname: '/' }}
         years={[
           { year: '2016', topic: 'Ovce' },
@@ -28,13 +27,12 @@ describe('App component', () => {
     const comp = shallow(
       <App
         lang="cs"
-        progress={{}}
+        progress={{ valid: true }}
         activeRequests={5}
         host="http://foo"
         onMount={() => {}}
         currentYear={{ year: '2016', topic: 'Kůže' }}
         errors={[]}
-        ready
         location={{ pathname: '/' }}
         years={[
           { year: '2016', topic: 'Ovce' },
@@ -48,13 +46,12 @@ describe('App component', () => {
     const comp = shallow(
       <App
         lang="cs"
-        progress={{}}
+        progress={{ valid: true }}
         activeRequests={5}
         host="http://foo"
         onMount={() => {}}
         currentYear={{ year: '2016', topic: 'Kůže' }}
         errors={[]}
-        ready
         location={{ pathname: '/' }}
         years={[
           { year: '2016', topic: 'Ovce' },
@@ -68,7 +65,7 @@ describe('App component', () => {
     const comp = shallow(
       <App
         lang="cs"
-        progress={{}}
+        progress={{ valid: true }}
         activeRequests={5}
         host="http://foo"
         onMount={() => {}}
@@ -87,13 +84,12 @@ describe('App component', () => {
     const comp = shallow(
       <App
         lang="cs"
-        progress={{}}
+        progress={{ valid: true }}
         activeRequests={5}
         host="http://foo"
         onMount={() => {}}
         currentYear={{ year: '2016', topic: 'Kůže' }}
         errors={[]}
-        ready
         location={{ pathname: '/' }}
         years={[
           { year: '2016', topic: 'Ovce' },

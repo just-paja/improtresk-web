@@ -1,7 +1,12 @@
 import { connect } from 'react-redux';
 
 import { requireOrderResources } from '../actions';
-import { getOrderForm, getOrderFormProgress } from '../selectors';
+import {
+  getOrderForm,
+  getOrderFormProgress,
+  getOrderFormPrice,
+  getOrderFormAccomodationPrice,
+} from '../selectors';
 import { getAccomodationList } from '../../accomodation/selectors';
 import { getMealList } from '../../food/selectors';
 import { formChange, formSubmit } from '../../forms/actions';
@@ -12,9 +17,11 @@ import mapProgress from '../../containers/mapProgress';
 
 const mapStateToProps = state => ({
   accomodation: getAccomodationList(state),
-  meals: getMealList(state),
-  workshops: getWorkshopList(state),
   formData: getOrderForm(state),
+  meals: getMealList(state),
+  price: getOrderFormPrice(state),
+  priceAccomodation: getOrderFormAccomodationPrice(state),
+  workshops: getWorkshopList(state),
 });
 
 const mapDispatchToProps = {

@@ -64,7 +64,7 @@ class App extends Component {
     const titleTemplate = currentYear ? `%s - Improtřesk ${currentYear.year}` : '%s - Improtřesk';
     const langs = getAvailableLangs();
 
-    if (progress.loading || !lang) {
+    if (!progress.valid || progress.loading || !lang) {
       return <AppLoader />;
     }
 
