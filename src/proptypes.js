@@ -54,6 +54,27 @@ export const Photo = PropTypes.shape({
   width: PropTypes.number,
 });
 
+export const Order = PropTypes.shape({
+  accomodation: Accomodation,
+  assigned: PropTypes.bool,
+  canceled: PropTypes.bool,
+  confirmed: PropTypes.bool,
+  createdAt: PropTypes.string.isRequired,
+  endsAt: PropTypes.string.isRequired,
+  id: ResourceId.isRequired,
+  meals: PropTypes.arrayOf(Meal).isRequired,
+  overPaid: PropTypes.bool,
+  paid: PropTypes.bool,
+  price: PropTypes.number.isRequired,
+  symvar: PropTypes.string.isRequired,
+});
+
+export const Participant = PropTypes.shape({
+  name: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+});
+
+
 export const PollAnswer = PropTypes.shape({
   answerCount: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,

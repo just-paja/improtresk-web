@@ -28,7 +28,8 @@ import NewPassword from '../pages/NewPassword';
 import NewsDetail from '../pages/NewsDetail';
 import NotFound from '../pages/NotFound';
 // import ParticipantConfirm from '../pages/participantConfirm';
-// import ParticipantHome from '../pages/participantHome';
+import ParticipantHome from '../pages/ParticipantHome';
+import PrivateRoute from '../containers/PrivateRoute';
 // import PerformerDetail from '../pages/performerDetail';
 import ProgressBar from './ProgressBar';
 import Schedule from '../pages/Schedule';
@@ -88,6 +89,7 @@ class App extends Component {
         <Route key={`${lang}tips`} component={Tips} path={getUrlPattern(routeLang, 'tips')} />,
         <Route key={`${lang}workshops`} component={Workshops} exact path={getUrlPattern(routeLang, 'workshops')} />,
         <Route key={`${lang}workshopDetail`} component={WorkshopDetail} path={getUrlPattern(routeLang, 'workshopDetail')} />,
+        <PrivateRoute key={`${lang}participantHome`} path={getUrlPattern(lang, 'participantHome')} component={ParticipantHome} />,
       ]),
       <Route key="languageRedirect" exact path="/" component={LanguageRedirect} />,
       <Route key="notfound" component={NotFound} />,
@@ -153,11 +155,6 @@ export default App;
 <Route
 path={urlTable['participantConfirmOrder']}
 component={ParticipantConfirm}
-isLoggedIn={participant}
-/>
-<Route
-path={urlTable['participantHome']}
-component={ParticipantHome}
 isLoggedIn={participant}
 />
 <Route

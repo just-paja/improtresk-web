@@ -8,6 +8,7 @@ import food from '../food/reducers';
 import forms from '../forms/reducers';
 import geocode from '../reducers/geocode';
 import news from '../news/reducers';
+import orders from '../orders/reducers';
 import participants from '../participants/reducers';
 import performers from '../performers/reducers';
 import schedule from '../schedule/reducers';
@@ -25,6 +26,7 @@ export default combineReducers({
   geocode,
   locale,
   news,
+  orders,
   participants,
   performers,
   routing,

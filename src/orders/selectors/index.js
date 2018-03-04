@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 import { createSelector } from 'reselect';
-import { isRequired, transformData } from 'react-saga-rest';
+import { isRequired, getProgress, transformData } from 'react-saga-rest';
 
 import { getForm } from '../../forms/selectors';
 import { getAccomodationList } from '../../accomodation/selectors';
@@ -70,6 +70,8 @@ export const getOrderList = transformData(getOrderListState, {
     },
   ],
 });
+
+export const getOrderListProgress = getProgress(getOrderListState);
 
 export const getLatestOrder = createSelector(
   getOrderList,

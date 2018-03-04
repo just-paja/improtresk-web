@@ -1,8 +1,8 @@
-import * as fetchOrders from './fetchOrders';
+import fetchOrders from './fetchOrders';
 
 export * from './fetchOrders';
 export * from './cancelOrder';
-export * from './orders';
+export * from './orderOperations';
 
 export default [
   ...fetchOrders,

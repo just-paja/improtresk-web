@@ -78,7 +78,7 @@ export function* loginWithCookie() {
 
   if (!autoLoginAttempted) {
     let auth = yield select(getApiAuth);
-    if (!auth.access_token) {
+    if (!auth || !auth.access_token) {
       auth = cookie.getJSON('auth');
     }
 

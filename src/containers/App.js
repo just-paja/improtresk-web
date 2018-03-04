@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import App from '../components/App';
 
@@ -25,8 +24,8 @@ const mapStateToProps = state => ({
   years: yearsNotCurrent(state),
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
+const mapDispatchToProps = {
   onMount: () => ({ type: actions.APP_MOUNTED }),
-}, dispatch);
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -12,7 +12,7 @@ import geocode from './geocode';
 import locales from './locales';
 // import locations from './locations';
 import news from '../news/sagas';
-// import orders from './orders';
+import orders from '../orders/sagas';
 import participants from '../participants/sagas';
 import performers from '../performers/sagas';
 import pages from '../pages/sagas';
@@ -35,7 +35,7 @@ const sagas = [
   // ...locations,
   // ...meals,
   ...news,
-  // ...orders,
+  ...orders,
   ...pages,
   ...participants,
   ...performers,
