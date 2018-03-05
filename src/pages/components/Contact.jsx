@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import Row from 'reactstrap/lib/Row';
 
 import Container from '../../components/Container';
+import Message from '../../containers/Message';
 
 export default class Contact extends Component {
   componentWillMount() {
@@ -31,24 +32,23 @@ export default class Contact extends Component {
             <Card>
               <CardBody>
                 <p>
-                  Organizátorem festivalu Improtřesk 2016 je{' '}
-                  <a href="https://improliga.cz">Česká improvizační liga z. s.</a>
-                  {' '}ve spolupráci s{' '}
-                  <a href="http://www.milevskem.cz/kultura-a-volny-cas/dum-kultury-milevsko/o-nas">DK Milevsko</a>.
+                  <Message name="pages.festivalOrg" />
                 </p>
                 <ul className="list-unstyled">
                   <li>
                     <FontAwesome fixedWidth name="globe" />{' '}
-                    Web: <a href="https://improtresk.cz">improtresk.cz</a>
+                    <Message name="generic.website" />:{' '}
+                    <a href="https://improtresk.cz">improtresk.cz</a>
                   </li>
                   <li>
                     <FontAwesome fixedWidth name="envelope-o" />{' '}
-                    E-mail: <a href="mailto:info@improtresk.cz">info@improtresk.cz</a>
+                    <Message name="generic.email" />:{' '}
+                    <a href="mailto:info@improtresk.cz">info@improtresk.cz</a>
                   </li>
                   <li>
                     <FontAwesome fixedWidth name="phone" />{' '}
-                    Kontaktní telefon: Vanda Gabrielová
-                    {' '}
+                    <Message name="generic.contactPhone" />:{' '}
+                    Vanda Gabrielová{' '}
                     <a href="tel:+420 728 376 440">+420 728 376 440</a>
                   </li>
                   <li>

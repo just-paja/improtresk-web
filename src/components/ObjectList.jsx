@@ -3,12 +3,12 @@ import Row from 'reactstrap/lib/Row';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const ObjectList = ({ colProps, Component, data, emptyMessage, extra, md }) => (
+const ObjectList = ({ colProps, Component, data, emptyMessage, extra, md, xs }) => (
   data.length === 0 && emptyMessage ?
     (<div>{emptyMessage}</div>) : (
       <Row>
         {data.map(object => (
-          <Col key={object.id} md={md} {...colProps}>
+          <Col key={object.id} xs={xs} md={md} {...colProps}>
             <Component {...object} {...extra} />
           </Col>
         ))}
@@ -22,6 +22,7 @@ ObjectList.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   emptyMessage: PropTypes.string,
   md: PropTypes.number,
+  xs: PropTypes.number,
   extra: PropTypes.object,
 };
 
@@ -29,6 +30,7 @@ ObjectList.defaultProps = {
   colProps: {},
   emptyMessage: null,
   extra: {},
+  xs: 12,
   md: 6,
 };
 

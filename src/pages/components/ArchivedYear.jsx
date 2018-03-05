@@ -1,10 +1,14 @@
+import Card from 'reactstrap/lib/Card';
+import CardBody from 'reactstrap/lib/CardBody';
+import CardTitle from 'reactstrap/lib/CardTitle';
+import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col';
 import Helmet from 'react-helmet';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import Container from '../../components/Container';
-import ObjectList from '../../components/ObjectList';
-import WorkshopSummaryOneLine from '../../workshops/components/WorkshopSummaryOneLine';
+import Gallery from '../../components/Gallery';
 
 const ArchivedYear = ({ topic, workshops, year }) => {
   const title = `Ročník ${year}`;
@@ -18,14 +22,25 @@ const ArchivedYear = ({ topic, workshops, year }) => {
           { property: 'og:title', content: titleFull },
         ]}
       />
-      <h1>{title}<br /><small>{topic}</small></h1>
-      <h2>Workshopy</h2>
-      <ObjectList
-        Component={WorkshopSummaryOneLine}
-        data={workshops}
-        emptyMessage="Bohužel nemáme záznamy"
-        extra={{ hideCapacity: true }}
-      />
+      <h1><span>{title}</span><br /><small>{topic}</small></h1>
+      <Row>
+        {workshops.map(workshop => (
+          <Col key={workshop.id} className="mb-4" xs={12} md={6}>
+            <Card>
+              <CardBody>
+                <CardTitle>{workshop.name}</CardTitle>
+                {workshop.desc}
+                {workshop.photos.length ? (
+                  <div>
+                    <hr />
+                    <Gallery photos={workshop.photos} />
+                  </div>
+                ) : null}
+              </CardBody>
+            </Card>
+          </Col>
+        ))}
+      </Row>
     </Container>
   );
 };

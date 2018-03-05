@@ -27,6 +27,9 @@ export default {
     loadingFailed: 'Failed loading object',
     missingErrorDetails: 'We do not have any more details',
     success: 'Success',
+    website: 'Official website',
+    email: 'E-mail',
+    contactPhone: 'Contact phone',
   },
   menu: {
     archive: 'Archive',

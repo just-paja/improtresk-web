@@ -94,7 +94,6 @@ class App extends Component {
     ]).reduce((aggr, langRoutes) => aggr.concat(langRoutes), []);
     routes.push(<Route key="languageRedirect" exact path="/" component={LanguageRedirect} />);
     routes.push(<Route key="notfound" component={NotFound} />);
-
     return (
       <div className={styles.app}>
         <CrashHandler>

@@ -27,6 +27,9 @@ export default {
     loadingFailed: 'Selhalo načítání objektu',
     missingErrorDetails: 'Nemáme k chybě žádné další detaily',
     success: 'Úspěch',
+    website: 'Oficiální web',
+    email: 'E-mail',
+    contactPhone: 'Kontaktní telefon',
   },
   menu: {
     archive: 'Archiv',

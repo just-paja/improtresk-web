@@ -138,6 +138,6 @@ export const workshopsDetail = transformData(getWorkshopDetailState, workshopTra
 export const getWorkshopList = transformData(getWorkshopListState, workshopTransformations);
 
 export const getArchivedYearWorkshops = transformData(
-  state => state.years.archive.workshops,
+  state => state.years.archive.data.workshops,
   workshopTransformations
 );
