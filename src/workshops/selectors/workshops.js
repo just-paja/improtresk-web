@@ -73,10 +73,13 @@ export const transformLectorRoles = (workshop, lectorsAndRoles) => (workshop ? (
     .filter(item => item),
 }) : null);
 
-export const transformWorkshopDifficultyName = (workshop, difficulties) => (workshop ? ({
-  ...workshop,
-  difficulty: difficulties.find(record => record.id === workshop.id) || null,
-}) : null);
+export const transformWorkshopDifficultyName = (workshop, difficulties) => {
+  const difficulty = difficulties.find(record => record.id === workshop.difficulty);
+  return (workshop ? ({
+    ...workshop,
+    difficulty: difficulty ? difficulty.name : null,
+  }) : null);
+};
 
 export const aggregateWorkshopPriceLevelData = priceLevels => (priceItem) => {
   const priceLevelId = priceItem.price_level;

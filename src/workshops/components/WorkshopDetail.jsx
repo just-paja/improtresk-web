@@ -21,7 +21,7 @@ const WorkshopDetail = ({ desc, difficulty, name, lectors, photos, prices }) => 
           <CardBody>
             <ul className="list-unstyled">
               <Prop icon="hand-rock-o" label={<Message name="workshops.difficulty" />}>
-                {difficulty.name}
+                {difficulty}
               </Prop>
               <Prop icon="money" label={<Message name="workshops.price" />}>
                 {prices.length ? <PriceList prices={prices} /> : null}
