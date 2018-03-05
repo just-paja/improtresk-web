@@ -117,6 +117,9 @@ export const renderMarkupAndWait = (req, store, componentTree) => {
       const progress = getAppProgress(store.getState());
       winston.log('silly', 'READY STATE UPDATE', progress);
       if ((progress.failed || progress.valid) && !progress.loading) {
+        if (progress.failed) {
+          winston.log('error', progress.errors);
+        }
         resolved = true;
         renderToString(componentTree);
         setTimeout(() => {

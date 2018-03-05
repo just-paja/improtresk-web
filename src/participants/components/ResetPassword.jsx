@@ -2,6 +2,8 @@ import Form from 'reactstrap/lib/Form';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { FormData } from '../../proptypes';
+
 import Button from '../../components/Button';
 import Message from '../../containers/Message';
 import Input from '../../forms/components/Input';
@@ -14,20 +16,16 @@ export default class ResetPassword extends Component {
   }
 
   handleChange(input, value) {
-    this.props.onChange(this.props.form, input, value);
+    this.props.onChange(this.props.formData.formName, input, value);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onSubmit(this.props.form);
+    this.props.onSubmit(this.props.formData.formName);
   }
 
   render() {
-    const {
-      errors,
-      loading,
-      values,
-    } = this.props;
+    const { formData } = this.props;
 
     return (
       <Form className="was-walidated" onSubmit={this.handleSubmit}>
@@ -35,13 +33,13 @@ export default class ResetPassword extends Component {
           type="email"
           name="email"
           label={<Message name="participants.email" />}
-          value={values.email}
-          error={errors.email}
-          disabled={loading}
+          value={formData.values.email}
+          error={formData.fieldErrors.email}
+          disabled={formData.loading}
           required
           onChange={this.handleChange}
         />
-        <Button loading={loading} type="submit">
+        <Button loading={formData.loading} type="submit">
           <Message name="participants.resetPassword" />
         </Button>
       </Form>
@@ -50,16 +48,7 @@ export default class ResetPassword extends Component {
 }
 
 ResetPassword.propTypes = {
-  errors: PropTypes.object.isRequired,
-  form: PropTypes.string.isRequired,
-  loading: PropTypes.bool,
+  formData: FormData.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  values: PropTypes.shape({
-    email: PropTypes.string,
-  }).isRequired,
-};
-
-ResetPassword.defaultProps = {
-  loading: false,
 };

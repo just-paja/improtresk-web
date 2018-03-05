@@ -70,7 +70,6 @@ export function* login(action) {
     type: FORM_VALUES_CLEAR,
     form: 'login',
   });
-  yield call(redirectHome);
 }
 
 export function* loginWithCookie() {
@@ -82,9 +81,10 @@ export function* loginWithCookie() {
       auth = cookie.getJSON('auth');
     }
 
+    yield put({ type: constants.PARTICIPANT_LOGIN_AUTO });
     if (auth) {
       yield put({
-        type: constants.PARTICIPANT_LOGIN,
+        type: constants.PARTICIPANT_LOGIN_AUTO_SUCCESS,
         data: auth,
       });
     } else {
@@ -93,7 +93,6 @@ export function* loginWithCookie() {
         data: auth,
       });
     }
-    yield put({ type: constants.PARTICIPANT_LOGIN_AUTO });
   }
 }
 
@@ -111,6 +110,10 @@ export function* loginOnFormSubmit() {
 
 export function* loginOnAction() {
   yield takeLatest(selectLoginSuccess, login);
+}
+
+export function* afterLogin() {
+  yield takeLatest(constants.PARTICIPANT_LOGIN, redirectHome);
 }
 
 export function* loginOnMount() {

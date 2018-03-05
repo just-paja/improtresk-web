@@ -10,16 +10,18 @@ describe('Participant ChangePassword component', () => {
   it('renders', () => {
     const comp = shallow(
       <ChangePassword
-        errors={{}}
-        form="changePassword"
+        formData={{
+          fieldErrors: {},
+          formName: 'changePassword',
+          values: {
+            oldPassword: 'oldPassword',
+            newPassword: 'newPassword',
+            newPasswordConfirm: 'newPasswordConfirm',
+          },
+        }}
         onChange={() => {}}
         onSubmit={() => {}}
         translate={msg => msg}
-        values={{
-          oldPassword: 'oldPassword',
-          newPassword: 'newPassword',
-          newPasswordConfirm: 'newPasswordConfirm',
-        }}
       />
     );
     expect(comp.find('[name="oldPassword"]')).toHaveLength(1);
@@ -30,16 +32,18 @@ describe('Participant ChangePassword component', () => {
   it('renders without old password input when given newPassword flag', () => {
     const comp = shallow(
       <ChangePassword
-        errors={{}}
-        form="changePassword"
+        formData={{
+          fieldErrors: {},
+          formName: 'changePassword',
+          values: {
+            newPassword: 'newPassword',
+            newPasswordConfirm: 'newPasswordConfirm',
+          },
+        }}
         newPassword
         onChange={() => {}}
         onSubmit={() => {}}
         translate={msg => msg}
-        values={{
-          newPassword: 'newPassword',
-          newPasswordConfirm: 'newPasswordConfirm',
-        }}
       />
     );
     expect(comp.find('[name="oldPassword"]')).toHaveLength(0);
@@ -48,23 +52,25 @@ describe('Participant ChangePassword component', () => {
   it('renders with errors', () => {
     const comp = shallow(
       <ChangePassword
-        errors={{
-          oldPassword: 'error1',
-          newPassword: 'error2',
-          newPasswordConfirm: 'error3',
+        formData={{
+          fieldErrors: {
+            oldPassword: 'error1',
+            newPassword: 'error2',
+            newPasswordConfirm: 'error3',
+          },
+          formName: 'changePassword',
+          submitErrors: [
+            'foo',
+          ],
+          values: {
+            oldPassword: '',
+            newPassword: '',
+            newPasswordConfirm: '',
+          },
         }}
-        form="changePassword"
         onChange={() => {}}
         onSubmit={() => {}}
-        submitErrors={[
-          'foo',
-        ]}
         translate={msg => msg}
-        values={{
-          oldPassword: '',
-          newPassword: '',
-          newPasswordConfirm: '',
-        }}
       />
     );
     expect(comp.find('[name="oldPassword"]')).toHaveProp('error', 'error1');
@@ -76,17 +82,19 @@ describe('Participant ChangePassword component', () => {
   it('renders disabled when loading', () => {
     const comp = shallow(
       <ChangePassword
-        errors={{}}
-        form="changePassword"
-        loading
+        formData={{
+          fieldErrors: {},
+          formName: 'changePassword',
+          loading: true,
+          values: {
+            oldPassword: 'oldPassword',
+            newPassword: 'newPassword',
+            newPasswordConfirm: 'newPasswordConfirm',
+          },
+        }}
         onChange={() => {}}
         onSubmit={() => {}}
         translate={msg => msg}
-        values={{
-          oldPassword: 'oldPassword',
-          newPassword: 'newPassword',
-          newPasswordConfirm: 'newPasswordConfirm',
-        }}
       />
     );
     expect(comp.find('[name="oldPassword"]')).toHaveProp('disabled', true);
@@ -98,12 +106,14 @@ describe('Participant ChangePassword component', () => {
     const onChangeSpy = sinon.spy();
     const comp = shallow(
       <ChangePassword
-        errors={{}}
-        form="resetPassword"
+        formData={{
+          fieldErrors: {},
+          formName: 'resetPassword',
+          values: { email: 'test@example.com' },
+        }}
         onChange={onChangeSpy}
         onSubmit={() => {}}
         translate={msg => msg}
-        values={{ email: 'test@example.com' }}
       />
     );
 
@@ -118,12 +128,14 @@ describe('Participant ChangePassword component', () => {
     const preventDefaultSpy = sinon.spy();
     const comp = shallow(
       <ChangePassword
-        errors={{}}
-        form="resetPassword"
+        formData={{
+          fieldErrors: {},
+          formName: 'resetPassword',
+          values: {},
+        }}
         onChange={() => {}}
         onSubmit={onSubmitSpy}
         translate={msg => msg}
-        values={{}}
       />
     );
 

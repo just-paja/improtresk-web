@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import NewPassword from './components/NewPassword';
 
-import { getForm } from '../forms/selectors';
+import { getNewPasswordForm } from '../participants/selectors';
 
 import {
   formChange,
@@ -12,7 +12,7 @@ import {
 } from '../forms/actions';
 
 const mapStateToProps = state => ({
-  newPassword: getForm(state, 'newPassword'),
+  newPassword: getNewPasswordForm(state),
 });
 
 const mapDispatchToProps = {

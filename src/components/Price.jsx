@@ -11,11 +11,12 @@ const Price = ({ freeMessage, price }) => (
 
 Price.propTypes = {
   freeMessage: PropTypes.string,
-  price: PropTypes.number.isRequired,
+  price: PropTypes.number,
 };
 
 Price.defaultProps = {
   freeMessage: 'generic.free',
+  price: 0,
 };
 
 export default Price;

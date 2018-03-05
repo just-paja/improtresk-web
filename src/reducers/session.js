@@ -4,6 +4,7 @@ import * as actions from '../constants';
 import {
   PARTICIPANT_LOGIN,
   PARTICIPANT_LOGIN_AUTO,
+  PARTICIPANT_LOGIN_AUTO_SUCCESS,
   PARTICIPANT_TOKEN_REVOKE_START,
 } from '../participants/constants';
 
@@ -22,6 +23,11 @@ export default combine(defaultState, {
   [PARTICIPANT_LOGIN]: (state, action) => ({
     ...state,
     data: action.data,
+  }),
+  [PARTICIPANT_LOGIN_AUTO_SUCCESS]: (state, action) => ({
+    ...state,
+    data: action.data,
+    autoLoginAttempted: true,
   }),
   [PARTICIPANT_TOKEN_REVOKE_START]: state => ({
     ...state,

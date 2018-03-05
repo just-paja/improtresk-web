@@ -28,7 +28,10 @@ export function* fetchParticipantShowHome() {
 
 export function* requireParticipant() {
   yield takeEvery(
-    constants.PARTICIPANT_LOGIN,
+    [
+      constants.PARTICIPANT_LOGIN,
+      constants.PARTICIPANT_LOGIN_AUTO_SUCCESS,
+    ],
     fetchParticipantShowHome
   );
 }

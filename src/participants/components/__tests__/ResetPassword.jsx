@@ -10,11 +10,13 @@ describe('ResetPassword component', () => {
     const comp = shallow(
       <ResetPassword
         translate={msg => msg}
-        errors={{}}
-        form="resetPassword"
+        formData={{
+          fieldErrors: {},
+          formName: 'resetPassword',
+          values: { email: 'test@example.com' },
+        }}
         onChange={() => {}}
         onSubmit={() => {}}
-        values={{ email: 'test@example.com' }}
       />
     );
     expect(comp.find('[name="email"]')).toHaveLength(1);
@@ -24,13 +26,15 @@ describe('ResetPassword component', () => {
     const comp = shallow(
       <ResetPassword
         translate={msg => msg}
-        errors={{
-          email: 'Unknown e-mail',
+        formData={{
+          fieldErrors: {
+            email: 'Unknown e-mail',
+          },
+          formName: 'resetPassword',
+          values: { email: 'test@example.com' },
         }}
-        form="resetPassword"
         onChange={() => {}}
         onSubmit={() => {}}
-        values={{ email: 'test@example.com' }}
       />
     );
     expect(comp.find('[name="email"]')).toHaveProp('error', 'Unknown e-mail');
@@ -40,12 +44,15 @@ describe('ResetPassword component', () => {
     const comp = shallow(
       <ResetPassword
         translate={msg => msg}
-        errors={{}}
-        form="resetPassword"
+        formData={{
+          loading: true,
+          fieldErrors: {},
+          formName: 'resetPassword',
+          values: { email: 'test@example.com' },
+        }}
         loading
         onChange={() => {}}
         onSubmit={() => {}}
-        values={{ email: 'test@example.com' }}
       />
     );
 
@@ -58,11 +65,13 @@ describe('ResetPassword component', () => {
     const comp = shallow(
       <ResetPassword
         translate={msg => msg}
-        errors={{}}
-        form="resetPassword"
+        formData={{
+          fieldErrors: {},
+          formName: 'resetPassword',
+          values: { email: 'test@example.com' },
+        }}
         onChange={onChangeSpy}
         onSubmit={() => {}}
-        values={{ email: 'test@example.com' }}
       />
     );
 
@@ -78,11 +87,14 @@ describe('ResetPassword component', () => {
     const comp = shallow(
       <ResetPassword
         translate={msg => msg}
-        errors={{}}
-        form="resetPassword"
+        formData={{
+          loading: true,
+          fieldErrors: {},
+          formName: 'resetPassword',
+          values: { email: 'test@example.com' },
+        }}
         onChange={() => {}}
         onSubmit={onSubmitSpy}
-        values={{ email: 'test@example.com' }}
       />
     );
 

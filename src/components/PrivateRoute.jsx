@@ -8,27 +8,35 @@ import { reverse } from '../routeTable';
 
 const PrivateRoute = ({
   component: Component,
-  participant,
+  participantState,
   lang,
   ...rest
 }) => (
   <Route
     {...rest}
-    render={props => (participant ?
-      (<Component {...props} />) :
-      (<Redirect to={reverse(lang, 'signup')} />)
-    )}
+    render={(props) => {
+      if ((participantState.failed || participantState.valid) && !participantState.loading) {
+        return participantState.data ?
+          (<Component {...props} />) :
+          (<Redirect to={reverse(lang, 'signup')} />);
+      }
+      return null;
+    }}
   />
 );
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
-  participant: Participant,
+  participantState: PropTypes.shape({
+    data: Participant,
+    failed: PropTypes.bool,
+    loading: PropTypes.bool,
+    valid: PropTypes.bool,
+  }).isRequired,
   lang: PropTypes.string.isRequired,
 };
 
 PrivateRoute.defaultProps = {
-  participant: null,
 };
 
 export default PrivateRoute;

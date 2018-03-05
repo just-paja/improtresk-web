@@ -9,7 +9,7 @@ describe('User Entry component', () => {
     const comp = shallow(
       <UserEntry
         login={{
-          errors: {},
+          fieldErrors: {},
           values: { email: 'foo' },
         }}
         onLoginChange={() => {}}
@@ -17,7 +17,7 @@ describe('User Entry component', () => {
         onSignupChange={() => {}}
         onSignupSubmit={() => {}}
         signup={{
-          errors: {},
+          fieldErrors: {},
           values: { name: 'foo' },
         }}
         teams={[]}
@@ -30,7 +30,7 @@ describe('User Entry component', () => {
     const comp = shallow(
       <UserEntry
         login={{
-          errors: {},
+          fieldErrors: {},
           values: { email: 'foo' },
         }}
         onLoginChange={() => {}}
@@ -38,7 +38,7 @@ describe('User Entry component', () => {
         onSignupChange={() => {}}
         onSignupSubmit={() => {}}
         signup={{
-          errors: {},
+          fieldErrors: {},
           values: { name: 'foo' },
         }}
         teams={[]}
@@ -52,7 +52,7 @@ describe('User Entry component', () => {
       <UserEntry
         login={{
           loading: true,
-          errors: {},
+          fieldErrors: {},
           values: { email: 'foo' },
         }}
         onLoginChange={() => {}}
@@ -60,7 +60,7 @@ describe('User Entry component', () => {
         onSignupChange={() => {}}
         onSignupSubmit={() => {}}
         signup={{
-          errors: {},
+          fieldErrors: {},
           values: { name: 'foo' },
         }}
         teams={[]}
@@ -73,7 +73,7 @@ describe('User Entry component', () => {
     const comp = shallow(
       <UserEntry
         login={{
-          errors: {},
+          fieldErrors: {},
           values: { email: 'foo' },
         }}
         onLoginChange={() => {}}
@@ -81,7 +81,7 @@ describe('User Entry component', () => {
         onSignupChange={() => {}}
         onSignupSubmit={() => {}}
         signup={{
-          errors: {},
+          fieldErrors: {},
           loading: true,
           values: { name: 'foo' },
         }}

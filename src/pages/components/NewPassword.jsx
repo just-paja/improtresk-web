@@ -39,11 +39,9 @@ export default class NewPassword extends Component {
               </Alert>
             ) : (
               <ChangePassword
-                form="newPassword"
-                newPassword
+                formData={newPassword}
                 onChange={onNewPasswordChange}
                 onSubmit={onNewPasswordSubmit}
-                {...newPassword}
               />
             )}
           </Col>

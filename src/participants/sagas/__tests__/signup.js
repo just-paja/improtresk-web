@@ -9,7 +9,6 @@ import {
 } from '../../../selectors/session';
 import { sendForm } from '../../../forms/sagas/sendForm';
 import { getLoginForm, getSignupForm } from '../../selectors';
-import { redirectHome } from '../../../sagas/redirects';
 
 import * as sagas from '..';
 import * as api from '../../../api';
@@ -166,11 +165,11 @@ describe('Signup sagas', () => {
     expect(gen.next(false).value).toEqual(select(getApiAuth));
     expect(gen.next({
       access_token: 'foo',
-    }).value).toEqual(put({
-      type: 'PARTICIPANT_LOGIN',
+    }).value).toEqual(put({ type: 'PARTICIPANT_LOGIN_AUTO' }));
+    expect(gen.next().value).toEqual(put({
+      type: 'PARTICIPANT_LOGIN_AUTO_SUCCESS',
       data: { access_token: 'foo' },
     }));
-    expect(gen.next().value).toEqual(put({ type: 'PARTICIPANT_LOGIN_AUTO' }));
     expect(gen.next().done).toBe(true);
   });
 
@@ -179,11 +178,11 @@ describe('Signup sagas', () => {
     const gen = sagas.loginWithCookie();
     expect(gen.next().value).toEqual(select(getAutoLoginStatus));
     expect(gen.next(false).value).toEqual(select(getApiAuth));
+    expect(gen.next().value).toEqual(put({ type: 'PARTICIPANT_LOGIN_AUTO' }));
     expect(gen.next({}).value).toEqual(put({
-      type: 'PARTICIPANT_LOGIN',
+      type: 'PARTICIPANT_LOGIN_AUTO_SUCCESS',
       data: { access_token: 'foo' },
     }));
-    expect(gen.next().value).toEqual(put({ type: 'PARTICIPANT_LOGIN_AUTO' }));
     expect(gen.next().done).toBe(true);
   });
 
@@ -192,8 +191,8 @@ describe('Signup sagas', () => {
     const gen = sagas.loginWithCookie();
     expect(gen.next().value).toEqual(select(getAutoLoginStatus));
     expect(gen.next(false).value).toEqual(select(getApiAuth));
-    expect(gen.next({}).value).toEqual(put({ type: 'PARTICIPANT_LOGOUT', data: null }));
     expect(gen.next({}).value).toEqual(put({ type: 'PARTICIPANT_LOGIN_AUTO' }));
+    expect(gen.next({}).value).toEqual(put({ type: 'PARTICIPANT_LOGOUT', data: null }));
     expect(gen.next().done).toBe(true);
   });
 
@@ -214,7 +213,7 @@ describe('Signup sagas', () => {
       type: 'FORM_VALUES_CLEAR',
       form: 'login',
     }));
-    expect(gen.next().value).toEqual(call(redirectHome));
+    // expect(gen.next().value).toEqual(call(redirectHome));
     expect(gen.next().done).toBe(true);
   });
 });

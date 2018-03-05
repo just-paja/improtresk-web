@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Row from 'reactstrap/lib/Row';
 
+import { FormData } from '../../proptypes';
+
 import Container from '../../components/Container';
 import ResetPassword from '../../participants/components/ChangePassword';
 
@@ -19,12 +21,9 @@ const ChangePassword = ({
           Vyplň svoje staré heslo, nové heslo a zopakuj pro kontrolu. Znáš to.
         </p>
         <ResetPassword
-          errors={changePassword.errors}
-          form="changePassword"
-          loading={changePassword.loading}
+          formData={changePassword}
           onChange={onChangePasswordChange}
           onSubmit={onChangePasswordSubmit}
-          values={changePassword.values}
         />
       </Col>
     </Row>
@@ -32,7 +31,7 @@ const ChangePassword = ({
 );
 
 ChangePassword.propTypes = {
-  changePassword: PropTypes.object.isRequired,
+  changePassword: FormData.isRequired,
   onChangePasswordChange: PropTypes.func.isRequired,
   onChangePasswordSubmit: PropTypes.func.isRequired,
 };
