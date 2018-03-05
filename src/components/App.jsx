@@ -72,30 +72,28 @@ class App extends Component {
       return <AppCrash />;
     }
 
-    const routes = [
-      ...langs.map(routeLang => [
-        <Route key={`${lang}home`} component={Home} exact path={getUrlPattern(routeLang, 'home')} />,
-        <Route key={`${lang}accomodation`} component={Accomodation} path={getUrlPattern(routeLang, 'accomodation')} />,
-        <Route key={`${lang}archiveYearDetail`} component={ArchivedYear} path={getUrlPattern(routeLang, 'archiveYearDetail')} />,
-        <Route key={`${lang}fees`} component={Fees} path={getUrlPattern(routeLang, 'fees')} />,
-        <Route key={`${lang}conditions`} component={Conditions} path={getUrlPattern(routeLang, 'conditions')} />,
-        <Route key={`${lang}contact`} component={Contact} path={getUrlPattern(routeLang, 'contact')} />,
-        <Route key={`${lang}food`} component={Food} path={getUrlPattern(routeLang, 'food')} />,
-        <Route key={`${lang}participantForgottenPassword`} component={ForgottenPassword} path={getUrlPattern(routeLang, 'participantForgottenPassword')} />,
-        <Route key={`${lang}location`} component={Locations} path={getUrlPattern(routeLang, 'location')} />,
-        <Route key={`${lang}newsDetail`} component={NewsDetail} path={getUrlPattern(routeLang, 'newsDetail')} />,
-        <Route key={`${lang}newPassword`} component={NewPassword} path={getUrlPattern(routeLang, 'participantNewPassword')} />,
-        <Route key={`${lang}schedule`} component={Schedule} path={getUrlPattern(routeLang, 'schedule')} />,
-        <Route key={`${lang}signup`} component={Signup} path={getUrlPattern(routeLang, 'signup')} />,
-        <Route key={`${lang}tips`} component={Tips} path={getUrlPattern(routeLang, 'tips')} />,
-        <Route key={`${lang}workshops`} component={Workshops} exact path={getUrlPattern(routeLang, 'workshops')} />,
-        <Route key={`${lang}workshopDetail`} component={WorkshopDetail} path={getUrlPattern(routeLang, 'workshopDetail')} />,
-        <PrivateRoute key={`${lang}participantHome`} exact path={getUrlPattern(lang, 'participantHome')} component={ParticipantHome} />,
-        <PrivateRoute key={`${lang}participantRegistration`} exact path={getUrlPattern(lang, 'participantRegistration')} component={ParticipantRegistration} />,
-      ]),
-      <Route key="languageRedirect" exact path="/" component={LanguageRedirect} />,
-      <Route key="notfound" component={NotFound} />,
-    ];
+    const routes = langs.map(routeLang => [
+      <Route key={`${routeLang}home`} component={Home} exact path={getUrlPattern(routeLang, 'home')} />,
+      <Route key={`${routeLang}accomodation`} component={Accomodation} path={getUrlPattern(routeLang, 'accomodation')} />,
+      <Route key={`${routeLang}archiveYearDetail`} component={ArchivedYear} path={getUrlPattern(routeLang, 'archiveYearDetail')} />,
+      <Route key={`${routeLang}fees`} component={Fees} path={getUrlPattern(routeLang, 'fees')} />,
+      <Route key={`${routeLang}conditions`} component={Conditions} path={getUrlPattern(routeLang, 'conditions')} />,
+      <Route key={`${routeLang}contact`} component={Contact} path={getUrlPattern(routeLang, 'contact')} />,
+      <Route key={`${routeLang}food`} component={Food} path={getUrlPattern(routeLang, 'food')} />,
+      <Route key={`${routeLang}participantForgottenPassword`} component={ForgottenPassword} path={getUrlPattern(routeLang, 'participantForgottenPassword')} />,
+      <Route key={`${routeLang}location`} component={Locations} path={getUrlPattern(routeLang, 'location')} />,
+      <Route key={`${routeLang}newsDetail`} component={NewsDetail} path={getUrlPattern(routeLang, 'newsDetail')} />,
+      <Route key={`${routeLang}newPassword`} component={NewPassword} path={getUrlPattern(routeLang, 'participantNewPassword')} />,
+      <Route key={`${routeLang}schedule`} component={Schedule} path={getUrlPattern(routeLang, 'schedule')} />,
+      <Route key={`${routeLang}signup`} component={Signup} path={getUrlPattern(routeLang, 'signup')} />,
+      <Route key={`${routeLang}tips`} component={Tips} path={getUrlPattern(routeLang, 'tips')} />,
+      <Route key={`${routeLang}workshops`} component={Workshops} exact path={getUrlPattern(routeLang, 'workshops')} />,
+      <Route key={`${routeLang}workshopDetail`} component={WorkshopDetail} path={getUrlPattern(routeLang, 'workshopDetail')} />,
+      <PrivateRoute key={`${routeLang}participantHome`} exact path={getUrlPattern(routeLang, 'participantHome')} component={ParticipantHome} />,
+      <PrivateRoute key={`${routeLang}participantRegister`} exact path={getUrlPattern(routeLang, 'participantRegister')} component={ParticipantRegistration} />,
+    ]).reduce((aggr, langRoutes) => aggr.concat(langRoutes), []);
+    routes.push(<Route key="languageRedirect" exact path="/" component={LanguageRedirect} />);
+    routes.push(<Route key="notfound" component={NotFound} />);
 
     return (
       <div className={styles.app}>

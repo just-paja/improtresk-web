@@ -1,1 +1,6 @@
-export default {};
+export default {
+  news: {
+    published: 'Published',
+    older: 'Older',
+  },
+};

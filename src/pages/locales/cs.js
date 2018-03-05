@@ -1,13 +1,13 @@
 export default {
   pages: {
+    aboutFestival: 'O Improtřesku',
     accomodation: 'Ubytování',
     conditions: 'Podmínky pro účastníky',
     fees: 'Poplatky',
     food: 'Jídlo',
     locations: 'Lokace',
-    workshops: 'Workshopy',
-    tips: 'Tipy',
-    aboutFestival: 'O Improtřesku',
     news: 'Novinky',
+    tips: 'Tipy',
+    workshops: 'Workshopy',
   },
 };

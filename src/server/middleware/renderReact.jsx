@@ -163,10 +163,11 @@ export const renderInHtml = (markupAndState) => {
 };
 
 export const respondWithHtml = (req, res, markupAndState, routerContext) => {
-  winston.log('silly', 'REACT RENDER STATIC', req.url);
-  if (routerContext && routerContext.action === 'REPLACE') {
+  if (routerContext && routerContext.action === 'REPLACE' && req.url !== routerContext.url) {
+    winston.log('silly', 'REDIRECT', req.url, routerContext.url);
     return res.redirect(routerContext.url);
   }
+  winston.log('silly', 'REACT RENDER STATIC', req.url);
   try {
     return res.send(renderInHtml(markupAndState));
   } catch (e) {
