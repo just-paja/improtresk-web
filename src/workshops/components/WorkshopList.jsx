@@ -7,6 +7,7 @@ import React from 'react';
 
 import Capacity from '../../components/Capacity';
 import Flex from '../../components/Flex';
+import FlexLabel from '../../components/FlexLabel';
 import Message from '../../containers/Message';
 import PermaLinkContainer from '../../components/PermaLinkContainer';
 
@@ -24,10 +25,13 @@ const WorkshopList = ({ workshops }) => (
             <ListGroupItemHeading>
               {workshop.name}
             </ListGroupItemHeading>
-            <Flex justify="between">
-              <span>
-                {workshop.lectors.map(lectorRole => lectorRole.lector.name).join(', ')}
-              </span>
+            <Flex minSize="md" justify="between">
+              <FlexLabel>
+                <span>{workshop.difficulty}</span>
+                <span>
+                  {workshop.lectors.map(lectorRole => lectorRole.lector.name).join(', ')}
+                </span>
+              </FlexLabel>
               <Capacity {...workshop.capacityStatus} />
             </Flex>
           </ListGroupItem>
