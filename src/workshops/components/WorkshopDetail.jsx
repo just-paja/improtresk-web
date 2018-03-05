@@ -16,7 +16,7 @@ const WorkshopDetail = ({ desc, difficulty, name, lectors, photos, prices }) => 
   <div>
     <h1 className="decent">{name}</h1>
     <Row>
-      <Col className="col-wrap" xs="12" lg="6">
+      <Col className="mb-4 col-wrap" xs="12" lg="6">
         <Card>
           <CardBody>
             <ul className="list-unstyled">
@@ -34,7 +34,7 @@ const WorkshopDetail = ({ desc, difficulty, name, lectors, photos, prices }) => 
           </CardBody>
         </Card>
       </Col>
-      <Col xs="12" lg="6">
+      <Col className="mb-4" xs="12" lg="6">
         {lectors.map(lectorPosition => (
           <LectorSummary
             key={lectorPosition.id}
