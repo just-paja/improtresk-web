@@ -15,12 +15,12 @@ export default class Gallery extends Component {
   }
 
   handleLightboxClose() {
-    this.setState({ lightbox: false });
+    this.setState({ image: 0, lightbox: false });
   }
 
-  handlePhotoClick(index, e) {
+  handlePhotoClick(e, obj) {
     e.preventDefault();
-    this.setState({ image: index, lightbox: true });
+    this.setState({ image: obj.index, lightbox: true });
   }
 
   prev() {
@@ -38,13 +38,12 @@ export default class Gallery extends Component {
       src: photo.image,
       height: photo.height,
       width: photo.width,
-      aspectRatio: photo.width / photo.height,
     }));
     return (
       <div>
         <ReactGallery
           {...other}
-          onClickPhoto={this.handlePhotoClick}
+          onClick={this.handlePhotoClick}
           photos={photosMapped}
         />
         <Lightbox

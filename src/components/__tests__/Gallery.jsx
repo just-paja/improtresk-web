@@ -32,14 +32,12 @@ describe('Gallery component', () => {
         caption: 'foo',
         height: 200,
         width: 400,
-        aspectRatio: 2,
       },
       {
         src: 'http://example.com/test2.jpg',
         caption: undefined,
         height: 400,
         width: 200,
-        aspectRatio: 1 / 2,
       },
     ]);
   });
@@ -68,14 +66,12 @@ describe('Gallery component', () => {
         caption: 'foo',
         height: 200,
         width: 400,
-        aspectRatio: 2,
       },
       {
         src: 'http://example.com/test2.jpg',
         caption: undefined,
         height: 400,
         width: 200,
-        aspectRatio: 1 / 2,
       },
     ]);
   });
@@ -94,9 +90,9 @@ describe('Gallery component', () => {
       />
     );
 
-    comp.find(ReactGallery).simulate('clickPhoto', 0, {
+    comp.find(ReactGallery).simulate('click', {
       preventDefault: preventDefaultSpy,
-    });
+    }, { index: 0 });
     expect(comp.state()).toEqual({
       lightbox: true,
       image: 0,
@@ -108,7 +104,7 @@ describe('Gallery component', () => {
     const comp = shallow(<Gallery photos={[]} />);
     comp.setState({ lightbox: true });
     comp.find(Lightbox).simulate('close');
-    expect(comp.state()).toEqual({ lightbox: false });
+    expect(comp.state()).toEqual({ lightbox: false, image: 0 });
   });
 
   it('goes next on nextclick', () => {
