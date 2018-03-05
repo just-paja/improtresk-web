@@ -36,13 +36,14 @@ const WorkshopDetail = ({ desc, difficulty, name, lectors, photos, prices }) => 
       </Col>
       <Col className="mb-4" xs="12" lg="6">
         {lectors.map(lectorPosition => (
-          <LectorSummary
-            key={lectorPosition.id}
-            name={lectorPosition.lector.name}
-            about={lectorPosition.lector.about}
-            photos={lectorPosition.lector.photos}
-            position={lectorPosition.role}
-          />
+          <div className="mb-4" key={lectorPosition.id}>
+            <LectorSummary
+              name={lectorPosition.lector.name}
+              about={lectorPosition.lector.about}
+              photos={lectorPosition.lector.photos}
+              position={lectorPosition.role}
+            />
+          </div>
         ))}
       </Col>
     </Row>
