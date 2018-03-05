@@ -38,19 +38,21 @@ export default class Contact extends Component {
                 </p>
                 <ul className="list-unstyled">
                   <li>
-                    <FontAwesome name="globe" />{' '}
+                    <FontAwesome fixedWidth name="globe" />{' '}
                     Web: <a href="https://improtresk.cz">improtresk.cz</a>
                   </li>
                   <li>
-                    <FontAwesome name="envelope-o" />{' '}
+                    <FontAwesome fixedWidth name="envelope-o" />{' '}
                     E-mail: <a href="mailto:info@improtresk.cz">info@improtresk.cz</a>
                   </li>
                   <li>
-                    <FontAwesome name="phone" />{' '}
-                    Kontaktní telefon telefon: <a href="tel:+420 728 376 440">+420 728 376 440</a>
+                    <FontAwesome fixedWidth name="phone" />{' '}
+                    Kontaktní telefon: Vanda Gabrielová
+                    {' '}
+                    <a href="tel:+420 728 376 440">+420 728 376 440</a>
                   </li>
                   <li>
-                    <FontAwesome name="facebook-official" />{' '}
+                    <FontAwesome fixedWidth name="facebook-official" />{' '}
                     Facebook: <a href="https://fb.com/improligacz">improligacz</a>
                   </li>
                 </ul>
