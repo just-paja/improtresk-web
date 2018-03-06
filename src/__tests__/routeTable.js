@@ -182,6 +182,6 @@ describe('Route Table', () => {
   });
 
   it('getUrlPattern returns workshops URL for en language', () => {
-    expect(getUrlPattern('en', 'workshops')).toBe('/en/workshopy');
+    expect(getUrlPattern('en', 'workshops')).toBe('/en/workshops');
   });
 });

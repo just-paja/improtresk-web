@@ -61,6 +61,15 @@ export const LectorInRole = PropTypes.shape({
   role: PropTypes.string.isRequired,
 });
 
+export const MultiLingualText = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string,
+  text: PropTypes.string.isRequired,
+  lang: PropTypes.string.isRequired,
+});
+
+export const MultiLingualDescription = PropTypes.arrayOf(MultiLingualText);
+
 export const Meal = PropTypes.shape({
   date: PropTypes.string.isRequired,
   id: ResourceId.isRequired,
@@ -80,6 +89,12 @@ export const Photo = PropTypes.shape({
   src: PropTypes.string.isRequired,
   height: PropTypes.number,
   width: PropTypes.number,
+});
+
+export const NewsItem = PropTypes.shape({
+  id: ResourceId,
+  name: PropTypes.string,
+  text: PropTypes.string,
 });
 
 export const Order = PropTypes.shape({

@@ -1,3 +1,4 @@
+import qsm from 'query-string-manipulator';
 import fetch from 'isomorphic-fetch';
 
 import { idFromSlug } from './routeTable';
@@ -50,7 +51,10 @@ export const fetchPerformerDetail = ({ performer, year, ...params }) =>
 
 export const fetchTeams = params => apiFetch('teams/', params);
 
-export const fetchText = ({ code, ...params }) => apiFetch(`texts/${code}/`, params);
+export const fetchText = ({ lang, category, ...params }) =>
+  apiFetch(qsm('texts/', {
+    set: { lang, category },
+  }), params);
 
 export const fetchTips = params => apiFetch('traveling-tips/', params);
 

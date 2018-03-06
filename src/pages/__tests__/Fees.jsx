@@ -23,21 +23,7 @@ describe('Fees container', () => {
     });
   });
 
-  it('provides progress', () => {
-    expect(comp.find('SceneProgress(Connect(Fees))')).toHaveProp('progress', {
-      failed: false,
-      loading: false,
-      missing: false,
-      required: true,
-      valid: false,
-      errors: [],
-    });
-  });
-
-  it('triggers home mounted action on mount', () => {
-    comp.dive();
-    expect(store.getActions()).toEqual([
-      { type: 'PAGE_FEES_ENTERED' },
-    ]);
+  it('renders fees page', () => {
+    expect(comp.find('Fees')).toHaveLength(1);
   });
 });

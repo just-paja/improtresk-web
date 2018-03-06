@@ -1,4 +1,4 @@
-import { call, select, takeLatest } from 'redux-saga/effects';
+import { call, select, takeEvery } from 'redux-saga/effects';
 
 import { fetchResourceIfRequired } from '../../sagas/api';
 import { getNewsDetailId, isNewsDetailRequired } from '../selectors';
@@ -23,7 +23,7 @@ export function* fetchNewsDetail() {
 }
 
 export function* requireNewsDetail() {
-  yield takeLatest(constants.NEWS_DETAIL_REQUIRED, fetchNewsDetail);
+  yield takeEvery(constants.NEWS_DETAIL_REQUIRED, fetchNewsDetail);
 }
 
 export default [

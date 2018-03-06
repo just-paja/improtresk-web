@@ -169,10 +169,10 @@ describe('API helper', () => {
 
   it('fetchText calls for text', () => {
     nock(apiSource)
-      .get('/texts/food-intro-text/')
+      .get('/texts/?lang=cs&category=food')
       .reply(200, {});
 
-    return api.fetchText({ apiSource, code: 'food-intro-text' })
+    return api.fetchText({ apiSource, category: 'food', lang: 'cs' })
       .then(() => {
         expect(nock.isDone()).toBe(true);
       });

@@ -6,7 +6,7 @@ describe('Text List reducer', () => {
   });
   it('marks as loading on TEXT_FETCH_STARTED', () => {
     expect(textList({}, {
-      code: 'ACCOMODATION_INTRO',
+      category: 'ACCOMODATION_INTRO',
       type: 'TEXT_FETCH_STARTED',
     })).toMatchObject({
       ACCOMODATION_INTRO: {
@@ -20,7 +20,7 @@ describe('Text List reducer', () => {
       {},
       {
         type: 'TEXT_FETCH_SUCCESS',
-        code: 'ACCOMODATION_INTRO',
+        category: 'ACCOMODATION_INTRO',
         data: {
           text: 'foo',
         },
@@ -40,7 +40,7 @@ describe('Text List reducer', () => {
       {},
       {
         type: 'TEXT_FETCH_ERROR',
-        code: 'ACCOMODATION_INTRO',
+        category: 'ACCOMODATION_INTRO',
         error: 'error',
       }
     )).toMatchObject({

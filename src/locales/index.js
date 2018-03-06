@@ -2,6 +2,7 @@ import defaultCs from './cs';
 import defaultEn from './en';
 
 import * as accomodation from '../accomodation/locales';
+import * as food from '../food/locales';
 import * as forms from '../forms/locales';
 import * as news from '../news/locales';
 import * as orders from '../orders/locales';
@@ -14,6 +15,7 @@ import * as years from '../years/locales';
 
 const modules = [
   accomodation,
+  food,
   forms,
   news,
   orders,

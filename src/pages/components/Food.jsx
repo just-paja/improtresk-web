@@ -1,13 +1,13 @@
 import Helmet from 'react-helmet';
-import Markdown from 'react-markdown';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import Container from '../../components/Container';
-import FoodMenu from '../../food/components/FoodMenu';
+import TextFood from '../../texts/containers/TextFood';
+import MealList from '../../food/containers/MealList';
 import Message from '../../containers/Message';
 
-const Food = ({ meals, intro, translate }) => (
+const Food = ({ translate }) => (
   <Container>
     <Helmet
       title={translate('pages.food')}
@@ -16,34 +16,14 @@ const Food = ({ meals, intro, translate }) => (
       ]}
     />
     <h1><Message name="pages.food" /></h1>
-    <Markdown source={intro} />
-    <h2>Jídelníček</h2>
-    {meals.map(meal => (
-      <FoodMenu
-        date={meal.date}
-        food={meal.food}
-        id={meal.id}
-        key={meal.id}
-        name={meal.name}
-        soups={meal.soups}
-      />
-    ))}
+    <TextFood />
+    <h2><Message name="pages.festivalMenu" /></h2>
+    <MealList />
   </Container>
 );
 
 Food.propTypes = {
-  meals: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    food: PropTypes.arrayOf(PropTypes.object),
-  })).isRequired,
-  intro: PropTypes.string,
   translate: PropTypes.func.isRequired,
-};
-
-Food.defaultProps = {
-  intro: null,
 };
 
 export default Food;

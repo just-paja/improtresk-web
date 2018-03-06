@@ -2,7 +2,6 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 
 import * as constants from '../constants';
 import { ACCOMODATION_REQUIRED } from '../../accomodation/constants';
-import { MEALS_REQUIRED } from '../../food/constants';
 import {
   NEWS_REQUIRED,
   NEWS_DETAIL_REQUIRED,
@@ -35,10 +34,6 @@ export function* requireConditions() {
 export function* requireAccomodation() {
   yield put({ type: ACCOMODATION_REQUIRED });
   yield put({ type: YEAR_CAPACITY_REQUIRED });
-}
-
-export function* requireFood() {
-  yield put({ type: MEALS_REQUIRED });
 }
 
 export function* requireNews() {
@@ -105,20 +100,6 @@ export function* onConditionsEnter() {
   yield takeLatest(
     constants.PAGE_CONDITIONS_ENTERED,
     requireConditions
-  );
-}
-
-export function* onFoodEnter() {
-  yield takeLatest(
-    constants.PAGE_FOOD_ENTERED,
-    requireFood
-  );
-}
-
-export function* onHomeEnter() {
-  yield takeLatest(
-    constants.PAGE_HOME_ENTERED,
-    requireNews
   );
 }
 
@@ -189,8 +170,6 @@ export default [
   onAccomodationEnter,
   onAccomodationExit,
   onConditionsEnter,
-  onFoodEnter,
-  onHomeEnter,
   onNewsDetailEnter,
   onLocationsEnter,
   onSchedulePageEnter,

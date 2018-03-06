@@ -1,3 +1,4 @@
+export const TEXT_REQUIRED = 'TEXT_REQUIRED';
 export const TEXT_FETCH_ERROR = 'TEXT_FETCH_ERROR';
 export const TEXT_FETCH_STARTED = 'TEXT_FETCH_STARTED';
 export const TEXT_FETCH_SUCCESS = 'TEXT_FETCH_SUCCESS';
@@ -14,3 +15,10 @@ export const FEES_HOW_TO_PAY = 'how-to-pay';
 export const FEES_HOW_TO_SIGN_OUT = 'how-to-sign-out';
 export const LOCATIONS_INTRO = 'locations-intro';
 export const SCHEDULE_INTRO = 'schedule-intro';
+
+export const TEXT_CATEGORY_HOME = 'homepage';
+export const TEXT_CATEGORY_ACCOMODATION = 'accomodation';
+export const TEXT_CATEGORY_FEES = 'fees';
+export const TEXT_CATEGORY_FOOD = 'food';
+export const TEXT_CATEGORY_LOCATIONS = 'locations';
+export const TEXT_CATEGORY_SCHEDULE = 'schedule';

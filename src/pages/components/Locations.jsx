@@ -1,5 +1,4 @@
 import Helmet from 'react-helmet';
-import Markdown from 'react-markdown';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -7,9 +6,10 @@ import Container from '../../components/Container';
 import LocationItem from '../../locations/components/LocationItem';
 import MarkerMap from '../../locations/containers/MarkerMap';
 import Message from '../../containers/Message';
+import TextLocations from '../../texts/containers/TextLocations';
 import ObjectList from '../../components/ObjectList';
 
-const Locations = ({ intro, markers, translate }) => (
+const Locations = ({ markers, translate }) => (
   <Container>
     <Helmet
       title={translate('pages.locations')}
@@ -17,10 +17,8 @@ const Locations = ({ intro, markers, translate }) => (
         { property: 'og:title', content: translate('pages.locations') },
       ]}
     />
-    <h1>
-      <Message name="pages.locations" />
-    </h1>
-    <Markdown source={intro} />
+    <h1><Message name="pages.locations" /></h1>
+    <TextLocations skipFirstHeading />
     <ObjectList
       data={markers}
       Component={LocationItem}
@@ -31,16 +29,11 @@ const Locations = ({ intro, markers, translate }) => (
 );
 
 Locations.propTypes = {
-  intro: PropTypes.string,
   markers: PropTypes.arrayOf(PropTypes.shape({
     lat: PropTypes.number,
     lng: PropTypes.number,
   })).isRequired,
   translate: PropTypes.func.isRequired,
-};
-
-Locations.defaultProps = {
-  intro: null,
 };
 
 export default Locations;

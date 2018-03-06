@@ -8,7 +8,7 @@ import { logWarning } from '../clientLogger';
 import * as actions from '../constants';
 import * as locales from '../locales';
 
-import { getPreferredLanguages } from '../selectors/locales';
+import { getLang, getPreferredLanguages } from '../selectors/locales';
 
 const getLangFromLocale = (locale) => {
   if (locale) {
@@ -66,6 +66,14 @@ export function* watchLanguageChanged() {
   );
 }
 
+export function* checkRouteLanguageChange(action) {
+  const activeLang = yield select(getLang);
+  const nextLang = action.payload.pathname.split('/')[1];
+  if (activeLang !== nextLang) {
+    yield call(selectLang, { languages: [nextLang] });
+  }
+}
+
 export function* watchLanguagePreferences() {
   yield takeEvery(
     actions.LOCALE_PREFERENCES_CHANGED,
@@ -88,8 +96,13 @@ export function* watchAppMounted() {
   yield takeEvery(actions.APP_MOUNTED, initLocales);
 }
 
+export function* watchRouteChange() {
+  yield takeEvery('@@router/LOCATION_CHANGE', checkRouteLanguageChange);
+}
+
 export default [
   watchAppMounted,
   watchLanguageChanged,
   watchLanguagePreferences,
+  watchRouteChange,
 ];

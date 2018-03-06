@@ -1,4 +1,4 @@
-import { getData, getProp, isRequired, transformData } from 'react-saga-rest';
+import { getData, getProgress, getProp, isRequired, transformData } from 'react-saga-rest';
 
 export const aggregatePollAnswerData = answer => (
   answer.performer ? ({
@@ -26,6 +26,9 @@ export const aggregateNewsData = news => (
 
 export const getNewsListState = state => state.news.list;
 export const getNewsDetailState = state => state.news.detail;
+
+export const getNewsListProgress = getProgress(getNewsListState);
+export const getNewsDetailProgress = getProgress(getNewsDetailState);
 
 export const isNewsListRequired = isRequired(getNewsListState);
 export const isNewsDetailRequired = isRequired(getNewsDetailState);

@@ -1,5 +1,4 @@
 import Alert from 'reactstrap/lib/Alert';
-import Markdown from 'react-markdown';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -8,16 +7,16 @@ import Message from '../../containers/Message';
 import ObjectList from '../../components/ObjectList';
 import PerformerListItem from '../../performers/components/PerformerListItem';
 import ScheduleOverview from '../../schedule/components/ScheduleOverview';
+import TextSchedule from '../../texts/containers/TextSchedule';
 
 const Schedule = ({
-  intro,
   performers,
   scheduleEvents,
   year,
 }) => (
   <Container>
     <h1><Message name="schedule.heading" /></h1>
-    <Markdown source={intro} />
+    <TextSchedule skipFirstHeading />
     {scheduleEvents.length > 0 ? (
       <ScheduleOverview
         endAt={year.endDate}
@@ -43,7 +42,6 @@ const Schedule = ({
 
 Schedule.propTypes = {
   performers: PropTypes.arrayOf(PropTypes.object).isRequired,
-  intro: PropTypes.string,
   scheduleEvents: PropTypes.arrayOf(PropTypes.object).isRequired,
   year: PropTypes.shape({
     startDate: PropTypes.string.isRequired,
@@ -52,7 +50,6 @@ Schedule.propTypes = {
 };
 
 Schedule.defaultProps = {
-  intro: null,
   year: null,
 };
 

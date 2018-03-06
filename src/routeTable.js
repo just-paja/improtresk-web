@@ -49,7 +49,7 @@ const en = {
   signup: '/signup',
   tips: '/tips',
   workshopDetail: '/workshops/:slug',
-  workshops: '/workshopy',
+  workshops: '/workshops',
 };
 
 const resolver = new Crossing(new RegExp(':([A-Za-z0-9-_%]{1,})'));
@@ -69,6 +69,18 @@ export function idFromSlug(slug) {
 
 export function reverse(lang, urlName, params) {
   return resolver.get(getLangUrlName(lang, urlName), params);
+}
+
+export function getUrlName(lang, url) {
+  const map = urlMap[lang];
+  return Object.keys(map).find((pathName) => {
+    const patternStr = map[pathName].replace(/^:[^/]+/g, '[^/]+');
+    const pattern = new RegExp(`^${patternStr}$`);
+    if (url.substr(3).match(pattern)) {
+      return pathName;
+    }
+    return null;
+  }) || null;
 }
 
 export function getUrlPattern(lang, name) {

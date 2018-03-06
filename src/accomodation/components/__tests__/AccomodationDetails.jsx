@@ -86,7 +86,7 @@ describe('Address component', () => {
         translate={msg => msg}
       />
     );
-    expect(comp.find('ReactMarkdown')).toHaveProp('source', 'Some long description');
+    expect(comp.find('Connect(MultiLingualMarkdown)')).toHaveLength(1);
   });
 
   it('renders photo gallery', () => {

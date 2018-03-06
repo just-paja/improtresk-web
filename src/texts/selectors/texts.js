@@ -11,10 +11,10 @@ export const getTextState = code => (state) => {
 export const getText = code => createSelector(
   getTextState(code),
   (textState) => {
-    if (textState && textState.data && textState.data.text) {
-      return textState.data.text;
+    if (textState && textState.data) {
+      return textState.data;
     }
-    return null;
+    return [];
   }
 );
 

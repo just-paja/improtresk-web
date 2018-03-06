@@ -53,6 +53,7 @@
     "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.0",
     "prop-types": "^15.6.0",
+    "query-string-manipulator": "^1.0.2",
     "react": "16.2.0",
     "react-dom": "^16.2.0",
     "react-fontawesome": "^1.5.0",

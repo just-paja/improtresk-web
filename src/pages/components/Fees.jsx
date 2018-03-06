@@ -1,16 +1,13 @@
 import Helmet from 'react-helmet';
-import Markdown from 'react-markdown';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import Container from '../../components/Container';
 import Message from '../../containers/Message';
+import TextFees from '../../texts/containers/TextFees';
 
 const Fees = ({
-  howToPay,
-  howToSignOut,
   translate,
-  whatDoYouPayFor,
 }) => (
   <Container>
     <Helmet
@@ -20,22 +17,12 @@ const Fees = ({
       ]}
     />
     <h1><Message name="pages.fees" /></h1>
-    <h2>Za co se platí?</h2>
-    <Markdown source={whatDoYouPayFor} />
-
-    <h2>Jak zaplatím?</h2>
-    <Markdown source={howToPay} />
-
-    <h2>Jak se můžu odhlásit?</h2>
-    <Markdown source={howToSignOut} />
+    <TextFees skipFirstHeading emptyMessage="pages.feesEmpty" />
   </Container>
 );
 
 Fees.propTypes = {
   translate: PropTypes.func.isRequired,
-  whatDoYouPayFor: PropTypes.string.isRequired,
-  howToPay: PropTypes.string.isRequired,
-  howToSignOut: PropTypes.string.isRequired,
 };
 
 export default Fees;

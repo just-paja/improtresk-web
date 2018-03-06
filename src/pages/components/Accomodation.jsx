@@ -1,5 +1,4 @@
 import Helmet from 'react-helmet';
-import Markdown from 'react-markdown';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -7,8 +6,9 @@ import AccomodationDetails from '../../accomodation/components/AccomodationDetai
 import Container from '../../components/Container';
 import ObjectList from '../../components/ObjectList';
 import Message from '../../containers/Message';
+import TextAccomodation from '../../texts/containers/TextAccomodation';
 
-const Accomodation = ({ accomodationList, intro, translate }) => (
+const Accomodation = ({ accomodationList, translate }) => (
   <Container>
     <Helmet
       title={translate('pages.accomodation')}
@@ -17,7 +17,7 @@ const Accomodation = ({ accomodationList, intro, translate }) => (
       ]}
     />
     <h1><Message name="pages.accomodation" /></h1>
-    <Markdown source={intro} />
+    <TextAccomodation skipFirstHeading />
     <ObjectList
       Component={AccomodationDetails}
       data={accomodationList}
@@ -27,13 +27,11 @@ const Accomodation = ({ accomodationList, intro, translate }) => (
 
 Accomodation.propTypes = {
   accomodationList: PropTypes.arrayOf(PropTypes.object),
-  intro: PropTypes.string,
   translate: PropTypes.func.isRequired,
 };
 
 Accomodation.defaultProps = {
   accomodationList: null,
-  intro: null,
 };
 
 export default Accomodation;

@@ -13,6 +13,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import PermaLinkContainer from './PermaLinkContainer';
 import Message from '../containers/Message';
+import LanguagePicker from '../containers/LanguagePicker';
 
 import { reverse } from '../routeTable';
 
@@ -116,8 +117,9 @@ const NavigationMenu = ({
           </NavLink>
         </LinkContainer>
       </NavItem>
+      <LanguagePicker className="ml-md-auto" />
       {participant ? ([
-        <NavItem className="pull-right ml-auto" key="participant-link">
+        <NavItem className="pull-right ml-md-auto" key="participant-link">
           <LinkContainer to={reverse(lang, 'participantHome')}>
             <NavLink><FontAwesome name="user" /> {participant.name}</NavLink>
           </LinkContainer>

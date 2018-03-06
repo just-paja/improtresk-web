@@ -1,4 +1,4 @@
-import { call, select, takeLatest } from 'redux-saga/effects';
+import { call, select, takeEvery } from 'redux-saga/effects';
 
 import { fetchResourceIfRequired } from '../../../sagas/api';
 import { getNewsDetailId, isNewsDetailRequired } from '../../selectors';
@@ -33,7 +33,7 @@ describe('News Detail sagas', () => {
 
   it('requireNewsDetail creates binds fetch actions', () => {
     const saga = sagas.requireNewsDetail();
-    expect(saga.next().value).toEqual(takeLatest(
+    expect(saga.next().value).toEqual(takeEvery(
       'NEWS_DETAIL_REQUIRED',
       sagas.fetchNewsDetail
     ));

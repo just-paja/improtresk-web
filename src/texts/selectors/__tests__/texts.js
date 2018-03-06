@@ -31,7 +31,7 @@ describe('Texts selectors', () => {
       texts: {
         list: {},
       },
-    })).toEqual(null);
+    })).toEqual([]);
   });
 
   it('getText returns null when text state does not have data', () => {
@@ -41,7 +41,7 @@ describe('Texts selectors', () => {
           foo: {},
         },
       },
-    })).toEqual(null);
+    })).toEqual([]);
   });
 
   it('getText returns null when text state data do not have text', () => {
@@ -53,7 +53,7 @@ describe('Texts selectors', () => {
           },
         },
       },
-    })).toEqual(null);
+    })).toEqual({});
   });
 
   it('getText returns text when it exists and is populated', () => {
@@ -67,7 +67,7 @@ describe('Texts selectors', () => {
           },
         },
       },
-    })).toEqual('a message');
+    })).toEqual({ text: 'a message' });
   });
 
   it('getTextProgress returns progress missing text', () => {

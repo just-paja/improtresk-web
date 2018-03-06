@@ -1,15 +1,15 @@
-import Markdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import React from 'react';
+
+import { CapacityStatus, MultiLingualDescription, Photo } from '../../proptypes';
 
 import Address from '../../components/Address';
 import Capacity from '../../components/Capacity';
 import Gallery from '../../components/Gallery';
+import Message from '../../containers/Message';
+import MultiLingualMarkdown from '../../containers/MultiLingualMarkdown';
 import Price from '../../components/Price';
 import Prop from '../../components/Prop';
-import Message from '../../containers/Message';
-
-import { CapacityStatus, Photo } from '../../proptypes';
 
 const AccomodationDetails = ({
   address,
@@ -21,7 +21,7 @@ const AccomodationDetails = ({
   },
   name,
   price,
-  desc,
+  description,
   photos,
 }) => (
   <div>
@@ -45,7 +45,7 @@ const AccomodationDetails = ({
       </Prop>
     </ul>
 
-    <Markdown source={desc} />
+    <MultiLingualMarkdown texts={description} />
     <Gallery photos={photos} />
   </div>
 );
@@ -53,7 +53,7 @@ const AccomodationDetails = ({
 AccomodationDetails.propTypes = {
   address: PropTypes.string,
   capacityStatus: CapacityStatus.isRequired,
-  desc: PropTypes.string.isRequired,
+  description: MultiLingualDescription,
   name: PropTypes.string.isRequired,
   photos: PropTypes.arrayOf(Photo).isRequired,
   price: PropTypes.number,
@@ -61,6 +61,7 @@ AccomodationDetails.propTypes = {
 
 AccomodationDetails.defaultProps = {
   address: null,
+  description: null,
   price: null,
 };
 

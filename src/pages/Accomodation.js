@@ -6,15 +6,10 @@ import mapPageProgress from './mapPageProgress';
 
 import { getAccomodationList } from '../accomodation/selectors';
 import { getAccomodationPageProgress } from './selectors';
-import { getText } from '../texts/selectors';
 
 import * as actions from './constants';
-import * as texts from '../texts/constants';
-
-const getIntroText = getText(texts.ACCOMODATION_INTRO);
 
 const mapStateToProps = state => ({
-  intro: getIntroText(state),
   accomodationList: getAccomodationList(state),
   translate: getTranslate(state.locale),
 });
