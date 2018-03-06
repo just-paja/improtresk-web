@@ -40,7 +40,7 @@ export function* selectedLanguageChanged(action) {
   const nextLang = locales[lang] ? lang : 'cs';
   const locale = territory ? `${nextLang}-${territory}` : nextLang;
   moment.locale(locale);
-  yield put(setActiveLanguage(locale));
+  yield put(setActiveLanguage(lang));
 }
 
 export function* selectLang(action) {
