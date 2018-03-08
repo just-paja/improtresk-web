@@ -5,6 +5,7 @@ import {
   getOrderFormPrice,
   getOrderedMeals,
   getUnconfirmedOrder,
+  getOrderList,
 } from '../';
 
 describe('Order selectors', () => {
@@ -968,6 +969,134 @@ describe('Order selectors', () => {
           { id: 100 },
           { id: 200 },
         ],
+      },
+    ]);
+  });
+
+  it('getOrderList returns empty array when no orders are present', () => {
+    expect(getOrderList({
+      accomodation: {
+        list: {
+          data: [],
+        },
+      },
+      orders: {
+        list: {
+          data: [],
+        },
+      },
+      food: {
+        list: {
+          data: [],
+        },
+      },
+      workshops: {
+        lectors: {
+          list: {
+            data: [],
+          },
+          roles: {
+            data: [],
+          },
+        },
+        list: {
+          data: [],
+        },
+      },
+      years: {
+        list: {
+          data: [],
+        },
+        capacity: {
+          data: {},
+        },
+      },
+    })).toEqual([]);
+  });
+
+  it('getOrderList returns array of orders sorted by date created', () => {
+    expect(getOrderList({
+      accomodation: {
+        list: {
+          data: [],
+        },
+      },
+      orders: {
+        list: {
+          data: [
+            {
+              id: 15,
+              createdAt: '2017-12-12',
+            },
+            {
+              id: 16,
+              createdAt: '2017-12-12',
+            },
+            {
+              id: 19,
+              createdAt: '2017-01-12',
+            },
+            {
+              id: 20,
+              createdAt: '2017-12-13',
+            },
+          ],
+        },
+      },
+      food: {
+        list: {
+          data: [],
+        },
+      },
+      workshops: {
+        lectors: {
+          list: {
+            data: [],
+          },
+          roles: {
+            data: [],
+          },
+        },
+        list: {
+          data: [],
+        },
+      },
+      years: {
+        list: {
+          data: [],
+        },
+        capacity: {
+          data: {},
+        },
+      },
+    })).toEqual([
+      {
+        accomodation: null,
+        id: 20,
+        createdAt: '2017-12-13',
+        meals: [],
+        workshop: null,
+      },
+      {
+        accomodation: null,
+        id: 15,
+        createdAt: '2017-12-12',
+        meals: [],
+        workshop: null,
+      },
+      {
+        accomodation: null,
+        id: 16,
+        createdAt: '2017-12-12',
+        meals: [],
+        workshop: null,
+      },
+      {
+        accomodation: null,
+        id: 19,
+        createdAt: '2017-01-12',
+        meals: [],
+        workshop: null,
       },
     ]);
   });

@@ -15,17 +15,15 @@ import {
 
 export const getOrderListState = state => state.orders.list;
 
-const sortOrders = orders => orders
-  .slice(0)
-  .sort((a, b) => {
-    if (a.createdAt > b.createdAt) {
-      return -1;
-    }
-    if (a.createdAt < b.createdAt) {
-      return 1;
-    }
-    return 0;
-  });
+const sortOrders = (a, b) => {
+  if (a.createdAt > b.createdAt) {
+    return -1;
+  }
+  if (a.createdAt < b.createdAt) {
+    return 1;
+  }
+  return 0;
+};
 
 export const aggregateAccomodation = (item, accomodationList) => {
   let accomodation = null;
