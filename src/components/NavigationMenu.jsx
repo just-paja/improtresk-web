@@ -119,7 +119,7 @@ const NavigationMenu = ({
       </NavItem>
       <LanguagePicker className="ml-md-auto" />
       {participant ? ([
-        <NavItem className="pull-right ml-md-auto" key="participant-link">
+        <NavItem key="participant-link">
           <LinkContainer to={reverse(lang, 'participantHome')}>
             <NavLink><FontAwesome name="user" /> {participant.name}</NavLink>
           </LinkContainer>
