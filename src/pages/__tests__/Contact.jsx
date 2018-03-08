@@ -12,18 +12,17 @@ describe('Contact container', () => {
   let store;
 
   beforeEach(() => {
-    store = mockStore({});
+    store = mockStore({
+      locale: {
+        languages: [],
+      },
+    });
     comp = shallow(<Contact />, {
       context: { store },
     });
   });
 
-  it('triggers page contact entered action on mount', () => {
-    comp.dive();
-    expect(store.getActions()).toEqual([
-      {
-        type: 'PAGE_CONTACT_ENTERED',
-      },
-    ]);
+  it('provides translate method', () => {
+    expect(comp.find('Contact')).toHaveProp('translate');
   });
 });

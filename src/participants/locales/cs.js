@@ -42,5 +42,7 @@ export default {
     contact: 'Kontakt',
     lunchRegistrationHeading: 'Výběr obědů',
     lunchRegistrationProcess: 'Jaké jídlo bude na výběr budeme znát až později po přihlášce, třeba někdy v&nbsp;dubnu. Dáme ti vědět e-mailem. Stačí se přihlásit a vybrat.',
+    signupTooLate: 'Teď už je na přihlašování pozdě. Přihlášky pro tento ročník jsou už uzavřeny.',
+    signupIntro: 'Napřed tě musíme dostat do systému. Je to jen pár jednoduchých otázek na které potřebujeme znát odpověď. Určitě by to nemělo zabrat víc jak pět minut. <b>V druhém kroce</b> si můžeš poskládat Improtřesk tak jak ti bude vyhovovat, tedy vybrat workshop, jídlo a ubytování.',
   },
 };

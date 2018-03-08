@@ -5,10 +5,12 @@ import React, { Component } from 'react';
 import Row from 'reactstrap/lib/Row';
 
 import Container from '../../components/Container';
-import SignupCountdown from '../../years/containers/SignupCountdown';
 import HumanDate from '../../components/HumanDate';
-import UserEntry from '../../components/UserEntry';
+import SignupCountdown from '../../years/containers/SignupCountdown';
 import SignupHowto from '../../participants/components/SignupHowto';
+import SignupIntro from '../../participants/components/SignupIntro';
+import SignupTooLate from '../../participants/components/SignupTooLate';
+import UserEntry from '../../components/UserEntry';
 
 import styles from './Signup.css';
 
@@ -29,33 +31,20 @@ export default class Signup extends Component {
       signupsOpenDate,
       signup,
       teams,
+      translate,
     } = this.props;
 
-    const title = 'Přihláška';
+    const title = translate('pages.signup');
 
     let content;
 
     if (signupsOpenDate) {
       if (signupsClosed) {
-        content = (
-          <div>
-            <p>
-              Ajajaj, už je pozdě na přihlašování.
-            </p>
-            <div className={styles.signupsOpenDate}>
-              Přihlášky pro tento ročník jsou už uzavřeny
-            </div>
-          </div>
-        );
+        content = <SignupTooLate />;
       } else if (signupsOpen) {
         content = (
           <div>
-            <p>
-              Napřed tě musíme dostat do systému. Je to jen pár jednoduchých otázek na
-              které potřebujeme znát odpověď. Určitě by to nemělo zabrat víc jak pět
-              minut. <b>V druhém kroce</b> si můžeš poskládat Improtřesk tak jak ti
-              bude vyhovovat, tedy vybrat workshop, jídlo a ubytování.
-            </p>
+            <SignupIntro />
             <div className={styles.signupsOpenDate}>
               <SignupCountdown onOpen={onSignupsOpen} />
             </div>
@@ -133,6 +122,7 @@ Signup.propTypes = {
   signupsOpenDate: PropTypes.string,
   signup: PropTypes.object,
   teams: PropTypes.arrayOf(PropTypes.object).isRequired,
+  translate: PropTypes.func.isRequired,
 };
 
 Signup.defaultProps = {

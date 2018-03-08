@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { getTranslate } from 'react-localize-redux';
 
 import mapPageProgress from './mapPageProgress';
 import Signup from './components/Signup';
@@ -28,6 +29,7 @@ const mapStateToProps = state => ({
   signupsOpen: areSignupsOpen(state),
   signupsOpenDate: getSignupsOpenDate(state),
   teams: getTeamOptions(state),
+  translate: getTranslate(state.locale),
   year: yearCurrent(state),
 });
 

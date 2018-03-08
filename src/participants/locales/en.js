@@ -42,5 +42,7 @@ export default {
     contact: 'Contact',
     lunchRegistrationHeading: 'Lunch',
     lunchRegistrationProcess: 'We will send you the festival menu later by e-mail. It always contains at least one option for vegetarians.',
+    signupTooLate: 'It is too late for signups now, we do not accept any more.',
+    signupIntro: 'First we need to get you into the system.  There is just a few simple personal questions we need you to answer. It should not take longer than five minutes. You can choose Workshop, Food and Accomodation <b>in the second step</b>.',
   },
 };

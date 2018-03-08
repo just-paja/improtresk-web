@@ -16,7 +16,8 @@ export default class Contact extends Component {
   }
 
   render() {
-    const title = 'Kontakt';
+    const { translate } = this.props;
+    const title = translate('pages.contact');
 
     return (
       <Container>
@@ -26,7 +27,7 @@ export default class Contact extends Component {
             { property: 'og:title', content: title },
           ]}
         />
-        <h1 className="text-center">Kontakt</h1>
+        <h1 className="text-center">{title}</h1>
         <Row>
           <Col md={{ size: 10, offset: 1 }} lg={{ size: 8, offset: 2 }}>
             <Card>
@@ -67,4 +68,5 @@ export default class Contact extends Component {
 
 Contact.propTypes = {
   onMount: PropTypes.func.isRequired,
+  translate: PropTypes.func.isRequired,
 };
