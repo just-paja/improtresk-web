@@ -1,6 +1,7 @@
 import participantPassword from './participantPassword';
 import participant from './participant';
 import signup from './signup';
+import login from './login';
 import teams from './teams';
 
 export * from './participantPassword';
@@ -13,4 +14,5 @@ export default [
   ...participant,
   ...signup,
   ...teams,
+  ...login,
 ];

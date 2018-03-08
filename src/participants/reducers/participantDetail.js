@@ -21,6 +21,10 @@ export default combine(defaultState, {
     ready: true,
     valid: true,
   }),
+  [constants.PARTICIPANT_LOGIN]: state => ({
+    ...state,
+    valid: false,
+  }),
   [constants.PARTICIPANT_LOGOUT]: state => ({
     ...state,
     data: null,
