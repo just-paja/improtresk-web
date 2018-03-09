@@ -23,7 +23,8 @@ const apiFetchAuthorized = (url, { auth, ...params }) =>
 export const fetchArchivedYear = ({ year, ...params }) =>
   apiFetch(`years/${idFromSlug(year)}/`, params);
 
-export const fetchAccomodation = params => apiFetch('accomodations/', params);
+export const fetchAccomodation = ({ year, ...params }) =>
+  apiFetch(`years/${year}/accomodation/`, params);
 
 export const fetchCapacity = ({ year, ...params }) =>
   apiFetch(`years/${year}/capacity/`, params);
