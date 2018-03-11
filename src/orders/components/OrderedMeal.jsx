@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import HumanDate from '../../components/HumanDate';
+import Message from '../../containers/Message';
 import FoodChoice from './FoodChoice';
 
 const OrderedMeal = ({
@@ -10,12 +11,15 @@ const OrderedMeal = ({
   food,
   name,
   soup,
-  translate,
 }) => (
   <div>
-    <h4>{translate(`orders.${name}`)} <HumanDate date={date} /></h4>
-    <div>{translate('orders.soup')}: <FoodChoice foodName={soup} translate={translate} useDefault={useDefault} /></div>
-    <div>{translate('orders.mainCourse')}: <FoodChoice foodName={food} translate={translate} useDefault={useDefault} /></div>
+    <h4><Message name={`orders.${name}`} /> <HumanDate date={date} /></h4>
+    <div>
+      <Message name="orders.soup" />: <FoodChoice foodName={soup} useDefault={useDefault} />
+    </div>
+    <div>
+      <Message name="orders.mainCourse" />: <FoodChoice foodName={food} useDefault={useDefault} />
+    </div>
   </div>
 );
 
@@ -24,7 +28,6 @@ OrderedMeal.propTypes = {
   food: PropTypes.node,
   name: PropTypes.string.isRequired,
   soup: PropTypes.node,
-  translate: PropTypes.func.isRequired,
   useDefault: PropTypes.bool,
 };
 

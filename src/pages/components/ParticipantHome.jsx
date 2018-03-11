@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 import Container from '../../components/Container';
 import OrderList from '../../orders/containers/OrderList';
-import RegistrationStatus from '../../orders/containers/RegistrationStatus';
 import Prop from '../../components/Prop';
+import RegistrationStatus from '../../orders/containers/RegistrationStatus';
 
 const ParticipantHome = ({
   onLogout,

@@ -1,7 +1,9 @@
 import Label from 'reactstrap/lib/Label';
+import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Message from '../../containers/Message';
 import OrderTimeout from './OrderTimeout';
 
 const OrderStatus = ({
@@ -10,27 +12,30 @@ const OrderStatus = ({
   confirmed,
   endsAt,
   paid,
-  translate,
 }) => {
   if (canceled) {
-    return <Label color="danger">{translate('orders.canceled')}</Label>;
+    return <Label color="danger"><Message name="orders.canceled" /></Label>;
   }
 
   if (assigned) {
-    return <Label color="success">{translate('orders.assigned')}</Label>;
+    return <Label color="success"><Message name="orders.assigned" /></Label>;
   }
 
   if (paid) {
-    return <Label color="info">{translate('orders.waitingToBeAssigned')}</Label>;
+    return <Label color="info"><Message name="orders.waitingToBeAssigned" /></Label>;
+  }
+
+  if (moment().isAfter(endsAt)) {
+    return <Label color="warning"><Message name="orders.timedOut" /></Label>;
   }
 
   if (confirmed) {
     return (
       <span>
-        <Label color="warning">{translate('orders.waitingToBePaid')}</Label>
+        <Label color="warning"><Message name="orders.waitingToBePaid" /></Label>
         <span>
           {' '}
-          <OrderTimeout endsAt={endsAt} translate={translate} />
+          <OrderTimeout endsAt={endsAt} />
         </span>
       </span>
     );
@@ -38,9 +43,9 @@ const OrderStatus = ({
 
   return (
     <span>
-      <Label color="danger">{translate('orders.unconfirmed')}</Label>
+      <Label color="danger"><Message name="orders.unconfirmed" /></Label>
       {' '}
-      <OrderTimeout endsAt={endsAt} translate={translate} />
+      <OrderTimeout endsAt={endsAt} />
     </span>
   );
 };
@@ -51,7 +56,6 @@ OrderStatus.propTypes = {
   confirmed: PropTypes.bool,
   endsAt: PropTypes.string.isRequired,
   paid: PropTypes.bool,
-  translate: PropTypes.func.isRequired,
 };
 
 OrderStatus.defaultProps = {

@@ -27,6 +27,20 @@ describe('OrderList component', () => {
         ]}
       />
     );
-    expect(comp.find('OrderListItem')).toHaveProp('price', 666);
+    expect(comp.find('OrderListItem')).toHaveProp('order', {
+      id: 457,
+      symvar: '897233289732',
+      endsAt: '2018-05-09',
+      createdAt: '2018-05-09',
+      price: 666,
+      meals: [
+        {
+          date: '2018-05-12',
+          id: '10',
+          name: 'dinner',
+          price: 10,
+        },
+      ],
+    });
   });
 });

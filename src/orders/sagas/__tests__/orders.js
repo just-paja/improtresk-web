@@ -339,7 +339,7 @@ describe('Orders sagas', () => {
 
   it('orderSubmit sends the order form', () => {
     const saga = sagas.orderSubmit();
-    expect(saga.next().value).toEqual(select(getForm, 'order'));
+    saga.next();
     expect(saga.next({
       values: { foo: 'bar' },
     }).value).toEqual(call(

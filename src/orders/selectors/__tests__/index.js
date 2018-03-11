@@ -91,6 +91,7 @@ describe('Order selectors', () => {
       meals: [],
       paid: false,
       workshop: null,
+      year: null,
     });
   });
 
@@ -1076,6 +1077,7 @@ describe('Order selectors', () => {
         createdAt: '2017-12-13',
         meals: [],
         workshop: null,
+        year: null,
       },
       {
         accomodation: null,
@@ -1083,6 +1085,7 @@ describe('Order selectors', () => {
         createdAt: '2017-12-12',
         meals: [],
         workshop: null,
+        year: null,
       },
       {
         accomodation: null,
@@ -1090,6 +1093,7 @@ describe('Order selectors', () => {
         createdAt: '2017-12-12',
         meals: [],
         workshop: null,
+        year: null,
       },
       {
         accomodation: null,
@@ -1097,6 +1101,7 @@ describe('Order selectors', () => {
         createdAt: '2017-01-12',
         meals: [],
         workshop: null,
+        year: null,
       },
     ]);
   });

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Row from 'reactstrap/lib/Row';
 
+import Message from '../../containers/Message';
 import OrderedMeal from './OrderedMeal';
 
 const FoodSummary = ({
   closed,
   meals,
-  translate,
-}) => (meals.length === 0 ? <div>{translate('orders.foodNotOrdered')}</div> : (
+}) => (meals.length === 0 ? <div><Message name="orders.foodNotOrdered" /></div> : (
   <Row>
     {meals.map(meal => (
       <Col key={meal.id} sm={4}>
@@ -18,7 +18,6 @@ const FoodSummary = ({
           food={meal.orderedFood ? meal.orderedFood.name : null}
           name={meal.name}
           soup={meal.orderedSoup ? meal.orderedSoup.name : null}
-          translate={translate}
           useDefault={closed}
         />
       </Col>
@@ -29,7 +28,6 @@ const FoodSummary = ({
 FoodSummary.propTypes = {
   closed: PropTypes.bool,
   meals: PropTypes.arrayOf(PropTypes.object).isRequired,
-  translate: PropTypes.func.isRequired,
 };
 
 FoodSummary.defaultProps = {

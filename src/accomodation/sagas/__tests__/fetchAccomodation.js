@@ -1,33 +1,56 @@
-import { call, takeLatest } from 'redux-saga/effects';
-
-import { fetchResourceIfRequired } from '../../../sagas/api';
-import { isAccomodationListRequired } from '../../selectors';
+import sinon from 'sinon';
 
 import * as api from '../../../api';
-import * as sagas from '..';
+
+import getSagaTester from '../../../../mock/sagaTester';
+import sagas from '..';
 
 describe('Accomodation sagas', () => {
-  it('fetchAccomodationList triggers fetch if needed', () => {
-    const gen = sagas.fetchAccomodationList();
-    expect(gen.next().value).toEqual(
-      call(fetchResourceIfRequired, api.fetchAccomodation, {
-        isRequired: isAccomodationListRequired,
-        actions: {
-          start: 'ACCOMODATION_FETCH_STARTED',
-          success: 'ACCOMODATION_FETCH_SUCCESS',
-          fail: 'ACCOMODATION_FETCH_ERROR',
-        },
-      })
-    );
-    expect(gen.next().done).toBe(true);
+  beforeEach(() => {
+    sinon.stub(api, 'fetchAccomodation');
   });
 
-  it('requireAccomodationList triggers fetch if needed', () => {
-    const gen = sagas.requireAccomodationList();
-    expect(gen.next().value).toEqual(takeLatest(
-      'ACCOMODATION_REQUIRED',
-      sagas.fetchAccomodationList
-    ));
-    expect(gen.next().done).toBe(true);
+  afterEach(() => {
+    api.fetchAccomodation.restore();
+  });
+
+  it('fetchAccomodationList triggers fetch if needed', () => {
+    const sagaTester = getSagaTester({
+      years: {
+        list: {
+          data: [
+            {
+              id: 200,
+              year: '2017',
+              current: true,
+            },
+          ],
+        },
+      },
+    });
+    api.fetchAccomodation.returns({
+      ok: true,
+      status: 200,
+      json: () => ([
+        {
+          id: 20,
+          name: 'DK Milevsko',
+        },
+      ]),
+    });
+    sagaTester.runAll(sagas);
+    sagaTester.dispatch({ type: 'ACCOMODATION_REQUIRED' });
+    expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
+      type: 'ACCOMODATION_FETCH_STARTED',
+    }));
+    expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
+      type: 'ACCOMODATION_FETCH_SUCCESS',
+    }));
+    expect(sagaTester.getState().accomodation.list.data).toEqual([
+      {
+        id: 20,
+        name: 'DK Milevsko',
+      },
+    ]);
   });
 });

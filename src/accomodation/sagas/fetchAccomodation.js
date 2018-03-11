@@ -9,7 +9,6 @@ import * as constants from '../constants';
 
 export function* fetchAccomodationList() {
   const year = yield select(yearActiveNumber);
-  console.log(year);
   yield call(fetchResourceIfRequired, api.fetchAccomodation, {
     isRequired: isAccomodationListRequired,
     actions: {

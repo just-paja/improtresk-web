@@ -4,6 +4,7 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import { sendForm } from '../../forms/sagas/sendForm';
 import { redirectHome } from '../../sagas/redirects';
+import { getApiAuth } from '../../selectors/session';
 import { getLoginForm } from '../selectors';
 
 import {
@@ -35,8 +36,14 @@ function* loginWithAuthKey(action) {
 }
 
 function* loginWithCookie() {
-  const auth = cookie.getJSON('auth');
+  let auth = yield select(getApiAuth);
+
+  if (!auth || !auth.access_token) {
+    auth = cookie.getJSON('auth');
+  }
+
   yield put({ type: constants.PARTICIPANT_LOGIN_AUTO });
+
   if (auth && auth.access_token) {
     yield put({
       type: constants.PARTICIPANT_LOGIN_AUTO_SUCCESS,

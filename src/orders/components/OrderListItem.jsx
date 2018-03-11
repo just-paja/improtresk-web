@@ -1,20 +1,28 @@
 import ListGroupItem from 'reactstrap/lib/ListGroupItem';
-import PropTypes from 'prop-types';
 import React from 'react';
 
-import HumanDate from '../../components/HumanDate';
-import Price from '../../components/Price';
+import { Order } from '../../proptypes';
 
-const OrderListItem = ({ createdAt, price }) => (
+import Flex from '../../components/Flex';
+import FlexLabel from '../../components/FlexLabel';
+import Message from '../../containers/Message';
+import OrderStatusLabel from './OrderStatusLabel';
+
+const OrderListItem = ({ order }) => (
   <ListGroupItem>
-    <HumanDate date={createdAt} />
-    <Price price={price} />
+    <Flex justify="between">
+      <FlexLabel>
+        <span>{order.year ? order.year.year : null}</span>
+        <Message name="orders.number" data={{ symvar: order.symvar }} />
+      </FlexLabel>
+      {order.workshop ? order.workshop.name : null}
+      <OrderStatusLabel {...order.status} endsAt={order.reservation.endsAt} />
+    </Flex>
   </ListGroupItem>
 );
 
 OrderListItem.propTypes = {
-  createdAt: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  order: Order.isRequired,
 };
 
 export default OrderListItem;

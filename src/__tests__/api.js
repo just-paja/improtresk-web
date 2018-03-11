@@ -11,10 +11,10 @@ describe('API helper', () => {
 
   it('fetchAccomodation calls for accomodation', () => {
     nock(apiSource)
-      .get('/accomodations/')
+      .get('/years/2017/accomodation/')
       .reply(200, []);
 
-    return api.fetchAccomodation({ apiSource })
+    return api.fetchAccomodation({ apiSource, year: '2017' })
       .then(() => {
         expect(nock.isDone()).toBe(true);
       });

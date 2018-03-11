@@ -30,6 +30,7 @@ export function* requireParticipant() {
   yield takeEvery(
     [
       constants.PARTICIPANT_LOGIN,
+      constants.PARTICIPANT_LOGIN_AUTO,
       constants.PARTICIPANT_LOGIN_AUTO_SUCCESS,
     ],
     fetchParticipantShowHome

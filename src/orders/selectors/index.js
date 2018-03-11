@@ -6,6 +6,7 @@ import { isRequired, getProgress, transformData } from 'react-saga-rest';
 import { getForm } from '../../forms/selectors';
 import { getAccomodationList, getAccomodationListState } from '../../accomodation/selectors';
 import { getMealList, getMealListState } from '../../food/selectors';
+import { yearsAll, yearActive } from '../../years/selectors';
 import {
   getWorkshopList,
   getWorkshopListState,
@@ -27,9 +28,9 @@ const sortOrders = (a, b) => {
 
 export const aggregateAccomodation = (item, accomodationList) => {
   let accomodation = null;
-  if (item && item.accomodation) {
+  if (item && item.reservation && item.reservation.accomodation) {
     accomodation = accomodationList.find(
-      a => a.id === item.accomodation
+      a => a.id === item.reservation.accomodation
     ) || null;
   }
   return ({ ...item, accomodation });
@@ -48,10 +49,23 @@ export const aggregateMeals = (item, mealMenu) => {
 
 export const aggregateWorkshop = (item, workshops) => {
   let workshop = null;
-  if (item && item.workshopPrice && item.workshopPrice.workshop) {
-    workshop = workshops.find(ws => ws.id === item.workshopPrice.workshop) || null;
+  if (
+    item &&
+    item.reservation &&
+    item.reservation.workshopPrice &&
+    item.reservation.workshopPrice.workshop
+  ) {
+    workshop = workshops.find(ws => ws.id === item.reservation.workshopPrice.workshop) || null;
   }
   return ({ ...item, workshop });
+};
+
+export const aggregateYear = (item, years) => {
+  let year = null;
+  if (item && item.year) {
+    year = years.find(yearItem => yearItem.id === item.year) || null;
+  }
+  return ({ ...item, year });
 };
 
 export const isOrderListRequired = isRequired(getOrderListState);
@@ -71,6 +85,10 @@ export const getOrderList = transformData(getOrderListState, {
       select: getAccomodationList,
       transform: aggregateAccomodation,
     },
+    {
+      select: yearsAll,
+      transform: aggregateYear,
+    },
   ],
 });
 
@@ -82,8 +100,15 @@ export const getLatestOrder = createSelector(
 );
 
 export const getActiveOrder = createSelector(
-  getOrderList,
-  orders => orders[0] || null
+  [getOrderList, yearActive],
+  (orders, year) => {
+    if (year) {
+      console.log(orders, year);
+      const filtered = orders.filter(order => order.year && order.year.id === year.id);
+      return filtered[0] || null;
+    }
+    return null;
+  }
 );
 
 export const getUnconfirmedOrder = createSelector(

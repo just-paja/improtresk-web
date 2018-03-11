@@ -3,19 +3,19 @@ import React from 'react';
 import UncontrolledTooltip from 'reactstrap/lib/UncontrolledTooltip';
 
 import Countdown from '../../components/Countdown';
+import Message from '../../containers/Message';
 
-const OrderTimeout = ({ endsAt, translate }) => (
+const OrderTimeout = ({ endsAt }) => (
   <div id="reservation-trigger-tooltip">
     <UncontrolledTooltip placement="bottom" target="reservation-trigger-tooltip">
-      {translate('orders.orderExpiresHelp')}
+      <Message name="orders.orderExpiresHelp" />
     </UncontrolledTooltip>
-    <Countdown countdownMessage={translate('orders.expiresIn')} date={endsAt} />
+    <Countdown countdownMessage="orders.expiresIn" readyMessage="orders.timedOut" date={endsAt} />
   </div>
 );
 
 OrderTimeout.propTypes = {
   endsAt: PropTypes.string.isRequired,
-  translate: PropTypes.func.isRequired,
 };
 
 export default OrderTimeout;

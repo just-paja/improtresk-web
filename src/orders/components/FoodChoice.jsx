@@ -1,19 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const FoodChoice = ({ foodName, translate, useDefault }) => {
+import Message from '../../containers/Message';
+
+const FoodChoice = ({ foodName, useDefault }) => {
   if (foodName) {
     return <span>{foodName}</span>;
   }
   if (useDefault) {
-    return <span className="text-muted">{translate('orders.defaultFood')}</span>;
+    return <span className="text-muted"><Message name="orders.defaultFood" /></span>;
   }
-  return <span className="text-danger">{translate('orders.foodNotSelected')}</span>;
+  return <span className="text-danger"><Message name="orders.foodNotSelected" /></span>;
 };
 
 FoodChoice.propTypes = {
   foodName: PropTypes.string,
-  translate: PropTypes.func.isRequired,
   useDefault: PropTypes.bool,
 };
 

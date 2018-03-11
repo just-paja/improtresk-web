@@ -40,7 +40,10 @@ describe('OrderList container', () => {
               endsAt: '2017-05-09',
               symvar: '34598289',
               id: 432,
-              accomodation: 5,
+              reservation: {
+                accomodation: 5,
+              },
+              year: 150,
               price: 434,
             },
           ],
@@ -105,9 +108,17 @@ describe('OrderList container', () => {
           name: 'Something new',
           capacityStatus: {},
         },
+        reservation: {
+          accomodation: 5,
+        },
         price: 434,
         workshop: null,
         meals: [],
+        year: {
+          id: 150,
+          current: true,
+          topic: 'foo',
+        },
       },
     ]);
   });

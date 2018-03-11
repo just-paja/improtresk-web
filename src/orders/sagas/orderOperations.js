@@ -4,9 +4,14 @@ import { fetchResource } from '../../sagas/api';
 import { getForm } from '../../forms/selectors';
 import { getWorkshopList } from '../../workshops/selectors';
 import { getCheapestAccomodation } from '../../accomodation/selectors';
-import { getLatestOrder, getOrderedMeals, getUnconfirmedOrder } from '../selectors';
 import { yearActiveNumber } from '../../years/selectors';
 import { redirectHome, redirectOrderConfirm } from '../../sagas/redirects';
+import {
+  getLatestOrder,
+  getOrderedMeals,
+  getOrderForm,
+  getUnconfirmedOrder,
+} from '../selectors';
 
 import { sendForm } from '../../forms/sagas/sendForm';
 
@@ -71,7 +76,7 @@ export function* orderConfirm() {
 }
 
 export function* orderSubmit() {
-  const form = yield select(getForm, 'order');
+  const form = yield select(getOrderForm);
   yield call(sendForm, api.orderCreate, 'order', form.values);
 }
 

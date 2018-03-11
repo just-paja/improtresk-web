@@ -8,4 +8,6 @@ export const requireOrderList = () => ({
   type: constants.ORDERS_REQUIRED,
 });
 
-export default {};
+export const confirmOrder = () => ({
+  type: constants.ORDER_CONFIRM_REQUESTED,
+});
