@@ -36,10 +36,9 @@ export default class ForgottenPassword extends Component {
               </Alert>
             ) : (
               <ResetPassword
-                form="resetPassword"
+                formData={resetPassword}
                 onChange={onResetPasswordChange}
                 onSubmit={onResetPasswordSubmit}
-                {...resetPassword}
               />
             )}
           </Col>

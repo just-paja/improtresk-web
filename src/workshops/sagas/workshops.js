@@ -1,4 +1,4 @@
-import { call, select, takeLatest } from 'redux-saga/effects';
+import { call, select, takeEvery } from 'redux-saga/effects';
 
 import { fetchResourceIfRequired } from '../../sagas/api';
 import {
@@ -33,7 +33,7 @@ export function* requireYearsWorkshops() {
 }
 
 export function* requireWorkshopDifficulties() {
-  yield takeLatest(
+  yield takeEvery(
     constants.WORKSHOP_DIFFICULTIES_REQUIRED,
     fetchResourceIfRequired,
     api.fetchWorkshopDifficulties,
@@ -68,14 +68,14 @@ export function* requireYearsWorkshopLocations() {
 }
 
 export function* requireWorkshopLocations() {
-  yield takeLatest(
+  yield takeEvery(
     constants.WORKSHOP_LOCATIONS_REQUIRED,
     requireYearsWorkshopLocations
   );
 }
 
 export function* requireWorkshops() {
-  yield takeLatest(constants.WORKSHOPS_REQUIRED, requireYearsWorkshops);
+  yield takeEvery(constants.WORKSHOPS_REQUIRED, requireYearsWorkshops);
 }
 
 export function* fetchWorkshopDetail() {
@@ -102,7 +102,7 @@ export function* fetchWorkshopDetail() {
 }
 
 export function* requireWorkshopDetail() {
-  yield takeLatest(
+  yield takeEvery(
     constants.WORKSHOP_DETAIL_REQUIRED,
     fetchWorkshopDetail
   );

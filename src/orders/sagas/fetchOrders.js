@@ -1,6 +1,9 @@
-import { call, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 
 import { fetchResourceIfRequired } from '../../sagas/api';
+import { requireAccomodationList } from '../../accomodation/actions';
+import { requireMealList } from '../../food/actions';
+import { requireWorkshopList } from '../../workshops/actions';
 import { isOrderListRequired } from '../selectors';
 
 import * as constants from '../constants';
@@ -17,13 +20,22 @@ export function* fetchOrderList() {
   });
 }
 
-export function* requireOrderList() {
-  yield takeEvery(
+function* requireOrderList() {
+  yield put(requireMealList());
+  yield put(requireAccomodationList());
+  yield put(requireWorkshopList());
+  yield call(fetchOrderList);
+}
+
+export function* onOrderListRequire() {
+  yield takeEvery([
     constants.ORDERS_REQUIRED,
-    fetchOrderList
-  );
+    constants.ORDER_CANCEL_FETCH_SUCCESS,
+    constants.ORDERS_INVALIDATE,
+    constants.ORDER_CONFIRM_FETCH_SUCCESS,
+  ], requireOrderList);
 }
 
 export default [
-  requireOrderList,
+  onOrderListRequire,
 ];

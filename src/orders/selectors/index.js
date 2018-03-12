@@ -7,6 +7,7 @@ import { getForm } from '../../forms/selectors';
 import { getAccomodationList, getAccomodationListState } from '../../accomodation/selectors';
 import { getMealList, getMealListState } from '../../food/selectors';
 import { yearsAll, yearActive } from '../../years/selectors';
+import { getParticipantDetail } from '../../participants/selectors';
 import {
   getWorkshopList,
   getWorkshopListState,
@@ -38,9 +39,9 @@ export const aggregateAccomodation = (item, accomodationList) => {
 
 export const aggregateMeals = (item, mealMenu) => {
   let meals = [];
-  if (item && item.mealReservation) {
-    meals = item.mealReservation.reduce((accumulator, current) => {
-      const meal = mealMenu.find(m => m.id === current.id);
+  if (item && item.reservation && item.reservation.mealReservation) {
+    meals = item.reservation.mealReservation.reduce((accumulator, current) => {
+      const meal = mealMenu.find(m => m.id === current.meal);
       return meal ? accumulator.concat([meal]) : accumulator;
     }, []);
   }
@@ -58,6 +59,21 @@ export const aggregateWorkshop = (item, workshops) => {
     workshop = workshops.find(ws => ws.id === item.reservation.workshopPrice.workshop) || null;
   }
   return ({ ...item, workshop });
+};
+
+export const aggregateAssignment = (item, participant) => {
+  let assigned = false;
+  if (
+    item &&
+    item.reservation &&
+    item.reservation.workshopPrice &&
+    item.reservation.workshopPrice.workshop &&
+    participant &&
+    participant.assignments
+  ) {
+    assigned = participant.assignments.indexOf(item.reservation.workshopPrice.workshop) !== -1;
+  }
+  return ({ ...item, assigned });
 };
 
 export const aggregateYear = (item, years) => {
@@ -89,22 +105,24 @@ export const getOrderList = transformData(getOrderListState, {
       select: yearsAll,
       transform: aggregateYear,
     },
+    {
+      select: getParticipantDetail,
+      transform: aggregateAssignment,
+    },
   ],
 });
 
 export const getOrderListProgress = getProgress(getOrderListState);
 
-export const getLatestOrder = createSelector(
-  getOrderList,
-  orders => orders[0] || null
-);
-
 export const getActiveOrder = createSelector(
   [getOrderList, yearActive],
   (orders, year) => {
     if (year) {
-      console.log(orders, year);
-      const filtered = orders.filter(order => order.year && order.year.id === year.id);
+      const filtered = orders.filter(order => (
+        !order.cancelled &&
+        order.year &&
+        order.year.id === year.id
+      ));
       return filtered[0] || null;
     }
     return null;
@@ -114,7 +132,7 @@ export const getActiveOrder = createSelector(
 export const getUnconfirmedOrder = createSelector(
   getOrderList,
   orders => orders.find(
-    order => !order.confirmed && !order.paid && !order.canceled
+    order => !order.confirmed && !order.paid && !order.cancelled
   ) || null
 );
 
@@ -183,7 +201,7 @@ export const getOrderFormAccomodationPrice = transformData(getOrderForm, [
 ]);
 
 export const getOrderedMeals = createSelector(
-  [getLatestOrder, getMealList],
+  [getActiveOrder, getMealList],
   (order, meals) => {
     if (!order || !order.reservation) {
       return [];

@@ -50,6 +50,9 @@ describe('OrderList container', () => {
           valid: true,
         },
       },
+      participants: {
+        detail: {},
+      },
       workshops: {
         lectors: {
           list: {
@@ -99,6 +102,7 @@ describe('OrderList container', () => {
   it('provides order list list', () => {
     expect(comp.dive().dive().find('OrderList')).toHaveProp('orders', [
       {
+        assigned: false,
         id: 432,
         createdAt: '2017-04-09',
         endsAt: '2017-05-09',

@@ -9,12 +9,12 @@ export function* redirect(dest) {
   yield put(push(reverse(lang, dest)));
 }
 
-export function* redirectHome() {
-  yield redirect('participantHome');
+export function* redirectSignup() {
+  yield redirect('signup');
 }
 
-export function* redirectOrderConfirm() {
-  yield redirect('participantConfirmOrder');
+export function* redirectHome() {
+  yield redirect('participantHome');
 }
 
 export default { redirectHome };

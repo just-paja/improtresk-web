@@ -1,4 +1,4 @@
-import { takeLatest } from 'redux-saga/effects';
+import { takeEvery } from 'redux-saga/effects';
 
 import { fetchResourceIfRequired } from '../../sagas/api';
 import { isLectorListRequired, isLectorRolesListRequired } from '../selectors/lectors';
@@ -7,7 +7,7 @@ import * as api from '../../api';
 import * as constants from '../constants';
 
 export function* requireLectorRoles() {
-  yield takeLatest(
+  yield takeEvery(
     constants.LECTOR_ROLES_REQUIRED,
     fetchResourceIfRequired,
     api.fetchLectorRoles,
@@ -23,7 +23,7 @@ export function* requireLectorRoles() {
 }
 
 export function* requireLectors() {
-  yield takeLatest(
+  yield takeEvery(
     constants.LECTORS_REQUIRED,
     fetchResourceIfRequired,
     api.fetchLectors,

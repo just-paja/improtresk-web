@@ -20,6 +20,8 @@ describe('RegistrationStatus component', () => {
   it('renders registration button when user has no order and registrations are still open', () => {
     const comp = shallow(
       <RegistrationStatus
+        onCancel={() => {}}
+        onConfirm={() => {}}
         registrationsCloseDate="2017-05-09T00:00:01"
         activeOrder={null}
       />
@@ -30,6 +32,8 @@ describe('RegistrationStatus component', () => {
   it('does not render registration button when user has no order and registrations are closed', () => {
     const comp = shallow(
       <RegistrationStatus
+        onCancel={() => {}}
+        onConfirm={() => {}}
         registrationsCloseDate="2017-05-09T00:00:00"
         activeOrder={null}
       />
@@ -40,6 +44,8 @@ describe('RegistrationStatus component', () => {
   it('renders registrations countdown when user has no order', () => {
     const comp = shallow(
       <RegistrationStatus
+        onCancel={() => {}}
+        onConfirm={() => {}}
         registrationsCloseDate="2017-05-09T00:00:01"
         activeOrder={null}
       />
@@ -50,6 +56,8 @@ describe('RegistrationStatus component', () => {
   it('renders registration details when user has an active order', () => {
     const comp = shallow(
       <RegistrationStatus
+        onCancel={() => {}}
+        onConfirm={() => {}}
         registrationsCloseDate="2017-05-09"
         activeOrder={{
           id: 501,

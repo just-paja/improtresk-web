@@ -2,12 +2,12 @@ import { connect } from 'react-redux';
 
 import ForgottenPassword from './components/ForgottenPassword';
 
-import { getForm } from '../forms/selectors';
+import { getResetPasswordForm } from '../participants/selectors';
 
 import { formChange, formClear, formSubmit } from '../forms/actions';
 
 const mapStateToProps = state => ({
-  resetPassword: getForm(state, 'resetPassword'),
+  resetPassword: getResetPasswordForm(state),
 });
 
 export default connect(mapStateToProps, {

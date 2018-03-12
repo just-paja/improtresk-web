@@ -1,4 +1,4 @@
-import { call, select, takeLatest } from 'redux-saga/effects';
+import { call, select, takeEvery } from 'redux-saga/effects';
 
 import { fetchResourceIfRequired } from '../../sagas/api';
 import { isMealListRequired } from '../selectors';
@@ -29,7 +29,7 @@ export function* fetchMeals() {
 }
 
 export function* onMealsRequired() {
-  yield takeLatest(MEALS_REQUIRED, fetchMeals);
+  yield takeEvery(MEALS_REQUIRED, fetchMeals);
 }
 
 export default [

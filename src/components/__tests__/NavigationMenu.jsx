@@ -8,6 +8,7 @@ describe('Navigation menu component', () => {
   it('renders link to locations', () => {
     const comp = shallow(
       <NavigationMenu
+        onLogout={() => {}}
         lang="cs"
         currentYear={{ year: '2017', topic: 'Kůže', current: true }}
         translate={msg => msg}
@@ -25,6 +26,7 @@ describe('Navigation menu component', () => {
   it('renders link to accomodation', () => {
     const comp = shallow(
       <NavigationMenu
+        onLogout={() => {}}
         lang="cs"
         currentYear={{ year: '2017', topic: 'Kůže', current: true }}
         translate={msg => msg}
@@ -42,6 +44,7 @@ describe('Navigation menu component', () => {
   it('renders link to food information', () => {
     const comp = shallow(
       <NavigationMenu
+        onLogout={() => {}}
         lang="cs"
         currentYear={{ year: '2017', topic: 'Kůže', current: true }}
         translate={msg => msg}
@@ -59,6 +62,7 @@ describe('Navigation menu component', () => {
   it('renders link to fees information', () => {
     const comp = shallow(
       <NavigationMenu
+        onLogout={() => {}}
         lang="cs"
         currentYear={{ year: '2017', topic: 'Kůže', current: true }}
         translate={msg => msg}
@@ -76,6 +80,7 @@ describe('Navigation menu component', () => {
   it('renders link to terms and conditions', () => {
     const comp = shallow(
       <NavigationMenu
+        onLogout={() => {}}
         lang="cs"
         currentYear={{ year: '2017', topic: 'Kůže', current: true }}
         translate={msg => msg}
@@ -93,6 +98,7 @@ describe('Navigation menu component', () => {
   it('renders link to tips', () => {
     const comp = shallow(
       <NavigationMenu
+        onLogout={() => {}}
         lang="cs"
         currentYear={{ year: '2017', topic: 'Kůže', current: true }}
         translate={msg => msg}
@@ -110,6 +116,7 @@ describe('Navigation menu component', () => {
   it('renders link to workshops', () => {
     const comp = shallow(
       <NavigationMenu
+        onLogout={() => {}}
         lang="cs"
         currentYear={{ year: '2017', topic: 'Kůže', current: true }}
         translate={msg => msg}
@@ -127,6 +134,7 @@ describe('Navigation menu component', () => {
   it('renders link to signup given user is logged out', () => {
     const comp = shallow(
       <NavigationMenu
+        onLogout={() => {}}
         lang="cs"
         currentYear={{ year: '2017', topic: 'Kůže', current: true }}
         translate={msg => msg}
@@ -144,6 +152,7 @@ describe('Navigation menu component', () => {
   it('renders without link to signup given user is logged in', () => {
     const comp = shallow(
       <NavigationMenu
+        onLogout={() => {}}
         lang="cs"
         currentYear={{ year: '2017', topic: 'Kůže', current: true }}
         translate={msg => msg}
@@ -162,6 +171,7 @@ describe('Navigation menu component', () => {
   it('renders link to festival schedule', () => {
     const comp = shallow(
       <NavigationMenu
+        onLogout={() => {}}
         lang="cs"
         currentYear={{ year: '2017', topic: 'Kůže', current: true }}
         translate={msg => msg}
@@ -182,6 +192,7 @@ describe('Navigation menu component', () => {
   it('renders link to archived years', () => {
     const comp = shallow(
       <NavigationMenu
+        onLogout={() => {}}
         lang="cs"
         currentYear={{ year: '2017', topic: 'Kůže', current: true }}
         translate={msg => msg}
@@ -202,6 +213,7 @@ describe('Navigation menu component', () => {
   it('renders link to contact', () => {
     const comp = shallow(
       <NavigationMenu
+        onLogout={() => {}}
         lang="cs"
         currentYear={{ year: '2017', topic: 'Kůže', current: true }}
         translate={msg => msg}
@@ -219,6 +231,7 @@ describe('Navigation menu component', () => {
   it('renders link to user profile given user is logged in', () => {
     const comp = shallow(
       <NavigationMenu
+        onLogout={() => {}}
         lang="cs"
         currentYear={{ year: '2017', topic: 'Kůže', current: true }}
         translate={msg => msg}
@@ -232,14 +245,14 @@ describe('Navigation menu component', () => {
         ]}
       />
     );
-    expect(comp.find({
-      to: '/cs/ucastnik',
-    }).children('NavLink').children().at(2)).toIncludeText('Foo');
+    expect(comp.find({ to: '/cs/ucastnik' })).toHaveLength(1);
+    expect(comp.find({ children: 'Foo' })).toHaveLength(1);
   });
 
   it('renders without link to user profile given user is logged out', () => {
     const comp = shallow(
       <NavigationMenu
+        onLogout={() => {}}
         lang="cs"
         currentYear={{ year: '2017', topic: 'Kůže', current: true }}
         translate={msg => msg}

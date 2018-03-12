@@ -5,7 +5,6 @@ import { getApiAuth } from '../../../selectors/session';
 import {
   isParticipantRequired,
 } from '../../selectors';
-import { redirectHome } from '../../../sagas/redirects';
 import {
   fetchParticipantShowHome,
   fetchParticipantOnLogin,
@@ -57,13 +56,15 @@ describe('Participant sagas', () => {
         },
       }
     ));
-    expect(saga.next().value).toEqual(call(redirectHome));
     expect(saga.next().done).toBe(true);
   });
 
   it('logout revokes token and redirects to signup page', () => {
     const saga = logout();
-    expect(saga.next().value).toEqual(
+    expect(saga.next().value).toEqual(select(getApiAuth));
+    expect(saga.next({
+      access_token: 'foo',
+    }).value).toEqual(
       call(fetchResource, api.logout, {
         actions: {
           start: 'PARTICIPANT_TOKEN_REVOKE_START',
@@ -72,7 +73,6 @@ describe('Participant sagas', () => {
         },
       })
     );
-    expect(saga.next().value).toEqual(call(redirectHome));
     expect(saga.next().done).toBe(true);
   });
 });

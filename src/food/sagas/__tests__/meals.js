@@ -1,4 +1,4 @@
-import { call, select, takeLatest } from 'redux-saga/effects';
+import { call, select, takeEvery } from 'redux-saga/effects';
 
 import { fetchResourceIfRequired } from '../../../sagas/api';
 import { yearActiveNumber } from '../../../years/selectors';
@@ -10,7 +10,7 @@ import * as sagas from '..';
 describe('Meals sagas', () => {
   it('onMealsRequired triggers fetchMeals', () => {
     const saga = sagas.onMealsRequired();
-    expect(saga.next().value).toEqual(takeLatest(
+    expect(saga.next().value).toEqual(takeEvery(
       'MEALS_REQUIRED',
       sagas.fetchMeals
     ));

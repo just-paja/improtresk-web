@@ -1,7 +1,11 @@
 import { call, select, takeLatest } from 'redux-saga/effects';
 
 import { sendForm } from '../../forms/sagas/sendForm';
-import { getForm } from '../../forms/selectors';
+import {
+  getChangePasswordForm,
+  getNewPasswordForm,
+  getResetPasswordForm,
+} from '../selectors';
 
 import { FORM_SUBMIT_ALLOWED } from '../../forms/constants';
 
@@ -17,7 +21,7 @@ export const selectPasswordNewSubmit = action =>
   action.type === FORM_SUBMIT_ALLOWED && action.form === 'newPassword';
 
 export function* passwordReset() {
-  const password = yield select(getForm, 'resetPassword');
+  const password = yield select(getResetPasswordForm);
   yield call(
     sendForm,
     api.resetPassword,
@@ -27,7 +31,7 @@ export function* passwordReset() {
 }
 
 export function* passwordNew() {
-  const password = yield select(getForm, 'newPassword');
+  const password = yield select(getNewPasswordForm);
   yield call(
     sendForm,
     api.newPassword,
@@ -37,7 +41,7 @@ export function* passwordNew() {
 }
 
 export function* passwordChange() {
-  const password = yield select(getForm, 'changePassword');
+  const password = yield select(getChangePasswordForm);
   yield call(
     sendForm,
     api.changePassword,

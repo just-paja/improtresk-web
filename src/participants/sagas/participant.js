@@ -5,7 +5,7 @@ import { call, select, takeEvery } from 'redux-saga/effects';
 import { fetchResource, fetchResourceIfRequired } from '../../sagas/api';
 import { getApiAuth } from '../../selectors/session';
 import { isParticipantRequired } from '../selectors';
-import { redirectHome } from '../../sagas/redirects';
+import { redirectSignup } from '../../sagas/redirects';
 
 import * as api from '../../api';
 import * as constants from '../constants';
@@ -22,7 +22,6 @@ export function* fetchParticipantShowHome() {
         fail: constants.PARTICIPANT_FETCH_ERROR,
       },
     });
-    yield call(redirectHome);
   }
 }
 
@@ -38,15 +37,24 @@ export function* requireParticipant() {
 }
 
 export function* logout() {
+  const auth = yield select(getApiAuth);
+  if (auth.access_token) {
+    yield call(fetchResource, api.logout, {
+      actions: {
+        start: constants.PARTICIPANT_TOKEN_REVOKE_START,
+        success: constants.PARTICIPANT_TOKEN_REVOKE_SUCCESS,
+        fail: constants.PARTICIPANT_TOKEN_REVOKE_ERROR,
+      },
+    });
+  }
   cookie.set('auth', null);
-  yield call(fetchResource, api.logout, {
-    actions: {
-      start: constants.PARTICIPANT_TOKEN_REVOKE_START,
-      success: constants.PARTICIPANT_TOKEN_REVOKE_SUCCESS,
-      fail: constants.PARTICIPANT_TOKEN_REVOKE_ERROR,
-    },
-  });
-  yield call(redirectHome);
+}
+
+function* afterLogout() {
+  yield takeEvery(
+    constants.PARTICIPANT_TOKEN_REVOKE_SUCCESS,
+    redirectSignup
+  );
 }
 
 export function* logoutOnAction() {
@@ -57,6 +65,7 @@ export function* logoutOnAction() {
 }
 
 export default [
+  afterLogout,
   requireParticipant,
   logoutOnAction,
 ];

@@ -11,3 +11,11 @@ export const requireOrderList = () => ({
 export const confirmOrder = () => ({
   type: constants.ORDER_CONFIRM_REQUESTED,
 });
+
+export const cancelOrder = () => ({
+  type: constants.ORDER_CANCEL_REQUESTED,
+});
+
+export const invalidateOrders = () => ({
+  type: constants.ORDERS_INVALIDATE,
+});

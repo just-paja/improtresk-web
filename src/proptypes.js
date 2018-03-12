@@ -100,10 +100,9 @@ export const NewsItem = PropTypes.shape({
 export const Order = PropTypes.shape({
   accomodation: Accomodation,
   assigned: PropTypes.bool,
-  canceled: PropTypes.bool,
+  cancelled: PropTypes.bool,
   confirmed: PropTypes.bool,
   createdAt: PropTypes.string.isRequired,
-  endsAt: PropTypes.string.isRequired,
   id: ResourceId.isRequired,
   meals: PropTypes.arrayOf(Meal).isRequired,
   overPaid: PropTypes.bool,

@@ -20,8 +20,8 @@ describe('OrderPaymentStatus component', () => {
     expect(comp.find('Connect(Message)[name="orders.overpaid"]')).toHaveLength(1);
   });
 
-  it('renders canceled', () => {
-    const comp = shallow(<OrderPaymentStatus canceled />);
-    expect(comp.find('Connect(Message)[name="orders.paymentCanceled"]')).toHaveLength(1);
+  it('renders cancelled', () => {
+    const comp = shallow(<OrderPaymentStatus cancelled />);
+    expect(comp.find('Connect(Message)[name="orders.paymentCancelled"]')).toHaveLength(1);
   });
 });

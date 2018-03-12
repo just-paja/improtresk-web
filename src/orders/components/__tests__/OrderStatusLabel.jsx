@@ -17,21 +17,14 @@ describe('OrderStatusLabel component', () => {
     clock.restore();
   });
 
-  it('renders unconfirmed message when order is not canceled, not assigned, not paid and not confirmed', () => {
+  it('renders unconfirmed message when order is not cancelled, not assigned, not paid and not confirmed', () => {
     const comp = shallow(
       <OrderStatusLabel endsAt="2017-01-01T01:01:01Z" translate={msg => msg} />
     );
     expect(comp.find('Connect(Message)[name="orders.unconfirmed"]')).toHaveLength(1);
   });
 
-  it('renders timeout message when order is not canceled, not assigned, not paid and not confirmed', () => {
-    const comp = shallow(
-      <OrderStatusLabel endsAt="2017-01-01T01:01:01Z" translate={msg => msg} />
-    );
-    expect(comp.find('OrderTimeout')).toHaveLength(1);
-  });
-
-  it('renders waiting to be paid message when order is confirmed, not canceled, not assigned and not paid', () => {
+  it('renders waiting to be paid message when order is confirmed, not cancelled, not assigned and not paid', () => {
     const comp = shallow(
       <OrderStatusLabel
         confirmed
@@ -42,18 +35,7 @@ describe('OrderStatusLabel component', () => {
     expect(comp.find('Connect(Message)[name="orders.waitingToBePaid"]')).toHaveLength(1);
   });
 
-  it('renders timeout when order is confirmed, not canceled, not assigned and not paid', () => {
-    const comp = shallow(
-      <OrderStatusLabel
-        confirmed
-        endsAt="2017-01-01T01:01:01Z"
-        translate={msg => msg}
-      />
-    );
-    expect(comp.find('OrderTimeout')).toHaveLength(1);
-  });
-
-  it('renders waiting to be assigned when order is paid, not canceled and not assigned', () => {
+  it('renders waiting to be assigned when order is paid, not cancelled and not assigned', () => {
     const comp = shallow(
       <OrderStatusLabel
         paid
@@ -64,7 +46,7 @@ describe('OrderStatusLabel component', () => {
     expect(comp.find('Connect(Message)[name="orders.waitingToBeAssigned"]'));
   });
 
-  it('renders assigned message when order is assigned and not canceled', () => {
+  it('renders assigned message when order is assigned and not cancelled', () => {
     const comp = shallow(
       <OrderStatusLabel
         assigned
@@ -75,14 +57,14 @@ describe('OrderStatusLabel component', () => {
     expect(comp.find('Connect(Message)[name="orders.assigned"]')).toHaveLength(1);
   });
 
-  it('renders canceled message when order is canceled', () => {
+  it('renders cancelled message when order is cancelled', () => {
     const comp = shallow(
       <OrderStatusLabel
-        canceled
+        cancelled
         endsAt="2017-01-01T01:01:01Z"
         translate={msg => msg}
       />
     );
-    expect(comp.find('Connect(Message)[name="orders.canceled"]')).toHaveLength(1);
+    expect(comp.find('Connect(Message)[name="orders.cancelled"]')).toHaveLength(1);
   });
 });

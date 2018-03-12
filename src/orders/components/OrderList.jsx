@@ -7,7 +7,7 @@ import { Order } from '../../proptypes';
 import Message from '../../containers/Message';
 import OrderListItem from './OrderListItem';
 
-const OrderList = ({ orders }) => (
+const OrderList = ({ orders }) => (orders.length > 0 ? (
   <div>
     <hr />
     <h2><Message name="orders.history" /></h2>
@@ -20,7 +20,7 @@ const OrderList = ({ orders }) => (
       ))}
     </ListGroup>
   </div>
-);
+) : null);
 
 OrderList.propTypes = {
   orders: PropTypes.arrayOf(Order).isRequired,

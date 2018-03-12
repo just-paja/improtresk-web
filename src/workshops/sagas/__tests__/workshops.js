@@ -1,4 +1,4 @@
-import { call, select, takeLatest } from 'redux-saga/effects';
+import { call, select, takeEvery } from 'redux-saga/effects';
 
 import { fetchResourceIfRequired } from '../../../sagas/api';
 import {
@@ -24,7 +24,7 @@ import * as api from '../../../api';
 describe('Workshop sagas', () => {
   it('requireWorkshopDifficulties creates fetch actions', () => {
     const saga = requireWorkshopDifficulties();
-    expect(saga.next().value).toEqual(takeLatest(
+    expect(saga.next().value).toEqual(takeEvery(
       'WORKSHOP_DIFFICULTIES_REQUIRED',
       fetchResourceIfRequired,
       api.fetchWorkshopDifficulties,
@@ -42,7 +42,7 @@ describe('Workshop sagas', () => {
 
   it('requireWorkshopLocations creates fetch actions', () => {
     const saga = requireWorkshopLocations();
-    expect(saga.next().value).toEqual(takeLatest(
+    expect(saga.next().value).toEqual(takeEvery(
       'WORKSHOP_LOCATIONS_REQUIRED',
       requireYearsWorkshopLocations
     ));
@@ -51,7 +51,7 @@ describe('Workshop sagas', () => {
 
   it('requireWorkshops creates fetch actions', () => {
     const saga = requireWorkshops();
-    expect(saga.next().value).toEqual(takeLatest(
+    expect(saga.next().value).toEqual(takeEvery(
       'WORKSHOPS_REQUIRED',
       requireYearsWorkshops
     ));
@@ -60,7 +60,7 @@ describe('Workshop sagas', () => {
 
   it('requireWorkshopDetail creates fetch actions', () => {
     const saga = requireWorkshopDetail();
-    expect(saga.next().value).toEqual(takeLatest(
+    expect(saga.next().value).toEqual(takeEvery(
       'WORKSHOP_DETAIL_REQUIRED',
       fetchWorkshopDetail
     ));

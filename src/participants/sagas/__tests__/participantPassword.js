@@ -36,7 +36,7 @@ describe('Participant sagas', () => {
 
   it('passwordNew creates select and fetch actions', () => {
     const gen = sagas.passwordNew();
-    expect(gen.next().value).toEqual(select(getForm, 'newPassword'));
+    gen.next();
     expect(gen.next({
       values: {
         newPassword: 'foo',
@@ -52,7 +52,7 @@ describe('Participant sagas', () => {
 
   it('passwordChange creates select and fetch actions', () => {
     const gen = sagas.passwordChange();
-    expect(gen.next().value).toEqual(select(getForm, 'changePassword'));
+    gen.next();
     expect(gen.next({
       values: {
         oldPassword: 'foo',
@@ -72,7 +72,7 @@ describe('Participant sagas', () => {
 
   it('passwordReset creates select and fetch actions', () => {
     const gen = sagas.passwordReset();
-    expect(gen.next().value).toEqual(select(getForm, 'resetPassword'));
+    gen.next();
     expect(gen.next({
       values: {
         email: 'foo@bar.com',

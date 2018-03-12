@@ -1,9 +1,7 @@
-import Col from 'reactstrap/lib/Col';
 import Card from 'reactstrap/lib/Card';
 import CardBody from 'reactstrap/lib/CardBody';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import Row from 'reactstrap/lib/Row';
 
 import Button from '../components/Button';
 import Message from '../containers/Message';
@@ -13,12 +11,12 @@ import Signup from '../participants/components/Signup';
 export default class UserEntry extends Component {
   constructor() {
     super();
-    this.handleEntrySelection = this.handleEntrySelection.bind(this);
-    this.state = { selection: null };
+    this.handleToggleForm = this.handleToggleForm.bind(this);
+    this.state = {};
   }
 
-  handleEntrySelection(selection) {
-    this.setState({ selection });
+  handleToggleForm() {
+    this.setState({ showRegistration: !this.state.showRegistration });
   }
 
   render() {
@@ -34,7 +32,7 @@ export default class UserEntry extends Component {
 
     const disabled = !!(login.loading || signup.loading);
 
-    if (!this.state.selection) {
+    if (!this.state.showRegistration) {
       return (
         <Card>
           <CardBody>
@@ -51,7 +49,13 @@ export default class UserEntry extends Component {
             <p>
               <Message name="participants.newUserHelp" />
             </p>
-            <Button color="primary" size="lg" icon="wpforms">
+            <Button
+              color="primary"
+              disabled={disabled}
+              icon="wpforms"
+              onClick={this.handleToggleForm}
+              size="lg"
+            >
               <Message name="participants.registration" />
             </Button>
           </CardBody>
@@ -59,8 +63,8 @@ export default class UserEntry extends Component {
       );
     }
     return (
-      <Row>
-        <Col md={6}>
+      <Card>
+        <CardBody>
           <h2><Message name="participants.registration" /></h2>
           <Signup
             disabled={disabled}
@@ -69,8 +73,21 @@ export default class UserEntry extends Component {
             onSubmit={onSignupSubmit}
             teams={teams}
           />
-        </Col>
-      </Row>
+          <hr />
+          <p>
+            <Message name="participants.haveAccount" />
+          </p>
+          <Button
+            color="secondary"
+            disabled={disabled}
+            icon="sign-in"
+            onClick={this.handleToggleForm}
+            size="lg"
+          >
+            <Message name="participants.login" />
+          </Button>
+        </CardBody>
+      </Card>
     );
   }
 }

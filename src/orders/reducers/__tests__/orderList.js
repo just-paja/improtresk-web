@@ -40,7 +40,7 @@ describe('Orders reducer', () => {
   });
 
   it('invalidates data on cancel', () => {
-    expect(orderList({}, { type: 'ORDER_CANCELED' })).toMatchObject({
+    expect(orderList({}, { type: 'ORDER_CANCEL_FETCH_SUCCESS' })).toMatchObject({
       valid: false,
     });
   });

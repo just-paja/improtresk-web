@@ -1,13 +1,14 @@
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeEvery } from 'redux-saga/effects';
 
 import { fetchResource } from '../../sagas/api';
 import { getForm } from '../../forms/selectors';
+import { invalidateOrders } from '../actions';
 import { getWorkshopList } from '../../workshops/selectors';
 import { getCheapestAccomodation } from '../../accomodation/selectors';
 import { yearActiveNumber } from '../../years/selectors';
-import { redirectHome, redirectOrderConfirm } from '../../sagas/redirects';
+import { redirectHome } from '../../sagas/redirects';
 import {
-  getLatestOrder,
+  getActiveOrder,
   getOrderedMeals,
   getOrderForm,
   getUnconfirmedOrder,
@@ -80,21 +81,13 @@ export function* orderSubmit() {
   yield call(sendForm, api.orderCreate, 'order', form.values);
 }
 
-export function* orderConfirmRedirect(action) {
-  yield put({
-    type: constants.ORDER_CREATED,
-    data: action.data,
-  });
-  yield call(redirectOrderConfirm);
-}
-
 export function* orderChangeRedirect() {
   yield put({ type: constants.ORDER_CHANGED });
   yield call(redirectHome);
 }
 
 export function* orderChangeSetDefaults() {
-  const order = yield select(getLatestOrder);
+  const order = yield select(getActiveOrder);
   yield put({
     form: 'changeWorkshop',
     type: FORM_VALUES_SET,
@@ -122,7 +115,7 @@ export function* orderChangeFoodSetDefaults() {
 
 export function* orderChangeWorkshopSubmit() {
   const form = yield select(getForm, 'changeWorkshop');
-  const order = yield select(getLatestOrder);
+  const order = yield select(getActiveOrder);
   yield call(sendForm, api.orderChangeWorkshop, 'changeWorkshop', form.values, {
     order: order.id,
   });
@@ -130,7 +123,7 @@ export function* orderChangeWorkshopSubmit() {
 
 export function* orderChangeFoodSubmit() {
   const form = yield select(getForm, 'changeFood');
-  const order = yield select(getLatestOrder);
+  const order = yield select(getActiveOrder);
   const values = Object.keys(form.values).reduce((accumulator, mealId) => ({
     foods: [...accumulator.foods, form.values[mealId].food].filter(item => !!item),
     soups: [...accumulator.soups, form.values[mealId].soup].filter(item => !!item),
@@ -143,36 +136,41 @@ export function* orderChangeFoodSubmit() {
   });
 }
 
-export function* bindOrderConfirmRedirect() {
-  yield takeLatest(
+export function* onOrderConfirmRedirect() {
+  yield takeEvery(
     selectOrderSubmit,
     orderSubmit
   );
 }
 
-export function* bindOrderHomeRedirect() {
-  yield takeLatest(
+export function* onOrderHomeRedirect() {
+  yield takeEvery(
     constants.ORDER_CONFIRM_FETCH_SUCCESS,
     redirectHome
   );
 }
 
-export function* bindOrderConfirm() {
-  yield takeLatest(
+export function* onOrderConfirm() {
+  yield takeEvery(
     constants.ORDER_CONFIRM_REQUESTED,
     orderConfirm
   );
 }
 
-export function* bindOrderSubmit() {
-  yield takeLatest(
+export function* triggerOrdersInvalidate() {
+  yield put(invalidateOrders());
+  yield call(redirectHome);
+}
+
+export function* onOrderSubmit() {
+  yield takeEvery(
     selectOrderSuccess,
-    orderConfirmRedirect
+    triggerOrdersInvalidate
   );
 }
 
-export function* bindOrderSetDefaults() {
-  yield takeLatest(
+export function* onOrderSetDefaults() {
+  yield takeEvery(
     constants.ORDER_FORM_MOUNTED,
     orderSetDefaults
   );
@@ -203,7 +201,7 @@ export function* interceptInvalidWorkshop() {
 
 export function* interceptInvalidWorkshopChange() {
   const form = yield select(getForm, 'changeWorkshop');
-  const order = yield select(getLatestOrder);
+  const order = yield select(getActiveOrder);
   const workshops = yield select(getWorkshopList);
 
   const selectedWorkshop = workshops.find(
@@ -229,42 +227,42 @@ export function* interceptInvalidWorkshopChange() {
   }
 }
 
-export function* bindInterceptInvalidWorkshop() {
-  yield takeLatest(
+export function* onInterceptInvalidWorkshop() {
+  yield takeEvery(
     years.YEAR_CAPACITY_FETCH_SUCCESS,
     interceptInvalidWorkshop
   );
 }
 
-export function* bindInterceptInvalidWorkshopChange() {
-  yield takeLatest(
+export function* onInterceptInvalidWorkshopChange() {
+  yield takeEvery(
     years.YEAR_CAPACITY_FETCH_SUCCESS,
     interceptInvalidWorkshopChange
   );
 }
 
-export function* bindChangeWorkshopSubmit() {
-  yield takeLatest(selectChangeWorkshopSubmit, orderChangeWorkshopSubmit);
+export function* onChangeWorkshopSubmit() {
+  yield takeEvery(selectChangeWorkshopSubmit, orderChangeWorkshopSubmit);
 }
 
-export function* bindChangeFoodSubmit() {
-  yield takeLatest(selectChangeFoodSubmit, orderChangeFoodSubmit);
+export function* onChangeFoodSubmit() {
+  yield takeEvery(selectChangeFoodSubmit, orderChangeFoodSubmit);
 }
 
-export function* bindChangeWorkshopSuccess() {
-  yield takeLatest(selectChangeWorkshopSuccess, orderChangeRedirect);
+export function* onChangeWorkshopSuccess() {
+  yield takeEvery(selectChangeWorkshopSuccess, orderChangeRedirect);
 }
 
-export function* bindChangeFoodSuccess() {
-  yield takeLatest(selectChangeFoodSuccess, orderChangeRedirect);
+export function* onChangeFoodSuccess() {
+  yield takeEvery(selectChangeFoodSuccess, orderChangeRedirect);
 }
 
-export function* bindChangeWorkshopSetDefaults() {
-  yield takeLatest(PAGE_WORKSHOP_CHANGE_ENTERED, orderChangeSetDefaults);
+export function* onChangeWorkshopSetDefaults() {
+  yield takeEvery(PAGE_WORKSHOP_CHANGE_ENTERED, orderChangeSetDefaults);
 }
 
-export function* bindChangeFoodSetDefaults() {
-  yield takeLatest(
+export function* onChangeFoodSetDefaults() {
+  yield takeEvery(
     [
       constants.MEALS_FETCH_SUCCESS,
       constants.ORDERS_FETCH_SUCCESS,
@@ -276,17 +274,17 @@ export function* bindChangeFoodSetDefaults() {
 
 
 export default [
-  bindChangeFoodSetDefaults,
-  bindChangeFoodSubmit,
-  bindChangeFoodSuccess,
-  bindChangeWorkshopSetDefaults,
-  bindChangeWorkshopSubmit,
-  bindChangeWorkshopSuccess,
-  bindInterceptInvalidWorkshop,
-  bindInterceptInvalidWorkshopChange,
-  bindOrderConfirm,
-  bindOrderConfirmRedirect,
-  bindOrderHomeRedirect,
-  bindOrderSetDefaults,
-  bindOrderSubmit,
+  onChangeFoodSetDefaults,
+  onChangeFoodSubmit,
+  onChangeFoodSuccess,
+  onChangeWorkshopSetDefaults,
+  onChangeWorkshopSubmit,
+  onChangeWorkshopSuccess,
+  onInterceptInvalidWorkshop,
+  onInterceptInvalidWorkshopChange,
+  onOrderConfirm,
+  onOrderConfirmRedirect,
+  onOrderHomeRedirect,
+  onOrderSetDefaults,
+  onOrderSubmit,
 ];

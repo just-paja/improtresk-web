@@ -1,4 +1,4 @@
-import { call, select, takeLatest } from 'redux-saga/effects';
+import { call, select, takeEvery } from 'redux-saga/effects';
 
 import { fetchResourceIfRequired } from '../../sagas/api';
 import { isAccomodationListRequired } from '../selectors';
@@ -23,7 +23,7 @@ export function* fetchAccomodationList() {
 }
 
 export function* requireAccomodationList() {
-  yield takeLatest(constants.ACCOMODATION_REQUIRED, fetchAccomodationList);
+  yield takeEvery(constants.ACCOMODATION_REQUIRED, fetchAccomodationList);
 }
 
 export default [

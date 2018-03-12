@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 
+
 import App from '../components/App';
 
+import { logout } from '../participants/actions';
 import {
   countAppRequests,
   getAppErrors,
@@ -26,6 +28,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   onMount: () => ({ type: actions.APP_MOUNTED }),
+  onLogout: logout,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

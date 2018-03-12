@@ -20,6 +20,7 @@ import { reverse } from '../routeTable';
 const NavigationMenu = ({
   currentYear,
   lang,
+  onLogout,
   participant,
   years,
   ...props
@@ -118,13 +119,19 @@ const NavigationMenu = ({
         </LinkContainer>
       </NavItem>
       <LanguagePicker className="ml-md-auto" />
-      {participant ? ([
-        <NavItem key="participant-link">
-          <LinkContainer to={reverse(lang, 'participantHome')}>
-            <NavLink><FontAwesome name="user" /> {participant.name}</NavLink>
-          </LinkContainer>
-        </NavItem>,
-      ]) : null}
+      {participant ? (
+        <UncontrolledDropdown nav inNavbar>
+          <DropdownToggle nav caret>
+            <FontAwesome name="user" /> <span>{participant.name}</span>
+          </DropdownToggle>
+          <DropdownMenu>
+            <LinkContainer to={reverse(lang, 'participantHome')}>
+              <DropdownItem><Message name="participants.home" /></DropdownItem>
+            </LinkContainer>
+            <DropdownItem onClick={onLogout}><Message name="participants.logout" /></DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
+      ) : null}
     </Nav>
   );
 };
@@ -132,6 +139,7 @@ const NavigationMenu = ({
 NavigationMenu.propTypes = {
   currentYear: PropTypes.object,
   lang: PropTypes.string.isRequired,
+  onLogout: PropTypes.func.isRequired,
   participant: PropTypes.shape({
     name: PropTypes.string.isRequired,
   }),

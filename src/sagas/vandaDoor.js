@@ -1,9 +1,8 @@
-import { put, takeLatest } from 'redux-saga/effects';
-import { push } from 'react-router-redux';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 import { parse as parseUrl } from 'url';
 
-import { reverse } from '../routeTable';
+import { redirectSignup } from './redirects';
 
 import * as constants from '../constants';
 
@@ -13,7 +12,7 @@ export function* openVandaDoor() {
 
     if (magicDoorToken === constants.MAGIC_DOOR_TOKEN) {
       yield put({ type: constants.MAGIC_DOOR_TOKEN });
-      yield put(push(reverse('signup')));
+      yield call(redirectSignup);
     }
   }
 }

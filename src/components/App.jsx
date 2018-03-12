@@ -57,6 +57,7 @@ class App extends Component {
       lang,
       participant,
       progress,
+      onLogout,
       years,
     } = this.props;
 
@@ -108,6 +109,7 @@ class App extends Component {
             lang={lang}
             participant={participant}
             years={years}
+            onLogout={onLogout}
           />
           <ProgressBar activeRequests={activeRequests} />
           <AppErrors errors={errors} />
@@ -134,6 +136,7 @@ App.propTypes = {
   participant: PropTypes.object,
   progress: ResourceProgress.isRequired,
   onMount: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired,
   years: PropTypes.arrayOf(PropTypes.object),
 };
 

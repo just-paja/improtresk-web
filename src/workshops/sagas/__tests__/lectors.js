@@ -1,4 +1,4 @@
-import { takeLatest } from 'redux-saga/effects';
+import { takeEvery } from 'redux-saga/effects';
 
 import { isLectorListRequired, isLectorRolesListRequired } from '../../selectors/lectors';
 
@@ -10,7 +10,7 @@ import * as api from '../../../api';
 describe('Lector sagas', () => {
   it('requireLectorRoles creates fetch actions', () => {
     const saga = requireLectorRoles();
-    expect(saga.next().value).toEqual(takeLatest(
+    expect(saga.next().value).toEqual(takeEvery(
       'LECTOR_ROLES_REQUIRED',
       fetchResourceIfRequired,
       api.fetchLectorRoles,
@@ -28,7 +28,7 @@ describe('Lector sagas', () => {
 
   it('requireLectors creates fetch actions', () => {
     const saga = requireLectors();
-    expect(saga.next().value).toEqual(takeLatest(
+    expect(saga.next().value).toEqual(takeEvery(
       'LECTORS_REQUIRED',
       fetchResourceIfRequired,
       api.fetchLectors,

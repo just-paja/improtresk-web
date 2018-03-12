@@ -46,6 +46,15 @@ export default class WorkshopPicker extends Component {
             ))
           }
         </ListGroup>
+        <hr />
+        <WorkshopPickerItem
+          name="Jedu bez workshopu"
+          selected={value === null}
+          freeSpots={1000}
+          onChange={this.handleChange}
+          lectors={[]}
+          id={null}
+        />
         {(touched || this.state.touched) && error ? (
           <Alert color="danger">{error}</Alert>
         ) : null}

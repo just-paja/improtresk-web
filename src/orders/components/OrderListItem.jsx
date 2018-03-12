@@ -13,10 +13,12 @@ const OrderListItem = ({ order }) => (
     <Flex justify="between">
       <FlexLabel>
         <span>{order.year ? order.year.year : null}</span>
-        <Message name="orders.number" data={{ symvar: order.symvar }} />
+        <div>
+          <div><Message name="orders.number" data={{ symvar: order.symvar }} /></div>
+          <div>{order.workshop ? order.workshop.name : null}</div>
+        </div>
       </FlexLabel>
-      {order.workshop ? order.workshop.name : null}
-      <OrderStatusLabel {...order.status} endsAt={order.reservation.endsAt} />
+      <OrderStatusLabel {...order} endsAt={order.reservation.endsAt} />
     </Flex>
   </ListGroupItem>
 );

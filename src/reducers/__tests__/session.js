@@ -32,7 +32,7 @@ describe('Years reducer', () => {
   });
 
   it('opens magic door', () => {
-    expect(session({}, { type: 'idui1raKzie8QuieKei6exeiOhsaeva4vooL4ao3ahx8EiquLoothei3Ha9shaki' })).toEqual({
+    expect(session({}, { type: 'idui1raKzie8QuieKei6xx3iOhsaeva4vooL4ao3ahx8EiquLoothei3Ha9shaki' })).toEqual({
       forceOpenSignups: true,
     });
   });

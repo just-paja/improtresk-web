@@ -22,7 +22,7 @@ export default class Navigation extends Component {
   }
 
   render() {
-    const { currentYear, lang, participant, years } = this.props;
+    const { currentYear, lang, onLogout, participant, years } = this.props;
     return (
       <Navbar color="dark" fixed="top" expand="md">
         <Container>
@@ -38,6 +38,7 @@ export default class Navigation extends Component {
             <NavigationMenu
               currentYear={currentYear}
               lang={lang}
+              onLogout={onLogout}
               participant={participant}
               years={years}
             />
@@ -51,6 +52,7 @@ export default class Navigation extends Component {
 Navigation.propTypes = {
   currentYear: PropTypes.object,
   lang: PropTypes.string.isRequired,
+  onLogout: PropTypes.func.isRequired,
   participant: PropTypes.object,
   years: PropTypes.arrayOf(PropTypes.object),
 };

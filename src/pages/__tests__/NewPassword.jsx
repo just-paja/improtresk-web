@@ -22,7 +22,7 @@ describe('NewPassword container', () => {
         },
       },
     });
-    comp = shallow(<NewPassword location={{ query: { token: 'theToken' } }} />, {
+    comp = shallow(<NewPassword location={{ search: '?token=theToken' }} />, {
       context: { store },
     });
   });

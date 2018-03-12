@@ -22,17 +22,17 @@ describe('redirect sagas', () => {
     sagaTester.reset();
   });
 
-  it('redirectOrderConfirm triggers redirect to order confirm', () => {
+  it('redirectSignup triggers redirect to signup', () => {
     const sagaTester = new SagaTester({
       initialState: {},
       reducers,
     });
-    sagaTester.start(sagas.redirectOrderConfirm);
+    sagaTester.start(sagas.redirectSignup);
     expect(sagaTester.getCalledActions()).toContainEqual(
       expect.objectContaining({
         payload: {
           method: 'push',
-          args: ['/cs/ucastnik/potvrzeni'],
+          args: ['/cs/prihlaska'],
         },
       })
     );

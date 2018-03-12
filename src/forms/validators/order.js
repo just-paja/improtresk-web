@@ -8,12 +8,6 @@ const schema = {
       required: true,
       type: 'number',
     },
-    workshop: {
-      maxLength: 255,
-      message: 'Vyber si jeden workshop',
-      required: true,
-      type: 'number',
-    },
   },
 };
 

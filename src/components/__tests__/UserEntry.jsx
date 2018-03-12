@@ -26,7 +26,7 @@ describe('User Entry component', () => {
     expect(comp.find('Login')).toHaveLength(1);
   });
 
-  it.skip('renders register form', () => {
+  it('renders register form when user clicks the register button', () => {
     const comp = shallow(
       <UserEntry
         login={{
@@ -44,10 +44,11 @@ describe('User Entry component', () => {
         teams={[]}
       />
     );
+    comp.find('Button').simulate('click');
     expect(comp.find('Signup')).toHaveLength(1);
   });
 
-  it.skip('renders disabled when loading login form', () => {
+  it('renders login form disabled when loading', () => {
     const comp = shallow(
       <UserEntry
         login={{
@@ -69,7 +70,29 @@ describe('User Entry component', () => {
     expect(comp.find('Login')).toHaveProp('disabled', true);
   });
 
-  it.skip('renders disabled when loading signup form', () => {
+  it('renders register button disabled when loading', () => {
+    const comp = shallow(
+      <UserEntry
+        login={{
+          loading: true,
+          fieldErrors: {},
+          values: { email: 'foo' },
+        }}
+        onLoginChange={() => {}}
+        onLoginSubmit={() => {}}
+        onSignupChange={() => {}}
+        onSignupSubmit={() => {}}
+        signup={{
+          fieldErrors: {},
+          values: { name: 'foo' },
+        }}
+        teams={[]}
+      />
+    );
+    expect(comp.find('Button')).toHaveProp('disabled', true);
+  });
+
+  it('renders signup form disabled when loading', () => {
     const comp = shallow(
       <UserEntry
         login={{
@@ -88,6 +111,30 @@ describe('User Entry component', () => {
         teams={[]}
       />
     );
+    comp.find('Button').simulate('click');
     expect(comp.find('Signup')).toHaveProp('disabled', true);
+  });
+
+  it('renders login button disabled when loading', () => {
+    const comp = shallow(
+      <UserEntry
+        login={{
+          fieldErrors: {},
+          values: { email: 'foo' },
+        }}
+        onLoginChange={() => {}}
+        onLoginSubmit={() => {}}
+        onSignupChange={() => {}}
+        onSignupSubmit={() => {}}
+        signup={{
+          fieldErrors: {},
+          loading: true,
+          values: { name: 'foo' },
+        }}
+        teams={[]}
+      />
+    );
+    comp.find('Button').simulate('click');
+    expect(comp.find('Button')).toHaveProp('disabled', true);
   });
 });

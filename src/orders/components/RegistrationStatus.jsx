@@ -1,8 +1,8 @@
 import Alert from 'reactstrap/lib/Alert';
+import CardFooter from 'reactstrap/lib/CardFooter';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import Card from 'reactstrap/lib/Card';
-import CardBody from 'reactstrap/lib/CardBody';
 import React from 'react';
 
 import { Order } from '../../proptypes';
@@ -15,6 +15,7 @@ import RegistrationDetails from './RegistrationDetails';
 
 const RegistrationStatus = ({
   activeOrder,
+  onCancel,
   onConfirm,
   registrationsCloseDate,
 }) => {
@@ -39,13 +40,12 @@ const RegistrationStatus = ({
 
   return (
     <Card>
-      <CardBody>
-        <RegistrationDetails order={activeOrder} />
+      <RegistrationDetails order={activeOrder} />
+      <CardFooter>
         {!activeOrder.paid ? (
           <Button
-            bsSize={activeOrder.confirmed ? 'small' : null}
             icon="ban"
-            onClick={() => {}}
+            onClick={onCancel}
           >
             Zrušit objednávku
           </Button>
@@ -59,13 +59,14 @@ const RegistrationStatus = ({
             Potvrdit objednávku
           </Button>
         ) : null}
-      </CardBody>
+      </CardFooter>
     </Card>
   );
 };
 
 RegistrationStatus.propTypes = {
   activeOrder: Order,
+  onCancel: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
   registrationsCloseDate: PropTypes.string.isRequired,
 };

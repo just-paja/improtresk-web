@@ -4,55 +4,40 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Message from '../../containers/Message';
-import OrderTimeout from './OrderTimeout';
 
 const OrderStatus = ({
   assigned,
-  canceled,
+  cancelled,
   confirmed,
   endsAt,
   paid,
 }) => {
-  if (canceled) {
-    return <Label color="danger"><Message name="orders.canceled" /></Label>;
+  if (cancelled) {
+    return <Label className="text-danger"><Message name="orders.cancelled" /></Label>;
   }
 
   if (assigned) {
-    return <Label color="success"><Message name="orders.assigned" /></Label>;
+    return <Label className="text-success"><Message name="orders.assigned" /></Label>;
   }
 
   if (paid) {
-    return <Label color="info"><Message name="orders.waitingToBeAssigned" /></Label>;
+    return <Label className="text-info"><Message name="orders.waitingToBeAssigned" /></Label>;
   }
 
   if (moment().isAfter(endsAt)) {
-    return <Label color="warning"><Message name="orders.timedOut" /></Label>;
+    return <Label className="text-warning"><Message name="orders.timedOut" /></Label>;
   }
 
   if (confirmed) {
-    return (
-      <span>
-        <Label color="warning"><Message name="orders.waitingToBePaid" /></Label>
-        <span>
-          {' '}
-          <OrderTimeout endsAt={endsAt} />
-        </span>
-      </span>
-    );
+    return <Label className="text-warning"><Message name="orders.waitingToBePaid" /></Label>;
   }
 
-  return (
-    <span>
-      <Label color="danger"><Message name="orders.unconfirmed" /></Label>
-      {' '}
-      <OrderTimeout endsAt={endsAt} />
-    </span>
-  );
+  return <Label className="text-danger"><Message name="orders.unconfirmed" /></Label>;
 };
 
 OrderStatus.propTypes = {
   assigned: PropTypes.bool,
-  canceled: PropTypes.bool,
+  cancelled: PropTypes.bool,
   confirmed: PropTypes.bool,
   endsAt: PropTypes.string.isRequired,
   paid: PropTypes.bool,
@@ -60,7 +45,7 @@ OrderStatus.propTypes = {
 
 OrderStatus.defaultProps = {
   assigned: false,
-  canceled: false,
+  cancelled: false,
   confirmed: false,
   paid: false,
 };

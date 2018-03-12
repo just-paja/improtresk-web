@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { FormData } from '../../proptypes';
 
 import Button from '../../components/Button';
+import Message from '../../containers/Message';
 import FormErrors from '../../forms/containers/FormErrors';
 import Input from '../../forms/components/Input';
 
@@ -39,6 +40,7 @@ export default class ChangePassword extends Component {
             name="oldPassword"
             onChange={this.handleChange}
             type="password"
+            label={<Message name="participants.oldPassword" />}
             value={formData.values.oldPassword}
           />
         )}
@@ -48,6 +50,7 @@ export default class ChangePassword extends Component {
           name="newPassword"
           onChange={this.handleChange}
           type="password"
+          label={<Message name="participants.newPassword" />}
           value={formData.values.newPassword}
         />
         <Input
@@ -56,6 +59,7 @@ export default class ChangePassword extends Component {
           name="newPasswordConfirm"
           onChange={this.handleChange}
           type="password"
+          label={<Message name="participants.newPasswordCheck" />}
           value={formData.values.newPasswordConfirm}
         />
         <FormErrors errors={formData.submitErrors} />

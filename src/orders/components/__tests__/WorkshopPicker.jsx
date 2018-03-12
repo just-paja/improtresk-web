@@ -38,7 +38,7 @@ describe('WorkshopPicker component', () => {
         ]}
       />
     ));
-    expect(comp.find('WorkshopPickerItem')).toHaveLength(2);
+    expect(comp.find('WorkshopPickerItem')).toHaveLength(3);
   });
 
   it('renders selected picker items', () => {
@@ -124,7 +124,7 @@ describe('WorkshopPicker component', () => {
       />
     ));
 
-    comp.find('WorkshopPickerItem').simulate('change', 21);
+    comp.find('WorkshopPickerItem').at(0).simulate('change', 21);
     expect(changeSpy.args).toEqual([
       ['workshop', 21],
     ]);

@@ -121,22 +121,24 @@ export default class Signup extends Component {
           touched={formData.submitted}
           options={teams}
         />
-        <InputCheckbox
-          disabled={disabled || formData.loading}
-          name="rules_accepted"
-          label={rulesLabel}
-          error={formData.fieldErrors.rules_accepted}
-          onChange={this.handleChange}
-          value={formData.values.rules_accepted}
-        />
-        <InputCheckbox
-          disabled={disabled || formData.loading}
-          name="newsletter"
-          label={<Message name="participants.newsletter" />}
-          error={formData.fieldErrors.newsletter}
-          onChange={this.handleChange}
-          value={formData.values.newsletter}
-        />
+        <Col xs={12}>
+          <InputCheckbox
+            disabled={disabled || formData.loading}
+            name="rules_accepted"
+            label={rulesLabel}
+            error={formData.fieldErrors.rules_accepted}
+            onChange={this.handleChange}
+            value={formData.values.rules_accepted}
+          />
+          <InputCheckbox
+            disabled={disabled || formData.loading}
+            name="newsletter"
+            label={<Message name="participants.newsletter" />}
+            error={formData.fieldErrors.newsletter}
+            onChange={this.handleChange}
+            value={formData.values.newsletter}
+          />
+        </Col>
         <FormErrors errors={formData.submitErrors} />
         <Button
           disabled={disabled || formData.loading}

@@ -54,9 +54,11 @@ export default class WorkshopPickerItem extends Component {
         </ListGroupItemHeading>
         <Flex justify="between" minSize="md">
           <div>
-            {lectors
-              .map(lectorPosition => lectorPosition.lector.name)
-              .join(', ')}
+            {lectors ? (
+              lectors
+                .map(lectorPosition => lectorPosition.lector.name)
+                .join(', ')
+            ) : null}
           </div>
           <Capacity
             assigned={assigned}
@@ -82,7 +84,7 @@ WorkshopPickerItem.propTypes = {
   assigned: PropTypes.number,
   capacity: PropTypes.number,
   disabled: PropTypes.bool,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
   freeSpots: PropTypes.number,
   lectors: PropTypes.arrayOf(PropTypes.object).isRequired,
   name: PropTypes.string.isRequired,
@@ -96,6 +98,7 @@ WorkshopPickerItem.defaultProps = {
   capacity: null,
   disabled: false,
   freeSpots: null,
+  id: null,
   reserved: null,
   selected: false,
 };

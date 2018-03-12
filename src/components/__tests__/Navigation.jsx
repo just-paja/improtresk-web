@@ -8,6 +8,7 @@ describe('Navigation component', () => {
   it('renders link home with label', () => {
     const comp = shallow(
       <Navigation
+        onLogout={() => {}}
         lang="cs"
         currentYear={null}
         translate={msg => msg}
@@ -25,6 +26,7 @@ describe('Navigation component', () => {
   it('renders navigation menu', () => {
     const comp = shallow(
       <Navigation
+        onLogout={() => {}}
         lang="cs"
         currentYear={null}
         translate={msg => msg}
@@ -40,6 +42,7 @@ describe('Navigation component', () => {
   it('passes participant to menu when provided', () => {
     const comp = shallow(
       <Navigation
+        onLogout={() => {}}
         lang="cs"
         currentYear={null}
         translate={msg => msg}
@@ -54,14 +57,14 @@ describe('Navigation component', () => {
   });
 
   it('saves expanded state on toggle', () => {
-    const comp = shallow(<Navigation lang="cs" translate={msg => msg} />);
+    const comp = shallow(<Navigation onLogout={() => {}} lang="cs" translate={msg => msg} />);
     comp.setState({ expanded: true });
     comp.find('Navbar').simulate('toggle');
     expect(comp.find('Navbar Collapse')).toHaveProp('isOpen', true);
   });
 
   it('saves collapsed state on toggle', () => {
-    const comp = shallow(<Navigation lang="cs" translate={msg => msg} />);
+    const comp = shallow(<Navigation onLogout={() => {}} lang="cs" translate={msg => msg} />);
     comp.setState({ expanded: false });
     comp.find('Navbar').simulate('toggle');
     expect(comp.find('Navbar Collapse')).toHaveProp('isOpen', false);

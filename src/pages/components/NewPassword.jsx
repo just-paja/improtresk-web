@@ -1,15 +1,24 @@
 import Alert from 'reactstrap/lib/Alert';
+import Card from 'reactstrap/lib/Card';
+import CardBody from 'reactstrap/lib/CardBody';
 import Col from 'reactstrap/lib/Col';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Row from 'reactstrap/lib/Row';
+
+import { getUrlParams } from 'query-string-manipulator';
 
 import Container from '../../components/Container';
 import ChangePassword from '../../participants/components/ChangePassword';
 
 export default class NewPassword extends Component {
   componentWillMount() {
-    this.props.onMount(this.props.location.query.token);
+    if (this.props.location && this.props.location.search) {
+      const token = getUrlParams(this.props.location.search).find(param => param.key === 'token');
+      if (token) {
+        this.props.onMount(token.value);
+      }
+    }
   }
 
   componentWillUnmount() {
@@ -25,25 +34,30 @@ export default class NewPassword extends Component {
     return (
       <Container>
         <Row>
-          <Col md={6} mdOffset={3}>
+          <Col md={{ size: 6, offset: 3 }}>
             <h1>Nové heslo</h1>
-            <p>
-              Vyplň svoje staré heslo, nové heslo a zopakuj pro kontrolu. Znáš to.
-            </p>
-            {newPassword.saved ? (
-              <Alert color="success">
-                <h4>Povedlo se!</h4>
+            <Card>
+              <CardBody>
                 <p>
-                  Tvoje heslo bylo úspěšně změněno. Můžeš se s ním teď přihlásit.
+                  Vyplň svoje staré heslo, nové heslo a zopakuj pro kontrolu. Znáš to.
                 </p>
-              </Alert>
-            ) : (
-              <ChangePassword
-                formData={newPassword}
-                onChange={onNewPasswordChange}
-                onSubmit={onNewPasswordSubmit}
-              />
-            )}
+                {newPassword.saved ? (
+                  <Alert color="success">
+                    <h4>Povedlo se!</h4>
+                    <p>
+                      Tvoje heslo bylo úspěšně změněno. Můžeš se s ním teď přihlásit.
+                    </p>
+                  </Alert>
+                ) : (
+                  <ChangePassword
+                    formData={newPassword}
+                    onChange={onNewPasswordChange}
+                    onSubmit={onNewPasswordSubmit}
+                    newPassword
+                  />
+                )}
+              </CardBody>
+            </Card>
           </Col>
         </Row>
       </Container>

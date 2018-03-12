@@ -5,12 +5,12 @@ import React from 'react';
 import Message from '../../containers/Message';
 
 const OrderPaymentStatus = ({
-  canceled,
+  cancelled,
   overPaid,
   paid,
 }) => {
-  if (canceled) {
-    return <Alert color="info"><Message name="orders.paymentCanceled" /></Alert>;
+  if (cancelled) {
+    return <Alert color="info"><Message name="orders.paymentCancelled" /></Alert>;
   }
 
   if (overPaid) {
@@ -25,13 +25,13 @@ const OrderPaymentStatus = ({
 };
 
 OrderPaymentStatus.propTypes = {
-  canceled: PropTypes.bool,
+  cancelled: PropTypes.bool,
   overPaid: PropTypes.bool,
   paid: PropTypes.bool,
 };
 
 OrderPaymentStatus.defaultProps = {
-  canceled: false,
+  cancelled: false,
   overPaid: false,
   paid: false,
 };

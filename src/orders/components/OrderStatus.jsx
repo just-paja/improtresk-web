@@ -15,7 +15,7 @@ const OrderStatus = ({
   accomodation,
   assigned,
   confirmed,
-  canceled,
+  cancelled,
   endsAt,
   foodPickCloseDate,
   meals,
@@ -37,7 +37,7 @@ const OrderStatus = ({
       <OrderStatusLabel
         assigned={assigned}
         confirmed={confirmed}
-        canceled={canceled}
+        cancelled={cancelled}
         paid={paid}
         endsAt={endsAt}
       />
@@ -89,7 +89,7 @@ const OrderStatus = ({
       ) : null}
       {!paid && showPaymentStatus ? (
         <OrderPaymentStatus
-          canceled={canceled}
+          cancelled={cancelled}
           paid={paid}
           overPaid={overPaid}
         />
@@ -128,7 +128,7 @@ OrderStatus.propTypes = {
   overPaid: PropTypes.bool,
   assigned: PropTypes.bool,
   confirmed: PropTypes.bool,
-  canceled: PropTypes.bool,
+  cancelled: PropTypes.bool,
   onCancel: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
   meals: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -150,7 +150,7 @@ OrderStatus.propTypes = {
 OrderStatus.defaultProps = {
   accomodation: null,
   assigned: false,
-  canceled: false,
+  cancelled: false,
   confirmed: false,
   foodPickCloseDate: null,
   overPaid: false,
