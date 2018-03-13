@@ -84,6 +84,17 @@ export const aggregateYear = (item, years) => {
   return ({ ...item, year });
 };
 
+export const aggregateRemainingPrice = (item) => {
+  let remainingPrice = item.price;
+  if (item && item.payments) {
+    const paid = item.payments.reduce(
+      (price, payment) => price + parseFloat(payment.amount, 10), 0
+    );
+    remainingPrice = item.price - paid;
+  }
+  return ({ ...item, remainingPrice });
+};
+
 export const isOrderListRequired = isRequired(getOrderListState);
 
 export const getOrderList = transformData(getOrderListState, {
@@ -108,6 +119,9 @@ export const getOrderList = transformData(getOrderListState, {
     {
       select: getParticipantDetail,
       transform: aggregateAssignment,
+    },
+    {
+      transform: aggregateRemainingPrice,
     },
   ],
 });

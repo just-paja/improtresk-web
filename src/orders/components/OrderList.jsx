@@ -12,7 +12,7 @@ const OrderList = ({ orders }) => (orders.length > 0 ? (
     <hr />
     <h2><Message name="orders.history" /></h2>
     <ListGroup>
-      {orders.map(order => (
+      {orders.filter(order => order.reservation).map(order => (
         <OrderListItem
           key={order.id}
           order={order}

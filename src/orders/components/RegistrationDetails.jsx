@@ -43,7 +43,7 @@ const RegistrationDetails = ({
       ) : null}
       { !order.paid && order.confirmed ? (
         <PaymentDetails
-          price={order.price}
+          price={order.remainingPrice}
           symvar={order.symvar}
         />
       ) : null}
