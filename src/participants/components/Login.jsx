@@ -54,7 +54,6 @@ export default class Login extends Component {
         />
         <FormErrors errors={formData.submitErrors} />
         <Button
-          className="pull-right"
           disabled={disabled || formData.loading}
           icon="sign-in"
           loading={disabled || formData.loading}
@@ -62,7 +61,7 @@ export default class Login extends Component {
         >
           {<Message name="participants.login" />}
         </Button>
-        <Link to="participantForgottenPassword">
+        <Link className="pull-right" to="participantForgottenPassword">
           <FontAwesome className="fa-fw" name="key" />
           {' '}
           <span>{<Message name="participants.forgottenPassword" />}</span>
