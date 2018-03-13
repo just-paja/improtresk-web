@@ -41,25 +41,25 @@ const RegistrationStatus = ({
   return (
     <Card>
       <RegistrationDetails order={activeOrder} />
-      <CardFooter>
-        {!activeOrder.paid ? (
+      {!activeOrder.paid ? (
+        <CardFooter>
           <Button
             icon="ban"
             onClick={onCancel}
           >
             Zrušit objednávku
           </Button>
-        ) : null}
-        {!activeOrder.confirmed && !activeOrder.paid ? (
-          <Button
-            className="pull-right"
-            color="primary"
-            onClick={onConfirm}
-          >
-            Potvrdit objednávku
-          </Button>
-        ) : null}
-      </CardFooter>
+          {!activeOrder.confirmed ? (
+            <Button
+              className="pull-right"
+              color="primary"
+              onClick={onConfirm}
+            >
+              Potvrdit objednávku
+            </Button>
+          ) : null}
+        </CardFooter>
+      ) : null}
     </Card>
   );
 };

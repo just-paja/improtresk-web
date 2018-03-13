@@ -23,6 +23,7 @@ describe('OrderList component', () => {
                 price: 10,
               },
             ],
+            reservation: {},
           },
         ]}
       />
@@ -33,6 +34,7 @@ describe('OrderList component', () => {
       endsAt: '2018-05-09',
       createdAt: '2018-05-09',
       price: 666,
+      reservation: {},
       meals: [
         {
           date: '2018-05-12',

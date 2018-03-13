@@ -116,6 +116,7 @@ describe('OrderList container', () => {
           accomodation: 5,
         },
         price: 434,
+        remainingPrice: 434,
         workshop: null,
         meals: [],
         year: {
