@@ -9,7 +9,6 @@ import { Order } from '../../proptypes';
 import Flex from '../../components/Flex';
 import FlexLabel from '../../components/FlexLabel';
 import FoodSummary from './FoodSummary';
-import Link from '../../containers/Link';
 import Meal from '../../food/components/Meal';
 import Message from '../../containers/Message';
 import OrderPaymentStatus from './OrderPaymentStatus';
@@ -62,11 +61,6 @@ const RegistrationDetails = ({
           {' '}
           <Message name="orders.workshop" />
         </span>
-        { order.confirmed ? (
-          <Link className="ml-auto" to="participantChangeWorkshop">
-            <Message name="orders.changeWorkshop" />
-          </Link>
-        ) : null}
       </Flex>
     </CardHeader>
     <CardBody>
@@ -79,11 +73,6 @@ const RegistrationDetails = ({
           {' '}
           <Message name="orders.food" />
         </span>
-        { order.confirmed ? (
-          <Link className="ml-auto" to="participantChangeFood">
-            <Message name="orders.changeFood" />
-          </Link>
-        ) : null}
       </Flex>
     </CardHeader>
     <CardBody>
