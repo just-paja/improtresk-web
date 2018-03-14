@@ -29,7 +29,7 @@ const RegistrationDetails = ({
     <CardBody>
       <FlexLabel>
         <OrderStatusLabel {...order} endsAt={order.reservation.endsAt} />
-        <OrderTimeout endsAt={order.reservation.endsAt} />
+        {order.paid ? null : (<OrderTimeout endsAt={order.reservation.endsAt} />)}
       </FlexLabel>
       { !order.confirmed ? (
         <div>
