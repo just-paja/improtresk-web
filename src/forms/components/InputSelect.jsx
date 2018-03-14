@@ -7,7 +7,7 @@ import Input from './Input';
 
 const InputSelect = props => (
   <Input
-    Control={Creatable}
+    tag={Creatable}
     {...props}
   />
 );

@@ -53,3 +53,9 @@ ul:last-child,
 .alert:last-child {
   margin-bottom: 0;
 }
+
+
+.Select {
+  background: transparent !important;
+  padding: 0 !important;
+}
