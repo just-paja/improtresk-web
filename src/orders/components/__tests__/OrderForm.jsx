@@ -10,6 +10,8 @@ describe('OrderForm component', () => {
   it('renders workshop picker', () => {
     const comp = shallow(
       <OrderForm
+        onEnter={() => {}}
+        year={{ id: 3, year: '2017', startDate: '2017-03-04', endDate: '2017-03-05' }}
         accomodation={[]}
         price={1200}
         formData={{
@@ -42,6 +44,8 @@ describe('OrderForm component', () => {
   it('renders meal picker', () => {
     const comp = shallow(
       <OrderForm
+        onEnter={() => {}}
+        year={{ id: 3, year: '2017', startDate: '2017-03-04', endDate: '2017-03-05' }}
         accomodation={[]}
         price={1200}
         formData={{
@@ -74,6 +78,8 @@ describe('OrderForm component', () => {
   it('renders accomodation picker', () => {
     const comp = shallow(
       <OrderForm
+        onEnter={() => {}}
+        year={{ id: 3, year: '2017', startDate: '2017-03-04', endDate: '2017-03-05' }}
         accomodation={[]}
         price={1200}
         formData={{
@@ -107,6 +113,8 @@ describe('OrderForm component', () => {
     const changeSpy = sinon.spy();
     const comp = shallow(
       <OrderForm
+        onEnter={() => {}}
+        year={{ id: 3, year: '2017', startDate: '2017-03-04', endDate: '2017-03-05' }}
         accomodation={[]}
         meals={[]}
         formData={{
@@ -136,6 +144,8 @@ describe('OrderForm component', () => {
     const preventDefaultSpy = sinon.spy();
     const comp = shallow(
       <OrderForm
+        onEnter={() => {}}
+        year={{ id: 3, year: '2017', startDate: '2017-03-04', endDate: '2017-03-05' }}
         accomodation={[]}
         meals={[]}
         formData={{

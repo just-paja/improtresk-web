@@ -92,7 +92,7 @@ const RegistrationDetails = ({
       ) : (
         <ul className="list-unstyled">
           {order.meals.map(meal => (
-            <li><Meal name={meal.name} date={meal.date} /></li>
+            <li key={meal.date}><Meal name={meal.name} date={meal.date} /></li>
           ))}
         </ul>
       )}

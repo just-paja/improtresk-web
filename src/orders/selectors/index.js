@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 import { createSelector } from 'reselect';
 import { isRequired, getProgress, transformData } from 'react-saga-rest';
@@ -6,7 +6,7 @@ import { isRequired, getProgress, transformData } from 'react-saga-rest';
 import { getForm } from '../../forms/selectors';
 import { getAccomodationList, getAccomodationListState } from '../../accomodation/selectors';
 import { getMealList, getMealListState } from '../../food/selectors';
-import { yearsAll, yearActive } from '../../years/selectors';
+import { yearsAll, yearActive, getActivePriceLevel } from '../../years/selectors';
 import { getParticipantDetail } from '../../participants/selectors';
 import {
   getWorkshopList,
@@ -151,6 +151,7 @@ export const getUnconfirmedOrder = createSelector(
 );
 
 export const getOrderForm = getForm('order');
+export const getChangeWorkshopForm = getForm('changeWorkshop');
 
 export const getOrderFormProgress = getProgress(
   getAccomodationListState,
@@ -171,7 +172,7 @@ const getWorkshopPrice = (prices) => {
   return filteredPrices[0] || null;
 };
 
-const calculatePrice = (form, workshops, meals) => {
+const calculatePrice = (form, workshops, meals, priceLevel) => {
   let price = 0;
 
   if (form.values.workshop) {
@@ -183,6 +184,8 @@ const calculatePrice = (form, workshops, meals) => {
         price += workshopPrice.price;
       }
     }
+  } else if (priceLevel) {
+    price += form.values.stayLength.length * priceLevel.entryFee;
   }
 
   if (form.values.meals && form.values.meals.length) {
@@ -196,7 +199,7 @@ const calculatePrice = (form, workshops, meals) => {
 };
 
 export const getOrderFormPrice = createSelector(
-  [getOrderForm, getWorkshopList, getMealList],
+  [getOrderForm, getWorkshopList, getMealList, getActivePriceLevel],
   calculatePrice
 );
 

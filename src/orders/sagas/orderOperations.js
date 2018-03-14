@@ -1,3 +1,5 @@
+import moment from 'moment-timezone';
+
 import { call, put, select, takeEvery } from 'redux-saga/effects';
 
 import { fetchResource } from '../../sagas/api';
@@ -5,13 +7,14 @@ import { getForm } from '../../forms/selectors';
 import { invalidateOrders } from '../actions';
 import { getWorkshopList } from '../../workshops/selectors';
 import { getCheapestAccomodation } from '../../accomodation/selectors';
-import { yearActiveNumber } from '../../years/selectors';
+import { yearActive } from '../../years/selectors';
 import { redirectHome } from '../../sagas/redirects';
 import {
   getActiveOrder,
   getOrderedMeals,
   getOrderForm,
   getUnconfirmedOrder,
+  getChangeWorkshopForm,
 } from '../selectors';
 
 import { sendForm } from '../../forms/sagas/sendForm';
@@ -22,6 +25,8 @@ import {
   FORM_SUBMIT_SUCCESS,
   FORM_VALUES_SET,
 } from '../../forms/constants';
+
+import { formDefine } from '../../forms/actions';
 
 import { PAGE_WORKSHOP_CHANGE_ENTERED } from '../../pages/constants';
 
@@ -48,18 +53,27 @@ export const selectChangeFoodSubmit = action =>
 export const selectChangeFoodSuccess = action =>
   action.type === FORM_SUBMIT_SUCCESS && action.form === 'changeFood';
 
+const getDates = (year) => {
+  const current = moment(year.startDate);
+  const end = moment(year.endDate);
+  const dates = [];
+  while (!current.isAfter(end)) {
+    dates.push(current.format('YYYY-MM-DD'));
+    current.add(1, 'days');
+  }
+  return dates;
+};
+
+
 export function* orderSetDefaults() {
-  const year = yield select(yearActiveNumber);
+  const year = yield select(yearActive);
   const accomodation = yield select(getCheapestAccomodation);
-  yield put({
-    form: 'order',
-    type: FORM_VALUES_SET,
-    values: {
-      accomodation: accomodation ? accomodation.id : null,
-      meals: [],
-      year,
-    },
-  });
+  yield put(formDefine('order', {
+    accomodation: accomodation ? accomodation.id : null,
+    meals: [],
+    year: year.year,
+    stayLength: getDates(year),
+  }));
 }
 
 export function* orderConfirm() {
@@ -114,7 +128,7 @@ export function* orderChangeFoodSetDefaults() {
 }
 
 export function* orderChangeWorkshopSubmit() {
-  const form = yield select(getForm, 'changeWorkshop');
+  const form = yield select(getChangeWorkshopForm);
   const order = yield select(getActiveOrder);
   yield call(sendForm, api.orderChangeWorkshop, 'changeWorkshop', form.values, {
     order: order.id,
@@ -171,13 +185,13 @@ export function* onOrderSubmit() {
 
 export function* onOrderSetDefaults() {
   yield takeEvery(
-    constants.ORDER_FORM_MOUNTED,
+    constants.ORDER_FORM_SET_DEFAULTS,
     orderSetDefaults
   );
 }
 
 export function* interceptInvalidWorkshop() {
-  const form = yield select(getForm, 'order');
+  const form = yield select(getOrderForm);
   const workshops = yield select(getWorkshopList);
   const selectedWorkshop = workshops.find(
     workshop => workshop.id === form.values.workshop
@@ -200,7 +214,7 @@ export function* interceptInvalidWorkshop() {
 }
 
 export function* interceptInvalidWorkshopChange() {
-  const form = yield select(getForm, 'changeWorkshop');
+  const form = yield select(getChangeWorkshopForm);
   const order = yield select(getActiveOrder);
   const workshops = yield select(getWorkshopList);
 

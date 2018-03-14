@@ -7,7 +7,7 @@ import {
 } from '../../selectors';
 import { getCheapestAccomodation } from '../../../accomodation/selectors';
 import { getWorkshopList } from '../../../workshops/selectors';
-import { yearActiveNumber } from '../../../years/selectors';
+import { yearActive } from '../../../years/selectors';
 import { sendForm } from '../../../forms/sagas/sendForm';
 import { redirectHome } from '../../../sagas/redirects';
 
@@ -55,7 +55,7 @@ describe('Orders sagas', () => {
   it('onOrderSetDefaults binds form submit', () => {
     const saga = sagas.onOrderSetDefaults();
     expect(saga.next().value).toEqual(takeEvery(
-      'ORDER_FORM_MOUNTED',
+      'ORDER_FORM_SET_DEFAULTS',
       sagas.orderSetDefaults
     ));
     expect(saga.next().done).toBe(true);
@@ -420,8 +420,12 @@ describe('Orders sagas', () => {
 
   it('orderSetDefaults sets default values', () => {
     const saga = sagas.orderSetDefaults();
-    expect(saga.next().value).toEqual(select(yearActiveNumber));
-    expect(saga.next('2017').value).toEqual(select(getCheapestAccomodation));
+    expect(saga.next().value).toEqual(select(yearActive));
+    expect(saga.next({
+      year: '2017',
+      startDate: '2017-03-04',
+      endDate: '2017-03-05',
+    }).value).toEqual(select(getCheapestAccomodation));
     expect(saga.next({ id: 92 }).value).toEqual(put({
       form: 'order',
       type: 'FORM_VALUES_SET',
@@ -429,6 +433,10 @@ describe('Orders sagas', () => {
         accomodation: 92,
         meals: [],
         year: '2017',
+        stayLength: [
+          '2017-03-04',
+          '2017-03-05',
+        ],
       },
     }));
     expect(saga.next().done).toBe(true);
@@ -436,8 +444,12 @@ describe('Orders sagas', () => {
 
   it('orderSetDefaults sets default values without accomodation', () => {
     const saga = sagas.orderSetDefaults();
-    expect(saga.next().value).toEqual(select(yearActiveNumber));
-    expect(saga.next('2017').value).toEqual(select(getCheapestAccomodation));
+    expect(saga.next().value).toEqual(select(yearActive));
+    expect(saga.next({
+      year: '2017',
+      startDate: '2017-03-04',
+      endDate: '2017-03-05',
+    }).value).toEqual(select(getCheapestAccomodation));
     expect(saga.next(null).value).toEqual(put({
       form: 'order',
       type: 'FORM_VALUES_SET',
@@ -445,6 +457,10 @@ describe('Orders sagas', () => {
         accomodation: null,
         meals: [],
         year: '2017',
+        stayLength: [
+          '2017-03-04',
+          '2017-03-05',
+        ],
       },
     }));
     expect(saga.next().done).toBe(true);

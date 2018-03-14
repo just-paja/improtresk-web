@@ -130,3 +130,9 @@ export const Workshop = PropTypes.shape({
   lectors: PropTypes.arrayOf(LectorInRole).isRequired,
   name: PropTypes.string.isRequired,
 });
+
+export const Year = PropTypes.shape({
+  endDate: PropTypes.string,
+  id: ResourceId.isRequired,
+  startDate: PropTypes.string,
+});

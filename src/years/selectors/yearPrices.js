@@ -1,10 +1,11 @@
+import moment from 'moment-timezone';
+
 import { createSelector } from 'reselect';
 
 import { yearActive } from './yearList';
 
-// eslint-disable-next-line
 export const getPriceLevels = createSelector(
-  [yearActive],
+  yearActive,
   year => (year && year.priceLevels ? year.priceLevels
     .slice()
     .sort((a, b) => {
@@ -25,4 +26,20 @@ export const getPriceLevels = createSelector(
       },
     ], [])
     .reverse() : [])
+);
+
+export const getActivePriceLevels = createSelector(
+  getPriceLevels,
+  (priceLevels) => {
+    const now = moment();
+    return priceLevels.filter(price =>
+      (!price.endsOn || now.isBefore(price.endsOn)) &&
+      !now.isBefore(price.takesEffectOn)
+    );
+  }
+);
+
+export const getActivePriceLevel = createSelector(
+  getActivePriceLevels,
+  priceLevels => priceLevels[0] || null
 );

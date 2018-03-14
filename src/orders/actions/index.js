@@ -19,3 +19,7 @@ export const cancelOrder = () => ({
 export const invalidateOrders = () => ({
   type: constants.ORDERS_INVALIDATE,
 });
+
+export const setOrderDefaults = () => ({
+  type: constants.ORDER_FORM_SET_DEFAULTS,
+});

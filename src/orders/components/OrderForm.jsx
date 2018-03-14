@@ -11,15 +11,20 @@ import Button from '../../components/Button';
 import Message from '../../containers/Message';
 import MealPicker from './MealPicker';
 import Price from '../../components/Price';
+import StayLengthPicker from './StayLengthPicker';
 import WorkshopPicker from './WorkshopPicker';
 
-import { Accomodation, FormData, Meal, Workshop } from '../../proptypes';
+import { Accomodation, FormData, Meal, Year, Workshop } from '../../proptypes';
 
 export default class OrderForm extends Component {
   constructor() {
     super();
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.onEnter();
   }
 
   handleChange(name, value) {
@@ -39,6 +44,7 @@ export default class OrderForm extends Component {
       meals,
       price,
       workshops,
+      year,
     } = this.props;
     return (
       <div>
@@ -56,6 +62,19 @@ export default class OrderForm extends Component {
                 value={formData.values.workshop}
                 workshops={workshops}
               />
+              {formData.values.workshop ? null : (
+                <div>
+                  <hr />
+                  <h3><Message name="orders.howLongStay" /></h3>
+                  <StayLengthPicker
+                    start={year.startDate}
+                    end={year.endDate}
+                    onChange={this.handleChange}
+                    name="stayLength"
+                    value={formData.values.stayLength}
+                  />
+                </div>
+              )}
             </Col>
             <Col xs={12} xl={6}>
               <Row>
@@ -87,7 +106,7 @@ export default class OrderForm extends Component {
               </Row>
             </Col>
           </Row>
-          <Card>
+          <Card className="mb-3">
             <CardBody>
               <big>
                 <Message name="orders.priceToPay" />:
@@ -110,8 +129,10 @@ OrderForm.propTypes = {
   foodPickCloseDate: PropTypes.string,
   meals: PropTypes.arrayOf(Meal).isRequired,
   onChange: PropTypes.func.isRequired,
+  onEnter: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   workshops: PropTypes.arrayOf(Workshop).isRequired,
+  year: Year.isRequired,
 };
 
 OrderForm.defaultProps = {
