@@ -13,6 +13,6 @@ describe('Input Select component', () => {
         name="text-input"
       />
     ));
-    expect(comp.find('Input').prop('Control')).toBe(Creatable);
+    expect(comp.find('Input').prop('tag')).toBe(Creatable);
   });
 });
