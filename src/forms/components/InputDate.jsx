@@ -15,6 +15,7 @@ const InputDate = props => (
     monthLabels={moment.months()}
     showClearButton={false}
     weekStartsOnMonday={moment().startOf('week') === moment().startOf('isoWeek')}
+    type="date"
   />
 );
 
