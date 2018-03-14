@@ -8,9 +8,9 @@ import styles from './FlexLabel.css';
 
 const FlexLabel = ({ children }) => (
   <Flex>
-    {React.Children.map(children, child => (
+    {React.Children.map(children, child => (child ? (
       <div className={styles.column}>{child}</div>
-    ))}
+    ) : null))}
   </Flex>
 );
 
