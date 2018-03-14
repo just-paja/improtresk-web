@@ -184,7 +184,7 @@ const calculatePrice = (form, workshops, meals, priceLevel) => {
         price += workshopPrice.price;
       }
     }
-  } else if (priceLevel) {
+  } else if (priceLevel && form.values.stayLength) {
     price += form.values.stayLength.length * priceLevel.entryFee;
   }
 
