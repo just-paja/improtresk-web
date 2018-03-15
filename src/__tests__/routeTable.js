@@ -162,7 +162,7 @@ describe('Route Table', () => {
   });
 
   it('getUrlPattern returns performerDetail URL for en language', () => {
-    expect(getUrlPattern('en', 'performerDetail')).toBe('/en/ucinkujici/:slug');
+    expect(getUrlPattern('en', 'performerDetail')).toBe('/en/performers/:slug');
   });
 
   it('getUrlPattern returns schedule URL for en language', () => {

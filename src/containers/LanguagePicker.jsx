@@ -8,8 +8,8 @@ import * as locales from '../locales';
 import LanguagePicker from '../components/LanguagePicker';
 
 const mapStateToProps = state => ({
-  availableLangs: Object.keys(locales),
   pathName: typeof window === 'undefined' ? 'home' : getUrlName(getLang(state), window.location.pathname) || 'home',
+  availableLangs: Object.keys(locales),
   selectedLang: getLang(state),
 });
 

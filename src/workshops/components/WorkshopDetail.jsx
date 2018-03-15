@@ -1,41 +1,60 @@
 import Card from 'reactstrap/lib/Card';
 import CardBody from 'reactstrap/lib/CardBody';
 import Col from 'reactstrap/lib/Col';
+import Helmet from 'react-helmet';
 import Markdown from 'react-markdown';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Row from 'reactstrap/lib/Row';
 
+import { Workshop } from '../../proptypes';
+
+import Capacity from '../../components/Capacity';
 import Gallery from '../../components/Gallery';
-import Message from '../../containers/Message';
 import LectorSummary from './LectorSummary';
+import Message from '../../containers/Message';
 import PriceList from '../../years/components/PriceList';
 import Prop from '../../components/Prop';
 
-const WorkshopDetail = ({ desc, difficulty, name, lectors, photos, prices }) => (
+const WorkshopDetail = ({ workshop }) => (
   <div>
-    <h1 className="decent">{name}</h1>
+    <Helmet
+      title={workshop.name}
+      meta={[
+        {
+          property: 'og:title',
+          content: workshop.name,
+        },
+        {
+          property: 'og:description',
+          content: `${workshop.desc.substr(0, 127)}...`,
+        },
+      ]}
+    />
+    <h1 className="decent">{workshop.name}</h1>
     <Row>
       <Col className="mb-4 col-wrap" xs="12" lg="6">
         <Card>
           <CardBody>
             <ul className="list-unstyled">
               <Prop icon="hand-rock-o" label={<Message name="workshops.difficulty" />}>
-                {difficulty}
+                {workshop.difficulty}
               </Prop>
               <Prop icon="money" label={<Message name="workshops.price" />}>
-                {prices.length ? <PriceList prices={prices} /> : null}
+                {workshop.prices.length ? <PriceList prices={workshop.prices} /> : null}
+              </Prop>
+              <Prop icon="users" label={<Message name="workshops.capacity" />}>
+                <Capacity {...workshop.capacityStatus} />
               </Prop>
             </ul>
             <div>
-              <Markdown source={desc} />
+              <Markdown source={workshop.desc} />
             </div>
-            <Gallery photos={photos} />
+            <Gallery photos={workshop.photos} />
           </CardBody>
         </Card>
       </Col>
       <Col className="mb-4" xs="12" lg="6">
-        {lectors.map(lectorPosition => (
+        {workshop.lectors.map(lectorPosition => (
           <div className="mb-4" key={lectorPosition.id}>
             <LectorSummary
               name={lectorPosition.lector.name}
@@ -51,24 +70,7 @@ const WorkshopDetail = ({ desc, difficulty, name, lectors, photos, prices }) => 
 );
 
 WorkshopDetail.propTypes = {
-  desc: PropTypes.string.isRequired,
-  difficulty: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  photos: PropTypes.arrayOf(PropTypes.object).isRequired,
-  prices: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    endsOn: PropTypes.string,
-    price: PropTypes.number.isRequired,
-    takesEffectOn: PropTypes.string.isRequired,
-  })).isRequired,
-  lectors: PropTypes.arrayOf(PropTypes.shape({
-    lector: PropTypes.shape({
-      name: PropTypes.string,
-      about: PropTypes.string,
-      photos: PropTypes.arrayOf(PropTypes.object).isRequired,
-    }),
-    role: PropTypes.string,
-  })).isRequired,
+  workshop: Workshop.isRequired,
 };
 
 export default WorkshopDetail;

@@ -1,4 +1,4 @@
-import { takeLatest } from 'redux-saga/effects';
+import { takeEvery } from 'redux-saga/effects';
 
 import { fetchResourceIfRequired } from '../../sagas/api';
 import { isTipListRequired } from '../selectors';
@@ -7,7 +7,7 @@ import * as api from '../../api';
 import * as constants from '../constants';
 
 export function* requireTipList() {
-  yield takeLatest(
+  yield takeEvery(
     constants.TIPS_REQUIRED,
     fetchResourceIfRequired,
     api.fetchTips,

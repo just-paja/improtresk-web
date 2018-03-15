@@ -14,7 +14,7 @@ describe('Accomodation sagas', () => {
     api.fetchAccomodation.restore();
   });
 
-  it('fetchAccomodationList triggers fetch if needed', () => {
+  it('fetch accomodation from API', () => {
     const sagaTester = getSagaTester({
       years: {
         list: {
@@ -52,5 +52,45 @@ describe('Accomodation sagas', () => {
         name: 'DK Milevsko',
       },
     ]);
+  });
+
+  it('dispatch capacity poll on accomodation required', () => {
+    const sagaTester = getSagaTester({
+      years: {
+        list: {
+          data: [
+            {
+              id: 200,
+              year: '2017',
+              current: true,
+            },
+          ],
+        },
+      },
+    });
+    api.fetchAccomodation.returns({
+      ok: true,
+      status: 200,
+      json: () => ([
+        {
+          id: 20,
+          name: 'DK Milevsko',
+        },
+      ]),
+    });
+    sagaTester.runAll(sagas);
+    sagaTester.dispatch({ type: 'ACCOMODATION_REQUIRED' });
+    expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
+      type: 'YEAR_CAPACITY_POLL_REQUIRED',
+    }));
+  });
+
+  it('dispatch capacity poll on accomdation exit', () => {
+    const sagaTester = getSagaTester({});
+    sagaTester.runAll(sagas);
+    sagaTester.dispatch({ type: 'ACCOMODATION_LEFT' });
+    expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
+      type: 'YEAR_CAPACITY_POLL_STOP',
+    }));
   });
 });

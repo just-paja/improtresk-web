@@ -3,9 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Container from '../../components/Container';
-import WorkshopList from '../../workshops/components/WorkshopList';
+import WorkshopList from '../../workshops/containers/WorkshopList';
 
-const Workshops = ({ translate, workshops }) => (
+const Workshops = ({ translate }) => (
   <Container>
     <Helmet
       title={translate('pages.workshops')}
@@ -14,16 +14,12 @@ const Workshops = ({ translate, workshops }) => (
       ]}
     />
     <h1 className="decent">{translate('pages.workshops')}</h1>
-    <WorkshopList workshops={workshops} />
+    <WorkshopList />
   </Container>
 );
 
 Workshops.propTypes = {
   translate: PropTypes.func.isRequired,
-  workshops: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
-
-Workshops.defaultProps = {
 };
 
 export default Workshops;

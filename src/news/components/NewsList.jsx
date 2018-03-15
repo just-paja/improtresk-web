@@ -4,7 +4,7 @@ import React from 'react';
 import ObjectList from '../../components/ObjectList';
 import NewsItem from './NewsItem';
 
-const News = ({ news }) => (
+const NewsList = ({ news }) => (
   <ObjectList
     Component={NewsItem}
     data={news}
@@ -13,8 +13,8 @@ const News = ({ news }) => (
   />
 );
 
-News.propTypes = {
+NewsList.propTypes = {
   news: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default News;
+export default NewsList;

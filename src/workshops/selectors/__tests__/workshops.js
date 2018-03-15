@@ -29,20 +29,6 @@ describe('Workshops selectors', () => {
     });
   });
 
-  it('getLocationsState returns Locations state', () => {
-    expect(selectors.getLocationsState({
-      workshops: {
-        locations: {
-          loading: false,
-          valid: false,
-        },
-      },
-    })).toEqual({
-      loading: false,
-      valid: false,
-    });
-  });
-
   it('getWorkshopListState returns List state', () => {
     expect(selectors.getWorkshopListState({
       workshops: {
@@ -180,87 +166,6 @@ describe('Workshops selectors', () => {
     })).toBe(53);
   });
 
-  it('getAddresses returns list of all workshop location addresses', () => {
-    expect(selectors.getAddresses({
-      workshops: {
-        locations: {
-          data: [
-            {
-              id: 1,
-              address: 'Nádražní 14',
-            },
-            {
-              id: 2,
-              address: 'Pražská 1',
-            },
-          ],
-        },
-      },
-    })).toEqual([
-      'Nádražní 14',
-      'Pražská 1',
-    ]);
-  });
-
-  it('getLocations returns list of all locations', () => {
-    expect(selectors.getLocations({
-      workshops: {
-        locations: {
-          data: [
-            {
-              id: 1,
-              address: 'Nádražní 14',
-            },
-          ],
-        },
-      },
-    })).toEqual([
-      {
-        id: 1,
-        address: 'Nádražní 14',
-      },
-    ]);
-  });
-
-  it('getLocationMarkers returns list of all geocoded locations', () => {
-    expect(selectors.getLocationMarkers({
-      geocode: {
-        'Nádražní 1': {
-          valid: true,
-          data: { lat: 'foo', lng: 'bar' },
-        },
-        'Hradecká 42': {
-          valid: false,
-        },
-      },
-      workshops: {
-        locations: {
-          data: [
-            {
-              id: 1,
-              address: 'Nádražní 1',
-            },
-            {
-              id: 2,
-              address: 'Pražská 9',
-            },
-            {
-              id: 3,
-              address: 'Hradecká 42',
-            },
-          ],
-        },
-      },
-    })).toEqual([
-      {
-        id: 1,
-        address: 'Nádražní 1',
-        lat: 'foo',
-        lng: 'bar',
-      },
-    ]);
-  });
-
   it('isWorkshopListRequired returns true when in invalid state', () => {
     expect(selectors.isWorkshopListRequired({
       workshops: {
@@ -319,30 +224,6 @@ describe('Workshops selectors', () => {
     expect(selectors.isDifficultyListRequired({
       workshops: {
         difficulties: {
-          id: 1,
-          data: {
-            id: 1,
-          },
-          valid: true,
-        },
-      },
-    })).toBe(false);
-  });
-
-  it('isLocationListRequired returns true when in invalid state', () => {
-    expect(selectors.isLocationListRequired({
-      workshops: {
-        locations: {
-          valid: false,
-        },
-      },
-    })).toBe(true);
-  });
-
-  it('isLocationListRequired returns false when in valid state', () => {
-    expect(selectors.isLocationListRequired({
-      workshops: {
-        locations: {
           id: 1,
           data: {
             id: 1,

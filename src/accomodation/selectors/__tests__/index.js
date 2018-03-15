@@ -23,6 +23,44 @@ describe('Accomodation selectors', () => {
     ]);
   });
 
+  it('getAccomodationList accomodation with capacity data', () => {
+    expect(selectors.getAccomodationList({
+      accomodation: {
+        list: {
+          data: [
+            { id: 1 },
+          ],
+        },
+      },
+      years: {
+        capacity: {
+          data: {
+            accomodation: [
+              {
+                capacity: 25,
+                id: 1,
+                number_of_reservations: 10,
+                number_of_unpaid_reservations: 5,
+              },
+            ],
+          },
+        },
+      },
+    })).toEqual([
+      {
+        id: 1,
+        capacityStatus: {
+          assigned: 10,
+          capacity: 25,
+          freeSpots: 10,
+          fullyAssigned: false,
+          fullyReserved: false,
+          reserved: 5,
+        },
+      },
+    ]);
+  });
+
   it('isAccomodationListRequired returns true when in invalid state', () => {
     expect(selectors.isAccomodationListRequired({
       accomodation: {

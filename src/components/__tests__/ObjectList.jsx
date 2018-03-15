@@ -25,15 +25,14 @@ describe('Object List component', () => {
   });
 
   it('renders empty with empty message', () => {
-    expect(shallow(
+    const comp = shallow(
       <ObjectList
         Component={Tip}
         data={[]}
         emptyMessage="Empty!"
       />
-    ).getElement()).toEqual(
-      <div>Empty!</div>
     );
+    expect(comp.find({ children: 'Empty!' })).toHaveLength(1);
   });
 
   it('renders empty without empty message', () => {

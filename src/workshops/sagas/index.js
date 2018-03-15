@@ -1,10 +1,11 @@
+import difficultyList from './difficultyList';
 import lectors from './lectors';
-import workshops from './workshops';
-
-export * from './lectors';
-export * from './workshops';
+import workshopDetail from './workshopDetail';
+import workshopList from './workshopList';
 
 export default [
+  ...difficultyList,
   ...lectors,
-  ...workshops,
+  ...workshopDetail,
+  ...workshopList,
 ];

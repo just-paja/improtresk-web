@@ -13,8 +13,11 @@ describe('ScheduleOverview component', () => {
   it('renders all schedule days', () => {
     const comp = shallow(
       <ScheduleOverview
-        endAt="2017-02-05T00:00:00Z"
-        startAt="2017-02-03T00:00:00Z"
+        year={{
+          id: 616,
+          endAt: '2017-02-05T00:00:00Z',
+          startAt: '2017-02-03T00:00:00Z',
+        }}
         events={[
           {
             id: 1,
@@ -44,8 +47,11 @@ describe('ScheduleOverview component', () => {
   it('renders schedule hours background', () => {
     const comp = shallow(
       <ScheduleOverview
-        endAt="2017-02-05T00:00:00Z"
-        startAt="2017-02-03T00:00:00Z"
+        year={{
+          id: 616,
+          endAt: '2017-02-05T00:00:00Z',
+          startAt: '2017-02-03T00:00:00Z',
+        }}
         events={[
           {
             id: 1,
@@ -83,8 +89,11 @@ describe('ScheduleOverview component', () => {
     };
     const comp = shallow(
       <ScheduleOverview
-        endAt="2017-02-05T00:00:00Z"
-        startAt="2017-02-03T00:00:00Z"
+        year={{
+          id: 616,
+          endAt: '2017-02-05T00:00:00Z',
+          startAt: '2017-02-03T00:00:00Z',
+        }}
         events={[event]}
         rowHeight={2}
       />
@@ -105,8 +114,11 @@ describe('ScheduleOverview component', () => {
     };
     const comp = shallow(
       <ScheduleOverview
-        endAt="2017-02-05T00:00:00Z"
-        startAt="2017-02-03T00:00:00Z"
+        year={{
+          id: 616,
+          endAt: '2017-02-05T00:00:00Z',
+          startAt: '2017-02-03T00:00:00Z',
+        }}
         events={[event]}
         rowHeight={2}
       />

@@ -1,7 +1,8 @@
-import { isRequired, transformData } from 'react-saga-rest';
+import { getProgress, isRequired, transformData } from 'react-saga-rest';
 
-import { getPerformers } from '../../performers/selectors';
-import { getWorkshopList } from '../../workshops/selectors';
+import { getPerformers, getPerformersListState } from '../../performers/selectors';
+import { getWorkshopList, getWorkshopListState } from '../../workshops/selectors';
+import { getYearListState } from '../../years/selectors';
 
 export const aggregatePerformer = (item, performers) => ({
   ...item,
@@ -26,6 +27,13 @@ const sortByDate = (a, b) => {
 
 export const getScheduleEventListState = state => state.schedule.events;
 export const isScheduleEventListRequired = isRequired(getScheduleEventListState);
+
+export const getScheduleProgress = getProgress(
+  getPerformersListState,
+  getScheduleEventListState,
+  getWorkshopListState,
+  getYearListState
+);
 
 export const getScheduleEventList = transformData(getScheduleEventListState, {
   sort: sortByDate,

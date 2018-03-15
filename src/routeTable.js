@@ -44,7 +44,7 @@ const en = {
   participantChangePassword: '/participant/change-password',
   participantChangeWorkshop: '/participant/change-workshop',
   participantNewPassword: '/new-password',
-  performerDetail: '/ucinkujici/:slug',
+  performerDetail: '/performers/:slug',
   schedule: '/schedule',
   signup: '/signup',
   tips: '/tips',

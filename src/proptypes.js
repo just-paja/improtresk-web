@@ -116,7 +116,6 @@ export const Participant = PropTypes.shape({
   id: PropTypes.number.isRequired,
 });
 
-
 export const PollAnswer = PropTypes.shape({
   answerCount: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,

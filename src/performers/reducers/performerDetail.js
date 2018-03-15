@@ -3,6 +3,7 @@ import {
   fetchStart,
   fetchError,
   fetchSuccess,
+  invalidateOnResourceChange,
 } from 'react-saga-rest';
 
 import {
@@ -19,10 +20,7 @@ const defaultState = {
 };
 
 export default combine(defaultState, {
-  [PERFORMER_DETAIL_REQUIRED]: (state, action) => ({
-    ...state,
-    id: action.performer,
-  }),
+  [PERFORMER_DETAIL_REQUIRED]: invalidateOnResourceChange('id', 'slug'),
   [PERFORMER_DETAIL_FETCH_STARTED]: fetchStart,
   [PERFORMER_DETAIL_FETCH_SUCCESS]: fetchSuccess,
   [PERFORMER_DETAIL_FETCH_ERROR]: fetchError,

@@ -7,10 +7,10 @@ import {
 } from 'react-saga-rest';
 
 import {
-  YEAR_ARCHIVE_DETAIL_REQUIRED,
-  YEAR_ARCHIVE_DETAIL_FETCH_STARTED,
-  YEAR_ARCHIVE_DETAIL_FETCH_SUCCESS,
-  YEAR_ARCHIVE_DETAIL_FETCH_ERROR,
+  YEAR_DETAIL_REQUIRED,
+  YEAR_DETAIL_FETCH_STARTED,
+  YEAR_DETAIL_FETCH_SUCCESS,
+  YEAR_DETAIL_FETCH_ERROR,
 } from '../constants';
 
 const defaultState = {
@@ -20,8 +20,8 @@ const defaultState = {
 };
 
 export default combine(defaultState, {
-  [YEAR_ARCHIVE_DETAIL_REQUIRED]: invalidateOnResourceChange('current', 'year'),
-  [YEAR_ARCHIVE_DETAIL_FETCH_STARTED]: fetchStart,
-  [YEAR_ARCHIVE_DETAIL_FETCH_SUCCESS]: fetchSuccess,
-  [YEAR_ARCHIVE_DETAIL_FETCH_ERROR]: fetchError,
+  [YEAR_DETAIL_REQUIRED]: invalidateOnResourceChange('current', 'year'),
+  [YEAR_DETAIL_FETCH_STARTED]: fetchStart,
+  [YEAR_DETAIL_FETCH_SUCCESS]: fetchSuccess,
+  [YEAR_DETAIL_FETCH_ERROR]: fetchError,
 });

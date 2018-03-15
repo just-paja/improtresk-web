@@ -4,4 +4,6 @@ export const requireAccomodationList = () => ({
   type: constants.ACCOMODATION_REQUIRED,
 });
 
-export default {};
+export const accomodationListLeft = () => ({
+  type: constants.ACCOMODATION_LEFT,
+});

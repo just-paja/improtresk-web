@@ -9,10 +9,6 @@ describe('Global Reducers module', () => {
     expect(reducer(undefined, {})).toHaveProperty('device');
   });
 
-  it('provides geocode reducer', () => {
-    expect(reducer(undefined, {})).toHaveProperty('geocode');
-  });
-
   it('provides locale reducer', () => {
     expect(reducer(undefined, {})).toHaveProperty('locale');
   });

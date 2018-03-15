@@ -1,6 +1,5 @@
 import Card from 'reactstrap/lib/Card';
 import CardBody from 'reactstrap/lib/CardBody';
-import Helmet from 'react-helmet';
 import Markdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -8,55 +7,19 @@ import React from 'react';
 import { NewsItem } from '../../proptypes';
 
 import Gallery from '../../components/Gallery';
+import HelmetArticle from '../../components/HelmetArticle';
 import HumanDate from '../../components/HumanDate';
 import Message from '../../containers/Message';
 import PollQuestion from '../../polls/components/PollQuestion';
 
-const hasVoted = id =>
-  global.localStorage && !!global.localStorage.getItem(`votedPoll${id}`);
-
 
 const NewsArticle = ({ newsDetail, onVote }) => (
   <article>
-    <Helmet
+    <HelmetArticle
+      description={`${newsDetail.text.substr(0, 127)}...`}
       name={newsDetail.name}
-      meta={[
-        {
-          property: 'og:type',
-          content: 'article',
-        },
-        {
-          property: 'og:name',
-          content: newsDetail.name,
-        },
-        {
-          property: 'og:description',
-          content: `${newsDetail.text.substr(0, 127)}...`,
-        },
-        {
-          property: 'og:published_time',
-          content: newsDetail.createdAt,
-        },
-        {
-          property: 'og:modified_time',
-          content: newsDetail.updatedAt,
-        },
-        ...newsDetail.photos.reduce((data, photo) => ([
-          ...data,
-          {
-            property: 'og:image',
-            content: photo.image,
-          },
-          {
-            property: 'og:image:height',
-            content: photo.height,
-          },
-          {
-            property: 'og:image:width',
-            content: photo.width,
-          },
-        ]), []),
-      ]}
+      createdAt={newsDetail.createdAt}
+      updatedAt={newsDetail.updatedAt}
     />
     <header><h1>{newsDetail.name}</h1></header>
     <Card>
@@ -70,7 +33,7 @@ const NewsArticle = ({ newsDetail, onVote }) => (
             loading={newsDetail.poll.loading}
             onVote={onVote}
             question={newsDetail.poll.question}
-            voted={newsDetail.poll.saved || hasVoted(newsDetail.poll.id)}
+            voted={newsDetail.poll.saved || newsDetail.poll.voted}
             votes={newsDetail.poll.answerCount}
           />
         ) : null}

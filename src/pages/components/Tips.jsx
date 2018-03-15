@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 import Container from '../../components/Container';
 import Message from '../../containers/Message';
-import TipList from '../../texts/components/TipList';
+import TipList from '../../texts/containers/TipList';
 
-const Tips = ({ tips, translate }) => (
+const Tips = ({ translate }) => (
   <Container>
     <Helmet
       title={translate('pages.tips')}
@@ -15,12 +15,11 @@ const Tips = ({ tips, translate }) => (
       ]}
     />
     <h1><Message name="pages.tips" /></h1>
-    <TipList tips={tips} />
+    <TipList />
   </Container>
 );
 
 Tips.propTypes = {
-  tips: PropTypes.arrayOf(PropTypes.object).isRequired,
   translate: PropTypes.func.isRequired,
 };
 

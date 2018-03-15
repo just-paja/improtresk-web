@@ -4,8 +4,17 @@ export const requireWorkshopList = () => ({
   type: constants.WORKSHOPS_REQUIRED,
 });
 
-export const requireWorkshopDetail = () => ({
+export const exitWorkshopList = () => ({
+  type: constants.WORKSHOPS_LEFT,
+});
+
+export const requireWorkshopDetail = slug => ({
   type: constants.WORKSHOP_DETAIL_REQUIRED,
+  slug,
+});
+
+export const exitWorkshopDetail = () => ({
+  type: constants.WORKSHOP_DETAIL_LEFT,
 });
 
 export const requireWorkshopDifficulties = () => ({

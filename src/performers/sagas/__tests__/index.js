@@ -1,89 +1,129 @@
-import { call, select, takeLatest } from 'redux-saga/effects';
+import sinon from 'sinon';
 
-import { fetchResourceIfRequired } from '../../../sagas/api';
-import { yearActiveNumber } from '../../../years/selectors';
-import {
-  getPerformerDetailId,
-  isPerformerListRequired,
-  isPerformerDetailRequired,
-} from '../../selectors';
+import sagas from '..';
+import getSagaTester from '../../../../mock/sagaTester';
 
-import * as sagas from '..';
 import * as api from '../../../api';
 
 describe('Performers sagas', () => {
-  it('requirePerformerList creates fetch actions', () => {
-    const gen = sagas.requirePerformerList();
-    expect(gen.next().value).toEqual(takeLatest(
-      'PERFORMERS_REQUIRED',
-      sagas.fetchPerformerList
-    ));
-    expect(gen.next().done).toBe(true);
+  beforeEach(() => {
+    Object.keys(api).forEach(key => sinon.stub(api, key));
   });
 
-  it('requirePerformerDetail creates fetch actions', () => {
-    const gen = sagas.requirePerformerDetail();
-    expect(gen.next().value).toEqual(takeLatest(
-      'PERFORMER_DETAIL_REQUIRED',
-      sagas.fetchPerformerDetail
-    ));
-    expect(gen.next().done).toBe(true);
+  afterEach(() => {
+    Object.keys(api).forEach(key => api[key].restore());
   });
 
-  it('fetchPerformerList creates fetch actions with year', () => {
-    const gen = sagas.fetchPerformerList();
-    expect(gen.next().value).toEqual(select(yearActiveNumber));
-    expect(gen.next('2017').value).toEqual(call(
-      fetchResourceIfRequired,
-      api.fetchPerformers,
+  it('fetch participant list when required', () => {
+    const sagaTester = getSagaTester({
+      years: {
+        list: {
+          data: [
+            {
+              id: 5,
+              year: '2018',
+            },
+          ],
+        },
+      },
+    });
+    api.fetchPerformers.returns({
+      ok: true,
+      status: 200,
+      json: () => ([
+        {
+          id: 2,
+          name: '20000 židů pod mořem',
+        },
+      ]),
+    });
+    sagaTester.runAll(sagas);
+    sagaTester.dispatch({ type: 'PERFORMERS_REQUIRED' });
+    expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
+      type: 'PERFORMERS_FETCH_STARTED',
+    }));
+    expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
+      type: 'PERFORMERS_FETCH_SUCCESS',
+    }));
+    expect(sagaTester.getState().performers.list.data).toMatchObject([
       {
-        isRequired: isPerformerListRequired,
-        actions: {
-          start: 'PERFORMERS_FETCH_STARTED',
-          success: 'PERFORMERS_FETCH_SUCCESS',
-          fail: 'PERFORMERS_FETCH_ERROR',
-        },
-        params: {
-          year: '2017',
-        },
-      })
-    );
-    expect(gen.next().done).toBe(true);
+        id: 2,
+        name: '20000 židů pod mořem',
+      },
+    ]);
   });
 
-  it('fetchPerformerList creates no actions without year', () => {
-    const gen = sagas.fetchPerformerList();
-    expect(gen.next().value).toEqual(select(yearActiveNumber));
-    expect(gen.next(null).done).toBe(true);
+  it('do not fetch participant list when no year is active', () => {
+    const sagaTester = getSagaTester({});
+    api.fetchPerformers.returns({
+      ok: true,
+      status: 200,
+      json: () => ([
+        {
+          id: 2,
+          name: '20000 židů pod mořem',
+        },
+      ]),
+    });
+    sagaTester.runAll(sagas);
+    sagaTester.dispatch({ type: 'PERFORMERS_REQUIRED' });
+    expect(sagaTester.getCalledActions()).not.toContainEqual(expect.objectContaining({
+      type: 'PERFORMERS_FETCH_STARTED',
+    }));
   });
 
-  it('fetchPerformerDetail creates fetch actions with year', () => {
-    const gen = sagas.fetchPerformerDetail();
-    expect(gen.next().value).toEqual(select(yearActiveNumber));
-    expect(gen.next('2017').value).toEqual(select(getPerformerDetailId));
-    expect(gen.next(24).value).toEqual(call(
-      fetchResourceIfRequired,
-      api.fetchPerformerDetail,
-      {
-        isRequired: isPerformerDetailRequired,
-        actions: {
-          start: 'PERFORMER_DETAIL_FETCH_STARTED',
-          success: 'PERFORMER_DETAIL_FETCH_SUCCESS',
-          fail: 'PERFORMER_DETAIL_FETCH_ERROR',
+  it('fetch participant detail when required', () => {
+    const sagaTester = getSagaTester({
+      years: {
+        list: {
+          data: [
+            {
+              id: 5,
+              year: '2018',
+            },
+          ],
         },
-        params: {
-          year: '2017',
-          performer: 24,
-        },
-      })
-    );
-    expect(gen.next().done).toBe(true);
+      },
+    });
+    api.fetchPerformerDetail.returns({
+      ok: true,
+      status: 200,
+      json: () => ({
+        id: 2,
+        name: '20000 židů pod mořem',
+      }),
+    });
+    sagaTester.runAll(sagas);
+    sagaTester.dispatch({ type: 'PERFORMER_DETAIL_REQUIRED', slug: '2000-k-zidu-200' });
+    expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
+      type: 'PERFORMER_DETAIL_FETCH_STARTED',
+    }));
+    expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
+      type: 'PERFORMER_DETAIL_FETCH_SUCCESS',
+    }));
+    expect(sagaTester.getState().performers.detail).toMatchObject({
+      id: '2000-k-zidu-200',
+      data: {
+        id: 2,
+        name: '20000 židů pod mořem',
+      },
+    });
   });
 
-  it('fetchPerformerDetail creates no actions without year', () => {
-    const gen = sagas.fetchPerformerDetail();
-    expect(gen.next().value).toEqual(select(yearActiveNumber));
-    expect(gen.next(null).value).toEqual(select(getPerformerDetailId));
-    expect(gen.next(null).done).toBe(true);
+  it('do not fetch participant detail when no year is active', () => {
+    const sagaTester = getSagaTester({});
+    api.fetchPerformerDetail.returns({
+      ok: true,
+      status: 200,
+      json: () => ({
+        id: 2,
+        name: '20000 židů pod mořem',
+      }),
+    });
+    sagaTester.runAll(sagas);
+    sagaTester.dispatch({ type: 'PERFORMER_DETAIL_REQUIRED', slug: '2000-k-zidu-200' });
+    expect(sagaTester.getCalledActions()).not.toContainEqual(expect.objectContaining({
+      type: 'PERFORMER_DETAIL_FETCH_STARTED',
+    }));
   });
 });

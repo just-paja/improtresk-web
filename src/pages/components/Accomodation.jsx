@@ -2,13 +2,12 @@ import Helmet from 'react-helmet';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AccomodationDetails from '../../accomodation/components/AccomodationDetails';
+import AccomodationList from '../../accomodation/containers/AccomodationList';
 import Container from '../../components/Container';
-import ObjectList from '../../components/ObjectList';
 import Message from '../../containers/Message';
 import TextAccomodation from '../../texts/containers/TextAccomodation';
 
-const Accomodation = ({ accomodationList, translate }) => (
+const Accomodation = ({ translate }) => (
   <Container>
     <Helmet
       title={translate('pages.accomodation')}
@@ -18,20 +17,12 @@ const Accomodation = ({ accomodationList, translate }) => (
     />
     <h1><Message name="pages.accomodation" /></h1>
     <TextAccomodation skipFirstHeading />
-    <ObjectList
-      Component={AccomodationDetails}
-      data={accomodationList}
-    />
+    <AccomodationList />
   </Container>
 );
 
 Accomodation.propTypes = {
-  accomodationList: PropTypes.arrayOf(PropTypes.object),
   translate: PropTypes.func.isRequired,
-};
-
-Accomodation.defaultProps = {
-  accomodationList: null,
 };
 
 export default Accomodation;

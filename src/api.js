@@ -29,7 +29,7 @@ export const fetchAccomodation = ({ year, ...params }) =>
 export const fetchCapacity = ({ year, ...params }) =>
   apiFetch(`years/${year}/capacity/`, params);
 
-export const fetchConditionsCurrent = ({ year, ...params }) =>
+export const fetchRules = ({ year, ...params }) =>
   apiFetch(`years/${year}/rules/latest/`, params);
 
 export const fetchLectorRoles = params => apiFetch('lectorRoles/', params);
@@ -67,7 +67,7 @@ export const fetchScheduleEvents = ({ year, ...params }) =>
 export const fetchWorkshopDetail = ({ workshop, year, ...params }) =>
   apiFetch(`years/${year}/workshops/${idFromSlug(workshop)}/`, params);
 
-export const fetchWorkshopLocations = ({ year, ...params }) =>
+export const fetchLocations = ({ year, ...params }) =>
   apiFetch(`years/${year}/locations/`, params);
 
 export const fetchWorkshopDifficulties = ({ ...params }) =>

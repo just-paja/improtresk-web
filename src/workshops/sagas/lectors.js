@@ -6,7 +6,7 @@ import { isLectorListRequired, isLectorRolesListRequired } from '../selectors/le
 import * as api from '../../api';
 import * as constants from '../constants';
 
-export function* requireLectorRoles() {
+function* requireLectorRoles() {
   yield takeEvery(
     constants.LECTOR_ROLES_REQUIRED,
     fetchResourceIfRequired,
@@ -22,7 +22,7 @@ export function* requireLectorRoles() {
   );
 }
 
-export function* requireLectors() {
+function* requireLectors() {
   yield takeEvery(
     constants.LECTORS_REQUIRED,
     fetchResourceIfRequired,

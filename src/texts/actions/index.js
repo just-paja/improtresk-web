@@ -5,4 +5,7 @@ export const requireText = category => ({
   category,
 });
 
-export default { requireText };
+export const requireTipList = category => ({
+  type: constants.TIPS_REQUIRED,
+  category,
+});

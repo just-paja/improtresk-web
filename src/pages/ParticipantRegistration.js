@@ -5,7 +5,4 @@ import ParticipantRegistration from './components/ParticipantRegistration';
 const mapStateToProps = () => ({
 });
 
-const mapDispatchToProps = {
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ParticipantRegistration);
+export default connect(mapStateToProps)(ParticipantRegistration);

@@ -38,10 +38,6 @@ export const isPolling = createSelector(
 
 export const getCapacity = getData(getCapacityState);
 
-export const getAccomodationCapacity = transformData(getCapacityState, [
-  capacity => (capacity && capacity.accomodation ? capacity.accomodation : []),
-]);
-
 export const getWorkshopCapacity = transformData(getCapacityState, [
   capacity => (capacity && capacity.workshops ? capacity.workshops : []),
 ]);

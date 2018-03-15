@@ -1,3 +1,4 @@
+import Alert from 'reactstrap/lib/Alert';
 import classnames from 'classnames';
 import Col from 'reactstrap/lib/Col';
 import moment from 'moment';
@@ -5,19 +6,25 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Row from 'reactstrap/lib/Row';
 
+import { Year } from '../../proptypes';
+
+import Message from '../../containers/Message';
 import ScheduleHours from './ScheduleHours';
 import ScheduleDay from './ScheduleDay';
 
 import styles from './ScheduleOverview.css';
 
 const ScheduleOverview = ({
-  endAt,
-  startAt,
+  year,
   events,
   rowHeight,
 }) => {
+  if (events.length === 0) {
+    return <Alert color="info"><Message name="schedule.notReady" /></Alert>;
+  }
+
   const days = [];
-  const currentDate = moment(startAt);
+  const currentDate = moment(year.startAt);
   let minHour;
   let maxHour;
 
@@ -35,7 +42,7 @@ const ScheduleOverview = ({
   minHour = Math.max(0, minHour - 1);
   maxHour = Math.min(23, maxHour + 1);
 
-  while (currentDate.isBefore(endAt) || currentDate.isSame(endAt)) {
+  while (currentDate.isBefore(year.endAt) || currentDate.isSame(year.endAt)) {
     const dayEvents = events.filter(event => (
       currentDate.isSame(event.startAt, 'day') ||
       currentDate.isSame(event.endAt, 'day')
@@ -83,10 +90,13 @@ const ScheduleOverview = ({
 };
 
 ScheduleOverview.propTypes = {
-  endAt: PropTypes.string.isRequired,
-  startAt: PropTypes.string.isRequired,
   events: PropTypes.arrayOf(PropTypes.object).isRequired,
-  rowHeight: PropTypes.number.isRequired,
+  rowHeight: PropTypes.number,
+  year: Year.isRequired,
+};
+
+ScheduleOverview.defaultProps = {
+  rowHeight: 64,
 };
 
 export default ScheduleOverview;

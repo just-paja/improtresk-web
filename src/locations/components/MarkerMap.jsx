@@ -8,7 +8,7 @@ import {
   Marker,
 } from 'react-google-maps';
 
-const MarkerMap = ({ center, markers, zoom }) => (
+export const MarkerMapComponent = ({ center, markers, zoom }) => (
   <GoogleMap
     defaultZoom={zoom}
     defaultCenter={center}
@@ -22,13 +22,13 @@ const MarkerMap = ({ center, markers, zoom }) => (
   </GoogleMap>
 );
 
-MarkerMap.propTypes = {
+MarkerMapComponent.propTypes = {
   center: PropTypes.object,
   markers: PropTypes.arrayOf(PropTypes.object).isRequired,
   zoom: PropTypes.number,
 };
 
-MarkerMap.defaultProps = {
+MarkerMapComponent.defaultProps = {
   center: {
     lat: 49.445356,
     lng: 14.365178,
@@ -36,4 +36,4 @@ MarkerMap.defaultProps = {
   zoom: 8,
 };
 
-export default withScriptjs(withGoogleMap(MarkerMap));
+export default withScriptjs(withGoogleMap(MarkerMapComponent));

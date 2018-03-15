@@ -1,22 +1,27 @@
-import { createSelector } from 'reselect';
-import { isRequired, getData, getProp, transformData } from 'react-saga-rest';
+import {
+  getData,
+  getProgress,
+  getProp,
+  isRequired,
+  transformData,
+} from 'react-saga-rest';
 
 import { getLectorRolesState, getLectorListState } from './lectors';
 import { aggregateCapacityData, getWorkshopCapacity, getPriceLevels } from '../../years/selectors';
 
 export const getDifficultiesState = state => state.workshops.difficulties;
-export const getGeocodeState = state => state.geocode;
-export const getLocationsState = state => state.workshops.locations;
 export const getWorkshopDetailState = state => state.workshops.detail;
 export const getWorkshopListState = state => state.workshops.list;
 
-export const isDifficultyListRequired = isRequired(getDifficultiesState);
-export const isLocationListRequired = isRequired(getLocationsState);
-export const isWorkshopDetailRequired = isRequired(getWorkshopDetailState);
+export const getWorkshopListProgress = getProgress(getWorkshopListState);
 export const isWorkshopListRequired = isRequired(getWorkshopListState);
 
-export const getDifficultyList = getData(getDifficultiesState);
 export const getWorkshopDetailId = getProp(getWorkshopDetailState, 'id');
+export const getWorkshopDetailProgress = getProgress(getWorkshopDetailState);
+export const isWorkshopDetailRequired = isRequired(getWorkshopDetailState);
+
+export const getDifficultyList = getData(getDifficultiesState);
+export const isDifficultyListRequired = isRequired(getDifficultiesState);
 
 export const getWorkshopRelatedData = () => [
   getLectorListState,
@@ -25,23 +30,6 @@ export const getWorkshopRelatedData = () => [
   getPriceLevels,
   getWorkshopCapacity,
 ];
-
-export const getLocations = getData(getLocationsState);
-
-export const getAddresses = createSelector(
-  [getLocations],
-  locations => locations.map(location => location.address)
-);
-
-export const getLocationMarkers = createSelector(
-  [getLocations, getGeocodeState],
-  (locations, geocode) => locations
-    .filter(location => geocode[location.address] && geocode[location.address].valid)
-    .map(location => ({
-      ...location,
-      ...geocode[location.address].data,
-    }))
-);
 
 export const findLectorRoleName = (roles, id) => {
   if (roles) {

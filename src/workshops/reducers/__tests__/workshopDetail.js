@@ -43,8 +43,8 @@ describe('Workshops list reducer', () => {
   });
 
   it('saves detail id on WORKSHOP_DETAIL_REQUIRED', () => {
-    expect(workshopDetail({}, { type: 'WORKSHOP_DETAIL_REQUIRED', workshop: 1 })).toMatchObject({
-      id: 1,
+    expect(workshopDetail({}, { type: 'WORKSHOP_DETAIL_REQUIRED', slug: 'nehraj-1346' })).toMatchObject({
+      id: 'nehraj-1346',
     });
   });
 });

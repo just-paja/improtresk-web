@@ -4,8 +4,8 @@ import { shallow } from 'enzyme';
 
 import WorkshopList from '../WorkshopList';
 
-describe('Workshop List component', () => {
-  it('renders passed workshop name', () => {
+describe('WorkshopList component', () => {
+  it('renders workshop list item', () => {
     const comp = shallow(
       <WorkshopList
         workshops={[
@@ -14,9 +14,13 @@ describe('Workshop List component', () => {
             desc: 'Na workshopu se zaměříme na práci s tělem, nonverbální herectví a pantomimu.',
             difficulty: 'Pro všechny',
             name: 'Pantomima a fyzické divadlo',
+            capacityStatus: {},
             lectors: [
               {
+                id: 10,
+                role: 'Hlavní lektor',
                 lector: {
+                  id: 11,
                   name: 'Vojtěch Svoboda',
                 },
               },
@@ -25,6 +29,29 @@ describe('Workshop List component', () => {
         ]}
       />
     );
-    expect(comp.find({ children: 'Pantomima a fyzické divadlo' })).toHaveLength(1);
+    expect(comp.find('WorkshopListItem')).toHaveProp('workshop', {
+      id: 12,
+      desc: 'Na workshopu se zaměříme na práci s tělem, nonverbální herectví a pantomimu.',
+      difficulty: 'Pro všechny',
+      name: 'Pantomima a fyzické divadlo',
+      capacityStatus: {},
+      lectors: [
+        {
+          id: 10,
+          role: 'Hlavní lektor',
+          lector: {
+            id: 11,
+            name: 'Vojtěch Svoboda',
+          },
+        },
+      ],
+    });
+  });
+
+  it('renders empty message when no workshops are given', () => {
+    const comp = shallow(
+      <WorkshopList workshops={[]} />
+    );
+    expect(comp.find('Connect(Message)[name="workshops.empty"]')).toHaveLength(1);
   });
 });

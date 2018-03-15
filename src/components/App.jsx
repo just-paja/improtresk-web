@@ -11,7 +11,7 @@ import AppHelmet from './AppHelmet';
 import AppLoader from './AppLoader';
 import CrashHandler from './CrashHandler';
 import ArchivedYear from '../pages/ArchivedYear';
-import Conditions from '../pages/Conditions';
+import Rules from '../pages/Rules';
 import Contact from '../pages/Contact';
 import Fees from '../pages/Fees';
 import Food from '../pages/Food';
@@ -31,7 +31,7 @@ import NotFound from '../pages/NotFound';
 import ParticipantHome from '../pages/ParticipantHome';
 import ParticipantRegistration from '../pages/ParticipantRegistration';
 import PrivateRoute from '../containers/PrivateRoute';
-// import PerformerDetail from '../pages/performerDetail';
+import PerformerDetail from '../pages/PerformerDetail';
 import ProgressBar from './ProgressBar';
 import Schedule from '../pages/Schedule';
 import Signup from '../pages/Signup';
@@ -78,7 +78,7 @@ class App extends Component {
       <Route key={`${routeLang}accomodation`} component={Accomodation} path={getUrlPattern(routeLang, 'accomodation')} />,
       <Route key={`${routeLang}archiveYearDetail`} component={ArchivedYear} path={getUrlPattern(routeLang, 'archiveYearDetail')} />,
       <Route key={`${routeLang}fees`} component={Fees} path={getUrlPattern(routeLang, 'fees')} />,
-      <Route key={`${routeLang}conditions`} component={Conditions} path={getUrlPattern(routeLang, 'conditions')} />,
+      <Route key={`${routeLang}conditions`} component={Rules} path={getUrlPattern(routeLang, 'conditions')} />,
       <Route key={`${routeLang}contact`} component={Contact} path={getUrlPattern(routeLang, 'contact')} />,
       <Route key={`${routeLang}food`} component={Food} path={getUrlPattern(routeLang, 'food')} />,
       <Route key={`${routeLang}participantForgottenPassword`} component={ForgottenPassword} path={getUrlPattern(routeLang, 'participantForgottenPassword')} />,
@@ -86,6 +86,7 @@ class App extends Component {
       <Route key={`${routeLang}newsDetail`} component={NewsDetail} path={getUrlPattern(routeLang, 'newsDetail')} />,
       <Route key={`${routeLang}newPassword`} component={NewPassword} path={getUrlPattern(routeLang, 'participantNewPassword')} />,
       <Route key={`${routeLang}schedule`} component={Schedule} path={getUrlPattern(routeLang, 'schedule')} />,
+      <Route key={`${routeLang}performerDetail`} component={PerformerDetail} path={getUrlPattern(routeLang, 'performerDetail')} />,
       <Route key={`${routeLang}signup`} component={Signup} path={getUrlPattern(routeLang, 'signup')} />,
       <Route key={`${routeLang}tips`} component={Tips} path={getUrlPattern(routeLang, 'tips')} />,
       <Route key={`${routeLang}workshops`} component={Workshops} exact path={getUrlPattern(routeLang, 'workshops')} />,
@@ -153,7 +154,6 @@ export default App;
 
 
 /*
-<Route component={PerformerDetail} path={urlTable['performerDetail']} />
 <Route
 path={urlTable['participantConfirmOrder']}
 component={ParticipantConfirm}

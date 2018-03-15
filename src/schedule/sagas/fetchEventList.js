@@ -1,5 +1,7 @@
-import { call, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 
+import { requirePerformerList } from '../../performers/actions';
+import { requireWorkshopList } from '../../workshops/actions';
 import { fetchResourceIfRequired } from '../../sagas/api';
 import { isScheduleEventListRequired } from '../selectors';
 import { yearActiveNumber } from '../../years/selectors';
@@ -7,9 +9,11 @@ import { yearActiveNumber } from '../../years/selectors';
 import * as api from '../../api';
 import * as constants from '../constants';
 
-export function* fetchScheduleEventList() {
+function* fetchScheduleEventList() {
   const year = yield select(yearActiveNumber);
   if (year) {
+    yield put(requirePerformerList());
+    yield put(requireWorkshopList());
     yield call(fetchResourceIfRequired, api.fetchScheduleEvents, {
       isRequired: isScheduleEventListRequired,
       actions: {
@@ -22,7 +26,7 @@ export function* fetchScheduleEventList() {
   }
 }
 
-export function* requireScheduleEventList() {
+function* requireScheduleEventList() {
   yield takeLatest(
     constants.SCHEDULE_EVENTS_REQUIRED,
     fetchScheduleEventList

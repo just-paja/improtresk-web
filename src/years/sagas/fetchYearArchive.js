@@ -14,9 +14,9 @@ export function* fetchArchivedYear() {
     {
       isRequired: isArchiveRequired,
       actions: {
-        start: constants.YEAR_ARCHIVE_DETAIL_FETCH_STARTED,
-        success: constants.YEAR_ARCHIVE_DETAIL_FETCH_SUCCESS,
-        fail: constants.YEAR_ARCHIVE_DETAIL_FETCH_ERROR,
+        start: constants.YEAR_DETAIL_FETCH_STARTED,
+        success: constants.YEAR_DETAIL_FETCH_SUCCESS,
+        fail: constants.YEAR_DETAIL_FETCH_ERROR,
       },
       params: { year },
     }
@@ -25,7 +25,7 @@ export function* fetchArchivedYear() {
 
 export function* requireArchivedYear() {
   yield takeLatest(
-    constants.YEAR_ARCHIVE_DETAIL_REQUIRED,
+    constants.YEAR_DETAIL_REQUIRED,
     fetchArchivedYear
   );
 }

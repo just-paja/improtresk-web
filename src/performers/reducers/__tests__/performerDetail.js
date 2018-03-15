@@ -43,7 +43,7 @@ describe('Performer detail reducer', () => {
   });
 
   it('saves detail id on PERFORMER_DETAIL_REQUIRED', () => {
-    expect(performerDetail({}, { type: 'PERFORMER_DETAIL_REQUIRED', performer: 1 })).toMatchObject({
+    expect(performerDetail({}, { type: 'PERFORMER_DETAIL_REQUIRED', slug: 1 })).toMatchObject({
       id: 1,
     });
   });

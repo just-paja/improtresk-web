@@ -11,6 +11,7 @@ export default {
     food: 'Food',
     locations: 'Locations',
     news: 'News',
+    schedule: 'Schedule',
     signup: 'Signup',
     tips: 'Tips',
     workshops: 'Workshops',

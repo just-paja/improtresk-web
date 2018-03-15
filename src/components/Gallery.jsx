@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Lightbox from 'react-images';
 import ReactGallery from 'react-photo-gallery';
 
+import HelmetPhotos from './HelmetPhotos';
+
 export default class Gallery extends Component {
   constructor() {
     super();
@@ -41,6 +43,7 @@ export default class Gallery extends Component {
     }));
     return (
       <div>
+        <HelmetPhotos photos={photosMapped} />
         <ReactGallery
           {...other}
           onClick={this.handlePhotoClick}

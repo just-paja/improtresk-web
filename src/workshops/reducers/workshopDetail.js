@@ -15,7 +15,7 @@ const defaultState = {
 };
 
 export default combine(defaultState, {
-  [constants.WORKSHOP_DETAIL_REQUIRED]: invalidateOnResourceChange('id', 'workshop'),
+  [constants.WORKSHOP_DETAIL_REQUIRED]: invalidateOnResourceChange('id', 'slug'),
   [constants.WORKSHOP_DETAIL_FETCH_STARTED]: fetchStart,
   [constants.WORKSHOP_DETAIL_FETCH_SUCCESS]: fetchSuccess,
   [constants.WORKSHOP_DETAIL_FETCH_ERROR]: fetchError,

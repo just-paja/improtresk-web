@@ -1,16 +1,15 @@
-import yearArchive from './fetchYearArchive';
-import yearCapacity from './fetchYearCapacity';
-import yearConditions from './fetchYearConditions';
-import yearList from './fetchYearList';
+import fetchYearArchive from './fetchYearArchive';
+import fetchYearCapacity from './fetchYearCapacity';
+import fetchYearListDefault from './fetchYearList';
+import fetchYearRules from './fetchYearRules';
 
 export * from './fetchYearArchive';
 export * from './fetchYearCapacity';
-export * from './fetchYearConditions';
 export * from './fetchYearList';
 
 export default [
-  ...yearArchive,
-  ...yearCapacity,
-  ...yearConditions,
-  ...yearList,
+  ...fetchYearArchive,
+  ...fetchYearCapacity,
+  ...fetchYearListDefault,
+  ...fetchYearRules,
 ];

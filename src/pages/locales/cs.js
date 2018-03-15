@@ -11,6 +11,7 @@ export default {
     food: 'Jídlo',
     locations: 'Lokace',
     news: 'Novinky',
+    schedule: 'Program',
     signup: 'Přihláška',
     tips: 'Tipy',
     workshops: 'Workshopy',

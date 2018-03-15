@@ -8,9 +8,8 @@ import accomodation from '../accomodation/sagas';
 // import fees from './fees';
 import food from '../food/sagas';
 import forms from '../forms/sagas';
-import geocode from './geocode';
 import locales from './locales';
-// import locations from './locations';
+import locations from '../locations/sagas';
 import news from '../news/sagas';
 import orders from '../orders/sagas';
 import participants from '../participants/sagas';
@@ -29,10 +28,10 @@ const sagas = [
   // ...fees,
   ...food,
   ...forms,
-  ...geocode,
+  ...locations,
   // ...lectors,
   ...locales,
-  // ...locations,
+  ...locations,
   // ...meals,
   ...news,
   ...orders,

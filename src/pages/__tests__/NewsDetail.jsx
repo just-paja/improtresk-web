@@ -20,10 +20,11 @@ describe('NewsDetail container', () => {
     });
   });
 
-  it('triggers news detail entered action', () => {
-    comp.dive();
-    expect(store.getActions()).toEqual([
-      { type: 'PAGE_NEWS_DETAIL_ENTERED', slug: 'news-detail-45' },
-    ]);
+  it('provides route match', () => {
+    expect(comp.find('NewsDetail')).toHaveProp('match', {
+      params: {
+        slug: 'news-detail-45',
+      },
+    });
   });
 });

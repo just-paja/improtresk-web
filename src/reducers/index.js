@@ -6,7 +6,7 @@ import accomodation from '../accomodation/reducers';
 import device from '../reducers/device';
 import food from '../food/reducers';
 import forms from '../forms/reducers';
-import geocode from '../reducers/geocode';
+import locations from '../locations/reducers';
 import news from '../news/reducers';
 import orders from '../orders/reducers';
 import participants from '../participants/reducers';
@@ -23,8 +23,8 @@ export default combineReducers({
   device,
   food,
   forms,
-  geocode,
   locale,
+  locations,
   news,
   orders,
   participants,

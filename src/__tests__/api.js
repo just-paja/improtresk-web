@@ -42,12 +42,12 @@ describe('API helper', () => {
       });
   });
 
-  it('fetchConditionsCurrent calls for current conditions', () => {
+  it('fetchRules calls for current conditions', () => {
     nock(apiSource)
       .get('/years/2016/rules/latest/')
       .reply(200, []);
 
-    return api.fetchConditionsCurrent({ year: 2016, apiSource })
+    return api.fetchRules({ year: 2016, apiSource })
       .then(() => {
         expect(nock.isDone()).toBe(true);
       });
@@ -211,12 +211,12 @@ describe('API helper', () => {
       });
   });
 
-  it('fetchWorkshopLocations calls for workshop locations', () => {
+  it('fetchLocations calls for workshop locations', () => {
     nock(apiSource)
       .get('/years/2016/locations/')
       .reply(200, []);
 
-    return api.fetchWorkshopLocations({ apiSource, year: 2016 })
+    return api.fetchLocations({ apiSource, year: 2016 })
       .then(() => {
         expect(nock.isDone()).toBe(true);
       });

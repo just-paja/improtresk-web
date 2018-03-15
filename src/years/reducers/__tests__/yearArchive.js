@@ -11,23 +11,23 @@ describe('Archive reducer', () => {
 
   it('marks as loading on ARCHIVED_YEAR_REQUIRED', () => {
     expect(yearArchive({
-    }, { type: 'YEAR_ARCHIVE_DETAIL_REQUIRED', year: 2017 })).toMatchObject({
+    }, { type: 'YEAR_DETAIL_REQUIRED', year: 2017 })).toMatchObject({
       current: 2017,
       valid: false,
     });
   });
 
-  it('marks as loading on YEAR_ARCHIVE_DETAIL_FETCH_STARTED', () => {
-    expect(yearArchive({}, { type: 'YEAR_ARCHIVE_DETAIL_FETCH_STARTED' })).toMatchObject({
+  it('marks as loading on YEAR_DETAIL_FETCH_STARTED', () => {
+    expect(yearArchive({}, { type: 'YEAR_DETAIL_FETCH_STARTED' })).toMatchObject({
       loading: true,
     });
   });
 
-  it('marks as loading on YEAR_ARCHIVE_DETAIL_FETCH_SUCCESS', () => {
+  it('marks as loading on YEAR_DETAIL_FETCH_SUCCESS', () => {
     expect(yearArchive(
       {},
       {
-        type: 'YEAR_ARCHIVE_DETAIL_FETCH_SUCCESS',
+        type: 'YEAR_DETAIL_FETCH_SUCCESS',
         data: [
           { year: '2016' },
           { year: '2017' },
@@ -43,8 +43,8 @@ describe('Archive reducer', () => {
     });
   });
 
-  it('marks as loading on YEAR_ARCHIVE_DETAIL_FETCH_ERROR', () => {
-    expect(yearArchive({}, { type: 'YEAR_ARCHIVE_DETAIL_FETCH_ERROR', error: 'error' })).toMatchObject({
+  it('marks as loading on YEAR_DETAIL_FETCH_ERROR', () => {
+    expect(yearArchive({}, { type: 'YEAR_DETAIL_FETCH_ERROR', error: 'error' })).toMatchObject({
       loading: false,
       error: 'error',
     });

@@ -45,7 +45,6 @@ export function* fetchPerformerList() {
   }
 }
 
-
 export function* requirePerformerDetail() {
   yield takeLatest(
     constants.PERFORMER_DETAIL_REQUIRED,

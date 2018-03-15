@@ -19,7 +19,7 @@ export const getArchivedYearTopic = createSelector(
 
 export const getArchivedYearWorkshops = createSelector(
   getArchiveData,
-  current => (current ? current.workshops : [])
+  current => (current ? current.workshops || [] : [])
 );
 
 export const isArchiveRequired = isRequired(getArchiveState);
