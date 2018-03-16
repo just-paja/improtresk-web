@@ -1,8 +1,12 @@
 ---
 engines:
   eslint:
-    enabled: false
-ratings:
-   paths:
-   - "src/**/*"
-   - "webpack/**/*"
+    enabled: true
+exclude_patterns:
+  - "**/__tests__"
+  - "**/locales"
+  - "mock/"
+  - "config/"
+  - "scripts/"
+  - "static/"
+  - "webpack/"
