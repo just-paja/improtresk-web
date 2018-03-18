@@ -11,7 +11,6 @@ import * as constants from '../constants';
 function* fetchWorkshopList() {
   const year = yield select(yearActiveNumber);
   if (year) {
-    yield put(requireCapacityPoll());
     yield call(
       fetchResourceIfRequired,
       api.fetchWorkshops,
@@ -28,6 +27,11 @@ function* fetchWorkshopList() {
   }
 }
 
+function* fetchWorkshopInteractiveList() {
+  yield put(requireCapacityPoll());
+  yield call(fetchWorkshopList);
+}
+
 function* stopPolling() {
   yield put(stopCapacityPoll());
 }
@@ -36,11 +40,16 @@ function* onWorkshopListRequire() {
   yield takeEvery(constants.WORKSHOPS_REQUIRED, fetchWorkshopList);
 }
 
+function* onWorkshopInteractiveListRequire() {
+  yield takeEvery(constants.WORKSHOPS_INTERACTIVE_REQUIRED, fetchWorkshopInteractiveList);
+}
+
 function* onWorkshopListExit() {
   yield takeEvery(constants.WORKSHOPS_LEFT, stopPolling);
 }
 
 export default [
+  onWorkshopInteractiveListRequire,
   onWorkshopListExit,
   onWorkshopListRequire,
 ];

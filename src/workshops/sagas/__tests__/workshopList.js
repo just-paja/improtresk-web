@@ -80,7 +80,7 @@ describe('Workshop List sagas', () => {
       ]),
     });
     sagaTester.runAll(sagas);
-    sagaTester.dispatch({ type: 'WORKSHOPS_REQUIRED' });
+    sagaTester.dispatch({ type: 'WORKSHOPS_INTERACTIVE_REQUIRED' });
     expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
       type: 'YEAR_CAPACITY_POLL_REQUIRED',
     }));

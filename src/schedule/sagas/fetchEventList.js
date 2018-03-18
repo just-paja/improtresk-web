@@ -1,4 +1,4 @@
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeEvery } from 'redux-saga/effects';
 
 import { requirePerformerList } from '../../performers/actions';
 import { requireWorkshopList } from '../../workshops/actions';
@@ -27,7 +27,7 @@ function* fetchScheduleEventList() {
 }
 
 function* requireScheduleEventList() {
-  yield takeLatest(
+  yield takeEvery(
     constants.SCHEDULE_EVENTS_REQUIRED,
     fetchScheduleEventList
   );

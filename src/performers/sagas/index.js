@@ -1,4 +1,4 @@
-import { call, select, takeLatest } from 'redux-saga/effects';
+import { call, select, takeEvery } from 'redux-saga/effects';
 
 import { fetchResourceIfRequired } from '../../sagas/api';
 import { yearActiveNumber } from '../../years/selectors';
@@ -46,14 +46,14 @@ export function* fetchPerformerList() {
 }
 
 export function* requirePerformerDetail() {
-  yield takeLatest(
+  yield takeEvery(
     constants.PERFORMER_DETAIL_REQUIRED,
     fetchPerformerDetail
   );
 }
 
 export function* requirePerformerList() {
-  yield takeLatest(
+  yield takeEvery(
     constants.PERFORMERS_REQUIRED,
     fetchPerformerList
   );
