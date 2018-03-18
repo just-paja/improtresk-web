@@ -39,10 +39,10 @@ const Home = ({ year }) => {
                 <CardBody>
                   <TextHome skipFirstHeading />
                   <ul className="list-unstyled">
-                    <li><Link to="location"><b>Kde</b> to je?</Link></li>
-                    <li><Link to="fees"><b>Kolik</b> to stojí?</Link></li>
-                    <li><Link to="accomodation">Jak je to se <b>spaní</b>m?</Link></li>
-                    <li><Link to="workshops">Jaké jsou <b>workshop</b>y?</Link></li>
+                    <li><Link to="location"><Message name="pages.whereIsIt" /></Link></li>
+                    <li><Link to="fees"><Message name="pages.howMuchCost" /></Link></li>
+                    <li><Link to="accomodation"><Message name="pages.whereCanISleep" /></Link></li>
+                    <li><Link to="workshops"><Message name="pages.whatWorkshops" /></Link></li>
                   </ul>
                 </CardBody>
               </Card>
