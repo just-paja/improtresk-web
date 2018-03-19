@@ -95,11 +95,12 @@ export const resetPassword = ({ formData, ...params }) => apiFetch('password-res
   body: JSON.stringify(formData),
 });
 
-export const changePassword = ({ formData, ...params }) => apiFetch('password-change/', {
-  ...params,
-  method: 'POST',
-  body: JSON.stringify(formData),
-});
+export const changePassword = ({ formData, ...params }) =>
+  apiFetchAuthorized('password-change/', {
+    ...params,
+    method: 'POST',
+    body: JSON.stringify(formData),
+  });
 
 export const newPassword = ({ formData, ...params }) => apiFetch('password-create/', {
   ...params,

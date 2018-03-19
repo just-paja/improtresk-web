@@ -5,6 +5,7 @@ import { shallow } from 'enzyme';
 
 import ChangePassword from '../ChangePassword';
 
+const MockSuccessComponent = () => <div />;
 
 describe('Participant ChangePassword component', () => {
   it('renders', () => {
@@ -21,6 +22,8 @@ describe('Participant ChangePassword component', () => {
         }}
         onChange={() => {}}
         onSubmit={() => {}}
+        onUnmount={() => {}}
+        successComponent={MockSuccessComponent}
         translate={msg => msg}
       />
     );
@@ -43,6 +46,8 @@ describe('Participant ChangePassword component', () => {
         newPassword
         onChange={() => {}}
         onSubmit={() => {}}
+        onUnmount={() => {}}
+        successComponent={MockSuccessComponent}
         translate={msg => msg}
       />
     );
@@ -70,6 +75,8 @@ describe('Participant ChangePassword component', () => {
         }}
         onChange={() => {}}
         onSubmit={() => {}}
+        onUnmount={() => {}}
+        successComponent={MockSuccessComponent}
         translate={msg => msg}
       />
     );
@@ -94,6 +101,8 @@ describe('Participant ChangePassword component', () => {
         }}
         onChange={() => {}}
         onSubmit={() => {}}
+        onUnmount={() => {}}
+        successComponent={MockSuccessComponent}
         translate={msg => msg}
       />
     );
@@ -113,6 +122,8 @@ describe('Participant ChangePassword component', () => {
         }}
         onChange={onChangeSpy}
         onSubmit={() => {}}
+        onUnmount={() => {}}
+        successComponent={MockSuccessComponent}
         translate={msg => msg}
       />
     );
@@ -135,6 +146,8 @@ describe('Participant ChangePassword component', () => {
         }}
         onChange={() => {}}
         onSubmit={onSubmitSpy}
+        onUnmount={() => {}}
+        successComponent={MockSuccessComponent}
         translate={msg => msg}
       />
     );
@@ -146,5 +159,27 @@ describe('Participant ChangePassword component', () => {
       ['resetPassword'],
     ]);
     expect(preventDefaultSpy.calledOnce).toBe(true);
+  });
+
+  it('triggers onUnmount on unmount', () => {
+    const onUnmount = sinon.spy();
+    const comp = shallow(
+      <ChangePassword
+        formData={{
+          fieldErrors: {},
+          formName: 'resetPassword',
+          values: {},
+        }}
+        onChange={() => {}}
+        onSubmit={() => {}}
+        onUnmount={onUnmount}
+        successComponent={MockSuccessComponent}
+        translate={msg => msg}
+      />
+    );
+
+    comp.unmount();
+    expect(onUnmount.calledOnce).toBe(true);
+    expect(onUnmount.getCall(0).args).toEqual(['resetPassword']);
   });
 });

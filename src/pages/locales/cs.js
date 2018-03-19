@@ -2,6 +2,7 @@ export default {
   pages: {
     aboutFestival: 'O Improtřesku',
     accomodation: 'Ubytování',
+    changePassword: 'Změnit heslo',
     conditions: 'Podmínky pro účastníky',
     contact: 'Kontakt',
     fees: 'Poplatky',

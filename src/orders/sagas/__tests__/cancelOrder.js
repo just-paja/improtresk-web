@@ -72,49 +72,4 @@ describe('Orders cancel saga', () => {
       order: 300,
     }));
   });
-
-  it.skip('onOrderCancel binds form submit', () => {
-    const saga = sagas.onOrderCancel();
-    expect(saga.next().value).toEqual(takeLatest(
-      'ORDER_CANCEL_REQUESTED',
-      sagas.orderCancel
-    ));
-    expect(saga.next().done).toBe(true);
-  });
-
-  it.skip('orderCancelRedirect redirecs to home', () => {
-    const saga = sagas.orderCancelRedirect();
-    expect(saga.next().value).toEqual(put({ type: 'ORDER_cancelled' }));
-    expect(saga.next().value).toEqual(call(redirectHome));
-    expect(saga.next().done).toBe(true);
-  });
-
-  it.skip('orderCancel sends order cancel', () => {
-    const saga = sagas.orderCancel();
-    expect(saga.next().value).toEqual(select(getLatestOrder));
-    expect(saga.next({ id: 78 }).value).toEqual(call(
-      fetchResource,
-      api.orderCancel,
-      {
-        actions: {
-          start: 'ORDER_CANCEL_FETCH_STARTED',
-          success: 'ORDER_CANCEL_FETCH_SUCCESS',
-          fail: 'ORDER_CANCEL_FETCH_ERROR',
-        },
-        params: {
-          order: 78,
-        },
-        actionData: {
-          order: 78,
-        },
-      }
-    ));
-    expect(saga.next().done).toBe(true);
-  });
-
-  it.skip('orderCancel does nothing without order', () => {
-    const saga = sagas.orderCancel();
-    expect(saga.next().value).toEqual(select(getLatestOrder));
-    expect(saga.next(null).done).toBe(true);
-  });
 });

@@ -1,7 +1,6 @@
-import { call, select, takeLatest } from 'redux-saga/effects';
+import { call, takeLatest } from 'redux-saga/effects';
 
 import { sendForm } from '../../../forms/sagas/sendForm';
-import { getForm } from '../../../forms/selectors';
 
 import * as sagas from '..';
 import * as api from '../../../api';

@@ -2,6 +2,7 @@ export default {
   pages: {
     aboutFestival: 'About Improtřesk',
     accomodation: 'Accomodation',
+    changePassword: 'Change password',
     conditions: 'Rules for participants',
     contact: 'Contact',
     fees: 'Fees',

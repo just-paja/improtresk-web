@@ -3,16 +3,19 @@ import React from 'react';
 
 import { shallow } from 'enzyme';
 
-import NewPassword from '../NewPassword';
+import NewPasswordPage from '../NewPasswordPage';
 
 const mockStore = configureMockStore();
 
-describe('NewPassword container', () => {
+describe('NewPasswordPage container', () => {
   let comp;
   let store;
 
   beforeEach(() => {
     store = mockStore({
+      locale: {
+        languages: ['cs'],
+      },
       forms: {},
       texts: {
         list: {
@@ -22,7 +25,7 @@ describe('NewPassword container', () => {
         },
       },
     });
-    comp = shallow(<NewPassword location={{ search: '?token=theToken' }} />, {
+    comp = shallow(<NewPasswordPage location={{ search: '?token=theToken' }} />, {
       context: { store },
     });
   });

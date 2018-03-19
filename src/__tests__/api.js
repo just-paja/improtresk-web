@@ -251,8 +251,12 @@ describe('API helper', () => {
       });
   });
 
-  it('changePassword calls for workshops', () => {
-    nock(apiSource)
+  it('changePassword calls for password change', () => {
+    nock(apiSource, {
+      reqheaders: {
+        authorization: 'Bearer x123',
+      },
+    })
       .post('/password-change/', {
         changePassword: 'foo',
       })
@@ -260,6 +264,9 @@ describe('API helper', () => {
 
     return api.changePassword({
       apiSource,
+      auth: {
+        access_token: 'x123',
+      },
       formData: {
         changePassword: 'foo',
       },

@@ -128,6 +128,9 @@ const NavigationMenu = ({
             <LinkContainer to={reverse(lang, 'participantHome')}>
               <DropdownItem><Message name="participants.home" /></DropdownItem>
             </LinkContainer>
+            <LinkContainer to={reverse(lang, 'participantChangePassword')}>
+              <DropdownItem><Message name="participants.changePassword" /></DropdownItem>
+            </LinkContainer>
             <DropdownItem onClick={onLogout}><Message name="participants.logout" /></DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>

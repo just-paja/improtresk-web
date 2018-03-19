@@ -16,6 +16,10 @@ export default class ChangePassword extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillUnmount() {
+    this.props.onUnmount(this.props.formData.formName);
+  }
+
   handleChange(input, value) {
     this.props.onChange(this.props.formData.formName, input, value);
   }
@@ -29,7 +33,12 @@ export default class ChangePassword extends Component {
     const {
       formData,
       newPassword,
+      successComponent: SuccessComponent,
     } = this.props;
+
+    if (formData.saved) {
+      return <SuccessComponent />;
+    }
 
     return (
       <Form onSubmit={this.handleSubmit}>
@@ -74,6 +83,8 @@ ChangePassword.propTypes = {
   newPassword: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  onUnmount: PropTypes.func.isRequired,
+  successComponent: PropTypes.func.isRequired,
 };
 
 ChangePassword.defaultProps = {
