@@ -86,6 +86,7 @@ export const getStore = (req) => {
       host: req.hostname,
       protocol: req.protocol,
       pathLang: req.path.split('/')[1] || null,
+      entryPath: req.path,
       acceptsLanguages: parseLanguages(req.headers['accept-language'])
         .map((item) => {
           if (item.region) {

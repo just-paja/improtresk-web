@@ -1,4 +1,3 @@
-import Helmet from 'react-helmet';
 import React from 'react';
 
 import { shallow } from 'enzyme';
@@ -6,86 +5,81 @@ import { shallow } from 'enzyme';
 import AppHelmet from '../AppHelmet';
 
 describe('AppHelmet component', () => {
-  it('renders', () => {
-    expect(shallow(
+  it('renders default title', () => {
+    const comp = shallow(
       <AppHelmet
-        defaultTitle="Festival divadelní improvizace"
         host="https://improtresk.cz"
-        pathname="/prihlaska"
-        titleTemplate="%s - Improtřesk"
-      />
-    ).getElement()).toEqual(
-      <Helmet
-        defaultTitle="Festival divadelní improvizace"
-        titleTemplate="%s - Improtřesk"
-        meta={[
-          {
-            property: 'og:title',
-            content: 'Festival divadelní improvizace - Improtřesk',
-          },
-          {
-            property: 'og:description',
-            content:
-              'Improtřesk je český festival divadelní improvizace a největší setkání ' +
-              'improvizátorů z celé České republiky. Každý rok se na Improtřesku ' +
-              'otevírají dílny z oblasti improvizačního divadla na kterých se schází ' +
-              'nadšenci improvizačního divadla i veřejnost.',
-          },
-          {
-            property: 'og:type',
-            content: 'website',
-          },
-          {
-            property: 'og:url',
-            content: 'https://improtresk.cz/prihlaska',
-          },
-          {
-            name: 'msapplication-config',
-            content: '/static/theme/favicon/browserconfig.xml',
-          },
-          {
-            name: 'theme-color',
-            content: '#ffffff',
-          },
-        ]}
-        link={[
-          {
-            rel: 'stylesheet',
-            type: 'text/css',
-            href: '/static/font-awesome/css/font-awesome.min.css',
-          },
-          {
-            rel: 'apple-touch-icon',
-            sizes: '180x180',
-            href: '/static/theme/favicon/apple-icon-180x180.png',
-          },
-          {
-            rel: 'icon',
-            type: 'image/png',
-            sizes: '32x32',
-            href: '/static/theme/favicon/favicon-32x32.png',
-          },
-          {
-            rel: 'icon',
-            type: 'image/png',
-            sizes: '16x16',
-            href: '/static/theme/favicon/favicon-16x16.png',
-          },
-          {
-            rel: 'manifest',
-            href: '/static/theme/favicon/manifest.json',
-          },
-          {
-            rel: 'mask-icon',
-            color: '#5bbad5',
-            href: '/static/theme/favicon/safari-pinned-tab.svg',
-          },
-          {
-            rel: 'shortcut icon',
-            href: '/static/theme/favicon/favicon.ico',
-          },
-        ]}
+        entryPath="/prihlaska"
+        translate={msg => msg}
       />
     );
+    expect(comp.find('HelmetWrapper')).toHaveProp('defaultTitle', 'pages.defaultTitle');
+  });
+
+  it('renders default title template when no year is active', () => {
+    const comp = shallow(
+      <AppHelmet
+        host="https://improtresk.cz"
+        entryPath="/prihlaska"
+        translate={msg => msg}
+      />
+    );
+    expect(comp.find('HelmetWrapper')).toHaveProp('titleTemplate', 'pages.titleTemplate');
+  });
+
+  it('renders default opengraph title template when no year is active', () => {
+    const comp = shallow(
+      <AppHelmet
+        host="https://improtresk.cz"
+        entryPath="/prihlaska"
+        translate={msg => msg}
+      />
+    );
+    expect(comp.find('meta[property="og:title"]')).toHaveProp('content', 'pages.titleTemplate');
+  });
+
+  it('renders year title template when a year is active', () => {
+    const comp = shallow(
+      <AppHelmet
+        host="https://improtresk.cz"
+        entryPath="/prihlaska"
+        translate={msg => msg}
+        year={{
+          id: 10,
+          year: '2018',
+        }}
+      />
+    );
+    expect(comp.find('HelmetWrapper')).toHaveProp('titleTemplate', 'pages.titleYearTemplate');
+  });
+
+  it('renders opengraph URL', () => {
+    const comp = shallow(
+      <AppHelmet
+        host="https://improtresk.cz"
+        entryPath="/prihlaska"
+        translate={msg => msg}
+        year={{
+          id: 10,
+          year: '2018',
+        }}
+      />
+    );
+    expect(comp.find('meta[property="og:url"]')).toHaveProp('content', 'https://improtresk.cz/prihlaska');
+  });
+
+  it('renders default description', () => {
+    const comp = shallow(
+      <AppHelmet
+        host="https://improtresk.cz"
+        entryPath="/prihlaska"
+        translate={msg => msg}
+        year={{
+          id: 10,
+          year: '2018',
+        }}
+      />
+    );
+    expect(comp.find('meta[property="og:description"]')).toHaveProp('content', 'pages.about');
   });
 });

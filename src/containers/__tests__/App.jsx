@@ -13,6 +13,9 @@ describe('App container', () => {
 
   beforeEach(() => {
     store = mockStore({
+      locale: {
+        languages: ['cs', 'en'],
+      },
       participants: {
         detail: {},
       },

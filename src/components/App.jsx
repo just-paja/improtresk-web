@@ -39,6 +39,7 @@ import WorkshopDetail from '../pages/WorkshopDetailPage';
 import Workshops from '../pages/Workshops';
 
 import { getAvailableLangs, getUrlPattern } from '../routeTable';
+import { Year } from '../proptypes';
 
 import styles from './App.css';
 
@@ -76,22 +77,20 @@ class App extends Component {
     this.props.onMount();
   }
 
-
   render() {
     const {
       activeRequests,
       currentYear,
+      entryPath,
       errors,
       host,
       lang,
       participant,
       progress,
       onLogout,
+      translate,
       years,
     } = this.props;
-
-    const defaultTitle = 'Festival divadelní improvizace';
-    const titleTemplate = currentYear ? `%s - Improtřesk ${currentYear.year}` : '%s - Improtřesk';
 
     if ((!progress.failed && !progress.valid) || progress.loading || !lang) {
       return <AppLoader />;
@@ -106,10 +105,10 @@ class App extends Component {
       <div className={styles.app}>
         <CrashHandler>
           <AppHelmet
-            defaultTitle={defaultTitle}
+            entryPath={entryPath}
             host={host}
-            pathname="/"
-            titleTemplate={titleTemplate}
+            translate={translate}
+            year={currentYear}
           />
           <Navigation
             currentYear={currentYear}
@@ -134,9 +133,8 @@ class App extends Component {
 
 App.propTypes = {
   activeRequests: PropTypes.number,
-  currentYear: PropTypes.shape({
-    year: PropTypes.string,
-  }),
+  currentYear: Year,
+  entryPath: PropTypes.string,
   errors: PropTypes.arrayOf(ErrorType).isRequired,
   host: PropTypes.string,
   lang: PropTypes.string,
@@ -144,12 +142,14 @@ App.propTypes = {
   progress: ResourceProgress.isRequired,
   onMount: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,
-  years: PropTypes.arrayOf(PropTypes.object),
+  translate: PropTypes.func.isRequired,
+  years: PropTypes.arrayOf(Year),
 };
 
 App.defaultProps = {
   activeRequests: 0,
   currentYear: null,
+  entryPath: null,
   host: null,
   lang: null,
   participant: null,
