@@ -1,4 +1,4 @@
-import { call, fork, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { delay } from 'redux-saga/lib';
 import { canUseDOM } from 'exenv';
 
@@ -11,7 +11,7 @@ import * as constants from '../constants';
 
 const DELAY_TIME = 8000;
 
-export function* fetchCapacity() {
+function* fetchCapacity() {
   const year = yield select(yearActiveNumber);
   if (year) {
     yield call(fetchResource, api.fetchCapacity, {
@@ -25,7 +25,7 @@ export function* fetchCapacity() {
   }
 }
 
-export function* pollCapacity() {
+function* pollCapacity() {
   const year = yield select(yearActiveNumber);
   if (year) {
     yield call(fetchResource, api.fetchCapacity, {
@@ -44,14 +44,6 @@ export function* pollCapacity() {
   }
 }
 
-export function* pollCapacityStart() {
-  const polling = yield select(isPolling);
-  if (!polling && canUseDOM) {
-    yield put({ type: constants.YEAR_CAPACITY_POLL_START });
-    yield fork(pollCapacity);
-  }
-}
-
 function* fetchAndPollCapacityStart() {
   yield put({ type: constants.YEAR_CAPACITY_POLL_START });
   yield call(fetchCapacity);
@@ -62,29 +54,32 @@ function* fetchAndPollCapacityStart() {
   }
 }
 
-export function* pollCapacityStop() {
+function* pollCapacityStop() {
   yield put({ type: constants.YEAR_CAPACITY_POLL_STOP });
 }
 
-export function* requireCapacity() {
+function* requireCapacity() {
   yield takeLatest(
     constants.YEAR_CAPACITY_REQUIRED,
     fetchCapacity
   );
 }
 
-export function* requirePollCapacity() {
+function* requirePollCapacity() {
   yield takeLatest(
     constants.YEAR_CAPACITY_POLL_CYCLE_FINISHED,
     pollCapacity
   );
 }
 
-export function* requirePollCapacityStart() {
-  yield takeLatest(constants.YEAR_CAPACITY_POLL_REQUIRED, fetchAndPollCapacityStart);
+function* requirePollCapacityStart() {
+  yield takeLatest(
+    constants.YEAR_CAPACITY_POLL_REQUIRED,
+    fetchAndPollCapacityStart
+  );
 }
 
-export function* requirePollCapacityStop() {
+function* requirePollCapacityStop() {
   yield takeLatest(
     constants.YEAR_CAPACITY_POLL_STOP_REQUIRED,
     pollCapacityStop

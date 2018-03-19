@@ -4,7 +4,6 @@ import fetchYearListDefault from './fetchYearList';
 import fetchYearRules from './fetchYearRules';
 
 export * from './fetchYearArchive';
-export * from './fetchYearCapacity';
 export * from './fetchYearList';
 
 export default [
