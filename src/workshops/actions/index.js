@@ -4,6 +4,10 @@ export const requireWorkshopList = () => ({
   type: constants.WORKSHOPS_REQUIRED,
 });
 
+export const requireWorkshopListInteractive = () => ({
+  type: constants.WORKSHOPS_INTERACTIVE_REQUIRED,
+});
+
 export const exitWorkshopList = () => ({
   type: constants.WORKSHOPS_LEFT,
 });

@@ -7,29 +7,26 @@ import {
 } from 'react-saga-rest';
 
 import { getLectorRolesState, getLectorListState } from './lectors';
-import { aggregateCapacityData, getWorkshopCapacity, getPriceLevels } from '../../years/selectors';
+import {
+  aggregateCapacityData,
+  getWorkshopCapacity,
+  getPriceLevels,
+  getCapacityState,
+} from '../../years/selectors';
 
 export const getDifficultiesState = state => state.workshops.difficulties;
 export const getWorkshopDetailState = state => state.workshops.detail;
 export const getWorkshopListState = state => state.workshops.list;
 
 export const getWorkshopListProgress = getProgress(getWorkshopListState);
-export const isWorkshopListRequired = isRequired(getWorkshopListState);
+export const isWorkshopListRequired = isRequired(getWorkshopListState, getCapacityState);
 
 export const getWorkshopDetailId = getProp(getWorkshopDetailState, 'id');
 export const getWorkshopDetailProgress = getProgress(getWorkshopDetailState);
-export const isWorkshopDetailRequired = isRequired(getWorkshopDetailState);
+export const isWorkshopDetailRequired = isRequired(getWorkshopDetailState, getCapacityState);
 
 export const getDifficultyList = getData(getDifficultiesState);
 export const isDifficultyListRequired = isRequired(getDifficultiesState);
-
-export const getWorkshopRelatedData = () => [
-  getLectorListState,
-  getLectorRolesState,
-  getDifficultyList,
-  getPriceLevels,
-  getWorkshopCapacity,
-];
 
 export const findLectorRoleName = (roles, id) => {
   if (roles) {

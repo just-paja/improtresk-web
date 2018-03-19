@@ -73,7 +73,7 @@ describe('WorkshopList container', () => {
   it('dispatches workshops required action on mount', () => {
     comp.dive();
     expect(store.getActions()).toContainEqual(expect.objectContaining({
-      type: 'WORKSHOPS_REQUIRED',
+      type: 'WORKSHOPS_INTERACTIVE_REQUIRED',
     }));
   });
 

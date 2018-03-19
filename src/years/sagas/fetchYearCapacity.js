@@ -9,6 +9,8 @@ import { yearActiveNumber } from '../selectors';
 import * as api from '../../api';
 import * as constants from '../constants';
 
+const DELAY_TIME = 8000;
+
 export function* fetchCapacity() {
   const year = yield select(yearActiveNumber);
   if (year) {
@@ -34,7 +36,7 @@ export function* pollCapacity() {
       },
       params: { year },
     });
-    yield call(delay, 8000);
+    yield call(delay, DELAY_TIME);
     const polling = yield select(isPolling);
     if (polling) {
       yield put({ type: constants.YEAR_CAPACITY_POLL_CYCLE_FINISHED });
@@ -47,6 +49,16 @@ export function* pollCapacityStart() {
   if (!polling && canUseDOM) {
     yield put({ type: constants.YEAR_CAPACITY_POLL_START });
     yield fork(pollCapacity);
+  }
+}
+
+function* fetchAndPollCapacityStart() {
+  yield put({ type: constants.YEAR_CAPACITY_POLL_START });
+  yield call(fetchCapacity);
+  yield call(delay, DELAY_TIME);
+  const polling = yield select(isPolling);
+  if (polling && canUseDOM) {
+    yield call(pollCapacity);
   }
 }
 
@@ -69,13 +81,7 @@ export function* requirePollCapacity() {
 }
 
 export function* requirePollCapacityStart() {
-  yield takeLatest(
-    [
-      constants.YEAR_CAPACITY_POLL_REQUIRED,
-      constants.YEAR_CAPACITY_FETCH_SUCCESS,
-    ],
-    pollCapacityStart
-  );
+  yield takeLatest(constants.YEAR_CAPACITY_POLL_REQUIRED, fetchAndPollCapacityStart);
 }
 
 export function* requirePollCapacityStop() {
@@ -88,6 +94,6 @@ export function* requirePollCapacityStop() {
 export default [
   requireCapacity,
   requirePollCapacity,
-  requirePollCapacityStop,
   requirePollCapacityStart,
+  requirePollCapacityStop,
 ];
