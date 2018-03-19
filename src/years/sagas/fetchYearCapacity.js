@@ -1,5 +1,6 @@
 import { call, fork, put, select, takeLatest } from 'redux-saga/effects';
 import { delay } from 'redux-saga/lib';
+import { canUseDOM } from 'exenv';
 
 import { fetchResource } from '../../sagas/api';
 import { isPolling } from '../selectors/yearCapacity';
@@ -43,7 +44,7 @@ export function* pollCapacity() {
 
 export function* pollCapacityStart() {
   const polling = yield select(isPolling);
-  if (!polling) {
+  if (!polling && canUseDOM) {
     yield put({ type: constants.YEAR_CAPACITY_POLL_START });
     yield fork(pollCapacity);
   }
