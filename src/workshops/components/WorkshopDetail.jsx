@@ -10,6 +10,7 @@ import { Workshop } from '../../proptypes';
 
 import Capacity from '../../components/Capacity';
 import Gallery from '../../components/Gallery';
+import HelmetTitle from '../../containers/HelmetTitle';
 import LectorSummary from './LectorSummary';
 import Message from '../../containers/Message';
 import PriceList from '../../years/components/PriceList';
@@ -17,13 +18,9 @@ import Prop from '../../components/Prop';
 
 const WorkshopDetail = ({ workshop }) => (
   <div>
+    <HelmetTitle title={workshop.name} />
     <Helmet
-      title={workshop.name}
       meta={[
-        {
-          property: 'og:title',
-          content: workshop.name,
-        },
         {
           property: 'og:description',
           content: `${workshop.desc.substr(0, 127)}...`,

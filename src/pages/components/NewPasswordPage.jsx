@@ -1,7 +1,6 @@
 import Card from 'reactstrap/lib/Card';
 import CardBody from 'reactstrap/lib/CardBody';
 import Col from 'reactstrap/lib/Col';
-import Helmet from 'react-helmet';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Row from 'reactstrap/lib/Row';
@@ -9,6 +8,7 @@ import Row from 'reactstrap/lib/Row';
 import { getUrlParams } from 'query-string-manipulator';
 
 import Container from '../../components/Container';
+import HelmetTitle from '../../containers/HelmetTitle';
 import Message from '../../containers/Message';
 import NewPassword from '../../participants/containers/NewPassword';
 
@@ -26,9 +26,7 @@ export default class NewPasswordPage extends Component {
     const { translate } = this.props;
     return (
       <Container>
-        <Helmet>
-          <title>{translate('participants.newPassword')}</title>
-        </Helmet>
+        <HelmetTitle title={translate('participants.newPassword')} />
         <Row>
           <Col md={{ size: 6, offset: 3 }}>
             <h1><Message name="participants.newPassword" /></h1>

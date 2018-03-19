@@ -2,12 +2,12 @@ import Card from 'reactstrap/lib/Card';
 import CardBody from 'reactstrap/lib/CardBody';
 import Col from 'reactstrap/lib/Col';
 import FontAwesome from 'react-fontawesome';
-import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Row from 'reactstrap/lib/Row';
 
 import Container from '../../components/Container';
+import HelmetTitle from '../../containers/HelmetTitle';
 import Message from '../../containers/Message';
 
 export default class Contact extends Component {
@@ -21,12 +21,7 @@ export default class Contact extends Component {
 
     return (
       <Container>
-        <Helmet
-          title={title}
-          meta={[
-            { property: 'og:title', content: title },
-          ]}
-        />
+        <HelmetTitle title={title} />
         <h1 className="text-center">{title}</h1>
         <Row>
           <Col md={{ size: 10, offset: 1 }} lg={{ size: 8, offset: 2 }}>

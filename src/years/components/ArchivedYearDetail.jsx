@@ -1,11 +1,11 @@
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
-import Helmet from 'react-helmet';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import Container from '../../components/Container';
 import Gallery from '../../components/Gallery';
+import HelmetTitle from '../../containers/HelmetTitle';
 
 const ArchivedYearDetail = ({ topic, translate, workshops, year }) => {
   const title = translate('years.yearNumber', { year });
@@ -13,10 +13,7 @@ const ArchivedYearDetail = ({ topic, translate, workshops, year }) => {
 
   return (
     <Container>
-      <Helmet>
-        <title>{titleFull}</title>
-        <meta property="og:title" title={titleFull} />
-      </Helmet>
+      <HelmetTitle title={titleFull} />
       <h1><span>{title}</span><br /><small>{topic}</small></h1>
       <Row>
         {workshops.map(workshop => (

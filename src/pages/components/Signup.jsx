@@ -1,10 +1,10 @@
 import Col from 'reactstrap/lib/Col';
-import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Row from 'reactstrap/lib/Row';
 
 import Container from '../../components/Container';
+import HelmetTitle from '../../containers/HelmetTitle';
 import HumanDate from '../../components/HumanDate';
 import SignupCountdown from '../../years/containers/SignupCountdown';
 import SignupHowto from '../../participants/components/SignupHowto';
@@ -91,12 +91,7 @@ export default class Signup extends Component {
 
     return (
       <Container>
-        <Helmet
-          title={title}
-          meta={[
-            { property: 'og:title', content: title },
-          ]}
-        />
+        <HelmetTitle title={title} />
         <Row>
           <Col md={{ size: 8, offset: 2 }} lg={{ size: 6, offset: 3 }}>
             <h1 className="decent">{title}</h1>

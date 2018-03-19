@@ -1,19 +1,14 @@
-import Helmet from 'react-helmet';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import Container from '../../components/Container';
+import HelmetTitle from '../../containers/HelmetTitle';
 import Message from '../../containers/Message';
 import RulesContainer from '../../years/containers/Rules';
 
 const Rules = ({ translate }) => (
   <Container>
-    <Helmet
-      title={translate('pages.conditions')}
-      meta={[
-        { property: 'og:title', content: translate('pages.conditions') },
-      ]}
-    />
+    <HelmetTitle title={translate('pages.conditions')} />
     <h1><Message name="pages.conditions" /></h1>
     <RulesContainer />
   </Container>

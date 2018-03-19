@@ -14,7 +14,7 @@ describe('ArchivedYearDetail component', () => {
         year="2018"
       />
     );
-    expect(comp.find('HelmetWrapper title').children()).toHaveText('years.yearNumber: Sladíme se společně');
+    expect(comp.find('Connect(HelmetTitle)')).toHaveProp('title', 'years.yearNumber: Sladíme se společně');
   });
 
   it('renders year number', () => {

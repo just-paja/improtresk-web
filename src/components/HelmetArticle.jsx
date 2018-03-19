@@ -2,20 +2,23 @@ import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import HelmetTitle from '../containers/HelmetTitle';
+
 const HelmetArticle = ({
   createdAt,
   description,
   name,
   updatedAt,
 }) => (
-  <Helmet>
-    <title>{name}</title>
-    <meta property="og:type" content="article" />
-    <meta property="og:name" content={name} />
-    <meta property="og:description" content={description} />
-    <meta property="og:published_time" content={createdAt} />
-    <meta property="og:modified_time" content={updatedAt} />
-  </Helmet>
+  <div>
+    <HelmetTitle title={name} />
+    <Helmet>
+      <meta property="og:type" content="article" />
+      <meta property="og:description" content={description} />
+      <meta property="og:published_time" content={createdAt} />
+      <meta property="og:modified_time" content={updatedAt} />
+    </Helmet>
+  </div>
 );
 
 HelmetArticle.propTypes = {
