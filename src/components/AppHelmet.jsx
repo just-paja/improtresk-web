@@ -18,6 +18,7 @@ const AppHelmet = ({
       <meta property="og:title" content={titleTemplate.replace('%s', defaultTitle)} />
       <meta property="og:description" content={translate('pages.about')} />
       <meta property="og:type" content="website" />
+      <meta property="og:image" content="/static/theme/2018/og-share.png" />
       <meta property="og:url" content={`${host}${entryPath}`} />
       <meta name="msapplication-config" content="/static/theme/favicon/browserconfig.xml" />
       <meta name="theme-color" content="#fff" />
