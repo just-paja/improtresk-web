@@ -39,11 +39,12 @@ export default class Signup extends Component {
     } = this.props;
 
     const rulesLabel = <span>Souhlasím s <Link to="conditions">podmínkami festivalu</Link></span>;
+    const busy = disabled || formData.loading;
 
     return (
       <Form onSubmit={this.handleSubmit}>
         <Input
-          disabled={disabled || formData.loading}
+          disabled={busy}
           help={<Message name="participants.fullNameHelp" />}
           label={<Message name="participants.fullName" />}
           name="name"
@@ -53,7 +54,7 @@ export default class Signup extends Component {
           touched={formData.submitted}
         />
         <Input
-          disabled={disabled || formData.loading}
+          disabled={busy}
           help={<Message name="participants.emailHelp" />}
           label={<Message name="participants.email" />}
           name="email"
@@ -64,7 +65,7 @@ export default class Signup extends Component {
           touched={formData.submitted}
         />
         <Input
-          disabled={disabled || formData.loading}
+          disabled={busy}
           help={<Message name="participants.phoneNumberHelp" />}
           label={<Message name="participants.phoneNumber" />}
           name="phone"
@@ -75,7 +76,7 @@ export default class Signup extends Component {
           touched={formData.submitted}
         />
         <InputDate
-          disabled={disabled || formData.loading}
+          disabled={busy}
           help={<Message name="participants.dateOfBirthHelp" />}
           label={<Message name="participants.dateOfBirth" />}
           name="birthday"
@@ -87,7 +88,7 @@ export default class Signup extends Component {
         <Row>
           <Col sm={6}>
             <Input
-              disabled={disabled || formData.loading}
+              disabled={busy}
               label={<Message name="participants.password" />}
               name="password"
               onChange={this.handleChange}
@@ -99,7 +100,7 @@ export default class Signup extends Component {
           </Col>
           <Col sm={6}>
             <Input
-              disabled={disabled || formData.loading}
+              disabled={busy}
               label={<Message name="participants.passwordCheck" />}
               name="passwordCheck"
               onChange={this.handleChange}
@@ -111,7 +112,7 @@ export default class Signup extends Component {
           </Col>
         </Row>
         <InputSelect
-          disabled={disabled || formData.loading}
+          disabled={busy}
           help={<Message name="participants.teamHelp" />}
           label={<Message name="participants.team" />}
           name="team_name"
@@ -123,7 +124,7 @@ export default class Signup extends Component {
         />
         <Col xs={12}>
           <InputCheckbox
-            disabled={disabled || formData.loading}
+            disabled={busy}
             name="rules_accepted"
             label={rulesLabel}
             error={formData.fieldErrors.rules_accepted}
@@ -131,7 +132,7 @@ export default class Signup extends Component {
             value={formData.values.rules_accepted}
           />
           <InputCheckbox
-            disabled={disabled || formData.loading}
+            disabled={busy}
             name="newsletter"
             label={<Message name="participants.newsletter" />}
             error={formData.fieldErrors.newsletter}
@@ -141,7 +142,7 @@ export default class Signup extends Component {
         </Col>
         <FormErrors errors={formData.submitErrors} />
         <Button
-          disabled={disabled || formData.loading}
+          disabled={busy}
           color="primary"
           icon="user-plus"
           loading={formData.loading}
