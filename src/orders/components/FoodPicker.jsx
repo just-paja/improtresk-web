@@ -11,13 +11,16 @@ export default class FoodPicker extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange() {
-    const { onChange } = this.props;
-    onChange();
+  handleChange(id, mealValue) {
+    const { name, onChange, value } = this.props;
+    onChange(name, {
+      ...value,
+      [id]: mealValue,
+    });
   }
 
   render() {
-    const { disabled, meals, onChange, value } = this.props;
+    const { disabled, meals, value } = this.props;
     return (
       <Row>
         {meals.map(meal => (
@@ -32,7 +35,7 @@ export default class FoodPicker extends Component {
               soups={meal.soups}
               orderedFood={value[meal.id] && value[meal.id].food && value[meal.id].food}
               orderedSoup={value[meal.id] && value[meal.id].soup && value[meal.id].soup}
-              onChange={onChange}
+              onChange={this.handleChange}
             />
           </Col>
         ))}
@@ -46,9 +49,10 @@ FoodPicker.propTypes = {
   meals: PropTypes.arrayOf(PropTypes.shape({
     date: PropTypes.string,
     name: PropTypes.string,
-    orderedFood: PropTypes.object,
-    orderedSoup: PropTypes.object,
+    food: PropTypes.arrayOf(PropTypes.object),
+    soups: PropTypes.arrayOf(PropTypes.object),
   })).isRequired,
+  name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.object,
 };
