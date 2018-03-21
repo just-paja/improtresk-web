@@ -1,5 +1,7 @@
 import mealList from '../mealList';
 
+import { mealListFetch } from '../../actions';
+
 describe('Meals reducer', () => {
   it('returns default state', () => {
     expect(mealList()).toMatchObject({
@@ -8,21 +10,18 @@ describe('Meals reducer', () => {
     });
   });
 
-  it('marks as loading on MEALS_FETCH_STARTED', () => {
-    expect(mealList({}, { type: 'MEALS_FETCH_STARTED' })).toMatchObject({
+  it('marks as loading on request', () => {
+    expect(mealList({}, mealListFetch.request())).toMatchObject({
       loading: true,
     });
   });
 
-  it('marks as loading on MEALS_FETCH_SUCCESS', () => {
+  it('marks as loading on success', () => {
     expect(mealList(
       {},
-      {
-        type: 'MEALS_FETCH_SUCCESS',
-        data: [
-          { name: 'foo' },
-        ],
-      }
+      mealListFetch.success([
+        { name: 'foo' },
+      ])
     )).toMatchObject({
       loading: false,
       valid: true,
@@ -32,9 +31,8 @@ describe('Meals reducer', () => {
     });
   });
 
-  it('marks as loading on MEALS_FETCH_ERROR', () => {
-    expect(mealList({}, { type: 'MEALS_FETCH_ERROR', error: 'error' })).toMatchObject({
-      loading: false,
+  it('saves error on failure', () => {
+    expect(mealList({}, mealListFetch.failure('error'))).toMatchObject({
       error: 'error',
     });
   });

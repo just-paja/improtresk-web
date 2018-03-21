@@ -1,4 +1,7 @@
 import * as constants from '../constants';
+import * as api from '../../api';
 
-export const requireNewsList = () => ({ type: constants.NEWS_REQUIRED });
-export const requireNewsDetail = slug => ({ type: constants.NEWS_DETAIL_REQUIRED, slug });
+import { createRoutine } from '../../routines';
+
+export const newsDetailFetch = createRoutine(constants.NEWS_DETAIL_FETCH, api.fetchNewsDetail);
+export const newsListFetch = createRoutine(constants.NEWS_LIST_FETCH, api.fetchNews);

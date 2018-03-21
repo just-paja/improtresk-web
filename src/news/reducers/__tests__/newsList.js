@@ -1,6 +1,8 @@
 import newsList from '../newsList';
 
-describe('News reducer', () => {
+import { newsListFetch } from '../../actions';
+
+describe('newsList reducer', () => {
   it('returns default state', () => {
     expect(newsList()).toMatchObject({
       loading: false,
@@ -8,22 +10,19 @@ describe('News reducer', () => {
     });
   });
 
-  it('marks as loading on NEWS_FETCH_STARTED', () => {
-    expect(newsList({}, { type: 'NEWS_FETCH_STARTED' })).toMatchObject({
+  it('marks as loading on request', () => {
+    expect(newsList({}, newsListFetch.request())).toMatchObject({
       loading: true,
     });
   });
 
-  it('marks as loading on NEWS_FETCH_SUCCESS', () => {
+  it('marks as loading on success', () => {
     expect(newsList(
       {},
-      {
-        type: 'NEWS_FETCH_SUCCESS',
-        data: [
-          { year: '2016' },
-          { year: '2017' },
-        ],
-      }
+      newsListFetch.success([
+        { year: '2016' },
+        { year: '2017' },
+      ])
     )).toMatchObject({
       loading: false,
       valid: true,
@@ -34,9 +33,8 @@ describe('News reducer', () => {
     });
   });
 
-  it('marks as loading on NEWS_FETCH_ERROR', () => {
-    expect(newsList({}, { type: 'NEWS_FETCH_ERROR', error: 'error' })).toMatchObject({
-      loading: false,
+  it('saves error on failure', () => {
+    expect(newsList({}, newsListFetch.failure('error'))).toMatchObject({
       error: 'error',
     });
   });

@@ -1,6 +1,8 @@
 import session from '../session';
 
-describe('Years reducer', () => {
+import { login, loginWithSignupData } from '../../participants/actions';
+
+describe('Session reducer', () => {
   it('returns default state', () => {
     expect(session()).toEqual({
       apiSource: '',
@@ -17,10 +19,13 @@ describe('Years reducer', () => {
   });
 
   it('logs participant in', () => {
-    expect(session({}, {
-      type: 'PARTICIPANT_LOGIN',
+    expect(session({}, login.success({ id: 1, name: 'foo' }))).toEqual({
       data: { id: 1, name: 'foo' },
-    })).toEqual({
+    });
+  });
+
+  it('logs participant in', () => {
+    expect(session({}, loginWithSignupData.success({ id: 1, name: 'foo' }))).toEqual({
       data: { id: 1, name: 'foo' },
     });
   });

@@ -150,7 +150,7 @@ describe('API helper', () => {
       .get('/years/2017/performers/1/')
       .reply(200, {});
 
-    return api.fetchPerformerDetail({ apiSource, performer: 1, year: '2017' })
+    return api.fetchPerformerDetail({ apiSource, performer: 'axss-1', year: '2017' })
       .then(() => {
         expect(nock.isDone()).toBe(true);
       });

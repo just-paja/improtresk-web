@@ -1,6 +1,8 @@
 import performerList from '../performerList';
 
-describe('Performers reducer', () => {
+import { performerListFetch } from '../../actions';
+
+describe('performerList reducer', () => {
   it('returns default state', () => {
     expect(performerList()).toMatchObject({
       loading: false,
@@ -8,21 +10,18 @@ describe('Performers reducer', () => {
     });
   });
 
-  it('marks as loading on PERFORMERS_FETCH_STARTED', () => {
-    expect(performerList({}, { type: 'PERFORMERS_FETCH_STARTED' })).toMatchObject({
+  it('marks as loading on request', () => {
+    expect(performerList({}, performerListFetch.request())).toMatchObject({
       loading: true,
     });
   });
 
-  it('marks as loading on PERFORMERS_FETCH_SUCCESS', () => {
+  it('marks as loading on success', () => {
     expect(performerList(
       {},
-      {
-        type: 'PERFORMERS_FETCH_SUCCESS',
-        data: [
-          { name: 'foo' },
-        ],
-      }
+      performerListFetch.success([
+        { name: 'foo' },
+      ])
     )).toMatchObject({
       loading: false,
       valid: true,
@@ -32,9 +31,8 @@ describe('Performers reducer', () => {
     });
   });
 
-  it('marks as loading on PERFORMERS_FETCH_ERROR', () => {
-    expect(performerList({}, { type: 'PERFORMERS_FETCH_ERROR', error: 'error' })).toMatchObject({
-      loading: false,
+  it('saves error on failure', () => {
+    expect(performerList({}, performerListFetch.failure('error'))).toMatchObject({
       error: 'error',
     });
   });

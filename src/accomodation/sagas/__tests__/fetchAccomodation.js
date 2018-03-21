@@ -1,17 +1,17 @@
 import sinon from 'sinon';
 
-import * as api from '../../../api';
+import { accomodationListFetch } from '../../actions';
 
 import getSagaTester from '../../../../mock/sagaTester';
 import sagas from '..';
 
 describe('Accomodation sagas', () => {
   beforeEach(() => {
-    sinon.stub(api, 'fetchAccomodation');
+    sinon.stub(accomodationListFetch, 'resource');
   });
 
   afterEach(() => {
-    api.fetchAccomodation.restore();
+    accomodationListFetch.resource.restore();
   });
 
   it('fetch accomodation from API', () => {
@@ -28,7 +28,7 @@ describe('Accomodation sagas', () => {
         },
       },
     });
-    api.fetchAccomodation.returns({
+    accomodationListFetch.resource.returns({
       ok: true,
       status: 200,
       json: () => ([
@@ -39,13 +39,9 @@ describe('Accomodation sagas', () => {
       ]),
     });
     sagaTester.runAll(sagas);
-    sagaTester.dispatch({ type: 'ACCOMODATION_REQUIRED' });
-    expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
-      type: 'ACCOMODATION_FETCH_STARTED',
-    }));
-    expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
-      type: 'ACCOMODATION_FETCH_SUCCESS',
-    }));
+    sagaTester.dispatch(accomodationListFetch());
+    expect(sagaTester.numCalled(accomodationListFetch.REQUEST)).toBe(1);
+    expect(sagaTester.numCalled(accomodationListFetch.SUCCESS)).toBe(1);
     expect(sagaTester.getState().accomodation.list.data).toEqual([
       {
         id: 20,
@@ -68,7 +64,7 @@ describe('Accomodation sagas', () => {
         },
       },
     });
-    api.fetchAccomodation.returns({
+    accomodationListFetch.resource.returns({
       ok: true,
       status: 200,
       json: () => ([
@@ -79,18 +75,14 @@ describe('Accomodation sagas', () => {
       ]),
     });
     sagaTester.runAll(sagas);
-    sagaTester.dispatch({ type: 'ACCOMODATION_REQUIRED' });
-    expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
-      type: 'YEAR_CAPACITY_POLL_REQUIRED',
-    }));
+    sagaTester.dispatch(accomodationListFetch.subscribe());
+    expect(sagaTester.numCalled('YEAR_CAPACITY_POLL_REQUIRED')).toBe(1);
   });
 
   it('dispatch capacity poll on accomdation exit', () => {
     const sagaTester = getSagaTester({});
     sagaTester.runAll(sagas);
-    sagaTester.dispatch({ type: 'ACCOMODATION_LEFT' });
-    expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
-      type: 'YEAR_CAPACITY_POLL_STOP',
-    }));
+    sagaTester.dispatch(accomodationListFetch.unsubscribe());
+    expect(sagaTester.numCalled('YEAR_CAPACITY_POLL_STOP')).toBe(1);
   });
 });

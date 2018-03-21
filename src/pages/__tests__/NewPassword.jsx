@@ -1,30 +1,17 @@
-import configureMockStore from 'redux-mock-store';
 import React from 'react';
 
+import { initialize } from 'redux-form';
 import { shallow } from 'enzyme';
 
+import mockStore from '../../../mock/store';
 import NewPasswordPage from '../NewPasswordPage';
-
-const mockStore = configureMockStore();
 
 describe('NewPasswordPage container', () => {
   let comp;
   let store;
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: ['cs'],
-      },
-      forms: {},
-      texts: {
-        list: {
-          'about-festival-short': {
-            valid: true,
-          },
-        },
-      },
-    });
+    store = mockStore();
     comp = shallow(<NewPasswordPage location={{ search: '?token=theToken' }} />, {
       context: { store },
     });
@@ -33,13 +20,9 @@ describe('NewPasswordPage container', () => {
   it('triggers form values set action on mount', () => {
     comp.dive();
     expect(store.getActions()).toEqual([
-      {
-        type: 'FORM_VALUES_SET',
-        form: 'newPassword',
-        values: {
-          token: 'theToken',
-        },
-      },
+      initialize('FORM_NEW_PASSWORD', {
+        token: 'theToken',
+      }),
     ]);
   });
 });

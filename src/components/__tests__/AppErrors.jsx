@@ -12,7 +12,7 @@ describe('App Errors component', () => {
 
   it('renders help text', () => {
     const comp = shallow(<AppErrors errors={['foo']} />);
-    expect(comp.find('Connect(Message)[name="app.errorHelpText"]')).toHaveLength(1);
+    expect(comp.find('Connect(Message)[name="app.errorHelp"]')).toHaveLength(1);
   });
 
   it('renders a problem warning with unknown message', () => {

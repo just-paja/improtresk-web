@@ -7,7 +7,6 @@ import app from './app';
 import accomodation from '../accomodation/sagas';
 // import fees from './fees';
 import food from '../food/sagas';
-import forms from '../forms/sagas';
 import locales from './locales';
 import locations from '../locations/sagas';
 import news from '../news/sagas';
@@ -15,7 +14,7 @@ import orders from '../orders/sagas';
 import participants from '../participants/sagas';
 import performers from '../performers/sagas';
 import pages from '../pages/sagas';
-// import polls from './polls';
+import redirects from './redirects';
 import schedule from '../schedule/sagas';
 import texts from '../texts/sagas';
 import vandaDoor from './vandaDoor';
@@ -27,7 +26,6 @@ const sagas = [
   ...accomodation,
   // ...fees,
   ...food,
-  ...forms,
   ...locations,
   // ...lectors,
   ...locales,
@@ -38,7 +36,7 @@ const sagas = [
   ...pages,
   ...participants,
   ...performers,
-  // ...polls,
+  ...redirects,
   ...schedule,
   ...texts,
   ...vandaDoor,

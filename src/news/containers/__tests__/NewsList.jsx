@@ -3,6 +3,8 @@ import configureStore from 'redux-mock-store';
 
 import { shallow } from 'enzyme';
 
+import { newsListFetch } from '../../actions';
+
 import NewsList from '../NewsList';
 
 const mockStore = configureStore();
@@ -51,7 +53,7 @@ describe('NewsList container', () => {
   it('dispatches news required action on mount', () => {
     comp.dive();
     expect(store.getActions()).toContainEqual(expect.objectContaining({
-      type: 'NEWS_REQUIRED',
+      type: newsListFetch.TRIGGER,
     }));
   });
 });

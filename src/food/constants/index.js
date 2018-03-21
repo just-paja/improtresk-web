@@ -1,4 +1,3 @@
-export const MEALS_FETCH_ERROR = 'MEALS_FETCH_ERROR';
-export const MEALS_FETCH_STARTED = 'MEALS_FETCH_STARTED';
-export const MEALS_FETCH_SUCCESS = 'MEALS_FETCH_SUCCESS';
-export const MEALS_REQUIRED = 'MEALS_REQUIRED';
+export const MEAL_LIST_FETCH = 'MEAL_LIST_FETCH';
+
+export default {};

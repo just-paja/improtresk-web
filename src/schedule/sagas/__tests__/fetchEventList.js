@@ -2,6 +2,8 @@ import sinon from 'sinon';
 
 import * as api from '../../../api';
 
+import { performerListFetch } from '../../../performers/actions';
+
 import getSagaTester from '../../../../mock/sagaTester';
 import sagas from '..';
 
@@ -112,7 +114,7 @@ describe('Schedule sagas', () => {
     sagaTester.runAll(sagas);
     sagaTester.dispatch({ type: 'SCHEDULE_EVENTS_REQUIRED' });
     expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
-      type: 'PERFORMERS_REQUIRED',
+      type: performerListFetch.TRIGGER,
     }));
   });
 

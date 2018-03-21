@@ -1,10 +1,14 @@
 import * as constants from '../constants';
+import * as api from '../../api';
 
-export const requirePerformerList = () => ({
-  type: constants.PERFORMERS_REQUIRED,
-});
+import { createRoutine } from '../../routines';
 
-export const requirePerformerDetail = slug => ({
-  type: constants.PERFORMER_DETAIL_REQUIRED,
-  slug,
-});
+export const performerListFetch = createRoutine(
+  constants.PERFORMER_LIST_FETCH,
+  api.fetchPerformers
+);
+
+export const performerDetailFetch = createRoutine(
+  constants.PERFORMER_DETAIL_FETCH,
+  api.fetchPerformerDetail
+);

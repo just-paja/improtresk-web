@@ -2,6 +2,9 @@ import FormGroup from 'reactstrap/lib/FormGroup';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { CapacityStatus } from '../../proptypes';
+
+import Capacity from '../../components/Capacity';
 import InputRadio from '../../forms/components/InputRadio';
 import Price from '../../components/Price';
 
@@ -18,6 +21,7 @@ export default class AccomodationPickerItem extends Component {
 
   render() {
     const {
+      capacityStatus,
       disabled,
       name,
       price,
@@ -33,7 +37,8 @@ export default class AccomodationPickerItem extends Component {
           label={(
             <div>
               <strong>{name}</strong><br />
-              <Price price={price} /> {price ? 'za noc' : null}
+              <Price price={price} /> {price ? 'za noc' : null}<br />
+              <Capacity {...capacityStatus} />
             </div>
           )}
           value={selected}
@@ -44,6 +49,7 @@ export default class AccomodationPickerItem extends Component {
 }
 
 AccomodationPickerItem.propTypes = {
+  capacityStatus: CapacityStatus.isRequired,
   disabled: PropTypes.bool,
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,

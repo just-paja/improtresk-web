@@ -2,6 +2,7 @@ import React from 'react';
 import configureStore from 'redux-mock-store';
 
 import { shallow } from 'enzyme';
+import { newsDetailFetch } from '../../actions';
 
 import NewsArticle from '../NewsArticle';
 
@@ -47,8 +48,8 @@ describe('NewsArticle container', () => {
   it('dispatches news detail required action on mount', () => {
     comp.dive();
     expect(store.getActions()).toContainEqual(expect.objectContaining({
-      type: 'NEWS_DETAIL_REQUIRED',
-      slug: 'news-10',
+      type: newsDetailFetch.TRIGGER,
+      payload: 'news-10',
     }));
   });
 });

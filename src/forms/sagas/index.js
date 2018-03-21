@@ -1,8 +1,2 @@
-import validations from './validateForm';
-
-export * from './sendForm';
-export * from './validateForm';
-
-export default [
-  ...validations,
-];
+export { default as createFormSubmitSaga } from './createFormSubmitSaga';
+export default {};

@@ -1,4 +1,3 @@
-import Form from 'reactstrap/lib/Form';
 import React from 'react';
 import sinon from 'sinon';
 
@@ -10,19 +9,10 @@ describe('OrderForm component', () => {
   it('renders workshop picker', () => {
     const comp = shallow(
       <OrderForm
-        onEnter={() => {}}
         year={{ id: 3, year: '2017', startDate: '2017-03-04', endDate: '2017-03-05' }}
         accomodation={[]}
         price={1200}
-        formData={{
-          formName: 'order',
-          fieldErrors: {},
-          submitted: false,
-          values: {
-            accomodationInfo: true,
-            workshop: 42,
-          },
-        }}
+        form="order"
         meals={[
           {
             id: 1325,
@@ -30,32 +20,23 @@ describe('OrderForm component', () => {
             name: 'lunch',
           },
         ]}
-        onChange={() => {}}
-        onSubmit={() => {}}
+        submit={() => {}}
         workshops={[
           { id: 42, name: 'Longformy', capacityStatus: {}, lectors: [] },
           { id: 43, name: 'Hlasová průprava', capacityStatus: {}, lectors: [] },
         ]}
       />
     );
-    expect(comp.find('WorkshopPicker')).toHaveLength(1);
+    expect(comp.find('[name="workshop"]')).toHaveLength(1);
   });
 
   it('renders meal picker', () => {
     const comp = shallow(
       <OrderForm
-        onEnter={() => {}}
         year={{ id: 3, year: '2017', startDate: '2017-03-04', endDate: '2017-03-05' }}
         accomodation={[]}
         price={1200}
-        formData={{
-          formName: 'order',
-          fieldErrors: {},
-          values: {
-            accomodationInfo: true,
-            workshop: 42,
-          },
-        }}
+        form="order"
         meals={[
           {
             id: 1325,
@@ -63,8 +44,7 @@ describe('OrderForm component', () => {
             name: 'lunch',
           },
         ]}
-        onChange={() => {}}
-        onSubmit={() => {}}
+        submit={() => {}}
         submitted={false}
         workshops={[
           { id: 42, name: 'Longformy', capacityStatus: {}, lectors: [] },
@@ -72,25 +52,16 @@ describe('OrderForm component', () => {
         ]}
       />
     );
-    expect(comp.find('MealPicker')).toHaveLength(1);
+    expect(comp.find('[name="meals"]')).toHaveLength(1);
   });
 
   it('renders accomodation picker', () => {
     const comp = shallow(
       <OrderForm
-        onEnter={() => {}}
         year={{ id: 3, year: '2017', startDate: '2017-03-04', endDate: '2017-03-05' }}
         accomodation={[]}
         price={1200}
-        formData={{
-          formName: 'order',
-          fieldErrors: {},
-          submitted: false,
-          values: {
-            accomodationInfo: true,
-            workshop: 42,
-          },
-        }}
+        form="order"
         meals={[
           {
             id: 1325,
@@ -98,78 +69,32 @@ describe('OrderForm component', () => {
             name: 'lunch',
           },
         ]}
-        onChange={() => {}}
-        onSubmit={() => {}}
+        submit={() => {}}
         workshops={[
           { id: 42, name: 'Longformy', capacityStatus: {}, lectors: [] },
           { id: 43, name: 'Hlasová průprava', capacityStatus: {}, lectors: [] },
         ]}
       />
     );
-    expect(comp.find('AccomodationPicker')).toHaveLength(1);
+    expect(comp.find('[name="accomodation"]')).toHaveLength(1);
   });
 
-  it('triggers onChange on workshop change', () => {
-    const changeSpy = sinon.spy();
-    const comp = shallow(
-      <OrderForm
-        onEnter={() => {}}
-        year={{ id: 3, year: '2017', startDate: '2017-03-04', endDate: '2017-03-05' }}
-        accomodation={[]}
-        meals={[]}
-        formData={{
-          formName: 'order',
-          fieldErrors: {},
-          values: {
-            workshop: 42,
-          },
-        }}
-        onChange={changeSpy}
-        onSubmit={() => {}}
-        workshops={[
-          { id: 42, name: 'Longformy', capacityStatus: {}, lectors: [] },
-          { id: 43, name: 'Hlasová průprava', capacityStatus: {}, lectors: [] },
-        ]}
-      />
-    );
-
-    comp.find('WorkshopPicker').simulate('change', 'workshop', 42);
-    expect(changeSpy.args).toEqual([
-      ['order', 'workshop', 42],
-    ]);
-  });
-
-  it('triggers onSubmit on form submit', () => {
+  it('triggers submit on form submit', () => {
     const submitSpy = sinon.spy();
-    const preventDefaultSpy = sinon.spy();
     const comp = shallow(
       <OrderForm
-        onEnter={() => {}}
         year={{ id: 3, year: '2017', startDate: '2017-03-04', endDate: '2017-03-05' }}
         accomodation={[]}
         meals={[]}
-        formData={{
-          formName: 'order',
-          fieldErrors: {},
-          values: {
-            workshop: 42,
-          },
-        }}
-        onChange={() => {}}
-        onSubmit={submitSpy}
+        form="order"
+        submit={submitSpy}
         workshops={[
           { id: 42, name: 'Longformy', capacityStatus: {}, lectors: [] },
           { id: 43, name: 'Hlasová průprava', capacityStatus: {}, lectors: [] },
         ]}
       />
     );
-
-    comp.find(Form).simulate('submit', {
-      preventDefault: preventDefaultSpy,
-    });
-    expect(submitSpy.args).toEqual([
-      ['order'],
-    ]);
-    expect(preventDefaultSpy.calledOnce).toBe(true);
+    comp.find('Form').simulate('submit');
+    expect(submitSpy.calledOnce).toBeTruthy();
   });
 });

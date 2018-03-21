@@ -1,22 +1,15 @@
-import {
-  combine,
-  fetchStart,
-  fetchError,
-  fetchSuccess,
-  invalidate,
-} from 'react-saga-rest';
+import { combine, invalidate } from 'react-saga-rest';
 
 import {
-  ORDERS_FETCH_ERROR,
-  ORDERS_FETCH_STARTED,
-  ORDERS_FETCH_SUCCESS,
-  ORDER_CANCEL_FETCH_SUCCESS,
-  ORDER_CONFIRM_FETCH_SUCCESS,
-  ORDERS_INVALIDATE,
-  ORDER_CHANGED,
-  ORDER_CREATED,
-} from '../constants';
+  orderCreate,
+  orderChange,
+  orderCancel,
+  orderConfirm,
+  orderListFetch,
+} from '../actions';
 import { PARTICIPANT_LOGOUT } from '../../participants/constants';
+
+import createCollectionReducers from '../../reducers/createCollectionReducers';
 
 const defaultState = {
   data: [],
@@ -24,13 +17,12 @@ const defaultState = {
 };
 
 export default combine(defaultState, {
-  [ORDERS_FETCH_ERROR]: fetchError,
-  [ORDERS_FETCH_STARTED]: fetchStart,
-  [ORDERS_FETCH_SUCCESS]: fetchSuccess,
-  [ORDER_CANCEL_FETCH_SUCCESS]: invalidate,
-  [ORDER_CONFIRM_FETCH_SUCCESS]: invalidate,
-  [ORDERS_INVALIDATE]: invalidate,
-  [ORDER_CHANGED]: invalidate,
-  [ORDER_CREATED]: invalidate,
+  ...createCollectionReducers({
+    routine: orderListFetch,
+  }),
+  [orderCancel.SUCCESS]: invalidate,
+  [orderConfirm.SUCCESS]: invalidate,
+  [orderCreate.SUCCESS]: invalidate,
+  [orderChange.SUCCESS]: invalidate,
   [PARTICIPANT_LOGOUT]: invalidate,
 });

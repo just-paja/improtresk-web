@@ -3,6 +3,8 @@ import configureStore from 'redux-mock-store';
 
 import { shallow } from 'enzyme';
 
+import { performerDetailFetch } from '../../actions';
+
 import PerformerDetail from '../PerformerDetail';
 
 const mockStore = configureStore();
@@ -60,8 +62,8 @@ describe('PerformerDetail container', () => {
   it('dispatches news required action on mount', () => {
     comp.dive();
     expect(store.getActions()).toContainEqual(expect.objectContaining({
-      type: 'PERFORMER_DETAIL_REQUIRED',
-      slug: '20000-zidu-pod-morem-3154',
+      type: performerDetailFetch.TRIGGER,
+      payload: '20000-zidu-pod-morem-3154',
     }));
   });
 });

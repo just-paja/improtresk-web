@@ -1,38 +1,20 @@
 import cookie from 'js-cookie';
 
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { put, select, takeLatest } from 'redux-saga/effects';
+import { destroy } from 'redux-form';
 
-import { sendForm } from '../../forms/sagas/sendForm';
 import { redirectHome } from '../../sagas/redirects';
 import { getApiAuth } from '../../selectors/session';
-import { getLoginForm } from '../selectors';
-
-import {
-  FORM_SUBMIT_ALLOWED,
-  FORM_SUBMIT_SUCCESS,
-} from '../../forms/constants';
+import { login, setAuthKey } from '../actions';
 import { APP_MOUNTED } from '../../constants';
+import { createFormSubmitSaga } from '../../forms/sagas';
 
-import * as formActions from '../../forms/actions';
-import * as actions from '../actions';
-import * as api from '../../api';
 import * as constants from '../constants';
 
-export const selectLoginSubmit = action =>
-  action.type === FORM_SUBMIT_ALLOWED && action.form === 'login';
-
-export const selectLoginSuccess = action =>
-  action.type === FORM_SUBMIT_SUCCESS && action.form === 'login';
-
-function* submitLoginForm(action) {
-  const form = yield select(getLoginForm);
-  yield call(sendForm, api.login, action.form, form.values);
-}
-
 function* loginWithAuthKey(action) {
-  cookie.set('auth', action.data, { expires: 30 });
-  yield put(actions.setAuthKey(action.data));
-  yield put(formActions.formClear('login'));
+  yield put(destroy(constants.FORM_LOGIN));
+  cookie.set('auth', action.payload, { expires: 30 });
+  yield put(setAuthKey(action.payload));
 }
 
 function* loginWithCookie() {
@@ -54,16 +36,14 @@ function* loginWithCookie() {
   }
 }
 
-function* onLoginFormSubmit() {
-  yield takeLatest(selectLoginSubmit, submitLoginForm);
-}
-
 function* onLoginFormSuccess() {
-  yield takeLatest(selectLoginSuccess, loginWithAuthKey);
+  yield takeLatest(login.SUCCESS, loginWithAuthKey);
 }
 
 function* onLoginSuccess() {
-  yield takeLatest(constants.PARTICIPANT_LOGIN, redirectHome);
+  yield takeLatest([
+    login.SUCCESS,
+  ], redirectHome);
 }
 
 function* onMount() {
@@ -71,7 +51,7 @@ function* onMount() {
 }
 
 export default [
-  onLoginFormSubmit,
+  ...createFormSubmitSaga(login),
   onLoginFormSuccess,
   onLoginSuccess,
   onMount,

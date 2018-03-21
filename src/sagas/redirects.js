@@ -1,5 +1,7 @@
-import { put, select } from 'redux-saga/effects';
+import { call, put, select, takeEvery } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
+
+import * as constants from '../constants';
 
 import { reverse } from '../routeTable';
 import { getLang } from '../selectors';
@@ -17,4 +19,12 @@ export function* redirectHome() {
   yield redirect('participantHome');
 }
 
-export default { redirectHome };
+function* handleActionRedirect(action) {
+  yield call(redirect, action.path);
+}
+
+function* onRedirect() {
+  yield takeEvery(constants.REDIRECT, handleActionRedirect);
+}
+
+export default [onRedirect];

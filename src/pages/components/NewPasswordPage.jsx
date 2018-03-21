@@ -10,7 +10,7 @@ import { getUrlParams } from 'query-string-manipulator';
 import Container from '../../components/Container';
 import HelmetTitle from '../../containers/HelmetTitle';
 import Message from '../../containers/Message';
-import NewPassword from '../../participants/containers/NewPassword';
+import NewPasswordForm from '../../participants/containers/NewPasswordForm';
 
 export default class NewPasswordPage extends Component {
   componentWillMount() {
@@ -33,7 +33,7 @@ export default class NewPasswordPage extends Component {
             <Card>
               <CardBody>
                 <p><Message name="participants.newPasswordHelp" /></p>
-                <NewPassword />
+                <NewPasswordForm />
               </CardBody>
             </Card>
           </Col>

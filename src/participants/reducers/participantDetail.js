@@ -1,11 +1,14 @@
 import {
   combine,
+  invalidate,
   fetchError,
   fetchStart,
   fetchSuccess,
 } from 'react-saga-rest';
 
 import * as constants from '../constants';
+
+import { login, loginWithSignupData, signup } from '../actions';
 
 const defaultState = {
   data: null,
@@ -21,10 +24,6 @@ export default combine(defaultState, {
     ready: true,
     valid: true,
   }),
-  [constants.PARTICIPANT_LOGIN]: state => ({
-    ...state,
-    valid: false,
-  }),
   [constants.PARTICIPANT_LOGOUT]: state => ({
     ...state,
     data: null,
@@ -34,4 +33,7 @@ export default combine(defaultState, {
   [constants.PARTICIPANT_FETCH_STARTED]: fetchStart,
   [constants.PARTICIPANT_FETCH_SUCCESS]: fetchSuccess,
   [constants.PARTICIPANT_FETCH_ERROR]: fetchError,
+  [loginWithSignupData.SUCCESS]: invalidate,
+  [login.SUCCESS]: invalidate,
+  [signup.SUCCESS]: fetchSuccess,
 });

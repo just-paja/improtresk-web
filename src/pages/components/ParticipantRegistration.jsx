@@ -1,21 +1,40 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import { Order } from '../../proptypes';
 
 import Container from '../../components/Container';
 import OrderForm from '../../orders/containers/OrderForm';
 import Message from '../../containers/Message';
 
-const ParticipantHome = () => (
-  <Container>
-    <h1><Message name="orders.register" /></h1>
-    <OrderForm />
-  </Container>
-);
+export default class ParticipantRegistration extends Component {
+  componentWillMount() {
+    if (this.props.order) {
+      this.props.onExistingOrder();
+    }
+  }
 
-ParticipantHome.propTypes = {
+  componentDidUpdate() {
+    if (this.props.order) {
+      this.props.onExistingOrder();
+    }
+  }
+
+  render() {
+    return (
+      <Container>
+        <h1><Message name="orders.register" /></h1>
+        <OrderForm />
+      </Container>
+    );
+  }
+}
+
+ParticipantRegistration.propTypes = {
+  order: Order,
+  onExistingOrder: PropTypes.func.isRequired,
 };
 
-ParticipantHome.defaultProps = {
+ParticipantRegistration.defaultProps = {
+  order: null,
 };
-
-export default ParticipantHome;

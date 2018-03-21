@@ -3,6 +3,8 @@ import React from 'react';
 
 import { shallow } from 'enzyme';
 
+import { orderListFetch } from '../../actions';
+
 import OrderList from '../OrderList';
 
 const mockStore = configureMockStore();
@@ -130,8 +132,8 @@ describe('OrderList container', () => {
 
   it('triggers order list required action on mount', () => {
     comp.dive().dive();
-    expect(store.getActions()).toEqual([
-      { type: 'ORDERS_REQUIRED' },
-    ]);
+    expect(store.getActions()).toContainEqual(expect.objectContaining({
+      type: orderListFetch.TRIGGER,
+    }));
   });
 });

@@ -6,13 +6,13 @@ import { fetchResource, fetchResourceIfRequired } from '../../sagas/api';
 import { getApiAuth } from '../../selectors/session';
 import { isParticipantRequired } from '../selectors';
 import { redirectSignup } from '../../sagas/redirects';
+import { login, loginWithSignupData } from '../actions';
 
 import * as api from '../../api';
 import * as constants from '../constants';
 
 export function* fetchParticipantShowHome() {
   const auth = yield select(getApiAuth);
-
   if (auth && auth.access_token) {
     yield call(fetchResourceIfRequired, api.fetchParticipant, {
       isRequired: isParticipantRequired,
@@ -28,7 +28,8 @@ export function* fetchParticipantShowHome() {
 export function* requireParticipant() {
   yield takeEvery(
     [
-      constants.PARTICIPANT_LOGIN,
+      login.SUCCESS,
+      loginWithSignupData.SUCCESS,
       constants.PARTICIPANT_LOGIN_AUTO,
       constants.PARTICIPANT_LOGIN_AUTO_SUCCESS,
     ],

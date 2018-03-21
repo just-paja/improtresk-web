@@ -1,4 +1,4 @@
-import { isRequired, transformData } from 'react-saga-rest';
+import { getProgress, isRequired, transformData } from 'react-saga-rest';
 
 const getTeamListState = state => state.participants.teams;
 
@@ -10,5 +10,7 @@ export const getTeamOptions = transformData(getTeamListState, {
     }),
   ],
 });
+
+export const getTeamsProgress = getProgress(getTeamListState);
 
 export const isTeamListRequired = isRequired(getTeamListState);

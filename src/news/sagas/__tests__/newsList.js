@@ -1,33 +1,23 @@
-import { call, takeLatest } from 'redux-saga/effects';
+import sinon from 'sinon';
 
-import { fetchResourceIfRequired } from '../../../sagas/api';
-import { isNewsListRequired } from '../../selectors';
+import { newsListFetch } from '../../actions';
 
-import * as sagas from '..';
-import * as api from '../../../api';
+import sagas from '..';
+import getSagaTester from '../../../../mock/sagaTester';
 
-describe('News sagas', () => {
-  it('fetchNewsList creates fetch actions', () => {
-    const gen = sagas.fetchNewsList();
-    expect(gen.next().value).toEqual(
-      call(fetchResourceIfRequired, api.fetchNews, {
-        isRequired: isNewsListRequired,
-        actions: {
-          start: 'NEWS_FETCH_STARTED',
-          success: 'NEWS_FETCH_SUCCESS',
-          fail: 'NEWS_FETCH_ERROR',
-        },
-      })
-    );
-    expect(gen.next().done).toBe(true);
+describe('newsList saga', () => {
+  beforeEach(() => {
+    sinon.stub(newsListFetch, 'resource');
   });
 
-  it('requireNewsList fetches news', () => {
-    const gen = sagas.requireNewsList();
-    expect(gen.next().value).toEqual(takeLatest(
-      'NEWS_REQUIRED',
-      sagas.fetchNewsList
-    ));
-    expect(gen.next().done).toBeTruthy();
+  afterEach(() => {
+    newsListFetch.resource.restore();
+  });
+
+  it('fetches news from API', () => {
+    const sagaTester = getSagaTester();
+    sagaTester.runAll(sagas);
+    sagaTester.dispatch(newsListFetch());
+    expect(newsListFetch.resource.calledOnce).toBeTruthy();
   });
 });

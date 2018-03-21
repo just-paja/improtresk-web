@@ -3,116 +3,73 @@ import InputControl from 'reactstrap/lib/Input';
 import FormGroup from 'reactstrap/lib/FormGroup';
 import FormText from 'reactstrap/lib/FormText';
 import FormFeedback from 'reactstrap/lib/FormFeedback';
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class Input extends Component {
-  constructor() {
-    super();
-    this.state = {};
-    this.handleBlur = this.handleBlur.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
+import FormErrors from '../containers/FormErrors';
+import InputDescription from './InputDescription';
 
-  handleBlur() {
-    this.setState({ touched: this.state.changed });
-    if (this.props.onBlur) {
-      this.props.onBlur();
-    }
-  }
-
-  handleChange(e) {
-    this.setState({ changed: true });
-
-    if (this.props.changeLeadsToTouch) {
-      this.setState({ touched: true });
-    }
-
-    if (this.props.onChange) {
-      const value = e.target ? e.target.value : e;
-      const formattedValue = this.props.formatValue ? this.props.formatValue(value) : value;
-      this.props.onChange(this.props.name, formattedValue);
-    }
-  }
-
-  isTouched() {
-    return !!(this.props.touched || this.state.touched);
-  }
-
-  render() {
-    const {
-      Control,
-      error,
-      help,
-      label,
-      maxLength,
-      name,
-      type,
-      value,
-      ...other
-    } = this.props;
-
-    delete other.changeLeadsToTouch;
-    delete other.formatValue;
-    delete other.touched;
-
-    const touched = this.isTouched();
-
-    return (
-      <FormGroup>
-        <Label>{label}</Label>
-        <InputControl
-          {...other}
-          className={error ? 'is-invalid' : null}
-          maxLength={maxLength}
-          name={name}
-          onBlur={this.handleBlur}
-          onChange={this.handleChange}
-          type={type}
-          value={value || ''}
-          invalid={error || undefined}
+const Input = ({
+  currentLanguage,
+  disabled,
+  dispatch,
+  help,
+  input,
+  label,
+  meta,
+  ...other
+}) => (
+  <FormGroup>
+    {label ? (
+      <Label htmlFor={input.name}>
+        <InputDescription text={label} />
+      </Label>
+    ) : null}
+    <InputControl
+      className={meta.touched && meta.error ? 'is-invalid' : null}
+      disabled={disabled || meta.submitting}
+      name={input.name}
+      onChange={input.onChange}
+      onBlur={input.onBlur}
+      onFocus={input.onFocus}
+      value={input.value}
+      {...other}
+    />
+    {meta.touched && meta.error ? (
+      <FormFeedback>
+        <FormErrors
+          errors={meta.error}
+          label={label}
+          data={{
+            field: input.name,
+          }}
         />
-        {touched && error ? <FormFeedback>{error}</FormFeedback> : null}
-        {help ? <FormText>{help}</FormText> : null}
-      </FormGroup>
-    );
-  }
-}
+      </FormFeedback>
+    ) : null}
+    {help ? (
+      <FormText>
+        <InputDescription text={help} />
+      </FormText>
+    ) : null}
+  </FormGroup>
+);
 
 Input.propTypes = {
-  changeLeadsToTouch: PropTypes.bool,
-  Control: PropTypes.func,
-  error: PropTypes.string,
-  formatValue: PropTypes.func,
-  help: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
+  currentLanguage: PropTypes.string,
+  disabled: PropTypes.bool,
+  dispatch: PropTypes.func,
+  help: PropTypes.node,
+  input: PropTypes.object.isRequired,
   label: PropTypes.node,
-  maxLength: PropTypes.number,
-  name: PropTypes.string.isRequired,
-  onBlur: PropTypes.func,
-  onChange: PropTypes.func,
-  type: PropTypes.string,
-  touched: PropTypes.bool,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-  ]),
+  meta: PropTypes.object.isRequired,
 };
 
 Input.defaultProps = {
-  changeLeadsToTouch: false,
-  Control: Input,
-  error: null,
-  formatValue: null,
+  currentLanguage: null,
+  disabled: false,
+  dispatch: null,
   help: null,
   label: null,
-  onBlur: null,
-  onChange: null,
-  maxLength: 255,
-  touched: false,
-  type: 'text',
-  value: null,
 };
+
+export default Input;

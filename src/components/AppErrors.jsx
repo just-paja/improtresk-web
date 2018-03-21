@@ -5,7 +5,7 @@ import Container from './Container';
 import Message from '../containers/Message';
 
 const mapErrorMessage = (message) => {
-  if (message === 'Failed to fetch' || message.indexOf('connect') > -1) {
+  if (typeof message === 'string' && (message === 'Failed to fetch' || message.indexOf('connect') > -1)) {
     return <Message name="error.connection" />;
   }
 
@@ -15,7 +15,7 @@ const mapErrorMessage = (message) => {
 const AppErrors = ({ errors }) => (!errors || errors.length === 0 ? null : (
   <Container>
     <h1><Message name="app.somethingWentWrong" /></h1>
-    <p><Message name="app.errorHelpText" /></p>
+    <p><Message name="app.errorHelp" /></p>
     <h2><Message name="app.whatWentWrong" /></h2>
     {errors
       .map(mapErrorMessage)

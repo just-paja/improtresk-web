@@ -4,86 +4,68 @@ import FormText from 'reactstrap/lib/FormText';
 import Input from 'reactstrap/lib/Input';
 import Label from 'reactstrap/lib/Label';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class InputCheckbox extends Component {
-  constructor() {
-    super();
-    this.state = {};
-    this.handleChange = this.handleChange.bind(this);
-  }
+import FormErrors from '../containers/FormErrors';
+import InputDescription from './InputDescription';
 
-  handleChange(e) {
-    this.setState({ touched: true });
-    this.props.onChange(this.props.name, !!e.target.checked);
-  }
-
-  isTouched() {
-    return !!(this.props.touched || this.state.touched);
-  }
-
-  render() {
-    const {
-      error,
-      help,
-      label,
-      name,
-      value,
-      ...other
-    } = this.props;
-
-    const touched = this.isTouched();
-
-    delete other.touched;
-
-    return (
-      <FormGroup>
-        <Label>
-          <Input
-            {...other}
-            checked={!!value}
-            type="checkbox"
-            name={name}
-            onChange={this.handleChange}
-          />
-          {label}
-        </Label>
-        {touched && error ? <FormFeedback>{error}</FormFeedback> : null}
-        {help ? <FormText>{help}</FormText> : null}
-      </FormGroup>
-    );
-  }
-}
+const InputCheckbox = ({
+  disabled,
+  help,
+  input,
+  label,
+  meta,
+  rawLabel,
+  ...other
+}) => (
+  <FormGroup>
+    <Input
+      className={meta.error ? 'is-invalid' : null}
+      name={input.name}
+      id={`${meta.form}.${input.name}`}
+      onBlur={input.onBlur}
+      onChange={input.onChange}
+      onFocus={input.onFocus}
+      type="checkbox"
+      value={input.value}
+      {...other}
+    />
+    <Label htmlFor={`${meta.form}.${input.name}`}>
+      <InputDescription rawLabel={rawLabel} text={label} />
+    </Label>
+    {meta.touched && meta.error ? (
+      <FormFeedback>
+        <FormErrors
+          errors={meta.error}
+          label={label}
+          rawLabel={rawLabel}
+          data={{
+            field: input.name,
+          }}
+        />
+      </FormFeedback>
+    ) : null}
+    {help ? (
+      <FormText>
+        <InputDescription text={help} />
+      </FormText>
+    ) : null}
+  </FormGroup>
+);
 
 InputCheckbox.propTypes = {
-  error: PropTypes.string,
-  help: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-  label: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-  name: PropTypes.string.isRequired,
-  onBlur: PropTypes.func,
-  onChange: PropTypes.func,
-  touched: PropTypes.bool,
-  value: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.object,
-    PropTypes.string,
-  ]),
+  disabled: PropTypes.bool,
+  rawLabel: PropTypes.bool,
+  help: PropTypes.node,
+  input: PropTypes.object.isRequired,
+  label: PropTypes.node.isRequired,
+  meta: PropTypes.object.isRequired,
 };
 
 InputCheckbox.defaultProps = {
-  error: null,
+  disabled: false,
   help: null,
-  label: null,
-  onBlur: null,
-  onChange: null,
-  touched: false,
-  value: null,
+  rawLabel: false,
 };
+
+export default InputCheckbox;

@@ -20,23 +20,30 @@ export default class MealPickerItem extends Component {
     const {
       date,
       disabled,
+      form,
+      id,
       name,
       price,
-      selected,
     } = this.props;
     return (
       <div>
         <InputCheckbox
           disabled={disabled}
-          name={name}
-          onChange={this.handleChange}
+          input={{
+            name: id,
+            onChange: this.handleChange,
+            value: id,
+          }}
+          meta={{
+            form,
+            touched: true,
+          }}
           label={(
             <div>
               <strong><Meal date={date} name={name} /></strong><br />
               <Price price={price} />
             </div>
           )}
-          value={selected}
         />
       </div>
     );
@@ -44,12 +51,13 @@ export default class MealPickerItem extends Component {
 }
 
 MealPickerItem.propTypes = {
+  date: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
+  form: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  date: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  price: PropTypes.number.isRequired,
   selected: PropTypes.bool,
 };
 

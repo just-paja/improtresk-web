@@ -1,27 +1,10 @@
-import {
-  combine,
-  fetchStart,
-  fetchError,
-  fetchSuccess,
-  invalidateOnResourceChange,
-} from 'react-saga-rest';
+import { combine } from 'react-saga-rest';
 
-import {
-  PERFORMER_DETAIL_FETCH_ERROR,
-  PERFORMER_DETAIL_FETCH_STARTED,
-  PERFORMER_DETAIL_FETCH_SUCCESS,
-  PERFORMER_DETAIL_REQUIRED,
-} from '../constants';
+import createFetchReducers, { initialState } from '../../reducers/createFetchReducers';
 
-const defaultState = {
-  data: null,
-  id: null,
-  loading: false,
-};
+import { performerDetailFetch } from '../actions';
 
-export default combine(defaultState, {
-  [PERFORMER_DETAIL_REQUIRED]: invalidateOnResourceChange('id', 'slug'),
-  [PERFORMER_DETAIL_FETCH_STARTED]: fetchStart,
-  [PERFORMER_DETAIL_FETCH_SUCCESS]: fetchSuccess,
-  [PERFORMER_DETAIL_FETCH_ERROR]: fetchError,
-});
+export default combine(initialState, createFetchReducers({
+  routine: performerDetailFetch,
+  identAttr: 'id',
+}));

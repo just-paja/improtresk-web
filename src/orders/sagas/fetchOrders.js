@@ -1,41 +1,23 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 
-import { fetchResourceIfRequired } from '../../sagas/api';
-import { requireAccomodationList } from '../../accomodation/actions';
-import { requireMealList } from '../../food/actions';
+import { accomodationListFetch } from '../../accomodation/actions';
+import { orderListFetch } from '../actions';
+import { mealListFetch } from '../../food/actions';
 import { requireWorkshopList } from '../../workshops/actions';
-import { isOrderListRequired } from '../selectors';
 
-import * as constants from '../constants';
-import * as api from '../../api';
+import createFetchSaga from '../../sagas/createFetchSaga';
 
-export function* fetchOrderList() {
-  yield call(fetchResourceIfRequired, api.fetchParticipantOrders, {
-    isRequired: isOrderListRequired,
-    actions: {
-      start: constants.ORDERS_FETCH_STARTED,
-      success: constants.ORDERS_FETCH_SUCCESS,
-      fail: constants.ORDERS_FETCH_ERROR,
-    },
-  });
-}
-
-function* requireOrderList() {
-  yield put(requireMealList());
-  yield put(requireAccomodationList());
+function* handleOrderDepsRequire() {
+  yield put(accomodationListFetch());
+  yield put(mealListFetch());
   yield put(requireWorkshopList());
-  yield call(fetchOrderList);
 }
 
-export function* onOrderListRequire() {
-  yield takeEvery([
-    constants.ORDERS_REQUIRED,
-    constants.ORDER_CANCEL_FETCH_SUCCESS,
-    constants.ORDERS_INVALIDATE,
-    constants.ORDER_CONFIRM_FETCH_SUCCESS,
-  ], requireOrderList);
+function* onOrderListRequire() {
+  yield takeEvery(orderListFetch.TRIGGER, handleOrderDepsRequire);
 }
 
 export default [
+  ...createFetchSaga(orderListFetch),
   onOrderListRequire,
 ];

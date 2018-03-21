@@ -1,10 +1,12 @@
 import moment from 'moment-timezone';
 
 import Col from 'reactstrap/lib/Col';
+import FormFeedback from 'reactstrap/lib/FormFeedback';
 import Row from 'reactstrap/lib/Row';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import FormErrors from '../../forms/containers/FormErrors';
 import InputCheckbox from '../../forms/components/InputCheckbox';
 
 export default class StayLengthPicker extends Component {
@@ -24,54 +26,67 @@ export default class StayLengthPicker extends Component {
     return dates;
   }
 
-  handleChange(value) {
+  handleChange(event) {
+    const { value } = event.target;
     let nextValue;
-    if (this.props.value) {
-      if (this.props.value.indexOf(value) === -1) {
-        nextValue = this.props.value.concat([value]);
+    if (this.props.input.value) {
+      if (this.props.input.value.indexOf(value) === -1) {
+        nextValue = this.props.input.value.concat([value]);
       } else {
-        nextValue = this.props.value.filter(item => item !== value);
+        nextValue = this.props.input.value.filter(item => item !== value);
       }
     } else {
       nextValue = [value];
     }
-    this.props.onChange(this.props.name, nextValue);
+    this.props.input.onChange(nextValue);
   }
 
   render() {
-    const { disabled, value } = this.props;
+    const { disabled, input, meta } = this.props;
     const dates = this.getDates();
     return (
-      <Col style={{ padding: '0 20px' }}>
-        <Row>
-          {dates.map(date => (
-            <Col key={date} xs={12} md={4}>
-              <InputCheckbox
-                disabled={disabled}
-                value={value && value.indexOf(date) !== -1}
-                id={date}
-                name={date}
-                label={moment(date).format('L')}
-                onChange={this.handleChange}
-              />
-            </Col>
-          ))}
-        </Row>
-      </Col>
+      <div>
+        <Col style={{ padding: '0 20px' }}>
+          <Row>
+            {dates.map(date => (
+              <Col key={date} xs={12} md={4}>
+                <InputCheckbox
+                  disabled={disabled}
+                  checked={input.value && input.value.indexOf(date) !== -1}
+                  input={{
+                    value: date,
+                    name: date,
+                    onChange: this.handleChange,
+                  }}
+                  meta={{}}
+                  label={moment(date).format('L')}
+                  rawLabel
+                />
+              </Col>
+            ))}
+          </Row>
+        </Col>
+        {meta.touched && meta.error ? (
+          <FormFeedback>
+            <FormErrors
+              errors={meta.error}
+              data={{ field: input.name }}
+            />
+          </FormFeedback>
+        ) : null}
+      </div>
     );
   }
 }
 
 StayLengthPicker.propTypes = {
-  start: PropTypes.string.isRequired,
-  end: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.arrayOf(PropTypes.string),
+  end: PropTypes.string.isRequired,
+  input: PropTypes.object.isRequired,
+  meta: PropTypes.object.isRequired,
+  start: PropTypes.string.isRequired,
 };
 
 StayLengthPicker.defaultProps = {
   disabled: false,
-  value: null,
 };

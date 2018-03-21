@@ -2,11 +2,10 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import { Route, Switch } from 'react-router-dom';
-import { ErrorType, ResourceProgress } from 'react-saga-rest/lib/proptypes';
+import { ResourceProgress } from 'react-saga-rest/lib/proptypes';
 
 import Accomodation from '../pages/Accomodation';
 import AppCrash from './AppCrash';
-import AppErrors from './AppErrors';
 import AppHelmet from './AppHelmet';
 import AppLoader from './AppLoader';
 import CrashHandler from './CrashHandler';
@@ -82,7 +81,6 @@ class App extends Component {
       activeRequests,
       currentYear,
       entryPath,
-      errors,
       host,
       lang,
       participant,
@@ -118,7 +116,6 @@ class App extends Component {
             onLogout={onLogout}
           />
           <ProgressBar activeRequests={activeRequests} />
-          <AppErrors errors={errors} />
           <div className="app-content">
             <Switch>
               {routes}
@@ -135,7 +132,6 @@ App.propTypes = {
   activeRequests: PropTypes.number,
   currentYear: Year,
   entryPath: PropTypes.string,
-  errors: PropTypes.arrayOf(ErrorType).isRequired,
   host: PropTypes.string,
   lang: PropTypes.string,
   participant: PropTypes.object,

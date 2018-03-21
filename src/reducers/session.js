@@ -1,8 +1,8 @@
 import { combine } from 'react-saga-rest';
 
 import * as actions from '../constants';
+import { login, loginWithSignupData } from '../participants/actions';
 import {
-  PARTICIPANT_LOGIN,
   PARTICIPANT_LOGIN_AUTO,
   PARTICIPANT_LOGIN_AUTO_SUCCESS,
   PARTICIPANT_TOKEN_REVOKE_START,
@@ -20,9 +20,13 @@ export default combine(defaultState, {
     ...state,
     autoLoginAttempted: true,
   }),
-  [PARTICIPANT_LOGIN]: (state, action) => ({
+  [login.SUCCESS]: (state, action) => ({
     ...state,
-    data: action.data,
+    data: action.payload,
+  }),
+  [loginWithSignupData.SUCCESS]: (state, action) => ({
+    ...state,
+    data: action.payload,
   }),
   [PARTICIPANT_LOGIN_AUTO_SUCCESS]: (state, action) => ({
     ...state,

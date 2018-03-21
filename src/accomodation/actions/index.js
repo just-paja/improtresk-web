@@ -1,9 +1,11 @@
 import * as constants from '../constants';
+import * as api from '../../api';
 
-export const requireAccomodationList = () => ({
-  type: constants.ACCOMODATION_REQUIRED,
-});
+import { createCapRoutine } from '../../routines';
 
-export const accomodationListLeft = () => ({
-  type: constants.ACCOMODATION_LEFT,
-});
+export const accomodationListFetch = createCapRoutine(
+  constants.ACCOMODATION_LIST_FETCH,
+  api.fetchAccomodation
+);
+
+export default { accomodationListFetch };

@@ -5,7 +5,7 @@ import NewsArticle from '../components/NewsArticle';
 import mapProgress from '../../containers/mapProgress';
 
 import { getNewsDetail, getNewsDetailProgress } from '../selectors';
-import { requireNewsDetail } from '../actions';
+import { newsDetailFetch } from '../actions';
 import { vote } from '../../polls/actions';
 
 const mapStateToProps = state => ({
@@ -19,5 +19,5 @@ const mapDispatchToProps = {
 
 export default mapProgress(connect(mapStateToProps, mapDispatchToProps)(NewsArticle), {
   progressSelector: getNewsDetailProgress,
-  onResourceChange: requireNewsDetail,
+  onResourceChange: newsDetailFetch,
 });

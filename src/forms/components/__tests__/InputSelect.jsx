@@ -10,9 +10,12 @@ describe('Input Select component', () => {
     const comp = shallow((
       <InputSelect
         label="Input label"
-        name="text-input"
+        input={{
+          name: 'text-input',
+        }}
+        meta={{}}
       />
     ));
-    expect(comp.find('Input').prop('tag')).toBe(Creatable);
+    expect(comp).toHaveProp('tag', Creatable);
   });
 });

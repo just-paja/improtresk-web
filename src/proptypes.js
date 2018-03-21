@@ -31,6 +31,14 @@ export const FormError = PropTypes.oneOfType([
   PropTypes.string,
 ]);
 
+export const FormGeneralError = PropTypes.oneOfType([
+  PropTypes.shape({
+    messages: PropTypes.arrayOf(PropTypes.string),
+  }),
+  PropTypes.arrayOf(PropTypes.string),
+  PropTypes.string,
+]);
+
 export const FormData = PropTypes.shape({
   changedFields: PropTypes.arrayOf(PropTypes.string),
   fieldErrors: PropTypes.objectOf(

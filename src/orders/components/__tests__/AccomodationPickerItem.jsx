@@ -9,6 +9,7 @@ describe('AccomodationPickerItem component', () => {
   it('renders as radio input', () => {
     const comp = shallow((
       <AccomodationPickerItem
+        capacityStatus={{}}
         id={230}
         price={200}
         name="Hotel"
@@ -23,6 +24,7 @@ describe('AccomodationPickerItem component', () => {
     const changeSpy = sinon.spy();
     const comp = shallow((
       <AccomodationPickerItem
+        capacityStatus={{}}
         id={230}
         price={200}
         name="Hotel"

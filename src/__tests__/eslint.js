@@ -3,7 +3,7 @@ import glob from 'glob';
 import { CLIEngine } from 'eslint';
 
 const engine = new CLIEngine({
-  envs: ['node'],
+  envs: ['node', 'browser'],
   useEslintrc: true,
 });
 

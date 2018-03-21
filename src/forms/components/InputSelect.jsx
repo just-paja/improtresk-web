@@ -1,20 +1,34 @@
-import React from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+
 import { Creatable } from 'react-select';
 
 import 'react-select/dist/react-select.css';
 
-import Input from './Input';
+import Input from '../components/Input';
 
-const InputSelect = props => (
-  <Input
-    tag={Creatable}
-    {...props}
-  />
-);
+export default class InputSelect extends Component {
+  constructor() {
+    super();
+    this.handleBlur = this.handleBlur.bind(this);
+  }
 
-InputSelect.defaultProps = {
-  error: null,
-  value: null,
+  handleBlur() {
+    this.props.input.onBlur(this.props.input.value);
+  }
+
+  render() {
+    return (
+      <Input
+        {...this.props}
+        tag={Creatable}
+        onBlur={this.handleBlur}
+        value={{ value: this.props.input.value, label: this.props.input.value }}
+      />
+    );
+  }
+}
+
+InputSelect.propTypes = {
+  input: PropTypes.object.isRequired,
 };
-
-export default InputSelect;

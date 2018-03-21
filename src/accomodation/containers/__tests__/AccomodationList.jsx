@@ -5,6 +5,8 @@ import { shallow } from 'enzyme';
 
 import AccomodationList from '../AccomodationList';
 
+import { accomodationListFetch } from '../../actions';
+
 const mockStore = configureStore();
 
 describe('AccomodationList container', () => {
@@ -55,14 +57,14 @@ describe('AccomodationList container', () => {
   it('dispatches accomodation required action on mount', () => {
     comp.dive();
     expect(store.getActions()).toContainEqual(expect.objectContaining({
-      type: 'ACCOMODATION_REQUIRED',
+      type: accomodationListFetch.SUBSCRIBE,
     }));
   });
 
   it('dispatches accomodation left on unmount', () => {
     comp.dive().unmount();
     expect(store.getActions()).toContainEqual(expect.objectContaining({
-      type: 'ACCOMODATION_LEFT',
+      type: accomodationListFetch.UNSUBSCRIBE,
     }));
   });
 });

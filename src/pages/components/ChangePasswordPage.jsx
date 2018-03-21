@@ -6,7 +6,7 @@ import Row from 'reactstrap/lib/Row';
 import Container from '../../components/Container';
 import HelmetTitle from '../../containers/HelmetTitle';
 import Message from '../../containers/Message';
-import ChangePassword from '../../participants/containers/ChangePassword';
+import ChangePasswordForm from '../../participants/containers/ChangePasswordForm';
 
 const ChangePasswordPage = ({ translate }) => (
   <Container>
@@ -17,7 +17,7 @@ const ChangePasswordPage = ({ translate }) => (
         <p>
           <Message name="participants.changePasswordHelp" />
         </p>
-        <ChangePassword />
+        <ChangePasswordForm />
       </Col>
     </Row>
   </Container>

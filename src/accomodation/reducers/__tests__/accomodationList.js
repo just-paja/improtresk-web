@@ -1,6 +1,8 @@
 import list from '../accomodationList';
 
-describe('Accomodation reducer', () => {
+import { accomodationListFetch } from '../../actions';
+
+describe('accomodationList reducer', () => {
   it('returns default state', () => {
     expect(list()).toMatchObject({
       loading: false,
@@ -8,22 +10,19 @@ describe('Accomodation reducer', () => {
     });
   });
 
-  it('marks as loading on ACCOMODATION_FETCH_STARTED', () => {
-    expect(list({}, { type: 'ACCOMODATION_FETCH_STARTED' })).toMatchObject({
+  it('marks as loading on request', () => {
+    expect(list({}, accomodationListFetch.request())).toMatchObject({
       loading: true,
     });
   });
 
-  it('marks as loading on ACCOMODATION_FETCH_SUCCESS', () => {
+  it('marks as loading on success', () => {
     expect(list(
       {},
-      {
-        type: 'ACCOMODATION_FETCH_SUCCESS',
-        data: [
-          { year: '2016' },
-          { year: '2017' },
-        ],
-      }
+      accomodationListFetch.success([
+        { year: '2016' },
+        { year: '2017' },
+      ])
     )).toMatchObject({
       loading: false,
       valid: true,
@@ -34,9 +33,8 @@ describe('Accomodation reducer', () => {
     });
   });
 
-  it('marks as loading on ACCOMODATION_FETCH_ERROR', () => {
-    expect(list({}, { type: 'ACCOMODATION_FETCH_ERROR', error: 'error' })).toMatchObject({
-      loading: false,
+  it('saves error on failure', () => {
+    expect(list({}, accomodationListFetch.failure('error'))).toMatchObject({
       error: 'error',
     });
   });

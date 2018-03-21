@@ -6,7 +6,6 @@ import App from '../components/App';
 import { logout } from '../participants/actions';
 import {
   countAppRequests,
-  getAppErrors,
   getAppProgress,
 } from '../selectors/app';
 import { getHost, getLang } from '../selectors';
@@ -19,7 +18,6 @@ const mapStateToProps = state => ({
   activeRequests: countAppRequests(state),
   currentYear: yearCurrent(state),
   entryPath: state.server.entryPath,
-  errors: getAppErrors(state),
   host: getHost(state),
   lang: getLang(state),
   participant: getParticipantDetail(state),

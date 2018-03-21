@@ -1,5 +1,7 @@
 import orderList from '../orderList';
 
+import { orderCancel, orderCreate, orderListFetch } from '../../actions';
+
 describe('Orders reducer', () => {
   it('returns default state', () => {
     expect(orderList()).toMatchObject({
@@ -8,21 +10,18 @@ describe('Orders reducer', () => {
     });
   });
 
-  it('marks as loading on ORDERS_FETCH_STARTED', () => {
-    expect(orderList({}, { type: 'ORDERS_FETCH_STARTED' })).toMatchObject({
+  it('marks as loading on request', () => {
+    expect(orderList({}, orderListFetch.request())).toMatchObject({
       loading: true,
     });
   });
 
-  it('marks as loading on ORDERS_FETCH_SUCCESS', () => {
+  it('marks as loading on success', () => {
     expect(orderList(
       {},
-      {
-        type: 'ORDERS_FETCH_SUCCESS',
-        data: [
-          { name: 'foo' },
-        ],
-      }
+      orderListFetch.success([
+        { name: 'foo' },
+      ])
     )).toMatchObject({
       loading: false,
       valid: true,
@@ -32,21 +31,20 @@ describe('Orders reducer', () => {
     });
   });
 
-  it('marks as loading on ORDERS_FETCH_ERROR', () => {
-    expect(orderList({}, { type: 'ORDERS_FETCH_ERROR', error: 'error' })).toMatchObject({
-      loading: false,
+  it('saves error on failure', () => {
+    expect(orderList({}, orderListFetch.failure('error'))).toMatchObject({
       error: 'error',
     });
   });
 
   it('invalidates data on cancel', () => {
-    expect(orderList({}, { type: 'ORDER_CANCEL_FETCH_SUCCESS' })).toMatchObject({
+    expect(orderList({}, orderCancel.success())).toMatchObject({
       valid: false,
     });
   });
 
   it('invalidates data on create', () => {
-    expect(orderList({}, { type: 'ORDER_CREATED' })).toMatchObject({
+    expect(orderList({}, orderCreate.success())).toMatchObject({
       valid: false,
     });
   });

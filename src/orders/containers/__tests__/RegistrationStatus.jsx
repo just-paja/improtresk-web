@@ -3,6 +3,8 @@ import configureStore from 'redux-mock-store';
 
 import { shallow } from 'enzyme';
 
+import { orderListFetch } from '../../actions';
+
 import RegistrationStatus from '../RegistrationStatus';
 
 const mockStore = configureStore();
@@ -108,7 +110,7 @@ describe('RegistrationStatus container', () => {
   it('dispatches meals required action on mount', () => {
     comp.dive();
     expect(store.getActions()).toContainEqual(expect.objectContaining({
-      type: 'ORDERS_REQUIRED',
+      type: orderListFetch.TRIGGER,
     }));
   });
 });

@@ -1,19 +1,8 @@
-import {
-  combine,
-  fetchError,
-  fetchStart,
-  fetchSuccess,
-} from 'react-saga-rest';
+import { combine } from 'react-saga-rest';
+import { mealListFetch } from '../actions';
 
-import * as constants from '../constants';
+import createCollectionReducers, { initialState } from '../../reducers/createCollectionReducers';
 
-const defaultState = {
-  data: [],
-  loading: false,
-};
-
-export default combine(defaultState, {
-  [constants.MEALS_FETCH_STARTED]: fetchStart,
-  [constants.MEALS_FETCH_SUCCESS]: fetchSuccess,
-  [constants.MEALS_FETCH_ERROR]: fetchError,
-});
+export default combine(initialState, createCollectionReducers({
+  routine: mealListFetch,
+}));

@@ -1,23 +1,9 @@
-import {
-  combine,
-  fetchStart,
-  fetchError,
-  fetchSuccess,
-} from 'react-saga-rest';
+import { combine } from 'react-saga-rest';
 
-import {
-  PERFORMERS_FETCH_ERROR,
-  PERFORMERS_FETCH_STARTED,
-  PERFORMERS_FETCH_SUCCESS,
-} from '../constants';
+import createCollectionReducers, { initialState } from '../../reducers/createCollectionReducers';
 
-const defaultState = {
-  data: [],
-  loading: false,
-};
+import { performerListFetch } from '../actions';
 
-export default combine(defaultState, {
-  [PERFORMERS_FETCH_STARTED]: fetchStart,
-  [PERFORMERS_FETCH_SUCCESS]: fetchSuccess,
-  [PERFORMERS_FETCH_ERROR]: fetchError,
-});
+export default combine(initialState, createCollectionReducers({
+  routine: performerListFetch,
+}));

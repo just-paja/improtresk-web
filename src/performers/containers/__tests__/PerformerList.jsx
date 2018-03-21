@@ -3,6 +3,8 @@ import configureStore from 'redux-mock-store';
 
 import { shallow } from 'enzyme';
 
+import { performerListFetch } from '../../actions';
+
 import PerformerList from '../PerformerList';
 
 const mockStore = configureStore();
@@ -51,7 +53,7 @@ describe('PerformerList container', () => {
   it('dispatches news required action on mount', () => {
     comp.dive();
     expect(store.getActions()).toContainEqual(expect.objectContaining({
-      type: 'PERFORMERS_REQUIRED',
+      type: performerListFetch.TRIGGER,
     }));
   });
 });

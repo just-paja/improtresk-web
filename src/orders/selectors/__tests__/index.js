@@ -579,8 +579,8 @@ describe('Order selectors', () => {
 
   it('getOrderFormPrice returns price with meals', () => {
     expect(getOrderFormPrice({
-      forms: {
-        order: {
+      form: {
+        FORM_ORDER: {
           values: {
             meals: [5, 6],
           },
@@ -639,14 +639,13 @@ describe('Order selectors', () => {
 
   it('getOrderFormPrice returns unexpired workshop price', () => {
     expect(getOrderFormPrice({
-      forms: {
-        order: {
+      form: {
+        FORM_ORDER: {
           values: {
             workshop: 17,
           },
         },
       },
-
       food: {
         list: {
           data: [],

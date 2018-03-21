@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
+import { Router, Route } from 'react-router';
 
 import 'bootswatch/dist/cyborg/bootstrap.min.css';
 
@@ -29,8 +29,8 @@ export default class Root extends Component {
     const { history, store } = this.props;
     return (
       <Provider store={store}>
-        <Router history={history}>
-          <App />
+        <Router history={history} >
+          <Route render={() => <App location={history.location} />} />
         </Router>
       </Provider>
     );

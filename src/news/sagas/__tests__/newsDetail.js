@@ -1,42 +1,23 @@
-import { call, select, takeEvery } from 'redux-saga/effects';
+import sinon from 'sinon';
 
-import { fetchResourceIfRequired } from '../../../sagas/api';
-import { getNewsDetailId, isNewsDetailRequired } from '../../selectors';
+import { newsDetailFetch } from '../../actions';
 
-import * as sagas from '..';
-import * as api from '../../../api';
+import sagas from '..';
+import getSagaTester from '../../../../mock/sagaTester';
 
-describe('News Detail sagas', () => {
-  it('fetchNewsDetail creates fetch actions', () => {
-    const saga = sagas.fetchNewsDetail();
-    expect(saga.next().value).toEqual(select(getNewsDetailId));
-    expect(saga.next(45).value).toEqual(
-      call(fetchResourceIfRequired, api.fetchNewsDetail, {
-        isRequired: isNewsDetailRequired,
-        actions: {
-          start: 'NEWS_DETAIL_FETCH_STARTED',
-          success: 'NEWS_DETAIL_FETCH_SUCCESS',
-          fail: 'NEWS_DETAIL_FETCH_ERROR',
-        },
-        actionData: { newsId: 45 },
-        params: { newsId: 45 },
-      })
-    );
-    expect(saga.next().done).toBe(true);
+describe('newsDetail saga', () => {
+  beforeEach(() => {
+    sinon.stub(newsDetailFetch, 'resource');
   });
 
-  it('fetchNewsDetail fetches nothing without id', () => {
-    const saga = sagas.fetchNewsDetail();
-    expect(saga.next().value).toEqual(select(getNewsDetailId));
-    expect(saga.next(null).done).toBe(true);
+  afterEach(() => {
+    newsDetailFetch.resource.restore();
   });
 
-  it('requireNewsDetail creates binds fetch actions', () => {
-    const saga = sagas.requireNewsDetail();
-    expect(saga.next().value).toEqual(takeEvery(
-      'NEWS_DETAIL_REQUIRED',
-      sagas.fetchNewsDetail
-    ));
-    expect(saga.next().done).toBe(true);
+  it('fetches news from API', () => {
+    const sagaTester = getSagaTester();
+    sagaTester.runAll(sagas);
+    sagaTester.dispatch(newsDetailFetch());
+    expect(newsDetailFetch.resource.calledOnce).toBeTruthy();
   });
 });

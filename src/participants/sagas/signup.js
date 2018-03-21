@@ -1,58 +1,33 @@
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
+import { getFormValues } from 'redux-form';
 
-import { sendForm } from '../../forms/sagas/sendForm';
-import { getSignupForm } from '../selectors';
+import { loginWithSignupData, signup } from '../actions';
+import { createFormSubmitSaga } from '../../forms/sagas';
+import { redirectHome } from '../../sagas/redirects';
 
-import {
-  FORM_SUBMIT_ALLOWED,
-  FORM_SUBMIT_SUCCESS,
-  FORM_VALUES_CLEAR,
-} from '../../forms/constants';
+import createFetchSaga from '../../sagas/createFetchSaga';
 
-import * as api from '../../api';
-import * as constants from '../constants';
-
-export const selectSignupSubmit = action =>
-  action.type === FORM_SUBMIT_ALLOWED && action.form === 'signup';
-
-export const selectSignupSuccess = action =>
-  action.type === FORM_SUBMIT_SUCCESS && action.form === 'signup';
-
-const purifySignupValues = values => ({
-  ...values,
-  team_name: values.team_name ? values.team_name.value : undefined,
-});
-
-export function* sendSignup(action) {
-  const form = yield select(getSignupForm);
-  yield call(sendForm, api.signup, action.form, purifySignupValues(form.values));
-}
-
-export function* loginSignup(action) {
-  const form = yield select(getSignupForm);
-  yield call(sendForm, api.login, 'login', {
-    email: form.values.email,
-    password: form.values.password,
-  });
-  yield put({
-    type: constants.PARTICIPANT_REGISTERED,
-    data: action.data,
-  });
-  yield put({
-    type: FORM_VALUES_CLEAR,
-    form: 'signup',
+function* onSignupSuccess() {
+  yield takeEvery(signup.SUCCESS, function* login() {
+    yield put(loginWithSignupData());
   });
 }
 
-export function* signupOnFormSubmit() {
-  yield takeLatest(selectSignupSubmit, sendSignup);
-}
-
-export function* loginOnSignup() {
-  yield takeLatest(selectSignupSuccess, loginSignup);
+function* onAutoLoginSuccess() {
+  yield takeEvery(loginWithSignupData.SUCCESS, redirectHome);
 }
 
 export default [
-  loginOnSignup,
-  signupOnFormSubmit,
+  ...createFormSubmitSaga(signup),
+  ...createFetchSaga(loginWithSignupData, {
+    payloadSelector: getFormValues(signup.form),
+    payloadReducer: values => ({
+      formData: {
+        email: values.email,
+        password: values.password,
+      },
+    }),
+  }),
+  onAutoLoginSuccess,
+  onSignupSuccess,
 ];

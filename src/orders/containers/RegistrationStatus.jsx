@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { cancelOrder, confirmOrder, requireOrderList } from '../actions';
+import { orderCancel, orderConfirm, orderListFetch } from '../actions';
 import { getActiveOrder, getOrderListProgress } from '../selectors';
 import { getRegistrationCloseDate } from '../../years/selectors';
 
@@ -13,11 +13,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onConfirm: confirmOrder,
-  onCancel: cancelOrder,
+  onConfirm: orderConfirm,
+  onCancel: orderCancel,
 };
 
 export default mapProgress(connect(mapStateToProps, mapDispatchToProps)(RegistrationStatus), {
   progressSelector: getOrderListProgress,
-  onResourceChange: requireOrderList,
+  onResourceChange: orderListFetch,
 });

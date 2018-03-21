@@ -1,110 +1,79 @@
-import { call, takeLatest } from 'redux-saga/effects';
+import sinon from 'sinon';
 
-import { sendForm } from '../../../forms/sagas/sendForm';
+import { initialize } from 'redux-form';
 
-import * as sagas from '..';
-import * as api from '../../../api';
+import { changePassword, newPassword, resetPassword } from '../../actions';
 
-describe('Participant sagas', () => {
-  it('bindPasswordNewSubmit binds fetch actions', () => {
-    const gen = sagas.bindPasswordNewSubmit();
-    expect(gen.next().value).toEqual(takeLatest(
-      sagas.selectPasswordNewSubmit,
-      sagas.passwordNew
-    ));
-    expect(gen.next().done).toBe(true);
+import sagas from '..';
+import getSagaTester from '../../../../mock/sagaTester';
+
+describe('Participant password saga', () => {
+  beforeEach(() => {
+    sinon.stub(changePassword, 'resource');
+    sinon.stub(newPassword, 'resource');
+    sinon.stub(resetPassword, 'resource');
   });
 
-  it('bindPasswordChangeSubmit binds fetch actions', () => {
-    const gen = sagas.bindPasswordChangeSubmit();
-    expect(gen.next().value).toEqual(takeLatest(
-      sagas.selectPasswordChangeSubmit,
-      sagas.passwordChange
-    ));
-    expect(gen.next().done).toBe(true);
+  afterEach(() => {
+    changePassword.resource.restore();
+    newPassword.resource.restore();
+    resetPassword.resource.restore();
   });
 
-  it('bindPasswordResetSubmit binds fetch actions', () => {
-    const gen = sagas.bindPasswordResetSubmit();
-    expect(gen.next().value).toEqual(takeLatest(
-      sagas.selectPasswordResetSubmit,
-      sagas.passwordReset
-    ));
-    expect(gen.next().done).toBe(true);
-  });
-
-  it('passwordNew creates select and fetch actions', () => {
-    const gen = sagas.passwordNew();
-    gen.next();
-    expect(gen.next({
-      values: {
-        newPassword: 'foo',
-      },
-    }).value).toEqual(call(
-      sendForm,
-      api.newPassword,
-      'newPassword',
-      { newPassword: 'foo' }
-    ));
-    expect(gen.next().done).toBe(true);
-  });
-
-  it('passwordChange creates select and fetch actions', () => {
-    const gen = sagas.passwordChange();
-    gen.next();
-    expect(gen.next({
-      values: {
-        oldPassword: 'foo',
-        newPassword: 'bar',
-      },
-    }).value).toEqual(call(
-      sendForm,
-      api.changePassword,
-      'changePassword',
-      {
-        oldPassword: 'foo',
-        newPassword: 'bar',
-      }
-    ));
-    expect(gen.next().done).toBe(true);
-  });
-
-  it('passwordReset creates select and fetch actions', () => {
-    const gen = sagas.passwordReset();
-    gen.next();
-    expect(gen.next({
-      values: {
+  it('submits reset password form on submit', () => {
+    const sagaTester = getSagaTester();
+    resetPassword.resource.returns({
+      ok: true,
+      status: 204,
+    });
+    sagaTester.runAll(sagas);
+    sagaTester.dispatch(initialize('FORM_RESET_PASSWORD', {
+      email: 'foo@bar.com',
+    }));
+    sagaTester.dispatch(resetPassword());
+    expect(sagaTester.numCalled(resetPassword.REQUEST)).toBe(1);
+    expect(resetPassword.resource.getCall(0).args).toContainEqual(expect.objectContaining({
+      formData: {
         email: 'foo@bar.com',
       },
-    }).value).toEqual(call(
-      sendForm,
-      api.resetPassword,
-      'resetPassword',
-      {
+    }));
+  });
+
+  it('submits change password form on submit', () => {
+    const sagaTester = getSagaTester();
+    changePassword.resource.returns({
+      ok: true,
+      status: 204,
+    });
+    sagaTester.runAll(sagas);
+    sagaTester.dispatch(initialize('FORM_CHANGE_PASSWORD', {
+      email: 'foo@bar.com',
+    }));
+    sagaTester.dispatch(changePassword());
+    expect(sagaTester.numCalled(changePassword.REQUEST)).toBe(1);
+    expect(changePassword.resource.getCall(0).args).toContainEqual(expect.objectContaining({
+      formData: {
         email: 'foo@bar.com',
-      }
-    ));
-    expect(gen.next().done).toBe(true);
+      },
+    }));
   });
 
-  it('selectPasswordNewSubmit selects new password form submit', () => {
-    expect(sagas.selectPasswordNewSubmit({
-      type: 'FORM_SUBMIT_ALLOWED',
-      form: 'newPassword',
-    })).toBe(true);
-  });
-
-  it('selectPasswordChangeSubmit selects new password form submit', () => {
-    expect(sagas.selectPasswordChangeSubmit({
-      type: 'FORM_SUBMIT_ALLOWED',
-      form: 'changePassword',
-    })).toBe(true);
-  });
-
-  it('selectPasswordResetSubmit selects new password form submit', () => {
-    expect(sagas.selectPasswordResetSubmit({
-      type: 'FORM_SUBMIT_ALLOWED',
-      form: 'resetPassword',
-    })).toBe(true);
+  it('submits new password form on submit', () => {
+    const sagaTester = getSagaTester();
+    newPassword.resource.returns({
+      ok: true,
+      status: 204,
+    });
+    sagaTester.runAll(sagas);
+    sagaTester.dispatch(initialize('FORM_NEW_PASSWORD', {
+      email: 'foo@bar.com',
+    }));
+    sagaTester.dispatch(newPassword());
+    expect(sagaTester.numCalled(newPassword.REQUEST)).toBe(1);
+    expect(newPassword.resource.getCall(0).args).toContainEqual(expect.objectContaining({
+      formData: {
+        email: 'foo@bar.com',
+      },
+    }));
   });
 });

@@ -1,35 +1,21 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import ChangeFood from './components/ChangeFood';
+import mapPageProgress from './mapPageProgress';
 
-import { getForm } from '../forms/selectors';
-import { getOrderFormPrice, getOrderedMeals } from '../orders/selectors';
-import { getParticipant } from '../participants/selectors';
-
-import * as actions from './constants';
+import { getActiveOrder, getOrderListProgress } from '../orders/selectors';
+import { requireOrderList } from '../orders/actions';
+import { redirectHome } from '../participants/actions';
 
 const mapStateToProps = state => ({
-  price: getOrderFormPrice(state),
-  meals: getOrderedMeals(state),
-  changeFood: getForm(state, 'changeFood'),
-  participant: getParticipant(state),
-  ready:
-    state.participant.details.ready &&
-    state.participant.orders.ready &&
-    state.meals.ready,
+  order: getActiveOrder(state),
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  onChangeFoodChange: (form, field, value) => ({
-    type: actions.FORM_FIELD_CHANGE,
-    form,
-    field,
-    value,
-  }),
-  onChangeFoodSubmit: form => ({ type: actions.FORM_SUBMIT, form }),
-  onMount: () => ({ type: actions.PARTICIPANT_FOOD_CHANGE_MOUNTED }),
-  onUnmount: () => ({ type: actions.PARTICIPANT_FOOD_CHANGE_UNMOUNTED }),
-}, dispatch);
+const mapDispatchToProps = {
+  onMissingOrder: redirectHome,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChangeFood);
+export default mapPageProgress({
+  progressSelector: getOrderListProgress,
+  onResourceChange: requireOrderList,
+})(connect(mapStateToProps, mapDispatchToProps)(ChangeFood));

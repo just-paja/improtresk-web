@@ -4,7 +4,7 @@ import AccomodationList from '../components/AccomodationList';
 import mapProgress from '../../containers/mapProgress';
 
 import { getAccomodationList, getAccomodationListProgress } from '../selectors';
-import { accomodationListLeft, requireAccomodationList } from '../actions';
+import { accomodationListFetch } from '../actions';
 
 const mapStateToProps = state => ({
   accomodationList: getAccomodationList(state),
@@ -12,6 +12,6 @@ const mapStateToProps = state => ({
 
 export default mapProgress(connect(mapStateToProps)(AccomodationList), {
   progressSelector: getAccomodationListProgress,
-  onResourceChange: requireAccomodationList,
-  onExit: accomodationListLeft,
+  onResourceChange: accomodationListFetch.subscribe,
+  onExit: accomodationListFetch.unsubscribe,
 });

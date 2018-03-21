@@ -1,99 +1,111 @@
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import sinon from 'sinon';
 
-import { sendForm } from '../../../forms/sagas/sendForm';
-import { getSignupForm } from '../../selectors';
+import { initialize } from 'redux-form';
 
-import * as sagas from '..';
-import * as api from '../../../api';
+import { loginWithSignupData, signup } from '../../actions';
 
-describe('Signup sagas', () => {
-  it('selectSignupSubmit selects signup submit action', () => {
-    expect(sagas.selectSignupSubmit({ type: 'FORM_SUBMIT_ALLOWED', form: 'signup' })).toBe(true);
+import sagas from '..';
+import getSagaTester from '../../../../mock/sagaTester';
+
+describe('Signup saga', () => {
+  beforeEach(() => {
+    sinon.stub(loginWithSignupData, 'resource');
+    sinon.stub(signup, 'resource');
   });
 
-  it('selectSignupSuccess selects signup submit action', () => {
-    expect(sagas.selectSignupSuccess({ type: 'FORM_SUBMIT_SUCCESS', form: 'signup' })).toBe(true);
+  afterEach(() => {
+    loginWithSignupData.resource.restore();
+    signup.resource.restore();
   });
 
-  it('sendSignup creates form submit actions', () => {
-    const gen = sagas.sendSignup({ type: 'REDUX_ACTION', form: 'signup' });
-    expect(gen.next().value).toEqual(select(getSignupForm));
-    expect(gen.next({
-      values: {
-        email: 'mail@test.com',
-        password: 'foo',
-        team_name: {
-          label: 'foo',
-          value: 'Test Team',
+  it('submits signup form', () => {
+    const sagaTester = getSagaTester({
+      form: {
+        signup: {
+          values: {
+            name: 'Tomáš Jireček',
+            email: 'test@seznam.cz',
+            team: 'Paleťáci',
+          },
         },
       },
-    }).value).toEqual(call(sendForm, api.signup, 'signup', {
-      email: 'mail@test.com',
-      password: 'foo',
-      team_name: 'Test Team',
-    }));
-    expect(gen.next().done).toBe(true);
-  });
-
-  it('sendSignup creates form submit actions without team name', () => {
-    const gen = sagas.sendSignup({ type: 'REDUX_ACTION', form: 'signup' });
-    expect(gen.next().value).toEqual(select(getSignupForm));
-    expect(gen.next({
-      values: {
-        email: 'mail@test.com',
-        password: 'foo',
+    });
+    signup.resource.returns({
+      ok: true,
+      status: 200,
+      json: () => ({
+        name: 'Tomáš Jireček',
+      }),
+    });
+    loginWithSignupData.resource.returns({
+      ok: true,
+      status: 204,
+    });
+    sagaTester.runAll(sagas);
+    sagaTester.dispatch(signup());
+    expect(signup.resource.getCall(0).args).toContainEqual(expect.objectContaining({
+      formData: {
+        name: 'Tomáš Jireček',
+        email: 'test@seznam.cz',
+        team: 'Paleťáci',
       },
-    }).value).toEqual(call(sendForm, api.signup, 'signup', {
-      email: 'mail@test.com',
-      password: 'foo',
-      team_name: undefined,
     }));
-    expect(gen.next().done).toBe(true);
+    expect(sagaTester.numCalled(signup.REQUEST)).toBe(1);
+    expect(sagaTester.numCalled(signup.SUCCESS)).toBe(1);
   });
 
-  it('loginSignup creates actions', () => {
-    const gen = sagas.loginSignup({
-      type: 'REDUX_ACTION',
-      data: {
-        id: 1,
-        name: 'Hugo Ventil',
+  it('logs in with configured password', () => {
+    const sagaTester = getSagaTester({});
+    signup.resource.returns({
+      ok: true,
+      status: 204,
+    });
+    loginWithSignupData.resource.returns({
+      ok: true,
+      status: 204,
+    });
+    sagaTester.runAll(sagas);
+    sagaTester.dispatch(initialize(signup.form, {
+      email: 'test@test.te',
+      password: 'x2341',
+    }));
+    sagaTester.dispatch(signup.success({
+      name: 'Henry Ford',
+    }));
+    expect(sagaTester.numCalled(loginWithSignupData.REQUEST)).toBe(1);
+    expect(loginWithSignupData.resource.getCall(0).args).toContainEqual(expect.objectContaining({
+      formData: {
+        email: 'test@test.te',
+        password: 'x2341',
+      },
+    }));
+  });
+
+  it('saves participant details', () => {
+    const sagaTester = getSagaTester({
+      form: {
+        signup: {
+          values: {
+            name: 'Tomáš Jireček',
+            email: 'test@seznam.cz',
+            team: 'Paleťáci',
+          },
+        },
       },
     });
-    expect(gen.next().value).toEqual(select(getSignupForm));
-    expect(gen.next({
-      values: {
-        email: 'test@localhost.com',
-        password: 'foo',
-      },
-    }).value).toEqual(call(sendForm, api.login, 'login', {
-      email: 'test@localhost.com',
-      password: 'foo',
+    loginWithSignupData.resource.returns({
+      ok: true,
+      status: 200,
+      json: () => ({
+        name: 'foo',
+      }),
+    });
+    sagaTester.runAll(sagas);
+    sagaTester.dispatch(signup.success({
+      name: 'Henry Ford',
     }));
-    expect(gen.next({
-      auth_token: 'asdf65a4sdf65asd4f',
-    }).value).toEqual(put({
-      type: 'PARTICIPANT_REGISTERED',
-      data: {
-        id: 1,
-        name: 'Hugo Ventil',
-      },
-    }));
-    expect(gen.next().value).toEqual(put({
-      type: 'FORM_VALUES_CLEAR',
-      form: 'signup',
-    }));
-    expect(gen.next().done).toBe(true);
-  });
-
-  it('signupOnFormSubmit creates actions', () => {
-    const gen = sagas.signupOnFormSubmit();
-    expect(gen.next().value).toEqual(takeLatest(sagas.selectSignupSubmit, sagas.sendSignup));
-    expect(gen.next().done).toBe(true);
-  });
-
-  it('loginOnSignup creates login actions', () => {
-    const gen = sagas.loginOnSignup();
-    expect(gen.next().value).toEqual(takeLatest(sagas.selectSignupSuccess, sagas.loginSignup));
-    expect(gen.next().done).toBe(true);
+    expect(sagaTester.getState().participants.detail.data).toMatchObject({
+      name: 'Henry Ford',
+    });
   });
 });

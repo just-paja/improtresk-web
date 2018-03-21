@@ -48,7 +48,7 @@ export const fetchPerformers = ({ year, ...params }) =>
   apiFetch(`years/${year}/performers/`, params);
 
 export const fetchPerformerDetail = ({ performer, year, ...params }) =>
-  apiFetch(`years/${year}/performers/${performer}/`, params);
+  apiFetch(`years/${year}/performers/${idFromSlug(performer)}/`, params);
 
 export const fetchTeams = params => apiFetch('teams/', params);
 

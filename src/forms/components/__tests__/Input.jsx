@@ -6,76 +6,131 @@ import { shallow } from 'enzyme';
 import Input from '../Input';
 
 describe('Input component', () => {
-  it('renders as text input', () => {
+  it('renders as text by default', () => {
     const comp = shallow(
       <Input
-        label="Input label"
-        name="text-input"
+        label="test.inputLabel"
+        input={{
+          name: 'testInput',
+        }}
+        translate={() => {}}
+        meta={{}}
       />
     );
     expect(comp.find('Input')).toHaveProp('type', 'text');
   });
 
-  it('replaces blank values as empty string', () => {
+  it('renders as overriden type', () => {
     const comp = shallow(
       <Input
-        label="Input label"
-        name="text-input"
-        value={null}
-      />
-    );
-    expect(comp.find('Input')).toHaveProp('value', '');
-  });
-
-  it('renders as email input with help', () => {
-    const comp = shallow(
-      <Input
-        help="This is the input help!"
-        label="Input label"
-        name="text-input"
+        label="test.inputLabel"
+        input={{
+          name: 'testInput',
+        }}
+        meta={{}}
+        translate={() => {}}
         type="email"
       />
     );
     expect(comp.find('Input')).toHaveProp('type', 'email');
   });
 
+  it('does not render label by default', () => {
+    const comp = shallow(
+      <Input
+        input={{
+          name: 'testInput',
+        }}
+        meta={{}}
+        translate={() => {}}
+        type="email"
+      />
+    );
+    expect(comp.find('Label')).toHaveLength(0);
+  });
+
+  it('renders label when provided', () => {
+    const comp = shallow(
+      <Input
+        label="test.inputLabel"
+        input={{
+          name: 'testInput',
+        }}
+        meta={{}}
+        translate={() => {}}
+        type="email"
+      />
+    );
+    expect(comp.find('Label')).toHaveProp('htmlFor', 'testInput');
+    expect(comp.find('InputDescription[text="test.inputLabel"]')).toHaveLength(1);
+  });
+
+  it('renders help message when provided', () => {
+    const comp = shallow(
+      <Input
+        help="test.helpMessage"
+        label="test.inputLabel"
+        input={{
+          name: 'testInput',
+        }}
+        meta={{}}
+        translate={() => {}}
+        type="email"
+      />
+    );
+    expect(comp.find('InputDescription[text="test.helpMessage"]')).toHaveLength(1);
+  });
+
+  it('does not render error before touched', () => {
+    const comp = shallow(
+      <Input
+        input={{
+          name: 'testInput',
+        }}
+        meta={{
+          error: 'test.fieldError',
+          touched: 0,
+        }}
+        translate={() => {}}
+        type="email"
+      />
+    );
+    expect(comp.find('Connect(Message)[name="test.fieldError"]')).toHaveLength(0);
+  });
+
   it('renders in touched error state', () => {
     const comp = shallow(
       <Input
-        help="This is the input help!"
-        error="This is the input error!"
-        label="Input label"
-        name="text-input"
-        touched
+        input={{
+          name: 'testInput',
+        }}
+        meta={{
+          error: 'test.fieldError',
+          touched: true,
+        }}
+        translate={() => {}}
+        type="email"
       />
     );
-
-    expect(comp.find({
-      children: 'This is the input error!',
-    })).toHaveLength(1);
+    expect(comp.find('Connect(FormErrors)')).toHaveLength(1);
   });
 
-  it('onChange on input value change does not fail when without args', () => {
+  it('triggers onChange on input value change', () => {
+    const onChange = sinon.spy();
     const comp = shallow(
       <Input
-        label="Input label"
-        name="text-input"
+        input={{
+          name: 'testInput',
+          onChange,
+        }}
+        meta={{
+          error: 'test.fieldError',
+          touched: true,
+        }}
+        translate={() => {}}
+        type="email"
       />
     );
-
-    expect(() => comp.find('Input').simulate('change')).not.toThrow();
-  });
-
-  it('triggers onChange on input value change when passed', () => {
-    const changeSpy = sinon.spy();
-    const comp = shallow(
-      <Input
-        label="Input label"
-        name="text-input"
-        onChange={changeSpy}
-      />
-    );
-
     comp.find('Input').simulate('change', {
       target: {
         name: 'text-input',
@@ -83,98 +138,78 @@ describe('Input component', () => {
       },
     });
 
-    expect(changeSpy.args).toEqual([
-      ['text-input', 'foo'],
+    expect(onChange.getCall(0).args).toEqual([
+      {
+        target: {
+          name: 'text-input',
+          value: 'foo',
+        },
+      },
     ]);
   });
 
-  it('triggers onChange on input value change when passed with no target input', () => {
-    const changeSpy = sinon.spy();
+  it('triggers onBlur on input blur event', () => {
+    const onBlur = sinon.spy();
     const comp = shallow(
       <Input
-        label="Input label"
-        name="text-input"
-        onChange={changeSpy}
+        input={{
+          name: 'testInput',
+          onBlur,
+        }}
+        meta={{
+          error: 'test.fieldError',
+          touched: true,
+        }}
+        type="email"
+        translate={() => {}}
       />
     );
-
-    comp.find('Input').simulate('change', 'foo');
-    expect(changeSpy.args).toEqual([
-      ['text-input', 'foo'],
-    ]);
-  });
-
-  it('triggers onChange on input value change when passed with formatValue prop', () => {
-    const changeSpy = sinon.spy();
-    const valueSpy = sinon.stub();
-    valueSpy.returns('bar');
-    const comp = shallow(
-      <Input
-        formatValue={valueSpy}
-        label="Input label"
-        name="text-input"
-        onChange={changeSpy}
-      />
-    );
-
-    comp.find('Input').simulate('change', 'foo');
-    expect(valueSpy.args).toEqual([['foo']]);
-    expect(changeSpy.args).toEqual([
-      ['text-input', 'bar'],
-    ]);
-  });
-
-  it('triggers touch state on input value change when passed changeLeadsToTouch', () => {
-    const changeSpy = sinon.spy();
-    const comp = shallow(
-      <Input
-        changeLeadsToTouch
-        label="Input label"
-        name="text-input"
-        onChange={changeSpy}
-      />
-    );
-
-    comp.find('Input').simulate('change', 'foo');
-    expect(comp.instance().state).toEqual({
-      changed: true,
-      touched: true,
+    comp.find('Input').simulate('blur', {
+      target: {
+        name: 'text-input',
+        value: 'foo',
+      },
     });
+
+    expect(onBlur.getCall(0).args).toEqual([
+      {
+        target: {
+          name: 'text-input',
+          value: 'foo',
+        },
+      },
+    ]);
   });
 
-  it('triggers touch state on input blur when input was changed', () => {
-    const changeSpy = sinon.spy();
+  it('triggers onFocus on input focus event', () => {
+    const onFocus = sinon.spy();
     const comp = shallow(
       <Input
-        changeLeadsToTouch
-        label="Input label"
-        name="text-input"
-        onChange={changeSpy}
+        input={{
+          name: 'testInput',
+          onFocus,
+        }}
+        meta={{
+          error: 'test.fieldError',
+          touched: true,
+        }}
+        translate={() => {}}
+        type="email"
       />
     );
-
-    comp.setState({ changed: true });
-
-    comp.find('Input').simulate('blur');
-    expect(comp.instance().state).toEqual({
-      changed: true,
-      touched: true,
+    comp.find('Input').simulate('focus', {
+      target: {
+        name: 'text-input',
+        value: 'foo',
+      },
     });
-  });
-
-  it('triggers onBlur on blur', () => {
-    const blurSpy = sinon.spy();
-    const comp = shallow(
-      <Input
-        changeLeadsToTouch
-        label="Input label"
-        name="text-input"
-        onBlur={blurSpy}
-      />
-    );
-
-    comp.setState({ changed: true });
-    comp.find('Input').simulate('blur');
-    expect(blurSpy.calledOnce).toBe(true);
+    expect(onFocus.getCall(0).args).toEqual([
+      {
+        target: {
+          name: 'text-input',
+          value: 'foo',
+        },
+      },
+    ]);
   });
 });

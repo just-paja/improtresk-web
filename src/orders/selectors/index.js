@@ -2,9 +2,11 @@ import moment from 'moment-timezone';
 
 import { createSelector } from 'reselect';
 import { isRequired, getProgress, transformData } from 'react-saga-rest';
+import { getFormValues } from 'redux-form';
 
-import { getForm } from '../../forms/selectors';
-import { getAccomodationList, getAccomodationListState } from '../../accomodation/selectors';
+import * as constants from '../constants';
+
+import { getAccomodationList, getCheapestAccomodation, getAccomodationListState } from '../../accomodation/selectors';
 import { getMealList, getMealListState } from '../../food/selectors';
 import { yearsAll, yearActive, getActivePriceLevel } from '../../years/selectors';
 import { getParticipantDetail } from '../../participants/selectors';
@@ -150,33 +152,35 @@ export const getUnconfirmedOrder = createSelector(
   ) || null
 );
 
-export const getOrderForm = getForm('order');
-export const getChangeWorkshopForm = getForm('changeWorkshop');
+const getOrderForm = getFormValues(constants.FORM_ORDER);
 
 export const getOrderFormProgress = getProgress(
   getAccomodationListState,
   getMealListState,
+  getOrderListState,
   getWorkshopListState,
   getLectorListState,
   getLectorRolesState
 );
 
 const getWorkshopPrice = (prices) => {
+  const now = moment();
   const filteredPrices = prices
-    .filter((price) => {
-      const now = moment();
-      return (!price.endsOn || now.isBefore(price.endsOn)) &&
-        !now.isBefore(price.takesEffectOn);
-    })
+    .filter(price => (
+      (!price.endsOn || now.isBefore(price.endsOn)) &&
+      !now.isBefore(price.takesEffectOn)
+    ))
     .sort();
   return filteredPrices[0] || null;
 };
 
 const calculatePrice = (form, workshops, meals, priceLevel) => {
   let price = 0;
-
-  if (form.values.workshop) {
-    const workshopEntry = workshops.find(ws => ws.id === form.values.workshop);
+  if (!form) {
+    return price;
+  }
+  if (form.workshop) {
+    const workshopEntry = workshops.find(ws => ws.id === form.workshop);
 
     if (workshopEntry) {
       const workshopPrice = getWorkshopPrice(workshopEntry.prices);
@@ -184,12 +188,12 @@ const calculatePrice = (form, workshops, meals, priceLevel) => {
         price += workshopPrice.price;
       }
     }
-  } else if (priceLevel && form.values.stayLength) {
-    price += form.values.stayLength.length * priceLevel.entryFee;
+  } else if (priceLevel && form.stayLength) {
+    price += form.stayLength.length * priceLevel.entryFee;
   }
 
-  if (form.values.meals && form.values.meals.length) {
-    price += form.values.meals.reduce((accumulator, current) => {
+  if (form.meals && form.meals instanceof Array && form.meals.length) {
+    price += form.meals.reduce((accumulator, current) => {
       const meal = meals.find(m => m.id === current);
       return meal ? accumulator + meal.price : accumulator;
     }, 0);
@@ -202,20 +206,6 @@ export const getOrderFormPrice = createSelector(
   [getOrderForm, getWorkshopList, getMealList, getActivePriceLevel],
   calculatePrice
 );
-
-const calculateAccomodationPrice = (form, accomodation) => {
-  if (form && form.values.accomodation) {
-    console.log(accomodation);
-  }
-  return 0;
-};
-
-export const getOrderFormAccomodationPrice = transformData(getOrderForm, [
-  {
-    select: getAccomodationList,
-    transform: calculateAccomodationPrice,
-  },
-]);
 
 export const getOrderedMeals = createSelector(
   [getActiveOrder, getMealList],
@@ -239,4 +229,28 @@ export const getOrderedMeals = createSelector(
       })
       .filter(meal => meal);
   }
+);
+
+const getDates = (year) => {
+  if (!year) {
+    return [];
+  }
+  const current = moment(year.startDate);
+  const end = moment(year.endDate);
+  const dates = [];
+  while (!current.isAfter(end)) {
+    dates.push(current.format('YYYY-MM-DD'));
+    current.add(1, 'days');
+  }
+  return dates;
+};
+
+export const getOrderFormDefaults = createSelector(
+  [yearActive, getCheapestAccomodation],
+  (year, accomodation) => ({
+    accomodation: accomodation ? accomodation.id : null,
+    meals: [],
+    year: year.year,
+    stayLength: getDates(year),
+  })
 );

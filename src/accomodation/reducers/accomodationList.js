@@ -1,23 +1,9 @@
-import {
-  combine,
-  fetchStart,
-  fetchError,
-  fetchSuccess,
-} from 'react-saga-rest';
+import { combine } from 'react-saga-rest';
 
-import {
-  ACCOMODATION_FETCH_ERROR,
-  ACCOMODATION_FETCH_STARTED,
-  ACCOMODATION_FETCH_SUCCESS,
-} from '../constants';
+import { accomodationListFetch } from '../actions';
 
-const defaultState = {
-  data: [],
-  loading: false,
-};
+import createCollectionReducers, { initialState } from '../../reducers/createCollectionReducers';
 
-export default combine(defaultState, {
-  [ACCOMODATION_FETCH_ERROR]: fetchError,
-  [ACCOMODATION_FETCH_STARTED]: fetchStart,
-  [ACCOMODATION_FETCH_SUCCESS]: fetchSuccess,
-});
+export default combine(initialState, createCollectionReducers({
+  routine: accomodationListFetch,
+}));

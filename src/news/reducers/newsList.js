@@ -1,19 +1,9 @@
-import {
-  combine,
-  fetchStart,
-  fetchError,
-  fetchSuccess,
-} from 'react-saga-rest';
+import { combine } from 'react-saga-rest';
+import { newsListFetch } from '../actions';
 
-import * as constants from '../constants';
+import createCollectionReducers, { initialState } from '../../reducers/createCollectionReducers';
 
-const defaultState = {
-  data: [],
-  loading: false,
-};
-
-export default combine(defaultState, {
-  [constants.NEWS_FETCH_STARTED]: fetchStart,
-  [constants.NEWS_FETCH_SUCCESS]: fetchSuccess,
-  [constants.NEWS_FETCH_ERROR]: fetchError,
-});
+export default combine(initialState, createCollectionReducers({
+  routine: newsListFetch,
+  identAttr: 'id',
+}));

@@ -5,7 +5,7 @@ import NewsList from '../components/NewsList';
 import mapProgress from '../../containers/mapProgress';
 
 import { getNewsList, getNewsListProgress } from '../selectors';
-import { requireNewsList } from '../actions';
+import { newsListFetch } from '../actions';
 
 const mapStateToProps = state => ({
   news: getNewsList(state),
@@ -14,5 +14,5 @@ const mapStateToProps = state => ({
 
 export default mapProgress(connect(mapStateToProps)(NewsList), {
   progressSelector: getNewsListProgress,
-  onResourceChange: requireNewsList,
+  onResourceChange: newsListFetch,
 });

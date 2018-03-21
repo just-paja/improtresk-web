@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import { localeReducer as locale } from 'react-localize-redux';
 import { routerReducer as routing } from 'react-router-redux';
+import { reducer as form } from 'redux-form';
 
 import accomodation from '../accomodation/reducers';
 import device from '../reducers/device';
 import food from '../food/reducers';
-import forms from '../forms/reducers';
 import locations from '../locations/reducers';
 import news from '../news/reducers';
 import orders from '../orders/reducers';
@@ -22,7 +22,7 @@ export default combineReducers({
   accomodation,
   device,
   food,
-  forms,
+  form,
   locale,
   locations,
   news,

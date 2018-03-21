@@ -1,38 +1,51 @@
+import { getFormValues, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
-import { requireOrderResources, setOrderDefaults } from '../actions';
+import { orderCreate, requireOrderResources } from '../actions';
 import {
-  getOrderForm,
+  getOrderFormDefaults,
   getOrderFormProgress,
   getOrderFormPrice,
-  getOrderFormAccomodationPrice,
 } from '../selectors';
 import { getAccomodationList } from '../../accomodation/selectors';
 import { getMealList } from '../../food/selectors';
-import { formChange, formSubmit } from '../../forms/actions';
 import { getWorkshopList } from '../../workshops/selectors';
 import { yearActive } from '../../years/selectors';
 
 import OrderForm from '../components/OrderForm';
 import mapProgress from '../../containers/mapProgress';
 
-const mapStateToProps = state => ({
-  accomodation: getAccomodationList(state),
-  formData: getOrderForm(state),
-  meals: getMealList(state),
-  price: getOrderFormPrice(state),
-  priceAccomodation: getOrderFormAccomodationPrice(state),
-  workshops: getWorkshopList(state),
-  year: yearActive(state),
-});
-
-const mapDispatchToProps = {
-  onEnter: setOrderDefaults,
-  onChange: formChange,
-  onSubmit: formSubmit,
+const validate = (values) => {
+  const errors = {};
+  if (!values.accomodation) {
+    errors.accomodation = 'forms.fieldRequired';
+  }
+  return errors;
 };
 
-export default mapProgress(connect(mapStateToProps, mapDispatchToProps)(OrderForm), {
+const getWorkshopValue = getFormValues(orderCreate.form);
+
+const mapStateToProps = (state) => {
+  const values = getWorkshopValue(state);
+  return ({
+    accomodation: getAccomodationList(state),
+    initialValues: getOrderFormDefaults(state),
+    meals: getMealList(state),
+    price: getOrderFormPrice(state),
+    workshopValue: values && values.workshop,
+    workshops: getWorkshopList(state),
+    year: yearActive(state),
+  });
+};
+
+const mapDispatchToProps = {
+  onSubmit: orderCreate,
+};
+
+export default mapProgress(connect(mapStateToProps, mapDispatchToProps)(reduxForm({
+  form: orderCreate.form,
+  validate,
+})(OrderForm)), {
   progressSelector: getOrderFormProgress,
   onResourceChange: requireOrderResources,
 });

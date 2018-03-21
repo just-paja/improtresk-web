@@ -7,7 +7,6 @@ import {
 } from '../../selectors';
 import {
   fetchParticipantShowHome,
-  fetchParticipantOnLogin,
   logout,
   logoutOnAction,
 } from '..';
@@ -15,15 +14,6 @@ import {
 import * as api from '../../../api';
 
 describe('Participant sagas', () => {
-  it.skip('fetchParticipantOnLogin creates fetch actions', () => {
-    const saga = fetchParticipantOnLogin();
-    expect(saga.next().value).toEqual(takeEvery(
-      'PARTICIPANT_LOGIN',
-      fetchParticipantShowHome
-    ));
-    expect(saga.next().done).toBe(true);
-  });
-
   it('logoutOnAction creates fetch actions', () => {
     const saga = logoutOnAction();
     expect(saga.next().value).toEqual(takeEvery(

@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 export default {
   participants: {
     alreadyRegistered: 'I am already registered',
@@ -21,6 +22,7 @@ export default {
     lunchRegistrationHeading: 'Lunch',
     lunchRegistrationProcess: 'We will send you the festival menu later by e-mail. It always contains at least one option for vegetarians.',
     mightHaveAccountHelp: 'It is possible you have account from last year. Save some time by reusing it.',
+    mustBeOlderThan18: 'You must at least 18 years old',
     newPassword: 'New Password',
     newPasswordHelp: 'Enter your new password and save it to be able to login again.',
     newPasswordCheck: 'New Password check',
@@ -30,6 +32,7 @@ export default {
     password: 'Password',
     passwordChangeEmailSent: 'We sent instructions to change your password to e-mail address you provided.',
     passwordCheck: 'Check password',
+    passwordsDoNotMatch: 'New password and password check do not match',
     paymentHeading: 'Payment and e-mail confirmation',
     paymentProcess: 'You can pay for the signup only using account transfer.',
     phoneNumber: 'Phone number',
@@ -37,9 +40,11 @@ export default {
     register: 'Register',
     registration: 'Registration',
     resetPassword: 'Reset password',
+    signupDateUnsure: 'We do not have signup open date for this year yet. Watch news and our Facebook page.',
     signupHowtoHeading: 'How to...?',
     signupHowtoProcess: 'We will send you confirmation e-mail about everything that is related to your signup and payment. Later, we will prompt you to choose lunch',
     signupIntro: 'First we need to get you into the system.  There is just a few simple personal questions we need you to answer. It should not take longer than five minutes. You can choose Workshop, Food and Accomodation <b>in the second step</b>.',
+    signupOpenDateExact: 'Signups will open exactly on ${date}. Until then, you can check your account from previous years.',
     signupRegistrationHeading: 'Registration',
     signupRegistrationInfo: 'We need all the information for accounting purposes. We never provide them to third parties. It is your responsibility to fill all the information correctly. We reserve the right to cancel any signup with incorrect information without returning your money back.',
     signupsAlreadyClosed: 'Signups are already closed',
@@ -48,6 +53,7 @@ export default {
     signupsWillOpen: 'Signups will open',
     signupToFestival: 'Signup to Improtřesk',
     signupTooLate: 'It is too late for signups now, we do not accept any more.',
+    signupSuccess: 'Signup was successful. Now you can log in.',
     team: 'Your improv group',
     teamHelp: 'We use this for statistics and assigning safe sleeping space.',
     workshopRegistrationHeading: 'Workshop registration',

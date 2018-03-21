@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 export default {
   participants: {
     alreadyRegistered: 'Už jsem zaregistrovaný',
@@ -21,6 +22,7 @@ export default {
     lunchRegistrationHeading: 'Výběr obědů',
     lunchRegistrationProcess: 'Jaké jídlo bude na výběr budeme znát až později po přihlášce, třeba někdy v&nbsp;dubnu. Dáme ti vědět e-mailem. Stačí se přihlásit a vybrat.',
     mightHaveAccountHelp: 'Je možné, že už máš účet z minulého ročníku. Ušetříš si čas tím, že nebudeš muset znovu vyplňovat registrační formulář.',
+    mustBeOlderThan18: 'Musí ti být alespoň 18 let',
     newPassword: 'Nové heslo',
     newPasswordHelp: 'Zadej svoje nové heslo a po uložení se budeš moci přihlásit.',
     newPasswordCheck: 'Kontrola nového hesla',
@@ -30,6 +32,7 @@ export default {
     password: 'Heslo',
     passwordChangeEmailSent: 'Na tvojí adresu jsme odeslali e-mail s instrukcemi ke změně hesla.',
     passwordCheck: 'Kontrola hesla',
+    passwordsDoNotMatch: 'Nové heslo a kontrola hesla nejsou stejné',
     paymentHeading: 'Platba a potvrzení e-mailem',
     paymentProcess: 'Platbu za přihlášku lze provést buď bankovním převodem a nebo kartou online.',
     phoneNumber: 'Telefonní číslo',
@@ -37,9 +40,11 @@ export default {
     register: 'Registrovat',
     registration: 'Registrace',
     resetPassword: 'Resetovat heslo',
+    signupDateUnsure: 'Tento ročník ještě nemá vypsaný datum otevření přihlášek. Sleduj novinky na webu a Facebook, ať se včas dozvíš kdy to bude.',
     signupHowtoHeading: 'Jak na to?',
     signupHowtoProcess: 'O přihlášení na workshop na Improtřesku ti pošleme e-mail, takže je dobré vyplnit svojí skutečnou e-mailovou adresu. Stejně tak se bude hodit k sledování stavu přihlášky, objednání obědů a dalším věcem.',
     signupIntro: 'Napřed tě musíme dostat do systému. Je to jen pár jednoduchých otázek na které potřebujeme znát odpověď. Určitě by to nemělo zabrat víc jak pět minut. <b>V druhém kroce</b> si můžeš poskládat Improtřesk tak jak ti bude vyhovovat, tedy vybrat workshop, jídlo a ubytování.',
+    signupOpenDateExact: 'Přihlašování se na této stránce otevře přesně ${date}. Do té doby se můžeš přihlásit ke svému účtu z minulých let.',
     signupRegistrationHeading: 'Registrace',
     signupRegistrationInfo: 'Všechny údaje nutně potřebujeme abychom mohli Improtřesk pořádně vyúčtovat. Není třeba se bát, neposkytujeme je nikdy třetím stranám. Přihláška s nesprávně vyplněnými údaji riskuje vyřazení bez vrácení peněz a za správnost vyplnění zodpovídáš ty.',
     signupsAlreadyClosed: 'Přihlašování již bylo uzavřeno',
@@ -48,6 +53,7 @@ export default {
     signupsWillOpen: 'Přihlašování se otevře',
     signupToFestival: 'Přihlásit na Improtřesk',
     signupTooLate: 'Teď už je na přihlašování pozdě. Přihlášky pro tento ročník jsou už uzavřeny.',
+    signupSuccess: 'Registrace proběhla úspěšně! Nyní se můžeš přihlásit.',
     team: 'Tvoje skupina',
     teamHelp: 'Tento údaj použijeme pro malé sčítání improvizátorů, ale také při rozdělování mistností na spaní',
     workshopRegistrationHeading: 'Přihlášení na workshop',

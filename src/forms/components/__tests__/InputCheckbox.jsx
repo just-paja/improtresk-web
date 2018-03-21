@@ -9,65 +9,171 @@ describe('Input Checkbox component', () => {
   it('renders checkbox component', () => {
     const comp = shallow(
       <InputCheckbox
-        label="Input label"
-        name="test-input"
+        label="test.inputLabel"
+        input={{
+          name: 'testInput',
+        }}
+        meta={{}}
       />
     );
     expect(comp.find('Input[type="checkbox"]')).toHaveLength(1);
   });
 
-  it('renders input component with help message', () => {
+  it('renders label', () => {
     const comp = shallow(
       <InputCheckbox
-        help="This is help text"
-        label="Input label"
-        name="test-input"
+        label="test.inputLabel"
+        input={{
+          name: 'testInput',
+        }}
+        meta={{
+          form: 'testForm',
+        }}
       />
     );
-    expect(comp.find({ children: 'This is help text' })).toHaveLength(1);
+    expect(comp.find('Label')).toHaveProp('htmlFor', 'testForm.testInput');
+    expect(comp.find('InputDescription[text="test.inputLabel"]')).toHaveLength(1);
   });
 
-  it('renders input component in non-error state when not touched', () => {
+  it('renders help message when provided', () => {
     const comp = shallow(
       <InputCheckbox
-        error="This is the input error!"
-        label="Input label"
-        name="test-input"
+        label="test.inputLabel"
+        help="test.helpMessage"
+        input={{
+          name: 'testInput',
+        }}
+        meta={{}}
       />
     );
-    expect(comp.find({
-      children: 'This is the input error!',
-    })).toHaveLength(0);
+    expect(comp.find('InputDescription[text="test.helpMessage"]')).toHaveLength(1);
   });
 
-  it('renders input component in error state', () => {
+  it('does not render error before touched', () => {
     const comp = shallow(
       <InputCheckbox
-        error="This is the input error!"
-        label="Input label"
-        name="test-input"
-        touched
+        label="test.inputLabel"
+        input={{
+          name: 'testInput',
+        }}
+        meta={{
+          error: 'test.fieldError',
+          touched: 0,
+        }}
       />
     );
-    expect(comp.find({
-      children: 'This is the input error!',
-    })).toHaveLength(1);
+    expect(comp.find('Connect(FormErrors)')).toHaveLength(0);
   });
 
-  it('triggers onChange with input name and value', () => {
-    const changeSpy = sinon.spy();
+  it('renders in touched error state', () => {
     const comp = shallow(
       <InputCheckbox
-        error="foo"
-        label="Input label"
-        name="test-input"
-        onChange={changeSpy}
+        label="test.inputLabel"
+        input={{
+          name: 'testInput',
+        }}
+        meta={{
+          error: 'test.fieldError',
+          touched: true,
+        }}
       />
     );
+    expect(comp.find('Connect(FormErrors)')).toHaveLength(1);
+  });
 
-    comp.find('Input[type="checkbox"]').simulate('change', { target: { checked: true } });
-    expect(changeSpy.args).toEqual([
-      ['test-input', true],
+  it('triggers onChange on input value change', () => {
+    const onChange = sinon.spy();
+    const comp = shallow(
+      <InputCheckbox
+        input={{
+          name: 'testInput',
+          onChange,
+        }}
+        label="test.inputLabel"
+        meta={{
+          error: 'test.fieldError',
+          touched: true,
+        }}
+      />
+    );
+    comp.find('Input').simulate('change', {
+      target: {
+        name: 'text-input',
+        value: 'foo',
+      },
+    });
+
+    expect(onChange.getCall(0).args).toEqual([
+      {
+        target: {
+          name: 'text-input',
+          value: 'foo',
+        },
+      },
+    ]);
+  });
+
+  it('triggers onBlur on input value change', () => {
+    const onBlur = sinon.spy();
+    const comp = shallow(
+      <InputCheckbox
+        input={{
+          name: 'testInput',
+          onBlur,
+        }}
+        label="test.inputLabel"
+        meta={{
+          error: 'test.fieldError',
+          touched: true,
+        }}
+      />
+    );
+    comp.find('Input').simulate('blur', {
+      target: {
+        name: 'text-input',
+        value: 'foo',
+      },
+    });
+
+    expect(onBlur.getCall(0).args).toEqual([
+      {
+        target: {
+          name: 'text-input',
+          value: 'foo',
+        },
+      },
+    ]);
+  });
+
+  it('triggers onFocus on input value change', () => {
+    const onFocus = sinon.spy();
+    const comp = shallow(
+      <InputCheckbox
+        input={{
+          name: 'testInput',
+          onFocus,
+        }}
+        label="test.inputLabel"
+        meta={{
+          error: 'test.fieldError',
+          touched: true,
+        }}
+      />
+    );
+    comp.find('Input').simulate('focus', {
+      target: {
+        name: 'text-input',
+        value: 'foo',
+      },
+    });
+
+    expect(onFocus.getCall(0).args).toEqual([
+      {
+        target: {
+          name: 'text-input',
+          value: 'foo',
+        },
+      },
     ]);
   });
 });
