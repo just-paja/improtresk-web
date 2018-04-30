@@ -1,5 +1,5 @@
-import createFetchSaga from '../../sagas/createFetchSaga';
+import createYearFetchSaga from '../../years/sagas/createYearFetchSaga';
 
 import { mealListFetch } from '../actions';
 
-export default createFetchSaga(mealListFetch);
+export default createYearFetchSaga(mealListFetch);

@@ -15,7 +15,18 @@ describe('fetchMealList saga', () => {
   });
 
   it('fetchMeals creates fetch actions with year', () => {
-    const sagaTester = getSagaTester();
+    const sagaTester = getSagaTester({
+      years: {
+        list: {
+          data: [
+            {
+              current: true,
+              year: '2017',
+            },
+          ],
+        },
+      },
+    });
     mealListFetch.resource.returns({
       ok: true,
       status: 200,
@@ -29,6 +40,9 @@ describe('fetchMealList saga', () => {
     sagaTester.runAll(sagas);
     sagaTester.dispatch(mealListFetch());
     expect(sagaTester.numCalled(mealListFetch.REQUEST)).toBe(1);
+    expect(mealListFetch.resource.getCall(0).args).toContainEqual(expect.objectContaining({
+      year: '2017',
+    }));
     expect(sagaTester.getState().food.list.data).toEqual([
       {
         id: 40,
