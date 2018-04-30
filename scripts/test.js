@@ -14,5 +14,6 @@ const argv = process.argv.slice(2);
 if (argv.indexOf('--coverage') < 0) {
   argv.push('--watch');
 }
+argv.push('--maxWorkers=3');
 
 jest.run(argv);
