@@ -12,19 +12,19 @@ export default class FoodPicker extends Component {
   }
 
   handleChange(id, mealValue) {
-    const { name, onChange, value } = this.props;
-    onChange(name, {
+    const { onChange, value } = this.props.input;
+    onChange({
       ...value,
       [id]: mealValue,
     });
   }
 
   render() {
-    const { disabled, meals, value } = this.props;
+    const { disabled, meals, input: { value } } = this.props;
     return (
       <Row>
         {meals.map(meal => (
-          <Col key={meal.id} sm={4}>
+          <Col key={meal.id} md={6}>
             <FoodPickerItem
               date={meal.date}
               disabled={disabled}
@@ -52,12 +52,9 @@ FoodPicker.propTypes = {
     food: PropTypes.arrayOf(PropTypes.object),
     soups: PropTypes.arrayOf(PropTypes.object),
   })).isRequired,
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.object,
+  input: PropTypes.object.isRequired,
 };
 
 FoodPicker.defaultProps = {
   disabled: false,
-  value: {},
 };

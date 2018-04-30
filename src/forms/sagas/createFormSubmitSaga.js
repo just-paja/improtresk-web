@@ -4,13 +4,25 @@ import { getFormValues, startSubmit, stopSubmit, setSubmitSucceeded } from 'redu
 
 import fetchResource from '../../sagas/fetchResource';
 
-export default (routine) => {
+const reduceParams = (payloadReducer, payload) => {
+  if (!payloadReducer) {
+    return payload;
+  }
+  return payloadReducer(payload);
+};
+
+export default (routine, {
+  payloadSelector,
+  payloadReducer,
+} = {}) => {
   function* handleSubmit() {
     const formData = yield select(getFormValues(routine.form));
+    const params = payloadSelector ? yield select(payloadSelector) : null;
     yield put(startSubmit(routine.form));
     yield fork(fetchResource, routine, {
       params: {
         formData,
+        ...reduceParams(payloadReducer, params),
       },
     });
     const action = yield take([routine.FAILURE, routine.SUCCESS]);

@@ -1,9 +1,9 @@
 import { put, takeEvery } from 'redux-saga/effects';
 
 import { accomodationListFetch } from '../../accomodation/actions';
-import { requireMealList } from '../../food/actions';
+import { mealListFetch } from '../../food/actions';
 import { requireCapacityPoll } from '../../years/actions';
-import { requireOrderList } from '../actions';
+import { orderListFetch } from '../actions';
 import {
   requireLectorList,
   requireLectorRoles,
@@ -18,8 +18,8 @@ export function* requireOrderResourceList() {
   yield put(requireCapacityPoll());
   yield put(requireLectorList());
   yield put(requireLectorRoles());
-  yield put(requireMealList());
-  yield put(requireOrderList());
+  yield put(mealListFetch());
+  yield put(orderListFetch());
   yield put(requireWorkshopDifficulties());
   yield put(requireWorkshopList());
 }

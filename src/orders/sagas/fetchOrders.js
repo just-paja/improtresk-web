@@ -1,8 +1,9 @@
 import { put, takeEvery } from 'redux-saga/effects';
 
 import { accomodationListFetch } from '../../accomodation/actions';
-import { orderListFetch } from '../actions';
+import { getOrderListState } from '../selectors';
 import { mealListFetch } from '../../food/actions';
+import { orderListFetch } from '../actions';
 import { requireWorkshopList } from '../../workshops/actions';
 
 import createFetchSaga from '../../sagas/createFetchSaga';
@@ -18,6 +19,8 @@ function* onOrderListRequire() {
 }
 
 export default [
-  ...createFetchSaga(orderListFetch),
+  ...createFetchSaga(orderListFetch, {
+    stateSelector: getOrderListState,
+  }),
   onOrderListRequire,
 ];

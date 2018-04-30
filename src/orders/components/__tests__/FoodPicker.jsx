@@ -9,7 +9,6 @@ describe('FoodPicker component', () => {
   it('renders each meal as food picker item', () => {
     const comp = shallow(
       <FoodPicker
-        name="food"
         meals={[
           {
             id: 10,
@@ -29,13 +28,16 @@ describe('FoodPicker component', () => {
             date: '2018-05-11',
           },
         ]}
-        value={{
-          10: {
-            food: 16,
-            soup: 11,
+        input={{
+          name: 'food',
+          value: {
+            10: {
+              food: 16,
+              soup: 11,
+            },
           },
+          onChange: () => {},
         }}
-        onChange={() => {}}
       />
     );
     expect(comp.find('FoodPickerItem').props()).toMatchObject({
@@ -63,7 +65,6 @@ describe('FoodPicker component', () => {
     const onChange = sinon.spy();
     const comp = shallow(
       <FoodPicker
-        name="food"
         meals={[
           {
             id: 10,
@@ -83,8 +84,11 @@ describe('FoodPicker component', () => {
             date: '2018-05-11',
           },
         ]}
-        value={{}}
-        onChange={onChange}
+        input={{
+          name: 'food',
+          value: {},
+          onChange,
+        }}
       />
     );
     comp.find('FoodPickerItem').simulate('change', 10, {
@@ -92,7 +96,6 @@ describe('FoodPicker component', () => {
       soup: 11,
     });
     expect(onChange.getCall(0).args).toEqual([
-      'food',
       {
         10: {
           food: 16,
@@ -106,7 +109,6 @@ describe('FoodPicker component', () => {
     const onChange = sinon.spy();
     const comp = shallow(
       <FoodPicker
-        name="food"
         meals={[
           {
             id: 10,
@@ -126,13 +128,16 @@ describe('FoodPicker component', () => {
             date: '2018-05-11',
           },
         ]}
-        value={{
-          10: {
-            food: null,
-            soup: null,
+        input={{
+          name: 'food',
+          value: {
+            10: {
+              food: null,
+              soup: null,
+            },
           },
+          onChange,
         }}
-        onChange={onChange}
       />
     );
     comp.find('FoodPickerItem').simulate('change', 10, {
@@ -140,7 +145,6 @@ describe('FoodPicker component', () => {
       soup: 11,
     });
     expect(onChange.getCall(0).args).toEqual([
-      'food',
       {
         10: {
           food: 16,
@@ -154,7 +158,6 @@ describe('FoodPicker component', () => {
     const onChange = sinon.spy();
     const comp = shallow(
       <FoodPicker
-        name="food"
         meals={[
           {
             id: 10,
@@ -191,13 +194,16 @@ describe('FoodPicker component', () => {
             date: '2018-05-11',
           },
         ]}
-        value={{
-          10: {
-            food: 16,
-            soup: 11,
+        input={{
+          name: 'food',
+          value: {
+            10: {
+              food: 16,
+              soup: 11,
+            },
           },
+          onChange,
         }}
-        onChange={onChange}
       />
     );
     comp.find('FoodPickerItem').at(1).simulate('change', 11, {
@@ -205,7 +211,6 @@ describe('FoodPicker component', () => {
       soup: 12,
     });
     expect(onChange.getCall(0).args).toEqual([
-      'food',
       {
         10: {
           food: 16,

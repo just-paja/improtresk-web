@@ -76,3 +76,8 @@ export const getFoodOrdersCloseDate = createSelector(
   yearActive,
   year => year.endFoodPickingAt
 );
+
+export const isFoodPickingAllowed = createSelector(
+  getFoodOrdersCloseDate,
+  date => !moment().isAfter(date)
+);

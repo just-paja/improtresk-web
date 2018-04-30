@@ -1,7 +1,6 @@
 import FormFeedback from 'reactstrap/lib/FormFeedback';
 import FormGroup from 'reactstrap/lib/FormGroup';
 import FormText from 'reactstrap/lib/FormText';
-import Label from 'reactstrap/lib/Label';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
@@ -43,7 +42,7 @@ export default class InputRadioGroup extends Component {
 
     return (
       <FormGroup validationState={(touched && error) ? 'error' : null}>
-        <Label>{label}</Label>
+        <strong>{label}</strong>
         {!required ? (
           <InputRadio
             autoValue={false}

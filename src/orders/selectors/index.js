@@ -44,7 +44,17 @@ export const aggregateMeals = (item, mealMenu) => {
   if (item && item.reservation && item.reservation.mealReservation) {
     meals = item.reservation.mealReservation.reduce((accumulator, current) => {
       const meal = mealMenu.find(m => m.id === current.meal);
-      return meal ? accumulator.concat([meal]) : accumulator;
+      if (meal) {
+        return [
+          ...accumulator,
+          {
+            ...meal,
+            orderedFood: meal.food && meal.food.find(food => current.food === food.id),
+            orderedSoup: meal.soups && meal.soups.find(soup => current.soup === soup.id),
+          },
+        ];
+      }
+      return accumulator;
     }, []);
   }
   return ({ ...item, meals });
@@ -252,5 +262,24 @@ export const getOrderFormDefaults = createSelector(
     meals: [],
     year: year.year,
     stayLength: getDates(year),
+  })
+);
+
+export const getYearAndOrder = createSelector(
+  [yearActive, getActiveOrder],
+  (year, order) => ({
+    year: year.id,
+    order: order.id,
+  })
+);
+
+export const getOrderFoodFormDefaults = createSelector(
+  [getActiveOrder],
+  order => ({
+    food: order.reservation.mealReservation ?
+      order.reservation.mealReservation.reduce((aggr, current) => ({
+        ...aggr,
+        [current.meal]: { food: current.food, soup: current.soup },
+      }), {}) : {},
   })
 );

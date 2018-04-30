@@ -15,6 +15,7 @@ export const cancelOrder = () => ({
   type: constants.ORDER_CANCEL_REQUESTED,
 });
 
+export const foodChange = createFormRoutine(constants.ORDER_FOOD_FORM_CHANGE, api.orderChangeFood);
 export const orderCancel = createRoutine(constants.ORDER_CANCEL, api.orderCancel);
 export const orderConfirm = createRoutine(constants.ORDER_CONFIRM, api.orderConfirm);
 export const orderCreate = createFormRoutine(constants.FORM_ORDER, api.orderCreate);

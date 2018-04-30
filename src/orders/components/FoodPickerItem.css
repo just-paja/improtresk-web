@@ -1,0 +1,4 @@
+:local .group :global .form-group .form-group {
+  margin-left: 1.25rem;
+  margin-bottom: 0;
+}

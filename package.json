@@ -71,7 +71,7 @@
     "react-router-redux": "^4.0.8",
     "react-saga-rest": "^1.1.8",
     "react-select": "^1.0.0-rc.3",
-    "reactstrap": "^5.0.0-beta",
+    "reactstrap": "^5.0.0",
     "redux": "^3.6.0",
     "redux-form": "^7.3.0",
     "redux-logger": "^3.0.1",

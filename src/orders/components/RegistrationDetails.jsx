@@ -1,7 +1,7 @@
-// import PropTypes from 'prop-types';
 import CardBody from 'reactstrap/lib/CardBody';
 import CardHeader from 'reactstrap/lib/CardHeader';
 import FontAwesome from 'react-fontawesome';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import { Order } from '../../proptypes';
@@ -11,6 +11,7 @@ import FlexLabel from '../../components/FlexLabel';
 import FoodSummary from './FoodSummary';
 import Meal from '../../food/components/Meal';
 import Message from '../../containers/Message';
+import Link from '../../containers/Link';
 import OrderPaymentStatus from './OrderPaymentStatus';
 import OrderStatusLabel from './OrderStatusLabel';
 import OrderTimeout from './OrderTimeout';
@@ -18,6 +19,7 @@ import PaymentDetails from './PaymentDetails';
 import Price from '../../components/Price';
 
 const RegistrationDetails = ({
+  isFoodPickingAllowed,
   order,
 }) => (
   <div>
@@ -73,6 +75,9 @@ const RegistrationDetails = ({
           {' '}
           <Message name="orders.food" />
         </span>
+        {isFoodPickingAllowed ? (
+          <Link to="participantChangeFood"><Message name="orders.changeFood" /></Link>
+        ) : null}
       </Flex>
     </CardHeader>
     <CardBody>
@@ -104,9 +109,11 @@ const RegistrationDetails = ({
 
 RegistrationDetails.propTypes = {
   order: Order.isRequired,
+  isFoodPickingAllowed: PropTypes.bool,
 };
 
 RegistrationDetails.defaultProps = {
+  isFoodPickingAllowed: false,
 };
 
 export default RegistrationDetails;

@@ -1,10 +1,11 @@
 import { combine, invalidate } from 'react-saga-rest';
 
 import {
-  orderCreate,
-  orderChange,
+  foodChange,
   orderCancel,
   orderConfirm,
+  orderCreate,
+  orderChange,
   orderListFetch,
 } from '../actions';
 import { PARTICIPANT_LOGOUT } from '../../participants/constants';
@@ -24,5 +25,6 @@ export default combine(defaultState, {
   [orderConfirm.SUCCESS]: invalidate,
   [orderCreate.SUCCESS]: invalidate,
   [orderChange.SUCCESS]: invalidate,
+  [foodChange.SUCCESS]: invalidate,
   [PARTICIPANT_LOGOUT]: invalidate,
 });

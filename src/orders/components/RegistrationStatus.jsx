@@ -15,6 +15,7 @@ import RegistrationDetails from './RegistrationDetails';
 
 const RegistrationStatus = ({
   activeOrder,
+  isFoodPickingAllowed,
   onCancel,
   onConfirm,
   registrationsCloseDate,
@@ -40,7 +41,10 @@ const RegistrationStatus = ({
 
   return (
     <Card>
-      <RegistrationDetails order={activeOrder} />
+      <RegistrationDetails
+        order={activeOrder}
+        isFoodPickingAllowed={isFoodPickingAllowed}
+      />
       {!activeOrder.paid ? (
         <CardFooter>
           <Button
@@ -66,6 +70,7 @@ const RegistrationStatus = ({
 
 RegistrationStatus.propTypes = {
   activeOrder: Order,
+  isFoodPickingAllowed: PropTypes.bool,
   onCancel: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
   registrationsCloseDate: PropTypes.string.isRequired,
@@ -73,6 +78,7 @@ RegistrationStatus.propTypes = {
 
 RegistrationStatus.defaultProps = {
   activeOrder: null,
+  isFoodPickingAllowed: false,
 };
 
 export default RegistrationStatus;

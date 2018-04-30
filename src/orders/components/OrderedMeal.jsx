@@ -13,7 +13,7 @@ const OrderedMeal = ({
   soup,
 }) => (
   <div>
-    <h4><Message name={`orders.${name}`} /> <HumanDate date={date} /></h4>
+    <strong><Message name={`orders.${name}`} /> <HumanDate date={date} /></strong>
     <div>
       <Message name="orders.soup" />: <FoodChoice foodName={soup} useDefault={useDefault} />
     </div>

@@ -17,7 +17,7 @@ import Food from '../pages/Food';
 import Footer from './Footer';
 import ForgottenPassword from '../pages/ForgottenPassword';
 import Home from '../pages/Home';
-// import ChangeFood from '../pages/changeFood';
+import ChangeFood from '../pages/ChangeFood';
 import ChangePasswordPage from '../pages/ChangePasswordPage';
 // import ChangeWorkshop from '../pages/changeWorkshop';
 import LanguageRedirect from '../pages/LanguageRedirect';
@@ -52,6 +52,7 @@ const getAppRoutes = () => {
     <Route key={`${routeLang}conditions`} component={Rules} path={getUrlPattern(routeLang, 'conditions')} />,
     <Route key={`${routeLang}contact`} component={Contact} path={getUrlPattern(routeLang, 'contact')} />,
     <Route key={`${routeLang}food`} component={Food} path={getUrlPattern(routeLang, 'food')} />,
+    <Route key={`${routeLang}participantChangeFood`} component={ChangeFood} path={getUrlPattern(routeLang, 'participantChangeFood')} />,
     <Route key={`${routeLang}participantForgottenPassword`} component={ForgottenPassword} path={getUrlPattern(routeLang, 'participantForgottenPassword')} />,
     <Route key={`${routeLang}location`} component={Locations} path={getUrlPattern(routeLang, 'location')} />,
     <Route key={`${routeLang}newsDetail`} component={NewsDetail} path={getUrlPattern(routeLang, 'newsDetail')} />,
@@ -156,11 +157,6 @@ export default App;
 
 
 /*
-<Route
-path={urlTable['participantChangeFood']}
-component={ChangeFood}
-isLoggedIn={participant}
-/>
 <Route
 path={urlTable['participantChangeWorkshop']}
 component={ChangeWorkshop}
