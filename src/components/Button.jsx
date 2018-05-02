@@ -8,10 +8,20 @@ import { Children } from '../proptypes';
 
 import styles from './Button.css';
 
-const Button = ({ children, className, disabled, icon, loading, ...other }) => (
+const Button = ({
+  children,
+  className,
+  disabled,
+  icon,
+  link,
+  loading,
+  ...other
+}) => (
   <BootstrapButton
     {...other}
-    className={classnames(className, styles.buttonSize)}
+    className={classnames(className, styles.buttonSize, {
+      [styles.link]: link,
+    })}
     disabled={loading || disabled}
   >
     <FontAwesome
@@ -27,6 +37,7 @@ Button.propTypes = {
   children: Children,
   disabled: PropTypes.bool,
   icon: PropTypes.string,
+  link: PropTypes.bool,
   loading: PropTypes.bool,
 };
 
@@ -35,6 +46,7 @@ Button.defaultProps = {
   children: null,
   disabled: false,
   icon: 'floppy-o',
+  link: false,
   loading: false,
 };
 

@@ -12,7 +12,7 @@ const FoodSummary = ({
 }) => (meals.length === 0 ? <div><Message name="orders.foodNotOrdered" /></div> : (
   <Row>
     {meals.map(meal => (
-      <Col key={meal.id} sm={4}>
+      <Col className="mb-3" key={meal.id} lg={6}>
         <OrderedMeal
           date={meal.date}
           food={meal.orderedFood ? meal.orderedFood.name : null}

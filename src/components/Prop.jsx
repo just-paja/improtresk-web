@@ -9,7 +9,8 @@ const Prop = ({ children, icon, label }) => (
     <li>
       {icon ? <FontAwesome className="fa-fw" name={icon} /> : null}
       {icon ? ' ' : null}
-      <b>{label}:</b>{' '}
+      {label ? <b>{label}:</b> : null}
+      {label ? ' ' : null}
       {children}
     </li>
   ) : null
@@ -18,12 +19,13 @@ const Prop = ({ children, icon, label }) => (
 Prop.propTypes = {
   children: Children,
   icon: PropTypes.string,
-  label: PropTypes.node.isRequired,
+  label: PropTypes.node,
 };
 
 Prop.defaultProps = {
   children: null,
   icon: null,
+  label: null,
 };
 
 export default Prop;

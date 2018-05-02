@@ -56,6 +56,7 @@ export const Accomodation = PropTypes.shape({
   id: ResourceId.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number,
+  requiresIdentification: PropTypes.bool,
 });
 
 export const Lector = PropTypes.shape({

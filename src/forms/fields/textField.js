@@ -8,7 +8,7 @@ const field = ({
   required,
   type,
   messages: {
-    allowEmpty: 'forms.fieldEmpty',
+    allowEmpty: 'forms.fieldRequired',
     maxLength: 'forms.tooLong',
     minLength: 'forms.tooShort',
     required: 'forms.fieldRequired',

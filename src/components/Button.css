@@ -6,3 +6,23 @@
   margin-right: .5rem;
   font-size: 16px;
 }
+
+:local .link {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+}
+
+:local .link:hover {
+  background: none;
+  border: none;
+}
+
+:local .link:global.btn-danger {
+  color: #c00;
+}
+
+:local .link:global.btn-danger:hover {
+  color: red;
+}

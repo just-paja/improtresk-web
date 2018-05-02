@@ -34,7 +34,7 @@ export default class Form extends Component {
     }
     return (
       <div>
-        <BsForm className={styles.form} onSubmit={this.handleSubmit}>
+        <BsForm className={styles.form} onSubmit={this.handleSubmit} noValidate>
           {this.props.children}
         </BsForm>
         <FormErrors errors={errors} />

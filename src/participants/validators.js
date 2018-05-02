@@ -8,13 +8,14 @@ import {
   humanNameField,
   passwordField,
   phoneField,
+  textField,
 } from '../forms/fields';
 
 export const signupValidator = validator({
   properties: {
-    name: humanNameField({ required: true }),
-    email: emailField({ required: true }),
-    phone: phoneField({ required: true }),
+    name: humanNameField({ allowEmpty: false, required: true }),
+    email: emailField({ allowEmpty: false, required: true }),
+    phone: phoneField({ allowEmpty: false, required: true }),
     password: passwordField(),
     passwordCheck: passwordField({
       conform: (value, formValues) => value === formValues.password,
@@ -40,6 +41,21 @@ export const loginValidator = validator({
   properties: {
     email: emailField({ required: true }),
     password: passwordField(),
+  },
+});
+
+export const participantEditValidator = validator({
+  properties: {
+    name: humanNameField({ allowEmpty: false, required: true }),
+    email: emailField({ allowEmpty: false, required: true }),
+    phone: phoneField({ allowEmpty: false, required: true }),
+  },
+});
+
+export const identityValidator = validator({
+  properties: {
+    address: textField({ allowEmpty: false, required: true }),
+    idNumber: textField({ allowEmpty: false, required: true }),
   },
 });
 

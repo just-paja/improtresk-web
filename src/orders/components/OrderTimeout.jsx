@@ -6,12 +6,12 @@ import Countdown from '../../components/Countdown';
 import Message from '../../containers/Message';
 
 const OrderTimeout = ({ endsAt }) => (
-  <div id="reservation-trigger-tooltip">
+  <span id="reservation-trigger-tooltip">
     <UncontrolledTooltip placement="bottom" target="reservation-trigger-tooltip">
       <Message name="orders.orderExpiresHelp" />
     </UncontrolledTooltip>
     <Countdown countdownMessage="orders.expiresIn" readyMessage="orders.timedOut" date={endsAt} />
-  </div>
+  </span>
 );
 
 OrderTimeout.propTypes = {

@@ -1,21 +1,29 @@
 import Alert from 'reactstrap/lib/Alert';
+import Card from 'reactstrap/lib/Card';
+import CardBody from 'reactstrap/lib/CardBody';
 import CardFooter from 'reactstrap/lib/CardFooter';
+import CardHeader from 'reactstrap/lib/CardHeader';
+import FontAwesome from 'react-fontawesome';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
-import Card from 'reactstrap/lib/Card';
 import React from 'react';
 
 import { Order } from '../../proptypes';
 
 import Button from '../../components/Button';
-import SignupCountdown from '../../years/containers/SignupCountdown';
+import Flex from '../../components/Flex';
 import Message from '../../containers/Message';
+import OrderPaymentStatus from './OrderPaymentStatus';
+import OrderStatusLabel from './OrderStatusLabel';
+import OrderTimeout from './OrderTimeout';
+import PaymentDetails from './PaymentDetails';
+import Price from '../../components/Price';
+import Prop from '../../components/Prop';
 import RegisterButton from './RegisterButton';
-import RegistrationDetails from './RegistrationDetails';
+import SignupCountdown from '../../years/containers/SignupCountdown';
 
 const RegistrationStatus = ({
   activeOrder,
-  isFoodPickingAllowed,
   onCancel,
   onConfirm,
   registrationsCloseDate,
@@ -40,37 +48,86 @@ const RegistrationStatus = ({
   }
 
   return (
-    <Card>
-      <RegistrationDetails
-        order={activeOrder}
-        isFoodPickingAllowed={isFoodPickingAllowed}
-      />
-      {!activeOrder.paid ? (
-        <CardFooter>
+    <Card className="mb-4">
+      <CardHeader>
+        <Flex justify="between">
+          <span>
+            <FontAwesome name="info-circle" />
+            {' '}
+            <Message name="orders.status" />
+          </span>
           <Button
+            color="danger"
             icon="ban"
+            link
             onClick={onCancel}
           >
-            Zrušit objednávku
+            <Message name="orders.cancel" />
           </Button>
-          {!activeOrder.confirmed ? (
-            <Button
-              className="pull-right"
-              color="primary"
-              onClick={onConfirm}
-            >
-              Potvrdit objednávku
-            </Button>
+        </Flex>
+      </CardHeader>
+      <CardBody>
+        <ul className="list-unstyled">
+          <Prop icon="table" label={<Message name="orders.summary" />}>
+            <OrderStatusLabel {...activeOrder} endsAt={activeOrder.reservation.endsAt} />
+            {activeOrder.paid ? null : (
+              <span>
+                {', '}
+                <OrderTimeout endsAt={activeOrder.reservation.endsAt} />
+              </span>
+            )}
+          </Prop>
+          <Prop icon="street-view" label={<Message name="orders.workshop" />}>
+            {activeOrder.workshop ?
+              activeOrder.workshop.name :
+              <Message name="orders.noWorkshop" />
+            }
+          </Prop>
+          { !activeOrder.paid && activeOrder.confirmed ? (
+            <Prop>
+              <PaymentDetails
+                price={activeOrder.remainingPrice}
+                symvar={activeOrder.symvar}
+              />
+            </Prop>
           ) : null}
+        </ul>
+        { !activeOrder.confirmed ? (
+          <div>
+            <big>
+              <Message name="orders.totalPrice" />
+              {': '}
+              <Price price={activeOrder.price} />
+            </big>
+          </div>
+        ) : null}
+      </CardBody>
+      {activeOrder.confirmed && !activeOrder.paid ? (
+        <CardFooter>
+          <OrderPaymentStatus
+            cancelled={activeOrder.cancelled}
+            paid={activeOrder.paid}
+            overPaid={activeOrder.overPaid}
+          />
         </CardFooter>
       ) : null}
+      {!activeOrder.paid && !activeOrder.confirmed ? (
+        <CardFooter>
+          <Button
+            className="pull-right"
+            color="primary"
+            onClick={onConfirm}
+          >
+            Potvrdit objednávku
+          </Button>
+        </CardFooter>
+        ) : null}
     </Card>
   );
 };
 
 RegistrationStatus.propTypes = {
   activeOrder: Order,
-  isFoodPickingAllowed: PropTypes.bool,
   onCancel: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
   registrationsCloseDate: PropTypes.string.isRequired,
@@ -78,7 +135,6 @@ RegistrationStatus.propTypes = {
 
 RegistrationStatus.defaultProps = {
   activeOrder: null,
-  isFoodPickingAllowed: false,
 };
 
 export default RegistrationStatus;

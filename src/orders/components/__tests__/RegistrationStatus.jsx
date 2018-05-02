@@ -52,23 +52,4 @@ describe('RegistrationStatus component', () => {
     );
     expect(comp.find('Connect(SignupCountdown)')).toHaveLength(1);
   });
-
-  it('renders registration details when user has an active order', () => {
-    const comp = shallow(
-      <RegistrationStatus
-        onCancel={() => {}}
-        onConfirm={() => {}}
-        registrationsCloseDate="2017-05-09"
-        activeOrder={{
-          id: 501,
-          createdAt: '2017-04-09',
-          endsAt: '2017-05-09',
-          meals: [],
-          price: 320,
-          symvar: '3454345',
-        }}
-      />
-    );
-    expect(comp.find('RegistrationDetails')).toHaveLength(1);
-  });
 });

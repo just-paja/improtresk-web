@@ -14,10 +14,11 @@ const apiFetch = (url, { apiSource, headers = {}, ...params }) =>
 
 const apiFetchAuthorized = (url, { auth, ...params }) =>
   apiFetch(url, {
+    ...params,
     headers: {
       Authorization: `Bearer ${auth.access_token}`,
+      ...params.headers,
     },
-    ...params,
   });
 
 export const fetchArchivedYear = ({ year, ...params }) =>
@@ -162,6 +163,15 @@ export const logout = ({ auth, ...params }) =>
   });
 
 export const fetchParticipant = params => apiFetchAuthorized('user/', params);
+
+export const participantEdit = ({ formData, ...params }) => apiFetchAuthorized('user/', {
+  ...params,
+  body: JSON.stringify(formData),
+  method: 'PATCH',
+  headers: {
+    'Content-Type': 'application/json; charset=utf-8',
+  },
+});
 
 export const fetchParticipantOrders = params => apiFetchAuthorized('orders/', params);
 

@@ -8,7 +8,7 @@ import {
 
 import * as constants from '../constants';
 
-import { login, loginWithSignupData, signup } from '../actions';
+import { identityEdit, login, loginWithSignupData, participantEdit, signup } from '../actions';
 
 const defaultState = {
   data: null,
@@ -33,6 +33,8 @@ export default combine(defaultState, {
   [constants.PARTICIPANT_FETCH_STARTED]: fetchStart,
   [constants.PARTICIPANT_FETCH_SUCCESS]: fetchSuccess,
   [constants.PARTICIPANT_FETCH_ERROR]: fetchError,
+  [participantEdit.SUCCESS]: fetchSuccess,
+  [identityEdit.SUCCESS]: fetchSuccess,
   [loginWithSignupData.SUCCESS]: invalidate,
   [login.SUCCESS]: invalidate,
   [signup.SUCCESS]: fetchSuccess,

@@ -35,3 +35,5 @@ export const newPassword = createFormRoutine(constants.FORM_NEW_PASSWORD, api.ne
 export const redirectHome = createRedirectRoutine('participantHome');
 export const resetPassword = createFormRoutine(constants.FORM_RESET_PASSWORD, api.resetPassword);
 export const signup = createFormRoutine(constants.FORM_SIGNUP, api.signup);
+export const participantEdit = createFormRoutine(constants.FORM_USER_EDIT, api.participantEdit);
+export const identityEdit = createFormRoutine(constants.FORM_IDENT_EDIT, api.participantEdit);

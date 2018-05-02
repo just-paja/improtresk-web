@@ -13,26 +13,26 @@ const OrderStatus = ({
   paid,
 }) => {
   if (cancelled) {
-    return <Label className="text-danger"><Message name="orders.cancelled" /></Label>;
+    return <Label className="mb-0 text-danger"><Message name="orders.cancelled" /></Label>;
   }
 
   if (assigned) {
-    return <Label className="text-success"><Message name="orders.assigned" /></Label>;
+    return <Label className="mb-0 text-success"><Message name="orders.assigned" /></Label>;
   }
 
   if (paid) {
-    return <Label className="text-info"><Message name="orders.waitingToBeAssigned" /></Label>;
+    return <Label className="mb-0 text-info"><Message name="orders.waitingToBeAssigned" /></Label>;
   }
 
   if (moment().isAfter(endsAt)) {
-    return <Label className="text-warning"><Message name="orders.timedOut" /></Label>;
+    return <Label className="mb-0 text-warning"><Message name="orders.timedOut" /></Label>;
   }
 
   if (confirmed) {
-    return <Label className="text-warning"><Message name="orders.waitingToBePaid" /></Label>;
+    return <Label className="mb-0 text-warning"><Message name="orders.waitingToBePaid" /></Label>;
   }
 
-  return <Label className="text-danger"><Message name="orders.unconfirmed" /></Label>;
+  return <Label className="mb-0 text-danger"><Message name="orders.unconfirmed" /></Label>;
 };
 
 OrderStatus.propTypes = {

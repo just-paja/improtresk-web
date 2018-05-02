@@ -6,11 +6,11 @@ import { Children, ClassName } from '../proptypes';
 
 import styles from './Flex.css';
 
-const Flex = ({ alignItems, children, className, minSize, justify, width }) => (
+const Flex = ({ alignItems, children, className, inline, minSize, justify, width }) => (
   <div
     className={classnames(styles.component, {
-      'd-flex': !minSize,
-      [`d-${minSize}-flex`]: !!minSize,
+      [`d-${inline ? 'inline-flex' : 'flex'}`]: !minSize,
+      [`d-${minSize}-${inline ? 'inline-flex' : 'flex'}`]: !!minSize,
       [`align-items-${alignItems}`]: !!alignItems,
       [`w-${width}`]: !!width,
       [`justify-content-${justify}`]: !!justify,
@@ -25,6 +25,7 @@ Flex.propTypes = {
   alignItems: PropTypes.oneOf(['start', 'end', 'center', 'baseline']),
   className: ClassName,
   children: Children.isRequired,
+  inline: PropTypes.bool,
   justify: PropTypes.oneOf(['between']),
   minSize: PropTypes.oneOf(['sm', 'md', 'lg']),
   width: PropTypes.oneOf([25, 50, 75, 100]),
@@ -33,6 +34,7 @@ Flex.propTypes = {
 Flex.defaultProps = {
   alignItems: null,
   className: null,
+  inline: null,
   justify: null,
   minSize: null,
   width: null,

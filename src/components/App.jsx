@@ -27,6 +27,8 @@ import NewPasswordPage from '../pages/NewPasswordPage';
 import NewsDetail from '../pages/NewsDetail';
 import NotFound from '../pages/NotFound';
 import ParticipantHome from '../pages/ParticipantHome';
+import ParticipantEdit from '../pages/ParticipantEdit';
+import ParticipantIdentityEdit from '../pages/ParticipantIdentityEdit';
 import ParticipantRegistration from '../pages/ParticipantRegistration';
 import PrivateRoute from '../containers/PrivateRoute';
 import PerformerDetail from '../pages/PerformerDetail';
@@ -63,6 +65,8 @@ const getAppRoutes = () => {
     <Route key={`${routeLang}workshops`} component={Workshops} exact path={getUrlPattern(routeLang, 'workshops')} />,
     <Route key={`${routeLang}workshopDetail`} component={WorkshopDetail} path={getUrlPattern(routeLang, 'workshopDetail')} />,
     <PrivateRoute key={`${routeLang}participantHome`} exact path={getUrlPattern(routeLang, 'participantHome')} component={ParticipantHome} />,
+    <PrivateRoute key={`${routeLang}participantEdit`} exact path={getUrlPattern(routeLang, 'participantEdit')} component={ParticipantEdit} />,
+    <PrivateRoute key={`${routeLang}participantIdentityEdit`} exact path={getUrlPattern(routeLang, 'participantIdentityEdit')} component={ParticipantIdentityEdit} />,
     <PrivateRoute key={`${routeLang}participantRegister`} exact path={getUrlPattern(routeLang, 'participantRegister')} component={ParticipantRegistration} />,
     <PrivateRoute key={`${routeLang}participantChangeFood`} component={ChangeFood} path={getUrlPattern(routeLang, 'participantChangeFood')} />,
     <PrivateRoute key={`${routeLang}participantChangePassword`} exact path={getUrlPattern(routeLang, 'participantChangePassword')} component={ChangePasswordPage} />,
