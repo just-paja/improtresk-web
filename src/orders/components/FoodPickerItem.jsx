@@ -48,7 +48,7 @@ export default class FoodPickerItem extends Component {
       orderedSoup,
     } = this.props;
     return (
-      <Card>
+      <Card className="mb-3">
         <CardHeader>
           <strong>{names[name]} <HumanDate date={date} /></strong>
         </CardHeader>

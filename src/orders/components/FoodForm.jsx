@@ -29,7 +29,7 @@ const FoodForm = ({
       type="submit"
       loading={submitting}
     >
-      <Message name="orders.continue" />
+      <Message name="orders.foodSave" />
     </Button>
   </Form>
 );

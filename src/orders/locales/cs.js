@@ -17,6 +17,7 @@ export default {
     history: 'Historie',
     howLongStay: 'Kdy u nás budeš?',
     changeFood: 'Vybrat jídlo',
+    foodSave: 'Uložit výběr jídel',
     changeWorkshop: 'Změnit workshop',
     lunch: 'Oběd',
     mainCourse: 'Hlavní chod',
