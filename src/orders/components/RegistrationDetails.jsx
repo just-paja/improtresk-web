@@ -75,7 +75,7 @@ const RegistrationDetails = ({
           {' '}
           <Message name="orders.food" />
         </span>
-        {isFoodPickingAllowed ? (
+        {isFoodPickingAllowed && order.meals.length ? (
           <Link to="participantChangeFood"><Message name="orders.changeFood" /></Link>
         ) : null}
       </Flex>
