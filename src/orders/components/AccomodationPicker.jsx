@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import Col from 'reactstrap/lib/Col';
 import FormFeedback from 'reactstrap/lib/FormFeedback';
 import React from 'react';
@@ -14,22 +15,28 @@ const AccomodationPicker = ({
   meta,
 }) => (
   <Col xs={12}>
-    {accomodation.map(house => (
-      <AccomodationPickerItem
-        capacityStatus={house.capacityStatus}
-        disabled={meta.submitting}
-        selected={input.value === house.id}
-        key={house.id}
-        id={house.id}
-        name={house.name}
-        parentName={input.name}
-        price={house.price}
-        onChange={input.onChange}
-        value={house.id}
-      />
-    ))}
+    <div
+      className={classnames({
+        'is-invalid': meta.touched && meta.error,
+      })}
+    >
+      {accomodation.map(house => (
+        <AccomodationPickerItem
+          capacityStatus={house.capacityStatus}
+          disabled={meta.submitting}
+          selected={input.value === house.id}
+          key={house.id}
+          id={house.id}
+          name={house.name}
+          parentName={input.name}
+          price={house.price}
+          onChange={input.onChange}
+          value={house.id}
+        />
+      ))}
+    </div>
     {meta.touched && meta.error ? (
-      <FormFeedback>
+      <FormFeedback className="d-block">
         <FormErrors
           errors={meta.error}
           data={{ field: input.name }}
