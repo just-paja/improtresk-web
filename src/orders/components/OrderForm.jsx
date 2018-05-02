@@ -25,7 +25,6 @@ const OrderForm = ({
   form,
   meals,
   price,
-  pristine,
   submit,
   submitting,
   workshopValue,
@@ -64,7 +63,6 @@ const OrderForm = ({
             <p><Message name="orders.foodHelp" /></p>
             <Field
               component={MealPicker}
-              disabled={submitting}
               foodPickCloseDate={foodPickCloseDate}
               meals={meals}
               name="meals"
@@ -76,7 +74,6 @@ const OrderForm = ({
             <Field
               component={AccomodationPicker}
               accomodation={accomodation}
-              disabled={submitting}
               name="accomodation"
             />
           </Col>
@@ -92,10 +89,7 @@ const OrderForm = ({
         </big>
       </CardBody>
     </Card>
-    <Button
-      disabled={pristine}
-      type="submit"
-    >
+    <Button type="submit" loading={submitting}>
       <Message name="orders.continue" />
     </Button>
   </Form>
@@ -108,7 +102,6 @@ OrderForm.propTypes = {
   form: PropTypes.string.isRequired,
   meals: PropTypes.arrayOf(Meal).isRequired,
   price: PropTypes.number,
-  pristine: PropTypes.bool,
   submit: PropTypes.func.isRequired,
   submitting: PropTypes.bool,
   workshops: PropTypes.arrayOf(Workshop).isRequired,
@@ -120,7 +113,6 @@ OrderForm.defaultProps = {
   foodPickCloseDate: null,
   error: null,
   price: null,
-  pristine: false,
   submitting: false,
   workshopValue: null,
 };

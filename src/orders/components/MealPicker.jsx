@@ -25,7 +25,6 @@ export default class MealPicker extends Component {
 
   render() {
     const {
-      disabled,
       foodPickCloseDate,
       input,
       meals,
@@ -46,7 +45,7 @@ export default class MealPicker extends Component {
         {meals.map(meal => (
           <MealPickerItem
             date={meal.date}
-            disabled={disabled}
+            disabled={meta.submitting}
             form={meta.form}
             selected={input.value.indexOf(meal.id) > -1}
             key={meal.id}
@@ -70,7 +69,6 @@ export default class MealPicker extends Component {
 }
 
 MealPicker.propTypes = {
-  disabled: PropTypes.bool,
   foodPickCloseDate: PropTypes.string,
   input: PropTypes.object.isRequired,
   meals: PropTypes.arrayOf(Meal).isRequired,
@@ -79,5 +77,4 @@ MealPicker.propTypes = {
 
 MealPicker.defaultProps = {
   foodPickCloseDate: null,
-  disabled: false,
 };

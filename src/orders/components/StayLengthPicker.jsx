@@ -42,7 +42,7 @@ export default class StayLengthPicker extends Component {
   }
 
   render() {
-    const { disabled, input, meta } = this.props;
+    const { input, meta } = this.props;
     const dates = this.getDates();
     return (
       <div>
@@ -51,7 +51,7 @@ export default class StayLengthPicker extends Component {
             {dates.map(date => (
               <Col key={date} xs={12} md={4}>
                 <InputCheckbox
-                  disabled={disabled}
+                  disabled={meta.submitting}
                   checked={input.value && input.value.indexOf(date) !== -1}
                   input={{
                     value: date,
@@ -80,13 +80,8 @@ export default class StayLengthPicker extends Component {
 }
 
 StayLengthPicker.propTypes = {
-  disabled: PropTypes.bool,
   end: PropTypes.string.isRequired,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
   start: PropTypes.string.isRequired,
-};
-
-StayLengthPicker.defaultProps = {
-  disabled: false,
 };

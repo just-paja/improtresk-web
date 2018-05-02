@@ -10,7 +10,6 @@ import { Accomodation } from '../../proptypes';
 
 const AccomodationPicker = ({
   accomodation,
-  disabled,
   input,
   meta,
 }) => (
@@ -18,7 +17,7 @@ const AccomodationPicker = ({
     {accomodation.map(house => (
       <AccomodationPickerItem
         capacityStatus={house.capacityStatus}
-        disabled={disabled}
+        disabled={meta.submitting}
         selected={input.value === house.id}
         key={house.id}
         id={house.id}
@@ -42,13 +41,8 @@ const AccomodationPicker = ({
 
 AccomodationPicker.propTypes = {
   accomodation: PropTypes.arrayOf(Accomodation).isRequired,
-  disabled: PropTypes.bool,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
-};
-
-AccomodationPicker.defaultProps = {
-  disabled: false,
 };
 
 export default AccomodationPicker;

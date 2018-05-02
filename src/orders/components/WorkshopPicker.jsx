@@ -7,7 +7,6 @@ import FormErrors from '../../forms/containers/FormErrors';
 import WorkshopPickerItem from './WorkshopPickerItem';
 
 const WorkshopPicker = ({
-  disabled,
   input,
   meta,
   workshops,
@@ -20,7 +19,7 @@ const WorkshopPicker = ({
             assigned={workshop.capacityStatus.assigned}
             capacity={workshop.capacityStatus.capacity}
             disabled={
-              disabled ||
+              meta.submitting ||
               workshop.capacityStatus.fullyAssigned ||
               workshop.capacityStatus.fullyReserved
             }
@@ -57,14 +56,9 @@ const WorkshopPicker = ({
 );
 
 WorkshopPicker.propTypes = {
-  disabled: PropTypes.bool,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
   workshops: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
-
-WorkshopPicker.defaultProps = {
-  disabled: false,
 };
 
 export default WorkshopPicker;
