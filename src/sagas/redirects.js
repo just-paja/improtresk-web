@@ -4,7 +4,7 @@ import { push } from 'react-router-redux';
 import * as constants from '../constants';
 
 import { reverse } from '../routeTable';
-import { getLang } from '../selectors';
+import { getEntryPath, getLang } from '../selectors';
 
 export function* redirect(dest) {
   const lang = yield select(getLang);
@@ -17,6 +17,15 @@ export function* redirectSignup() {
 
 export function* redirectHome() {
   yield redirect('participantHome');
+}
+
+export function* redirectToEntryPath() {
+  const entryPath = yield select(getEntryPath);
+  if (entryPath) {
+    yield put(push(entryPath));
+  } else {
+    yield redirect('participantHome');
+  }
 }
 
 function* handleActionRedirect(action) {

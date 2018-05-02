@@ -25,7 +25,7 @@ describe('PrivateRoute container', () => {
         },
       },
     });
-    comp = shallow(<PrivateRoute component={() => {}} />, {
+    comp = shallow(<PrivateRoute path="/" component={() => {}} />, {
       context: { store },
     });
   });

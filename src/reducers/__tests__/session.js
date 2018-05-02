@@ -9,6 +9,7 @@ describe('Session reducer', () => {
       autoLoginAttempted: false,
       data: {},
       locale: null,
+      loginRedirect: null,
     });
   });
 

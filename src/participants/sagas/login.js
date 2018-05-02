@@ -3,7 +3,7 @@ import cookie from 'js-cookie';
 import { put, select, takeLatest } from 'redux-saga/effects';
 import { destroy } from 'redux-form';
 
-import { redirectHome } from '../../sagas/redirects';
+import { redirectToEntryPath } from '../../sagas/redirects';
 import { getApiAuth } from '../../selectors/session';
 import { login, setAuthKey } from '../actions';
 import { APP_MOUNTED } from '../../constants';
@@ -43,7 +43,7 @@ function* onLoginFormSuccess() {
 function* onLoginSuccess() {
   yield takeLatest([
     login.SUCCESS,
-  ], redirectHome);
+  ], redirectToEntryPath);
 }
 
 function* onMount() {

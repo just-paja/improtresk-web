@@ -7,6 +7,7 @@ import Signup from './components/Signup';
 import { yearCurrent } from '../years/selectors';
 import { getSignupPageProgress } from './selectors';
 import { signupsOpen } from '../participants/actions';
+import { setLoginRedirect } from '../actions';
 import {
   areSignupsClosed,
   areSignupsOpen,
@@ -30,6 +31,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   onSignupsOpen: signupsOpen,
+  onRedirectSet: setLoginRedirect,
 };
 
 export default mapPageProgress(connect(mapStateToProps, mapDispatchToProps)(Signup), {

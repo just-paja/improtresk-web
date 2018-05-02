@@ -13,6 +13,7 @@ const defaultState = {
   autoLoginAttempted: false,
   locale: null,
   data: {},
+  loginRedirect: null,
 };
 
 export default combine(defaultState, {
@@ -40,6 +41,10 @@ export default combine(defaultState, {
   [actions.MAGIC_DOOR_TOKEN]: state => ({
     ...state,
     forceOpenSignups: true,
+  }),
+  [actions.SET_LOGIN_REDIRECT]: (state, action) => ({
+    ...state,
+    loginRedirect: action.path,
   }),
   [actions.SESSION_SET_LANGUAGE]: (state, action) => ({
     ...state,

@@ -52,7 +52,6 @@ const getAppRoutes = () => {
     <Route key={`${routeLang}conditions`} component={Rules} path={getUrlPattern(routeLang, 'conditions')} />,
     <Route key={`${routeLang}contact`} component={Contact} path={getUrlPattern(routeLang, 'contact')} />,
     <Route key={`${routeLang}food`} component={Food} path={getUrlPattern(routeLang, 'food')} />,
-    <Route key={`${routeLang}participantChangeFood`} component={ChangeFood} path={getUrlPattern(routeLang, 'participantChangeFood')} />,
     <Route key={`${routeLang}participantForgottenPassword`} component={ForgottenPassword} path={getUrlPattern(routeLang, 'participantForgottenPassword')} />,
     <Route key={`${routeLang}location`} component={Locations} path={getUrlPattern(routeLang, 'location')} />,
     <Route key={`${routeLang}newsDetail`} component={NewsDetail} path={getUrlPattern(routeLang, 'newsDetail')} />,
@@ -65,6 +64,7 @@ const getAppRoutes = () => {
     <Route key={`${routeLang}workshopDetail`} component={WorkshopDetail} path={getUrlPattern(routeLang, 'workshopDetail')} />,
     <PrivateRoute key={`${routeLang}participantHome`} exact path={getUrlPattern(routeLang, 'participantHome')} component={ParticipantHome} />,
     <PrivateRoute key={`${routeLang}participantRegister`} exact path={getUrlPattern(routeLang, 'participantRegister')} component={ParticipantRegistration} />,
+    <PrivateRoute key={`${routeLang}participantChangeFood`} component={ChangeFood} path={getUrlPattern(routeLang, 'participantChangeFood')} />,
     <PrivateRoute key={`${routeLang}participantChangePassword`} exact path={getUrlPattern(routeLang, 'participantChangePassword')} component={ChangePasswordPage} />,
   ]).reduce((aggr, langRoutes) => aggr.concat(langRoutes), []);
   routes.push(<Route key="languageRedirect" exact path="/" component={LanguageRedirect} />);

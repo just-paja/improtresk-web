@@ -21,3 +21,8 @@ export const isLoggedIn = createSelector(
   getParticipantDetail,
   participant => !!participant
 );
+
+export const getEntryPath = createSelector(
+  getSessionState,
+  state => state.loginRedirect
+);
