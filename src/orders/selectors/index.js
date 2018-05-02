@@ -276,7 +276,7 @@ export const getYearAndOrder = createSelector(
 export const getOrderFoodFormDefaults = createSelector(
   [getActiveOrder],
   order => ({
-    food: order.reservation.mealReservation ?
+    food: order && order.reservation && order.reservation.mealReservation ?
       order.reservation.mealReservation.reduce((aggr, current) => ({
         ...aggr,
         [current.meal]: { food: current.food, soup: current.soup },
