@@ -31,6 +31,7 @@ describe('FoodForm container', () => {
         list: {
           data: [
             {
+              id: 31,
               date: '2018-05-11',
             },
           ],
@@ -47,6 +48,11 @@ describe('FoodForm container', () => {
               id: 432,
               reservation: {
                 accomodation: 5,
+                mealReservation: [
+                  {
+                    meal: 31,
+                  },
+                ],
               },
               year: 150,
               price: 434,
@@ -103,6 +109,7 @@ describe('FoodForm container', () => {
   it('provides meal list', () => {
     expect(comp.dive().dive().find('FoodForm')).toHaveProp('meals', [
       {
+        id: 31,
         date: '2018-05-11',
       },
     ]);

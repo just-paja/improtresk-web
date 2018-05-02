@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 
 import { foodChange, requireOrderResources } from '../actions';
 import {
+  getOrderedMeals,
   getOrderFoodFormDefaults,
-  getOrderFormProgress,
   getOrderFormPrice,
+  getOrderFormProgress,
 } from '../selectors';
 import { getAccomodationList } from '../../accomodation/selectors';
-import { getMealList } from '../../food/selectors';
 import { getWorkshopList } from '../../workshops/selectors';
 import { yearActive } from '../../years/selectors';
 
@@ -26,7 +26,7 @@ const validate = (values) => {
 const mapStateToProps = state => ({
   accomodation: getAccomodationList(state),
   initialValues: getOrderFoodFormDefaults(state),
-  meals: getMealList(state),
+  meals: getOrderedMeals(state),
   price: getOrderFormPrice(state),
   workshops: getWorkshopList(state),
   year: yearActive(state),

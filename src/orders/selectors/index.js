@@ -220,7 +220,7 @@ export const getOrderFormPrice = createSelector(
 export const getOrderedMeals = createSelector(
   [getActiveOrder, getMealList],
   (order, meals) => {
-    if (!order || !order.reservation) {
+    if (!order || !order.reservation || !order.reservation.mealReservation) {
       return [];
     }
     return order.reservation.mealReservation
@@ -230,8 +230,8 @@ export const getOrderedMeals = createSelector(
         if (meal) {
           return {
             ...meal,
-            orderedFood: meal.food.find(item => item.id === mealReservation.food),
-            orderedSoup: meal.soups.find(item => item.id === mealReservation.soup),
+            orderedFood: meal.food && meal.food.find(item => item.id === mealReservation.food),
+            orderedSoup: meal.soups && meal.soups.find(item => item.id === mealReservation.soup),
           };
         }
 
