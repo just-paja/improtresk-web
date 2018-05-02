@@ -1,3 +1,5 @@
+import Breadcrumb from 'reactstrap/lib/Breadcrumb';
+import BreadcrumbItem from 'reactstrap/lib/BreadcrumbItem';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -14,6 +16,14 @@ const Food = ({ translate }) => (
     <TextFood />
     <h2><Message name="pages.festivalMenu" /></h2>
     <MealList />
+    <Breadcrumb>
+      <BreadcrumbItem>
+        <Message name="pages.forParticipants" />
+      </BreadcrumbItem>
+      <BreadcrumbItem active>
+        <Message name="pages.food" />
+      </BreadcrumbItem>
+    </Breadcrumb>
   </Container>
 );
 

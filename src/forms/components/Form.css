@@ -1,7 +1,3 @@
 :local .form {
   margin-bottom: 1rem;
 }
-
-:local .form:last-child {
-  margin-bottom: 0;
-}

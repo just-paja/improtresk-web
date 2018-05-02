@@ -1,3 +1,4 @@
+import Alert from 'reactstrap/lib/Alert';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -17,22 +18,31 @@ const FoodForm = ({
   pristine,
   submit,
   submitting,
-}) => (
-  <Form error={error} name={form} onSubmit={submit}>
-    <Field
-      component={FoodPicker}
-      meals={meals}
-      name="food"
-    />
-    <Button
-      disabled={pristine}
-      type="submit"
-      loading={submitting}
-    >
-      <Message name="orders.foodSave" />
-    </Button>
-  </Form>
-);
+}) => {
+  if (meals.length === 0) {
+    return (
+      <Alert>
+        <Message name="orders.foodChoicesEmpty" />
+      </Alert>
+    );
+  }
+  return (
+    <Form error={error} name={form} onSubmit={submit}>
+      <Field
+        component={FoodPicker}
+        meals={meals}
+        name="food"
+      />
+      <Button
+        disabled={pristine}
+        type="submit"
+        loading={submitting}
+      >
+        <Message name="orders.foodSave" />
+      </Button>
+    </Form>
+  );
+};
 
 FoodForm.propTypes = {
   error: FormGeneralError,

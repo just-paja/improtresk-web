@@ -1,3 +1,5 @@
+import Breadcrumb from 'reactstrap/lib/Breadcrumb';
+import BreadcrumbItem from 'reactstrap/lib/BreadcrumbItem';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -13,6 +15,14 @@ const Accomodation = ({ translate }) => (
     <h1><Message name="pages.accomodation" /></h1>
     <TextAccomodation skipFirstHeading />
     <AccomodationList />
+    <Breadcrumb>
+      <BreadcrumbItem>
+        <Message name="pages.forParticipants" />
+      </BreadcrumbItem>
+      <BreadcrumbItem active>
+        <Message name="pages.accomodation" />
+      </BreadcrumbItem>
+    </Breadcrumb>
   </Container>
 );
 

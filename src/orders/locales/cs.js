@@ -14,6 +14,7 @@ export default {
     foodHelp: 'Zaškrtni na který den chceš zařídit jídlo od nás. Na výběr z jídelního menu a dostaneš před začátkem festivalu.',
     foodNotOrdered: 'Neobjednáno',
     foodNotSelected: 'Nevybráno',
+    foodChoicesEmpty: 'Vypadá to, že v přihlášce nemáš zvolené obědy. S čistým svědomím můžeš tuto stránku opustit.',
     history: 'Historie',
     howLongStay: 'Kdy u nás budeš?',
     changeFood: 'Vybrat jídlo',

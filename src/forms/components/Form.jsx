@@ -33,7 +33,7 @@ export default class Form extends Component {
       }
     }
     return (
-      <div className={styles.form}>
+      <div>
         <BsForm className={styles.form} onSubmit={this.handleSubmit}>
           {this.props.children}
         </BsForm>

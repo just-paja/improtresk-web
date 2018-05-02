@@ -1,3 +1,5 @@
+import Breadcrumb from 'reactstrap/lib/Breadcrumb';
+import BreadcrumbItem from 'reactstrap/lib/BreadcrumbItem';
 import Card from 'reactstrap/lib/Card';
 import CardBody from 'reactstrap/lib/CardBody';
 import Col from 'reactstrap/lib/Col';
@@ -12,6 +14,7 @@ import Capacity from '../../components/Capacity';
 import Gallery from '../../components/Gallery';
 import HelmetTitle from '../../containers/HelmetTitle';
 import LectorSummary from './LectorSummary';
+import Link from '../../containers/Link';
 import Message from '../../containers/Message';
 import PriceList from '../../years/components/PriceList';
 import Prop from '../../components/Prop';
@@ -63,6 +66,16 @@ const WorkshopDetail = ({ workshop }) => (
         ))}
       </Col>
     </Row>
+    <Breadcrumb>
+      <BreadcrumbItem>
+        <Link to="workshops">
+          <Message name="pages.workshops" />
+        </Link>
+      </BreadcrumbItem>
+      <BreadcrumbItem active>
+        {workshop.name}
+      </BreadcrumbItem>
+    </Breadcrumb>
   </div>
 );
 

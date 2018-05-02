@@ -14,6 +14,7 @@ export default {
     foodHelp: 'You can choose if you want lunch per each day. The festival food menu will be released before the festival starts.',
     foodNotOrdered: 'Not ordered',
     foodNotSelected: 'Not chosen',
+    foodChoicesEmpty: 'It seems that you did not order lunch with your signup this year. You can leave this page with clear conscience.',
     foodSave: 'Save food selection',
     history: 'History',
     howLongStay: 'How long will you stay?',

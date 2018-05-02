@@ -1,6 +1,8 @@
 import Alert from 'reactstrap/lib/Alert';
+import Col from 'reactstrap/lib/Col';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Row from 'reactstrap/lib/Row';
 
 import { Meal } from '../../proptypes';
 
@@ -16,18 +18,20 @@ const MealList = ({ mealList }) => {
     );
   }
   return (
-    <div>
+    <Row>
       {mealList.map(meal => (
-        <FoodMenu
-          date={meal.date}
-          food={meal.food}
-          id={meal.id}
-          key={meal.id}
-          name={meal.name}
-          soups={meal.soups}
-        />
+        <Col xs={12} md={6}>
+          <FoodMenu
+            date={meal.date}
+            food={meal.food}
+            id={meal.id}
+            key={meal.id}
+            name={meal.name}
+            soups={meal.soups}
+          />
+        </Col>
       ))}
-    </div>
+    </Row>
   );
 };
 

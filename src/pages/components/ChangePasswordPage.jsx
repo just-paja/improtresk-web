@@ -1,3 +1,5 @@
+import Breadcrumb from 'reactstrap/lib/Breadcrumb';
+import BreadcrumbItem from 'reactstrap/lib/BreadcrumbItem';
 import Col from 'reactstrap/lib/Col';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -5,6 +7,7 @@ import Row from 'reactstrap/lib/Row';
 
 import Container from '../../components/Container';
 import HelmetTitle from '../../containers/HelmetTitle';
+import Link from '../../containers/Link';
 import Message from '../../containers/Message';
 import ChangePasswordForm from '../../participants/containers/ChangePasswordForm';
 
@@ -20,6 +23,14 @@ const ChangePasswordPage = ({ translate }) => (
         <ChangePasswordForm />
       </Col>
     </Row>
+    <Breadcrumb>
+      <BreadcrumbItem>
+        <Link to="participantHome"><Message name="participants.home" /></Link>
+      </BreadcrumbItem>
+      <BreadcrumbItem active>
+        <Message name="orders.changeFood" />
+      </BreadcrumbItem>
+    </Breadcrumb>
   </Container>
 );
 

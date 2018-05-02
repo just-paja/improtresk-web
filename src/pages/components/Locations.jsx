@@ -1,3 +1,5 @@
+import Breadcrumb from 'reactstrap/lib/Breadcrumb';
+import BreadcrumbItem from 'reactstrap/lib/BreadcrumbItem';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -16,6 +18,14 @@ const Locations = ({ translate }) => (
     <LocationList />
     <hr />
     <MarkerMap />
+    <Breadcrumb>
+      <BreadcrumbItem>
+        <Message name="pages.forParticipants" />
+      </BreadcrumbItem>
+      <BreadcrumbItem active>
+        <Message name="pages.locations" />
+      </BreadcrumbItem>
+    </Breadcrumb>
   </Container>
 );
 

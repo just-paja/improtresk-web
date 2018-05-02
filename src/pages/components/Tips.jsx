@@ -1,3 +1,5 @@
+import Breadcrumb from 'reactstrap/lib/Breadcrumb';
+import BreadcrumbItem from 'reactstrap/lib/BreadcrumbItem';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -11,6 +13,14 @@ const Tips = ({ translate }) => (
     <HelmetTitle title={translate('pages.tips')} />
     <h1><Message name="pages.tips" /></h1>
     <TipList />
+    <Breadcrumb>
+      <BreadcrumbItem>
+        <Message name="pages.forParticipants" />
+      </BreadcrumbItem>
+      <BreadcrumbItem active>
+        <Message name="pages.conditions" />
+      </BreadcrumbItem>
+    </Breadcrumb>
   </Container>
 );
 
