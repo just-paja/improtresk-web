@@ -57,7 +57,7 @@
     "react": "16.2.0",
     "react-dom": "^16.2.0",
     "react-fontawesome": "^1.5.0",
-    "react-ga": "^2.2.0",
+    "react-ga": "^2.5.0",
     "react-google-maps": "^9.4.5",
     "react-helmet": "^5.0.3",
     "react-images": "^0.5.2",
