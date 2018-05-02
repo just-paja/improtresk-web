@@ -1,4 +1,4 @@
-import { reduxForm } from 'redux-form';
+import { getFormSubmitErrors, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
 import { login } from '../actions';
@@ -7,7 +7,9 @@ import { loginValidator } from '../validators';
 import LoginForm from '../components/LoginForm';
 
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  submitErrors: getFormSubmitErrors(login.form)(state),
+});
 
 const mapDispatchToProps = {
   onSubmit: login,

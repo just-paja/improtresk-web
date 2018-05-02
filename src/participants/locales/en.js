@@ -8,6 +8,7 @@ export default {
     email: 'E-mail',
     emailHelp: 'We will communicate news related to your signup using this e-mail. You definitely want to put a real e-mail here.',
     entry: 'Enter the system',
+    failedLogin: 'Unknown e-mail and password combination.',
     festivalTerms: 'Festival rules',
     forgottenPassword: 'Forgotten password',
     forgottenPasswordHelp: 'Enter the e-mail you use to login. We will send you steps to recover your password.',

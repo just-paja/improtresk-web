@@ -52,7 +52,7 @@ export default ({
 
         if (!json || !json.access_token) {
           return res.status(401).send({
-            errors: ['unauthorized'],
+            errors: ['participants.failedLogin'],
             message: json,
           });
         }

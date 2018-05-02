@@ -14,13 +14,13 @@ import Message from '../../containers/Message';
 
 const LoginForm = ({
   disabled,
-  error,
   form,
   pristine,
   submitting,
   submit,
+  submitErrors,
 }) => (
-  <Form error={error} name={form} onSubmit={submit}>
+  <Form error={submitErrors} name={form} onSubmit={submit}>
     <Field
       component={Input}
       disabled={disabled || submitting}
@@ -53,17 +53,17 @@ const LoginForm = ({
 
 LoginForm.propTypes = {
   disabled: PropTypes.bool,
-  error: FormGeneralError,
   form: PropTypes.string.isRequired,
   pristine: PropTypes.bool,
-  submitting: PropTypes.bool,
   submit: PropTypes.func.isRequired,
+  submitErrors: FormGeneralError,
+  submitting: PropTypes.bool,
 };
 
 LoginForm.defaultProps = {
   disabled: false,
-  error: null,
   pristine: false,
+  submitErrors: null,
   submitting: false,
 };
 

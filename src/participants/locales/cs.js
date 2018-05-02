@@ -8,6 +8,7 @@ export default {
     email: 'E-mail',
     emailHelp: 'Přes tento e-mail s vámi budeme komunikovat ohledně přihlášky. Určitě chceš vyplnit správný.',
     entry: 'Vstup do systému',
+    failedLogin: 'Neplatná kombinace e-mailu a hesla.',
     festivalTerms: 'Podmínky festivalu',
     forgottenPassword: 'Zapomenuté heslo',
     forgottenPasswordHelp: 'Vyplň svůj e-mail pod kterým se normálně přihlašuješ, zašleme ti na něj zprávu s dalšími kroky vedoucími ke změně hesla.',
