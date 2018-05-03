@@ -10,9 +10,9 @@ import MultiLingualMarkdown from '../../containers/MultiLingualMarkdown';
 const PerformerDetail = ({ performer }) => (
   <div>
     <h1>{performer.name}</h1>
-    <Row>
+    <Row className="mb-4">
       <Col md={8}>
-        <MultiLingualMarkdown texts={performer.descriptions} />
+        <MultiLingualMarkdown texts={performer.description} />
       </Col>
       <Col md={4}>
         {performer.links.length ? (
