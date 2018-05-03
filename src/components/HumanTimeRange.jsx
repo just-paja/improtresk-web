@@ -6,7 +6,7 @@ import HumanTime from './HumanTime';
 const HumanTimeRange = ({ end, start }) => (
   <span>
     <HumanTime date={start} />
-    {' '}-{' '}
+    &nbsp;-&nbsp;
     <HumanTime date={end} />
   </span>
 );

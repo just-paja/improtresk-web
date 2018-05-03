@@ -58,8 +58,9 @@ const ScheduleDay = ({
             <ScheduleEvent
               crossing={crossing}
               crossingPosition={crossings[crossing] % (crossing + 1)}
-              key={event.id}
               endAt={event.endAt}
+              key={event.id}
+              locationName={event.locationName}
               minHour={minHour}
               name={event.name}
               performer={event.performer}

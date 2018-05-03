@@ -49,11 +49,13 @@ const ScheduleEvent = ({
           <div className={styles.boxShell}>
             <div>
               <div>{name}</div>
-              {locationName ? <div>{locationName}</div> : null}
-              <HumanTimeRange
-                start={startAt}
-                end={endAt}
-              />
+              <small>
+                <HumanTimeRange
+                  start={startAt}
+                  end={endAt}
+                />
+                {locationName ? <span>{', '}{locationName}</span> : null}
+              </small>
             </div>
           </div>
         </div>
