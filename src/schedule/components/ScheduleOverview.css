@@ -2,7 +2,7 @@
   padding-top: 20px;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   :local .hoursOverlay,
   :local .daysOverlay {
     position: absolute;
@@ -22,7 +22,7 @@
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 768px) {
   :local .day {
     margin-bottom: 40px;
   }

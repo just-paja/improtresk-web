@@ -20,12 +20,11 @@ const MealList = ({ mealList }) => {
   return (
     <Row>
       {mealList.map(meal => (
-        <Col xs={12} md={6}>
+        <Col key={meal.id} xs={12} md={6}>
           <FoodMenu
             date={meal.date}
             food={meal.food}
             id={meal.id}
-            key={meal.id}
             name={meal.name}
             soups={meal.soups}
           />

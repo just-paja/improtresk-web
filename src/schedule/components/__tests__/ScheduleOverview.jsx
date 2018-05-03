@@ -15,8 +15,8 @@ describe('ScheduleOverview component', () => {
       <ScheduleOverview
         year={{
           id: 616,
-          endAt: '2017-02-05T00:00:00Z',
-          startAt: '2017-02-03T00:00:00Z',
+          endDate: '2017-02-05T00:00:00Z',
+          startDate: '2017-02-03T00:00:00Z',
         }}
         events={[
           {
@@ -49,8 +49,8 @@ describe('ScheduleOverview component', () => {
       <ScheduleOverview
         year={{
           id: 616,
-          endAt: '2017-02-05T00:00:00Z',
-          startAt: '2017-02-03T00:00:00Z',
+          endDate: '2017-02-05T00:00:00Z',
+          startDate: '2017-02-03T00:00:00Z',
         }}
         events={[
           {
@@ -91,8 +91,8 @@ describe('ScheduleOverview component', () => {
       <ScheduleOverview
         year={{
           id: 616,
-          endAt: '2017-02-05T00:00:00Z',
-          startAt: '2017-02-03T00:00:00Z',
+          endDate: '2017-02-05T00:00:00Z',
+          startDate: '2017-02-03T00:00:00Z',
         }}
         events={[event]}
         rowHeight={2}
@@ -116,8 +116,8 @@ describe('ScheduleOverview component', () => {
       <ScheduleOverview
         year={{
           id: 616,
-          endAt: '2017-02-05T00:00:00Z',
-          startAt: '2017-02-03T00:00:00Z',
+          endDate: '2017-02-05T00:00:00Z',
+          startDate: '2017-02-03T00:00:00Z',
         }}
         events={[event]}
         rowHeight={2}

@@ -24,7 +24,7 @@ const ScheduleOverview = ({
   }
 
   const days = [];
-  const currentDate = moment(year.startAt);
+  const currentDate = moment(year.startDate);
   let minHour;
   let maxHour;
 
@@ -42,7 +42,7 @@ const ScheduleOverview = ({
   minHour = Math.max(0, minHour - 1);
   maxHour = Math.min(23, maxHour + 1);
 
-  while (currentDate.isBefore(year.endAt) || currentDate.isSame(year.endAt)) {
+  while (currentDate.isBefore(year.endDate) || currentDate.isSame(year.endDate)) {
     const dayEvents = events.filter(event => (
       currentDate.isSame(event.startAt, 'day') ||
       currentDate.isSame(event.endAt, 'day')
@@ -65,14 +65,14 @@ const ScheduleOverview = ({
   return (
     <div className={styles.container}>
       <Row className={styles.agenda}>
-        <Col sm={0} md={1} className={classnames(styles.hours, styles.hourStretch, 'hidden-xs', 'hidden-sm')}>
+        <Col sm={0} md={1} className={classnames(styles.hours, styles.hourStretch, 'd-none', 'd-md-block')}>
           <ScheduleHours
             max={maxHour}
             min={minHour}
             rowHeight={rowHeight}
           />
         </Col>
-        <Col sm={0} md={1} className={classnames(styles.hours, styles.hoursOverlay, 'hidden-xs', 'hidden-sm')}>
+        <Col sm={0} md={1} className={classnames(styles.hours, styles.hoursOverlay, 'd-none', 'd-md-block')}>
           <ScheduleHours
             max={maxHour}
             min={minHour}
