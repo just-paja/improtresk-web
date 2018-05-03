@@ -4,14 +4,20 @@ import React from 'react';
 
 import { Children } from '../proptypes';
 
+import Flex from './Flex';
+
 const Prop = ({ children, icon, label }) => (
   children ? (
     <li>
-      {icon ? <FontAwesome className="fa-fw" name={icon} /> : null}
-      {icon ? ' ' : null}
-      {label ? <b>{label}:</b> : null}
-      {label ? ' ' : null}
-      {children}
+      <Flex>
+        <span className="mr-1">
+          {icon ? <FontAwesome className="fa-fw" name={icon} /> : null}
+          {icon ? ' ' : null}
+          {label ? <b>{label}:</b> : null}
+          {label ? ' ' : null}
+        </span>
+        {children}
+      </Flex>
     </li>
   ) : null
 );

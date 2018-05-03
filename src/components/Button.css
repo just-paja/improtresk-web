@@ -8,21 +8,36 @@
 }
 
 :local .link {
-  padding: 0;
-  margin: 0;
   background: none;
   border: none;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
 }
 
-:local .link:hover {
+:local button.link:global.disabled {
   background: none;
-  border: none;
+  border-color: transparent;
+}
+
+:local button.link:not(:disabled):not(.disabled):hover,
+:local button.link:not(:disabled):not(.disabled):active,
+:local button.link:not(:disabled):not(.disabled):focus,
+:local button.link:not(:disabled):not(.disabled):active:focus {
+  background: none;
+  border-bottom-color: rgba(200,200,200,.65);
+  box-shadow: none;
 }
 
 :local .link:global.btn-danger {
   color: #c00;
 }
 
-:local .link:global.btn-danger:hover {
+:local button.link:not(:disabled):not(.disabled):hover:global.btn-danger,
+:local button.link:not(:disabled):not(.disabled):active:global.btn-danger,
+:local button.link:not(:disabled):not(.disabled):focus:global.btn-danger,
+:local button.link:not(:disabled):not(.disabled):active:focus:global.btn-danger {
+  border-bottom-color: rgba(255,0,0,.5);
   color: red;
 }

@@ -1,9 +1,10 @@
 import { createSelector } from 'reselect';
-import { getData, getProgress, isRequired } from 'react-saga-rest';
+import { getData, getProgress, getProp, isRequired } from 'react-saga-rest';
 
 export const getParticipantDetailState = state => state.participants.detail;
 
 export const getParticipantDetail = getData(getParticipantDetailState);
+export const getParticipantId = getProp(getParticipantDetail, 'id');
 export const getParticipantProgress = getProgress(getParticipantDetailState);
 export const isParticipantRequired = isRequired(getParticipantDetailState);
 

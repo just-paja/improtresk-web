@@ -1,4 +1,3 @@
-import Alert from 'reactstrap/lib/Alert';
 import Card from 'reactstrap/lib/Card';
 import CardBody from 'reactstrap/lib/CardBody';
 import CardFooter from 'reactstrap/lib/CardFooter';
@@ -7,21 +6,18 @@ import FontAwesome from 'react-fontawesome';
 import React from 'react';
 
 import { Order, Participant } from '../../proptypes';
+import { Room } from '../../roommates/proptypes';
 
 import OrderAccomodationDetails from './OrderAccomodationDetails';
+import OrderAccomodationStatus from './OrderAccomodationStatus';
 import Flex from '../../components/Flex';
 import Message from '../../containers/Message';
 import Link from '../../containers/Link';
 
-const isOk = (order, participant) => (
-  !order.accomodation ||
-  !order.accomodation.requiresIdentification ||
-  (participant.idNumber && participant.address)
-);
-
 const OrderAccomodation = ({
   order,
   participant,
+  roomChoice,
 }) => {
   if (!order) {
     return null;
@@ -43,27 +39,17 @@ const OrderAccomodation = ({
         </Flex>
       </CardHeader>
       <CardBody>
-        <p>
-          {order.accomodation ?
-            <OrderAccomodationDetails item={order.accomodation} /> :
-            <Message name="orders.noAccomodation" />
-          }
-        </p>
+        {order.accomodation ?
+          <OrderAccomodationDetails item={order.accomodation} /> :
+          <Message name="orders.noAccomodation" />
+        }
       </CardBody>
       <CardFooter>
-        {isOk(order, participant) ? (
-          <Alert color="info">
-            <FontAwesome name="check-circle" /> <Message name="orders.accomodationOk" />
-          </Alert>
-        ) : (
-          <Alert color="danger">
-            <Message name="orders.needToFillInIdentification" />
-            {' '}
-            <Link to="participantIdentityEdit">
-              <Message name="orders.fillIn" />
-            </Link>
-          </Alert>
-        )}
+        <OrderAccomodationStatus
+          order={order}
+          participant={participant}
+          roomChoice={roomChoice}
+        />
       </CardFooter>
     </Card>
   );
@@ -72,10 +58,12 @@ const OrderAccomodation = ({
 OrderAccomodation.propTypes = {
   order: Order,
   participant: Participant.isRequired,
+  roomChoice: Room,
 };
 
 OrderAccomodation.defaultProps = {
   order: null,
+  roomChoice: null,
 };
 
 export default OrderAccomodation;

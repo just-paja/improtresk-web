@@ -9,6 +9,7 @@ import * as orders from '../orders/locales';
 import * as pages from '../pages/locales';
 import * as participants from '../participants/locales';
 import * as polls from '../polls/locales';
+import * as roommates from '../roommates/locales';
 import * as schedule from '../schedule/locales';
 import * as workshops from '../workshops/locales';
 import * as years from '../years/locales';
@@ -19,9 +20,10 @@ const modules = [
   forms,
   news,
   orders,
-  participants,
   pages,
+  participants,
   polls,
+  roommates,
   schedule,
   workshops,
   years,

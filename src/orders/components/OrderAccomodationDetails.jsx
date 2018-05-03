@@ -6,6 +6,7 @@ import Address from '../../components/Address';
 import Message from '../../containers/Message';
 import Price from '../../components/Price';
 import Prop from '../../components/Prop';
+import RoomChoice from '../../roommates/containers/RoomChoice';
 
 const OrderAccomodationDetails = ({ item }) => (
   <div>
@@ -19,6 +20,11 @@ const OrderAccomodationDetails = ({ item }) => (
       <Prop label={<Message name="accomodation.price" />} icon="money">
         <Price freeMessage="accomodation.priceIncluded" price={item.price} />
       </Prop>
+      {item.hasRooms ? (
+        <Prop label={<Message name="accomodation.room" />} icon="key">
+          <RoomChoice />
+        </Prop>
+      ) : null}
     </ul>
   </div>
 );

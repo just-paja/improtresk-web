@@ -3,12 +3,13 @@ import { reduxForm } from 'redux-form';
 
 import ParticipantIdentityForm from '../components/ParticipantIdentityForm';
 
-import { getParticipantIdentityValues } from '../selectors';
+import { getParticipantDetail, getParticipantIdentityValues } from '../selectors';
 import { identityEdit } from '../actions';
 import { identityValidator } from '../validators';
 
 const mapStateToProps = state => ({
   initialValues: getParticipantIdentityValues(state),
+  participant: getParticipantDetail(state),
 });
 
 const mapDispatchToProps = {

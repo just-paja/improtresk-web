@@ -11,9 +11,10 @@ import news from '../news/reducers';
 import orders from '../orders/reducers';
 import participants from '../participants/reducers';
 import performers from '../performers/reducers';
-import schedule from '../schedule/reducers';
+import roommates from '../roommates/reducers';
 import server from '../reducers/server';
 import session from './session';
+import schedule from '../schedule/reducers';
 import texts from '../texts/reducers';
 import workshops from '../workshops/reducers';
 import years from '../years/reducers';
@@ -29,10 +30,11 @@ export default combineReducers({
   orders,
   participants,
   performers,
+  roommates,
   routing,
-  schedule,
   server,
   session,
+  schedule,
   texts,
   workshops,
   years,

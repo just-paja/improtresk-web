@@ -3,18 +3,18 @@ import keepAlive from 'redux-saga-restart';
 import { all, call, fork } from 'redux-saga/effects';
 import { logError, logWarning } from '../clientLogger';
 
-import app from './app';
 import accomodation from '../accomodation/sagas';
-// import fees from './fees';
+import app from './app';
 import food from '../food/sagas';
 import locales from './locales';
 import locations from '../locations/sagas';
 import news from '../news/sagas';
 import orders from '../orders/sagas';
+import pages from '../pages/sagas';
 import participants from '../participants/sagas';
 import performers from '../performers/sagas';
-import pages from '../pages/sagas';
 import redirects from './redirects';
+import roommates from '../roommates/sagas';
 import schedule from '../schedule/sagas';
 import texts from '../texts/sagas';
 import vandaDoor from './vandaDoor';
@@ -22,21 +22,19 @@ import workshops from '../workshops/sagas';
 import years from '../years/sagas';
 
 const sagas = [
-  ...app,
   ...accomodation,
-  // ...fees,
+  ...app,
   ...food,
-  ...locations,
-  // ...lectors,
   ...locales,
   ...locations,
-  // ...meals,
+  ...locations,
   ...news,
   ...orders,
   ...pages,
   ...participants,
   ...performers,
   ...redirects,
+  ...roommates,
   ...schedule,
   ...texts,
   ...vandaDoor,

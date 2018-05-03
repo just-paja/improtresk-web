@@ -3,6 +3,7 @@ export default {
   participants: {
     address: 'Address',
     alreadyRegistered: 'I am already registered',
+    backHome: 'Back to overview',
     contact: 'Contact',
     dateOfBirth: 'Date of birth',
     dateOfBirthHelp: 'Minimum age is 18 years old. Please read the festival rules.',
@@ -23,7 +24,9 @@ export default {
     changePasswordHelp: 'Enter your old password, enter your new password and repeat.',
     changePasswordSuccess: 'Your password was changed successfully. You may login with it now.',
     changePersonalInformation: 'Personal information',
-    identityFormHelp: 'We consider this information highly confidential. Rest assured that we will use them only to arrange your accomodation. We never give these to third parties.',
+    identificationSettings: 'Identification settings',
+    identityFinished: 'It is done! Thank you.',
+    identityFormHelp: 'We consider this information highly confidential. Rest assured that we will use them only to arrange your accomodation. We never give these to third parties without asking you first.',
     idNumber: 'ID Number',
     improvAge: 'Improtřesk age',
     login: 'Login',

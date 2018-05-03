@@ -182,3 +182,18 @@ export const fetchMarker = ({ address, ...params }) => fetch(
   `json?address=${address}&key=AIzaSyABnfkdNP9H-wCCshO_ZRYxvGoCEozHxzg`,
   params
 );
+
+export const roomListFetch = ({ orderId, ...params }) => apiFetchAuthorized(
+  `orders/${orderId}/rooms/`,
+  params
+);
+
+export const roomJoin = ({ roomId, ...params }) => apiFetchAuthorized(
+  `rooms/${roomId}/join/`,
+  { method: 'PUT', ...params }
+);
+
+export const roomLeave = ({ roomId, ...params }) => apiFetchAuthorized(
+  `rooms/${roomId}/leave/`,
+  { method: 'PUT', ...params }
+);

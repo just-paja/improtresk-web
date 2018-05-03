@@ -3,6 +3,7 @@ export default {
   participants: {
     address: 'Adresa bydliště',
     alreadyRegistered: 'Už jsem zaregistrovaný',
+    backHome: 'Návrat na přehled',
     contact: 'Kontakt',
     dateOfBirth: 'Datum narození',
     dateOfBirthHelp: 'V pravidlech festivalu se dočtete o věkovém limitu. Nemůžeme zodpovídat za osoby mladší 18 let.',
@@ -24,7 +25,8 @@ export default {
     changePasswordSuccess: 'Tvoje heslo bylo úspěšně změněno. Můžeš se s ním teď přihlásit.',
     changePersonalInformation: 'Osobní informace',
     identificationSettings: 'Nastavení identity',
-    identityFormHelp: 'Vaše osobní údaje využijeme pouze k urychlení ubytování. Nikdy je nepředáme žádné třetí straně.',
+    identityFinished: 'A je to! Děkujeme.',
+    identityFormHelp: 'Vaše osobní údaje využijeme pouze k urychlení ubytování. Nikdy je bez vašeho souhlasu nepředáme žádné třetí straně.',
     idNumber: 'Číslo občanského průkazu',
     improvAge: 'Improtřeskový věk',
     login: 'Přihlásit',
