@@ -11,7 +11,7 @@ describe('PerformerDetail component', () => {
         performer={{
           createdAt: '2016-01-02T09:04:05',
           id: 25,
-          descriptions: [
+          description: [
             {
               text: 'bar',
               lang: 'cs',
@@ -37,7 +37,7 @@ describe('PerformerDetail component', () => {
         performer={{
           createdAt: '2016-01-02T09:04:05',
           id: 25,
-          descriptions: [
+          description: [
             {
               text: 'bar',
               lang: 'cs',
@@ -68,7 +68,7 @@ describe('PerformerDetail component', () => {
         performer={{
           createdAt: '2016-01-02T09:04:05',
           id: 25,
-          descriptions: [],
+          description: [],
           name: '20000 židů pod mořem',
           links: [
             {

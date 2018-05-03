@@ -15,7 +15,7 @@ describe('HumanTimeRange component', () => {
     ).getElement()).toEqual(
       <span>
         <HumanTime date="2016-01-02T01:02:03" />
-        {' '}-{' '}
+        &nbsp;-&nbsp;
         <HumanTime date="2016-03-04T01:02:03" />
       </span>
     );

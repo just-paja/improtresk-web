@@ -14,6 +14,8 @@ import ScheduleDay from './ScheduleDay';
 
 import styles from './ScheduleOverview.css';
 
+const shiftHour = hour => (hour < 6 ? hour + 23 : hour);
+
 const ScheduleOverview = ({
   year,
   events,
@@ -29,24 +31,20 @@ const ScheduleOverview = ({
   let maxHour;
 
   events.forEach((event) => {
-    const eventStartAt = moment(event.startAt);
-    const eventEndAt = moment(event.endAt);
-    if (!minHour || minHour > eventStartAt.hours()) {
-      minHour = eventStartAt.hours();
+    const eventStartAt = shiftHour(moment(event.startAt).hours());
+    const eventEndAt = shiftHour(moment(event.endAt).hours());
+    if (!minHour || minHour > eventStartAt) {
+      minHour = eventStartAt;
     }
-    if (!maxHour || maxHour < eventEndAt.hours()) {
-      maxHour = eventEndAt.hours();
+    if (!maxHour || maxHour < eventEndAt) {
+      maxHour = eventEndAt;
     }
   });
 
   minHour = Math.max(0, minHour - 1);
-  maxHour = Math.min(23, maxHour + 1);
 
   while (!currentDate.isAfter(year.endDate)) {
-    const dayEvents = events.filter(event => (
-      currentDate.isSame(event.startAt, 'day') ||
-      currentDate.isSame(event.endAt, 'day')
-    ));
+    const dayEvents = events.filter(event => currentDate.isSame(event.startAt, 'day'));
     const dateFormatted = currentDate.format(moment.RFC_8601);
     days.push((
       <Col xs={12} sm={6} md={4} key={dateFormatted} className={styles.day}>

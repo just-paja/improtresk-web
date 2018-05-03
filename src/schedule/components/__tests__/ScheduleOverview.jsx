@@ -74,7 +74,7 @@ describe('ScheduleOverview component', () => {
 
     expect(comp.find('ScheduleHours').at(0).props()).toMatchObject({
       min: 7,
-      max: 12,
+      max: 11,
       rowHeight: 2,
     });
   });
@@ -102,30 +102,5 @@ describe('ScheduleOverview component', () => {
     expect(comp.find('ScheduleDay')
       .filterWhere(day => day.prop('events').find(dayEvent => dayEvent.id === 1)))
       .toHaveLength(1);
-  });
-
-  it('renders event stretched on two day', () => {
-    const event = {
-      id: 2,
-      name: 'Morning foo',
-      startAt: '2017-02-04T08:00:00Z',
-      endAt: '2017-02-05T11:00:00Z',
-      workshops: [],
-    };
-    const comp = shallow(
-      <ScheduleOverview
-        year={{
-          id: 616,
-          endDate: '2017-02-05T00:00:00Z',
-          startDate: '2017-02-03T00:00:00Z',
-        }}
-        events={[event]}
-        rowHeight={2}
-      />
-    );
-
-    expect(comp.find('ScheduleDay')
-      .filterWhere(day => day.prop('events').find(dayEvent => dayEvent.id === 2)))
-      .toHaveLength(2);
   });
 });
