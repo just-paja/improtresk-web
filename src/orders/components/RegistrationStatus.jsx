@@ -56,14 +56,16 @@ const RegistrationStatus = ({
             {' '}
             <Message name="orders.status" />
           </span>
-          <Button
-            color="danger"
-            icon="ban"
-            link
-            onClick={onCancel}
-          >
-            <Message name="orders.cancel" />
-          </Button>
+          {!activeOrder.paid ? (
+            <Button
+              color="danger"
+              icon="ban"
+              link
+              onClick={onCancel}
+            >
+              <Message name="orders.cancel" />
+            </Button>
+          ) : null}
         </Flex>
       </CardHeader>
       <CardBody>
