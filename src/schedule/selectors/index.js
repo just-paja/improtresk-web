@@ -1,17 +1,19 @@
 import { getProgress, isRequired, transformData } from 'react-saga-rest';
 
-import { getPerformers, getPerformersListState } from '../../performers/selectors';
+import { getPerformerList, getPerformersListState } from '../../performers/selectors';
 import { getWorkshopList, getWorkshopListState } from '../../workshops/selectors';
 import { getYearListState } from '../../years/selectors';
 
 export const aggregatePerformer = (item, performers) => ({
   ...item,
-  performer: item.performer ? (performers.find(perf => perf.id === item.performer) || null) : null,
+  performer: item.performer && performers ? (
+    performers.find(perf => perf.id === item.performer) || null
+  ) : null,
 });
 
 export const aggregateWorkshops = (item, workshops) => ({
   ...item,
-  workshops: workshops.filter(workshop => item.workshops.indexOf(workshop.id)),
+  workshops: workshops.filter(workshop => item.workshops.indexOf(workshop.id) !== -1),
 });
 
 const sortByDate = (a, b) => {
@@ -44,7 +46,7 @@ export const getScheduleEventList = transformData(getScheduleEventListState, {
     },
     {
       transform: aggregatePerformer,
-      select: getPerformers,
+      select: getPerformerList,
     },
   ],
 });

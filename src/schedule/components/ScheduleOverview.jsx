@@ -42,14 +42,14 @@ const ScheduleOverview = ({
   minHour = Math.max(0, minHour - 1);
   maxHour = Math.min(23, maxHour + 1);
 
-  while (currentDate.isBefore(year.endDate) || currentDate.isSame(year.endDate)) {
+  while (!currentDate.isAfter(year.endDate)) {
     const dayEvents = events.filter(event => (
       currentDate.isSame(event.startAt, 'day') ||
       currentDate.isSame(event.endAt, 'day')
     ));
     const dateFormatted = currentDate.format(moment.RFC_8601);
     days.push((
-      <Col xs={12} sm={6} md={3} key={dateFormatted} className={styles.day}>
+      <Col xs={12} sm={6} md={4} key={dateFormatted} className={styles.day}>
         <ScheduleDay
           date={dateFormatted}
           events={dayEvents}

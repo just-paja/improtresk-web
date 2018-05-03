@@ -1,13 +1,15 @@
 :local .box {
-  background-color: #999;
+  background-color: #222;
 }
 
 :local .withWorkshops {
-  background-color: #93c54b;
+  background-color: #1f6b0c;
+  color: #d0d0d0;
 }
 
 :local .withPerformers {
-  background-color: #29abe0;
+  background-color: #1b3c58;
+  color: #d0d0d0;
 }
 
 :local .boxShell {

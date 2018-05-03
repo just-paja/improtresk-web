@@ -6,30 +6,32 @@ import ScheduleEvent from './ScheduleEvent';
 
 import styles from './ScheduleDay.css';
 
-const isInDateRange = (dateStr, start, end) => {
+const isInDateRange = (dateStr, start, end, sameStart) => {
   const date = moment(dateStr);
-  return (
-    (
-      date.isAfter(start) ||
-      date.isSame(start)
-    ) &&
-    (
-      date.isBefore(end) ||
-      date.isSame(end)
-    )
+  return (date.isAfter(start) && date.isBefore(end)) || (
+    sameStart &&
+    date.isSame(start, 'minute')
   );
 };
 
-const getCrossingCount = (event, events) => events
-  .filter(otherEvent => (
-    event.id !== otherEvent.id &&
-    event.endAt !== otherEvent.startAt &&
-    event.startAt !== otherEvent.endAt && (
-      isInDateRange(otherEvent.startAt, event.startAt, event.endAt) ||
-      isInDateRange(otherEvent.endAt, event.startAt, event.endAt, true)
-    )
-  ))
-  .length;
+const isInEventRange = (baseEvent, queryEvent) => (
+  isInDateRange(queryEvent.startAt, baseEvent.startAt, baseEvent.endAt, true) ||
+  isInDateRange(queryEvent.endAt, baseEvent.startAt, baseEvent.endAt)
+);
+
+const getCrossings = (event, events) => events
+  .filter(otherEvent => event.id !== otherEvent.id && (
+    isInEventRange(event, otherEvent) ||
+    isInEventRange(otherEvent, event)
+  ));
+
+const getCrossingCount = eventCrossings => Math.max(
+  eventCrossings.length > 0 ? 1 : 0,
+  Math.min(
+    eventCrossings.length,
+    ...eventCrossings.map(event => getCrossings(event, eventCrossings).length)
+  )
+);
 
 const ScheduleDay = ({
   date,
@@ -44,7 +46,8 @@ const ScheduleDay = ({
       <div className={styles.header}>{moment(date).format('dddd')}</div>
       <div>
         {events.map((event) => {
-          const crossing = getCrossingCount(event, events);
+          const eventCrossings = getCrossings(event, events);
+          const crossing = getCrossingCount(eventCrossings);
           if (typeof crossings[crossing] === 'undefined') {
             crossings[crossing] = crossing;
           }

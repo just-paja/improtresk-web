@@ -11,6 +11,7 @@ const ScheduleEvent = ({
   crossing,
   crossingPosition,
   endAt,
+  locationName,
   minHour,
   name,
   performer,
@@ -48,6 +49,7 @@ const ScheduleEvent = ({
           <div className={styles.boxShell}>
             <div>
               <div>{name}</div>
+              {locationName ? <div>{locationName}</div> : null}
               <HumanTimeRange
                 start={startAt}
                 end={endAt}
@@ -65,6 +67,7 @@ ScheduleEvent.propTypes = {
   crossingPosition: PropTypes.number,
   endAt: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  locationName: PropTypes.string,
   minHour: PropTypes.number.isRequired,
   performer: PropTypes.object,
   rowHeight: PropTypes.number.isRequired,
@@ -75,6 +78,7 @@ ScheduleEvent.propTypes = {
 ScheduleEvent.defaultProps = {
   crossing: 0,
   crossingPosition: 0,
+  locationName: null,
   performer: null,
 };
 
