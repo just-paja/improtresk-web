@@ -3,6 +3,8 @@ import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { Workshop } from '../../proptypes';
+
 import Message from '../../containers/Message';
 
 const OrderStatus = ({
@@ -11,6 +13,7 @@ const OrderStatus = ({
   confirmed,
   endsAt,
   paid,
+  workshop,
 }) => {
   if (cancelled) {
     return <Label className="mb-0 text-danger"><Message name="orders.cancelled" /></Label>;
@@ -21,7 +24,10 @@ const OrderStatus = ({
   }
 
   if (paid) {
-    return <Label className="mb-0 text-info"><Message name="orders.waitingToBeAssigned" /></Label>;
+    if (workshop) {
+      return <Label className="mb-0 text-info"><Message name="orders.waitingToBeAssigned" /></Label>;
+    }
+    return <Label className="mb-0 text-success"><Message name="orders.paid" /></Label>;
   }
 
   if (moment().isAfter(endsAt)) {
@@ -41,6 +47,7 @@ OrderStatus.propTypes = {
   confirmed: PropTypes.bool,
   endsAt: PropTypes.string.isRequired,
   paid: PropTypes.bool,
+  workshop: Workshop,
 };
 
 OrderStatus.defaultProps = {
@@ -48,6 +55,7 @@ OrderStatus.defaultProps = {
   cancelled: false,
   confirmed: false,
   paid: false,
+  workshop: null,
 };
 
 export default OrderStatus;

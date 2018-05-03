@@ -21,7 +21,7 @@ describe('OrderStatusLabel component', () => {
     const comp = shallow(
       <OrderStatusLabel endsAt="2017-01-01T01:01:01Z" translate={msg => msg} />
     );
-    expect(comp.find('Connect(Message)[name="orders.unconfirmed"]')).toHaveLength(1);
+    expect(comp.find('Connect(Message)')).toHaveProp('name', 'orders.unconfirmed');
   });
 
   it('renders waiting to be paid message when order is confirmed, not cancelled, not assigned and not paid', () => {
@@ -32,7 +32,7 @@ describe('OrderStatusLabel component', () => {
         translate={msg => msg}
       />
     );
-    expect(comp.find('Connect(Message)[name="orders.waitingToBePaid"]')).toHaveLength(1);
+    expect(comp.find('Connect(Message)')).toHaveProp('name', 'orders.waitingToBePaid');
   });
 
   it('renders waiting to be assigned when order is paid, not cancelled and not assigned', () => {
@@ -41,9 +41,15 @@ describe('OrderStatusLabel component', () => {
         paid
         endsAt="2017-01-01T01:01:01Z"
         translate={msg => msg}
+        workshop={{
+          capacityStatus: {},
+          id: 99,
+          lectors: [],
+          name: 'Test Workshop',
+        }}
       />
     );
-    expect(comp.find('Connect(Message)[name="orders.waitingToBeAssigned"]'));
+    expect(comp.find('Connect(Message)')).toHaveProp('name', 'orders.waitingToBeAssigned');
   });
 
   it('renders assigned message when order is assigned and not cancelled', () => {
@@ -54,7 +60,18 @@ describe('OrderStatusLabel component', () => {
         translate={msg => msg}
       />
     );
-    expect(comp.find('Connect(Message)[name="orders.assigned"]')).toHaveLength(1);
+    expect(comp.find('Connect(Message)')).toHaveProp('name', 'orders.assigned');
+  });
+
+  it('renders paid message when order is paid and without workshop', () => {
+    const comp = shallow(
+      <OrderStatusLabel
+        paid
+        endsAt="2017-01-01T01:01:01Z"
+        translate={msg => msg}
+      />
+    );
+    expect(comp.find('Connect(Message)')).toHaveProp('name', 'orders.paid');
   });
 
   it('renders cancelled message when order is cancelled', () => {
@@ -65,6 +82,6 @@ describe('OrderStatusLabel component', () => {
         translate={msg => msg}
       />
     );
-    expect(comp.find('Connect(Message)[name="orders.cancelled"]')).toHaveLength(1);
+    expect(comp.find('Connect(Message)')).toHaveProp('name', 'orders.cancelled');
   });
 });
