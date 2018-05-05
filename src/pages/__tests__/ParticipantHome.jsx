@@ -60,21 +60,10 @@ describe('ParticipantHome container', () => {
     });
   });
 
-  it('provides progress', () => {
-    expect(comp.find('SceneProgress(Connect(ParticipantHome))')).toHaveProp('progress', {
-      failed: false,
-      loading: false,
-      missing: false,
-      required: false,
-      valid: true,
-      errors: [],
-    });
-  });
-
-  it('triggers home mounted action on mount', () => {
-    comp.dive().dive();
+  it('dispatches logout on logout', () => {
+    comp.simulate('logout');
     expect(store.getActions()).toEqual([
-      { type: 'PAGE_PARTICIPANT_HOME_ENTERED' },
+      { type: 'PARTICIPANT_LOGOUT' },
     ]);
   });
 });

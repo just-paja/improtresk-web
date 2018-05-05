@@ -1,4 +1,4 @@
-import { fork, select, takeEvery } from 'redux-saga/effects';
+import { fork, put, select, takeEvery } from 'redux-saga/effects';
 
 import fetchResource from './fetchResource';
 
@@ -20,10 +20,13 @@ export default (routine, {
     const payload = payloadSelector ? yield select(payloadSelector) : null;
     const state = stateSelector ? yield select(stateSelector) : null;
 
-    if (!state || isNeeded(state)) {
-      yield fork(fetchResource, routine, {
-        params: reduceParams(payloadReducer, payload),
-      });
+    try {
+      const params = reduceParams(payloadReducer, payload);
+      if (!state || isNeeded(state)) {
+        yield fork(fetchResource, routine, { params });
+      }
+    } catch (e) {
+      yield put(routine.failure(e));
     }
   }
 
