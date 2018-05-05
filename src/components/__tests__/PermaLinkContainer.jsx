@@ -3,10 +3,11 @@ import React from 'react';
 
 import { shallow } from 'enzyme';
 
+import LinkContainer from '../../containers/LinkContainer';
 import PermaLinkContainer from '../PermaLinkContainer';
 
 describe('Permanent Link Container component', () => {
-  it('renders link container', () => {
+  it('renders perma link component with tag prop', () => {
     const comp = shallow(
       <PermaLinkContainer
         lang="cs"
@@ -17,23 +18,6 @@ describe('Permanent Link Container component', () => {
         <NavItem>bar</NavItem>
       </PermaLinkContainer>
     );
-    expect(comp.find('Connect(LinkContainer)')).toHaveProp('routeParams', {
-      slug: 'presprilis-zlutoucky-kun-upel-dabelske-ody-1',
-    });
-  });
-
-  it('does not fail when given no route params', () => {
-    expect(() => {
-      shallow(
-        <PermaLinkContainer
-          lang="cs"
-          id={1}
-          title="Přespříliš žluťoučký kůň úpěl ďábelské ódy"
-          to="newsDetail"
-        >
-          <NavItem>bar</NavItem>
-        </PermaLinkContainer>
-      );
-    }).not.toThrow();
+    expect(comp.find('PermaLink')).toHaveProp('tag', LinkContainer);
   });
 });
