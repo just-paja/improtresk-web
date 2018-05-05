@@ -21,7 +21,9 @@ const InhabitantList = ({ inhabitants, participant }) => {
     <ListGroup>
       {inhabitants.map(inhabitant => (
         <ListGroupItem
-          className={classnames({ 'text-success': participant })}
+          className={classnames({
+            'text-success': participant === inhabitant.participant_id,
+          })}
           key={inhabitant.id}
         >
           {inhabitant.name}

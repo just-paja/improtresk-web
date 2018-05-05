@@ -1,5 +1,7 @@
+import classnames from 'classnames';
 import React, { Component } from 'react';
 import Card from 'reactstrap/lib/Card';
+import CardFooter from 'reactstrap/lib/CardFooter';
 import CardHeader from 'reactstrap/lib/CardHeader';
 import PropTypes from 'prop-types';
 
@@ -53,10 +55,10 @@ export default class RoomPickerItem extends Component {
   }
 
   render() {
-    const { participant, room } = this.props;
+    const { participant, room, selected } = this.props;
     return (
-      <Card className="mb-3">
-        <CardHeader>
+      <Card className={classnames('mb-3', { 'bg-success': selected })}>
+        <CardHeader className={classnames({ 'text-white': selected })}>
           <Flex justify="between">
             <FlexLabel>
               <strong>
@@ -68,10 +70,16 @@ export default class RoomPickerItem extends Component {
             {this.renderActionButton()}
           </Flex>
         </CardHeader>
-        <InhabitantList
-          inhabitants={room.inhabitants}
-          participant={participant}
-        />
+        {room.inhabitants.length < room.size || selected ? (
+          <InhabitantList
+            inhabitants={room.inhabitants}
+            participant={participant}
+          />
+        ) : (
+          <CardFooter>
+            <IconMessage icon="info-circle" name="roommates.roomFull" />
+          </CardFooter>
+        )}
       </Card>
     );
   }
@@ -84,9 +92,11 @@ RoomPickerItem.propTypes = {
   onLeave: PropTypes.func.isRequired,
   participant: PropTypes.number.isRequired,
   room: Room.isRequired,
+  selected: PropTypes.bool,
 };
 
 RoomPickerItem.defaultProps = {
   disabled: false,
   loading: false,
+  selected: false,
 };

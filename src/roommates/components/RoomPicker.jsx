@@ -30,6 +30,7 @@ const RoomPicker = ({
             onLeave={onLeave}
             participant={participant}
             room={room}
+            selected={savedRoom && savedRoom.id === room.id}
           />
         </Col>
       ))}
