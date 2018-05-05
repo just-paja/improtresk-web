@@ -1,12 +1,12 @@
 import Card from 'reactstrap/lib/Card';
 import CardHeader from 'reactstrap/lib/CardHeader';
 import CardBody from 'reactstrap/lib/CardBody';
-import FontAwesome from 'react-fontawesome';
 import React from 'react';
 
 import { Participant } from '../../proptypes';
 
 import Message from '../../containers/Message';
+import IconMessage from '../../components/IconMessage';
 import Prop from '../../components/Prop';
 import Flex from '../../components/Flex';
 import Link from '../../containers/Link';
@@ -16,11 +16,7 @@ const ParticipantDetails = ({ participant }) => (
   <Card className="mb-4">
     <CardHeader>
       <Flex justify="between">
-        <span>
-          <FontAwesome name="user" />
-          {' '}
-          <Message name="participants.details" />
-        </span>
+        <IconMessage icon="user" name="participants.details" />
         <Link to="participantEdit">
           <Message name="participants.changeDetails" />
         </Link>

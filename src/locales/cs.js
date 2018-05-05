@@ -22,14 +22,15 @@ export default {
     objectNotFoundHelp: 'Znáte to. Stránka neexistuje, takže nemáme co vám zobrazit.',
   },
   generic: {
+    contactPhone: 'Kontaktní telefon',
+    email: 'E-mail',
+    facebook: 'Facebook',
     free: 'Zdarma',
-    oops: 'Jejda',
     loadingFailed: 'Selhalo načítání objektu',
     missingErrorDetails: 'Nemáme k chybě žádné další detaily',
+    oops: 'Jejda',
     success: 'Úspěch',
     website: 'Oficiální web',
-    email: 'E-mail',
-    contactPhone: 'Kontaktní telefon',
   },
   menu: {
     archive: 'Archiv',

@@ -1,7 +1,6 @@
 import Card from 'reactstrap/lib/Card';
 import CardBody from 'reactstrap/lib/CardBody';
 import Col from 'reactstrap/lib/Col';
-import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Row from 'reactstrap/lib/Row';
@@ -9,6 +8,7 @@ import Row from 'reactstrap/lib/Row';
 import Container from '../../components/Container';
 import HelmetTitle from '../../containers/HelmetTitle';
 import Message from '../../containers/Message';
+import IconMessage from '../../components/IconMessage';
 
 export default class Contact extends Component {
   componentWillMount() {
@@ -32,24 +32,21 @@ export default class Contact extends Component {
                 </p>
                 <ul className="list-unstyled">
                   <li>
-                    <FontAwesome fixedWidth name="globe" />{' '}
-                    <Message name="generic.website" />:{' '}
+                    <IconMessage fixedWidth icon="globe" name="generic.website" />:{' '}
                     <a href="https://improtresk.cz">improtresk.cz</a>
                   </li>
                   <li>
-                    <FontAwesome fixedWidth name="envelope-o" />{' '}
-                    <Message name="generic.email" />:{' '}
+                    <IconMessage fixedWidth icon="envelope-o" name="generic.email" />:{' '}
                     <a href="mailto:info@improtresk.cz">info@improtresk.cz</a>
                   </li>
                   <li>
-                    <FontAwesome fixedWidth name="phone" />{' '}
-                    <Message name="generic.contactPhone" />:{' '}
+                    <IconMessage fixedWidth icon="phone" name="generic.contactPhone" />:{' '}
                     Vanda Gabrielová{' '}
                     <a href="tel:+420 728 376 440">+420 728 376 440</a>
                   </li>
                   <li>
-                    <FontAwesome fixedWidth name="facebook-official" />{' '}
-                    Facebook: <a href="https://fb.com/improligacz">improligacz</a>
+                    <IconMessage fixedWidth icon="facebook-official" name="generic.facebook" />:{' '}
+                    <a href="https://fb.com/improligacz">improligacz</a>
                   </li>
                 </ul>
               </CardBody>

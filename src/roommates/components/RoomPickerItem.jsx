@@ -1,4 +1,3 @@
-import FontAwesome from 'react-fontawesome';
 import React, { Component } from 'react';
 import Card from 'reactstrap/lib/Card';
 import CardHeader from 'reactstrap/lib/CardHeader';
@@ -11,6 +10,7 @@ import Flex from '../../components/Flex';
 import FlexLabel from '../../components/FlexLabel';
 import InhabitantList from './InhabitantList';
 import Message from '../../containers/Message';
+import IconMessage from '../../components/IconMessage';
 
 export default class RoomPickerItem extends Component {
   constructor() {
@@ -60,8 +60,7 @@ export default class RoomPickerItem extends Component {
           <Flex justify="between">
             <FlexLabel>
               <strong>
-                <FontAwesome name="key" />{' '}
-                <Message name="roommates.room" />{' '}
+                <IconMessage icon="key" name="roommates.room" />{' '}
                 {room.number}
               </strong>
               <span>{room.inhabitants.length}/{room.size}</span>

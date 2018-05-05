@@ -1,11 +1,11 @@
 import Alert from 'reactstrap/lib/Alert';
-import FontAwesome from 'react-fontawesome';
 import React from 'react';
 
 import { Order, Participant } from '../../proptypes';
 import { Room } from '../../roommates/proptypes';
 
 import Message from '../../containers/Message';
+import IconMessage from '../../components/IconMessage';
 import Link from '../../containers/Link';
 
 const isIdentificationOk = (order, participant) => (
@@ -34,14 +34,12 @@ const OrderAccomodation = ({
     <div>
       {identOk && roomOk ? (
         <Alert color="success">
-          <FontAwesome name="check-circle" /> <Message name="orders.accomodationOk" />
+          <IconMessage icon="check-circle" name="orders.accomodationOk" />
         </Alert>
       ) : null}
       {!identOk ? (
         <Alert color="danger">
-          <FontAwesome name="exclamation-triangle" />
-          {' '}
-          <Message name="orders.needToFillInIdentification" />
+          <IconMessage icon="exclamation-triangle" name="orders.needToFillInIdentification" />
           {' '}
           <Link to="participantIdentityEdit">
             <Message name="orders.fillIn" />
@@ -50,9 +48,7 @@ const OrderAccomodation = ({
       ) : null}
       {order.paid && !roomOk ? (
         <Alert color="danger">
-          <FontAwesome name="exclamation-triangle" />
-          {' '}
-          <Message name="orders.needToChooseRoom" />
+          <IconMessage icon="exclamation-triangle" name="orders.needToChooseRoom" />
           {' '}
           <Link to="participantRoomSelection">
             <Message name="orders.choose" />
@@ -61,9 +57,7 @@ const OrderAccomodation = ({
       ) : null}
       {!order.paid && !roomOk ? (
         <Alert color="info">
-          <FontAwesome name="info-circle" />
-          {' '}
-          <Message name="orders.needToChooseRoom" />
+          <IconMessage icon="info-circle" name="orders.needToChooseRoom" />
           {' '}
           <Message name="orders.payToChooseRoom" />
         </Alert>

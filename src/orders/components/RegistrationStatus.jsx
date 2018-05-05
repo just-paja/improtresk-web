@@ -3,7 +3,6 @@ import Card from 'reactstrap/lib/Card';
 import CardBody from 'reactstrap/lib/CardBody';
 import CardFooter from 'reactstrap/lib/CardFooter';
 import CardHeader from 'reactstrap/lib/CardHeader';
-import FontAwesome from 'react-fontawesome';
 import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -13,6 +12,7 @@ import { Order } from '../../proptypes';
 import Button from '../../components/Button';
 import Flex from '../../components/Flex';
 import Message from '../../containers/Message';
+import IconMessage from '../../components/IconMessage';
 import OrderPaymentStatus from './OrderPaymentStatus';
 import OrderStatusLabel from './OrderStatusLabel';
 import OrderTimeout from './OrderTimeout';
@@ -66,11 +66,7 @@ const RegistrationStatus = ({
     <Card className="mb-4">
       <CardHeader>
         <Flex justify="between">
-          <span>
-            <FontAwesome name="info-circle" />
-            {' '}
-            <Message name="orders.status" />
-          </span>
+          <IconMessage icon="info-circle" name="orders.status" />
           {!activeOrder.paid ? (
             <Button
               color="danger"

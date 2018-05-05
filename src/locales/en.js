@@ -22,14 +22,15 @@ export default {
     objectNotFoundHelp: 'You know. The page or object you were looking for does not exist, so we have nothing to show you here',
   },
   generic: {
+    contactPhone: 'Contact phone',
+    email: 'E-mail',
+    facebook: 'Facebook',
     free: 'Free',
-    oops: 'Oops',
     loadingFailed: 'Failed loading object',
     missingErrorDetails: 'We do not have any more details',
+    oops: 'Oops',
     success: 'Success',
     website: 'Official website',
-    email: 'E-mail',
-    contactPhone: 'Contact phone',
   },
   menu: {
     archive: 'Archive',

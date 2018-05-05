@@ -1,4 +1,3 @@
-import FontAwesome from 'react-fontawesome';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -11,6 +10,7 @@ import Button from '../../components/Button';
 import Input from '../../forms/components/Input';
 import Link from '../../containers/Link';
 import Message from '../../containers/Message';
+import IconMessage from '../../components/IconMessage';
 
 const LoginForm = ({
   disabled,
@@ -44,9 +44,7 @@ const LoginForm = ({
       <Message name="participants.login" />
     </Button>
     <Link className="pull-right" to="participantForgottenPassword">
-      <FontAwesome className="fa-fw" name="key" />
-      {' '}
-      <span>{<Message name="participants.forgottenPassword" />}</span>
+      <IconMessage icon="key" name="participants.forgottenPassword" />
     </Link>
   </Form>
 );

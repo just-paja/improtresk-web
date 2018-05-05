@@ -2,7 +2,6 @@ import Card from 'reactstrap/lib/Card';
 import CardBody from 'reactstrap/lib/CardBody';
 import CardFooter from 'reactstrap/lib/CardFooter';
 import CardHeader from 'reactstrap/lib/CardHeader';
-import FontAwesome from 'react-fontawesome';
 import React from 'react';
 
 import { Order, Participant } from '../../proptypes';
@@ -12,6 +11,7 @@ import OrderAccomodationDetails from './OrderAccomodationDetails';
 import OrderAccomodationStatus from './OrderAccomodationStatus';
 import Flex from '../../components/Flex';
 import Message from '../../containers/Message';
+import IconMessage from '../../components/IconMessage';
 import Link from '../../containers/Link';
 
 const OrderAccomodation = ({
@@ -26,11 +26,7 @@ const OrderAccomodation = ({
     <Card className="mb-4">
       <CardHeader>
         <Flex justify="between">
-          <span>
-            <FontAwesome name="bed" />
-            {' '}
-            <Message name="orders.accomodation" />
-          </span>
+          <IconMessage icon="bed" name="orders.accomodation" />
           {order.accomodation && order.accomodation.requiresIdentification ? (
             <Link to="participantIdentityEdit">
               <Message name="participants.changeIdentification" />
