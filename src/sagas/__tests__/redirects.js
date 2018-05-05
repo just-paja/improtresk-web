@@ -1,15 +1,12 @@
-import SagaTester from 'redux-saga-tester';
+import { push } from 'react-router-redux';
 
-import reducers from '../../reducers';
+import getSagaTester from '../../../mock/sagaTester';
 
 import * as sagas from '../redirects';
 
 describe('redirect sagas', () => {
   it('redirectHome triggers redirect home', () => {
-    const sagaTester = new SagaTester({
-      initialState: {},
-      reducers,
-    });
+    const sagaTester = getSagaTester({});
     sagaTester.start(sagas.redirectHome);
     expect(sagaTester.getCalledActions()).toContainEqual(
       expect.objectContaining({
@@ -19,14 +16,10 @@ describe('redirect sagas', () => {
         },
       })
     );
-    sagaTester.reset();
   });
 
   it('redirectSignup triggers redirect to signup', () => {
-    const sagaTester = new SagaTester({
-      initialState: {},
-      reducers,
-    });
+    const sagaTester = getSagaTester({});
     sagaTester.start(sagas.redirectSignup);
     expect(sagaTester.getCalledActions()).toContainEqual(
       expect.objectContaining({
@@ -36,6 +29,21 @@ describe('redirect sagas', () => {
         },
       })
     );
-    sagaTester.reset();
+  });
+
+  it('redirectToEntryPath redirects to participant home when entry path is not provided', () => {
+    const sagaTester = getSagaTester({});
+    sagaTester.start(sagas.redirectToEntryPath);
+    expect(sagaTester.getCalledActions()).toContainEqual(push('/cs/ucastnik'));
+  });
+
+  it('redirectToEntryPath redirects to entry path when provided', () => {
+    const sagaTester = getSagaTester({
+      session: {
+        loginRedirect: '/asdfasdf',
+      },
+    });
+    sagaTester.start(sagas.redirectToEntryPath);
+    expect(sagaTester.getCalledActions()).toContainEqual(push('/asdfasdf'));
   });
 });
