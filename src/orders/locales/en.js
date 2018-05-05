@@ -31,6 +31,7 @@ export default {
     choose: 'Choose',
     lunch: 'Lunch',
     mainCourse: 'Main course',
+    missingReservation: 'Invalid!',
     needToFillInIdentification: 'We require additional information to provide this accomodation.',
     needToChooseRoom: 'Need to choose a room.',
     noAccomodation: 'Default Accomodation',

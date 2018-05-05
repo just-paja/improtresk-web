@@ -22,6 +22,21 @@ import Prop from '../../components/Prop';
 import RegisterButton from './RegisterButton';
 import SignupCountdown from '../../years/containers/SignupCountdown';
 
+const renderOrderStatusProp = (order) => {
+  const endsAt = order.reservation ? order.reservation.endsAt : null;
+  return (
+    <span>
+      <OrderStatusLabel {...order} endsAt={endsAt} />
+      {order.paid || !endsAt ? null : (
+        <span>
+          {', '}
+          <OrderTimeout endsAt={endsAt} />
+        </span>
+      )}
+    </span>
+  );
+};
+
 const RegistrationStatus = ({
   activeOrder,
   onCancel,
@@ -71,13 +86,7 @@ const RegistrationStatus = ({
       <CardBody>
         <ul className="list-unstyled">
           <Prop icon="table" label={<Message name="orders.summary" />}>
-            <OrderStatusLabel {...activeOrder} endsAt={activeOrder.reservation.endsAt} />
-            {activeOrder.paid ? null : (
-              <span>
-                {', '}
-                <OrderTimeout endsAt={activeOrder.reservation.endsAt} />
-              </span>
-            )}
+            {renderOrderStatusProp(activeOrder)}
           </Prop>
           <Prop icon="street-view" label={<Message name="orders.workshop" />}>
             {activeOrder.workshop ?
@@ -113,7 +122,7 @@ const RegistrationStatus = ({
           />
         </CardFooter>
       ) : null}
-      {!activeOrder.paid && !activeOrder.confirmed ? (
+      {!activeOrder.paid && !activeOrder.confirmed && activeOrder.reservation ? (
         <CardFooter>
           <Button
             className="pull-right"

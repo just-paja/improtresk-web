@@ -31,6 +31,7 @@ export default {
     choose: 'Vybrat',
     lunch: 'Oběd',
     mainCourse: 'Hlavní chod',
+    missingReservation: 'Neplatná!',
     needToFillInIdentification: 'Pro tento druh ubytování je potřeba vyplnit dodatečné údaje.',
     needToChooseRoom: 'Je potřeba vybrat si pokoj.',
     noAccomodation: 'Výchozí ubytování',

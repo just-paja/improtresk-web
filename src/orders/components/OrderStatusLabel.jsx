@@ -3,7 +3,7 @@ import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Workshop } from '../../proptypes';
+import { Reservation, Workshop } from '../../proptypes';
 
 import Message from '../../containers/Message';
 
@@ -13,10 +13,15 @@ const OrderStatus = ({
   confirmed,
   endsAt,
   paid,
+  reservation,
   workshop,
 }) => {
   if (cancelled) {
     return <Label className="mb-0 text-danger"><Message name="orders.cancelled" /></Label>;
+  }
+
+  if (!reservation) {
+    return <Label className="mb-0 text-danger"><Message name="orders.missingReservation" /></Label>;
   }
 
   if (assigned) {
@@ -47,6 +52,7 @@ OrderStatus.propTypes = {
   confirmed: PropTypes.bool,
   endsAt: PropTypes.string.isRequired,
   paid: PropTypes.bool,
+  reservation: Reservation,
   workshop: Workshop,
 };
 
@@ -55,6 +61,7 @@ OrderStatus.defaultProps = {
   cancelled: false,
   confirmed: false,
   paid: false,
+  reservation: null,
   workshop: null,
 };
 
