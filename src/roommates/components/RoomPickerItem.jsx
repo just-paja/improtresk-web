@@ -27,56 +27,46 @@ export default class RoomPickerItem extends Component {
     this.props.onLeave(this.props.room.id);
   }
 
-  render() {
-    const {
-      disabled,
-      loading,
-      participant,
-      room,
-    } = this.props;
+  renderButton(message, icon, onClick) {
+    return (
+      <Button
+        loading={this.props.loading}
+        disabled={this.props.disabled}
+        link
+        size="sm"
+        icon={icon}
+        onClick={onClick}
+      >
+        <Message name={message} />
+      </Button>
+    );
+  }
+
+  renderActionButton() {
     let button = null;
-    if (room.joined) {
-      button = (
-        <Button
-          loading={loading}
-          disabled={disabled}
-          link
-          size="sm"
-          icon="sign-out"
-          onClick={this.handleLeave}
-        >
-          <Message name="roommates.leave" />
-        </Button>
-      );
-    } else if (room.inhabitants.length < room.size) {
-      button = (
-        <Button
-          loading={loading}
-          disabled={disabled}
-          link
-          size="sm"
-          icon="sign-in"
-          onClick={this.handleJoin}
-        >
-          <Message name="roommates.join" />
-        </Button>
-      );
+    if (this.props.room.joined) {
+      button = this.renderButton('roommates.leave', 'sign-out', this.handleLeave);
+    } else if (this.props.room.inhabitants.length < this.props.room.size) {
+      button = this.renderButton('roommates.join', 'sign-in', this.handleJoin);
     }
+    return button;
+  }
+
+  render() {
+    const { participant, room } = this.props;
     return (
       <Card className="mb-3">
         <CardHeader>
           <Flex justify="between">
             <FlexLabel>
               <strong>
-                <FontAwesome name="key" />
-                {' '}
-                <Message name="roommates.room" />
-                {' '}
+                <FontAwesome name="key" />{' '}
+                <Message name="roommates.room" />{' '}
                 {room.number}
               </strong>
               <span>{room.inhabitants.length}/{room.size}</span>
             </FlexLabel>
-            {button}
+            {this.renderActionButton()}
           </Flex>
         </CardHeader>
         <InhabitantList
