@@ -12,7 +12,7 @@ const Prop = ({ children, icon, label }) => (
       <Flex>
         <span className="mr-1">
           {icon ? <FontAwesome className="fa-fw" name={icon} /> : null}
-          {icon ? ' ' : null}
+          {icon ? ' ' : null}
           {label ? <b>{label}:</b> : null}
           {label ? ' ' : null}
         </span>
