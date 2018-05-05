@@ -35,6 +35,7 @@ export default {
     needToFillInIdentification: 'We require additional information to provide this accomodation.',
     needToChooseRoom: 'Need to choose a room.',
     noAccomodation: 'Default Accomodation',
+    noCapacity: 'Your choice is already at capacity',
     notRegisteredToWorkshop: 'Not registered on workshop',
     notSelected: 'Not Selected',
     noWorkshop: 'Signup without workshop',

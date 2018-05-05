@@ -35,6 +35,7 @@ export default {
     needToFillInIdentification: 'Pro tento druh ubytování je potřeba vyplnit dodatečné údaje.',
     needToChooseRoom: 'Je potřeba vybrat si pokoj.',
     noAccomodation: 'Výchozí ubytování',
+    noCapacity: 'Kapacita vaší volby již byla naplněna',
     notRegisteredToWorkshop: 'Zatím s tebou na Improtřesku nepočítáme.',
     notSelected: 'Nevybráno',
     noWorkshop: 'Přihláška bez workshopu',
