@@ -49,7 +49,7 @@ const en = {
   participantIdentityEdit: '/participant/identity',
   participantNewPassword: '/new-password',
   participantRegister: '/participant/register',
-  participantRoomSelection: '/ucastnik/room-choice',
+  participantRoomSelection: '/participant/room-selection',
   performerDetail: '/performers/:slug',
   schedule: '/schedule',
   signup: '/signup',
