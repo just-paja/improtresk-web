@@ -6,6 +6,7 @@ exclude_patterns:
   - "**/__tests__"
   - "**/constants"
   - "**/locales"
+  - "/src/routeTable.js"
   - "mock/"
   - "config/"
   - "scripts/"
