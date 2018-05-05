@@ -1,10 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
 export default {
   orders: {
-    foodOk: 'Nastaveno',
-    foodSelection: 'Výběr jídla',
-    foodSelectionRequired: 'Je potřeba, aby sis vybral co budeš jíst.',
-    foodSelectionDisabled: 'Vypadá to, že jsi nestihl uzávěrku výběru jídel.',
     accomodation: 'Ubytování',
     accomodationHelp: 'Ubytování se platí zvlášť, tedy až na checkinu a v hotovosti. Základní ubytování je zdarma.',
     accomodationOk: 'Nastaveno',
@@ -22,7 +18,11 @@ export default {
     foodChoicesEmpty: 'Vypadá to, že v přihlášce nemáš zvolené obědy. S čistým svědomím můžeš tuto stránku opustit.',
     foodNotOrdered: 'Neobjednáno',
     foodNotSelected: 'Nevybráno',
+    foodOk: 'Nastaveno',
     foodSave: 'Uložit výběr jídel',
+    foodSelection: 'Výběr jídla',
+    foodSelectionDisabled: 'Vypadá to, že jsi nestihl uzávěrku výběru jídel.',
+    foodSelectionRequired: 'Je potřeba, aby sis vybral co budeš jíst.',
     history: 'Historie',
     howLongStay: 'Kdy u nás budeš?',
     changeFood: 'Vybrat jídlo',
@@ -45,6 +45,7 @@ export default {
     paymentCancelled: 'Zrušeno',
     paymentMethod: 'Metoda platby',
     paymentMethodHelp: 'V tuto chvíli je možné platit jedině bankovním převodem. Detaily platby jsou v dalším kroku objednávky.',
+    payToChooseRoom: 'Výběr pokoje bude zpřístupněn až po potvrzení a zaplacení objednávky.',
     priceToPay: 'Částka k zaplacení',
     register: 'Registrace',
     registerToWorkshop: 'Přihlásit se na Improtřesk',

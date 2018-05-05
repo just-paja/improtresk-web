@@ -43,6 +43,7 @@ export default {
     paymentCancelled: 'Cancelled',
     paymentMethod: 'Payment method',
     paymentMethodHelp: 'It is possible to pay only by account transfer at this moment. Confirm the order details in the next step.',
+    payToChooseRoom: 'To select a room, order needs to be confirmed and paid first.',
     priceToPay: 'Price to pay',
     register: 'Registration',
     registerToWorkshop: 'Register to workshop',
