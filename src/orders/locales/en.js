@@ -1,6 +1,10 @@
 /* eslint-disable no-template-curly-in-string */
 export default {
   orders: {
+    foodOk: 'All set up',
+    foodSelection: 'Food selection',
+    foodSelectionRequired: 'We need you to select food from our menu.',
+    foodSelectionDisabled: 'It is too late, you missed the food selection deadline.',
     accomodation: 'Accomodation',
     accomodationHelp: 'You pay for accomodation separately on the festival checkin and in cash. Basic accomodation is included in signup price.',
     accomodationOk: 'All set up',

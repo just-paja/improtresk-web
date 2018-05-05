@@ -1,6 +1,10 @@
 /* eslint-disable no-template-curly-in-string */
 export default {
   orders: {
+    foodOk: 'Nastaveno',
+    foodSelection: 'Výběr jídla',
+    foodSelectionRequired: 'Je potřeba, aby sis vybral co budeš jíst.',
+    foodSelectionDisabled: 'Vypadá to, že jsi nestihl uzávěrku výběru jídel.',
     accomodation: 'Ubytování',
     accomodationHelp: 'Ubytování se platí zvlášť, tedy až na checkinu a v hotovosti. Základní ubytování je zdarma.',
     accomodationOk: 'Nastaveno',

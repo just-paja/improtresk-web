@@ -1,5 +1,7 @@
+import Alert from 'reactstrap/lib/Alert';
 import Card from 'reactstrap/lib/Card';
 import CardBody from 'reactstrap/lib/CardBody';
+import CardFooter from 'reactstrap/lib/CardFooter';
 import CardHeader from 'reactstrap/lib/CardHeader';
 import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
@@ -13,6 +15,8 @@ import Meal from '../../food/components/Meal';
 import Message from '../../containers/Message';
 import Link from '../../containers/Link';
 
+const isFoodSelected = meals => meals.every(meal => meal.orderedFood && meal.orderedSoup);
+
 const OrderFood = ({
   isFoodPickingAllowed,
   order,
@@ -20,6 +24,7 @@ const OrderFood = ({
   if (!order) {
     return null;
   }
+  const foodSelected = isFoodSelected(order.meals);
   return (
     <Card className="mb-4">
       <CardHeader>
@@ -29,7 +34,7 @@ const OrderFood = ({
             {' '}
             <Message name="orders.food" />
           </span>
-          {isFoodPickingAllowed && order.meals.length ? (
+          {order.confirmed && isFoodPickingAllowed && order.meals.length ? (
             <Link to="participantChangeFood"><Message name="orders.changeFood" /></Link>
           ) : null}
         </Flex>
@@ -45,6 +50,33 @@ const OrderFood = ({
           </ul>
         )}
       </CardBody>
+      <CardFooter>
+        {foodSelected ? (
+          <Alert color="success">
+            <FontAwesome name="check-circle" />
+            {' '}
+            <Message name="orders.foodOk" />
+          </Alert>
+        ) : null}
+        {!foodSelected && isFoodPickingAllowed ? (
+          <Alert color="danger">
+            <FontAwesome name="cutlery" />
+            {' '}
+            <Message name="orders.foodSelectionRequired" />
+            {' '}
+            <Link to="participantChangeFood">
+              <Message name="orders.foodSelection" />
+            </Link>
+          </Alert>
+        ) : null}
+        {!foodSelected && !isFoodPickingAllowed ? (
+          <Alert color="warning">
+            <FontAwesome name="exclamation-triangle" />
+            {' '}
+            <Message name="orders.foodSelectionDisabled" />
+          </Alert>
+        ) : null}
+      </CardFooter>
     </Card>
   );
 };
