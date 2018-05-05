@@ -8,6 +8,8 @@ import UncontrolledDropdown from 'reactstrap/lib/UncontrolledDropdown';
 
 import LinkContainer from './LinkContainer';
 
+const stopPropagation = e => e.stopPropagation();
+
 const LanguagePicker = ({
   availableLangs,
   className,
@@ -15,7 +17,7 @@ const LanguagePicker = ({
   selectedLang,
 }) => (
   <UncontrolledDropdown className={className} nav inNavbar>
-    <DropdownToggle nav caret>
+    <DropdownToggle nav caret onClick={stopPropagation}>
       <FontAwesome name="language" />
     </DropdownToggle>
     <DropdownMenu>

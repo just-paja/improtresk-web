@@ -14,17 +14,25 @@ export default class Navigation extends Component {
   constructor() {
     super();
     this.state = { expanded: false };
+    this.collapseMenu = this.collapseMenu.bind(this);
     this.toggleMenu = this.toggleMenu.bind(this);
   }
 
-  toggleMenu() {
+  collapseMenu() {
+    this.setState({ expanded: false });
+  }
+
+  toggleMenu(event) {
+    if (event) {
+      event.stopPropagation();
+    }
     this.setState({ expanded: !this.state.expanded });
   }
 
   render() {
     const { currentYear, lang, onLogout, participant, years } = this.props;
     return (
-      <Navbar color="dark" fixed="top" expand="md">
+      <Navbar color="dark" fixed="top" expand="md" onClick={this.collapseMenu}>
         <Container>
           <LinkContainer to="home">
             <NavbarBrand href="/">

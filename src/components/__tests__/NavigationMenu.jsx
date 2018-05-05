@@ -207,7 +207,7 @@ describe('Navigation menu component', () => {
     expect(comp.find({
       to: 'archiveYearDetail',
       id: '2016',
-    }).children('NavLink')).toHaveProp('children', ['2016', ' - ', 'Bar']);
+    }).children('DropdownItem')).toHaveProp('children', ['2016', ' - ', 'Bar']);
   });
 
   it('renders link to contact', () => {

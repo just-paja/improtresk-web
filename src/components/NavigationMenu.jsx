@@ -17,6 +17,8 @@ import LanguagePicker from '../containers/LanguagePicker';
 
 import { reverse } from '../routeTable';
 
+const stopPropagation = e => e.stopPropagation();
+
 const NavigationMenu = ({
   currentYear,
   lang,
@@ -31,40 +33,40 @@ const NavigationMenu = ({
       inNavbar
       key="participants"
     >
-      <DropdownToggle nav caret>
+      <DropdownToggle nav caret onClick={stopPropagation}>
         <Message name="menu.forParticipants" />
       </DropdownToggle>
       <DropdownMenu>
-        <DropdownItem>
-          <LinkContainer to={reverse(lang, 'location')}>
-            <NavLink><Message name="menu.locations" /></NavLink>
-          </LinkContainer>
-        </DropdownItem>
-        <DropdownItem>
-          <LinkContainer to={reverse(lang, 'accomodation')}>
-            <NavLink><Message name="menu.accomodation" /></NavLink>
-          </LinkContainer>
-        </DropdownItem>
-        <DropdownItem>
-          <LinkContainer to={reverse(lang, 'food')}>
-            <NavLink><Message name="menu.food" /></NavLink>
-          </LinkContainer>
-        </DropdownItem>
-        <DropdownItem>
-          <LinkContainer to={reverse(lang, 'fees')}>
-            <NavLink><Message name="menu.fees" /></NavLink>
-          </LinkContainer>
-        </DropdownItem>
-        <DropdownItem>
-          <LinkContainer to={reverse(lang, 'conditions')}>
-            <NavLink><Message name="menu.conditions" /></NavLink>
-          </LinkContainer>
-        </DropdownItem>
-        <DropdownItem>
-          <LinkContainer to={reverse(lang, 'tips')}>
-            <NavLink><Message name="menu.tips" /></NavLink>
-          </LinkContainer>
-        </DropdownItem>
+        <LinkContainer to={reverse(lang, 'location')}>
+          <DropdownItem>
+            <Message name="menu.locations" />
+          </DropdownItem>
+        </LinkContainer>
+        <LinkContainer to={reverse(lang, 'accomodation')}>
+          <DropdownItem>
+            <Message name="menu.accomodation" />
+          </DropdownItem>
+        </LinkContainer>
+        <LinkContainer to={reverse(lang, 'food')}>
+          <DropdownItem>
+            <Message name="menu.food" />
+          </DropdownItem>
+        </LinkContainer>
+        <LinkContainer to={reverse(lang, 'fees')}>
+          <DropdownItem>
+            <Message name="menu.fees" />
+          </DropdownItem>
+        </LinkContainer>
+        <LinkContainer to={reverse(lang, 'conditions')}>
+          <DropdownItem>
+            <Message name="menu.conditions" />
+          </DropdownItem>
+        </LinkContainer>
+        <LinkContainer to={reverse(lang, 'tips')}>
+          <DropdownItem>
+            <Message name="menu.tips" />
+          </DropdownItem>
+        </LinkContainer>
       </DropdownMenu>
     </UncontrolledDropdown>,
     <NavItem key="workshops">
@@ -90,22 +92,23 @@ const NavigationMenu = ({
     <Nav className="w-100" navbar {...props}>
       {currentYearItems}
       <UncontrolledDropdown nav inNavbar>
-        <DropdownToggle nav caret>
+        <DropdownToggle nav caret onClick={stopPropagation}>
           <Message name="menu.archive" />
         </DropdownToggle>
         <DropdownMenu>
           {(years && years.length ?
             years.map(yearRun => (
-              <DropdownItem key={yearRun.id}>
-                <PermaLinkContainer
-                  id={yearRun.year}
-                  lang={lang}
-                  to="archiveYearDetail"
-                  title={yearRun.topic}
-                >
-                  <NavLink>{yearRun.year} - {yearRun.topic}</NavLink>
-                </PermaLinkContainer>
-              </DropdownItem>
+              <PermaLinkContainer
+                id={yearRun.year}
+                key={yearRun.id}
+                lang={lang}
+                to="archiveYearDetail"
+                title={yearRun.topic}
+              >
+                <DropdownItem>
+                  {yearRun.year} - {yearRun.topic}
+                </DropdownItem>
+              </PermaLinkContainer>
             )) :
             <DropdownItem disabled><Message name="menu.archiveEmpty" /></DropdownItem>
           )}
@@ -121,7 +124,7 @@ const NavigationMenu = ({
       <LanguagePicker className="ml-md-auto" />
       {participant ? (
         <UncontrolledDropdown nav inNavbar>
-          <DropdownToggle nav caret>
+          <DropdownToggle nav caret onClick={stopPropagation}>
             <FontAwesome name="user" /> <span>{participant.name}</span>
           </DropdownToggle>
           <DropdownMenu>
