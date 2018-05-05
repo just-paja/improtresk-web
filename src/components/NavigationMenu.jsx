@@ -19,6 +19,64 @@ import { reverse } from '../routeTable';
 
 const stopPropagation = e => e.stopPropagation();
 
+const renderNavLink = (lang, path, label) => (
+  <NavItem key={path}>
+    <LinkContainer to={reverse(lang, path)}>
+      <NavLink><Message name={label} /></NavLink>
+    </LinkContainer>
+  </NavItem>
+);
+
+const renderDropDownItem = (lang, path, label) => (
+  <LinkContainer key={path} to={reverse(lang, path)}>
+    <DropdownItem>
+      <Message name={label} />
+    </DropdownItem>
+  </LinkContainer>
+);
+
+const renderDropDown = (label, children, rawLabel = null) => (
+  <UncontrolledDropdown key={label} nav inNavbar>
+    <DropdownToggle nav caret onClick={stopPropagation}>
+      {rawLabel || <Message name={label} />}
+    </DropdownToggle>
+    <DropdownMenu>
+      {children}
+    </DropdownMenu>
+  </UncontrolledDropdown>
+);
+
+const renderActiveYearMenuItems = (lang, currentYear, participant) => (
+  currentYear ? [
+    renderDropDown('menu.forParticipants', [
+      renderDropDownItem(lang, 'location', 'menu.locations'),
+      renderDropDownItem(lang, 'accomodation', 'menu.accomodation'),
+      renderDropDownItem(lang, 'food', 'menu.food'),
+      renderDropDownItem(lang, 'fees', 'menu.fees'),
+      renderDropDownItem(lang, 'conditions', 'menu.conditions'),
+      renderDropDownItem(lang, 'tips', 'menu.tips'),
+    ]),
+    renderNavLink(lang, 'workshops', 'menu.workshops'),
+    !participant ? renderNavLink(lang, 'signup', 'menu.signup') : null,
+    renderNavLink(lang, 'schedule', 'menu.schedule'),
+  ] : null
+);
+
+const renderArchiveDropdown = (lang, years) => renderDropDown(
+  'menu.archive',
+  years && years.length ? years.map(yearRun => (
+    <PermaLinkContainer
+      id={yearRun.year}
+      key={yearRun.id}
+      lang={lang}
+      to="archiveYearDetail"
+      title={yearRun.topic}
+    >
+      <DropdownItem>{yearRun.year} - {yearRun.topic}</DropdownItem>
+    </PermaLinkContainer>
+  )) : <DropdownItem disabled><Message name="menu.archiveEmpty" /></DropdownItem>
+);
+
 const NavigationMenu = ({
   currentYear,
   lang,
@@ -26,121 +84,19 @@ const NavigationMenu = ({
   participant,
   years,
   ...props
-}) => {
-  const currentYearItems = currentYear ? [
-    <UncontrolledDropdown
-      nav
-      inNavbar
-      key="participants"
-    >
-      <DropdownToggle nav caret onClick={stopPropagation}>
-        <Message name="menu.forParticipants" />
-      </DropdownToggle>
-      <DropdownMenu>
-        <LinkContainer to={reverse(lang, 'location')}>
-          <DropdownItem>
-            <Message name="menu.locations" />
-          </DropdownItem>
-        </LinkContainer>
-        <LinkContainer to={reverse(lang, 'accomodation')}>
-          <DropdownItem>
-            <Message name="menu.accomodation" />
-          </DropdownItem>
-        </LinkContainer>
-        <LinkContainer to={reverse(lang, 'food')}>
-          <DropdownItem>
-            <Message name="menu.food" />
-          </DropdownItem>
-        </LinkContainer>
-        <LinkContainer to={reverse(lang, 'fees')}>
-          <DropdownItem>
-            <Message name="menu.fees" />
-          </DropdownItem>
-        </LinkContainer>
-        <LinkContainer to={reverse(lang, 'conditions')}>
-          <DropdownItem>
-            <Message name="menu.conditions" />
-          </DropdownItem>
-        </LinkContainer>
-        <LinkContainer to={reverse(lang, 'tips')}>
-          <DropdownItem>
-            <Message name="menu.tips" />
-          </DropdownItem>
-        </LinkContainer>
-      </DropdownMenu>
-    </UncontrolledDropdown>,
-    <NavItem key="workshops">
-      <LinkContainer to={reverse(lang, 'workshops')}>
-        <NavLink><Message name="menu.workshops" /></NavLink>
-      </LinkContainer>
-    </NavItem>,
-    !participant ? (
-      <NavItem key="signup">
-        <LinkContainer to={reverse(lang, 'signup')}>
-          <NavLink><Message name="menu.signup" /></NavLink>
-        </LinkContainer>
-      </NavItem>
-    ) : null,
-    <NavItem key="schedule">
-      <LinkContainer to={reverse(lang, 'schedule')}>
-        <NavLink><Message name="menu.schedule" /></NavLink>
-      </LinkContainer>
-    </NavItem>,
-  ] : null;
-
-  return (
-    <Nav className="w-100" navbar {...props}>
-      {currentYearItems}
-      <UncontrolledDropdown nav inNavbar>
-        <DropdownToggle nav caret onClick={stopPropagation}>
-          <Message name="menu.archive" />
-        </DropdownToggle>
-        <DropdownMenu>
-          {(years && years.length ?
-            years.map(yearRun => (
-              <PermaLinkContainer
-                id={yearRun.year}
-                key={yearRun.id}
-                lang={lang}
-                to="archiveYearDetail"
-                title={yearRun.topic}
-              >
-                <DropdownItem>
-                  {yearRun.year} - {yearRun.topic}
-                </DropdownItem>
-              </PermaLinkContainer>
-            )) :
-            <DropdownItem disabled><Message name="menu.archiveEmpty" /></DropdownItem>
-          )}
-        </DropdownMenu>
-      </UncontrolledDropdown>
-      <NavItem>
-        <LinkContainer to={reverse(lang, 'contact')}>
-          <NavLink>
-            <Message name="menu.contact" />
-          </NavLink>
-        </LinkContainer>
-      </NavItem>
-      <LanguagePicker className="ml-md-auto" />
-      {participant ? (
-        <UncontrolledDropdown nav inNavbar>
-          <DropdownToggle nav caret onClick={stopPropagation}>
-            <FontAwesome name="user" /> <span>{participant.name}</span>
-          </DropdownToggle>
-          <DropdownMenu>
-            <LinkContainer to={reverse(lang, 'participantHome')}>
-              <DropdownItem><Message name="participants.home" /></DropdownItem>
-            </LinkContainer>
-            <LinkContainer to={reverse(lang, 'participantChangePassword')}>
-              <DropdownItem><Message name="participants.changePassword" /></DropdownItem>
-            </LinkContainer>
-            <DropdownItem onClick={onLogout}><Message name="participants.logout" /></DropdownItem>
-          </DropdownMenu>
-        </UncontrolledDropdown>
-      ) : null}
-    </Nav>
-  );
-};
+}) => (
+  <Nav className="w-100" navbar {...props}>
+    {renderActiveYearMenuItems(lang, currentYear, participant)}
+    {renderArchiveDropdown(lang, years)}
+    {renderNavLink(lang, 'contact', 'menu.contact')}
+    <LanguagePicker className="ml-md-auto" />
+    {participant ? renderDropDown('menu.participant', [
+      renderDropDownItem(lang, 'participantHome', 'participants.home'),
+      renderDropDownItem(lang, 'participantChangePassword', 'participants.changePassword'),
+      <DropdownItem key="logout" onClick={onLogout}><Message name="participants.logout" /></DropdownItem>,
+    ], <span><FontAwesome name="user" /> <span>{participant.name}</span></span>) : null}
+  </Nav>
+);
 
 NavigationMenu.propTypes = {
   currentYear: PropTypes.object,
