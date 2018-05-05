@@ -28,7 +28,7 @@ const ChangePasswordPage = ({ translate }) => (
         <Link to="participantHome"><Message name="participants.home" /></Link>
       </BreadcrumbItem>
       <BreadcrumbItem active>
-        <Message name="orders.changeFood" />
+        <Message name="participants.changePassword" />
       </BreadcrumbItem>
     </Breadcrumb>
   </Container>
