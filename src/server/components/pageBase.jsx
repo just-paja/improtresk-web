@@ -30,6 +30,7 @@ const pageBase = ({
             __html: `window.INITIAL_STATE = ${JSON.stringify(state)};`,
           }}
         />
+        <script src="https://cdn.ravenjs.com/3.24.2/raven.min.js" crossOrigin="anonymous" />
       </head>
       <body>
         {/* eslint-disable react/no-danger */}

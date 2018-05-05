@@ -28,8 +28,27 @@ const render = (RootComponent) => {
   );
 };
 
-let sagaTask = store.runSaga(sagas);
-render(RootDefault);
+let sagaTask;
+
+const startUp = () => {
+  sagaTask = store.runSaga(sagas);
+  render(RootDefault);
+};
+
+const runWithRaven = () => {
+  global.Raven.config('https://c59e8f1e7a55412c882cc62f4e02e335@sentry.io/1201657', {
+    environment: process.env.NODE_ENV,
+    whitelistUrls: [/improtresk\.cz/],
+  }).install();
+  global.Raven.context(startUp);
+};
+
+if (global.Raven) {
+  runWithRaven();
+} else {
+  startUp();
+}
+
 
 if (module.hot) {
   module.hot.accept('../components/Root', () => {
