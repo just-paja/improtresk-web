@@ -10,6 +10,11 @@ const aggregateJoinedStatus = (room, participant) => ({
   ).length !== 0,
 });
 
+const aggregateFullStatus = room => ({
+  ...room,
+  full: room.inhabitants.length >= room.size,
+});
+
 export const getRoomListState = state => state.roommates.rooms;
 export const getRoomListProgress = getProgress(getRoomListState);
 export const getRoomList = transformData(getRoomListState, {
@@ -18,7 +23,19 @@ export const getRoomList = transformData(getRoomListState, {
       select: getParticipantDetail,
       transform: aggregateJoinedStatus,
     },
+    {
+      transform: aggregateFullStatus,
+    },
   ],
+  sort: (a, b) => {
+    if (a.full && !b.full) {
+      return 1;
+    }
+    if (!a.full && b.full) {
+      return -1;
+    }
+    return 0;
+  },
 });
 
 export const getRoomChoice = createSelector(
