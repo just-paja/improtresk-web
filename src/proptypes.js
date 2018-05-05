@@ -106,6 +106,10 @@ export const NewsItem = PropTypes.shape({
   text: PropTypes.string,
 });
 
+export const Reservation = PropTypes.shape({
+  endsAt: PropTypes.string,
+});
+
 export const Order = PropTypes.shape({
   accomodation: Accomodation,
   assigned: PropTypes.bool,
@@ -117,6 +121,7 @@ export const Order = PropTypes.shape({
   overPaid: PropTypes.bool,
   paid: PropTypes.bool,
   price: PropTypes.number.isRequired,
+  reservation: Reservation,
   symvar: PropTypes.string.isRequired,
 });
 

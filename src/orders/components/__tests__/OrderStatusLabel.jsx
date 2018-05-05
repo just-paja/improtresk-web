@@ -19,7 +19,11 @@ describe('OrderStatusLabel component', () => {
 
   it('renders unconfirmed message when order is not cancelled, not assigned, not paid and not confirmed', () => {
     const comp = shallow(
-      <OrderStatusLabel endsAt="2017-01-01T01:01:01Z" translate={msg => msg} />
+      <OrderStatusLabel
+        reservation={{}}
+        endsAt="2017-01-01T01:01:01Z"
+        translate={msg => msg}
+      />
     );
     expect(comp.find('Connect(Message)')).toHaveProp('name', 'orders.unconfirmed');
   });
@@ -27,6 +31,7 @@ describe('OrderStatusLabel component', () => {
   it('renders waiting to be paid message when order is confirmed, not cancelled, not assigned and not paid', () => {
     const comp = shallow(
       <OrderStatusLabel
+        reservation={{}}
         confirmed
         endsAt="2017-01-01T01:01:01Z"
         translate={msg => msg}
@@ -38,6 +43,7 @@ describe('OrderStatusLabel component', () => {
   it('renders waiting to be assigned when order is paid, not cancelled and not assigned', () => {
     const comp = shallow(
       <OrderStatusLabel
+        reservation={{}}
         paid
         endsAt="2017-01-01T01:01:01Z"
         translate={msg => msg}
@@ -55,6 +61,7 @@ describe('OrderStatusLabel component', () => {
   it('renders assigned message when order is assigned and not cancelled', () => {
     const comp = shallow(
       <OrderStatusLabel
+        reservation={{}}
         assigned
         endsAt="2017-01-01T01:01:01Z"
         translate={msg => msg}
@@ -66,6 +73,7 @@ describe('OrderStatusLabel component', () => {
   it('renders paid message when order is paid and without workshop', () => {
     const comp = shallow(
       <OrderStatusLabel
+        reservation={{}}
         paid
         endsAt="2017-01-01T01:01:01Z"
         translate={msg => msg}
@@ -77,6 +85,7 @@ describe('OrderStatusLabel component', () => {
   it('renders cancelled message when order is cancelled', () => {
     const comp = shallow(
       <OrderStatusLabel
+        reservation={{}}
         cancelled
         endsAt="2017-01-01T01:01:01Z"
         translate={msg => msg}
