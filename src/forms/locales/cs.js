@@ -20,7 +20,7 @@ export default {
       'must-be-eighteen': 'Musí ti být osmnáct.',
       'must-accept-rules': 'Musíš souhlasit s pravidly festivalu',
     },
-    tooLongShort: 'Hodnota ${label} je příliš dlouhá.',
+    tooLong: 'Hodnota ${label} je příliš dlouhá.',
     tooShort: 'Hodnota ${label} je příliš krátká.',
   },
 };

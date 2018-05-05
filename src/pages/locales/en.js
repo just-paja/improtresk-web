@@ -16,6 +16,7 @@ export default {
     festivalMenu: 'Festival Menu',
     festivalOrg: 'The festival Improtřesk is administered under <a href="https://improliga.cz">Czech improvisation league z. s.</a> cooperating with <a href="http://www.milevskem.cz/kultura-a-volny-cas/dum-kultury-milevsko/o-nas">DK Milevsko</a>.',
     food: 'Food',
+    forParticipants: 'For Participants',
     howMuchCost: '<b>How much</b> for a ticket?',
     changePassword: 'Change password',
     locations: 'Locations',
