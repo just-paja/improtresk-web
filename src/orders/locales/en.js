@@ -14,6 +14,7 @@ export default {
     cancel: 'Cancel',
     cancelled: 'Cancelled by user',
     continue: 'Continue',
+    defaultFood: '(default)',
     dinner: 'Dinner',
     expiresIn: 'Expires in ${duration}',
     fillIn: 'Fill in',

@@ -10,6 +10,7 @@ export default {
     cancel: 'Zrušit',
     cancelled: 'Zrušeno uživatelem',
     continue: 'Pokračovat',
+    defaultFood: '(výchozí)',
     dinner: 'Večeře',
     expiresIn: 'Vyprší za ${duration}',
     fillIn: 'Vyplnit',
