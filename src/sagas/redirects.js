@@ -24,7 +24,7 @@ export function* redirectToEntryPath() {
   if (entryPath) {
     yield put(push(entryPath));
   } else {
-    yield redirect('participantHome');
+    yield call(redirect, 'participantHome');
   }
 }
 
