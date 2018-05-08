@@ -50,6 +50,7 @@ export default {
     paymentProcess: 'Platbu za přihlášku lze provést buď bankovním převodem a nebo kartou online.',
     phoneNumber: 'Telefonní číslo',
     phoneNumberHelp: 'Pokud zjistíme že se něco nepovedlo, tak ti budeme volat. Pokud telefon nevyplníš, bereš zodpovědnost na sebe.',
+    qrCheckin: 'Stáhnout QR vstupenku',
     register: 'Registrovat',
     registration: 'Registrace',
     resetPassword: 'Resetovat heslo',

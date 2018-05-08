@@ -19,6 +19,7 @@ import OrderTimeout from './OrderTimeout';
 import PaymentDetails from './PaymentDetails';
 import Price from '../../components/Price';
 import Prop from '../../components/Prop';
+import QrCheckinLink from '../containers/QrCheckinLink';
 import RegisterButton from './RegisterButton';
 import SignupCountdown from '../../years/containers/SignupCountdown';
 
@@ -109,17 +110,16 @@ const RegistrationStatus = ({
           </div>
         ) : null}
       </CardBody>
-      {activeOrder.confirmed && !activeOrder.paid ? (
-        <CardFooter>
+      <CardFooter>
+        {activeOrder.paid ? <QrCheckinLink /> : null}
+        {activeOrder.confirmed && !activeOrder.paid ? (
           <OrderPaymentStatus
             cancelled={activeOrder.cancelled}
             paid={activeOrder.paid}
             overPaid={activeOrder.overPaid}
           />
-        </CardFooter>
-      ) : null}
-      {!activeOrder.paid && !activeOrder.confirmed && activeOrder.reservation ? (
-        <CardFooter>
+        ) : null}
+        {!activeOrder.paid && !activeOrder.confirmed && activeOrder.reservation ? (
           <Button
             className="pull-right"
             color="primary"
@@ -127,8 +127,8 @@ const RegistrationStatus = ({
           >
             Potvrdit objednávku
           </Button>
-        </CardFooter>
         ) : null}
+      </CardFooter>
     </Card>
   );
 };

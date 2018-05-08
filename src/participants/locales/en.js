@@ -50,6 +50,7 @@ export default {
     paymentProcess: 'You can pay for the signup only using account transfer.',
     phoneNumber: 'Phone number',
     phoneNumberHelp: 'If we find anything worng with your signup, we will first try to contact you on phone, secondly on e-mail. If you do not provide us with your phone number, you take responsibility into your hands.',
+    qrCheckin: 'Download QR Ticket',
     register: 'Register',
     registration: 'Registration',
     resetPassword: 'Reset password',
