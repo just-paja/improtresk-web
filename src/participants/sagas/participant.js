@@ -1,28 +1,20 @@
 import cookie from 'js-cookie';
 
-import { call, select, takeEvery } from 'redux-saga/effects';
+import { call, put, select, takeEvery } from 'redux-saga/effects';
 
-import { fetchResource, fetchResourceIfRequired } from '../../sagas/api';
+import { fetchResource } from '../../sagas/api';
 import { getApiAuth } from '../../selectors/session';
-import { isParticipantRequired } from '../selectors';
+import { getParticipantDetailState } from '../selectors';
 import { redirectSignup } from '../../sagas/redirects';
-import { login, loginWithSignupData } from '../actions';
+import { participantFetch, login, loginWithSignupData } from '../actions';
+
+import createFetchSaga from '../../sagas/createFetchSaga';
 
 import * as api from '../../api';
 import * as constants from '../constants';
 
-export function* fetchParticipantShowHome() {
-  const auth = yield select(getApiAuth);
-  if (auth && auth.access_token) {
-    yield call(fetchResourceIfRequired, api.fetchParticipant, {
-      isRequired: isParticipantRequired,
-      actions: {
-        start: constants.PARTICIPANT_FETCH_STARTED,
-        success: constants.PARTICIPANT_FETCH_SUCCESS,
-        fail: constants.PARTICIPANT_FETCH_ERROR,
-      },
-    });
-  }
+function* triggerParticipantFetch() {
+  yield put(participantFetch());
 }
 
 export function* requireParticipant() {
@@ -30,10 +22,9 @@ export function* requireParticipant() {
     [
       login.SUCCESS,
       loginWithSignupData.SUCCESS,
-      constants.PARTICIPANT_LOGIN_AUTO,
       constants.PARTICIPANT_LOGIN_AUTO_SUCCESS,
     ],
-    fetchParticipantShowHome
+    triggerParticipantFetch
   );
 }
 
@@ -66,7 +57,10 @@ export function* logoutOnAction() {
 }
 
 export default [
-  afterLogout,
+  ...createFetchSaga(participantFetch, {
+    stateSelector: getParticipantDetailState,
+  }),
   requireParticipant,
+  afterLogout,
   logoutOnAction,
 ];

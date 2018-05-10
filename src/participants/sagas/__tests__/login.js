@@ -3,7 +3,7 @@ import sinon from 'sinon';
 
 import { push } from 'react-router-redux';
 
-import { login } from '../../actions';
+import { login, participantFetch } from '../../actions';
 
 import getSagaTester from '../../../../mock/sagaTester';
 import sagas from '..';
@@ -69,7 +69,7 @@ describe('Login saga', () => {
       scope: 'write',
       refresh_token: 'TtMGe8ZaC4boRBDXkXqdFwPxV0dQiD',
     }));
-    expect(sagaTester.numCalled('PARTICIPANT_FETCH_STARTED')).toBe(1);
+    expect(sagaTester.numCalled(participantFetch.REQUEST)).toBe(1);
   });
 
   it('fetches participant on login form submit success despite it is valid', () => {
@@ -96,7 +96,7 @@ describe('Login saga', () => {
       scope: 'write',
       refresh_token: 'TtMGe8ZaC4boRBDXkXqdFwPxV0dQiD',
     }));
-    expect(sagaTester.numCalled('PARTICIPANT_FETCH_STARTED')).toBe(1);
+    expect(sagaTester.numCalled(participantFetch.REQUEST)).toBe(1);
   });
 
   it('saves auth key cookie on login form submit success', () => {

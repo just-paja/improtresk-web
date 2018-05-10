@@ -1,11 +1,11 @@
 import cookie from 'js-cookie';
 
-import { put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, take, takeLatest } from 'redux-saga/effects';
 import { destroy } from 'redux-form';
 
 import { redirectToEntryPath } from '../../sagas/redirects';
 import { getApiAuth } from '../../selectors/session';
-import { login, setAuthKey } from '../actions';
+import { login, participantFetch, setAuthKey } from '../actions';
 import { APP_MOUNTED } from '../../constants';
 import { createFormSubmitSaga } from '../../forms/sagas';
 
@@ -40,10 +40,15 @@ function* onLoginFormSuccess() {
   yield takeLatest(login.SUCCESS, loginWithAuthKey);
 }
 
+function* redirectToEntryPathOnParticipantFetch() {
+  take(participantFetch.FULFILL);
+  yield call(redirectToEntryPath);
+}
+
 function* onLoginSuccess() {
   yield takeLatest([
     login.SUCCESS,
-  ], redirectToEntryPath);
+  ], redirectToEntryPathOnParticipantFetch);
 }
 
 function* onMount() {
