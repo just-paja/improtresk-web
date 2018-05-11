@@ -12,6 +12,7 @@ import ParticipantHome from '../../pages/ParticipantHome';
 import ParticipantIdentityEdit from '../../pages/ParticipantIdentityEdit';
 import ParticipantRegistration from '../../pages/ParticipantRegistration';
 import ParticipantRoomSelection from '../../pages/ParticipantRoomSelection';
+import TicketRedirect from '../TicketRedirect';
 import PrivateRoute from '../../containers/PrivateRoute';
 
 const getRoutes = () => {
@@ -24,6 +25,7 @@ const getRoutes = () => {
     <PrivateRoute key={`${routeLang}participantIdentityEdit`} exact path={getUrlPattern(routeLang, 'participantIdentityEdit')} component={ParticipantIdentityEdit} />,
     <PrivateRoute key={`${routeLang}participantRegister`} exact path={getUrlPattern(routeLang, 'participantRegister')} component={ParticipantRegistration} />,
     <PrivateRoute key={`${routeLang}participantRoomSelection`} exact path={getUrlPattern(routeLang, 'participantRoomSelection')} component={ParticipantRoomSelection} />,
+    <PrivateRoute key={`${routeLang}participantTicket`} component={TicketRedirect} path={getUrlPattern(routeLang, 'participantTicket')} />,
   ]).reduce((aggr, langRoutes) => aggr.concat(langRoutes), []);
   routes.push(<Route key="notfound" component={NotFound} />);
   return routes;
