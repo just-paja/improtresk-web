@@ -4,7 +4,7 @@ import { getTranslate } from 'react-localize-redux';
 import ArchivedYearDetail from '../components/ArchivedYearDetail';
 import mapProgress from '../../containers/mapProgress';
 
-import { requireYearDetail } from '../actions';
+import { yearDetailFetch } from '../actions';
 import {
   getArchivedYear,
   getArchivedYearTopic,
@@ -21,5 +21,5 @@ const mapStateToProps = state => ({
 
 export default mapProgress(connect(mapStateToProps)(ArchivedYearDetail), {
   progressSelector: getArchiveProgress,
-  onResourceChange: requireYearDetail,
+  onResourceChange: yearDetailFetch,
 });

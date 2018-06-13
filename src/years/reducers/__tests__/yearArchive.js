@@ -1,6 +1,8 @@
 import yearArchive from '../yearArchive';
 
-describe('Archive reducer', () => {
+import { yearDetailFetch } from '../../actions';
+
+describe('yearArchive reducer', () => {
   it('returns default state', () => {
     expect(yearArchive()).toMatchObject({
       current: null,
@@ -9,30 +11,26 @@ describe('Archive reducer', () => {
     });
   });
 
-  it('marks as loading on ARCHIVED_YEAR_REQUIRED', () => {
-    expect(yearArchive({
-    }, { type: 'YEAR_DETAIL_REQUIRED', year: 2017 })).toMatchObject({
+  it('marks as loading on trigger', () => {
+    expect(yearArchive({}, yearDetailFetch(2017))).toMatchObject({
       current: 2017,
       valid: false,
     });
   });
 
-  it('marks as loading on YEAR_DETAIL_FETCH_STARTED', () => {
-    expect(yearArchive({}, { type: 'YEAR_DETAIL_FETCH_STARTED' })).toMatchObject({
+  it('marks as loading on request', () => {
+    expect(yearArchive({}, yearDetailFetch.request())).toMatchObject({
       loading: true,
     });
   });
 
-  it('marks as loading on YEAR_DETAIL_FETCH_SUCCESS', () => {
+  it('marks as loading on success', () => {
     expect(yearArchive(
       {},
-      {
-        type: 'YEAR_DETAIL_FETCH_SUCCESS',
-        data: [
-          { year: '2016' },
-          { year: '2017' },
-        ],
-      }
+      yearDetailFetch.success([
+        { year: '2016' },
+        { year: '2017' },
+      ])
     )).toMatchObject({
       loading: false,
       valid: true,
@@ -43,10 +41,15 @@ describe('Archive reducer', () => {
     });
   });
 
-  it('marks as loading on YEAR_DETAIL_FETCH_ERROR', () => {
-    expect(yearArchive({}, { type: 'YEAR_DETAIL_FETCH_ERROR', error: 'error' })).toMatchObject({
-      loading: false,
+  it('marks as failed on failure', () => {
+    expect(yearArchive({}, yearDetailFetch.failure('error'))).toMatchObject({
       error: 'error',
+    });
+  });
+
+  it('marks as not loadin on fulfill', () => {
+    expect(yearArchive({}, yearDetailFetch.fulfill())).toMatchObject({
+      loading: false,
     });
   });
 });

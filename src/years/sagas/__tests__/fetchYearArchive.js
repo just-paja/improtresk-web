@@ -1,18 +1,12 @@
-import sinon from 'sinon';
-
 import sagas from '..';
 import getSagaTester from '../../../../mock/sagaTester';
 
-import * as api from '../../../api';
+import api, { stubApiAndRecover } from '../../../../mock/stubApi';
 
-describe('Year Archive sagas', () => {
-  beforeEach(() => {
-    Object.keys(api).forEach(key => sinon.stub(api, key));
-  });
+import { yearDetailFetch } from '../../actions';
 
-  afterEach(() => {
-    Object.keys(api).forEach(key => api[key].restore());
-  });
+describe('fetchArchivedYear saga', () => {
+  stubApiAndRecover();
 
   it('fetch year detail when required', () => {
     const sagaTester = getSagaTester({});
@@ -25,18 +19,17 @@ describe('Year Archive sagas', () => {
       }),
     });
     sagaTester.runAll(sagas);
-    sagaTester.dispatch({
-      type: 'YEAR_DETAIL_REQUIRED',
-      year: '2018',
+    sagaTester.dispatch(yearDetailFetch('2018'));
+    expect(sagaTester.numCalled(yearDetailFetch.REQUEST)).toBe(1);
+    return sagaTester.waitFor(yearDetailFetch.FULFILL, () => {
+      expect(sagaTester.numCalled(yearDetailFetch.SUCCESS)).toBe(1);
+      expect(api.fetchArchivedYear.getCall(0).args).toContainEqual(expect.objectContaining({
+        year: '2018',
+      }));
+      expect(sagaTester.getState().years.archive.data).toMatchObject({
+        id: 5,
+        year: '2018',
+      });
     });
-    expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
-      type: 'YEAR_DETAIL_FETCH_STARTED',
-    }));
-    expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
-      type: 'YEAR_DETAIL_FETCH_SUCCESS',
-    }));
-    expect(api.fetchArchivedYear.getCall(0).args).toContainEqual(expect.objectContaining({
-      year: '2018',
-    }));
   });
 });

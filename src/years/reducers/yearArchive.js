@@ -1,17 +1,13 @@
 import {
   combine,
+  fetchFailure,
   fetchStart,
-  fetchError,
+  fetchStop,
   fetchSuccess,
   invalidateOnResourceChange,
 } from 'react-saga-rest';
 
-import {
-  YEAR_DETAIL_REQUIRED,
-  YEAR_DETAIL_FETCH_STARTED,
-  YEAR_DETAIL_FETCH_SUCCESS,
-  YEAR_DETAIL_FETCH_ERROR,
-} from '../constants';
+import { yearDetailFetch } from '../actions';
 
 const defaultState = {
   current: null,
@@ -20,8 +16,9 @@ const defaultState = {
 };
 
 export default combine(defaultState, {
-  [YEAR_DETAIL_REQUIRED]: invalidateOnResourceChange('current', 'year'),
-  [YEAR_DETAIL_FETCH_STARTED]: fetchStart,
-  [YEAR_DETAIL_FETCH_SUCCESS]: fetchSuccess,
-  [YEAR_DETAIL_FETCH_ERROR]: fetchError,
+  [yearDetailFetch.FAILURE]: fetchFailure,
+  [yearDetailFetch.FULFILL]: fetchStop,
+  [yearDetailFetch.REQUEST]: fetchStart,
+  [yearDetailFetch.SUCCESS]: fetchSuccess,
+  [yearDetailFetch.TRIGGER]: invalidateOnResourceChange('current', 'payload'),
 });

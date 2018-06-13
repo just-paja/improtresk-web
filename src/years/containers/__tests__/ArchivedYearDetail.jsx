@@ -5,6 +5,8 @@ import { shallow } from 'enzyme';
 
 import ArchivedYearDetail from '../ArchivedYearDetail';
 
+import { yearDetailFetch } from '../../actions';
+
 const mockStore = configureStore();
 
 describe('ArchivedYearDetail container', () => {
@@ -53,9 +55,6 @@ describe('ArchivedYearDetail container', () => {
 
   it('dispatches year detail required action on mount', () => {
     comp.dive();
-    expect(store.getActions()).toContainEqual(expect.objectContaining({
-      type: 'YEAR_DETAIL_REQUIRED',
-      year: '2018',
-    }));
+    expect(store.getActions()).toContainEqual(yearDetailFetch('2018'));
   });
 });
