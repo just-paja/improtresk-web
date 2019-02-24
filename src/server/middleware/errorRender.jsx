@@ -1,6 +1,6 @@
 import React from 'react';
-import winston from 'winston';
 
+import logger from '../logger';
 import NotFound from '../../pages/NotFound';
 import GeneralError from '../../components/GeneralError';
 
@@ -20,11 +20,11 @@ export const renderAndRespond = (req, res, ErrorComponent) => {
   const store = getStore(req);
   const componentTree = <ErrorComponent />;
 
-  winston.log('silly', 'RENDER ERROR', req.url);
+  logger.debug('RENDER ERROR', req.url);
   return renderMarkupAndWait(req, store, componentTree)
     .then(markupAndState => respondWithHtml(req, res, markupAndState))
     .catch((error) => {
-      winston.log('error', error);
+      logger.error(error);
       return res.status(500).send('Internal server errror');
     });
 };
@@ -36,12 +36,12 @@ export default (err, req, res, next) => {
     res.status(404);
   }
 
-  winston.log('error', err);
+  logger.error(err);
 
   try {
     return renderAndRespond(req, res, getTemplate(res.statusCode));
   } catch (e) {
-    winston.log('error', e);
+    logger.error(e);
     return res.status(500).send('Internal server errror');
   }
 };

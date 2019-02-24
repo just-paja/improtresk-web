@@ -2,7 +2,6 @@ import fs from 'fs';
 import Helmet from 'react-helmet';
 import path from 'path';
 import React from 'react';
-import winston from 'winston';
 import { parse as parseLanguages } from 'accept-language-parser';
 
 import { END } from 'redux-saga';
@@ -13,6 +12,7 @@ import { StaticRouter } from 'react-router';
 import App from '../../containers/App';
 import configure from '../config';
 import configureStore from '../../store';
+import logger from '../logger';
 import pageBase from '../components/pageBase';
 
 
@@ -116,10 +116,10 @@ export const renderMarkupAndWait = (req, store, componentTree) => {
   store.subscribe(() => {
     if (!resolved) {
       const progress = getAppProgress(store.getState());
-      winston.log('silly', 'READY STATE UPDATE', progress);
+      logger.debug('READY STATE UPDATE', progress);
       if ((progress.failed || progress.valid) && !progress.loading) {
         if (progress.failed) {
-          winston.log('error', progress.errors);
+          logger.error(progress.errors);
         }
         resolved = true;
         renderToString(componentTree);
@@ -127,25 +127,25 @@ export const renderMarkupAndWait = (req, store, componentTree) => {
           store.dispatch(END);
         }, 5);
         resolve();
-        winston.log('silly', 'SAGAS READY');
+        logger.debug('SAGAS READY');
       }
     }
   });
   store.dispatch({ type: 'SILLY_INIT' });
 
-  winston.log('debug', `INITIAL RENDER: ${req.url}`);
+  logger.debug(`INITIAL RENDER: ${req.url}`);
   try {
     renderToString(componentTree);
   } catch (error) {
-    winston.log('error', error);
+    logger.error(error);
     return Promise.reject(error);
   }
-  winston.log('silly', `WAIT FOR STORE: ${req.url}`);
+  logger.debug(`WAIT FOR STORE: ${req.url}`);
   return Promise.all([
     waitForConfig,
     rootTask.done,
   ]).then(() => {
-    winston.log('debug', `REACT RENDER STRING: ${req.url}`);
+    logger.debug(`REACT RENDER STRING: ${req.url}`);
     return ({
       markup: renderToString(componentTree),
       state: store.getState(),
@@ -165,14 +165,14 @@ export const renderInHtml = (markupAndState) => {
 
 export const respondWithHtml = (req, res, markupAndState, routerContext) => {
   if (routerContext && routerContext.action === 'REPLACE' && req.url !== routerContext.url) {
-    winston.log('silly', 'REDIRECT', req.url, routerContext.url);
+    logger.debug('REDIRECT', req.url, routerContext.url);
     return res.redirect(routerContext.url);
   }
-  winston.log('silly', 'REACT RENDER STATIC', req.url);
+  logger.debug('REACT RENDER STATIC', req.url);
   try {
     return res.send(renderInHtml(markupAndState));
   } catch (e) {
-    winston.log('error', e);
+    logger.error(e);
   }
 
   return res.status(500).send('Internal server error');

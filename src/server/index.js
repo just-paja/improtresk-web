@@ -2,10 +2,10 @@ import deviceMiddleware from 'express-device';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import winston from 'winston';
 
 import configure from './config';
 import api from './api';
+import logger from './logger';
 import routerRender from './middleware/routerRender';
 import errorRender from './middleware/errorRender';
 import staticMiddleware from './middleware/static';
@@ -14,7 +14,7 @@ export default function server(userConfig = {}) {
   const app = express();
   const config = configure(userConfig);
 
-  winston.level = config.logLevel;
+  logger.level = config.logLevel;
 
   if (config.proxy) {
     app.set('trust proxy', 'loopback');
@@ -42,11 +42,11 @@ export default function server(userConfig = {}) {
 
   app.ready = new Promise((resolve) => {
     app.server = app.listen(config.port, () => {
-      winston.log('warn', `Started server on port ${config.port}`);
-      winston.log('warn', `Data API: ${config.apiSource}`);
-      winston.log('warn', `Auth API: ${config.apiAuthSource}`);
+      logger.warn(`Started server on port ${config.port}`);
+      logger.warn(`Data API: ${config.apiSource}`);
+      logger.warn(`Auth API: ${config.apiAuthSource}`);
       if (config.proxy) {
-        winston.log('warn', 'Behind trusted proxy');
+        logger.warn('Behind trusted proxy');
       }
       resolve();
     });
