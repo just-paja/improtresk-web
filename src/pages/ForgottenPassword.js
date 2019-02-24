@@ -1,7 +1,7 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import ForgottenPasswordPage from './components/ForgottenPasswordPage';
+import ForgottenPasswordPage from './components/ForgottenPasswordPage'
 
-const mapStateToProps = () => ({});
+const mapStateToProps = () => ({})
 
-export default connect(mapStateToProps)(ForgottenPasswordPage);
+export default connect(mapStateToProps)(ForgottenPasswordPage)

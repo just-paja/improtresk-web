@@ -1,7 +1,7 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import ParticipantRoomSelection from './components/ParticipantRoomSelection';
+import ParticipantRoomSelection from './components/ParticipantRoomSelection'
 
-const mapStateToProps = () => ({});
+const mapStateToProps = () => ({})
 
-export default connect(mapStateToProps)(ParticipantRoomSelection);
+export default connect(mapStateToProps)(ParticipantRoomSelection)

@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-import Message from '../../containers/Message';
+import Message from '../../containers/Message'
 
 const SignupOpenDateUnsure = () => (
   <p>
-    <Message name="participants.signupOpenDateUnsure" />
+    <Message name='participants.signupOpenDateUnsure' />
   </p>
-);
+)
 
-export default SignupOpenDateUnsure;
+export default SignupOpenDateUnsure

@@ -1,9 +1,9 @@
-import createFetchSaga from '../../sagas/createFetchSaga';
+import createFetchSaga from '../../sagas/createFetchSaga'
 
-import { yearDetailFetch } from '../actions';
-import { getArchiveState } from '../selectors/yearArchive';
+import { yearDetailFetch } from '../actions'
+import { getArchiveState } from '../selectors/yearArchive'
 
 export default createFetchSaga(yearDetailFetch, {
   payloadSelector: getArchiveState,
-  payloadReducer: state => ({ year: state.current }),
-});
+  payloadReducer: state => ({ year: state.current })
+})

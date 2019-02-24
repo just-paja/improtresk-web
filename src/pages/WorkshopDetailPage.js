@@ -1,5 +1,5 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import WorkshopDetailPage from './components/WorkshopDetailPage';
+import WorkshopDetailPage from './components/WorkshopDetailPage'
 
-export default connect()(WorkshopDetailPage);
+export default connect()(WorkshopDetailPage)

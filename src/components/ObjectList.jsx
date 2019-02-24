@@ -1,12 +1,12 @@
-import Alert from 'reactstrap/lib/Alert';
-import Col from 'reactstrap/lib/Col';
-import Row from 'reactstrap/lib/Row';
-import PropTypes from 'prop-types';
-import React from 'react';
+import Alert from 'reactstrap/lib/Alert'
+import Col from 'reactstrap/lib/Col'
+import Row from 'reactstrap/lib/Row'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 const ObjectList = ({ colProps, Component, data, emptyMessage, extra, md, xs }) => (
-  data.length === 0 && emptyMessage ?
-    (<Alert color="info">{emptyMessage}</Alert>) : (
+  data.length === 0 && emptyMessage
+    ? (<Alert color='info'>{emptyMessage}</Alert>) : (
       <Row>
         {data.map(object => (
           <Col key={object.id} xs={xs} md={md} {...colProps}>
@@ -15,7 +15,7 @@ const ObjectList = ({ colProps, Component, data, emptyMessage, extra, md, xs }) 
         ))}
       </Row>
     )
-);
+)
 
 ObjectList.propTypes = {
   colProps: PropTypes.object,
@@ -24,15 +24,15 @@ ObjectList.propTypes = {
   emptyMessage: PropTypes.node,
   md: PropTypes.number,
   xs: PropTypes.number,
-  extra: PropTypes.object,
-};
+  extra: PropTypes.object
+}
 
 ObjectList.defaultProps = {
   colProps: {},
   emptyMessage: null,
   extra: {},
   xs: 12,
-  md: 6,
-};
+  md: 6
+}
 
-export default ObjectList;
+export default ObjectList

@@ -1,10 +1,10 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import TicketRedirect from './components/TicketRedirect';
+import TicketRedirect from './components/TicketRedirect'
 
 const mapStateToProps = state => ({
   accessToken: state.session.data.access_token,
-  apiUrl: state.session.apiSource,
-});
+  apiUrl: state.session.apiSource
+})
 
-export default connect(mapStateToProps)(TicketRedirect);
+export default connect(mapStateToProps)(TicketRedirect)

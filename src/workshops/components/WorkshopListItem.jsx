@@ -1,25 +1,25 @@
-import ListGroupItem from 'reactstrap/lib/ListGroupItem';
-import ListGroupItemHeading from 'reactstrap/lib/ListGroupItemHeading';
-import React from 'react';
+import ListGroupItem from 'reactstrap/lib/ListGroupItem'
+import ListGroupItemHeading from 'reactstrap/lib/ListGroupItemHeading'
+import React from 'react'
 
-import { Workshop } from '../../proptypes';
+import { Workshop } from '../../proptypes'
 
-import Capacity from '../../components/Capacity';
-import Flex from '../../components/Flex';
-import FlexLabel from '../../components/FlexLabel';
-import PermaLinkContainer from '../../components/PermaLinkContainer';
+import Capacity from '../../components/Capacity'
+import Flex from '../../components/Flex'
+import FlexLabel from '../../components/FlexLabel'
+import PermaLinkContainer from '../../components/PermaLinkContainer'
 
 const WorkshopListItem = ({ workshop }) => (
   <PermaLinkContainer
-    to="workshopDetail"
+    to='workshopDetail'
     id={workshop.id}
     title={workshop.name}
   >
-    <ListGroupItem tag="a" md={6}>
+    <ListGroupItem tag='a' md={6}>
       <ListGroupItemHeading>
         {workshop.name}
       </ListGroupItemHeading>
-      <Flex minSize="md" justify="between">
+      <Flex minSize='md' justify='between'>
         <FlexLabel>
           <span>{workshop.difficulty}</span>
           <span>
@@ -30,10 +30,10 @@ const WorkshopListItem = ({ workshop }) => (
       </Flex>
     </ListGroupItem>
   </PermaLinkContainer>
-);
+)
 
 WorkshopListItem.propTypes = {
-  workshop: Workshop.isRequired,
-};
+  workshop: Workshop.isRequired
+}
 
-export default WorkshopListItem;
+export default WorkshopListItem

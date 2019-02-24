@@ -1,7 +1,7 @@
 import {
   getAllAddresses,
-  isReady,
-} from '..';
+  isReady
+} from '..'
 
 describe('Geocode selectors', () => {
   it('getAllAddresses returns all available addresses', () => {
@@ -9,38 +9,38 @@ describe('Geocode selectors', () => {
       locations: {
         geocode: {
           foo: {},
-          bar: null,
-        },
-      },
-    })).toEqual(['foo', 'bar']);
-  });
+          bar: null
+        }
+      }
+    })).toEqual(['foo', 'bar'])
+  })
   it('isReady returns true when all addresses are ready', () => {
     expect(isReady({
       locations: {
         geocode: {
           foo: {
-            ready: true,
+            ready: true
           },
           bar: {
-            ready: true,
-          },
-        },
-      },
-    })).toBe(true);
-  });
+            ready: true
+          }
+        }
+      }
+    })).toBe(true)
+  })
   it('isReady returns false when not all addresses are ready', () => {
     expect(isReady({
       locations: {
         geocode: {
           foo: {
-            ready: true,
+            ready: true
           },
           zap: null,
           bar: {
-            ready: false,
-          },
-        },
-      },
-    })).toBe(false);
-  });
-});
+            ready: false
+          }
+        }
+      }
+    })).toBe(false)
+  })
+})

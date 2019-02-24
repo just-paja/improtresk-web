@@ -1,29 +1,29 @@
-import FontAwesome from 'react-fontawesome';
-import React, { Component } from 'react';
-import ListGroupItem from 'reactstrap/lib/ListGroupItem';
-import ListGroupItemHeading from 'reactstrap/lib/ListGroupItemHeading';
-import PropTypes from 'prop-types';
+import FontAwesome from 'react-fontawesome'
+import React, { Component } from 'react'
+import ListGroupItem from 'reactstrap/lib/ListGroupItem'
+import ListGroupItemHeading from 'reactstrap/lib/ListGroupItemHeading'
+import PropTypes from 'prop-types'
 
-import Capacity from '../../components/Capacity';
-import Flex from '../../components/Flex';
-import ProgressBar from '../../components/ProgressBar';
+import Capacity from '../../components/Capacity'
+import Flex from '../../components/Flex'
+import ProgressBar from '../../components/ProgressBar'
 
-import styles from './WorkshopPickerItem.css';
+import styles from './WorkshopPickerItem.css'
 
 export default class WorkshopPickerItem extends Component {
-  constructor() {
-    super();
-    this.handleChange = this.handleChange.bind(this);
+  constructor () {
+    super()
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange() {
-    const { id, disabled, onChange, selected } = this.props;
+  handleChange () {
+    const { id, disabled, onChange, selected } = this.props
     if (!disabled) {
-      onChange(selected ? null : id);
+      onChange(selected ? null : id)
     }
   }
 
-  render() {
+  render () {
     const {
       assigned,
       capacity,
@@ -32,8 +32,8 @@ export default class WorkshopPickerItem extends Component {
       lectors,
       name,
       reserved,
-      selected,
-    } = this.props;
+      selected
+    } = this.props
     return (
       <ListGroupItem
         active={!disabled && selected}
@@ -42,17 +42,17 @@ export default class WorkshopPickerItem extends Component {
         onClick={this.handleChange}
       >
         <ListGroupItemHeading className={styles.heading}>
-          <Flex alignItems="center">
+          <Flex alignItems='center'>
             {freeSpots > 0 || selected ? (
-              <FontAwesome className="fa-fw" name={selected ? 'check-square' : 'square-o'} />
+              <FontAwesome className='fa-fw' name={selected ? 'check-square' : 'square-o'} />
             ) : null}
             {!selected && !freeSpots ? (
-              <FontAwesome className="fa-fw" name="minus-circle" />
+              <FontAwesome className='fa-fw' name='minus-circle' />
             ) : null}
             <span>{name}</span>
           </Flex>
         </ListGroupItemHeading>
-        <Flex justify="between" minSize="md">
+        <Flex justify='between' minSize='md'>
           <div>
             {lectors ? (
               lectors
@@ -76,7 +76,7 @@ export default class WorkshopPickerItem extends Component {
           />
         </div>
       </ListGroupItem>
-    );
+    )
   }
 }
 
@@ -90,8 +90,8 @@ WorkshopPickerItem.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   reserved: PropTypes.number,
-  selected: PropTypes.bool,
-};
+  selected: PropTypes.bool
+}
 
 WorkshopPickerItem.defaultProps = {
   assigned: null,
@@ -100,5 +100,5 @@ WorkshopPickerItem.defaultProps = {
   freeSpots: null,
   id: null,
   reserved: null,
-  selected: false,
-};
+  selected: false
+}

@@ -1,10 +1,10 @@
-import { combine } from 'react-saga-rest';
+import { combine } from 'react-saga-rest'
 
-import createFetchReducers, { initialState } from '../../reducers/createFetchReducers';
+import createFetchReducers, { initialState } from '../../reducers/createFetchReducers'
 
-import { performerDetailFetch } from '../actions';
+import { performerDetailFetch } from '../actions'
 
 export default combine(initialState, createFetchReducers({
   routine: performerDetailFetch,
-  identAttr: 'id',
-}));
+  identAttr: 'id'
+}))

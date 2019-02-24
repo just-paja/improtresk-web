@@ -1,17 +1,16 @@
-import Card from 'reactstrap/lib/Card';
-import CardBody from 'reactstrap/lib/CardBody';
-import Markdown from 'react-markdown';
-import PropTypes from 'prop-types';
-import React from 'react';
+import Card from 'reactstrap/lib/Card'
+import CardBody from 'reactstrap/lib/CardBody'
+import Markdown from 'react-markdown'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import { NewsItem } from '../../proptypes';
+import { NewsItem } from '../../proptypes'
 
-import Gallery from '../../components/Gallery';
-import HelmetArticle from '../../components/HelmetArticle';
-import HumanDate from '../../components/HumanDate';
-import Message from '../../containers/Message';
-import PollQuestion from '../../polls/components/PollQuestion';
-
+import Gallery from '../../components/Gallery'
+import HelmetArticle from '../../components/HelmetArticle'
+import HumanDate from '../../components/HumanDate'
+import Message from '../../containers/Message'
+import PollQuestion from '../../polls/components/PollQuestion'
 
 const NewsArticle = ({ newsDetail, onVote }) => (
   <article>
@@ -39,7 +38,7 @@ const NewsArticle = ({ newsDetail, onVote }) => (
         ) : null}
         <Gallery photos={newsDetail.photos} />
         <footer>
-          <Message name="news.published" />
+          <Message name='news.published' />
           {' '}
           <time dateTime={newsDetail.updatedAt}>
             <HumanDate date={newsDetail.updatedAt} showYear />
@@ -48,11 +47,11 @@ const NewsArticle = ({ newsDetail, onVote }) => (
       </CardBody>
     </Card>
   </article>
-);
+)
 
 NewsArticle.propTypes = {
   newsDetail: NewsItem.isRequired,
-  onVote: PropTypes.func.isRequired,
-};
+  onVote: PropTypes.func.isRequired
+}
 
-export default NewsArticle;
+export default NewsArticle

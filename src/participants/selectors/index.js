@@ -1,3 +1,3 @@
-export * from './participant';
-export * from './signups';
-export * from './teams';
+export * from './participant'
+export * from './signups'
+export * from './teams'

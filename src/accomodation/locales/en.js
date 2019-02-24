@@ -4,6 +4,6 @@ export default {
     price: 'Extra charge',
     priceIncluded: 'Included in signup price',
     freeSpots: 'Free spots',
-    room: 'Room',
-  },
-};
+    room: 'Room'
+  }
+}

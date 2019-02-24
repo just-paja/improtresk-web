@@ -9,7 +9,7 @@ const defaultConfig = {
   apiId: process.env.NODE_API_CLIENT_ID ||
     'development-client-id',
   apiSecret: process.env.NODE_API_CLIENT_SECRET ||
-    'development-client-secret',
-};
+    'development-client-secret'
+}
 
-export default (userConfig = {}) => ({ ...defaultConfig, ...userConfig });
+export default (userConfig = {}) => ({ ...defaultConfig, ...userConfig })

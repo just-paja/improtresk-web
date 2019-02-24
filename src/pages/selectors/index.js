@@ -1,2 +1,2 @@
-export * from './participants';
-export * from './signups';
+export * from './participants'
+export * from './signups'

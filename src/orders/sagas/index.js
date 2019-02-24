@@ -1,12 +1,12 @@
-import fetchOrderResources from './fetchOrderResources';
-import fetchOrders from './fetchOrders';
-import orderCancel from './orderCancel';
-import orderConfirm from './orderConfirm';
-import orderCreate from './orderCreate';
-import orderFoodChange from './orderFoodChange';
-import orderOperations from './orderOperations';
+import fetchOrderResources from './fetchOrderResources'
+import fetchOrders from './fetchOrders'
+import orderCancel from './orderCancel'
+import orderConfirm from './orderConfirm'
+import orderCreate from './orderCreate'
+import orderFoodChange from './orderFoodChange'
+import orderOperations from './orderOperations'
 
-export * from './orderOperations';
+export * from './orderOperations'
 
 export default [
   ...fetchOrderResources,
@@ -15,5 +15,5 @@ export default [
   ...orderConfirm,
   ...orderCreate,
   ...orderFoodChange,
-  ...orderOperations,
-];
+  ...orderOperations
+]

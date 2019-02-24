@@ -1,40 +1,40 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import HumanDate from '../../components/HumanDate';
-import Message from '../../containers/Message';
-import FoodChoice from './FoodChoice';
+import HumanDate from '../../components/HumanDate'
+import Message from '../../containers/Message'
+import FoodChoice from './FoodChoice'
 
 const OrderedMeal = ({
   useDefault,
   date,
   food,
   name,
-  soup,
+  soup
 }) => (
   <div>
     <strong><Message name={`orders.${name}`} /> <HumanDate date={date} /></strong>
     <div>
-      <Message name="orders.soup" />: <FoodChoice foodName={soup} useDefault={useDefault} />
+      <Message name='orders.soup' />: <FoodChoice foodName={soup} useDefault={useDefault} />
     </div>
     <div>
-      <Message name="orders.mainCourse" />: <FoodChoice foodName={food} useDefault={useDefault} />
+      <Message name='orders.mainCourse' />: <FoodChoice foodName={food} useDefault={useDefault} />
     </div>
   </div>
-);
+)
 
 OrderedMeal.propTypes = {
   date: PropTypes.string.isRequired,
   food: PropTypes.node,
   name: PropTypes.string.isRequired,
   soup: PropTypes.node,
-  useDefault: PropTypes.bool,
-};
+  useDefault: PropTypes.bool
+}
 
 OrderedMeal.defaultProps = {
   food: null,
   soup: null,
-  useDefault: false,
-};
+  useDefault: false
+}
 
-export default OrderedMeal;
+export default OrderedMeal

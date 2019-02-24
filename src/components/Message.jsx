@@ -1,29 +1,29 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import { logWarning } from '../clientLogger';
+import { logWarning } from '../clientLogger'
 
 const Message = ({ name, data, translate, ...params }) => {
-  let msg;
+  let msg
   try {
-    msg = translate(name, data, params);
+    msg = translate(name, data, params)
   } catch (e) {
-    logWarning(`Cannot translate message ${name}`);
-    msg = name;
+    logWarning(`Cannot translate message ${name}`)
+    msg = name
   }
   return (
     <span>{msg}</span>
-  );
-};
+  )
+}
 
 Message.propTypes = {
   name: PropTypes.string.isRequired,
   data: PropTypes.object,
-  translate: PropTypes.func.isRequired,
-};
+  translate: PropTypes.func.isRequired
+}
 
 Message.defaultProps = {
-  data: undefined,
-};
+  data: undefined
+}
 
-export default Message;
+export default Message

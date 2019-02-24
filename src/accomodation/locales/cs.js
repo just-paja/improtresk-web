@@ -4,6 +4,6 @@ export default {
     price: 'Příplatek',
     priceIncluded: 'V ceně přihlášky',
     freeSpots: 'Volná místa',
-    room: 'Pokoj',
-  },
-};
+    room: 'Pokoj'
+  }
+}

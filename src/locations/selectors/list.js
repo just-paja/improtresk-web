@@ -1,18 +1,18 @@
-import { createSelector } from 'reselect';
-import { getData, getProgress, isRequired } from 'react-saga-rest';
+import { createSelector } from 'reselect'
+import { getData, getProgress, isRequired } from 'react-saga-rest'
 
-import { getGeocodeState } from './geocode';
+import { getGeocodeState } from './geocode'
 
-export const getLocationsState = state => state.locations.list;
+export const getLocationsState = state => state.locations.list
 
-export const getLocationList = getData(getLocationsState);
-export const getLocationListProgress = getProgress(getLocationsState);
-export const isLocationListRequired = isRequired(getLocationsState);
+export const getLocationList = getData(getLocationsState)
+export const getLocationListProgress = getProgress(getLocationsState)
+export const isLocationListRequired = isRequired(getLocationsState)
 
 export const getAddresses = createSelector(
   [getLocationList],
   locations => locations.map(location => location.address)
-);
+)
 
 export const getLocationMarkers = createSelector(
   [getLocationList, getGeocodeState],
@@ -20,6 +20,6 @@ export const getLocationMarkers = createSelector(
     .filter(location => geocode[location.address] && geocode[location.address].valid)
     .map(location => ({
       ...location,
-      ...geocode[location.address].data,
+      ...geocode[location.address].data
     }))
-);
+)

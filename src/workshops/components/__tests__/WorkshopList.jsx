@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import WorkshopList from '../WorkshopList';
+import WorkshopList from '../WorkshopList'
 
 describe('WorkshopList component', () => {
   it('renders workshop list item', () => {
@@ -21,14 +21,14 @@ describe('WorkshopList component', () => {
                 role: 'Hlavní lektor',
                 lector: {
                   id: 11,
-                  name: 'Vojtěch Svoboda',
-                },
-              },
-            ],
-          },
+                  name: 'Vojtěch Svoboda'
+                }
+              }
+            ]
+          }
         ]}
       />
-    );
+    )
     expect(comp.find('WorkshopListItem')).toHaveProp('workshop', {
       id: 12,
       desc: 'Na workshopu se zaměříme na práci s tělem, nonverbální herectví a pantomimu.',
@@ -41,17 +41,17 @@ describe('WorkshopList component', () => {
           role: 'Hlavní lektor',
           lector: {
             id: 11,
-            name: 'Vojtěch Svoboda',
-          },
-        },
-      ],
-    });
-  });
+            name: 'Vojtěch Svoboda'
+          }
+        }
+      ]
+    })
+  })
 
   it('renders empty message when no workshops are given', () => {
     const comp = shallow(
       <WorkshopList workshops={[]} />
-    );
-    expect(comp.find('Connect(Message)[name="workshops.empty"]')).toHaveLength(1);
-  });
-});
+    )
+    expect(comp.find('Connect(Message)[name="workshops.empty"]')).toHaveLength(1)
+  })
+})

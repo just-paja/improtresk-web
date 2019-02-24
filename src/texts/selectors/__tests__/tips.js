@@ -1,4 +1,4 @@
-import * as selectors from '..';
+import * as selectors from '..'
 
 describe('Tips selectors', () => {
   it('getTipList returns all stored tips', () => {
@@ -6,32 +6,32 @@ describe('Tips selectors', () => {
       texts: {
         tips: {
           data: [
-            { id: 1 },
-          ],
-        },
-      },
+            { id: 1 }
+          ]
+        }
+      }
     })).toEqual([
-      { id: 1 },
-    ]);
-  });
+      { id: 1 }
+    ])
+  })
 
   it('isTipListRequired returns true when in invalid state', () => {
     expect(selectors.isTipListRequired({
       texts: {
         tips: {
-          valid: false,
-        },
-      },
-    })).toBe(true);
-  });
+          valid: false
+        }
+      }
+    })).toBe(true)
+  })
 
   it('isTipListRequired returns false when in valid state', () => {
     expect(selectors.isTipListRequired({
       texts: {
         tips: {
-          valid: true,
-        },
-      },
-    })).toBe(false);
-  });
-});
+          valid: true
+        }
+      }
+    })).toBe(false)
+  })
+})

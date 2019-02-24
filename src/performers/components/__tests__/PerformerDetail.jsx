@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import PerformerDetail from '../PerformerDetail';
+import PerformerDetail from '../PerformerDetail'
 
 describe('PerformerDetail component', () => {
   it('renders performer name', () => {
@@ -14,22 +14,22 @@ describe('PerformerDetail component', () => {
           description: [
             {
               text: 'bar',
-              lang: 'cs',
-            },
+              lang: 'cs'
+            }
           ],
           name: '20000 židů pod mořem',
           links: [],
           photos: [
             {
               id: 20,
-              image: '/images/10.jpg',
-            },
-          ],
+              image: '/images/10.jpg'
+            }
+          ]
         }}
       />
-    );
-    expect(comp.find({ children: '20000 židů pod mořem' })).toHaveLength(1);
-  });
+    )
+    expect(comp.find({ children: '20000 židů pod mořem' })).toHaveLength(1)
+  })
 
   it('renders performer description', () => {
     const comp = shallow(
@@ -40,27 +40,27 @@ describe('PerformerDetail component', () => {
           description: [
             {
               text: 'bar',
-              lang: 'cs',
-            },
+              lang: 'cs'
+            }
           ],
           name: '20000 židů pod mořem',
           links: [],
           photos: [
             {
               id: 20,
-              image: '/images/10.jpg',
-            },
-          ],
+              image: '/images/10.jpg'
+            }
+          ]
         }}
       />
-    );
+    )
     expect(comp.find('Connect(MultiLingualMarkdown)')).toHaveProp('texts', [
       {
         text: 'bar',
-        lang: 'cs',
-      },
-    ]);
-  });
+        lang: 'cs'
+      }
+    ])
+  })
 
   it('renders performer links', () => {
     const comp = shallow(
@@ -73,18 +73,18 @@ describe('PerformerDetail component', () => {
           links: [
             {
               address: 'http://example.com/',
-              name: 'Example',
-            },
+              name: 'Example'
+            }
           ],
-          photos: [],
+          photos: []
         }}
       />
-    );
+    )
     expect(comp.find('LinkServiceList')).toHaveProp('links', [
       {
         address: 'http://example.com/',
-        name: 'Example',
-      },
-    ]);
-  });
-});
+        name: 'Example'
+      }
+    ])
+  })
+})

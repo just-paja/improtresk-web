@@ -1,7 +1,7 @@
-import fetchPerformerDetail from './fetchPerformerDetail';
-import fetchPerformerList from './fetchPerformerList';
+import fetchPerformerDetail from './fetchPerformerDetail'
+import fetchPerformerList from './fetchPerformerList'
 
 export default [
   ...fetchPerformerDetail,
-  ...fetchPerformerList,
-];
+  ...fetchPerformerList
+]

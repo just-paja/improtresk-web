@@ -1,10 +1,10 @@
-import { connect } from 'react-redux';
-import { getTranslate } from 'react-localize-redux';
+import { connect } from 'react-redux'
+import { getTranslate } from 'react-localize-redux'
 
-import Schedule from './components/Schedule';
+import Schedule from './components/Schedule'
 
 const mapStateToProps = state => ({
-  translate: getTranslate(state.locale),
-});
+  translate: getTranslate(state.locale)
+})
 
-export default connect(mapStateToProps)(Schedule);
+export default connect(mapStateToProps)(Schedule)

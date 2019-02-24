@@ -1,23 +1,23 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
+import React from 'react'
+import configureStore from 'redux-mock-store'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import App from '../App';
+import App from '../App'
 
-const mockStore = configureStore();
+const mockStore = configureStore()
 
 describe('App container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
       locale: {
-        languages: ['cs', 'en'],
+        languages: ['cs', 'en']
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       session: {
       },
@@ -26,28 +26,28 @@ describe('App container', () => {
       workshops: {
         lectors: {
           roles: {},
-          list: {},
-        },
+          list: {}
+        }
       },
       years: {
         list: {
-          data: [],
-        },
-      },
-    });
+          data: []
+        }
+      }
+    })
     comp = shallow(<App />, {
-      context: { store },
-    });
-  });
+      context: { store }
+    })
+  })
 
   it('provides number of active requests', () => {
-    expect(comp.find('App')).toHaveProp('activeRequests');
-  });
+    expect(comp.find('App')).toHaveProp('activeRequests')
+  })
 
   it('triggers app mounted action on mount', () => {
-    comp.dive();
+    comp.dive()
     expect(store.getActions()).toMatchObject([
-      { type: 'APP_MOUNTED' },
-    ]);
-  });
-});
+      { type: 'APP_MOUNTED' }
+    ])
+  })
+})

@@ -1,25 +1,25 @@
-import Card from 'reactstrap/lib/Card';
-import CardBody from 'reactstrap/lib/CardBody';
-import classnames from 'classnames';
-import Col from 'reactstrap/lib/Col';
-import PropTypes from 'prop-types';
-import React from 'react';
-import Row from 'reactstrap/lib/Row';
+import Card from 'reactstrap/lib/Card'
+import CardBody from 'reactstrap/lib/CardBody'
+import classnames from 'classnames'
+import Col from 'reactstrap/lib/Col'
+import PropTypes from 'prop-types'
+import React from 'react'
+import Row from 'reactstrap/lib/Row'
 
-import Container from '../../components/Container';
-import Link from '../../containers/Link';
-import Message from '../../containers/Message';
-import NewsList from '../../news/containers/NewsList';
-import TextHome from '../../texts/containers/TextHome';
-import YearDetail from '../../years/components/YearDetail';
+import Container from '../../components/Container'
+import Link from '../../containers/Link'
+import Message from '../../containers/Message'
+import NewsList from '../../news/containers/NewsList'
+import TextHome from '../../texts/containers/TextHome'
+import YearDetail from '../../years/components/YearDetail'
 
 const Home = ({ year }) => {
-  const yearClass = `year-${year.year}`;
+  const yearClass = `year-${year.year}`
 
   return (
     <div
       className={classnames([yearClass], {
-        'year-next': !year.current,
+        'year-next': !year.current
       })}
     >
       <YearDetail
@@ -33,22 +33,22 @@ const Home = ({ year }) => {
       {year.current ? (
         <Container>
           <Row>
-            <Col className="mb-4" xs={12} md={6}>
-              <h2><Message name="pages.aboutFestival" /></h2>
+            <Col className='mb-4' xs={12} md={6}>
+              <h2><Message name='pages.aboutFestival' /></h2>
               <Card>
                 <CardBody>
                   <TextHome skipFirstHeading />
-                  <ul className="list-unstyled">
-                    <li><Link to="location"><Message name="pages.whereIsIt" /></Link></li>
-                    <li><Link to="fees"><Message name="pages.howMuchCost" /></Link></li>
-                    <li><Link to="accomodation"><Message name="pages.whereCanISleep" /></Link></li>
-                    <li><Link to="workshops"><Message name="pages.whatWorkshops" /></Link></li>
+                  <ul className='list-unstyled'>
+                    <li><Link to='location'><Message name='pages.whereIsIt' /></Link></li>
+                    <li><Link to='fees'><Message name='pages.howMuchCost' /></Link></li>
+                    <li><Link to='accomodation'><Message name='pages.whereCanISleep' /></Link></li>
+                    <li><Link to='workshops'><Message name='pages.whatWorkshops' /></Link></li>
                   </ul>
                 </CardBody>
               </Card>
             </Col>
             <Col xs={12} md={6}>
-              <h2><Message name="pages.news" /></h2>
+              <h2><Message name='pages.news' /></h2>
               <Card>
                 <CardBody>
                   <NewsList />
@@ -59,20 +59,20 @@ const Home = ({ year }) => {
         </Container>
       ) : null}
     </div>
-  );
-};
+  )
+}
 
 Home.propTypes = {
   year: PropTypes.shape({
     endDate: PropTypes.string,
     startAt: PropTypes.string,
     topic: PropTypes.string,
-    year: PropTypes.string,
-  }),
-};
+    year: PropTypes.string
+  })
+}
 
 Home.defaultProps = {
-  year: null,
-};
+  year: null
+}
 
-export default Home;
+export default Home

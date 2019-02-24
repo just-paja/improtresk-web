@@ -1,8 +1,8 @@
-import createCapacitySaga from '../../years/sagas/createCapacitySaga';
+import createCapacitySaga from '../../years/sagas/createCapacitySaga'
 
-import { accomodationListFetch } from '../actions';
-import { getAccomodationListState } from '../selectors';
+import { accomodationListFetch } from '../actions'
+import { getAccomodationListState } from '../selectors'
 
 export default createCapacitySaga(accomodationListFetch, {
-  stateSelector: getAccomodationListState,
-});
+  stateSelector: getAccomodationListState
+})

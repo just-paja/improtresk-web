@@ -1,5 +1,5 @@
-import fetchEventList from './fetchEventList';
+import fetchEventList from './fetchEventList'
 
 export default [
-  ...fetchEventList,
-];
+  ...fetchEventList
+]

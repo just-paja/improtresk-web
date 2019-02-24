@@ -1,30 +1,30 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
+import React from 'react'
+import configureStore from 'redux-mock-store'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import Link from '../Link';
+import Link from '../Link'
 
-const mockStore = configureStore();
+const mockStore = configureStore()
 
 describe('Link container', () => {
-  let comp;
+  let comp
 
   beforeEach(() => {
     const store = mockStore({
       locale: {
-        languages: ['cs'],
+        languages: ['cs']
       },
       session: {
-        locale: 'cs',
-      },
-    });
-    comp = shallow(<Link to="foo" />, {
-      context: { store },
-    });
-  });
+        locale: 'cs'
+      }
+    })
+    comp = shallow(<Link to='foo' />, {
+      context: { store }
+    })
+  })
 
   it('provides language', () => {
-    expect(comp.find('Link')).toHaveProp('lang', 'cs');
-  });
-});
+    expect(comp.find('Link')).toHaveProp('lang', 'cs')
+  })
+})

@@ -1,14 +1,14 @@
-import { combine, fetchStart, fetchError, fetchSuccess } from 'react-saga-rest';
+import { combine, fetchStart, fetchError, fetchSuccess } from 'react-saga-rest'
 
-import * as constants from '../constants';
+import * as constants from '../constants'
 
 const defaultState = {
   data: [],
-  loading: false,
-};
+  loading: false
+}
 
 export default combine(defaultState, {
   [constants.LOCATIONS_FETCH_STARTED]: fetchStart,
   [constants.LOCATIONS_FETCH_SUCCESS]: fetchSuccess,
-  [constants.LOCATIONS_FETCH_ERROR]: fetchError,
-});
+  [constants.LOCATIONS_FETCH_ERROR]: fetchError
+})

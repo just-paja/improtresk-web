@@ -1,15 +1,15 @@
-import Alert from 'reactstrap/lib/Alert';
-import PropTypes from 'prop-types';
-import React from 'react';
+import Alert from 'reactstrap/lib/Alert'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import { Field } from 'redux-form';
+import { Field } from 'redux-form'
 
-import { FormGeneralError, Meal } from '../../proptypes';
+import { FormGeneralError, Meal } from '../../proptypes'
 
-import Button from '../../components/Button';
-import Form from '../../forms/components/Form';
-import Message from '../../containers/Message';
-import FoodPicker from './FoodPicker';
+import Button from '../../components/Button'
+import Form from '../../forms/components/Form'
+import Message from '../../containers/Message'
+import FoodPicker from './FoodPicker'
 
 const FoodForm = ({
   error,
@@ -17,32 +17,32 @@ const FoodForm = ({
   meals,
   pristine,
   submit,
-  submitting,
+  submitting
 }) => {
   if (meals.length === 0) {
     return (
       <Alert>
-        <Message name="orders.foodChoicesEmpty" />
+        <Message name='orders.foodChoicesEmpty' />
       </Alert>
-    );
+    )
   }
   return (
     <Form error={error} name={form} onSubmit={submit}>
       <Field
         component={FoodPicker}
         meals={meals}
-        name="food"
+        name='food'
       />
       <Button
         disabled={pristine}
-        type="submit"
+        type='submit'
         loading={submitting}
       >
-        <Message name="orders.foodSave" />
+        <Message name='orders.foodSave' />
       </Button>
     </Form>
-  );
-};
+  )
+}
 
 FoodForm.propTypes = {
   error: FormGeneralError,
@@ -50,13 +50,13 @@ FoodForm.propTypes = {
   meals: PropTypes.arrayOf(Meal).isRequired,
   pristine: PropTypes.bool,
   submit: PropTypes.func.isRequired,
-  submitting: PropTypes.bool,
-};
+  submitting: PropTypes.bool
+}
 
 FoodForm.defaultProps = {
   error: null,
   pristine: false,
-  submitting: false,
-};
+  submitting: false
+}
 
-export default FoodForm;
+export default FoodForm

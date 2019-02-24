@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from 'prop-types'
+import React from 'react'
 
 const pageBase = ({
   css,
@@ -7,40 +7,40 @@ const pageBase = ({
   markup,
   helmet,
   state,
-  lang,
+  lang
 }) => {
-  const htmlProps = helmet.htmlAttributes.toComponent();
+  const htmlProps = helmet.htmlAttributes.toComponent()
   return (
     <html lang={lang} {...htmlProps}>
       <head>
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta charSet="utf-8" />
-        <meta content="width=device-width,initial-scale=1" name="viewport" />
+        <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
+        <meta charSet='utf-8' />
+        <meta content='width=device-width,initial-scale=1' name='viewport' />
         {helmet.title.toComponent()}
         {helmet.base.toComponent()}
         {helmet.meta.toComponent()}
         {helmet.link.toComponent()}
         {helmet.script.toComponent()}
         {css.map(asset =>
-          <link key={asset} type="text/css" rel="stylesheet" href={asset} />
+          <link key={asset} type='text/css' rel='stylesheet' href={asset} />
         )}
         {/* eslint-disable react/no-danger */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.INITIAL_STATE = ${JSON.stringify(state)};`,
+            __html: `window.INITIAL_STATE = ${JSON.stringify(state)};`
           }}
         />
-        <script src="https://cdn.ravenjs.com/3.24.2/raven.min.js" crossOrigin="anonymous" />
+        <script src='https://cdn.ravenjs.com/3.24.2/raven.min.js' crossOrigin='anonymous' />
       </head>
       <body>
         {/* eslint-disable react/no-danger */}
-        <div id="appContent" dangerouslySetInnerHTML={{ __html: markup }} />
+        <div id='appContent' dangerouslySetInnerHTML={{ __html: markup }} />
         {/* eslint-enable react/no-danger */}
         {js.map(asset => <script src={asset} key={asset} />)}
       </body>
     </html>
-  );
-};
+  )
+}
 
 pageBase.propTypes = {
   css: PropTypes.arrayOf(PropTypes.string),
@@ -53,15 +53,15 @@ pageBase.propTypes = {
     meta: PropTypes.object,
     link: PropTypes.object,
     script: PropTypes.object,
-    title: PropTypes.object,
-  }).isRequired,
-};
+    title: PropTypes.object
+  }).isRequired
+}
 
 pageBase.defaultProps = {
   css: [],
   js: [],
   markup: null,
-  state: {},
-};
+  state: {}
+}
 
-export default pageBase;
+export default pageBase

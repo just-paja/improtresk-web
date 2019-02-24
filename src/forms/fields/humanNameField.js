@@ -1,4 +1,4 @@
-import textField from './textField';
+import textField from './textField'
 
 const humanNameField = ({
   maxLength = 128,
@@ -8,10 +8,10 @@ const humanNameField = ({
   maxLength,
   messages: {
     pattern: 'forms.notAHumanName',
-    ...messages,
+    ...messages
   },
   pattern: /^[a-z\u00E0-\u017F\-,.' ]*$/i,
-  ...other,
-});
+  ...other
+})
 
-export default humanNameField;
+export default humanNameField

@@ -1,4 +1,4 @@
-import textField from './textField';
+import textField from './textField'
 
 export default props => textField({
   allowEmpty: false,
@@ -6,7 +6,7 @@ export default props => textField({
   conform: value => !!value,
   type: ['null', 'boolean'],
   messages: {
-    conform: 'forms.fieldRequired',
+    conform: 'forms.fieldRequired'
   },
-  ...props,
-});
+  ...props
+})

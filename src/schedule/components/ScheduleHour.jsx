@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import styles from './ScheduleHour.css';
+import styles from './ScheduleHour.css'
 
 const ScheduleHour = ({ hour, rowHeight }) => (
   <div
@@ -10,11 +10,11 @@ const ScheduleHour = ({ hour, rowHeight }) => (
   >
     {hour}
   </div>
-);
+)
 
 ScheduleHour.propTypes = {
   hour: PropTypes.string.isRequired,
-  rowHeight: PropTypes.number.isRequired,
-};
+  rowHeight: PropTypes.number.isRequired
+}
 
-export default ScheduleHour;
+export default ScheduleHour

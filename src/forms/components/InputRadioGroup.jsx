@@ -1,30 +1,30 @@
-import FormFeedback from 'reactstrap/lib/FormFeedback';
-import FormGroup from 'reactstrap/lib/FormGroup';
-import FormText from 'reactstrap/lib/FormText';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import FormFeedback from 'reactstrap/lib/FormFeedback'
+import FormGroup from 'reactstrap/lib/FormGroup'
+import FormText from 'reactstrap/lib/FormText'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-import InputRadio from './InputRadio';
+import InputRadio from './InputRadio'
 
-import { Children, Options } from '../../proptypes';
+import { Children, Options } from '../../proptypes'
 
 export default class InputRadioGroup extends Component {
-  constructor() {
-    super();
-    this.state = {};
-    this.handleChange = this.handleChange.bind(this);
+  constructor () {
+    super()
+    this.state = {}
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(name, value) {
-    this.setState({ touched: true });
-    this.props.onChange(this.props.name, value);
+  handleChange (name, value) {
+    this.setState({ touched: true })
+    this.props.onChange(this.props.name, value)
   }
 
-  isTouched() {
-    return !!(this.props.touched || this.state.touched);
+  isTouched () {
+    return !!(this.props.touched || this.state.touched)
   }
 
-  render() {
+  render () {
     const {
       defaultLabel,
       error,
@@ -35,10 +35,10 @@ export default class InputRadioGroup extends Component {
       required,
       value,
       ...other
-    } = this.props;
+    } = this.props
 
-    const touched = this.isTouched();
-    delete other.touched;
+    const touched = this.isTouched()
+    delete other.touched
 
     return (
       <FormGroup validationState={(touched && error) ? 'error' : null}>
@@ -67,7 +67,7 @@ export default class InputRadioGroup extends Component {
         {touched && error ? <FormFeedback>{error}</FormFeedback> : null}
         {help ? <FormText>{help}</FormText> : null}
       </FormGroup>
-    );
+    )
   }
 }
 
@@ -86,9 +86,9 @@ InputRadioGroup.propTypes = {
     PropTypes.bool,
     PropTypes.object,
     PropTypes.string,
-    PropTypes.number,
-  ]),
-};
+    PropTypes.number
+  ])
+}
 
 InputRadioGroup.defaultProps = {
   defaultLabel: null,
@@ -99,5 +99,5 @@ InputRadioGroup.defaultProps = {
   onChange: null,
   required: false,
   touched: false,
-  value: null,
-};
+  value: null
+}

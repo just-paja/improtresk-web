@@ -1,7 +1,7 @@
-import * as constants from '../constants';
+import * as constants from '../constants'
 
 export const requireLocationList = () => ({
-  type: constants.LOCATIONS_REQUIRED,
-});
+  type: constants.LOCATIONS_REQUIRED
+})
 
-export default { requireLocationList };
+export default { requireLocationList }

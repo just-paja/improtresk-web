@@ -1,27 +1,27 @@
-import { reduxForm } from 'redux-form';
-import { connect } from 'react-redux';
+import { reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
 
-import { foodChange, requireOrderResources } from '../actions';
+import { foodChange, requireOrderResources } from '../actions'
 import {
   getOrderedMeals,
   getOrderFoodFormDefaults,
   getOrderFormPrice,
-  getOrderFormProgress,
-} from '../selectors';
-import { getAccomodationList } from '../../accomodation/selectors';
-import { getWorkshopList } from '../../workshops/selectors';
-import { yearActive } from '../../years/selectors';
+  getOrderFormProgress
+} from '../selectors'
+import { getAccomodationList } from '../../accomodation/selectors'
+import { getWorkshopList } from '../../workshops/selectors'
+import { yearActive } from '../../years/selectors'
 
-import FoodForm from '../components/FoodForm';
-import mapProgress from '../../containers/mapProgress';
+import FoodForm from '../components/FoodForm'
+import mapProgress from '../../containers/mapProgress'
 
 const validate = (values) => {
-  const errors = {};
+  const errors = {}
   if (!values.accomodation) {
-    errors.accomodation = 'forms.fieldRequired';
+    errors.accomodation = 'forms.fieldRequired'
   }
-  return errors;
-};
+  return errors
+}
 
 const mapStateToProps = state => ({
   accomodation: getAccomodationList(state),
@@ -29,25 +29,25 @@ const mapStateToProps = state => ({
   meals: getOrderedMeals(state),
   price: getOrderFormPrice(state),
   workshops: getWorkshopList(state),
-  year: yearActive(state),
-});
+  year: yearActive(state)
+})
 
 const mapDispatchToProps = {
-  onSubmit: foodChange,
-};
+  onSubmit: foodChange
+}
 
 const formContainer = reduxForm({
   form: foodChange.form,
-  validate,
-})(FoodForm);
+  validate
+})(FoodForm)
 
-formContainer.displayName = 'FoodForm';
+formContainer.displayName = 'FoodForm'
 
 const container = mapProgress(connect(mapStateToProps, mapDispatchToProps)(formContainer), {
   progressSelector: getOrderFormProgress,
-  onResourceChange: requireOrderResources,
-});
+  onResourceChange: requireOrderResources
+})
 
-container.displayName = 'ContainerProgress(Connect(FoodForm))';
+container.displayName = 'ContainerProgress(Connect(FoodForm))'
 
-export default container;
+export default container

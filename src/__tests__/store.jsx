@@ -1,17 +1,17 @@
-import * as storeDefinition from '../store';
+import * as storeDefinition from '../store'
 
 describe('Store', () => {
   it('configures the initial state', () => {
     expect(storeDefinition.default().getState().device).toEqual({
-      isMobile: false,
-    });
-  });
+      isMobile: false
+    })
+  })
 
   it('configures the initial state as specified', () => {
     expect(storeDefinition.default({
-      device: { isMobile: true },
+      device: { isMobile: true }
     }).getState().device).toEqual({
-      isMobile: true,
-    });
-  });
-});
+      isMobile: true
+    })
+  })
+})

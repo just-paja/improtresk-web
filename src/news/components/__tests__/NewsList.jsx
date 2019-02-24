@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import News from '../NewsList';
+import News from '../NewsList'
 
 describe('News list component', () => {
   it('renders news items in object list', () => {
@@ -12,27 +12,27 @@ describe('News list component', () => {
           {
             createdAt: '2016-01-02T03:04:05',
             id: 21,
-            text: 'foo',
+            text: 'foo'
           },
           {
             createdAt: '2016-01-02T09:04:05',
             id: 25,
-            text: 'bar',
-          },
+            text: 'bar'
+          }
         ]}
       />
-    );
+    )
     expect(comp.find('ObjectList')).toHaveProp('data', [
       {
         createdAt: '2016-01-02T03:04:05',
         id: 21,
-        text: 'foo',
+        text: 'foo'
       },
       {
         createdAt: '2016-01-02T09:04:05',
         id: 25,
-        text: 'bar',
-      },
-    ]);
-  });
-});
+        text: 'bar'
+      }
+    ])
+  })
+})

@@ -1,2 +1,2 @@
-export * from './texts';
-export * from './tips';
+export * from './texts'
+export * from './tips'

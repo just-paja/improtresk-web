@@ -1,26 +1,26 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
+import React from 'react'
+import configureStore from 'redux-mock-store'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import ScheduleOverview from '../ScheduleOverview';
+import ScheduleOverview from '../ScheduleOverview'
 
-const mockStore = configureStore();
+const mockStore = configureStore()
 
 describe('ScheduleOverview container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
       locale: {
-        languages: ['cs'],
+        languages: ['cs']
       },
       performers: {
         list: {
           valid: true,
-          data: [],
-        },
+          data: []
+        }
       },
       schedule: {
         events: {
@@ -31,27 +31,27 @@ describe('ScheduleOverview container', () => {
               createdAt: '2017-03-05T00:00:00',
               name: 'lunch',
               text: 'foo',
-              lang: 'cs',
-            },
-          ],
-        },
+              lang: 'cs'
+            }
+          ]
+        }
       },
       workshops: {
         lectors: {
           roles: {
-            data: [],
+            data: []
           },
           list: {
-            data: [],
-          },
+            data: []
+          }
         },
         difficulties: {
-          data: [],
+          data: []
         },
         list: {
           valid: true,
-          data: [],
-        },
+          data: []
+        }
       },
       years: {
         capacity: {},
@@ -63,16 +63,16 @@ describe('ScheduleOverview container', () => {
               year: '2018',
               current: true,
               startAt: '2018-05-11',
-              endAt: '2018-05-13',
-            },
-          ],
-        },
-      },
-    });
+              endAt: '2018-05-13'
+            }
+          ]
+        }
+      }
+    })
     comp = shallow(<ScheduleOverview />, {
-      context: { store },
-    });
-  });
+      context: { store }
+    })
+  })
 
   it('provides list of events', () => {
     expect(comp.dive().dive().find('ScheduleOverview')).toHaveProp('events', [
@@ -83,15 +83,15 @@ describe('ScheduleOverview container', () => {
         text: 'foo',
         lang: 'cs',
         workshops: [],
-        performer: null,
-      },
-    ]);
-  });
+        performer: null
+      }
+    ])
+  })
 
   it('dispatches schedule required action on mount', () => {
-    comp.dive();
+    comp.dive()
     expect(store.getActions()).toContainEqual(expect.objectContaining({
-      type: 'SCHEDULE_EVENTS_REQUIRED',
-    }));
-  });
-});
+      type: 'SCHEDULE_EVENTS_REQUIRED'
+    }))
+  })
+})

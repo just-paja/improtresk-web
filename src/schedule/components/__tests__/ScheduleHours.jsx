@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import ScheduleHours from '../ScheduleHours';
+import ScheduleHours from '../ScheduleHours'
 
 describe('ScheduleHours component', () => {
   it('renders all passed hours', () => {
@@ -12,13 +12,13 @@ describe('ScheduleHours component', () => {
         min={9}
         rowHeight={2}
       />
-    );
+    )
 
-    const hours = comp.find('ScheduleHour');
-    expect(hours.filter({ hour: '9:00' })).toHaveLength(1);
-    expect(hours.filter({ hour: '10:00' })).toHaveLength(1);
-    expect(hours.filter({ hour: '11:00' })).toHaveLength(1);
-    expect(hours.filter({ hour: '12:00' })).toHaveLength(1);
-    expect(hours.filter({ hour: '13:00' })).toHaveLength(1);
-  });
-});
+    const hours = comp.find('ScheduleHour')
+    expect(hours.filter({ hour: '9:00' })).toHaveLength(1)
+    expect(hours.filter({ hour: '10:00' })).toHaveLength(1)
+    expect(hours.filter({ hour: '11:00' })).toHaveLength(1)
+    expect(hours.filter({ hour: '12:00' })).toHaveLength(1)
+    expect(hours.filter({ hour: '13:00' })).toHaveLength(1)
+  })
+})

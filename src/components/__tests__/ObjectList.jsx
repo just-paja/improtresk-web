@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import ObjectList from '../ObjectList';
+import ObjectList from '../ObjectList'
 
-const Tip = () => <div />;
+const Tip = () => <div />
 
 describe('Object List component', () => {
   it('renders passed component', () => {
@@ -16,24 +16,24 @@ describe('Object List component', () => {
             id: 21,
             name: 'Foo',
             photos: [],
-            text: 'Bar',
-          },
+            text: 'Bar'
+          }
         ]}
       />
-    );
-    expect(comp.find('Tip')).toHaveLength(1);
-  });
+    )
+    expect(comp.find('Tip')).toHaveLength(1)
+  })
 
   it('renders empty with empty message', () => {
     const comp = shallow(
       <ObjectList
         Component={Tip}
         data={[]}
-        emptyMessage="Empty!"
+        emptyMessage='Empty!'
       />
-    );
-    expect(comp.find({ children: 'Empty!' })).toHaveLength(1);
-  });
+    )
+    expect(comp.find({ children: 'Empty!' })).toHaveLength(1)
+  })
 
   it('renders empty without empty message', () => {
     expect(shallow(
@@ -41,6 +41,6 @@ describe('Object List component', () => {
         Component={Tip}
         data={[]}
       />
-    ).find('Row')).toHaveProp('children', []);
-  });
-});
+    ).find('Row')).toHaveProp('children', [])
+  })
+})

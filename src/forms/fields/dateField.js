@@ -1,7 +1,7 @@
-import textField from './textField';
+import textField from './textField'
 
-export const pattern = /^(\d{4}-[01]\d-[0-3]\d)?$/;
-export const format = 'YYYY-MM-DD';
+export const pattern = /^(\d{4}-[01]\d-[0-3]\d)?$/
+export const format = 'YYYY-MM-DD'
 
 const dateField = ({
   messages,
@@ -10,9 +10,9 @@ const dateField = ({
   pattern,
   messages: {
     pattern: 'forms.badDateFormat',
-    ...messages,
+    ...messages
   },
-  ...other,
-});
+  ...other
+})
 
-export default dateField;
+export default dateField

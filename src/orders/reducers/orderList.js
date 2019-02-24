@@ -1,4 +1,4 @@
-import { combine, invalidate } from 'react-saga-rest';
+import { combine, invalidate } from 'react-saga-rest'
 
 import {
   foodChange,
@@ -6,25 +6,25 @@ import {
   orderConfirm,
   orderCreate,
   orderChange,
-  orderListFetch,
-} from '../actions';
-import { PARTICIPANT_LOGOUT } from '../../participants/constants';
+  orderListFetch
+} from '../actions'
+import { PARTICIPANT_LOGOUT } from '../../participants/constants'
 
-import createCollectionReducers from '../../reducers/createCollectionReducers';
+import createCollectionReducers from '../../reducers/createCollectionReducers'
 
 const defaultState = {
   data: [],
-  loading: false,
-};
+  loading: false
+}
 
 export default combine(defaultState, {
   ...createCollectionReducers({
-    routine: orderListFetch,
+    routine: orderListFetch
   }),
   [orderCancel.SUCCESS]: invalidate,
   [orderConfirm.SUCCESS]: invalidate,
   [orderCreate.SUCCESS]: invalidate,
   [orderChange.SUCCESS]: invalidate,
   [foodChange.SUCCESS]: invalidate,
-  [PARTICIPANT_LOGOUT]: invalidate,
-});
+  [PARTICIPANT_LOGOUT]: invalidate
+})

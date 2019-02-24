@@ -1,33 +1,33 @@
-import moment from 'moment';
-import PropTypes from 'prop-types';
-import React from 'react';
+import moment from 'moment'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import * as dateTypes from '../constants/date';
+import * as dateTypes from '../constants/date'
 
 const getFormat = ({ showTime }) => {
-  const formatDate = dateTypes.FORMAT_HUMAN_DATE;
-  return showTime ?
-    `${formatDate} ${dateTypes.FORMAT_HUMAN_TIME}` : formatDate;
-};
+  const formatDate = dateTypes.FORMAT_HUMAN_DATE
+  return showTime
+    ? `${formatDate} ${dateTypes.FORMAT_HUMAN_TIME}` : formatDate
+}
 
-export const formatDate = (date, options) => moment(date).format(getFormat(options));
+export const formatDate = (date, options) => moment(date).format(getFormat(options))
 
 const HumanDate = ({ date, ...options }) => {
   if (!date) {
-    return null;
+    return null
   }
 
-  return (<span>{moment(date).format(getFormat(options))}</span>);
-};
+  return (<span>{moment(date).format(getFormat(options))}</span>)
+}
 
 HumanDate.propTypes = {
   date: PropTypes.string,
-  showTime: PropTypes.bool,
-};
+  showTime: PropTypes.bool
+}
 
 HumanDate.defaultProps = {
   date: null,
-  showTime: false,
-};
+  showTime: false
+}
 
-export default HumanDate;
+export default HumanDate

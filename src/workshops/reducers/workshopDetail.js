@@ -3,20 +3,20 @@ import {
   fetchStart,
   fetchError,
   fetchSuccess,
-  invalidateOnResourceChange,
-} from 'react-saga-rest';
+  invalidateOnResourceChange
+} from 'react-saga-rest'
 
-import * as constants from '../constants';
+import * as constants from '../constants'
 
 const defaultState = {
   data: null,
   id: null,
-  loading: false,
-};
+  loading: false
+}
 
 export default combine(defaultState, {
   [constants.WORKSHOP_DETAIL_REQUIRED]: invalidateOnResourceChange('id', 'slug'),
   [constants.WORKSHOP_DETAIL_FETCH_STARTED]: fetchStart,
   [constants.WORKSHOP_DETAIL_FETCH_SUCCESS]: fetchSuccess,
-  [constants.WORKSHOP_DETAIL_FETCH_ERROR]: fetchError,
-});
+  [constants.WORKSHOP_DETAIL_FETCH_ERROR]: fetchError
+})

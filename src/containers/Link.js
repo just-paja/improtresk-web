@@ -1,11 +1,11 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import { getLang } from '../selectors';
+import { getLang } from '../selectors'
 
-import Link from '../components/Link';
+import Link from '../components/Link'
 
 const mapStateToProps = state => ({
-  lang: getLang(state),
-});
+  lang: getLang(state)
+})
 
-export default connect(mapStateToProps)(Link);
+export default connect(mapStateToProps)(Link)

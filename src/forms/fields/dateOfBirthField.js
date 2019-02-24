@@ -1,6 +1,6 @@
-import moment from 'moment-timezone';
+import moment from 'moment-timezone'
 
-import dateField, { format } from './dateField';
+import dateField, { format } from './dateField'
 
 const dateOfBirthField = ({
   minAge = 0,
@@ -9,18 +9,18 @@ const dateOfBirthField = ({
 } = {}) => dateField({
   conform: (value) => {
     if (!value) {
-      return true;
+      return true
     }
-    const momentValue = moment(value, format);
-    return momentValue.isValid() ?
-      moment().diff(momentValue, 'days') >= minAge * 365 :
-      false;
+    const momentValue = moment(value, format)
+    return momentValue.isValid()
+      ? moment().diff(momentValue, 'days') >= minAge * 365
+      : false
   },
   messages: {
     conform: 'forms.notOldEnough',
-    ...messages,
+    ...messages
   },
-  ...other,
-});
+  ...other
+})
 
-export default dateOfBirthField;
+export default dateOfBirthField

@@ -1,10 +1,10 @@
-import createYearFetchSaga from '../../years/sagas/createYearFetchSaga';
+import createYearFetchSaga from '../../years/sagas/createYearFetchSaga'
 
-import { performerDetailFetch } from '../actions';
-import { getPerformersDetailState, getPerformerDetailId } from '../selectors';
+import { performerDetailFetch } from '../actions'
+import { getPerformersDetailState, getPerformerDetailId } from '../selectors'
 
 export default createYearFetchSaga(performerDetailFetch, {
   payloadSelector: getPerformerDetailId,
   payloadReducer: performer => ({ performer }),
-  stateSelector: getPerformersDetailState,
-});
+  stateSelector: getPerformersDetailState
+})

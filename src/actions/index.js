@@ -1,8 +1,8 @@
-import * as constants from '../constants';
+import * as constants from '../constants'
 
 export const setLoginRedirect = path => ({
   type: constants.SET_LOGIN_REDIRECT,
-  path,
-});
+  path
+})
 
-export default { setLoginRedirect };
+export default { setLoginRedirect }

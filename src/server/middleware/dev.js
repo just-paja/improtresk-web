@@ -1,26 +1,26 @@
-import express from 'express';
+import express from 'express'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
+import webpack from 'webpack'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import webpackDev from 'webpack-dev-middleware';
+import webpackDev from 'webpack-dev-middleware'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import webpackHot from 'webpack-hot-middleware';
+import webpackHot from 'webpack-hot-middleware'
 
-import webpackConfig from '../../../webpack/dev';
+import webpackConfig from '../../../webpack/dev'
 
-const compiler = webpack(webpackConfig);
+const compiler = webpack(webpackConfig)
 
-const app = express();
+const app = express()
 
 app.use(webpackDev(compiler, {
   headers: {
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': '*'
   },
   hot: true,
   publicPath: webpackConfig.output.publicPath,
-  stats: false,
-}));
+  stats: false
+}))
 
-app.use(webpackHot(compiler));
+app.use(webpackHot(compiler))
 
-export default app;
+export default app

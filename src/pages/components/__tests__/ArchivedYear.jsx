@@ -1,14 +1,14 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import ArchivedYear from '../ArchivedYear';
+import ArchivedYear from '../ArchivedYear'
 
 describe('Workshop Detail page component', () => {
   it('renders year detail', () => {
     const comp = shallow(
       <ArchivedYear match={{ params: { slug: '2016' } }} />
-    );
-    expect(comp.find('Connect(ContainerProgress(Connect(ArchivedYearDetail)))')).toHaveProp('resourceId', '2016');
-  });
-});
+    )
+    expect(comp.find('Connect(ContainerProgress(Connect(ArchivedYearDetail)))')).toHaveProp('resourceId', '2016')
+  })
+})

@@ -1,21 +1,21 @@
-import validator from '../../validator';
+import validator from '../../validator'
 
-import { boolField } from '..';
+import { boolField } from '..'
 
 const form = validator({
   properties: {
-    testField: boolField(),
-  },
-});
+    testField: boolField()
+  }
+})
 
 describe('boolField validator', () => {
   it('returns no error message when values contain true', () => {
-    expect(form({ testField: true })).toEqual({});
-  });
+    expect(form({ testField: true })).toEqual({})
+  })
 
   it('returns empty error message when values contain false', () => {
     expect(form({ testField: false })).toEqual({
-      testField: 'forms.fieldRequired',
-    });
-  });
-});
+      testField: 'forms.fieldRequired'
+    })
+  })
+})

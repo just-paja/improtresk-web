@@ -1,20 +1,20 @@
-import sinon from 'sinon';
+import sinon from 'sinon'
 
-import * as api from '../../../api';
+import * as api from '../../../api'
 
-import { performerListFetch } from '../../../performers/actions';
+import { performerListFetch } from '../../../performers/actions'
 
-import getSagaTester from '../../../../mock/sagaTester';
-import sagas from '..';
+import getSagaTester from '../../../../mock/sagaTester'
+import sagas from '..'
 
 describe('Schedule sagas', () => {
   beforeEach(() => {
-    Object.keys(api).forEach(key => sinon.stub(api, key));
-  });
+    Object.keys(api).forEach(key => sinon.stub(api, key))
+  })
 
   afterEach(() => {
-    Object.keys(api).forEach(key => api[key].restore());
-  });
+    Object.keys(api).forEach(key => api[key].restore())
+  })
 
   it('fetch events from API', () => {
     const sagaTester = getSagaTester({
@@ -23,40 +23,40 @@ describe('Schedule sagas', () => {
           data: [
             {
               id: 15,
-              year: '2018',
-            },
-          ],
-        },
-      },
-    });
+              year: '2018'
+            }
+          ]
+        }
+      }
+    })
     api.fetchScheduleEvents.returns({
       ok: true,
       status: 200,
       json: () => ([
         {
           id: 3,
-          name: 'Super event',
-        },
-      ]),
-    });
-    sagaTester.runAll(sagas);
-    sagaTester.dispatch({ type: 'SCHEDULE_EVENTS_REQUIRED' });
+          name: 'Super event'
+        }
+      ])
+    })
+    sagaTester.runAll(sagas)
+    sagaTester.dispatch({ type: 'SCHEDULE_EVENTS_REQUIRED' })
     expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
-      type: 'SCHEDULE_EVENTS_FETCH_STARTED',
-    }));
+      type: 'SCHEDULE_EVENTS_FETCH_STARTED'
+    }))
     expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
-      type: 'SCHEDULE_EVENTS_FETCH_SUCCESS',
-    }));
+      type: 'SCHEDULE_EVENTS_FETCH_SUCCESS'
+    }))
     expect(api.fetchScheduleEvents.getCall(0).args).toContainEqual(expect.objectContaining({
-      year: '2018',
-    }));
+      year: '2018'
+    }))
     expect(sagaTester.getState().schedule.events.data).toMatchObject([
       {
         id: 3,
-        name: 'Super event',
-      },
-    ]);
-  });
+        name: 'Super event'
+      }
+    ])
+  })
 
   it('requires workshops', () => {
     const sagaTester = getSagaTester({
@@ -65,28 +65,28 @@ describe('Schedule sagas', () => {
           data: [
             {
               id: 15,
-              year: '2018',
-            },
-          ],
-        },
-      },
-    });
+              year: '2018'
+            }
+          ]
+        }
+      }
+    })
     api.fetchScheduleEvents.returns({
       ok: true,
       status: 200,
       json: () => ([
         {
           id: 3,
-          name: 'Super event',
-        },
-      ]),
-    });
-    sagaTester.runAll(sagas);
-    sagaTester.dispatch({ type: 'SCHEDULE_EVENTS_REQUIRED' });
+          name: 'Super event'
+        }
+      ])
+    })
+    sagaTester.runAll(sagas)
+    sagaTester.dispatch({ type: 'SCHEDULE_EVENTS_REQUIRED' })
     expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
-      type: 'WORKSHOPS_REQUIRED',
-    }));
-  });
+      type: 'WORKSHOPS_REQUIRED'
+    }))
+  })
 
   it('requires performers', () => {
     const sagaTester = getSagaTester({
@@ -95,36 +95,36 @@ describe('Schedule sagas', () => {
           data: [
             {
               id: 15,
-              year: '2018',
-            },
-          ],
-        },
-      },
-    });
+              year: '2018'
+            }
+          ]
+        }
+      }
+    })
     api.fetchScheduleEvents.returns({
       ok: true,
       status: 200,
       json: () => ([
         {
           id: 3,
-          name: 'Super event',
-        },
-      ]),
-    });
-    sagaTester.runAll(sagas);
-    sagaTester.dispatch({ type: 'SCHEDULE_EVENTS_REQUIRED' });
+          name: 'Super event'
+        }
+      ])
+    })
+    sagaTester.runAll(sagas)
+    sagaTester.dispatch({ type: 'SCHEDULE_EVENTS_REQUIRED' })
     expect(sagaTester.getCalledActions()).toContainEqual(expect.objectContaining({
-      type: performerListFetch.TRIGGER,
-    }));
-  });
+      type: performerListFetch.TRIGGER
+    }))
+  })
 
   it('do not fetch events from API when no years is active', () => {
-    const sagaTester = getSagaTester({});
-    sagaTester.runAll(sagas);
-    sagaTester.dispatch({ type: 'SCHEDULE_EVENTS_REQUIRED' });
+    const sagaTester = getSagaTester({})
+    sagaTester.runAll(sagas)
+    sagaTester.dispatch({ type: 'SCHEDULE_EVENTS_REQUIRED' })
     expect(sagaTester.getCalledActions()).not.toContainEqual(expect.objectContaining({
-      type: 'SCHEDULE_EVENTS_FETCH_STARTED',
-    }));
-    expect(api.fetchScheduleEvents.called).toBeFalsy();
-  });
-});
+      type: 'SCHEDULE_EVENTS_FETCH_STARTED'
+    }))
+    expect(api.fetchScheduleEvents.called).toBeFalsy()
+  })
+})

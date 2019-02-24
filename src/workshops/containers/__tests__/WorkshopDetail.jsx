@@ -1,32 +1,32 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
+import React from 'react'
+import configureStore from 'redux-mock-store'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import WorkshopDetail from '../WorkshopDetail';
+import WorkshopDetail from '../WorkshopDetail'
 
-const mockStore = configureStore();
+const mockStore = configureStore()
 
 describe('WorkshopDetail container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
       locale: {
-        languages: ['cs'],
+        languages: ['cs']
       },
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
+            data: []
+          }
         },
         detail: {
           valid: true,
@@ -35,23 +35,23 @@ describe('WorkshopDetail container', () => {
             createdAt: '2017-03-05T00:00:00',
             name: 'lunch',
             lectors: [],
-            lang: 'cs',
-          },
-        },
+            lang: 'cs'
+          }
+        }
       },
       years: {
         capacity: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
-        },
-      },
-    });
-    comp = shallow(<WorkshopDetail resourceId="nehraj-349" />, {
-      context: { store },
-    });
-  });
+          data: []
+        }
+      }
+    })
+    comp = shallow(<WorkshopDetail resourceId='nehraj-349' />, {
+      context: { store }
+    })
+  })
 
   it('provides list of workshops', () => {
     expect(comp.dive().dive().find('WorkshopDetail')).toHaveProp('workshop', {
@@ -62,22 +62,22 @@ describe('WorkshopDetail container', () => {
       lang: 'cs',
       lectors: [],
       name: 'lunch',
-      prices: [],
-    });
-  });
+      prices: []
+    })
+  })
 
   it('dispatches workshop detail required action on mount', () => {
-    comp.dive();
+    comp.dive()
     expect(store.getActions()).toContainEqual(expect.objectContaining({
       type: 'WORKSHOP_DETAIL_REQUIRED',
-      slug: 'nehraj-349',
-    }));
-  });
+      slug: 'nehraj-349'
+    }))
+  })
 
   it('dispatches workshop detail left action on unmount', () => {
-    comp.dive().unmount();
+    comp.dive().unmount()
     expect(store.getActions()).toContainEqual(expect.objectContaining({
-      type: 'WORKSHOP_DETAIL_LEFT',
-    }));
-  });
-});
+      type: 'WORKSHOP_DETAIL_LEFT'
+    }))
+  })
+})

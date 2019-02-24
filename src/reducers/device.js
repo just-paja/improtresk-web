@@ -1,5 +1,5 @@
-const defaultState = { isMobile: false };
+const defaultState = { isMobile: false }
 
-const device = (state = defaultState) => state;
+const device = (state = defaultState) => state
 
-export default device;
+export default device

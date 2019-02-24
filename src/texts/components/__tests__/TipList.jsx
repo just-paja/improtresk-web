@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import Tip from '../Tip';
-import ObjectList from '../../../components/ObjectList';
-import TipList from '../TipList';
+import Tip from '../Tip'
+import ObjectList from '../../../components/ObjectList'
+import TipList from '../TipList'
 
 describe('Object list component', () => {
   it('renders', () => {
@@ -15,8 +15,8 @@ describe('Object list component', () => {
             id: 21,
             name: 'Foo',
             photos: [],
-            text: 'Bar',
-          },
+            text: 'Bar'
+          }
         ]}
       />
     ).getElement()).toEqual(
@@ -27,10 +27,10 @@ describe('Object list component', () => {
             id: 21,
             name: 'Foo',
             photos: [],
-            text: 'Bar',
-          },
+            text: 'Bar'
+          }
         ]}
       />
-    );
-  });
-});
+    )
+  })
+})

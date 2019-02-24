@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import LinkServiceList from '../LinkServiceList';
+import LinkServiceList from '../LinkServiceList'
 
 describe('LinkServiceList component', () => {
   it('renders as unstyled list when not inline', () => {
@@ -14,13 +14,13 @@ describe('LinkServiceList component', () => {
             address: 'https://example.com',
             id: 10,
             name: 'External Link Text',
-            service: 'external',
-          },
+            service: 'external'
+          }
         ]}
       />
-    );
-    expect(comp.find('ul').prop('className')).toContain('list-unstyled');
-  });
+    )
+    expect(comp.find('ul').prop('className')).toContain('list-unstyled')
+  })
 
   it('renders as inline list when inline', () => {
     const comp = shallow(
@@ -31,13 +31,13 @@ describe('LinkServiceList component', () => {
             address: 'https://example.com',
             id: 10,
             name: 'External Link Text',
-            service: 'external',
-          },
+            service: 'external'
+          }
         ]}
       />
-    );
-    expect(comp.find('ul').prop('className')).toContain('list-inline');
-  });
+    )
+    expect(comp.find('ul').prop('className')).toContain('list-inline')
+  })
 
   it('renders passed links', () => {
     const comp = shallow(
@@ -48,11 +48,11 @@ describe('LinkServiceList component', () => {
             address: 'https://example.com',
             id: 10,
             name: 'External Link Text',
-            service: 'external',
-          },
+            service: 'external'
+          }
         ]}
       />
-    );
-    expect(comp.find('LinkService')).toHaveProp('href', 'https://example.com');
-  });
-});
+    )
+    expect(comp.find('LinkService')).toHaveProp('href', 'https://example.com')
+  })
+})

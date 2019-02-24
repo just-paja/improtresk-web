@@ -18,9 +18,9 @@ export default {
       'no-matching-price-level': 'There is no price level matching requested change',
       'email-already-exists': 'We already have this e-mail in our database. Are you sure you do not already have an account?',
       'must-be-eighteen': 'You must be eighteen.',
-      'must-accept-rules': 'We need you to agree with festival rules.',
+      'must-accept-rules': 'We need you to agree with festival rules.'
     },
     tooLong: 'Value of ${label} is too long.',
-    tooShort: 'Value of ${label} is too short.',
-  },
-};
+    tooShort: 'Value of ${label} is too short.'
+  }
+}

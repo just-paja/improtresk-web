@@ -1,38 +1,38 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
+import React from 'react'
+import configureStore from 'redux-mock-store'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import LanguagePicker from '../LanguagePicker';
+import LanguagePicker from '../LanguagePicker'
 
-const mockStore = configureStore();
+const mockStore = configureStore()
 
 describe('LanguagePicker container', () => {
-  let comp;
+  let comp
 
   beforeEach(() => {
     const store = mockStore({
       locale: {
-        languages: ['cs', 'en'],
+        languages: ['cs', 'en']
       },
       session: {
-        locale: 'cs',
-      },
-    });
-    comp = shallow(<LanguagePicker to="foo" />, {
-      context: { store },
-    });
-  });
+        locale: 'cs'
+      }
+    })
+    comp = shallow(<LanguagePicker to='foo' />, {
+      context: { store }
+    })
+  })
 
   it('provides selected language', () => {
-    expect(comp.find('LanguagePicker')).toHaveProp('selectedLang', 'cs');
-  });
+    expect(comp.find('LanguagePicker')).toHaveProp('selectedLang', 'cs')
+  })
 
   it('provides available languages', () => {
-    expect(comp.find('LanguagePicker')).toHaveProp('availableLangs', ['cs', 'en']);
-  });
+    expect(comp.find('LanguagePicker')).toHaveProp('availableLangs', ['cs', 'en'])
+  })
 
   it('provides pathname', () => {
-    expect(comp.find('LanguagePicker')).toHaveProp('pathName', 'home');
-  });
-});
+    expect(comp.find('LanguagePicker')).toHaveProp('pathName', 'home')
+  })
+})

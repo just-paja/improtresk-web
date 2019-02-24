@@ -1,18 +1,18 @@
-import yearRules from '../yearRules';
+import yearRules from '../yearRules'
 
 describe('yearRules reducer', () => {
   it('returns default state', () => {
     expect(yearRules()).toMatchObject({
       loading: false,
-      data: {},
-    });
-  });
+      data: {}
+    })
+  })
 
   it('marks as loading on YEAR_RULES_FETCH_START', () => {
     expect(yearRules({}, { type: 'YEAR_RULES_FETCH_START' })).toMatchObject({
-      loading: true,
-    });
-  });
+      loading: true
+    })
+  })
 
   it('marks as loading on YEAR_RULES_FETCH_SUCCESS', () => {
     expect(yearRules(
@@ -20,28 +20,28 @@ describe('yearRules reducer', () => {
       {
         type: 'YEAR_RULES_FETCH_SUCCESS',
         data: [
-          { name: 'foo' },
-        ],
+          { name: 'foo' }
+        ]
       }
     )).toMatchObject({
       loading: false,
       valid: true,
       data: [
-        { name: 'foo' },
-      ],
-    });
-  });
+        { name: 'foo' }
+      ]
+    })
+  })
 
   it('marks as loading on YEAR_RULES_FETCH_ERROR', () => {
     expect(yearRules(
       {},
       {
         type: 'YEAR_RULES_FETCH_ERROR',
-        error: 'error',
+        error: 'error'
       }
     )).toMatchObject({
       loading: false,
-      error: 'error',
-    });
-  });
-});
+      error: 'error'
+    })
+  })
+})

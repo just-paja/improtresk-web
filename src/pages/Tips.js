@@ -1,10 +1,10 @@
-import { connect } from 'react-redux';
-import { getTranslate } from 'react-localize-redux';
+import { connect } from 'react-redux'
+import { getTranslate } from 'react-localize-redux'
 
-import Tips from './components/Tips';
+import Tips from './components/Tips'
 
 const mapStateToProps = state => ({
-  translate: getTranslate(state.locale),
-});
+  translate: getTranslate(state.locale)
+})
 
-export default connect(mapStateToProps)(Tips);
+export default connect(mapStateToProps)(Tips)

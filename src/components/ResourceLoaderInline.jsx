@@ -1,5 +1,5 @@
-import React from 'react';
+import React from 'react'
 
-const ResourceLoaderInline = () => (<span>Loading...</span>);
+const ResourceLoaderInline = () => (<span>Loading...</span>)
 
-export default ResourceLoaderInline;
+export default ResourceLoaderInline

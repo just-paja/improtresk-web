@@ -1,34 +1,34 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import AppErrors from '../AppErrors';
+import AppErrors from '../AppErrors'
 
 describe('App Errors component', () => {
   it('renders main heading', () => {
-    const comp = shallow(<AppErrors errors={['foo']} />);
-    expect(comp.find('h1 Connect(Message)')).toHaveProp('name', 'app.somethingWentWrong');
-  });
+    const comp = shallow(<AppErrors errors={['foo']} />)
+    expect(comp.find('h1 Connect(Message)')).toHaveProp('name', 'app.somethingWentWrong')
+  })
 
   it('renders help text', () => {
-    const comp = shallow(<AppErrors errors={['foo']} />);
-    expect(comp.find('Connect(Message)[name="app.errorHelp"]')).toHaveLength(1);
-  });
+    const comp = shallow(<AppErrors errors={['foo']} />)
+    expect(comp.find('Connect(Message)[name="app.errorHelp"]')).toHaveLength(1)
+  })
 
   it('renders a problem warning with unknown message', () => {
-    const comp = shallow(<AppErrors errors={['foo']} />);
+    const comp = shallow(<AppErrors errors={['foo']} />)
     expect(comp.find('Connect(Message)[name="error.unknown"]')).toHaveProp('data', {
-      message: 'foo',
-    });
-  });
+      message: 'foo'
+    })
+  })
 
   it('renders a problem warning with failed to fetch message', () => {
-    const comp = shallow(<AppErrors errors={['Failed to fetch']} />);
-    expect(comp.find('Connect(Message)[name="error.connection"]')).toHaveLength(1);
-  });
+    const comp = shallow(<AppErrors errors={['Failed to fetch']} />)
+    expect(comp.find('Connect(Message)[name="error.connection"]')).toHaveLength(1)
+  })
 
   it('renders a problem warning with failed to fetch message', () => {
-    const comp = shallow(<AppErrors errors={['Could not connect']} />);
-    expect(comp.find('Connect(Message)[name="error.connection"]')).toHaveLength(1);
-  });
-});
+    const comp = shallow(<AppErrors errors={['Could not connect']} />)
+    expect(comp.find('Connect(Message)[name="error.connection"]')).toHaveLength(1)
+  })
+})

@@ -1,4 +1,4 @@
-import * as selectors from '../yearRules';
+import * as selectors from '../yearRules'
 
 describe('YearRules selectors', () => {
   it('currentRules returns all news stored', () => {
@@ -7,35 +7,35 @@ describe('YearRules selectors', () => {
         rules: {
           data: {
             id: 1,
-            text: 'foo',
-          },
-        },
-      },
+            text: 'foo'
+          }
+        }
+      }
     })).toEqual({
       id: 1,
-      text: 'foo',
-    });
-  });
+      text: 'foo'
+    })
+  })
 
   it('isRulesTextRequired returns true when in invalid state', () => {
     expect(selectors.isRulesTextRequired({
       years: {
         rules: {
           loading: false,
-          valid: false,
-        },
-      },
-    })).toBe(true);
-  });
+          valid: false
+        }
+      }
+    })).toBe(true)
+  })
 
   it('isRulesTextRequired returns false when in valid state', () => {
     expect(selectors.isRulesTextRequired({
       years: {
         rules: {
           loading: false,
-          valid: true,
-        },
-      },
-    })).toBe(false);
-  });
-});
+          valid: true
+        }
+      }
+    })).toBe(false)
+  })
+})

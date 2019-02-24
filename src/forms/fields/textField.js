@@ -13,9 +13,9 @@ const field = ({
     minLength: 'forms.tooShort',
     required: 'forms.fieldRequired',
     type: 'forms.fieldRequired',
-    ...messages,
+    ...messages
   },
-  ...other,
-});
+  ...other
+})
 
-export default field;
+export default field

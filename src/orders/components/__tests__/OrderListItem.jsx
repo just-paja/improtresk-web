@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import OrderListItem from '../OrderListItem';
+import OrderListItem from '../OrderListItem'
 
 describe('OrderListItem component', () => {
   it('renders year number', () => {
@@ -15,24 +15,24 @@ describe('OrderListItem component', () => {
           createdAt: '2017-04-09',
           price: 666,
           year: {
-            year: '2017',
+            year: '2017'
           },
           reservation: {
-            endsAt: '2018-03-05T00:00:00',
+            endsAt: '2018-03-05T00:00:00'
           },
           meals: [
             {
               date: '2018-05-12',
               id: '10',
               name: 'dinner',
-              price: 10,
-            },
-          ],
+              price: 10
+            }
+          ]
         }}
       />
-    );
-    expect(comp.find({ children: '2017' })).toHaveLength(1);
-  });
+    )
+    expect(comp.find({ children: '2017' })).toHaveLength(1)
+  })
 
   it('renders order number', () => {
     const comp = shallow(
@@ -44,24 +44,24 @@ describe('OrderListItem component', () => {
           createdAt: '2017-04-09',
           price: 666,
           year: {
-            year: '2017',
+            year: '2017'
           },
           reservation: {
-            endsAt: '2018-03-05T00:00:00',
+            endsAt: '2018-03-05T00:00:00'
           },
           meals: [
             {
               date: '2018-05-12',
               id: '10',
               name: 'dinner',
-              price: 10,
-            },
-          ],
+              price: 10
+            }
+          ]
         }}
       />
-    );
+    )
     expect(comp.find('Connect(Message)[name="orders.number"]')).toHaveProp('data', {
-      symvar: '97233289732',
-    });
-  });
-});
+      symvar: '97233289732'
+    })
+  })
+})

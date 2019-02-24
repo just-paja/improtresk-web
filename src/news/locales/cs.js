@@ -1,6 +1,6 @@
 export default {
   news: {
     published: 'Zveřejněno',
-    older: 'Starší',
-  },
-};
+    older: 'Starší'
+  }
+}

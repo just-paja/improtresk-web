@@ -1,11 +1,11 @@
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import HumanDateRange from '../../components/HumanDateRange';
-import SignupButton from '../../participants/components/SignupButton';
+import HumanDateRange from '../../components/HumanDateRange'
+import SignupButton from '../../participants/components/SignupButton'
 
-import styles from './YearDetail.css';
+import styles from './YearDetail.css'
 
 const YearDetail = ({ current, endDate, startDate, startSignupsAt, topic, year }) => (
   <div className={classnames('text-center', styles.container)}>
@@ -38,7 +38,7 @@ const YearDetail = ({ current, endDate, startDate, startSignupsAt, topic, year }
       <p className={styles.text}>Sledujte novinky na stránkách Improtřesku</p>
     )}
   </div>
-);
+)
 
 YearDetail.propTypes = {
   current: PropTypes.bool,
@@ -46,12 +46,12 @@ YearDetail.propTypes = {
   startDate: PropTypes.string.isRequired,
   startSignupsAt: PropTypes.string,
   topic: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
-};
+  year: PropTypes.string.isRequired
+}
 
 YearDetail.defaultProps = {
   current: false,
-  startSignupsAt: null,
-};
+  startSignupsAt: null
+}
 
-export default YearDetail;
+export default YearDetail

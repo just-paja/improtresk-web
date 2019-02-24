@@ -1,5 +1,5 @@
-import pageResources from './pageResources';
+import pageResources from './pageResources'
 
 export default [
-  ...pageResources,
-];
+  ...pageResources
+]

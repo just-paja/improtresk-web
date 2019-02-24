@@ -1,68 +1,68 @@
-import classnames from 'classnames';
-import React, { Component } from 'react';
-import Card from 'reactstrap/lib/Card';
-import CardFooter from 'reactstrap/lib/CardFooter';
-import CardHeader from 'reactstrap/lib/CardHeader';
-import PropTypes from 'prop-types';
+import classnames from 'classnames'
+import React, { Component } from 'react'
+import Card from 'reactstrap/lib/Card'
+import CardFooter from 'reactstrap/lib/CardFooter'
+import CardHeader from 'reactstrap/lib/CardHeader'
+import PropTypes from 'prop-types'
 
-import { Room } from '../proptypes';
+import { Room } from '../proptypes'
 
-import Button from '../../components/Button';
-import Flex from '../../components/Flex';
-import FlexLabel from '../../components/FlexLabel';
-import InhabitantList from './InhabitantList';
-import Message from '../../containers/Message';
-import IconMessage from '../../components/IconMessage';
+import Button from '../../components/Button'
+import Flex from '../../components/Flex'
+import FlexLabel from '../../components/FlexLabel'
+import InhabitantList from './InhabitantList'
+import Message from '../../containers/Message'
+import IconMessage from '../../components/IconMessage'
 
 export default class RoomPickerItem extends Component {
-  constructor() {
-    super();
-    this.handleJoin = this.handleJoin.bind(this);
-    this.handleLeave = this.handleLeave.bind(this);
+  constructor () {
+    super()
+    this.handleJoin = this.handleJoin.bind(this)
+    this.handleLeave = this.handleLeave.bind(this)
   }
 
-  handleJoin() {
-    this.props.onJoin(this.props.room.id);
+  handleJoin () {
+    this.props.onJoin(this.props.room.id)
   }
 
-  handleLeave() {
-    this.props.onLeave(this.props.room.id);
+  handleLeave () {
+    this.props.onLeave(this.props.room.id)
   }
 
-  renderButton(message, icon, onClick) {
+  renderButton (message, icon, onClick) {
     return (
       <Button
         loading={this.props.loading}
         disabled={this.props.disabled}
         link
-        size="sm"
+        size='sm'
         icon={icon}
         onClick={onClick}
       >
         <Message name={message} />
       </Button>
-    );
+    )
   }
 
-  renderActionButton() {
-    let button = null;
+  renderActionButton () {
+    let button = null
     if (this.props.room.joined) {
-      button = this.renderButton('roommates.leave', 'sign-out', this.handleLeave);
+      button = this.renderButton('roommates.leave', 'sign-out', this.handleLeave)
     } else if (this.props.room.inhabitants.length < this.props.room.size) {
-      button = this.renderButton('roommates.join', 'sign-in', this.handleJoin);
+      button = this.renderButton('roommates.join', 'sign-in', this.handleJoin)
     }
-    return button;
+    return button
   }
 
-  render() {
-    const { participant, room, selected } = this.props;
+  render () {
+    const { participant, room, selected } = this.props
     return (
       <Card className={classnames('mb-3', { 'bg-success': selected })}>
         <CardHeader className={classnames({ 'text-white': selected })}>
-          <Flex justify="between">
+          <Flex justify='between'>
             <FlexLabel>
               <strong>
-                <IconMessage icon="key" name="roommates.room" />{' '}
+                <IconMessage icon='key' name='roommates.room' />{' '}
                 {room.number}
               </strong>
               <span>{room.inhabitants.length}/{room.size}</span>
@@ -77,11 +77,11 @@ export default class RoomPickerItem extends Component {
           />
         ) : (
           <CardFooter>
-            <IconMessage icon="info-circle" name="roommates.roomFull" />
+            <IconMessage icon='info-circle' name='roommates.roomFull' />
           </CardFooter>
         )}
       </Card>
-    );
+    )
   }
 }
 
@@ -92,11 +92,11 @@ RoomPickerItem.propTypes = {
   onLeave: PropTypes.func.isRequired,
   participant: PropTypes.number.isRequired,
   room: Room.isRequired,
-  selected: PropTypes.bool,
-};
+  selected: PropTypes.bool
+}
 
 RoomPickerItem.defaultProps = {
   disabled: false,
   loading: false,
-  selected: false,
-};
+  selected: false
+}

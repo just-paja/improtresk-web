@@ -1,12 +1,12 @@
-import { takeEvery } from 'redux-saga/effects';
+import { takeEvery } from 'redux-saga/effects'
 
-import { fetchResourceIfRequired } from '../../sagas/api';
-import { isTipListRequired } from '../selectors';
+import { fetchResourceIfRequired } from '../../sagas/api'
+import { isTipListRequired } from '../selectors'
 
-import * as api from '../../api';
-import * as constants from '../constants';
+import * as api from '../../api'
+import * as constants from '../constants'
 
-export function* requireTipList() {
+export function * requireTipList () {
   yield takeEvery(
     constants.TIPS_REQUIRED,
     fetchResourceIfRequired,
@@ -16,12 +16,12 @@ export function* requireTipList() {
       actions: {
         start: constants.TIPS_FETCH_STARTED,
         success: constants.TIPS_FETCH_SUCCESS,
-        fail: constants.TIPS_FETCH_ERROR,
-      },
+        fail: constants.TIPS_FETCH_ERROR
+      }
     }
-  );
+  )
 }
 
 export default [
-  requireTipList,
-];
+  requireTipList
+]

@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
 
-import geocode from './geocode';
-import list from './locationList';
+import geocode from './geocode'
+import list from './locationList'
 
 export default combineReducers({
   geocode,
-  list,
-});
+  list
+})

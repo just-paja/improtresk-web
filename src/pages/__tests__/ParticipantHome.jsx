@@ -1,69 +1,69 @@
-import configureMockStore from 'redux-mock-store';
-import React from 'react';
+import configureMockStore from 'redux-mock-store'
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import ParticipantHome from '../ParticipantHome';
+import ParticipantHome from '../ParticipantHome'
 
-const mockStore = configureMockStore();
+const mockStore = configureMockStore()
 
 describe('ParticipantHome container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
       locale: {
-        languages: [],
+        languages: []
       },
       accomodation: {
         list: {
           data: [
             {
               id: 5,
-              name: 'Something new',
-            },
+              name: 'Something new'
+            }
           ],
-          valid: true,
-        },
+          valid: true
+        }
       },
       orders: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       participants: {
         detail: {
           data: null,
-          valid: true,
-        },
+          valid: true
+        }
       },
       years: {
         capacity: {
           data: [],
-          valid: true,
+          valid: true
         },
         list: {
           data: [
             {
               id: 150,
               current: true,
-              topic: 'foo',
-            },
+              topic: 'foo'
+            }
           ],
-          valid: true,
-        },
-      },
-    });
+          valid: true
+        }
+      }
+    })
     comp = shallow(<ParticipantHome />, {
-      context: { store },
-    });
-  });
+      context: { store }
+    })
+  })
 
   it('dispatches logout on logout', () => {
-    comp.simulate('logout');
+    comp.simulate('logout')
     expect(store.getActions()).toEqual([
-      { type: 'PARTICIPANT_LOGOUT' },
-    ]);
-  });
-});
+      { type: 'PARTICIPANT_LOGOUT' }
+    ])
+  })
+})

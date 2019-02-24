@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 
-import Flex from './Flex';
+import Flex from './Flex'
 
-import { Children } from '../proptypes';
+import { Children } from '../proptypes'
 
-import styles from './FlexLabel.css';
+import styles from './FlexLabel.css'
 
 const FlexLabel = ({ children, ...other }) => (
   <Flex {...other}>
@@ -12,10 +12,10 @@ const FlexLabel = ({ children, ...other }) => (
       <div className={styles.column}>{child}</div>
     ) : null))}
   </Flex>
-);
+)
 
 FlexLabel.propTypes = {
-  children: Children.isRequired,
-};
+  children: Children.isRequired
+}
 
-export default FlexLabel;
+export default FlexLabel

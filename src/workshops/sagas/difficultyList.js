@@ -1,12 +1,12 @@
-import { takeEvery } from 'redux-saga/effects';
+import { takeEvery } from 'redux-saga/effects'
 
-import { fetchResourceIfRequired } from '../../sagas/api';
-import { isDifficultyListRequired } from '../selectors';
+import { fetchResourceIfRequired } from '../../sagas/api'
+import { isDifficultyListRequired } from '../selectors'
 
-import * as api from '../../api';
-import * as constants from '../constants';
+import * as api from '../../api'
+import * as constants from '../constants'
 
-function* requireWorkshopDifficultyList() {
+function * requireWorkshopDifficultyList () {
   yield takeEvery(
     constants.WORKSHOP_DIFFICULTIES_REQUIRED,
     fetchResourceIfRequired,
@@ -16,12 +16,12 @@ function* requireWorkshopDifficultyList() {
       actions: {
         start: constants.WORKSHOP_DIFFICULTIES_FETCH_STARTED,
         success: constants.WORKSHOP_DIFFICULTIES_FETCH_SUCCESS,
-        fail: constants.WORKSHOP_DIFFICULTIES_FETCH_ERROR,
-      },
+        fail: constants.WORKSHOP_DIFFICULTIES_FETCH_ERROR
+      }
     }
-  );
+  )
 }
 
 export default [
-  requireWorkshopDifficultyList,
-];
+  requireWorkshopDifficultyList
+]

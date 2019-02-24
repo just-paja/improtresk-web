@@ -1,40 +1,40 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-import { Order } from '../../proptypes';
+import { Order } from '../../proptypes'
 
-import Container from '../../components/Container';
-import OrderForm from '../../orders/containers/OrderForm';
-import Message from '../../containers/Message';
+import Container from '../../components/Container'
+import OrderForm from '../../orders/containers/OrderForm'
+import Message from '../../containers/Message'
 
 export default class ParticipantRegistration extends Component {
-  componentWillMount() {
+  componentWillMount () {
     if (this.props.order) {
-      this.props.onExistingOrder();
+      this.props.onExistingOrder()
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate () {
     if (this.props.order) {
-      this.props.onExistingOrder();
+      this.props.onExistingOrder()
     }
   }
 
-  render() {
+  render () {
     return (
       <Container>
-        <h1><Message name="orders.register" /></h1>
+        <h1><Message name='orders.register' /></h1>
         <OrderForm />
       </Container>
-    );
+    )
   }
 }
 
 ParticipantRegistration.propTypes = {
   order: Order,
-  onExistingOrder: PropTypes.func.isRequired,
-};
+  onExistingOrder: PropTypes.func.isRequired
+}
 
 ParticipantRegistration.defaultProps = {
-  order: null,
-};
+  order: null
+}

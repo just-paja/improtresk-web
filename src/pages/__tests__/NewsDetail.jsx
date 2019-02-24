@@ -1,30 +1,30 @@
-import configureMockStore from 'redux-mock-store';
-import React from 'react';
+import configureMockStore from 'redux-mock-store'
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import NewsDetail from '../NewsDetail';
+import NewsDetail from '../NewsDetail'
 
-const mockStore = configureMockStore();
+const mockStore = configureMockStore()
 
 describe('NewsDetail container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
-      forms: {},
-    });
+      forms: {}
+    })
     comp = shallow(<NewsDetail match={{ params: { slug: 'news-detail-45' } }} />, {
-      context: { store },
-    });
-  });
+      context: { store }
+    })
+  })
 
   it('provides route match', () => {
     expect(comp.find('NewsDetail')).toHaveProp('match', {
       params: {
-        slug: 'news-detail-45',
-      },
-    });
-  });
-});
+        slug: 'news-detail-45'
+      }
+    })
+  })
+})

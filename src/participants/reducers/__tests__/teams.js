@@ -1,18 +1,18 @@
-import teams from '../teams';
+import teams from '../teams'
 
 describe('Teams reducer', () => {
   it('returns default state', () => {
     expect(teams()).toMatchObject({
       loading: false,
-      data: [],
-    });
-  });
+      data: []
+    })
+  })
 
   it('marks as loading on TEAMS_FETCH_STARTED', () => {
     expect(teams({}, { type: 'TEAMS_FETCH_STARTED' })).toMatchObject({
-      loading: true,
-    });
-  });
+      loading: true
+    })
+  })
 
   it('marks as loading on TEAMS_FETCH_SUCCESS', () => {
     expect(teams(
@@ -20,22 +20,22 @@ describe('Teams reducer', () => {
       {
         type: 'TEAMS_FETCH_SUCCESS',
         data: [
-          { name: 'foo' },
-        ],
+          { name: 'foo' }
+        ]
       }
     )).toMatchObject({
       loading: false,
       valid: true,
       data: [
-        { name: 'foo' },
-      ],
-    });
-  });
+        { name: 'foo' }
+      ]
+    })
+  })
 
   it('marks as loading on TEAMS_FETCH_ERROR', () => {
     expect(teams({}, { type: 'TEAMS_FETCH_ERROR', error: 'error' })).toMatchObject({
       loading: false,
-      error: 'error',
-    });
-  });
-});
+      error: 'error'
+    })
+  })
+})

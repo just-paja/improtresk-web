@@ -1,8 +1,8 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import NewsDetail from './components/NewsDetail';
+import NewsDetail from './components/NewsDetail'
 
 const mapStateToProps = () => ({
-});
+})
 
-export default connect(mapStateToProps)(NewsDetail);
+export default connect(mapStateToProps)(NewsDetail)

@@ -1,13 +1,13 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import PrivateRoute from '../components/PrivateRoute';
+import PrivateRoute from '../components/PrivateRoute'
 
-import { getLang } from '../selectors';
-import { getParticipantDetailState } from '../participants/selectors';
+import { getLang } from '../selectors'
+import { getParticipantDetailState } from '../participants/selectors'
 
 const mapStateToProps = state => ({
   lang: getLang(state),
-  participantState: getParticipantDetailState(state),
-});
+  participantState: getParticipantDetailState(state)
+})
 
-export default connect(mapStateToProps)(PrivateRoute);
+export default connect(mapStateToProps)(PrivateRoute)

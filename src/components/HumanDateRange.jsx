@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import HumanDate from './HumanDate';
+import HumanDate from './HumanDate'
 
 const HumanDateRange = ({ end, start }) => (
   <span>
@@ -9,11 +9,11 @@ const HumanDateRange = ({ end, start }) => (
     {' '}-{' '}
     <HumanDate date={end} />
   </span>
-);
+)
 
 HumanDateRange.propTypes = {
   end: PropTypes.string.isRequired,
-  start: PropTypes.string.isRequired,
-};
+  start: PropTypes.string.isRequired
+}
 
-export default HumanDateRange;
+export default HumanDateRange

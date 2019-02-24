@@ -29,6 +29,6 @@ export default {
     whatWorkshops: 'Jaké jsou <b>workshop</b>y?',
     whereCanISleep: 'Jak je to se <b>spaní</b>m?',
     whereIsIt: '<b>Kde</b> to je?',
-    workshops: 'Workshopy',
-  },
-};
+    workshops: 'Workshopy'
+  }
+}

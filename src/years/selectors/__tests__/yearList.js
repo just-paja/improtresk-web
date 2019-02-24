@@ -1,4 +1,4 @@
-import sinon from 'sinon';
+import sinon from 'sinon'
 
 import {
   isYearListRequired,
@@ -7,19 +7,19 @@ import {
   yearCurrent,
   yearNext,
   yearsNotCurrent,
-  yearsAll,
-} from '..';
+  yearsAll
+} from '..'
 
 describe('Years selectors', () => {
-  let clock;
+  let clock
 
   beforeEach(() => {
-    clock = sinon.useFakeTimers(new Date(2016, 0, 2, 3, 4, 5));
-  });
+    clock = sinon.useFakeTimers(new Date(2016, 0, 2, 3, 4, 5))
+  })
 
   afterEach(() => {
-    clock.restore();
-  });
+    clock.restore()
+  })
 
   it('yearsAll returns all news stored', () => {
     expect(yearsAll({
@@ -27,15 +27,15 @@ describe('Years selectors', () => {
         list: {
           data: [
             { id: 1 },
-            { id: 2 },
-          ],
-        },
-      },
+            { id: 2 }
+          ]
+        }
+      }
     })).toEqual([
       { id: 1 },
-      { id: 2 },
-    ]);
-  });
+      { id: 2 }
+    ])
+  })
 
   it('yearCurrent returns current year object when available', () => {
     expect(yearCurrent({
@@ -43,15 +43,15 @@ describe('Years selectors', () => {
         list: {
           data: [
             { id: 1 },
-            { id: 2, current: true },
-          ],
-        },
-      },
+            { id: 2, current: true }
+          ]
+        }
+      }
     })).toEqual({
       id: 2,
-      current: true,
-    });
-  });
+      current: true
+    })
+  })
 
   it('yearCurrent returns null when not available', () => {
     expect(yearCurrent({
@@ -59,32 +59,32 @@ describe('Years selectors', () => {
         list: {
           data: [
             { id: 1 },
-            { id: 2 },
-          ],
-        },
-      },
-    })).toBe(null);
-  });
+            { id: 2 }
+          ]
+        }
+      }
+    })).toBe(null)
+  })
 
   it('isYearListRequired returns false when years are valid', () => {
     expect(isYearListRequired({
       years: {
         list: {
-          valid: true,
-        },
-      },
-    })).toBe(false);
-  });
+          valid: true
+        }
+      }
+    })).toBe(false)
+  })
 
   it('isYearListRequired returns true when years are not valid', () => {
     expect(isYearListRequired({
       years: {
         list: {
-          valid: false,
-        },
-      },
-    })).toBe(true);
-  });
+          valid: false
+        }
+      }
+    })).toBe(true)
+  })
 
   it('yearNext returns next closest year when available', () => {
     expect(yearNext({
@@ -93,12 +93,12 @@ describe('Years selectors', () => {
           data: [
             { id: 1, startDate: '2015-02-03' },
             { id: 3, startDate: '2017-02-03' },
-            { id: 2, startDate: '2016-02-03' },
-          ],
-        },
-      },
-    })).toEqual({ id: 2, startDate: '2016-02-03' });
-  });
+            { id: 2, startDate: '2016-02-03' }
+          ]
+        }
+      }
+    })).toEqual({ id: 2, startDate: '2016-02-03' })
+  })
 
   it('yearNext returns last year when there is no future year', () => {
     expect(yearNext({
@@ -106,22 +106,22 @@ describe('Years selectors', () => {
         list: {
           data: [
             { id: 1, startDate: '2014-02-03' },
-            { id: 2, startDate: '2015-02-03' },
-          ],
-        },
-      },
-    })).toEqual({ id: 2, startDate: '2015-02-03' });
-  });
+            { id: 2, startDate: '2015-02-03' }
+          ]
+        }
+      }
+    })).toEqual({ id: 2, startDate: '2015-02-03' })
+  })
 
   it('yearNext returns null when there no data', () => {
     expect(yearNext({
       years: {
         list: {
-          data: [],
-        },
-      },
-    })).toBe(null);
-  });
+          data: []
+        }
+      }
+    })).toBe(null)
+  })
 
   it('yearsNotCurrent returns next closest year when available', () => {
     expect(yearsNotCurrent({
@@ -130,14 +130,14 @@ describe('Years selectors', () => {
           data: [
             { id: 1, endDate: '2015-02-03' },
             { id: 3, endDate: '2017-02-03', current: true },
-            { id: 2, endDate: '2016-02-03' },
-          ],
-        },
-      },
+            { id: 2, endDate: '2016-02-03' }
+          ]
+        }
+      }
     })).toEqual([
-      { id: 1, endDate: '2015-02-03' },
-    ]);
-  });
+      { id: 1, endDate: '2015-02-03' }
+    ])
+  })
 
   it('yearActive returns current year when available', () => {
     expect(yearActive({
@@ -146,16 +146,16 @@ describe('Years selectors', () => {
           data: [
             { id: 1, endDate: '2015-02-03' },
             { id: 3, endDate: '2017-02-03', current: true },
-            { id: 2, endDate: '2016-02-03' },
-          ],
-        },
-      },
+            { id: 2, endDate: '2016-02-03' }
+          ]
+        }
+      }
     })).toEqual({
       id: 3,
       endDate: '2017-02-03',
-      current: true,
-    });
-  });
+      current: true
+    })
+  })
 
   it('yearActive returns next closest year when current not available', () => {
     expect(yearActive({
@@ -164,15 +164,15 @@ describe('Years selectors', () => {
           data: [
             { id: 1, endDate: '2015-02-03' },
             { id: 3, endDate: '2017-02-03' },
-            { id: 2, endDate: '2016-02-03' },
-          ],
-        },
-      },
+            { id: 2, endDate: '2016-02-03' }
+          ]
+        }
+      }
     })).toEqual({
       id: 2,
-      endDate: '2016-02-03',
-    });
-  });
+      endDate: '2016-02-03'
+    })
+  })
 
   it('yearActiveNumber  returns current year number when available', () => {
     expect(yearActiveNumber({
@@ -181,20 +181,20 @@ describe('Years selectors', () => {
           data: [
             { id: 1, endDate: '2015-02-03' },
             { id: 3, endDate: '2017-02-03', current: true, year: '2017' },
-            { id: 2, endDate: '2016-02-03' },
-          ],
-        },
-      },
-    })).toBe('2017');
-  });
+            { id: 2, endDate: '2016-02-03' }
+          ]
+        }
+      }
+    })).toBe('2017')
+  })
 
   it('yearActiveNumber eturns null when not available', () => {
     expect(yearActiveNumber({
       years: {
         list: {
-          data: [],
-        },
-      },
-    })).toBe(null);
-  });
-});
+          data: []
+        }
+      }
+    })).toBe(null)
+  })
+})

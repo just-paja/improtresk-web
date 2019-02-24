@@ -1,9 +1,9 @@
-import * as constants from '../constants';
+import * as constants from '../constants'
 
 export const vote = (survey, answer) => ({
   type: constants.POLL_VOTE,
   survey,
-  answer,
-});
+  answer
+})
 
-export default { vote };
+export default { vote }

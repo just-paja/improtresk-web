@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import { MultiLingualDescription } from '../../proptypes';
+import { MultiLingualDescription } from '../../proptypes'
 
-import Address from '../../components/Address';
-import Gallery from '../../components/Gallery';
-import MultiLingualMarkdown from '../../containers/MultiLingualMarkdown';
+import Address from '../../components/Address'
+import Gallery from '../../components/Gallery'
+import MultiLingualMarkdown from '../../containers/MultiLingualMarkdown'
 
 const LocationItem = ({ address, name, photos, description }) => (
   <div>
@@ -15,13 +15,13 @@ const LocationItem = ({ address, name, photos, description }) => (
     <MultiLingualMarkdown texts={description} />
     <Gallery photos={photos} />
   </div>
-);
+)
 
 LocationItem.propTypes = {
   address: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   photos: PropTypes.arrayOf(PropTypes.object).isRequired,
-  description: MultiLingualDescription.isRequired,
-};
+  description: MultiLingualDescription.isRequired
+}
 
-export default LocationItem;
+export default LocationItem

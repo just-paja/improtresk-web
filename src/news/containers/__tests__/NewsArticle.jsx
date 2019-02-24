@@ -1,21 +1,21 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
+import React from 'react'
+import configureStore from 'redux-mock-store'
 
-import { shallow } from 'enzyme';
-import { newsDetailFetch } from '../../actions';
+import { shallow } from 'enzyme'
+import { newsDetailFetch } from '../../actions'
 
-import NewsArticle from '../NewsArticle';
+import NewsArticle from '../NewsArticle'
 
-const mockStore = configureStore();
+const mockStore = configureStore()
 
 describe('NewsArticle container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
       locale: {
-        languages: ['cs'],
+        languages: ['cs']
       },
       news: {
         detail: {
@@ -25,15 +25,15 @@ describe('NewsArticle container', () => {
             createdAt: '2017-03-05T00:00:00',
             name: 'lunch',
             text: 'foo',
-            lang: 'cs',
-          },
-        },
-      },
-    });
-    comp = shallow(<NewsArticle resourceId="news-10" />, {
-      context: { store },
-    });
-  });
+            lang: 'cs'
+          }
+        }
+      }
+    })
+    comp = shallow(<NewsArticle resourceId='news-10' />, {
+      context: { store }
+    })
+  })
 
   it('provides news item', () => {
     expect(comp.dive().dive().find('NewsArticle')).toHaveProp('newsDetail', {
@@ -41,15 +41,15 @@ describe('NewsArticle container', () => {
       createdAt: '2017-03-05T00:00:00',
       name: 'lunch',
       text: 'foo',
-      lang: 'cs',
-    });
-  });
+      lang: 'cs'
+    })
+  })
 
   it('dispatches news detail required action on mount', () => {
-    comp.dive();
+    comp.dive()
     expect(store.getActions()).toContainEqual(expect.objectContaining({
       type: newsDetailFetch.TRIGGER,
-      payload: 'news-10',
-    }));
-  });
-});
+      payload: 'news-10'
+    }))
+  })
+})

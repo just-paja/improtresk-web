@@ -1,4 +1,4 @@
-import * as selectors from '..';
+import * as selectors from '..'
 
 describe('Workshops selectors', () => {
   it('getWorkshopDetailState returns Detail state', () => {
@@ -6,85 +6,85 @@ describe('Workshops selectors', () => {
       workshops: {
         detail: {
           loading: false,
-          valid: false,
-        },
-      },
+          valid: false
+        }
+      }
     })).toEqual({
       loading: false,
-      valid: false,
-    });
-  });
+      valid: false
+    })
+  })
 
   it('getDifficultiesState returns Difficulties state', () => {
     expect(selectors.getDifficultiesState({
       workshops: {
         difficulties: {
           loading: false,
-          valid: false,
-        },
-      },
+          valid: false
+        }
+      }
     })).toEqual({
       loading: false,
-      valid: false,
-    });
-  });
+      valid: false
+    })
+  })
 
   it('getWorkshopListState returns List state', () => {
     expect(selectors.getWorkshopListState({
       workshops: {
         list: {
           loading: false,
-          valid: false,
-        },
-      },
+          valid: false
+        }
+      }
     })).toEqual({
       loading: false,
-      valid: false,
-    });
-  });
+      valid: false
+    })
+  })
 
   it('getWorkshopList returns all workshops stored', () => {
     expect(selectors.getWorkshopList({
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         list: {
           data: [
             {
               id: 1,
               lectors: [],
-              prices: [],
-            },
-          ],
+              prices: []
+            }
+          ]
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
-        },
+            data: []
+          }
+        }
       },
       years: {
         capacity: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
-        },
-      },
+          data: []
+        }
+      }
     })).toEqual([
       {
         id: 1,
         capacityStatus: {},
         difficulty: null,
         lectors: [],
-        prices: [],
-      },
-    ]);
-  });
+        prices: []
+      }
+    ])
+  })
 
   it('workshopsDetail returns detail of the stored workshop', () => {
     expect(selectors.workshopsDetail({
@@ -94,107 +94,107 @@ describe('Workshops selectors', () => {
             id: 1,
             name: 'foo',
             lectors: [],
-            prices: [],
-          },
+            prices: []
+          }
         },
         difficulties: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
-        },
+            data: []
+          }
+        }
       },
       years: {
         capacity: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
-        },
-      },
+          data: []
+        }
+      }
     })).toEqual({
       id: 1,
       capacityStatus: {},
       difficulty: null,
       name: 'foo',
       lectors: [],
-      prices: [],
-    });
-  });
+      prices: []
+    })
+  })
 
   it('workshopsDetail returns null when not available', () => {
     expect(selectors.workshopsDetail({
       workshops: {
         detail: {
-          data: null,
+          data: null
         },
         difficulties: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
-        },
+            data: []
+          }
+        }
       },
       years: {
         capacity: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
-        },
-      },
-    })).toEqual(null);
-  });
+          data: []
+        }
+      }
+    })).toEqual(null)
+  })
 
   it('getWorkshopDetailId returns id of displayed workshop', () => {
     expect(selectors.getWorkshopDetailId({
       workshops: {
         detail: {
-          id: 53,
-        },
-      },
-    })).toBe(53);
-  });
+          id: 53
+        }
+      }
+    })).toBe(53)
+  })
 
   it('isWorkshopListRequired returns true when in invalid state', () => {
     expect(selectors.isWorkshopListRequired({
       workshops: {
         list: {
-          valid: false,
-        },
-      },
-    })).toBe(true);
-  });
+          valid: false
+        }
+      }
+    })).toBe(true)
+  })
 
   it('isWorkshopListRequired returns false when in valid state', () => {
     expect(selectors.isWorkshopListRequired({
       workshops: {
         list: {
-          valid: true,
-        },
-      },
-    })).toBe(false);
-  });
+          valid: true
+        }
+      }
+    })).toBe(false)
+  })
 
   it('isWorkshopDetailRequired returns true when in invalid state', () => {
     expect(selectors.isWorkshopDetailRequired({
       workshops: {
         detail: {
-          valid: false,
-        },
-      },
-    })).toBe(true);
-  });
+          valid: false
+        }
+      }
+    })).toBe(true)
+  })
 
   it('isWorkshopDetailRequired returns false when in valid state', () => {
     expect(selectors.isWorkshopDetailRequired({
@@ -202,23 +202,23 @@ describe('Workshops selectors', () => {
         detail: {
           id: 1,
           data: {
-            id: 1,
+            id: 1
           },
-          valid: true,
-        },
-      },
-    })).toBe(false);
-  });
+          valid: true
+        }
+      }
+    })).toBe(false)
+  })
 
   it('isDifficultyListRequired returns true when in invalid state', () => {
     expect(selectors.isDifficultyListRequired({
       workshops: {
         difficulties: {
-          valid: false,
-        },
-      },
-    })).toBe(true);
-  });
+          valid: false
+        }
+      }
+    })).toBe(true)
+  })
 
   it('isDifficultyListRequired returns false when in valid state', () => {
     expect(selectors.isDifficultyListRequired({
@@ -226,11 +226,11 @@ describe('Workshops selectors', () => {
         difficulties: {
           id: 1,
           data: {
-            id: 1,
+            id: 1
           },
-          valid: true,
-        },
-      },
-    })).toBe(false);
-  });
-});
+          valid: true
+        }
+      }
+    })).toBe(false)
+  })
+})

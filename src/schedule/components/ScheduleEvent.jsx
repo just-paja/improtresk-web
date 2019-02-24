@@ -1,11 +1,11 @@
-import classnames from 'classnames';
-import moment from 'moment';
-import PropTypes from 'prop-types';
-import React from 'react';
+import classnames from 'classnames'
+import moment from 'moment'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import HumanTimeRange from '../../components/HumanTimeRange';
+import HumanTimeRange from '../../components/HumanTimeRange'
 
-import styles from './ScheduleEvent.css';
+import styles from './ScheduleEvent.css'
 
 const ScheduleEvent = ({
   crossing,
@@ -17,21 +17,21 @@ const ScheduleEvent = ({
   performer,
   rowHeight,
   startAt,
-  workshops,
+  workshops
 }) => {
-  const minHeight = Math.max(0.5, moment(endAt).diff(startAt, 'minutes') / 60) * rowHeight;
-  const crossingUnit = 100 / (crossing + 1);
-  const width = `${crossingUnit - 1}%`;
+  const minHeight = Math.max(0.5, moment(endAt).diff(startAt, 'minutes') / 60) * rowHeight
+  const crossingUnit = 100 / (crossing + 1)
+  const width = `${crossingUnit - 1}%`
   const top = (
     (moment(startAt).hours() + (moment(startAt).minutes() / 60)) - minHour
-  ) * rowHeight;
-  const left = `${crossingPosition * crossingUnit}%`;
-  const image = performer && performer.frontImage ?
-    performer.frontImage : null;
-  const bgStyle = {};
+  ) * rowHeight
+  const left = `${crossingPosition * crossingUnit}%`
+  const image = performer && performer.frontImage
+    ? performer.frontImage : null
+  const bgStyle = {}
 
   if (image) {
-    bgStyle.backgroundImage = `url(${image})`;
+    bgStyle.backgroundImage = `url(${image})`
   }
 
   return (
@@ -41,7 +41,7 @@ const ScheduleEvent = ({
           className={classnames(styles.box, {
             [styles.withPerformers]: !!performer,
             [styles.withPerformerPhoto]: !!image,
-            [styles.withWorkshops]: !!workshops.length,
+            [styles.withWorkshops]: !!workshops.length
           })}
           style={{ minHeight }}
         >
@@ -61,8 +61,8 @@ const ScheduleEvent = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 ScheduleEvent.propTypes = {
   crossing: PropTypes.number,
@@ -74,14 +74,14 @@ ScheduleEvent.propTypes = {
   performer: PropTypes.object,
   rowHeight: PropTypes.number.isRequired,
   startAt: PropTypes.string.isRequired,
-  workshops: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
+  workshops: PropTypes.arrayOf(PropTypes.object).isRequired
+}
 
 ScheduleEvent.defaultProps = {
   crossing: 0,
   crossingPosition: 0,
   locationName: null,
-  performer: null,
-};
+  performer: null
+}
 
-export default ScheduleEvent;
+export default ScheduleEvent

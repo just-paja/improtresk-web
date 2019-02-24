@@ -6,6 +6,6 @@ export default {
     signupsCloseIn: 'Přihlášky se uzavřou ${duration}',
     signupsWereClosed: 'Přihlášky byly uzavřeny',
     signupsWillOpen: 'Přihlášky se otevřou ${duration}',
-    signupsAreOpen: 'Přihlášky jsou otevřené',
-  },
-};
+    signupsAreOpen: 'Přihlášky jsou otevřené'
+  }
+}

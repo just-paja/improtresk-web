@@ -1,49 +1,49 @@
-import moment from 'moment-timezone';
+import moment from 'moment-timezone'
 
-import Col from 'reactstrap/lib/Col';
-import FormFeedback from 'reactstrap/lib/FormFeedback';
-import Row from 'reactstrap/lib/Row';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import Col from 'reactstrap/lib/Col'
+import FormFeedback from 'reactstrap/lib/FormFeedback'
+import Row from 'reactstrap/lib/Row'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-import FormErrors from '../../forms/containers/FormErrors';
-import InputCheckbox from '../../forms/components/InputCheckbox';
+import FormErrors from '../../forms/containers/FormErrors'
+import InputCheckbox from '../../forms/components/InputCheckbox'
 
 export default class StayLengthPicker extends Component {
-  constructor() {
-    super();
-    this.handleChange = this.handleChange.bind(this);
+  constructor () {
+    super()
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  getDates() {
-    const current = moment(this.props.start);
-    const end = moment(this.props.end);
-    const dates = [];
+  getDates () {
+    const current = moment(this.props.start)
+    const end = moment(this.props.end)
+    const dates = []
     while (!current.isAfter(end)) {
-      dates.push(current.format('YYYY-MM-DD'));
-      current.add(1, 'days');
+      dates.push(current.format('YYYY-MM-DD'))
+      current.add(1, 'days')
     }
-    return dates;
+    return dates
   }
 
-  handleChange(event) {
-    const { value } = event.target;
-    let nextValue;
+  handleChange (event) {
+    const { value } = event.target
+    let nextValue
     if (this.props.input.value) {
       if (this.props.input.value.indexOf(value) === -1) {
-        nextValue = this.props.input.value.concat([value]);
+        nextValue = this.props.input.value.concat([value])
       } else {
-        nextValue = this.props.input.value.filter(item => item !== value);
+        nextValue = this.props.input.value.filter(item => item !== value)
       }
     } else {
-      nextValue = [value];
+      nextValue = [value]
     }
-    this.props.input.onChange(nextValue);
+    this.props.input.onChange(nextValue)
   }
 
-  render() {
-    const { input, meta } = this.props;
-    const dates = this.getDates();
+  render () {
+    const { input, meta } = this.props
+    const dates = this.getDates()
     return (
       <div>
         <Col style={{ padding: '0 20px' }}>
@@ -56,7 +56,7 @@ export default class StayLengthPicker extends Component {
                   input={{
                     value: date,
                     name: date,
-                    onChange: this.handleChange,
+                    onChange: this.handleChange
                   }}
                   meta={{}}
                   label={moment(date).format('L')}
@@ -75,7 +75,7 @@ export default class StayLengthPicker extends Component {
           </FormFeedback>
         ) : null}
       </div>
-    );
+    )
   }
 }
 
@@ -83,5 +83,5 @@ StayLengthPicker.propTypes = {
   end: PropTypes.string.isRequired,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
-  start: PropTypes.string.isRequired,
-};
+  start: PropTypes.string.isRequired
+}

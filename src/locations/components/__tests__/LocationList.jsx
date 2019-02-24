@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import LocationItem from '../LocationItem';
-import LocationList from '../LocationList';
+import LocationItem from '../LocationItem'
+import LocationList from '../LocationList'
 
 describe('LocationList component', () => {
   it('passes LocationItem to object list', () => {
@@ -17,20 +17,20 @@ describe('LocationList component', () => {
               {
                 id: 1,
                 lang: 'cs',
-                text: 'Dům kultury',
-              },
+                text: 'Dům kultury'
+              }
             ],
             photos: [
               {
-                src: '/images/front.jpg',
-              },
-            ],
-          },
+                src: '/images/front.jpg'
+              }
+            ]
+          }
         ]}
       />
-    );
-    expect(comp.find('ObjectList')).toHaveProp('Component', LocationItem);
-  });
+    )
+    expect(comp.find('ObjectList')).toHaveProp('Component', LocationItem)
+  })
 
   it('passes list of locations to object list', () => {
     const comp = shallow(
@@ -43,18 +43,18 @@ describe('LocationList component', () => {
               {
                 id: 1,
                 lang: 'cs',
-                text: 'Dům kultury',
-              },
+                text: 'Dům kultury'
+              }
             ],
             photos: [
               {
-                src: '/images/front.jpg',
-              },
-            ],
-          },
+                src: '/images/front.jpg'
+              }
+            ]
+          }
         ]}
       />
-    );
+    )
     expect(comp.find('ObjectList')).toHaveProp('data', [
       {
         name: 'DK Milevsko',
@@ -63,15 +63,15 @@ describe('LocationList component', () => {
           {
             id: 1,
             lang: 'cs',
-            text: 'Dům kultury',
-          },
+            text: 'Dům kultury'
+          }
         ],
         photos: [
           {
-            src: '/images/front.jpg',
-          },
-        ],
-      },
-    ]);
-  });
-});
+            src: '/images/front.jpg'
+          }
+        ]
+      }
+    ])
+  })
+})

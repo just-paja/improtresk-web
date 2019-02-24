@@ -1,22 +1,22 @@
-import React from 'react';
+import React from 'react'
 
-import LinkContainer from '../containers/LinkContainer';
-import PermaLink from '../components/PermaLink';
+import LinkContainer from '../containers/LinkContainer'
+import PermaLink from '../components/PermaLink'
 
-import { Children } from '../proptypes';
+import { Children } from '../proptypes'
 
 const PermaLinkContainer = ({ children, ...props }) => (
   <PermaLink {...props} tag={LinkContainer}>
     {children}
   </PermaLink>
-);
+)
 
 PermaLinkContainer.propTypes = {
-  children: Children,
-};
+  children: Children
+}
 
 PermaLinkContainer.defaultProps = {
-  children: null,
-};
+  children: null
+}
 
-export default PermaLinkContainer;
+export default PermaLinkContainer

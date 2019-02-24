@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import MealList from '../MealList';
+import MealList from '../MealList'
 
 describe('MealList component', () => {
   it('renders food menu for each meal', () => {
@@ -15,46 +15,46 @@ describe('MealList component', () => {
             food: [
               {
                 id: 1,
-                name: 'Svíčková',
-              },
+                name: 'Svíčková'
+              }
             ],
             soups: [
               {
                 id: 11,
-                name: 'Květáková',
-              },
+                name: 'Květáková'
+              }
             ],
-            name: 'lunch',
-          },
+            name: 'lunch'
+          }
         ]}
       />
-    );
+    )
     expect(comp.find('FoodMenu').props()).toMatchObject({
       id: 10,
       date: '2018-05-11',
       food: [
         {
           id: 1,
-          name: 'Svíčková',
-        },
+          name: 'Svíčková'
+        }
       ],
       soups: [
         {
           id: 11,
-          name: 'Květáková',
-        },
+          name: 'Květáková'
+        }
       ],
-      name: 'lunch',
-    });
-  });
+      name: 'lunch'
+    })
+  })
 
   it('renders empty message when there are no meals', () => {
     const comp = shallow(
       <MealList
         mealList={[]}
       />
-    );
+    )
     expect(comp.find('Connect(Message)[name="food.festivalMenuEmpty"]'))
-      .toHaveLength(1);
-  });
-});
+      .toHaveLength(1)
+  })
+})

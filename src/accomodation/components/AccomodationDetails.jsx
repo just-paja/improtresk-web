@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import { CapacityStatus, MultiLingualDescription, Photo } from '../../proptypes';
+import { CapacityStatus, MultiLingualDescription, Photo } from '../../proptypes'
 
-import Address from '../../components/Address';
-import Capacity from '../../components/Capacity';
-import Gallery from '../../components/Gallery';
-import Message from '../../containers/Message';
-import MultiLingualMarkdown from '../../containers/MultiLingualMarkdown';
-import Price from '../../components/Price';
-import Prop from '../../components/Prop';
+import Address from '../../components/Address'
+import Capacity from '../../components/Capacity'
+import Gallery from '../../components/Gallery'
+import Message from '../../containers/Message'
+import MultiLingualMarkdown from '../../containers/MultiLingualMarkdown'
+import Price from '../../components/Price'
+import Prop from '../../components/Prop'
 
 const AccomodationDetails = ({
   address,
@@ -17,25 +17,25 @@ const AccomodationDetails = ({
     assigned,
     capacity,
     freeSpots,
-    reserved,
+    reserved
   },
   name,
   price,
   description,
-  photos,
+  photos
 }) => (
   <div>
     <h2>{name}</h2>
-    <ul className="list-unstyled">
-      {address ?
-        <Prop label={<Message name="accomodation.address" />} icon="map-marker">
+    <ul className='list-unstyled'>
+      {address
+        ? <Prop label={<Message name='accomodation.address' />} icon='map-marker'>
           <Address address={address} />
         </Prop> : null
       }
-      <Prop label={<Message name="accomodation.price" />} icon="money">
-        <Price freeMessage="accomodation.priceIncluded" price={price} />
+      <Prop label={<Message name='accomodation.price' />} icon='money'>
+        <Price freeMessage='accomodation.priceIncluded' price={price} />
       </Prop>
-      <Prop label={<Message name="accomodation.freeSpots" />} icon="bed">
+      <Prop label={<Message name='accomodation.freeSpots' />} icon='bed'>
         <Capacity
           assigned={assigned}
           capacity={capacity}
@@ -48,7 +48,7 @@ const AccomodationDetails = ({
     <MultiLingualMarkdown texts={description} />
     <Gallery photos={photos} />
   </div>
-);
+)
 
 AccomodationDetails.propTypes = {
   address: PropTypes.string,
@@ -56,13 +56,13 @@ AccomodationDetails.propTypes = {
   description: MultiLingualDescription,
   name: PropTypes.string.isRequired,
   photos: PropTypes.arrayOf(Photo).isRequired,
-  price: PropTypes.number,
-};
+  price: PropTypes.number
+}
 
 AccomodationDetails.defaultProps = {
   address: null,
   description: null,
-  price: null,
-};
+  price: null
+}
 
-export default AccomodationDetails;
+export default AccomodationDetails

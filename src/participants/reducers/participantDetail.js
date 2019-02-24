@@ -1,8 +1,8 @@
-import { combine, invalidate, fetchSuccess } from 'react-saga-rest';
+import { combine, invalidate, fetchSuccess } from 'react-saga-rest'
 
-import createFetchReducers from '../../reducers/createFetchReducers';
+import createFetchReducers from '../../reducers/createFetchReducers'
 
-import * as constants from '../constants';
+import * as constants from '../constants'
 
 import {
   identityEdit,
@@ -10,14 +10,14 @@ import {
   loginWithSignupData,
   participantEdit,
   participantFetch,
-  signup,
-} from '../actions';
+  signup
+} from '../actions'
 
 const defaultState = {
   data: null,
   loading: false,
-  valid: false,
-};
+  valid: false
+}
 
 export default combine(defaultState, {
   ...createFetchReducers({ routine: participantFetch }),
@@ -26,17 +26,17 @@ export default combine(defaultState, {
     data: action.data,
     loading: false,
     ready: true,
-    valid: true,
+    valid: true
   }),
   [constants.PARTICIPANT_LOGOUT]: state => ({
     ...state,
     data: null,
     ready: false,
-    valid: true,
+    valid: true
   }),
   [participantEdit.SUCCESS]: fetchSuccess,
   [identityEdit.SUCCESS]: fetchSuccess,
   [loginWithSignupData.SUCCESS]: invalidate,
   [login.SUCCESS]: invalidate,
-  [signup.SUCCESS]: fetchSuccess,
-});
+  [signup.SUCCESS]: fetchSuccess
+})

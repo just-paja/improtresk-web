@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import ResourceLoader from '../ResourceLoader';
+import ResourceLoader from '../ResourceLoader'
 
 describe('ResourceLoader component', () => {
   it('renders as div', () => {
-    const comp = shallow(<ResourceLoader />);
-    expect(comp.is('div')).toBeTruthy();
-  });
-});
+    const comp = shallow(<ResourceLoader />)
+    expect(comp.is('div')).toBeTruthy()
+  })
+})

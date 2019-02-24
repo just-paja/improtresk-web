@@ -1,16 +1,16 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import LocationList from '../components/LocationList';
-import mapProgress from '../../containers/mapProgress';
+import LocationList from '../components/LocationList'
+import mapProgress from '../../containers/mapProgress'
 
-import { getLocationList, getLocationListProgress } from '../selectors';
-import { requireLocationList } from '../actions';
+import { getLocationList, getLocationListProgress } from '../selectors'
+import { requireLocationList } from '../actions'
 
 const mapStateToProps = state => ({
-  locationList: getLocationList(state),
-});
+  locationList: getLocationList(state)
+})
 
 export default mapProgress(connect(mapStateToProps)(LocationList), {
   progressSelector: getLocationListProgress,
-  onResourceChange: requireLocationList,
-});
+  onResourceChange: requireLocationList
+})

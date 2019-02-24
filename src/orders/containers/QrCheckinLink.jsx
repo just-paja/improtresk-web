@@ -1,10 +1,10 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import QrCheckinLink from '../components/QrCheckinLink';
+import QrCheckinLink from '../components/QrCheckinLink'
 
 const mapStateToProps = state => ({
   accessToken: state.session.data.access_token,
-  apiUrl: state.session.apiSource,
-});
+  apiUrl: state.session.apiSource
+})
 
-export default connect(mapStateToProps)(QrCheckinLink);
+export default connect(mapStateToProps)(QrCheckinLink)

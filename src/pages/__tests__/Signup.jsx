@@ -1,15 +1,15 @@
-import configureMockStore from 'redux-mock-store';
-import React from 'react';
+import configureMockStore from 'redux-mock-store'
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import Signup from '../Signup';
+import Signup from '../Signup'
 
-const mockStore = configureMockStore();
+const mockStore = configureMockStore()
 
 describe('Signup container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
@@ -18,34 +18,34 @@ describe('Signup container', () => {
           data: [
             {
               id: 5,
-              name: 'Something new',
-            },
+              name: 'Something new'
+            }
           ],
-          valid: true,
-        },
+          valid: true
+        }
       },
       years: {
         capacity: {
           data: [],
-          valid: true,
+          valid: true
         },
         list: {
           data: [
             {
               id: 150,
               current: true,
-              topic: 'foo',
-            },
+              topic: 'foo'
+            }
           ],
-          valid: true,
-        },
+          valid: true
+        }
       },
-      texts: {},
-    });
+      texts: {}
+    })
     comp = shallow(<Signup />, {
-      context: { store },
-    });
-  });
+      context: { store }
+    })
+  })
 
   it('provides progress', () => {
     expect(comp.find('SceneProgress(Connect(Signup))')).toHaveProp('progress', {
@@ -54,14 +54,14 @@ describe('Signup container', () => {
       loading: false,
       missing: false,
       required: false,
-      valid: true,
-    });
-  });
+      valid: true
+    })
+  })
 
   it('triggers home mounted action on mount', () => {
-    comp.dive();
+    comp.dive()
     expect(store.getActions()).toEqual([
-      { type: 'PAGE_SIGNUP_ENTERED' },
-    ]);
-  });
-});
+      { type: 'PAGE_SIGNUP_ENTERED' }
+    ])
+  })
+})

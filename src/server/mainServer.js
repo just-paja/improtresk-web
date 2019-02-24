@@ -1,3 +1,3 @@
-import server from './index';
+import server from './index'
 
-export default server();
+export default server()

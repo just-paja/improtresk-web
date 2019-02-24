@@ -1,11 +1,11 @@
-import Lightbox from 'react-images';
-import React from 'react';
-import ReactGallery from 'react-photo-gallery';
-import sinon from 'sinon';
+import Lightbox from 'react-images'
+import React from 'react'
+import ReactGallery from 'react-photo-gallery'
+import sinon from 'sinon'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import Gallery from '../Gallery';
+import Gallery from '../Gallery'
 
 describe('Gallery component', () => {
   it('renders react gallery', () => {
@@ -16,31 +16,31 @@ describe('Gallery component', () => {
             image: 'http://example.com/test1.jpg',
             caption: 'foo',
             height: 200,
-            width: 400,
+            width: 400
           },
           {
             image: 'http://example.com/test2.jpg',
             height: 400,
-            width: 200,
-          },
+            width: 200
+          }
         ]}
       />
-    );
+    )
     expect(comp.find('Gallery')).toHaveProp('photos', [
       {
         src: 'http://example.com/test1.jpg',
         caption: 'foo',
         height: 200,
-        width: 400,
+        width: 400
       },
       {
         src: 'http://example.com/test2.jpg',
         caption: undefined,
         height: 400,
-        width: 200,
-      },
-    ]);
-  });
+        width: 200
+      }
+    ])
+  })
 
   it('renders lightbox', () => {
     const comp = shallow(
@@ -50,74 +50,74 @@ describe('Gallery component', () => {
             image: 'http://example.com/test1.jpg',
             caption: 'foo',
             height: 200,
-            width: 400,
+            width: 400
           },
           {
             image: 'http://example.com/test2.jpg',
             height: 400,
-            width: 200,
-          },
+            width: 200
+          }
         ]}
       />
-    );
+    )
     expect(comp.find('Lightbox')).toHaveProp('images', [
       {
         src: 'http://example.com/test1.jpg',
         caption: 'foo',
         height: 200,
-        width: 400,
+        width: 400
       },
       {
         src: 'http://example.com/test2.jpg',
         caption: undefined,
         height: 400,
-        width: 200,
-      },
-    ]);
-  });
+        width: 200
+      }
+    ])
+  })
 
   it('opens lightbox on image click', () => {
-    const preventDefaultSpy = sinon.spy();
+    const preventDefaultSpy = sinon.spy()
     const comp = shallow(
       <Gallery
         photos={[
           {
             image: 'http://example.com/test1.jpg',
             height: 200,
-            width: 400,
-          },
+            width: 400
+          }
         ]}
       />
-    );
+    )
 
     comp.find(ReactGallery).simulate('click', {
-      preventDefault: preventDefaultSpy,
-    }, { index: 0 });
+      preventDefault: preventDefaultSpy
+    }, { index: 0 })
     expect(comp.state()).toEqual({
       lightbox: true,
-      image: 0,
-    });
-    expect(preventDefaultSpy.calledOnce).toBe(true);
-  });
+      image: 0
+    })
+    expect(preventDefaultSpy.calledOnce).toBe(true)
+  })
 
   it('closes lightbox on close', () => {
-    const comp = shallow(<Gallery photos={[]} />);
-    comp.setState({ lightbox: true });
-    comp.find(Lightbox).simulate('close');
-    expect(comp.state()).toEqual({ lightbox: false, image: 0 });
-  });
+    const comp = shallow(<Gallery photos={[]} />)
+    comp.setState({ lightbox: true })
+    comp.find(Lightbox).simulate('close')
+    expect(comp.state()).toEqual({ lightbox: false, image: 0 })
+  })
 
   it('goes next on nextclick', () => {
-    const comp = shallow(<Gallery photos={[]} />);
-    comp.setState({ lightbox: true, image: 1 });
-    comp.find(Lightbox).simulate('clickNext');
-    expect(comp.state()).toEqual({ lightbox: true, image: 2 });
-  });
+    const comp = shallow(<Gallery photos={[]} />)
+    comp.setState({ lightbox: true, image: 1 })
+    comp.find(Lightbox).simulate('clickNext')
+    expect(comp.state()).toEqual({ lightbox: true, image: 2 })
+  })
 
   it('goes prev on prev click', () => {
-    const comp = shallow(<Gallery photos={[]} />);
-    comp.setState({ lightbox: true, image: 1 });
-    comp.find(Lightbox).simulate('clickPrev');
-    expect(comp.state()).toEqual({ lightbox: true, image: 0 });
-  });
-});
+    const comp = shallow(<Gallery photos={[]} />)
+    comp.setState({ lightbox: true, image: 1 })
+    comp.find(Lightbox).simulate('clickPrev')
+    expect(comp.state()).toEqual({ lightbox: true, image: 0 })
+  })
+})

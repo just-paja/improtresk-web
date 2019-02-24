@@ -1,13 +1,13 @@
-import Label from 'reactstrap/lib/Label';
-import InputControl from 'reactstrap/lib/Input';
-import FormGroup from 'reactstrap/lib/FormGroup';
-import FormText from 'reactstrap/lib/FormText';
-import FormFeedback from 'reactstrap/lib/FormFeedback';
-import React from 'react';
-import PropTypes from 'prop-types';
+import Label from 'reactstrap/lib/Label'
+import InputControl from 'reactstrap/lib/Input'
+import FormGroup from 'reactstrap/lib/FormGroup'
+import FormText from 'reactstrap/lib/FormText'
+import FormFeedback from 'reactstrap/lib/FormFeedback'
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import FormErrors from '../containers/FormErrors';
-import InputDescription from './InputDescription';
+import FormErrors from '../containers/FormErrors'
+import InputDescription from './InputDescription'
 
 const Input = ({
   currentLanguage,
@@ -41,7 +41,7 @@ const Input = ({
           errors={meta.error}
           label={label}
           data={{
-            field: input.name,
+            field: input.name
           }}
         />
       </FormFeedback>
@@ -52,7 +52,7 @@ const Input = ({
       </FormText>
     ) : null}
   </FormGroup>
-);
+)
 
 Input.propTypes = {
   currentLanguage: PropTypes.string,
@@ -61,15 +61,15 @@ Input.propTypes = {
   help: PropTypes.node,
   input: PropTypes.object.isRequired,
   label: PropTypes.node,
-  meta: PropTypes.object.isRequired,
-};
+  meta: PropTypes.object.isRequired
+}
 
 Input.defaultProps = {
   currentLanguage: null,
   disabled: false,
   dispatch: null,
   help: null,
-  label: null,
-};
+  label: null
+}
 
-export default Input;
+export default Input

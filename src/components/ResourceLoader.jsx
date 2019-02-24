@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import styles from './ResourceLoader.css';
+import styles from './ResourceLoader.css'
 
 const ResourceLoader = () => (
   <div className={styles.container}>
@@ -8,6 +8,6 @@ const ResourceLoader = () => (
       Loading...
     </div>
   </div>
-);
+)
 
-export default ResourceLoader;
+export default ResourceLoader

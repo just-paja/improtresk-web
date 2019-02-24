@@ -1,18 +1,18 @@
-import sinon from 'sinon';
+import sinon from 'sinon'
 
-import { roomListFetch } from '../../actions';
+import { roomListFetch } from '../../actions'
 
-import sagas from '..';
-import getSagaTester from '../../../../mock/sagaTester';
+import sagas from '..'
+import getSagaTester from '../../../../mock/sagaTester'
 
 describe('newsList saga', () => {
   beforeEach(() => {
-    sinon.stub(roomListFetch, 'resource');
-  });
+    sinon.stub(roomListFetch, 'resource')
+  })
 
   afterEach(() => {
-    roomListFetch.resource.restore();
-  });
+    roomListFetch.resource.restore()
+  })
 
   it('fetches rooms from API', () => {
     const sagaTester = getSagaTester({
@@ -22,24 +22,24 @@ describe('newsList saga', () => {
             {
               id: 10,
               confirmed: true,
-              year: 1,
-            },
-          ],
-        },
+              year: 1
+            }
+          ]
+        }
       },
       years: {
         list: {
           data: [
             {
               id: 1,
-              current: true,
-            },
-          ],
-        },
-      },
-    });
-    sagaTester.runAll(sagas);
-    sagaTester.dispatch(roomListFetch());
-    expect(roomListFetch.resource.calledOnce).toBeTruthy();
-  });
-});
+              current: true
+            }
+          ]
+        }
+      }
+    })
+    sagaTester.runAll(sagas)
+    sagaTester.dispatch(roomListFetch())
+    expect(roomListFetch.resource.calledOnce).toBeTruthy()
+  })
+})

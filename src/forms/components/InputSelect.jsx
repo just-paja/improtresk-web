@@ -1,23 +1,23 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
-import { Creatable } from 'react-select';
+import { Creatable } from 'react-select'
 
-import 'react-select/dist/react-select.css';
+import 'react-select/dist/react-select.css'
 
-import Input from '../components/Input';
+import Input from '../components/Input'
 
 export default class InputSelect extends Component {
-  constructor() {
-    super();
-    this.handleBlur = this.handleBlur.bind(this);
+  constructor () {
+    super()
+    this.handleBlur = this.handleBlur.bind(this)
   }
 
-  handleBlur() {
-    this.props.input.onBlur(this.props.input.value);
+  handleBlur () {
+    this.props.input.onBlur(this.props.input.value)
   }
 
-  render() {
+  render () {
     return (
       <Input
         {...this.props}
@@ -25,10 +25,10 @@ export default class InputSelect extends Component {
         onBlur={this.handleBlur}
         value={{ value: this.props.input.value, label: this.props.input.value }}
       />
-    );
+    )
   }
 }
 
 InputSelect.propTypes = {
-  input: PropTypes.object.isRequired,
-};
+  input: PropTypes.object.isRequired
+}

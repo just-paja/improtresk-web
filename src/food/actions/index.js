@@ -1,8 +1,8 @@
-import * as constants from '../constants';
-import * as api from '../../api';
+import * as constants from '../constants'
+import * as api from '../../api'
 
-import { createRoutine } from '../../routines';
+import { createRoutine } from '../../routines'
 
-export const mealListFetch = createRoutine(constants.MEAL_LIST_FETCH, api.fetchMeals);
+export const mealListFetch = createRoutine(constants.MEAL_LIST_FETCH, api.fetchMeals)
 
-export default {};
+export default {}

@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-import Container from '../../components/Container';
-import ChangeWorkshop from '../../participants/components/ChangeWorkshop';
+import Container from '../../components/Container'
+import ChangeWorkshop from '../../participants/components/ChangeWorkshop'
 
 export default class ChangeWorkshopPage extends Component {
-  componentWillMount() {
-    this.props.onMount();
+  componentWillMount () {
+    this.props.onMount()
   }
 
-  componentWillUnmount() {
-    this.props.onUnmount();
+  componentWillUnmount () {
+    this.props.onUnmount()
   }
 
-  render() {
+  render () {
     const {
       changeWorkshop,
       order,
       onChangeWorkshopChange,
       onChangeWorkshopSubmit,
-      workshops,
-    } = this.props;
+      workshops
+    } = this.props
 
     return (
       <Container>
@@ -39,14 +39,14 @@ export default class ChangeWorkshopPage extends Component {
         <hr />
         <h2>Tvůj nový workshop</h2>
         <ChangeWorkshop
-          form="changeWorkshop"
+          form='changeWorkshop'
           onChange={onChangeWorkshopChange}
           onSubmit={onChangeWorkshopSubmit}
           workshops={workshops}
           {...changeWorkshop}
         />
       </Container>
-    );
+    )
   }
 }
 
@@ -57,5 +57,5 @@ ChangeWorkshopPage.propTypes = {
   onChangeWorkshopSubmit: PropTypes.func.isRequired,
   onMount: PropTypes.func.isRequired,
   onUnmount: PropTypes.func.isRequired,
-  workshops: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
+  workshops: PropTypes.arrayOf(PropTypes.object).isRequired
+}

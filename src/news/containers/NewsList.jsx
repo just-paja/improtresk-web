@@ -1,18 +1,18 @@
-import { connect } from 'react-redux';
-import { getTranslate } from 'react-localize-redux';
+import { connect } from 'react-redux'
+import { getTranslate } from 'react-localize-redux'
 
-import NewsList from '../components/NewsList';
-import mapProgress from '../../containers/mapProgress';
+import NewsList from '../components/NewsList'
+import mapProgress from '../../containers/mapProgress'
 
-import { getNewsList, getNewsListProgress } from '../selectors';
-import { newsListFetch } from '../actions';
+import { getNewsList, getNewsListProgress } from '../selectors'
+import { newsListFetch } from '../actions'
 
 const mapStateToProps = state => ({
   news: getNewsList(state),
-  translate: getTranslate(state.locale),
-});
+  translate: getTranslate(state.locale)
+})
 
 export default mapProgress(connect(mapStateToProps)(NewsList), {
   progressSelector: getNewsListProgress,
-  onResourceChange: newsListFetch,
-});
+  onResourceChange: newsListFetch
+})

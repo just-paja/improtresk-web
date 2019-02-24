@@ -1,8 +1,8 @@
-import createYearFetchSaga from '../../years/sagas/createYearFetchSaga';
+import createYearFetchSaga from '../../years/sagas/createYearFetchSaga'
 
-import { mealListFetch } from '../actions';
-import { getMealListState } from '../selectors';
+import { mealListFetch } from '../actions'
+import { getMealListState } from '../selectors'
 
 export default createYearFetchSaga(mealListFetch, {
-  stateSelector: getMealListState,
-});
+  stateSelector: getMealListState
+})

@@ -1,98 +1,98 @@
-import * as selectors from '../app';
+import * as selectors from '../app'
 
 describe('Application selectors', () => {
   it('countAppRequests returns 0 when no request is loading', () => {
     expect(selectors.countAppRequests({
       accomodation: {
-        loading: false,
+        loading: false
       },
       workshops: {
         workshopDetail: {
-          loading: null,
-        },
-      },
-    })).toBe(0);
-  });
+          loading: null
+        }
+      }
+    })).toBe(0)
+  })
 
   it('countAppRequests returns number reducers flagged as loading', () => {
     expect(selectors.countAppRequests({
       accomodation: {
-        loading: true,
+        loading: true
       },
       workshops: {
         workshopDetail: {
-          loading: true,
-        },
+          loading: true
+        }
+      }
+    })).toBe(2)
+  })
+
+  it('getAppErrors all fatal errors', () => {
+    expect(selectors.getAppErrors({
+      accomodation: {
+        error: new Error('foo')
       },
-    })).toBe(2);
-  });
+      workshops: {
+        workshopDetail: {
+          error: new Error('bar'),
+          data: []
+        }
+      },
+      news: {
+        error: undefined
+      }
+    })).toEqual(['foo', 'bar'])
+  })
 
   it('getAppErrors all fatal errors', () => {
     expect(selectors.getAppErrors({
       accomodation: {
         error: new Error('foo'),
+        id: 123
       },
       workshops: {
         workshopDetail: {
           error: new Error('bar'),
-          data: [],
-        },
+          data: []
+        }
       },
       news: {
-        error: undefined,
-      },
-    })).toEqual(['foo', 'bar']);
-  });
-
-  it('getAppErrors all fatal errors', () => {
-    expect(selectors.getAppErrors({
-      accomodation: {
-        error: new Error('foo'),
-        id: 123,
-      },
-      workshops: {
-        workshopDetail: {
-          error: new Error('bar'),
-          data: [],
-        },
-      },
-      news: {
-        error: undefined,
-      },
-    })).toEqual(['foo', 'bar']);
-  });
+        error: undefined
+      }
+    })).toEqual(['foo', 'bar'])
+  })
 
   it('getAppProgress returns app loading progress', () => {
     expect(selectors.getAppProgress({
       workshops: {
         difficulties: {
           loading: false,
-          valid: false,
+          valid: false
         },
         lectors: {
           list: {
             loading: false,
-            valid: true,
+            valid: true
           },
           roles: {
             loading: false,
-            valid: true,
-          },
-        },
+            valid: true
+          }
+        }
       },
       participants: {
         detail: {
           data: {},
-          valid: true,
-        },
+          valid: true
+        }
       },
       years: {
         loading: false,
-        valid: true,
-      },
+        valid: true
+      }
     })).toMatchObject({
       loading: false,
-      valid: false,
-    });
-  });
-});
+      valid: false
+    })
+  })
+})

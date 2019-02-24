@@ -1,2 +1,2 @@
-export * from './lectors';
-export * from './workshops';
+export * from './lectors'
+export * from './workshops'

@@ -1,19 +1,19 @@
-import { connect } from 'react-redux';
-import { getTranslate } from 'react-localize-redux';
-import { initialize } from 'redux-form';
+import { connect } from 'react-redux'
+import { getTranslate } from 'react-localize-redux'
+import { initialize } from 'redux-form'
 
-import NewPasswordPage from './components/NewPasswordPage';
+import NewPasswordPage from './components/NewPasswordPage'
 
-import { newPassword } from '../participants/actions';
+import { newPassword } from '../participants/actions'
 
 const mapStateToProps = state => ({
-  translate: getTranslate(state.locale),
-});
+  translate: getTranslate(state.locale)
+})
 
 const mapDispatchToProps = {
   onMount: token => initialize(newPassword.form, {
-    token,
-  }),
-};
+    token
+  })
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewPasswordPage);
+export default connect(mapStateToProps, mapDispatchToProps)(NewPasswordPage)

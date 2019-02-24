@@ -1,29 +1,29 @@
-import configureMockStore from 'redux-mock-store';
-import React from 'react';
+import configureMockStore from 'redux-mock-store'
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import Fees from '../Fees';
+import Fees from '../Fees'
 
-const mockStore = configureMockStore();
+const mockStore = configureMockStore()
 
 describe('Fees container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
       locale: {
-        languages: [],
+        languages: []
       },
-      texts: {},
-    });
+      texts: {}
+    })
     comp = shallow(<Fees />, {
-      context: { store },
-    });
-  });
+      context: { store }
+    })
+  })
 
   it('renders fees page', () => {
-    expect(comp.find('Fees')).toHaveLength(1);
-  });
-});
+    expect(comp.find('Fees')).toHaveLength(1)
+  })
+})

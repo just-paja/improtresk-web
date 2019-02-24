@@ -1,27 +1,27 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
+import React from 'react'
+import configureStore from 'redux-mock-store'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import MultiLingualMarkdown from '../MultiLingualMarkdown';
+import MultiLingualMarkdown from '../MultiLingualMarkdown'
 
-const mockStore = configureStore();
+const mockStore = configureStore()
 
 describe('MultiLingualMarkdown container', () => {
-  let comp;
+  let comp
 
   beforeEach(() => {
     const store = mockStore({
       session: {
-        locale: 'cs-CZ',
-      },
-    });
+        locale: 'cs-CZ'
+      }
+    })
     comp = shallow(<MultiLingualMarkdown />, {
-      context: { store },
-    });
-  });
+      context: { store }
+    })
+  })
 
   it('provides selected language', () => {
-    expect(comp.find('MultiLingualMarkdown')).toHaveProp('lang', 'cs');
-  });
-});
+    expect(comp.find('MultiLingualMarkdown')).toHaveProp('lang', 'cs')
+  })
+})

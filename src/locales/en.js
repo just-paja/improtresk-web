@@ -5,21 +5,21 @@ export default {
     crash: 'Something wen wrong in our application. It will be best if you contact us.',
     somethingWentWrong: 'Oh snap! Something went wrong',
     errorHelp: 'This page could not be rendered, because there was some error somewhere on the way from database and keybord. Try repeating your request in a moment and contact us if the problem persists.',
-    whatWentWrong: 'What went wrong',
+    whatWentWrong: 'What went wrong'
   },
   capacity: {
     full: 'Full',
     fullyReserved: '${ reserved } temporary reservations',
     freeSpots: '${ freeSpots } free spots',
-    freeSpotsAndReservations: '${ freeSpots } free spots, ${ reserved } temporary reservations',
+    freeSpotsAndReservations: '${ freeSpots } free spots, ${ reserved } temporary reservations'
   },
   error: {
     connection: 'Cannot connect to the API. Please check your internet connection.',
-    unknown: 'Unknown error: ${message}',
+    unknown: 'Unknown error: ${message}'
   },
   general: {
     objectNotFound: 'Page not found',
-    objectNotFoundHelp: 'You know. The page or object you were looking for does not exist, so we have nothing to show you here',
+    objectNotFoundHelp: 'You know. The page or object you were looking for does not exist, so we have nothing to show you here'
   },
   generic: {
     contactPhone: 'Contact phone',
@@ -30,7 +30,7 @@ export default {
     missingErrorDetails: 'We do not have any more details',
     oops: 'Oops',
     success: 'Success',
-    website: 'Official website',
+    website: 'Official website'
   },
   menu: {
     archive: 'Archive',
@@ -45,6 +45,6 @@ export default {
     signup: 'Signup',
     locations: 'Locations',
     schedule: 'Schedule',
-    forParticipants: 'For participants',
-  },
-};
+    forParticipants: 'For participants'
+  }
+}

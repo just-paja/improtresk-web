@@ -1,47 +1,47 @@
-import * as selectors from '../index';
+import * as selectors from '../index'
 
 describe('News selectors', () => {
   it('getNewsDetail returns selected news detail id', () => {
     expect(selectors.getNewsDetailId({
       news: {
         detail: {
-          id: 1,
-        },
-      },
-    })).toBe(1);
-  });
+          id: 1
+        }
+      }
+    })).toBe(1)
+  })
 
   it('getNewsDetail returns all news stored', () => {
     expect(selectors.getNewsDetail({
       news: {
         detail: {
           data: {
-            id: 1,
-          },
-        },
-      },
-    })).toEqual({ id: 1 });
-  });
+            id: 1
+          }
+        }
+      }
+    })).toEqual({ id: 1 })
+  })
 
   it('getNewsList returns all news stored', () => {
     expect(selectors.getNewsList({
       news: {
         list: {
           data: [
-            { id: 1 },
-          ],
-        },
-      },
+            { id: 1 }
+          ]
+        }
+      }
     })).toEqual([
-      { id: 1 },
-    ]);
-  });
+      { id: 1 }
+    ])
+  })
 
   it('isNewsDetailRequired returns true when in invalid state', () => {
     expect(selectors.isNewsDetailRequired({
-      news: { detail: { valid: false } },
-    })).toBe(true);
-  });
+      news: { detail: { valid: false } }
+    })).toBe(true)
+  })
 
   it('isNewsDetailRequired returns false when in valid state', () => {
     expect(selectors.isNewsDetailRequired({
@@ -49,13 +49,13 @@ describe('News selectors', () => {
         detail: {
           id: 1,
           data: {
-            id: 1,
+            id: 1
           },
-          valid: true,
-        },
-      },
-    })).toBe(false);
-  });
+          valid: true
+        }
+      }
+    })).toBe(false)
+  })
 
   it('aggregateNewsData aggregates poll data', () => {
     const poll = {
@@ -63,15 +63,15 @@ describe('News selectors', () => {
       answers: [
         {
           id: 6,
-          text: 'Answer text',
-        },
-      ],
-    };
+          text: 'Answer text'
+        }
+      ]
+    }
 
     expect(selectors.aggregateNewsData({
       id: 5,
       text: 'Answer text',
-      poll,
+      poll
     })).toEqual({
       id: 5,
       text: 'Answer text',
@@ -80,20 +80,20 @@ describe('News selectors', () => {
         answers: [
           {
             id: 6,
-            text: 'Answer text',
-          },
-        ],
-      },
-    });
-  });
+            text: 'Answer text'
+          }
+        ]
+      }
+    })
+  })
 
   it('aggregateNewsData does nothing without poll', () => {
     const news = {
       id: 5,
-      text: 'Answer text',
-    };
-    expect(selectors.aggregateNewsData(news)).toBe(news);
-  });
+      text: 'Answer text'
+    }
+    expect(selectors.aggregateNewsData(news)).toBe(news)
+  })
 
   it('aggregatePollAnswerData aggregates performer data in poll answer', () => {
     expect(selectors.aggregatePollAnswerData({
@@ -105,16 +105,16 @@ describe('News selectors', () => {
           {
             id: 78,
             name: 'Channel',
-            service: 'youtube',
-          },
+            service: 'youtube'
+          }
         ],
         photos: [
           {
             id: 7,
-            image: 'http://example.com/performer.jpg',
-          },
-        ],
-      },
+            image: 'http://example.com/performer.jpg'
+          }
+        ]
+      }
     })).toEqual({
       id: 5,
       description: 'foo',
@@ -124,12 +124,12 @@ describe('News selectors', () => {
         {
           id: 78,
           name: 'Channel',
-          service: 'youtube',
-        },
+          service: 'youtube'
+        }
       ],
-      performer: null,
-    });
-  });
+      performer: null
+    })
+  })
 
   it('aggregatePollAnswerData aggregates null for performer without photos', () => {
     expect(selectors.aggregatePollAnswerData({
@@ -141,11 +141,11 @@ describe('News selectors', () => {
           {
             id: 78,
             name: 'Channel',
-            service: 'youtube',
-          },
+            service: 'youtube'
+          }
         ],
-        photos: [],
-      },
+        photos: []
+      }
     })).toEqual({
       id: 5,
       description: 'foo',
@@ -155,20 +155,20 @@ describe('News selectors', () => {
         {
           id: 78,
           name: 'Channel',
-          service: 'youtube',
-        },
+          service: 'youtube'
+        }
       ],
-      performer: null,
-    });
-  });
+      performer: null
+    })
+  })
 
   it('aggregatePollAnswerData does not change answer with no performer', () => {
     const answer = {
       id: 6,
-      text: 'Answer text',
-    };
-    expect(selectors.aggregatePollAnswerData(answer)).toBe(answer);
-  });
+      text: 'Answer text'
+    }
+    expect(selectors.aggregatePollAnswerData(answer)).toBe(answer)
+  })
 
   it('aggregatePollData calls aggregatePollAnswerData on each answer', () => {
     expect(selectors.aggregatePollData({
@@ -183,22 +183,22 @@ describe('News selectors', () => {
               {
                 id: 78,
                 name: 'Channel',
-                service: 'youtube',
-              },
+                service: 'youtube'
+              }
             ],
             photos: [
               {
                 id: 7,
-                image: 'http://example.com/performer.jpg',
-              },
-            ],
-          },
+                image: 'http://example.com/performer.jpg'
+              }
+            ]
+          }
         },
         {
           id: 6,
-          text: 'Answer text',
-        },
-      ],
+          text: 'Answer text'
+        }
+      ]
     })).toEqual({
       id: 634,
       answers: [
@@ -211,16 +211,16 @@ describe('News selectors', () => {
             {
               id: 78,
               name: 'Channel',
-              service: 'youtube',
-            },
+              service: 'youtube'
+            }
           ],
-          performer: null,
+          performer: null
         },
         {
           id: 6,
-          text: 'Answer text',
-        },
-      ],
-    });
-  });
-});
+          text: 'Answer text'
+        }
+      ]
+    })
+  })
+})

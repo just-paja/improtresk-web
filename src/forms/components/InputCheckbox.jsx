@@ -1,13 +1,13 @@
-import FormFeedback from 'reactstrap/lib/FormFeedback';
-import FormGroup from 'reactstrap/lib/FormGroup';
-import FormText from 'reactstrap/lib/FormText';
-import Input from 'reactstrap/lib/Input';
-import Label from 'reactstrap/lib/Label';
-import PropTypes from 'prop-types';
-import React from 'react';
+import FormFeedback from 'reactstrap/lib/FormFeedback'
+import FormGroup from 'reactstrap/lib/FormGroup'
+import FormText from 'reactstrap/lib/FormText'
+import Input from 'reactstrap/lib/Input'
+import Label from 'reactstrap/lib/Label'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import FormErrors from '../containers/FormErrors';
-import InputDescription from './InputDescription';
+import FormErrors from '../containers/FormErrors'
+import InputDescription from './InputDescription'
 
 const InputCheckbox = ({
   disabled,
@@ -26,7 +26,7 @@ const InputCheckbox = ({
       onBlur={input.onBlur}
       onChange={input.onChange}
       onFocus={input.onFocus}
-      type="checkbox"
+      type='checkbox'
       value={input.value}
       {...other}
     />
@@ -40,7 +40,7 @@ const InputCheckbox = ({
           label={label}
           rawLabel={rawLabel}
           data={{
-            field: input.name,
+            field: input.name
           }}
         />
       </FormFeedback>
@@ -51,7 +51,7 @@ const InputCheckbox = ({
       </FormText>
     ) : null}
   </FormGroup>
-);
+)
 
 InputCheckbox.propTypes = {
   disabled: PropTypes.bool,
@@ -59,13 +59,13 @@ InputCheckbox.propTypes = {
   help: PropTypes.node,
   input: PropTypes.object.isRequired,
   label: PropTypes.node.isRequired,
-  meta: PropTypes.object.isRequired,
-};
+  meta: PropTypes.object.isRequired
+}
 
 InputCheckbox.defaultProps = {
   disabled: false,
   help: null,
-  rawLabel: false,
-};
+  rawLabel: false
+}
 
-export default InputCheckbox;
+export default InputCheckbox

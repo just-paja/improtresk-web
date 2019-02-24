@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import { Field } from 'redux-form';
-import { Translate } from 'react-localize-redux';
+import { Field } from 'redux-form'
+import { Translate } from 'react-localize-redux'
 
-import { FormGeneralError } from '../../proptypes';
+import { FormGeneralError } from '../../proptypes'
 
-import Button from '../../components/Button';
-import Form from '../../forms/components/Form';
-import Input from '../../forms/components/Input';
+import Button from '../../components/Button'
+import Form from '../../forms/components/Form'
+import Input from '../../forms/components/Input'
 
 const ChangePasswordForm = ({
   error,
@@ -18,10 +18,10 @@ const ChangePasswordForm = ({
   submit,
   submitSucceeded,
   submitting,
-  successComponent: SuccessComponent,
+  successComponent: SuccessComponent
 }) => {
   if (submitSucceeded) {
-    return <SuccessComponent />;
+    return <SuccessComponent />
   }
 
   return (
@@ -29,34 +29,34 @@ const ChangePasswordForm = ({
       {newPassword ? null : (
         <Field
           component={Input}
-          name="oldPassword"
-          type="password"
-          label="participants.oldPassword"
+          name='oldPassword'
+          type='password'
+          label='participants.oldPassword'
         />
       )}
       <Field
         component={Input}
-        name="newPassword"
-        type="password"
-        label="participants.newPassword"
+        name='newPassword'
+        type='password'
+        label='participants.newPassword'
       />
       <Field
         component={Input}
-        name="newPasswordConfirm"
-        type="password"
-        label="participants.newPasswordCheck"
+        name='newPasswordConfirm'
+        type='password'
+        label='participants.newPasswordCheck'
       />
       <Button
         disabled={pristine}
-        icon="key"
+        icon='key'
         loading={submitting}
-        type="submit"
+        type='submit'
       >
-        <Translate id="participants.changePassword" />
+        <Translate id='participants.changePassword' />
       </Button>
     </Form>
-  );
-};
+  )
+}
 
 ChangePasswordForm.propTypes = {
   error: FormGeneralError,
@@ -66,15 +66,15 @@ ChangePasswordForm.propTypes = {
   submitting: PropTypes.bool,
   submitSucceeded: PropTypes.bool,
   submit: PropTypes.func.isRequired,
-  successComponent: PropTypes.func.isRequired,
-};
+  successComponent: PropTypes.func.isRequired
+}
 
 ChangePasswordForm.defaultProps = {
   error: null,
   newPassword: false,
   pristine: false,
   submitSucceeded: false,
-  submitting: false,
-};
+  submitting: false
+}
 
-export default ChangePasswordForm;
+export default ChangePasswordForm

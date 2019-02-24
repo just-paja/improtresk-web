@@ -1,28 +1,28 @@
-import configureMockStore from 'redux-mock-store';
-import React from 'react';
+import configureMockStore from 'redux-mock-store'
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import Locations from '../Locations';
+import Locations from '../Locations'
 
-const mockStore = configureMockStore();
+const mockStore = configureMockStore()
 
 describe('Locations container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
       locale: {
-        languages: [],
-      },
-    });
+        languages: []
+      }
+    })
     comp = shallow(<Locations />, {
-      context: { store },
-    });
-  });
+      context: { store }
+    })
+  })
 
   it('provides translate method', () => {
-    expect(comp.find('Locations')).toHaveProp('translate');
-  });
-});
+    expect(comp.find('Locations')).toHaveProp('translate')
+  })
+})

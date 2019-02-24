@@ -1,23 +1,23 @@
-import classnames from 'classnames';
-import Col from 'reactstrap/lib/Col';
-import FormFeedback from 'reactstrap/lib/FormFeedback';
-import React from 'react';
-import PropTypes from 'prop-types';
+import classnames from 'classnames'
+import Col from 'reactstrap/lib/Col'
+import FormFeedback from 'reactstrap/lib/FormFeedback'
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import AccomodationPickerItem from './AccomodationPickerItem';
-import FormErrors from '../../forms/containers/FormErrors';
+import AccomodationPickerItem from './AccomodationPickerItem'
+import FormErrors from '../../forms/containers/FormErrors'
 
-import { Accomodation } from '../../proptypes';
+import { Accomodation } from '../../proptypes'
 
 const AccomodationPicker = ({
   accomodation,
   input,
-  meta,
+  meta
 }) => (
   <Col xs={12}>
     <div
       className={classnames({
-        'is-invalid': meta.touched && meta.error,
+        'is-invalid': meta.touched && meta.error
       })}
     >
       {accomodation.map(house => (
@@ -36,7 +36,7 @@ const AccomodationPicker = ({
       ))}
     </div>
     {meta.touched && meta.error ? (
-      <FormFeedback className="d-block">
+      <FormFeedback className='d-block'>
         <FormErrors
           errors={meta.error}
           data={{ field: input.name }}
@@ -44,12 +44,12 @@ const AccomodationPicker = ({
       </FormFeedback>
     ) : null}
   </Col>
-);
+)
 
 AccomodationPicker.propTypes = {
   accomodation: PropTypes.arrayOf(Accomodation).isRequired,
   input: PropTypes.object.isRequired,
-  meta: PropTypes.object.isRequired,
-};
+  meta: PropTypes.object.isRequired
+}
 
-export default AccomodationPicker;
+export default AccomodationPicker

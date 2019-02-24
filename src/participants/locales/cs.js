@@ -73,6 +73,6 @@ export default {
     teamHelp: 'Tento údaj použijeme pro malé sčítání improvizátorů, ale také při rozdělování mistností na spaní',
     workshopRegistrationHeading: 'Přihlášení na workshop',
     workshopRegistrationNecessary: 'Na workshopu nejsi, dokud nedostaneš potvrzovací e-mail. Vznikne-li na cestě nějaký problém, tak se nám ozvi.',
-    workshopRegistrationProcess: 'Vybereš si workshop podle nabídky a aktuální obsazenosti. Pokud bude obsazeno, nebude se tam dát přihlásit. Může se stát, že přihlásíš a nezaplatíš. Potom tvoje místo na workshopu automaticky po nějaké lhůtě nabídneme ostatním. To je důvod proč budou počty míst na workshopu skákat nahoru a dolů.',
-  },
-};
+    workshopRegistrationProcess: 'Vybereš si workshop podle nabídky a aktuální obsazenosti. Pokud bude obsazeno, nebude se tam dát přihlásit. Může se stát, že přihlásíš a nezaplatíš. Potom tvoje místo na workshopu automaticky po nějaké lhůtě nabídneme ostatním. To je důvod proč budou počty míst na workshopu skákat nahoru a dolů.'
+  }
+}

@@ -1,5 +1,5 @@
-import fetchAccomodation from './fetchAccomodation';
+import fetchAccomodation from './fetchAccomodation'
 
 export default [
-  ...fetchAccomodation,
-];
+  ...fetchAccomodation
+]

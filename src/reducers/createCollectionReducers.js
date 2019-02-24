@@ -3,18 +3,18 @@ import {
   fetchStart,
   fetchStop,
   fetchSuccess,
-  invalidateOnResourceChange,
-} from 'react-saga-rest';
+  invalidateOnResourceChange
+} from 'react-saga-rest'
 
-export { defaultCollectionState as initialState } from 'react-saga-rest';
+export { defaultCollectionState as initialState } from 'react-saga-rest'
 
 export default ({
   routine,
-  identAttr,
+  identAttr
 }) => ({
   [routine.TRIGGER]: identAttr ? invalidateOnResourceChange(identAttr, 'payload') : undefined,
   [routine.FAILURE]: fetchFailure,
   [routine.FULFILL]: fetchStop,
   [routine.REQUEST]: fetchStart,
-  [routine.SUCCESS]: fetchSuccess,
-});
+  [routine.SUCCESS]: fetchSuccess
+})

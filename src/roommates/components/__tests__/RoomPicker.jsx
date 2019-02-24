@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import RoomPicker from '../RoomPicker';
+import RoomPicker from '../RoomPicker'
 
 describe('RoomPicker component', () => {
   it('renders rooms', () => {
@@ -16,11 +16,11 @@ describe('RoomPicker component', () => {
             id: 20,
             number: '210',
             size: 3,
-            inhabitants: [],
-          },
+            inhabitants: []
+          }
         ]}
       />
-    );
-    expect(comp.find('RoomPickerItem')).toHaveLength(1);
-  });
-});
+    )
+    expect(comp.find('RoomPickerItem')).toHaveLength(1)
+  })
+})

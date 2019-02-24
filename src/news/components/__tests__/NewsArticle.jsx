@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import NewsArticle from '../NewsArticle';
+import NewsArticle from '../NewsArticle'
 
 describe('NewsArticle component', () => {
   it('renders article name', () => {
@@ -20,14 +20,14 @@ describe('NewsArticle component', () => {
               id: 5,
               src: '/images/front.jpg',
               height: 200,
-              width: 200,
-            },
-          ],
+              width: 200
+            }
+          ]
         }}
       />
-    );
-    expect(comp.find({ children: 'Improtřesk v Milevsku' })).toHaveLength(1);
-  });
+    )
+    expect(comp.find({ children: 'Improtřesk v Milevsku' })).toHaveLength(1)
+  })
 
   it('renders article text', () => {
     const comp = shallow(
@@ -44,14 +44,14 @@ describe('NewsArticle component', () => {
               id: 5,
               src: '/images/front.jpg',
               height: 200,
-              width: 200,
-            },
-          ],
+              width: 200
+            }
+          ]
         }}
       />
-    );
-    expect(comp.find('ReactMarkdown')).toHaveLength(1);
-  });
+    )
+    expect(comp.find('ReactMarkdown')).toHaveLength(1)
+  })
 
   it('renders photo gallery', () => {
     const comp = shallow(
@@ -68,19 +68,19 @@ describe('NewsArticle component', () => {
               id: 5,
               src: '/images/front.jpg',
               height: 200,
-              width: 200,
-            },
-          ],
+              width: 200
+            }
+          ]
         }}
       />
-    );
+    )
     expect(comp.find('Gallery')).toHaveProp('photos', [
       {
         id: 5,
         src: '/images/front.jpg',
         height: 200,
-        width: 200,
-      },
-    ]);
-  });
-});
+        width: 200
+      }
+    ])
+  })
+})

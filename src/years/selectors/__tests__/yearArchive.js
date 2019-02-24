@@ -1,53 +1,53 @@
-import * as selectors from '..';
+import * as selectors from '..'
 
 describe('Archive selectors', () => {
   it('getCurrent returns id of displayed year', () => {
     expect(selectors.getCurrent({
       years: {
         archive: {
-          current: 32,
-        },
-      },
-    })).toBe(32);
-  });
+          current: 32
+        }
+      }
+    })).toBe(32)
+  })
 
   it('getArchivedYear returns year number when present', () => {
     expect(selectors.getArchivedYear({
       years: {
         archive: {
-          data: { year: 2017 },
-        },
-      },
-    })).toBe(2017);
-  });
+          data: { year: 2017 }
+        }
+      }
+    })).toBe(2017)
+  })
 
   it('getArchivedYear returns null when missing', () => {
     expect(selectors.getArchivedYear({
       years: {
         archive: {
-        },
-      },
-    })).toBe(null);
-  });
+        }
+      }
+    })).toBe(null)
+  })
 
   it('getArchivedYearTopic returns year number when present', () => {
     expect(selectors.getArchivedYearTopic({
       years: {
         archive: {
-          data: { topic: 'foo' },
-        },
-      },
-    })).toBe('foo');
-  });
+          data: { topic: 'foo' }
+        }
+      }
+    })).toBe('foo')
+  })
 
   it('getArchivedYearTopic returns null when missing', () => {
     expect(selectors.getArchivedYearTopic({
       years: {
         archive: {
-        },
-      },
-    })).toBe(null);
-  });
+        }
+      }
+    })).toBe(null)
+  })
 
   it('getArchivedYearWorkshops returns archived year workshops when present', () => {
     expect(selectors.getArchivedYearWorkshops({
@@ -57,36 +57,36 @@ describe('Archive selectors', () => {
             workshops: [
               {
                 name: 'foo',
-                lectors: [],
-              },
-            ],
-          },
+                lectors: []
+              }
+            ]
+          }
         },
         capacity: {},
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
+            data: []
+          }
         },
         workshops: {
           difficulties: {
-            data: [],
-          },
+            data: []
+          }
         },
         years: {
-          data: [],
-        },
-      },
+          data: []
+        }
+      }
     })).toEqual([
       {
         lectors: [],
-        name: 'foo',
-      },
-    ]);
-  });
+        name: 'foo'
+      }
+    ])
+  })
 
   it('getArchivedYearWorkshops returns empty array when missing year', () => {
     expect(selectors.getArchivedYearWorkshops({
@@ -96,41 +96,41 @@ describe('Archive selectors', () => {
         capacity: {},
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
+            data: []
+          }
         },
         workshops: {
           difficulties: {
-            data: [],
-          },
+            data: []
+          }
         },
         years: {
-          data: [],
-        },
-      },
-    })).toEqual([]);
-  });
+          data: []
+        }
+      }
+    })).toEqual([])
+  })
 
   it('isArchiveRequired returns true when in invalid state', () => {
     expect(selectors.isArchiveRequired({
       years: {
         archive: {
-          valid: false,
-        },
-      },
-    })).toBe(true);
-  });
+          valid: false
+        }
+      }
+    })).toBe(true)
+  })
 
   it('isArchiveRequired returns false when in valid state', () => {
     expect(selectors.isArchiveRequired({
       years: {
         archive: {
-          valid: true,
-        },
-      },
-    })).toBe(false);
-  });
-});
+          valid: true
+        }
+      }
+    })).toBe(false)
+  })
+})

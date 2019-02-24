@@ -1,33 +1,33 @@
-import FormFeedback from 'reactstrap/lib/FormFeedback';
-import FormGroup from 'reactstrap/lib/FormGroup';
-import FormText from 'reactstrap/lib/FormText';
-import Input from 'reactstrap/lib/Input';
-import Label from 'reactstrap/lib/Label';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import FormFeedback from 'reactstrap/lib/FormFeedback'
+import FormGroup from 'reactstrap/lib/FormGroup'
+import FormText from 'reactstrap/lib/FormText'
+import Input from 'reactstrap/lib/Input'
+import Label from 'reactstrap/lib/Label'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
-import { Children } from '../../proptypes';
+import { Children } from '../../proptypes'
 
 export default class InputRadio extends Component {
-  constructor() {
-    super();
-    this.state = {};
-    this.handleChange = this.handleChange.bind(this);
+  constructor () {
+    super()
+    this.state = {}
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(e) {
-    this.setState({ touched: true });
+  handleChange (e) {
+    this.setState({ touched: true })
     this.props.onChange(
       this.props.name,
       this.props.autoValue ? !!e.target.checked : this.props.value
-    );
+    )
   }
 
-  isTouched() {
-    return !!(this.props.touched || this.state.touched);
+  isTouched () {
+    return !!(this.props.touched || this.state.touched)
   }
 
-  render() {
+  render () {
     const {
       autoValue,
       checked,
@@ -37,11 +37,11 @@ export default class InputRadio extends Component {
       name,
       value,
       ...other
-    } = this.props;
+    } = this.props
 
-    const touched = this.isTouched();
+    const touched = this.isTouched()
 
-    delete other.touched;
+    delete other.touched
 
     return (
       <FormGroup>
@@ -51,14 +51,14 @@ export default class InputRadio extends Component {
             checked={autoValue ? !!value : checked}
             name={name}
             onChange={this.handleChange}
-            type="radio"
+            type='radio'
           />
           {label}
         </Label>
         {touched && error ? <FormFeedback>{error}</FormFeedback> : null}
         {help ? <FormText>{help}</FormText> : null}
       </FormGroup>
-    );
+    )
   }
 }
 
@@ -76,9 +76,9 @@ InputRadio.propTypes = {
     PropTypes.bool,
     PropTypes.object,
     PropTypes.string,
-    PropTypes.number,
-  ]),
-};
+    PropTypes.number
+  ])
+}
 
 InputRadio.defaultProps = {
   autoValue: true,
@@ -89,5 +89,5 @@ InputRadio.defaultProps = {
   onBlur: null,
   onChange: null,
   touched: false,
-  value: null,
-};
+  value: null
+}

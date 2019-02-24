@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import classnames from 'classnames';
+import PropTypes from 'prop-types'
+import React from 'react'
+import classnames from 'classnames'
 
-import { Children, ClassName } from '../proptypes';
+import { Children, ClassName } from '../proptypes'
 
-import styles from './Flex.css';
+import styles from './Flex.css'
 
 const Flex = ({
   alignItems,
@@ -15,7 +15,7 @@ const Flex = ({
   justify,
   minSize,
   textAlign,
-  width,
+  width
 }) => (
   <div
     className={classnames(styles.component, {
@@ -26,12 +26,12 @@ const Flex = ({
       [`justify-content-${justify}`]: !!justify,
       [`flex-${direction}`]: !!direction,
       [`text-align-${textAlign}`]: !!textAlign,
-      [className]: className,
+      [className]: className
     })}
   >
     {children}
   </div>
-);
+)
 
 Flex.propTypes = {
   alignItems: PropTypes.oneOf(['start', 'end', 'center', 'baseline']),
@@ -42,8 +42,8 @@ Flex.propTypes = {
   justify: PropTypes.oneOf(['between']),
   minSize: PropTypes.oneOf(['sm', 'md', 'lg']),
   textAlign: PropTypes.oneOf(['left', 'center', 'right']),
-  width: PropTypes.oneOf([25, 50, 75, 100]),
-};
+  width: PropTypes.oneOf([25, 50, 75, 100])
+}
 
 Flex.defaultProps = {
   alignItems: null,
@@ -53,7 +53,7 @@ Flex.defaultProps = {
   justify: null,
   minSize: null,
   textAlign: null,
-  width: null,
-};
+  width: null
+}
 
-export default Flex;
+export default Flex

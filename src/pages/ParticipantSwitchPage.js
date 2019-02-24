@@ -1,15 +1,15 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import ParticipantSwitchPage from './components/ParticipantSwitchPage';
-import mapPageProgress from './mapPageProgress';
+import ParticipantSwitchPage from './components/ParticipantSwitchPage'
+import mapPageProgress from './mapPageProgress'
 
-import { getParticipantHomeProgress } from './selectors';
+import { getParticipantHomeProgress } from './selectors'
 
-import * as constants from './constants';
+import * as constants from './constants'
 
-const mapStateToProps = () => ({});
+const mapStateToProps = () => ({})
 
 export default mapPageProgress(connect(mapStateToProps)(ParticipantSwitchPage), {
   progressSelector: getParticipantHomeProgress,
-  onResourceChange: () => ({ type: constants.PAGE_PARTICIPANT_HOME_ENTERED }),
-});
+  onResourceChange: () => ({ type: constants.PAGE_PARTICIPANT_HOME_ENTERED })
+})

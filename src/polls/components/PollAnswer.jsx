@@ -1,26 +1,26 @@
-import Col from 'reactstrap/lib/Col';
-import Markdown from 'react-markdown';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col'
+import Markdown from 'react-markdown'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import Row from 'reactstrap/lib/Row'
 
-import Button from '../../components/Button';
-import ImageHeader from '../../components/ImageHeader';
-import LinkServiceList from '../../components/LinkServiceList';
+import Button from '../../components/Button'
+import ImageHeader from '../../components/ImageHeader'
+import LinkServiceList from '../../components/LinkServiceList'
 
-import styles from './PollAnswer.css';
+import styles from './PollAnswer.css'
 
 export default class PollAnswer extends Component {
-  constructor() {
-    super();
-    this.handleVote = this.handleVote.bind(this);
+  constructor () {
+    super()
+    this.handleVote = this.handleVote.bind(this)
   }
 
-  handleVote() {
-    this.props.onVote(this.props.id);
+  handleVote () {
+    this.props.onVote(this.props.id)
   }
 
-  render() {
+  render () {
     const {
       closed,
       description,
@@ -31,11 +31,11 @@ export default class PollAnswer extends Component {
       text,
       translate,
       votes,
-      votesTotal,
-    } = this.props;
+      votesTotal
+    } = this.props
 
     return (
-      <li className="list-group-item">
+      <li className='list-group-item'>
         <Row>
           <Col sm={3} className={styles.imageContainer}>
             {image ? (
@@ -47,19 +47,19 @@ export default class PollAnswer extends Component {
             ) : null}
           </Col>
           <Col sm={6}>
-            <h4 className="list-group-item-heading">{text}</h4>
+            <h4 className='list-group-item-heading'>{text}</h4>
             {links ? <LinkServiceList inline links={links} /> : null}
             <div className={styles.score}>{votes}/{votesTotal}</div>
           </Col>
           <Col sm={3}>
             {closed ? null : (
               <Button
-                bsSize="small"
-                className="pull-right"
+                bsSize='small'
+                className='pull-right'
                 disabled={disabled}
                 loading={loading}
                 title={disabled ? translate('polls.alreadyVoted') : null}
-                icon="thumbs-up"
+                icon='thumbs-up'
                 onClick={this.handleVote}
               >
                 {translate('polls.vote')}
@@ -74,7 +74,7 @@ export default class PollAnswer extends Component {
           </div>
         ) : null}
       </li>
-    );
+    )
   }
 }
 
@@ -90,8 +90,8 @@ PollAnswer.propTypes = {
   text: PropTypes.string.isRequired,
   translate: PropTypes.func.isRequired,
   votes: PropTypes.number.isRequired,
-  votesTotal: PropTypes.number.isRequired,
-};
+  votesTotal: PropTypes.number.isRequired
+}
 
 PollAnswer.defaultProps = {
   description: null,
@@ -99,5 +99,5 @@ PollAnswer.defaultProps = {
   disabled: false,
   image: null,
   links: null,
-  loading: false,
-};
+  loading: false
+}

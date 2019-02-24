@@ -1,8 +1,8 @@
 const defaultState = {
   host: 'localhost',
-  protocol: 'http',
-};
+  protocol: 'http'
+}
 
-const server = (state = defaultState) => state;
+const server = (state = defaultState) => state
 
-export default server;
+export default server

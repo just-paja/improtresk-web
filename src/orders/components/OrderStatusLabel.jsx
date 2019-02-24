@@ -1,11 +1,11 @@
-import Label from 'reactstrap/lib/Label';
-import moment from 'moment-timezone';
-import PropTypes from 'prop-types';
-import React from 'react';
+import Label from 'reactstrap/lib/Label'
+import moment from 'moment-timezone'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import { Reservation, Workshop } from '../../proptypes';
+import { Reservation, Workshop } from '../../proptypes'
 
-import Message from '../../containers/Message';
+import Message from '../../containers/Message'
 
 const OrderStatus = ({
   assigned,
@@ -14,37 +14,37 @@ const OrderStatus = ({
   endsAt,
   paid,
   reservation,
-  workshop,
+  workshop
 }) => {
   if (cancelled) {
-    return <Label className="mb-0 text-danger"><Message name="orders.cancelled" /></Label>;
+    return <Label className='mb-0 text-danger'><Message name='orders.cancelled' /></Label>
   }
 
   if (!reservation) {
-    return <Label className="mb-0 text-danger"><Message name="orders.missingReservation" /></Label>;
+    return <Label className='mb-0 text-danger'><Message name='orders.missingReservation' /></Label>
   }
 
   if (assigned) {
-    return <Label className="mb-0 text-success"><Message name="orders.assigned" /></Label>;
+    return <Label className='mb-0 text-success'><Message name='orders.assigned' /></Label>
   }
 
   if (paid) {
     if (workshop) {
-      return <Label className="mb-0 text-info"><Message name="orders.waitingToBeAssigned" /></Label>;
+      return <Label className='mb-0 text-info'><Message name='orders.waitingToBeAssigned' /></Label>
     }
-    return <Label className="mb-0 text-success"><Message name="orders.paid" /></Label>;
+    return <Label className='mb-0 text-success'><Message name='orders.paid' /></Label>
   }
 
   if (moment().isAfter(endsAt)) {
-    return <Label className="mb-0 text-warning"><Message name="orders.timedOut" /></Label>;
+    return <Label className='mb-0 text-warning'><Message name='orders.timedOut' /></Label>
   }
 
   if (confirmed) {
-    return <Label className="mb-0 text-warning"><Message name="orders.waitingToBePaid" /></Label>;
+    return <Label className='mb-0 text-warning'><Message name='orders.waitingToBePaid' /></Label>
   }
 
-  return <Label className="mb-0 text-danger"><Message name="orders.unconfirmed" /></Label>;
-};
+  return <Label className='mb-0 text-danger'><Message name='orders.unconfirmed' /></Label>
+}
 
 OrderStatus.propTypes = {
   assigned: PropTypes.bool,
@@ -53,8 +53,8 @@ OrderStatus.propTypes = {
   endsAt: PropTypes.string.isRequired,
   paid: PropTypes.bool,
   reservation: Reservation,
-  workshop: Workshop,
-};
+  workshop: Workshop
+}
 
 OrderStatus.defaultProps = {
   assigned: false,
@@ -62,7 +62,7 @@ OrderStatus.defaultProps = {
   confirmed: false,
   paid: false,
   reservation: null,
-  workshop: null,
-};
+  workshop: null
+}
 
-export default OrderStatus;
+export default OrderStatus

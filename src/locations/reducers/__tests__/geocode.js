@@ -1,4 +1,4 @@
-import geocode from '../geocode';
+import geocode from '../geocode'
 
 describe('Geocode reducer', () => {
   it('updates locations list', () => {
@@ -8,18 +8,18 @@ describe('Geocode reducer', () => {
         type: 'GEOCODE_LOCATIONS_RESET',
         data: [
           { address: 'foo' },
-          { address: 'bar' },
-        ],
+          { address: 'bar' }
+        ]
       }
     )).toMatchObject({
       bar: { data: null },
-      foo: { data: null },
-    });
-  });
+      foo: { data: null }
+    })
+  })
 
   it('returns default state', () => {
-    expect(geocode()).toMatchObject({});
-  });
+    expect(geocode()).toMatchObject({})
+  })
 
   it('returns state marked as loading', () => {
     expect(geocode(
@@ -27,10 +27,10 @@ describe('Geocode reducer', () => {
       { type: 'GEOCODE_LOCATION_FETCH_STARTED', address: 'foo' }
     )).toMatchObject({
       foo: {
-        loading: true,
-      },
-    });
-  });
+        loading: true
+      }
+    })
+  })
 
   it('saves address location', () => {
     expect(geocode(
@@ -44,12 +44,12 @@ describe('Geocode reducer', () => {
               geometry: {
                 location: {
                   lat: 5.234,
-                  lng: 2.234,
-                },
-              },
-            },
-          ],
-        },
+                  lng: 2.234
+                }
+              }
+            }
+          ]
+        }
       }
     )).toMatchObject({
       foo: {
@@ -57,11 +57,11 @@ describe('Geocode reducer', () => {
         valid: true,
         data: {
           lat: 5.234,
-          lng: 2.234,
-        },
-      },
-    });
-  });
+          lng: 2.234
+        }
+      }
+    })
+  })
 
   it('saves null for address when results are empty', () => {
     expect(geocode(
@@ -69,16 +69,16 @@ describe('Geocode reducer', () => {
       {
         type: 'GEOCODE_LOCATION_FETCH_SUCCESS',
         address: 'foo',
-        data: { results: [] },
+        data: { results: [] }
       }
     )).toMatchObject({
       foo: {
         loading: false,
         valid: true,
-        data: null,
-      },
-    });
-  });
+        data: null
+      }
+    })
+  })
 
   it('saves null for address when results are missing', () => {
     expect(geocode(
@@ -86,32 +86,32 @@ describe('Geocode reducer', () => {
       {
         type: 'GEOCODE_LOCATION_FETCH_SUCCESS',
         address: 'foo',
-        data: {},
+        data: {}
       }
     )).toMatchObject({
       foo: {
         loading: false,
         valid: true,
-        data: null,
-      },
-    });
-  });
+        data: null
+      }
+    })
+  })
 
   it('saves null for address when data are missing', () => {
     expect(geocode(
       {},
       {
         type: 'GEOCODE_LOCATION_FETCH_SUCCESS',
-        address: 'foo',
+        address: 'foo'
       }
     )).toMatchObject({
       foo: {
         loading: false,
         valid: true,
-        data: null,
-      },
-    });
-  });
+        data: null
+      }
+    })
+  })
 
   it('saves geocode error', () => {
     expect(geocode(
@@ -119,13 +119,13 @@ describe('Geocode reducer', () => {
       {
         type: 'GEOCODE_LOCATION_FETCH_ERROR',
         address: 'foo',
-        error: 'bar',
+        error: 'bar'
       }
     )).toMatchObject({
       foo: {
         error: 'bar',
-        loading: false,
-      },
-    });
-  });
-});
+        loading: false
+      }
+    })
+  })
+})

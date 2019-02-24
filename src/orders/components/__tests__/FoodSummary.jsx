@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import FoodSummary from '../FoodSummary';
+import FoodSummary from '../FoodSummary'
 
 describe('FoodSummary component', () => {
   it('renders passed ordered meals', () => {
@@ -14,19 +14,19 @@ describe('FoodSummary component', () => {
             name: 'lunch',
             date: '2016-01-02',
             orderedSoup: { name: 'Květáková' },
-            orderedFood: { name: 'Svíčková' },
-          },
+            orderedFood: { name: 'Svíčková' }
+          }
         ]}
         translate={msg => msg}
       />
-    );
+    )
     expect(comp.find('OrderedMeal').props()).toMatchObject({
       name: 'lunch',
       date: '2016-01-02',
       soup: 'Květáková',
-      food: 'Svíčková',
-    });
-  });
+      food: 'Svíčková'
+    })
+  })
 
   it('renders ordered meal without selcted main course', () => {
     const comp = shallow(
@@ -36,19 +36,19 @@ describe('FoodSummary component', () => {
             id: 616,
             name: 'lunch',
             date: '2016-01-02',
-            orderedSoup: { name: 'Květáková' },
-          },
+            orderedSoup: { name: 'Květáková' }
+          }
         ]}
         translate={msg => msg}
       />
-    );
+    )
     expect(comp.find('OrderedMeal').props()).toMatchObject({
       name: 'lunch',
       date: '2016-01-02',
       soup: 'Květáková',
-      food: null,
-    });
-  });
+      food: null
+    })
+  })
 
   it('renders ordered meal without selected soup', () => {
     const comp = shallow(
@@ -58,17 +58,17 @@ describe('FoodSummary component', () => {
             id: 616,
             name: 'lunch',
             date: '2016-01-02',
-            orderedFood: { name: 'Svíčková' },
-          },
+            orderedFood: { name: 'Svíčková' }
+          }
         ]}
         translate={msg => msg}
       />
-    );
+    )
     expect(comp.find('OrderedMeal').props()).toMatchObject({
       name: 'lunch',
       date: '2016-01-02',
       soup: null,
-      food: 'Svíčková',
-    });
-  });
-});
+      food: 'Svíčková'
+    })
+  })
+})

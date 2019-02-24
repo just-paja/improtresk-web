@@ -1,7 +1,7 @@
-import { combine, changeParam, fetchStart, fetchSuccess, fetchStop, fetchFailure } from 'react-saga-rest';
-import { roomJoin, roomLeave } from '../actions';
+import { combine, changeParam, fetchStart, fetchSuccess, fetchStop, fetchFailure } from 'react-saga-rest'
+import { roomJoin, roomLeave } from '../actions'
 
-import { initialState } from '../../reducers/createFetchReducers';
+import { initialState } from '../../reducers/createFetchReducers'
 
 export default combine(initialState, {
   [roomJoin.FAILURE]: fetchFailure,
@@ -13,5 +13,5 @@ export default combine(initialState, {
   [roomLeave.FULFILL]: fetchStop,
   [roomLeave.REQUEST]: fetchStart,
   [roomLeave.SUCCESS]: fetchSuccess,
-  [roomLeave.TRIGGER]: changeParam('room', 'payload'),
-});
+  [roomLeave.TRIGGER]: changeParam('room', 'payload')
+})

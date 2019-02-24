@@ -73,6 +73,6 @@ export default {
     teamHelp: 'We use this for statistics and assigning safe sleeping space.',
     workshopRegistrationHeading: 'Workshop registration',
     workshopRegistrationNecessary: 'Wait for the confirmation e-mail before you tell your friends that you are on the workshop. If you are not sure, please write us an e-mail.',
-    workshopRegistrationProcess: 'You can reserve a spot only at workshops that are not full. We will give you payment ID after the reservation, which we keep open for 7 days. If you do not pay in time, your spot will be offered to other participants. It may happen that open workshop spots will go temporarily up and down, it is not a mistake.',
-  },
-};
+    workshopRegistrationProcess: 'You can reserve a spot only at workshops that are not full. We will give you payment ID after the reservation, which we keep open for 7 days. If you do not pay in time, your spot will be offered to other participants. It may happen that open workshop spots will go temporarily up and down, it is not a mistake.'
+  }
+}

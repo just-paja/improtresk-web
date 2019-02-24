@@ -1,22 +1,22 @@
-import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
+import { connect } from 'react-redux'
+import { reduxForm } from 'redux-form'
 
-import ResetPasswordForm from '../components/ResetPasswordForm';
-import ResetPasswordSuccess from '../components/ResetPasswordSuccess';
+import ResetPasswordForm from '../components/ResetPasswordForm'
+import ResetPasswordSuccess from '../components/ResetPasswordSuccess'
 
-import { resetPassword } from '../actions';
-import { resetPasswordValidator } from '../validators';
+import { resetPassword } from '../actions'
+import { resetPasswordValidator } from '../validators'
 
 const mapStateToProps = () => ({
   newPassword: true,
-  successComponent: ResetPasswordSuccess,
-});
+  successComponent: ResetPasswordSuccess
+})
 
 const mapDispatchToProps = {
-  onSubmit: resetPassword,
-};
+  onSubmit: resetPassword
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: resetPassword.form,
-  validate: resetPasswordValidator,
-})(ResetPasswordForm));
+  validate: resetPasswordValidator
+})(ResetPasswordForm))

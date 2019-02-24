@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import Container from './Container';
+import Container from './Container'
 
 const GeneralError = () => (
   <Container>
@@ -11,6 +11,6 @@ const GeneralError = () => (
       to nepomůže, tak nám napište.
     </p>
   </Container>
-);
+)
 
-export default GeneralError;
+export default GeneralError

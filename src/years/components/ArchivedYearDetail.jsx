@@ -1,15 +1,15 @@
-import Row from 'reactstrap/lib/Row';
-import Col from 'reactstrap/lib/Col';
-import React from 'react';
-import PropTypes from 'prop-types';
+import Row from 'reactstrap/lib/Row'
+import Col from 'reactstrap/lib/Col'
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import Container from '../../components/Container';
-import Gallery from '../../components/Gallery';
-import HelmetTitle from '../../containers/HelmetTitle';
+import Container from '../../components/Container'
+import Gallery from '../../components/Gallery'
+import HelmetTitle from '../../containers/HelmetTitle'
 
 const ArchivedYearDetail = ({ topic, translate, workshops, year }) => {
-  const title = translate('years.yearNumber', { year });
-  const titleFull = `${title}: ${topic}`;
+  const title = translate('years.yearNumber', { year })
+  const titleFull = `${title}: ${topic}`
 
   return (
     <Container>
@@ -17,7 +17,7 @@ const ArchivedYearDetail = ({ topic, translate, workshops, year }) => {
       <h1><span>{title}</span><br /><small>{topic}</small></h1>
       <Row>
         {workshops.map(workshop => (
-          <Col key={workshop.id} className="mb-4" xs={12} md={6}>
+          <Col key={workshop.id} className='mb-4' xs={12} md={6}>
             <h4>{workshop.name}</h4>
             {workshop.desc}
             {workshop.photos.length ? (
@@ -30,8 +30,8 @@ const ArchivedYearDetail = ({ topic, translate, workshops, year }) => {
         ))}
       </Row>
     </Container>
-  );
-};
+  )
+}
 
 ArchivedYearDetail.propTypes = {
   topic: PropTypes.string,
@@ -39,15 +39,15 @@ ArchivedYearDetail.propTypes = {
   workshops: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     lectorName: PropTypes.string,
-    name: PropTypes.string,
+    name: PropTypes.string
   })),
-  year: PropTypes.string,
-};
+  year: PropTypes.string
+}
 
 ArchivedYearDetail.defaultProps = {
   topic: null,
   workshops: null,
-  year: null,
-};
+  year: null
+}
 
-export default ArchivedYearDetail;
+export default ArchivedYearDetail

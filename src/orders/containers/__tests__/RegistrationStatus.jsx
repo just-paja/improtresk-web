@@ -1,27 +1,27 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
+import React from 'react'
+import configureStore from 'redux-mock-store'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import { orderListFetch } from '../../actions';
+import { orderListFetch } from '../../actions'
 
-import RegistrationStatus from '../RegistrationStatus';
+import RegistrationStatus from '../RegistrationStatus'
 
-const mockStore = configureStore();
+const mockStore = configureStore()
 
 describe('RegistrationStatus container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
       locale: {
-        languages: ['cs'],
+        languages: ['cs']
       },
       accomodation: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       food: {
         list: {
@@ -30,10 +30,10 @@ describe('RegistrationStatus container', () => {
             {
               id: 20,
               date: '2017-03-05',
-              name: 'lunch',
-            },
-          ],
-        },
+              name: 'lunch'
+            }
+          ]
+        }
       },
       orders: {
         list: {
@@ -44,29 +44,29 @@ describe('RegistrationStatus container', () => {
               reservation: {},
               price: 200,
               symvar: '22323',
-              createdAt: '2018-03-14T00:00:00',
-            },
+              createdAt: '2018-03-14T00:00:00'
+            }
           ],
-          valid: true,
-        },
+          valid: true
+        }
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       workshops: {
         list: {},
         detail: {},
         difficulties: {
-          data: [],
+          data: []
         },
         lectors: {
           roles: {},
-          list: {},
-        },
+          list: {}
+        }
       },
       years: {
         capacity: {
-          data: {},
+          data: {}
         },
         list: {
           data: [
@@ -74,17 +74,17 @@ describe('RegistrationStatus container', () => {
               id: 10,
               current: true,
               year: '2018',
-              startDate: '2018-05-05',
-            },
+              startDate: '2018-05-05'
+            }
           ],
-          valid: true,
-        },
-      },
-    });
+          valid: true
+        }
+      }
+    })
     comp = shallow(<RegistrationStatus />, {
-      context: { store },
-    });
-  });
+      context: { store }
+    })
+  })
 
   it('provides active order', () => {
     expect(comp.dive().dive().find('RegistrationStatus')).toHaveProp('activeOrder', {
@@ -102,15 +102,15 @@ describe('RegistrationStatus container', () => {
         id: 10,
         current: true,
         year: '2018',
-        startDate: '2018-05-05',
-      },
-    });
-  });
+        startDate: '2018-05-05'
+      }
+    })
+  })
 
   it('dispatches meals required action on mount', () => {
-    comp.dive();
+    comp.dive()
     expect(store.getActions()).toContainEqual(expect.objectContaining({
-      type: orderListFetch.TRIGGER,
-    }));
-  });
-});
+      type: orderListFetch.TRIGGER
+    }))
+  })
+})

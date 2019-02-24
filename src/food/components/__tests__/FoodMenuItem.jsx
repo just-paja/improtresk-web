@@ -1,13 +1,13 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import FoodMenuItem from '../FoodMenuItem';
+import FoodMenuItem from '../FoodMenuItem'
 
 describe('FoodMenuItem component', () => {
   it('renders', () => {
-    expect(shallow(<FoodMenuItem name="foo" />)).toMatchElement(
+    expect(shallow(<FoodMenuItem name='foo' />)).toMatchElement(
       <div>foo</div>
-    );
-  });
-});
+    )
+  })
+})

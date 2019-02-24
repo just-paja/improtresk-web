@@ -1,13 +1,13 @@
-import { call, select, takeEvery } from 'redux-saga/effects';
+import { call, select, takeEvery } from 'redux-saga/effects'
 
-import { fetchResourceIfRequired } from '../../sagas/api';
-import { isRulesTextRequired, yearActiveNumber } from '../selectors';
+import { fetchResourceIfRequired } from '../../sagas/api'
+import { isRulesTextRequired, yearActiveNumber } from '../selectors'
 
-import * as api from '../../api';
-import * as constants from '../constants';
+import * as api from '../../api'
+import * as constants from '../constants'
 
-function* fetchYearsRules() {
-  const year = yield select(yearActiveNumber);
+function * fetchYearsRules () {
+  const year = yield select(yearActiveNumber)
   if (year) {
     yield call(
       fetchResourceIfRequired,
@@ -17,21 +17,21 @@ function* fetchYearsRules() {
         actions: {
           start: constants.YEAR_RULES_FETCH_START,
           success: constants.YEAR_RULES_FETCH_SUCCESS,
-          fail: constants.YEAR_RULES_FETCH_ERROR,
+          fail: constants.YEAR_RULES_FETCH_ERROR
         },
-        params: { year },
+        params: { year }
       }
-    );
+    )
   }
 }
 
-function* fetchRules() {
+function * fetchRules () {
   yield takeEvery(
     constants.YEAR_RULES_REQUIRED,
     fetchYearsRules
-  );
+  )
 }
 
 export default [
-  fetchRules,
-];
+  fetchRules
+]

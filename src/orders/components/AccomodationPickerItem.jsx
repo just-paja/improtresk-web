@@ -1,33 +1,33 @@
-import FormGroup from 'reactstrap/lib/FormGroup';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import FormGroup from 'reactstrap/lib/FormGroup'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-import { CapacityStatus } from '../../proptypes';
+import { CapacityStatus } from '../../proptypes'
 
-import Capacity from '../../components/Capacity';
-import InputRadio from '../../forms/components/InputRadio';
-import Price from '../../components/Price';
+import Capacity from '../../components/Capacity'
+import InputRadio from '../../forms/components/InputRadio'
+import Price from '../../components/Price'
 
 export default class AccomodationPickerItem extends Component {
-  constructor() {
-    super();
-    this.handleChange = this.handleChange.bind(this);
+  constructor () {
+    super()
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange() {
-    const { id, onChange } = this.props;
-    onChange(id);
+  handleChange () {
+    const { id, onChange } = this.props
+    onChange(id)
   }
 
-  render() {
+  render () {
     const {
       capacityStatus,
       disabled,
       name,
       price,
       parentName,
-      selected,
-    } = this.props;
+      selected
+    } = this.props
     return (
       <FormGroup>
         <InputRadio
@@ -44,7 +44,7 @@ export default class AccomodationPickerItem extends Component {
           value={selected}
         />
       </FormGroup>
-    );
+    )
   }
 }
 
@@ -56,10 +56,10 @@ AccomodationPickerItem.propTypes = {
   price: PropTypes.number.isRequired,
   parentName: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  selected: PropTypes.bool,
-};
+  selected: PropTypes.bool
+}
 
 AccomodationPickerItem.defaultProps = {
   disabled: false,
-  selected: false,
-};
+  selected: false
+}

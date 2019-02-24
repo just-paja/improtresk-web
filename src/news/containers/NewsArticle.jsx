@@ -1,23 +1,23 @@
-import { connect } from 'react-redux';
-import { getTranslate } from 'react-localize-redux';
+import { connect } from 'react-redux'
+import { getTranslate } from 'react-localize-redux'
 
-import NewsArticle from '../components/NewsArticle';
-import mapProgress from '../../containers/mapProgress';
+import NewsArticle from '../components/NewsArticle'
+import mapProgress from '../../containers/mapProgress'
 
-import { getNewsDetail, getNewsDetailProgress } from '../selectors';
-import { newsDetailFetch } from '../actions';
-import { vote } from '../../polls/actions';
+import { getNewsDetail, getNewsDetailProgress } from '../selectors'
+import { newsDetailFetch } from '../actions'
+import { vote } from '../../polls/actions'
 
 const mapStateToProps = state => ({
   newsDetail: getNewsDetail(state),
-  translate: getTranslate(state.locale),
-});
+  translate: getTranslate(state.locale)
+})
 
 const mapDispatchToProps = {
-  onVote: vote,
-};
+  onVote: vote
+}
 
 export default mapProgress(connect(mapStateToProps, mapDispatchToProps)(NewsArticle), {
   progressSelector: getNewsDetailProgress,
-  onResourceChange: newsDetailFetch,
-});
+  onResourceChange: newsDetailFetch
+})

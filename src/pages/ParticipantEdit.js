@@ -1,7 +1,7 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import ParticipantEdit from './components/ParticipantEdit';
+import ParticipantEdit from './components/ParticipantEdit'
 
-const mapStateToProps = () => ({});
+const mapStateToProps = () => ({})
 
-export default connect(mapStateToProps)(ParticipantEdit);
+export default connect(mapStateToProps)(ParticipantEdit)

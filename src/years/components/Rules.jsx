@@ -1,26 +1,26 @@
-import Markdown from 'react-markdown';
-import React from 'react';
-import PropTypes from 'prop-types';
+import Markdown from 'react-markdown'
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import Message from '../../containers/Message';
+import Message from '../../containers/Message'
 
 const Rules = ({ rules }) => (
   <div>
-    {(rules ?
-      <Markdown source={rules.text} /> :
-      <p>
-        <Message name="years.conditionsNotPublished" />
+    {(rules
+      ? <Markdown source={rules.text} />
+      : <p>
+        <Message name='years.conditionsNotPublished' />
       </p>
     )}
   </div>
-);
+)
 
 Rules.propTypes = {
-  rules: PropTypes.object,
-};
+  rules: PropTypes.object
+}
 
 Rules.defaultProps = {
-  rules: null,
-};
+  rules: null
+}
 
-export default Rules;
+export default Rules

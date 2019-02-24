@@ -1,32 +1,32 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
+import React from 'react'
+import configureStore from 'redux-mock-store'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import WorkshopList from '../WorkshopList';
+import WorkshopList from '../WorkshopList'
 
-const mockStore = configureStore();
+const mockStore = configureStore()
 
 describe('WorkshopList container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
       locale: {
-        languages: ['cs'],
+        languages: ['cs']
       },
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
+            data: []
+          }
         },
         list: {
           valid: true,
@@ -36,24 +36,24 @@ describe('WorkshopList container', () => {
               createdAt: '2017-03-05T00:00:00',
               name: 'lunch',
               lectors: [],
-              lang: 'cs',
-            },
-          ],
-        },
+              lang: 'cs'
+            }
+          ]
+        }
       },
       years: {
         capacity: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
-        },
-      },
-    });
-    comp = shallow(<WorkshopList to="foo" />, {
-      context: { store },
-    });
-  });
+          data: []
+        }
+      }
+    })
+    comp = shallow(<WorkshopList to='foo' />, {
+      context: { store }
+    })
+  })
 
   it('provides list of workshops', () => {
     expect(comp.dive().dive().find('WorkshopList')).toHaveProp('workshops', [
@@ -65,22 +65,22 @@ describe('WorkshopList container', () => {
         lang: 'cs',
         lectors: [],
         name: 'lunch',
-        prices: [],
-      },
-    ]);
-  });
+        prices: []
+      }
+    ])
+  })
 
   it('dispatches workshops required action on mount', () => {
-    comp.dive();
+    comp.dive()
     expect(store.getActions()).toContainEqual(expect.objectContaining({
-      type: 'WORKSHOPS_INTERACTIVE_REQUIRED',
-    }));
-  });
+      type: 'WORKSHOPS_INTERACTIVE_REQUIRED'
+    }))
+  })
 
   it('dispatches workshops left action on unmount', () => {
-    comp.dive().unmount();
+    comp.dive().unmount()
     expect(store.getActions()).toContainEqual(expect.objectContaining({
-      type: 'WORKSHOPS_LEFT',
-    }));
-  });
-});
+      type: 'WORKSHOPS_LEFT'
+    }))
+  })
+})

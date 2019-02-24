@@ -1,12 +1,12 @@
-import { combine, fetchStart, fetchError, fetchSuccess } from 'react-saga-rest';
+import { combine, fetchStart, fetchError, fetchSuccess } from 'react-saga-rest'
 
-import * as constants from '../constants';
+import * as constants from '../constants'
 
 const defaultState = {
   data: {},
   loading: false,
-  polling: false,
-};
+  polling: false
+}
 
 export default combine(defaultState, {
   [constants.YEAR_CAPACITY_FETCH_STARTED]: fetchStart,
@@ -15,10 +15,10 @@ export default combine(defaultState, {
   [constants.YEAR_CAPACITY_FETCH_ERROR]: fetchError,
   [constants.YEAR_CAPACITY_POLL_START]: state => ({
     ...state,
-    polling: true,
+    polling: true
   }),
   [constants.YEAR_CAPACITY_POLL_STOP]: state => ({
     ...state,
-    polling: false,
-  }),
-});
+    polling: false
+  })
+})

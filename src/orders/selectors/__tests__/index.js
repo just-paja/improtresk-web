@@ -1,68 +1,68 @@
-import moment from 'moment-timezone';
-import sinon from 'sinon';
+import moment from 'moment-timezone'
+import sinon from 'sinon'
 
 import {
   getActiveOrder,
   getOrderFormPrice,
   getOrderList,
   getOrderedMeals,
-  getUnconfirmedOrder,
-} from '../';
+  getUnconfirmedOrder
+} from '../'
 
 describe('Order selectors', () => {
-  let clock;
+  let clock
 
   beforeEach(() => {
-    clock = sinon.useFakeTimers(moment('2016-01-02T00:00:00Z').toDate());
-  });
+    clock = sinon.useFakeTimers(moment('2016-01-02T00:00:00Z').toDate())
+  })
 
   afterEach(() => {
-    clock.restore();
-  });
+    clock.restore()
+  })
 
   it('getUnconfirmedOrder returns order that is not confirmed, not paid and not cancelled', () => {
     expect(getUnconfirmedOrder({
       accomodation: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       food: {
         list: {
           data: [
             {
               id: 5,
-              price: 90,
+              price: 90
             },
             {
               id: 6,
-              price: 110,
-            },
-          ],
-        },
+              price: 110
+            }
+          ]
+        }
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
-        },
+            data: []
+          }
+        }
       },
       years: {
         capacity: {
-          data: {},
+          data: {}
         },
         list: {
           data: [
@@ -70,10 +70,10 @@ describe('Order selectors', () => {
               id: 1,
               current: true,
               year: '2016',
-              priceLevels: [],
-            },
-          ],
-        },
+              priceLevels: []
+            }
+          ]
+        }
       },
       orders: {
         list: {
@@ -82,11 +82,11 @@ describe('Order selectors', () => {
               id: 100,
               confirmed: false,
               paid: false,
-              cancelled: false,
-            },
-          ],
-        },
-      },
+              cancelled: false
+            }
+          ]
+        }
+      }
     })).toEqual({
       assigned: false,
       accomodation: null,
@@ -96,53 +96,53 @@ describe('Order selectors', () => {
       meals: [],
       paid: false,
       workshop: null,
-      year: null,
-    });
-  });
+      year: null
+    })
+  })
 
   it('getUnconfirmedOrder ignores orders that are confirmed, not paid and not cancelled', () => {
     expect(getUnconfirmedOrder({
       accomodation: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       food: {
         list: {
           data: [
             {
               id: 5,
-              price: 90,
+              price: 90
             },
             {
               id: 6,
-              price: 110,
-            },
-          ],
-        },
+              price: 110
+            }
+          ]
+        }
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
-        },
+            data: []
+          }
+        }
       },
       years: {
         capacity: {
-          data: {},
+          data: {}
         },
         list: {
           data: [
@@ -150,10 +150,10 @@ describe('Order selectors', () => {
               id: 1,
               current: true,
               year: '2016',
-              priceLevels: [],
-            },
-          ],
-        },
+              priceLevels: []
+            }
+          ]
+        }
       },
       orders: {
         list: {
@@ -162,57 +162,57 @@ describe('Order selectors', () => {
               id: 100,
               confirmed: true,
               paid: false,
-              cancelled: false,
-            },
-          ],
-        },
-      },
-    })).toEqual(null);
-  });
+              cancelled: false
+            }
+          ]
+        }
+      }
+    })).toEqual(null)
+  })
 
   it('getUnconfirmedOrder ignores orders that are not confirmed, paid and not cancelled', () => {
     expect(getUnconfirmedOrder({
       accomodation: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       food: {
         list: {
           data: [
             {
               id: 5,
-              price: 90,
+              price: 90
             },
             {
               id: 6,
-              price: 110,
-            },
-          ],
-        },
+              price: 110
+            }
+          ]
+        }
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
-        },
+            data: []
+          }
+        }
       },
       years: {
         capacity: {
-          data: {},
+          data: {}
         },
         list: {
           data: [
@@ -220,10 +220,10 @@ describe('Order selectors', () => {
               id: 1,
               current: true,
               year: '2016',
-              priceLevels: [],
-            },
-          ],
-        },
+              priceLevels: []
+            }
+          ]
+        }
       },
       orders: {
         list: {
@@ -232,57 +232,57 @@ describe('Order selectors', () => {
               id: 100,
               confirmed: false,
               paid: true,
-              cancelled: false,
-            },
-          ],
-        },
-      },
-    })).toEqual(null);
-  });
+              cancelled: false
+            }
+          ]
+        }
+      }
+    })).toEqual(null)
+  })
 
   it('getUnconfirmedOrder ignores orders that are not confirmed, not paid and cancelled', () => {
     expect(getUnconfirmedOrder({
       accomodation: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       food: {
         list: {
           data: [
             {
               id: 5,
-              price: 90,
+              price: 90
             },
             {
               id: 6,
-              price: 110,
-            },
-          ],
-        },
+              price: 110
+            }
+          ]
+        }
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
-        },
+            data: []
+          }
+        }
       },
       years: {
         capacity: {
-          data: {},
+          data: {}
         },
         list: {
           data: [
@@ -290,10 +290,10 @@ describe('Order selectors', () => {
               id: 1,
               current: true,
               year: '2016',
-              priceLevels: [],
-            },
-          ],
-        },
+              priceLevels: []
+            }
+          ]
+        }
       },
       orders: {
         list: {
@@ -302,31 +302,31 @@ describe('Order selectors', () => {
               id: 100,
               confirmed: false,
               paid: false,
-              cancelled: true,
-            },
-          ],
-        },
-      },
-    })).toEqual(null);
-  });
+              cancelled: true
+            }
+          ]
+        }
+      }
+    })).toEqual(null)
+  })
 
   it('getOrderFormPrice returns zero price with expired workshop', () => {
     expect(getOrderFormPrice({
       forms: {
         order: {
           values: {
-            workshop: 17,
-          },
-        },
+            workshop: 17
+          }
+        }
       },
       food: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         list: {
           data: [
@@ -337,29 +337,29 @@ describe('Order selectors', () => {
                 {
                   id: 10,
                   price: 200,
-                  price_level: 1,
+                  price_level: 1
                 },
                 {
                   id: 10,
                   price: 400,
-                  price_level: 2,
-                },
-              ],
-            },
-          ],
+                  price_level: 2
+                }
+              ]
+            }
+          ]
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
-        },
+            data: []
+          }
+        }
       },
       years: {
         capacity: {
-          data: {},
+          data: {}
         },
         list: {
           data: [
@@ -367,48 +367,48 @@ describe('Order selectors', () => {
               id: 1,
               current: true,
               year: '2016',
-              priceLevels: [],
-            },
-          ],
-        },
-      },
-    })).toBe(0);
-  });
+              priceLevels: []
+            }
+          ]
+        }
+      }
+    })).toBe(0)
+  })
 
   it('getOrderFormPrice returns zero price with no workshop', () => {
     expect(getOrderFormPrice({
       forms: {
         order: {
-          values: {},
-        },
+          values: {}
+        }
       },
       food: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
-        },
+            data: []
+          }
+        }
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       years: {
         capacity: {
-          data: {},
+          data: {}
         },
         list: {
           data: [
@@ -416,50 +416,50 @@ describe('Order selectors', () => {
               id: 1,
               current: true,
               year: '2016',
-              priceLevels: [],
-            },
-          ],
-        },
-      },
-    })).toBe(0);
-  });
+              priceLevels: []
+            }
+          ]
+        }
+      }
+    })).toBe(0)
+  })
 
   it('getOrderFormPrice returns zero price with unknown workshop', () => {
     expect(getOrderFormPrice({
       forms: {
         order: {
           values: {
-            workshop: 19,
-          },
-        },
+            workshop: 19
+          }
+        }
       },
       food: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
-        },
+            data: []
+          }
+        }
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       years: {
         capacity: {
-          data: {},
+          data: {}
         },
         list: {
           data: [
@@ -467,50 +467,50 @@ describe('Order selectors', () => {
               id: 1,
               current: true,
               year: '2016',
-              priceLevels: [],
-            },
-          ],
-        },
-      },
-    })).toBe(0);
-  });
+              priceLevels: []
+            }
+          ]
+        }
+      }
+    })).toBe(0)
+  })
 
   it('getOrderFormPrice returns zero price with empty meals', () => {
     expect(getOrderFormPrice({
       forms: {
         order: {
           values: {
-            meals: [],
-          },
-        },
+            meals: []
+          }
+        }
       },
       food: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
-        },
+            data: []
+          }
+        }
       },
       years: {
         capacity: {
-          data: {},
+          data: {}
         },
         list: {
           data: [
@@ -518,50 +518,50 @@ describe('Order selectors', () => {
               id: 1,
               current: true,
               year: '2016',
-              priceLevels: [],
-            },
-          ],
-        },
-      },
-    })).toBe(0);
-  });
+              priceLevels: []
+            }
+          ]
+        }
+      }
+    })).toBe(0)
+  })
 
   it('getOrderFormPrice returns zero price with unknown meals', () => {
     expect(getOrderFormPrice({
       forms: {
         order: {
           values: {
-            meals: [5, 9],
-          },
-        },
+            meals: [5, 9]
+          }
+        }
       },
       food: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
-        },
+            data: []
+          }
+        }
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       years: {
         capacity: {
-          data: {},
+          data: {}
         },
         list: {
           data: [
@@ -569,59 +569,59 @@ describe('Order selectors', () => {
               id: 1,
               current: true,
               year: '2016',
-              priceLevels: [],
-            },
-          ],
-        },
-      },
-    })).toBe(0);
-  });
+              priceLevels: []
+            }
+          ]
+        }
+      }
+    })).toBe(0)
+  })
 
   it('getOrderFormPrice returns price with meals', () => {
     expect(getOrderFormPrice({
       form: {
         FORM_ORDER: {
           values: {
-            meals: [5, 6],
-          },
-        },
+            meals: [5, 6]
+          }
+        }
       },
       food: {
         list: {
           data: [
             {
               id: 5,
-              price: 90,
+              price: 90
             },
             {
               id: 6,
-              price: 110,
-            },
-          ],
-        },
+              price: 110
+            }
+          ]
+        }
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
-        },
+            data: []
+          }
+        }
       },
       years: {
         capacity: {
-          data: {},
+          data: {}
         },
         list: {
           data: [
@@ -629,39 +629,39 @@ describe('Order selectors', () => {
               id: 1,
               current: true,
               year: '2016',
-              priceLevels: [],
-            },
-          ],
-        },
-      },
-    })).toBe(200);
-  });
+              priceLevels: []
+            }
+          ]
+        }
+      }
+    })).toBe(200)
+  })
 
   it('getOrderFormPrice returns unexpired workshop price', () => {
     expect(getOrderFormPrice({
       form: {
         FORM_ORDER: {
           values: {
-            workshop: 17,
-          },
-        },
+            workshop: 17
+          }
+        }
       },
       food: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
+            data: []
+          }
         },
         list: {
           data: [
@@ -672,21 +672,21 @@ describe('Order selectors', () => {
                 {
                   id: 10,
                   price: 200,
-                  price_level: 1,
+                  price_level: 1
                 },
                 {
                   id: 10,
                   price: 400,
-                  price_level: 2,
-                },
-              ],
-            },
-          ],
-        },
+                  price_level: 2
+                }
+              ]
+            }
+          ]
+        }
       },
       years: {
         capacity: {
-          data: {},
+          data: {}
         },
         list: {
           data: [
@@ -698,23 +698,23 @@ describe('Order selectors', () => {
                 {
                   id: 1,
                   name: 'Zlevněná cena',
-                  takesEffectOn: '2016-01-01T00:00:00Z',
+                  takesEffectOn: '2016-01-01T00:00:00Z'
                 },
                 {
                   id: 2,
                   name: 'Základní cena',
-                  takesEffectOn: '2016-01-02T00:00:00Z',
-                },
-              ],
-            },
-          ],
-        },
+                  takesEffectOn: '2016-01-02T00:00:00Z'
+                }
+              ]
+            }
+          ]
+        }
       },
       participants: {
-        detail: {},
-      },
-    })).toBe(400);
-  });
+        detail: {}
+      }
+    })).toBe(400)
+  })
 
   it('getOrderedMeals returns empty array without order', () => {
     expect(getOrderedMeals({
@@ -727,12 +727,12 @@ describe('Order selectors', () => {
               date: '2016-04-03',
               foods: [
                 { id: 1 },
-                { id: 2 },
+                { id: 2 }
               ],
               soup: [
                 { id: 100 },
-                { id: 200 },
-              ],
+                { id: 200 }
+              ]
             },
             {
               id: 2,
@@ -740,55 +740,55 @@ describe('Order selectors', () => {
               date: '2016-04-03',
               foods: [
                 { id: 3 },
-                { id: 4 },
+                { id: 4 }
               ],
               soup: [
                 { id: 300 },
-                { id: 400 },
-              ],
-            },
-          ],
-        },
+                { id: 400 }
+              ]
+            }
+          ]
+        }
       },
       accomodation: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
-        },
+            data: []
+          }
+        }
       },
       years: {
         capacity: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       orders: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       participants: {
-        detail: {},
-      },
-    })).toEqual([]);
-  });
+        detail: {}
+      }
+    })).toEqual([])
+  })
 
   it('getOrderedMeals returns meals with groupped food', () => {
     expect(getOrderedMeals({
@@ -801,12 +801,12 @@ describe('Order selectors', () => {
               date: '2016-04-03',
               food: [
                 { id: 1 },
-                { id: 2 },
+                { id: 2 }
               ],
               soups: [
                 { id: 100 },
-                { id: 200 },
-              ],
+                { id: 200 }
+              ]
             },
             {
               id: 2,
@@ -814,49 +814,49 @@ describe('Order selectors', () => {
               date: '2016-04-03',
               food: [
                 { id: 3 },
-                { id: 4 },
+                { id: 4 }
               ],
               soups: [
                 { id: 300 },
-                { id: 400 },
-              ],
-            },
-          ],
-        },
+                { id: 400 }
+              ]
+            }
+          ]
+        }
       },
       accomodation: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
-        },
+            data: []
+          }
+        }
       },
       years: {
         capacity: {
-          data: [],
+          data: []
         },
         list: {
           data: [
             {
               id: 4,
-              year: '2018',
-            },
-          ],
-        },
+              year: '2018'
+            }
+          ]
+        }
       },
       orders: {
         list: {
@@ -871,23 +871,23 @@ describe('Order selectors', () => {
                     id: 90,
                     meal: 1,
                     food: 1,
-                    soup: 200,
+                    soup: 200
                   },
                   {
                     id: 90,
                     meal: 2,
                     food: 4,
-                    soup: 400,
-                  },
-                ],
-              },
-            },
-          ],
-        },
+                    soup: 400
+                  }
+                ]
+              }
+            }
+          ]
+        }
       },
       participants: {
-        detail: {},
-      },
+        detail: {}
+      }
     })).toEqual([
       {
         id: 1,
@@ -897,12 +897,12 @@ describe('Order selectors', () => {
         orderedSoup: { id: 200 },
         food: [
           { id: 1 },
-          { id: 2 },
+          { id: 2 }
         ],
         soups: [
           { id: 100 },
-          { id: 200 },
-        ],
+          { id: 200 }
+        ]
       },
       {
         id: 2,
@@ -912,15 +912,15 @@ describe('Order selectors', () => {
         orderedSoup: { id: 400 },
         food: [
           { id: 3 },
-          { id: 4 },
+          { id: 4 }
         ],
         soups: [
           { id: 300 },
-          { id: 400 },
-        ],
-      },
-    ]);
-  });
+          { id: 400 }
+        ]
+      }
+    ])
+  })
 
   it('getOrderedMeals returns strips away unknown foods', () => {
     expect(getOrderedMeals({
@@ -933,49 +933,49 @@ describe('Order selectors', () => {
               date: '2016-04-03',
               food: [
                 { id: 1 },
-                { id: 2 },
+                { id: 2 }
               ],
               soups: [
                 { id: 100 },
-                { id: 200 },
-              ],
-            },
-          ],
-        },
+                { id: 200 }
+              ]
+            }
+          ]
+        }
       },
       accomodation: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         list: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
-        },
+            data: []
+          }
+        }
       },
       years: {
         capacity: {
-          data: [],
+          data: []
         },
         list: {
           data: [
             {
               id: 4,
-              year: '2018',
-            },
-          ],
-        },
+              year: '2018'
+            }
+          ]
+        }
       },
       orders: {
         list: {
@@ -990,23 +990,23 @@ describe('Order selectors', () => {
                     id: 90,
                     meal: 1,
                     food: 1,
-                    soup: 200,
+                    soup: 200
                   },
                   {
                     id: 90,
                     meal: 2,
                     food: 4,
-                    soup: 400,
-                  },
-                ],
-              },
-            },
-          ],
-        },
+                    soup: 400
+                  }
+                ]
+              }
+            }
+          ]
+        }
       },
       participants: {
-        detail: {},
-      },
+        detail: {}
+      }
     })).toEqual([
       {
         id: 1,
@@ -1016,118 +1016,118 @@ describe('Order selectors', () => {
         orderedSoup: { id: 200 },
         food: [
           { id: 1 },
-          { id: 2 },
+          { id: 2 }
         ],
         soups: [
           { id: 100 },
-          { id: 200 },
-        ],
-      },
-    ]);
-  });
+          { id: 200 }
+        ]
+      }
+    ])
+  })
 
   it('getOrderList returns empty array when no orders are present', () => {
     expect(getOrderList({
       accomodation: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       orders: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       food: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       workshops: {
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
+            data: []
+          }
         },
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       years: {
         list: {
-          data: [],
+          data: []
         },
         capacity: {
-          data: {},
-        },
-      },
-    })).toEqual([]);
-  });
+          data: {}
+        }
+      }
+    })).toEqual([])
+  })
 
   it('getOrderList returns array of orders sorted by date created', () => {
     expect(getOrderList({
       accomodation: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       orders: {
         list: {
           data: [
             {
               id: 15,
-              createdAt: '2017-12-12',
+              createdAt: '2017-12-12'
             },
             {
               id: 16,
-              createdAt: '2017-12-12',
+              createdAt: '2017-12-12'
             },
             {
               id: 19,
-              createdAt: '2017-01-12',
+              createdAt: '2017-01-12'
             },
             {
               id: 20,
-              createdAt: '2017-12-13',
-            },
-          ],
-        },
+              createdAt: '2017-12-13'
+            }
+          ]
+        }
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       food: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       workshops: {
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
+            data: []
+          }
         },
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       years: {
         list: {
-          data: [],
+          data: []
         },
         capacity: {
-          data: {},
-        },
-      },
+          data: {}
+        }
+      }
     })).toEqual([
       {
         accomodation: null,
@@ -1136,7 +1136,7 @@ describe('Order selectors', () => {
         createdAt: '2017-12-13',
         meals: [],
         workshop: null,
-        year: null,
+        year: null
       },
       {
         accomodation: null,
@@ -1145,7 +1145,7 @@ describe('Order selectors', () => {
         createdAt: '2017-12-12',
         meals: [],
         workshop: null,
-        year: null,
+        year: null
       },
       {
         accomodation: null,
@@ -1154,7 +1154,7 @@ describe('Order selectors', () => {
         createdAt: '2017-12-12',
         meals: [],
         workshop: null,
-        year: null,
+        year: null
       },
       {
         accomodation: null,
@@ -1163,64 +1163,64 @@ describe('Order selectors', () => {
         createdAt: '2017-01-12',
         meals: [],
         workshop: null,
-        year: null,
-      },
-    ]);
-  });
+        year: null
+      }
+    ])
+  })
 
   it('getActiveOrder returns null when there is no year', () => {
     expect(getActiveOrder({
       accomodation: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       food: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       orders: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       workshops: {
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
+            data: []
+          }
         },
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       years: {
         list: {
-          data: [],
+          data: []
         },
-        capacity: {},
-      },
-    })).toBe(null);
-  });
+        capacity: {}
+      }
+    })).toBe(null)
+  })
 
   it('getActiveOrder returns null when there are only cancelled orders', () => {
     expect(getActiveOrder({
       accomodation: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       food: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       orders: {
         list: {
@@ -1228,26 +1228,26 @@ describe('Order selectors', () => {
             {
               id: 5,
               year: 8,
-              cancelled: true,
-            },
-          ],
-        },
+              cancelled: true
+            }
+          ]
+        }
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       workshops: {
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
+            data: []
+          }
         },
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       years: {
         list: {
@@ -1255,14 +1255,14 @@ describe('Order selectors', () => {
             {
               id: 8,
               year: '2018',
-              current: true,
-            },
-          ],
+              current: true
+            }
+          ]
         },
-        capacity: {},
-      },
-    })).toBe(null);
-  });
+        capacity: {}
+      }
+    })).toBe(null)
+  })
 
   it('getActiveOrder latest order with aggregated data', () => {
     expect(getActiveOrder({
@@ -1271,10 +1271,10 @@ describe('Order selectors', () => {
           data: [
             {
               id: 130,
-              name: 'Hotel',
-            },
-          ],
-        },
+              name: 'Hotel'
+            }
+          ]
+        }
       },
       food: {
         list: {
@@ -1282,15 +1282,15 @@ describe('Order selectors', () => {
             {
               id: 130,
               date: '2018-10-10',
-              year: 8,
+              year: 8
             },
             {
               id: 131,
               date: '2018-10-11',
-              year: 8,
-            },
-          ],
-        },
+              year: 8
+            }
+          ]
+        }
       },
       orders: {
         list: {
@@ -1303,70 +1303,70 @@ describe('Order selectors', () => {
                 mealReservation: [
                   {
                     id: 231,
-                    meal: 130,
+                    meal: 130
                   },
                   {
                     id: 232,
-                    meal: 131,
-                  },
+                    meal: 131
+                  }
                 ],
                 workshopPrice: {
                   id: 60,
                   price_level: 8,
-                  workshop: 13,
-                },
-              },
-            },
-          ],
-        },
+                  workshop: 13
+                }
+              }
+            }
+          ]
+        }
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       workshops: {
         difficulties: {
-          data: [],
+          data: []
         },
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
+            data: []
+          }
         },
         list: {
           data: [
             {
               id: 13,
               name: 'Longforms',
-              lectors: [],
-            },
-          ],
-        },
+              lectors: []
+            }
+          ]
+        }
       },
       years: {
         list: {
           data: [
             {
               id: 8,
-              year: '2017',
-            },
-          ],
+              year: '2017'
+            }
+          ]
         },
-        capacity: {},
-      },
+        capacity: {}
+      }
     })).toEqual({
       assigned: false,
       id: 5,
       accomodation: {
         capacityStatus: {},
         id: 130,
-        name: 'Hotel',
+        name: 'Hotel'
       },
       year: {
         id: 8,
-        year: '2017',
+        year: '2017'
       },
       workshop: {
         capacityStatus: {},
@@ -1374,38 +1374,38 @@ describe('Order selectors', () => {
         id: 13,
         lectors: [],
         name: 'Longforms',
-        prices: [],
+        prices: []
       },
       meals: [
         {
           id: 130,
           date: '2018-10-10',
-          year: 8,
+          year: 8
         },
         {
           id: 131,
           date: '2018-10-11',
-          year: 8,
-        },
+          year: 8
+        }
       ],
       reservation: {
         accomodation: 130,
         mealReservation: [
           {
             meal: 130,
-            id: 231,
+            id: 231
           },
           {
             meal: 131,
-            id: 232,
-          },
+            id: 232
+          }
         ],
         workshopPrice: {
           id: 60,
           price_level: 8,
-          workshop: 13,
-        },
-      },
-    });
-  });
-});
+          workshop: 13
+        }
+      }
+    })
+  })
+})

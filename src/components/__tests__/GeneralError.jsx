@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import Container from '../Container';
-import GeneralError from '../GeneralError';
+import Container from '../Container'
+import GeneralError from '../GeneralError'
 
 describe('General error component', () => {
   it('renders proper message', () => {
@@ -18,6 +18,6 @@ describe('General error component', () => {
           to nepomůže, tak nám napište.
         </p>
       </Container>
-    );
-  });
-});
+    )
+  })
+})

@@ -1,35 +1,35 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import { Children } from '../proptypes';
+import { Children } from '../proptypes'
 
-import { logError } from '../clientLogger';
+import { logError } from '../clientLogger'
 
-import AppCrash from './AppCrash';
+import AppCrash from './AppCrash'
 
 export default class CrashHandler extends Component {
-  constructor() {
-    super();
-    this.state = { error: null };
+  constructor () {
+    super()
+    this.state = { error: null }
   }
 
-  componentDidCatch(error) {
-    this.setState({ error });
-    logError(error);
+  componentDidCatch (error) {
+    this.setState({ error })
+    logError(error)
   }
 
-  render() {
+  render () {
     if (this.state.error) {
-      return <AppCrash />;
+      return <AppCrash />
     }
 
-    return <div>{this.props.children}</div>;
+    return <div>{this.props.children}</div>
   }
 }
 
 CrashHandler.propTypes = {
-  children: Children,
-};
+  children: Children
+}
 
 CrashHandler.defaultProps = {
-  children: null,
-};
+  children: null
+}

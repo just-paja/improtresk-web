@@ -1,45 +1,45 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
-import { Route, Switch } from 'react-router-dom';
-import { ResourceProgress } from 'react-saga-rest/lib/proptypes';
+import { Route, Switch } from 'react-router-dom'
+import { ResourceProgress } from 'react-saga-rest/lib/proptypes'
 
-import Accomodation from '../pages/Accomodation';
-import AppCrash from './AppCrash';
-import AppHelmet from './AppHelmet';
-import AppLoader from './AppLoader';
-import ArchivedYear from '../pages/ArchivedYear';
-import Contact from '../pages/Contact';
-import CrashHandler from './CrashHandler';
-import Fees from '../pages/Fees';
-import Food from '../pages/Food';
-import Footer from './Footer';
-import ForgottenPassword from '../pages/ForgottenPassword';
-import Home from '../pages/Home';
-import LanguageRedirect from '../pages/LanguageRedirect';
-import Locations from '../pages/Locations';
-import Navigation from './Navigation';
-import NewPasswordPage from '../pages/NewPasswordPage';
-import NewsDetail from '../pages/NewsDetail';
-import NotFound from '../pages/NotFound';
-import ParticipantSwitchPage from '../pages/ParticipantSwitchPage';
-import PerformerDetail from '../pages/PerformerDetail';
-import PrivateRoute from '../containers/PrivateRoute';
-import ProgressBar from './ProgressBar';
-import Rules from '../pages/Rules';
-import Schedule from '../pages/Schedule';
-import Signup from '../pages/Signup';
-import Tips from '../pages/Tips';
-import WorkshopDetail from '../pages/WorkshopDetailPage';
-import Workshops from '../pages/Workshops';
+import Accomodation from '../pages/Accomodation'
+import AppCrash from './AppCrash'
+import AppHelmet from './AppHelmet'
+import AppLoader from './AppLoader'
+import ArchivedYear from '../pages/ArchivedYear'
+import Contact from '../pages/Contact'
+import CrashHandler from './CrashHandler'
+import Fees from '../pages/Fees'
+import Food from '../pages/Food'
+import Footer from './Footer'
+import ForgottenPassword from '../pages/ForgottenPassword'
+import Home from '../pages/Home'
+import LanguageRedirect from '../pages/LanguageRedirect'
+import Locations from '../pages/Locations'
+import Navigation from './Navigation'
+import NewPasswordPage from '../pages/NewPasswordPage'
+import NewsDetail from '../pages/NewsDetail'
+import NotFound from '../pages/NotFound'
+import ParticipantSwitchPage from '../pages/ParticipantSwitchPage'
+import PerformerDetail from '../pages/PerformerDetail'
+import PrivateRoute from '../containers/PrivateRoute'
+import ProgressBar from './ProgressBar'
+import Rules from '../pages/Rules'
+import Schedule from '../pages/Schedule'
+import Signup from '../pages/Signup'
+import Tips from '../pages/Tips'
+import WorkshopDetail from '../pages/WorkshopDetailPage'
+import Workshops from '../pages/Workshops'
 
-import { getAvailableLangs, getUrlPattern } from '../routeTable';
-import { Year } from '../proptypes';
+import { getAvailableLangs, getUrlPattern } from '../routeTable'
+import { Year } from '../proptypes'
 
-import styles from './App.css';
+import styles from './App.css'
 
 const getAppRoutes = () => {
-  const langs = getAvailableLangs();
+  const langs = getAvailableLangs()
   const routes = langs.map(routeLang => [
     <Route key={`${routeLang}accomodation`} component={Accomodation} path={getUrlPattern(routeLang, 'accomodation')} />,
     <Route key={`${routeLang}archiveYearDetail`} component={ArchivedYear} path={getUrlPattern(routeLang, 'archiveYearDetail')} />,
@@ -58,19 +58,19 @@ const getAppRoutes = () => {
     <Route key={`${routeLang}tips`} component={Tips} path={getUrlPattern(routeLang, 'tips')} />,
     <Route key={`${routeLang}workshopDetail`} component={WorkshopDetail} path={getUrlPattern(routeLang, 'workshopDetail')} />,
     <Route key={`${routeLang}workshops`} component={Workshops} exact path={getUrlPattern(routeLang, 'workshops')} />,
-    <PrivateRoute key={`${routeLang}participantHome`} path={getUrlPattern(routeLang, 'participantHome')} component={ParticipantSwitchPage} />,
-  ]).reduce((aggr, langRoutes) => aggr.concat(langRoutes), []);
-  routes.push(<Route key="languageRedirect" exact path="/" component={LanguageRedirect} />);
-  routes.push(<Route key="notfound" component={NotFound} />);
-  return routes;
-};
+    <PrivateRoute key={`${routeLang}participantHome`} path={getUrlPattern(routeLang, 'participantHome')} component={ParticipantSwitchPage} />
+  ]).reduce((aggr, langRoutes) => aggr.concat(langRoutes), [])
+  routes.push(<Route key='languageRedirect' exact path='/' component={LanguageRedirect} />)
+  routes.push(<Route key='notfound' component={NotFound} />)
+  return routes
+}
 
 class App extends Component {
-  componentWillMount() {
-    this.props.onMount();
+  componentWillMount () {
+    this.props.onMount()
   }
 
-  render() {
+  render () {
     const {
       activeRequests,
       currentYear,
@@ -81,18 +81,18 @@ class App extends Component {
       progress,
       onLogout,
       translate,
-      years,
-    } = this.props;
+      years
+    } = this.props
 
     if ((!progress.failed && !progress.valid) || progress.loading || !lang) {
-      return <AppLoader />;
+      return <AppLoader />
     }
 
     if (progress.failed) {
-      return <AppCrash />;
+      return <AppCrash />
     }
 
-    const routes = getAppRoutes();
+    const routes = getAppRoutes()
     return (
       <div className={styles.app}>
         <CrashHandler>
@@ -110,7 +110,7 @@ class App extends Component {
             onLogout={onLogout}
           />
           <ProgressBar activeRequests={activeRequests} />
-          <div className="app-content">
+          <div className='app-content'>
             <Switch>
               {routes}
             </Switch>
@@ -118,7 +118,7 @@ class App extends Component {
           <Footer partners={[]} />
         </CrashHandler>
       </div>
-    );
+    )
   }
 }
 
@@ -133,8 +133,8 @@ App.propTypes = {
   onMount: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,
   translate: PropTypes.func.isRequired,
-  years: PropTypes.arrayOf(Year),
-};
+  years: PropTypes.arrayOf(Year)
+}
 
 App.defaultProps = {
   activeRequests: 0,
@@ -143,11 +143,10 @@ App.defaultProps = {
   host: null,
   lang: null,
   participant: null,
-  years: null,
-};
+  years: null
+}
 
-export default App;
-
+export default App
 
 /*
 <Route

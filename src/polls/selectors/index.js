@@ -1,4 +1,4 @@
 const hasVoted = id =>
-  global.localStorage && !!global.localStorage.getItem(`votedPoll${id}`);
+  global.localStorage && !!global.localStorage.getItem(`votedPoll${id}`)
 
-export default { hasVoted };
+export default { hasVoted }

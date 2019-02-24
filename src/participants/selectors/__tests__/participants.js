@@ -1,4 +1,4 @@
-import * as selectors from '../participant';
+import * as selectors from '../participant'
 
 describe('Participant selectors', () => {
   it('getParticipantDetailState returns participant data', () => {
@@ -6,28 +6,28 @@ describe('Participant selectors', () => {
       participants: {
         detail: {
           data: {
-            id: 684,
-          },
-        },
-      },
+            id: 684
+          }
+        }
+      }
     })).toEqual({
       data: {
-        id: 684,
-      },
-    });
-  });
+        id: 684
+      }
+    })
+  })
 
   it('getParticipantDetail returns participant data', () => {
     expect(selectors.getParticipantDetail({
       participants: {
         detail: {
           data: {
-            id: 684,
-          },
-        },
-      },
+            id: 684
+          }
+        }
+      }
     })).toEqual({
-      id: 684,
-    });
-  });
-});
+      id: 684
+    })
+  })
+})

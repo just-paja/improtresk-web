@@ -1,11 +1,11 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import Home from './components/Home';
+import Home from './components/Home'
 
-import { yearActive } from '../years/selectors';
+import { yearActive } from '../years/selectors'
 
 const mapStateToProps = state => ({
-  year: yearActive(state),
-});
+  year: yearActive(state)
+})
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Home)

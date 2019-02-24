@@ -1,12 +1,12 @@
-import classnames from 'classnames';
-import FontAwesome from 'react-fontawesome';
-import BootstrapButton from 'reactstrap/lib/Button';
-import PropTypes from 'prop-types';
-import React from 'react';
+import classnames from 'classnames'
+import FontAwesome from 'react-fontawesome'
+import BootstrapButton from 'reactstrap/lib/Button'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import { Children } from '../proptypes';
+import { Children } from '../proptypes'
 
-import styles from './Button.css';
+import styles from './Button.css'
 
 const Button = ({
   children,
@@ -20,7 +20,7 @@ const Button = ({
   <BootstrapButton
     {...other}
     className={classnames(className, styles.buttonSize, {
-      [styles.link]: link,
+      [styles.link]: link
     })}
     disabled={loading || disabled}
   >
@@ -30,7 +30,7 @@ const Button = ({
     />
     {children}
   </BootstrapButton>
-);
+)
 
 Button.propTypes = {
   className: PropTypes.string,
@@ -38,8 +38,8 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   icon: PropTypes.string,
   link: PropTypes.bool,
-  loading: PropTypes.bool,
-};
+  loading: PropTypes.bool
+}
 
 Button.defaultProps = {
   className: null,
@@ -47,7 +47,7 @@ Button.defaultProps = {
   disabled: false,
   icon: 'floppy-o',
   link: false,
-  loading: false,
-};
+  loading: false
+}
 
-export default Button;
+export default Button

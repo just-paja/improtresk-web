@@ -1,22 +1,22 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
+import React from 'react'
+import configureStore from 'redux-mock-store'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import HelmetTitle from '../HelmetTitle';
+import HelmetTitle from '../HelmetTitle'
 
-const mockStore = configureStore();
+const mockStore = configureStore()
 
 describe('HelmetTitle container', () => {
-  let comp;
+  let comp
 
   beforeEach(() => {
     const store = mockStore({
       locale: {
-        languages: ['cs'],
+        languages: ['cs']
       },
       session: {
-        locale: 'cs',
+        locale: 'cs'
       },
       years: {
         list: {
@@ -24,26 +24,26 @@ describe('HelmetTitle container', () => {
             {
               id: 13,
               current: true,
-              year: '2017',
-            },
-          ],
-        },
-      },
-    });
-    comp = shallow(<HelmetTitle title="Some Title" />, {
-      context: { store },
-    });
-  });
+              year: '2017'
+            }
+          ]
+        }
+      }
+    })
+    comp = shallow(<HelmetTitle title='Some Title' />, {
+      context: { store }
+    })
+  })
 
   it('provides translate method', () => {
-    expect(comp.find('HelmetTitle')).toHaveProp('translate');
-  });
+    expect(comp.find('HelmetTitle')).toHaveProp('translate')
+  })
 
   it('provides active year', () => {
     expect(comp.find('HelmetTitle')).toHaveProp('year', {
       id: 13,
       current: true,
-      year: '2017',
-    });
-  });
-});
+      year: '2017'
+    })
+  })
+})

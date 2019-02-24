@@ -65,6 +65,6 @@ export default {
     waitingToBePaid: 'Expecting payment',
     workshop: 'Workshop',
     workshopHeading: 'Workshop registration',
-    workshopHelp: 'Pick one workshop, you cannot attend more on Imprtřesk. Your spot on the workshop will be confirmed when the payment arrives to our account.',
-  },
-};
+    workshopHelp: 'Pick one workshop, you cannot attend more on Imprtřesk. Your spot on the workshop will be confirmed when the payment arrives to our account.'
+  }
+}

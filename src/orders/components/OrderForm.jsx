@@ -1,22 +1,22 @@
-import Card from 'reactstrap/lib/Card';
-import CardBody from 'reactstrap/lib/CardBody';
-import Col from 'reactstrap/lib/Col';
-import PropTypes from 'prop-types';
-import React from 'react';
-import Row from 'reactstrap/lib/Row';
+import Card from 'reactstrap/lib/Card'
+import CardBody from 'reactstrap/lib/CardBody'
+import Col from 'reactstrap/lib/Col'
+import PropTypes from 'prop-types'
+import React from 'react'
+import Row from 'reactstrap/lib/Row'
 
-import { Field } from 'redux-form';
+import { Field } from 'redux-form'
 
-import { Accomodation, FormGeneralError, Meal, Year, Workshop } from '../../proptypes';
+import { Accomodation, FormGeneralError, Meal, Year, Workshop } from '../../proptypes'
 
-import AccomodationPicker from './AccomodationPicker';
-import Button from '../../components/Button';
-import Form from '../../forms/components/Form';
-import Message from '../../containers/Message';
-import MealPicker from './MealPicker';
-import Price from '../../components/Price';
-import StayLengthPicker from './StayLengthPicker';
-import WorkshopPicker from './WorkshopPicker';
+import AccomodationPicker from './AccomodationPicker'
+import Button from '../../components/Button'
+import Form from '../../forms/components/Form'
+import Message from '../../containers/Message'
+import MealPicker from './MealPicker'
+import Price from '../../components/Price'
+import StayLengthPicker from './StayLengthPicker'
+import WorkshopPicker from './WorkshopPicker'
 
 const OrderForm = ({
   accomodation,
@@ -29,28 +29,28 @@ const OrderForm = ({
   submitting,
   workshopValue,
   workshops,
-  year,
+  year
 }) => (
   <Form error={error} name={form} onSubmit={submit}>
     <Row>
-      <Col className="mb-3" xs={12} xl={6}>
-        <h3><Message name="orders.workshop" /></h3>
-        <p><Message name="orders.workshopHelp" /></p>
+      <Col className='mb-3' xs={12} xl={6}>
+        <h3><Message name='orders.workshop' /></h3>
+        <p><Message name='orders.workshopHelp' /></p>
         <Field
           component={WorkshopPicker}
           disabled={submitting}
-          name="workshop"
+          name='workshop'
           workshops={workshops}
         />
         {workshopValue ? null : (
           <div>
             <hr />
-            <h3><Message name="orders.howLongStay" /></h3>
+            <h3><Message name='orders.howLongStay' /></h3>
             <Field
               component={StayLengthPicker}
               disabled={submitting}
               end={year.endDate}
-              name="stayLength"
+              name='stayLength'
               start={year.startDate}
             />
           </div>
@@ -59,41 +59,41 @@ const OrderForm = ({
       <Col xs={12} xl={6}>
         <Row>
           <Col xs={12} md={6} xl={12}>
-            <h3><Message name="orders.food" /></h3>
-            <p><Message name="orders.foodHelp" /></p>
+            <h3><Message name='orders.food' /></h3>
+            <p><Message name='orders.foodHelp' /></p>
             <Field
               component={MealPicker}
               foodPickCloseDate={foodPickCloseDate}
               meals={meals}
-              name="meals"
+              name='meals'
             />
           </Col>
           <Col xs={12} md={6} xl={12}>
-            <h3><Message name="orders.accomodation" /></h3>
-            <p><Message name="orders.accomodationHelp" /></p>
+            <h3><Message name='orders.accomodation' /></h3>
+            <p><Message name='orders.accomodationHelp' /></p>
             <Field
               component={AccomodationPicker}
               accomodation={accomodation}
-              name="accomodation"
+              name='accomodation'
             />
           </Col>
         </Row>
       </Col>
     </Row>
-    <Card className="mb-3">
+    <Card className='mb-3'>
       <CardBody>
         <big>
-          <Message name="orders.priceToPay" />:
+          <Message name='orders.priceToPay' />:
           {' '}
           <Price price={price} />
         </big>
       </CardBody>
     </Card>
-    <Button type="submit" loading={submitting}>
-      <Message name="orders.continue" />
+    <Button type='submit' loading={submitting}>
+      <Message name='orders.continue' />
     </Button>
   </Form>
-);
+)
 
 OrderForm.propTypes = {
   accomodation: PropTypes.arrayOf(Accomodation).isRequired,
@@ -106,15 +106,15 @@ OrderForm.propTypes = {
   submitting: PropTypes.bool,
   workshops: PropTypes.arrayOf(Workshop).isRequired,
   workshopValue: PropTypes.number,
-  year: Year.isRequired,
-};
+  year: Year.isRequired
+}
 
 OrderForm.defaultProps = {
   foodPickCloseDate: null,
   error: null,
   price: null,
   submitting: false,
-  workshopValue: null,
-};
+  workshopValue: null
+}
 
-export default OrderForm;
+export default OrderForm

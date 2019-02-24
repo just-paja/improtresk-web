@@ -6,6 +6,6 @@ export default {
     signupsCloseIn: 'Signups close ${duration}',
     signupsWereClosed: 'Signups were already closed',
     signupsWillOpen: 'Signups will open ${duration}',
-    signupsAreOpen: 'Signups are open',
-  },
-};
+    signupsAreOpen: 'Signups are open'
+  }
+}

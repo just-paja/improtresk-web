@@ -1,5 +1,5 @@
-import MultiLingualText from './MultiLingualText';
+import MultiLingualText from './MultiLingualText'
 
-import * as texts from '../constants';
+import * as texts from '../constants'
 
-export default MultiLingualText(texts.TEXT_CATEGORY_ACCOMODATION);
+export default MultiLingualText(texts.TEXT_CATEGORY_ACCOMODATION)

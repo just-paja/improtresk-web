@@ -1,38 +1,38 @@
-import configureMockStore from 'redux-mock-store';
-import React from 'react';
+import configureMockStore from 'redux-mock-store'
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import { orderListFetch } from '../../actions';
+import { orderListFetch } from '../../actions'
 
-import OrderList from '../OrderList';
+import OrderList from '../OrderList'
 
-const mockStore = configureMockStore();
+const mockStore = configureMockStore()
 
 describe('OrderList container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
       locale: {
-        languages: [],
+        languages: []
       },
       accomodation: {
         list: {
           data: [
             {
               id: 5,
-              name: 'Something new',
-            },
+              name: 'Something new'
+            }
           ],
-          valid: true,
-        },
+          valid: true
+        }
       },
       food: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       orders: {
         list: {
@@ -43,52 +43,52 @@ describe('OrderList container', () => {
               symvar: '34598289',
               id: 432,
               reservation: {
-                accomodation: 5,
+                accomodation: 5
               },
               year: 150,
-              price: 434,
-            },
+              price: 434
+            }
           ],
-          valid: true,
-        },
+          valid: true
+        }
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       workshops: {
         lectors: {
           list: {
-            data: [],
+            data: []
           },
           roles: {
-            data: [],
-          },
+            data: []
+          }
         },
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       years: {
         capacity: {
           data: [],
-          valid: true,
+          valid: true
         },
         list: {
           data: [
             {
               id: 150,
               current: true,
-              topic: 'foo',
-            },
+              topic: 'foo'
+            }
           ],
-          valid: true,
-        },
-      },
-    });
+          valid: true
+        }
+      }
+    })
     comp = shallow(<OrderList />, {
-      context: { store },
-    });
-  });
+      context: { store }
+    })
+  })
 
   it('provides progress', () => {
     expect(comp.find('ContainerProgress(Connect(OrderList))')).toHaveProp('progress', {
@@ -97,9 +97,9 @@ describe('OrderList container', () => {
       missing: false,
       required: false,
       valid: true,
-      errors: [],
-    });
-  });
+      errors: []
+    })
+  })
 
   it('provides order list list', () => {
     expect(comp.dive().dive().find('OrderList')).toHaveProp('orders', [
@@ -112,10 +112,10 @@ describe('OrderList container', () => {
         accomodation: {
           id: 5,
           name: 'Something new',
-          capacityStatus: {},
+          capacityStatus: {}
         },
         reservation: {
-          accomodation: 5,
+          accomodation: 5
         },
         price: 434,
         remainingPrice: 434,
@@ -124,16 +124,16 @@ describe('OrderList container', () => {
         year: {
           id: 150,
           current: true,
-          topic: 'foo',
-        },
-      },
-    ]);
-  });
+          topic: 'foo'
+        }
+      }
+    ])
+  })
 
   it('triggers order list required action on mount', () => {
-    comp.dive().dive();
+    comp.dive().dive()
     expect(store.getActions()).toContainEqual(expect.objectContaining({
-      type: orderListFetch.TRIGGER,
-    }));
-  });
-});
+      type: orderListFetch.TRIGGER
+    }))
+  })
+})

@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import WorkshopDetail from '../WorkshopDetail';
+import WorkshopDetail from '../WorkshopDetail'
 
 describe('Workshop Detail component', () => {
   it('renders main heading', () => {
@@ -21,14 +21,14 @@ describe('Workshop Detail component', () => {
               name: 'Zlevněná',
               takesEffectOn: '2016-01-02',
               endsOn: '2016-01-05',
-              price: 1200,
+              price: 1200
             },
             {
               id: 5,
               name: 'Základní',
               takesEffectOn: '2016-01-05',
-              price: 1900,
-            },
+              price: 1900
+            }
           ],
           lectors: [
             {
@@ -38,15 +38,15 @@ describe('Workshop Detail component', () => {
                 id: 19,
                 name: 'Vojtěch Svoboda',
                 photos: [],
-                about: 'Herectví se věnuje odmalička, kdy ztvárnil',
-              },
-            },
-          ],
+                about: 'Herectví se věnuje odmalička, kdy ztvárnil'
+              }
+            }
+          ]
         }}
       />
-    );
-    expect(comp.find('h1')).toHaveText('Pantomima a fyzické divadlo');
-  });
+    )
+    expect(comp.find('h1')).toHaveText('Pantomima a fyzické divadlo')
+  })
 
   it('does not render price list when no prices are available', () => {
     const comp = shallow(
@@ -59,11 +59,11 @@ describe('Workshop Detail component', () => {
           name: 'Pantomima a fyzické divadlo',
           photos: [],
           prices: [],
-          lectors: [],
+          lectors: []
         }}
 
       />
-    );
-    expect(comp.find('PriceList')).toHaveLength(0);
-  });
-});
+    )
+    expect(comp.find('PriceList')).toHaveLength(0)
+  })
+})

@@ -1,25 +1,25 @@
-import configureMockStore from 'redux-mock-store';
-import React from 'react';
+import configureMockStore from 'redux-mock-store'
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import SignupCountdown from '../SignupCountdown';
+import SignupCountdown from '../SignupCountdown'
 
-const mockStore = configureMockStore();
+const mockStore = configureMockStore()
 
 describe('SignupCountdown container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
       locale: {
-        languages: [],
+        languages: []
       },
       years: {
         capacity: {
           data: [],
-          valid: true,
+          valid: true
         },
         list: {
           data: [
@@ -28,33 +28,33 @@ describe('SignupCountdown container', () => {
               current: true,
               topic: 'foo',
               startSignupsAt: '2017-05-09T00:00:00',
-              startDate: '2017-05-11T00:00:00',
-            },
+              startDate: '2017-05-11T00:00:00'
+            }
           ],
-          valid: true,
-        },
+          valid: true
+        }
       },
       texts: {
         list: {
           'accomodation-intro': {
             data: {
-              text: 'foo',
+              text: 'foo'
             },
-            valid: true,
-          },
-        },
-      },
-    });
+            valid: true
+          }
+        }
+      }
+    })
     comp = shallow(<SignupCountdown onOpen={() => {}} />, {
-      context: { store },
-    });
-  });
+      context: { store }
+    })
+  })
 
   it('provides openDate as years signup open date', () => {
-    expect(comp.find('SignupCountdown')).toHaveProp('openDate', '2017-05-09T00:00:00');
-  });
+    expect(comp.find('SignupCountdown')).toHaveProp('openDate', '2017-05-09T00:00:00')
+  })
 
   it('provides closeDate as years start date', () => {
-    expect(comp.find('SignupCountdown')).toHaveProp('closeDate', '2017-05-11T00:00:00');
-  });
-});
+    expect(comp.find('SignupCountdown')).toHaveProp('closeDate', '2017-05-11T00:00:00')
+  })
+})

@@ -1,15 +1,15 @@
-import FormFeedback from 'reactstrap/lib/FormFeedback';
-import ListGroup from 'reactstrap/lib/ListGroup';
-import React from 'react';
-import PropTypes from 'prop-types';
+import FormFeedback from 'reactstrap/lib/FormFeedback'
+import ListGroup from 'reactstrap/lib/ListGroup'
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import FormErrors from '../../forms/containers/FormErrors';
-import WorkshopPickerItem from './WorkshopPickerItem';
+import FormErrors from '../../forms/containers/FormErrors'
+import WorkshopPickerItem from './WorkshopPickerItem'
 
 const WorkshopPicker = ({
   input,
   meta,
-  workshops,
+  workshops
 }) => (
   <div>
     <ListGroup>
@@ -37,7 +37,7 @@ const WorkshopPicker = ({
     </ListGroup>
     <hr />
     <WorkshopPickerItem
-      name="Jedu bez workshopu"
+      name='Jedu bez workshopu'
       selected={!input.value}
       freeSpots={1000}
       onChange={input.onChange}
@@ -53,12 +53,12 @@ const WorkshopPicker = ({
       </FormFeedback>
     ) : null}
   </div>
-);
+)
 
 WorkshopPicker.propTypes = {
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
-  workshops: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
+  workshops: PropTypes.arrayOf(PropTypes.object).isRequired
+}
 
-export default WorkshopPicker;
+export default WorkshopPicker

@@ -1,47 +1,47 @@
-import configureMockStore from 'redux-mock-store';
-import React from 'react';
+import configureMockStore from 'redux-mock-store'
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import Rules from '../Rules';
+import Rules from '../Rules'
 
-const mockStore = configureMockStore();
+const mockStore = configureMockStore()
 
 describe('Rules container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
       locale: {
-        languages: [],
+        languages: []
       },
       years: {
         conditions: {
           data: {
-            text: 'foo',
+            text: 'foo'
           },
-          valid: true,
+          valid: true
         },
         list: {
           data: [
             {
               id: 150,
               current: true,
-              topic: 'foo',
-            },
+              topic: 'foo'
+            }
           ],
-          valid: true,
-        },
+          valid: true
+        }
       },
-      texts: {},
-    });
+      texts: {}
+    })
     comp = shallow(<Rules />, {
-      context: { store },
-    });
-  });
+      context: { store }
+    })
+  })
 
   it('provides translate method', () => {
-    expect(comp.find('Rules')).toHaveProp('translate');
-  });
-});
+    expect(comp.find('Rules')).toHaveProp('translate')
+  })
+})

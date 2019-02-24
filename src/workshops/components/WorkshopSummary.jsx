@@ -1,29 +1,29 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import Capacity from '../../components/Capacity';
-import PermaLink from '../../components/PermaLink';
-import Prop from '../../components/Prop';
-import Message from '../../containers/Message';
+import Capacity from '../../components/Capacity'
+import PermaLink from '../../components/PermaLink'
+import Prop from '../../components/Prop'
+import Message from '../../containers/Message'
 
 const WorkshopSummary = ({ id, capacityStatus, difficulty, name, lectors }) => (
   <div>
     <h3>
-      <PermaLink id={id} title={name} to="workshopDetail">{name}</PermaLink>
+      <PermaLink id={id} title={name} to='workshopDetail'>{name}</PermaLink>
     </h3>
 
-    <ul className="list-unstyled">
+    <ul className='list-unstyled'>
       {lectors.map(lectorPosition => (
         <Prop
           key={lectorPosition.id}
-          icon="user"
+          icon='user'
           label={lectorPosition.role}
         >
           {lectorPosition.lector.name}
         </Prop>
       ))}
-      <Prop icon="hand-rock-o" label={<Message name="workshops.difficulty" />}>{difficulty}</Prop>
-      <Prop icon="balance-scale" label={<Message name="workshops.capacity" />}>
+      <Prop icon='hand-rock-o' label={<Message name='workshops.difficulty' />}>{difficulty}</Prop>
+      <Prop icon='balance-scale' label={<Message name='workshops.capacity' />}>
         {capacityStatus ? (
           <Capacity
             freeSpots={capacityStatus.freeSpots}
@@ -34,11 +34,11 @@ const WorkshopSummary = ({ id, capacityStatus, difficulty, name, lectors }) => (
         ) : null}
       </Prop>
     </ul>
-    <PermaLink id={id} title={name} to="workshopDetail">
-      <Message name="workshops.moreInfo" />
+    <PermaLink id={id} title={name} to='workshopDetail'>
+      <Message name='workshops.moreInfo' />
     </PermaLink>
   </div>
-);
+)
 
 WorkshopSummary.propTypes = {
   id: PropTypes.number.isRequired,
@@ -46,21 +46,21 @@ WorkshopSummary.propTypes = {
     freeSpots: PropTypes.number,
     fullyAssigned: PropTypes.bool,
     fullyReserved: PropTypes.bool,
-    reserved: PropTypes.number,
+    reserved: PropTypes.number
   }),
   difficulty: PropTypes.string,
   name: PropTypes.string.isRequired,
   lectors: PropTypes.arrayOf(PropTypes.shape({
     lector: PropTypes.shape({
-      name: PropTypes.name,
+      name: PropTypes.name
     }),
-    role: PropTypes.string,
-  })).isRequired,
-};
+    role: PropTypes.string
+  })).isRequired
+}
 
 WorkshopSummary.defaultProps = {
   capacityStatus: null,
-  difficulty: null,
-};
+  difficulty: null
+}
 
-export default WorkshopSummary;
+export default WorkshopSummary

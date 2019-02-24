@@ -1,25 +1,25 @@
-import FontAwesome from 'react-fontawesome';
-import PropTypes from 'prop-types';
-import React from 'react';
+import FontAwesome from 'react-fontawesome'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 const openLink = (e) => {
-  e.preventDefault();
-  window.open(e.target.href);
-};
+  e.preventDefault()
+  window.open(e.target.href)
+}
 
 const serviceIcons = {
   bandzone: 'play-circle',
   facebook: 'facebook-square',
   soundcloud: 'play-circle',
-  youtube: 'play-circle',
-};
+  youtube: 'play-circle'
+}
 
 const getServiceIcon = (icon) => {
   if (!icon || !serviceIcons[icon]) {
-    return 'external-link-square';
+    return 'external-link-square'
   }
-  return serviceIcons[icon];
-};
+  return serviceIcons[icon]
+}
 
 const LinkService = ({ children, href, service }) => (
   <a href={href} onClick={openLink}>
@@ -27,19 +27,19 @@ const LinkService = ({ children, href, service }) => (
     {' '}
     <span>{children}</span>
   </a>
-);
+)
 
 LinkService.propTypes = {
   href: PropTypes.string.isRequired,
   service: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]).isRequired,
-};
+    PropTypes.arrayOf(PropTypes.node)
+  ]).isRequired
+}
 
 LinkService.defaultProps = {
-  service: null,
-};
+  service: null
+}
 
-export default LinkService;
+export default LinkService

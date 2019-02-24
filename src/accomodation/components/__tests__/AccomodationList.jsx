@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import AccomodationDetails from '../AccomodationDetails';
-import AccomodationList from '../AccomodationList';
+import AccomodationDetails from '../AccomodationDetails'
+import AccomodationList from '../AccomodationList'
 
 describe('AccomodationList component', () => {
   it('passes accomodation component to object list', () => {
@@ -18,18 +18,18 @@ describe('AccomodationList component', () => {
               assigned: 10,
               capacity: 20,
               freeSpots: 5,
-              reserved: 5,
+              reserved: 5
             },
             desc: 'Some long description',
             name: 'Dům Kultury Milevsko',
             photos: [],
-            price: 200,
-          },
+            price: 200
+          }
         ]}
       />
-    );
-    expect(comp.find('ObjectList')).toHaveProp('Component', AccomodationDetails);
-  });
+    )
+    expect(comp.find('ObjectList')).toHaveProp('Component', AccomodationDetails)
+  })
 
   it('passes accomodation list to object list', () => {
     const comp = shallow(
@@ -43,16 +43,16 @@ describe('AccomodationList component', () => {
               assigned: 10,
               capacity: 20,
               freeSpots: 5,
-              reserved: 5,
+              reserved: 5
             },
             desc: 'Some long description',
             name: 'Dům Kultury Milevsko',
             photos: [],
-            price: 200,
-          },
+            price: 200
+          }
         ]}
       />
-    );
+    )
     expect(comp.find('ObjectList')).toHaveProp('data', [
       {
         id: 10,
@@ -62,13 +62,13 @@ describe('AccomodationList component', () => {
           assigned: 10,
           capacity: 20,
           freeSpots: 5,
-          reserved: 5,
+          reserved: 5
         },
         desc: 'Some long description',
         name: 'Dům Kultury Milevsko',
         photos: [],
-        price: 200,
-      },
-    ]);
-  });
-});
+        price: 200
+      }
+    ])
+  })
+})

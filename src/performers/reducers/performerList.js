@@ -1,9 +1,9 @@
-import { combine } from 'react-saga-rest';
+import { combine } from 'react-saga-rest'
 
-import createCollectionReducers, { initialState } from '../../reducers/createCollectionReducers';
+import createCollectionReducers, { initialState } from '../../reducers/createCollectionReducers'
 
-import { performerListFetch } from '../actions';
+import { performerListFetch } from '../actions'
 
 export default combine(initialState, createCollectionReducers({
-  routine: performerListFetch,
-}));
+  routine: performerListFetch
+}))

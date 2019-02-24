@@ -1,30 +1,30 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-import InputCheckbox from '../../forms/components/InputCheckbox';
-import Meal from '../../food/components/Meal';
-import Price from '../../components/Price';
+import InputCheckbox from '../../forms/components/InputCheckbox'
+import Meal from '../../food/components/Meal'
+import Price from '../../components/Price'
 
 export default class MealPickerItem extends Component {
-  constructor() {
-    super();
-    this.handleChange = this.handleChange.bind(this);
+  constructor () {
+    super()
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange() {
-    const { id, onChange, selected } = this.props;
-    onChange(id, !selected);
+  handleChange () {
+    const { id, onChange, selected } = this.props
+    onChange(id, !selected)
   }
 
-  render() {
+  render () {
     const {
       date,
       disabled,
       form,
       id,
       name,
-      price,
-    } = this.props;
+      price
+    } = this.props
     return (
       <div>
         <InputCheckbox
@@ -32,11 +32,11 @@ export default class MealPickerItem extends Component {
           input={{
             name: id,
             onChange: this.handleChange,
-            value: id,
+            value: id
           }}
           meta={{
             form,
-            touched: true,
+            touched: true
           }}
           label={(
             <div>
@@ -46,7 +46,7 @@ export default class MealPickerItem extends Component {
           )}
         />
       </div>
-    );
+    )
   }
 }
 
@@ -58,10 +58,10 @@ MealPickerItem.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   price: PropTypes.number.isRequired,
-  selected: PropTypes.bool,
-};
+  selected: PropTypes.bool
+}
 
 MealPickerItem.defaultProps = {
   disabled: false,
-  selected: false,
-};
+  selected: false
+}

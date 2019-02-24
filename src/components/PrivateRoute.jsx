@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import qsm from 'query-string-manipulator';
-import React from 'react';
+import PropTypes from 'prop-types'
+import qsm from 'query-string-manipulator'
+import React from 'react'
 
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom'
 
-import { Participant } from '../proptypes';
-import { reverse } from '../routeTable';
+import { Participant } from '../proptypes'
+import { reverse } from '../routeTable'
 
 const PrivateRoute = ({
   component: Component,
@@ -19,22 +19,22 @@ const PrivateRoute = ({
     path={path}
     render={(props) => {
       if ((participantState.failed || participantState.valid) && !participantState.loading) {
-        return participantState.data ?
-          (<Component {...props} />) :
-          (
+        return participantState.data
+          ? (<Component {...props} />)
+          : (
             <Redirect
               to={qsm(reverse(lang, 'signup'), {
                 set: {
-                  redirectTo: path,
-                },
+                  redirectTo: path
+                }
               })}
             />
-          );
+          )
       }
-      return null;
+      return null
     }}
   />
-);
+)
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
@@ -42,10 +42,10 @@ PrivateRoute.propTypes = {
     data: Participant,
     failed: PropTypes.bool,
     loading: PropTypes.bool,
-    valid: PropTypes.bool,
+    valid: PropTypes.bool
   }).isRequired,
   path: PropTypes.string.isRequired,
-  lang: PropTypes.string.isRequired,
-};
+  lang: PropTypes.string.isRequired
+}
 
-export default PrivateRoute;
+export default PrivateRoute

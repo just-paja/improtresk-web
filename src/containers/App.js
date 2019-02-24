@@ -1,18 +1,18 @@
-import { connect } from 'react-redux';
-import { getTranslate } from 'react-localize-redux';
+import { connect } from 'react-redux'
+import { getTranslate } from 'react-localize-redux'
 
-import App from '../components/App';
+import App from '../components/App'
 
-import { logout } from '../participants/actions';
+import { logout } from '../participants/actions'
 import {
   countAppRequests,
-  getAppProgress,
-} from '../selectors/app';
-import { getHost, getLang } from '../selectors';
-import { getParticipantDetail } from '../participants/selectors';
-import { yearCurrent, yearsNotCurrent } from '../years/selectors';
+  getAppProgress
+} from '../selectors/app'
+import { getHost, getLang } from '../selectors'
+import { getParticipantDetail } from '../participants/selectors'
+import { yearCurrent, yearsNotCurrent } from '../years/selectors'
 
-import * as actions from '../constants';
+import * as actions from '../constants'
 
 const mapStateToProps = state => ({
   activeRequests: countAppRequests(state),
@@ -23,12 +23,12 @@ const mapStateToProps = state => ({
   participant: getParticipantDetail(state),
   progress: getAppProgress(state),
   translate: getTranslate(state.locale),
-  years: yearsNotCurrent(state),
-});
+  years: yearsNotCurrent(state)
+})
 
 const mapDispatchToProps = {
   onMount: () => ({ type: actions.APP_MOUNTED }),
-  onLogout: logout,
-};
+  onLogout: logout
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

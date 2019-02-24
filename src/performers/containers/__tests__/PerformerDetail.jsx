@@ -1,22 +1,22 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
+import React from 'react'
+import configureStore from 'redux-mock-store'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import { performerDetailFetch } from '../../actions';
+import { performerDetailFetch } from '../../actions'
 
-import PerformerDetail from '../PerformerDetail';
+import PerformerDetail from '../PerformerDetail'
 
-const mockStore = configureStore();
+const mockStore = configureStore()
 
 describe('PerformerDetail container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
       locale: {
-        languages: ['cs'],
+        languages: ['cs']
       },
       performers: {
         detail: {
@@ -30,17 +30,17 @@ describe('PerformerDetail container', () => {
             photos: [
               {
                 id: 10,
-                image: '/images/10.jpg',
-              },
-            ],
-          },
-        },
-      },
-    });
-    comp = shallow(<PerformerDetail resourceId="20000-zidu-pod-morem-3154" />, {
-      context: { store },
-    });
-  });
+                image: '/images/10.jpg'
+              }
+            ]
+          }
+        }
+      }
+    })
+    comp = shallow(<PerformerDetail resourceId='20000-zidu-pod-morem-3154' />, {
+      context: { store }
+    })
+  })
 
   it('provides list of news', () => {
     expect(comp.dive().dive().find('PerformerDetail')).toHaveProp('performer', {
@@ -52,18 +52,18 @@ describe('PerformerDetail container', () => {
       photos: [
         {
           id: 10,
-          image: '/images/10.jpg',
-        },
+          image: '/images/10.jpg'
+        }
       ],
-      frontImage: '/images/10.jpg',
-    });
-  });
+      frontImage: '/images/10.jpg'
+    })
+  })
 
   it('dispatches news required action on mount', () => {
-    comp.dive();
+    comp.dive()
     expect(store.getActions()).toContainEqual(expect.objectContaining({
       type: performerDetailFetch.TRIGGER,
-      payload: '20000-zidu-pod-morem-3154',
-    }));
-  });
-});
+      payload: '20000-zidu-pod-morem-3154'
+    }))
+  })
+})

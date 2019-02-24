@@ -1,7 +1,7 @@
-import sagas from '..';
+import sagas from '..'
 
 describe('News sagas', () => {
   it('exports array', () => {
-    expect(sagas).toBeInstanceOf(Array);
-  });
-});
+    expect(sagas).toBeInstanceOf(Array)
+  })
+})

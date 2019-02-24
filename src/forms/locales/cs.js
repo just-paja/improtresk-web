@@ -18,9 +18,9 @@ export default {
       'no-matching-price-level': 'K požadované změně neexistuje odpovídající cenová hladina',
       'email-already-exists': 'E-mail již máme v databázi. Je možné, že už účet máš a jen si nepamatuješ heslo?',
       'must-be-eighteen': 'Musí ti být osmnáct.',
-      'must-accept-rules': 'Musíš souhlasit s pravidly festivalu',
+      'must-accept-rules': 'Musíš souhlasit s pravidly festivalu'
     },
     tooLong: 'Hodnota ${label} je příliš dlouhá.',
-    tooShort: 'Hodnota ${label} je příliš krátká.',
-  },
-};
+    tooShort: 'Hodnota ${label} je příliš krátká.'
+  }
+}

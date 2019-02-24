@@ -29,6 +29,6 @@ export default {
     whatWorkshops: 'What <b>workshops</b> are this year?',
     whereCanISleep: 'Where can I <b>sleep</b>?',
     whereIsIt: '<b>Where</b> is it?',
-    workshops: 'Workshops',
-  },
-};
+    workshops: 'Workshops'
+  }
+}

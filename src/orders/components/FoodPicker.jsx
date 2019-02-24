@@ -1,26 +1,26 @@
-import Col from 'reactstrap/lib/Col';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import Row from 'reactstrap/lib/Row'
 
-import FoodPickerItem from './FoodPickerItem';
+import FoodPickerItem from './FoodPickerItem'
 
 export default class FoodPicker extends Component {
-  constructor() {
-    super();
-    this.handleChange = this.handleChange.bind(this);
+  constructor () {
+    super()
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(id, mealValue) {
-    const { onChange, value } = this.props.input;
+  handleChange (id, mealValue) {
+    const { onChange, value } = this.props.input
     onChange({
       ...value,
-      [id]: mealValue,
-    });
+      [id]: mealValue
+    })
   }
 
-  render() {
-    const { disabled, meals, input: { value } } = this.props;
+  render () {
+    const { disabled, meals, input: { value } } = this.props
     return (
       <Row>
         {meals.map(meal => (
@@ -40,7 +40,7 @@ export default class FoodPicker extends Component {
           </Col>
         ))}
       </Row>
-    );
+    )
   }
 }
 
@@ -50,11 +50,11 @@ FoodPicker.propTypes = {
     date: PropTypes.string,
     name: PropTypes.string,
     food: PropTypes.arrayOf(PropTypes.object),
-    soups: PropTypes.arrayOf(PropTypes.object),
+    soups: PropTypes.arrayOf(PropTypes.object)
   })).isRequired,
-  input: PropTypes.object.isRequired,
-};
+  input: PropTypes.object.isRequired
+}
 
 FoodPicker.defaultProps = {
-  disabled: false,
-};
+  disabled: false
+}

@@ -1,27 +1,27 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
+import React from 'react'
+import configureStore from 'redux-mock-store'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import Message from '../Message';
+import Message from '../Message'
 
-const mockStore = configureStore();
+const mockStore = configureStore()
 
 describe('Message container', () => {
-  let comp;
+  let comp
 
   beforeEach(() => {
     const store = mockStore({
       locale: {
-        languages: ['cs'],
-      },
-    });
-    comp = shallow(<Message name="foo" />, {
-      context: { store },
-    });
-  });
+        languages: ['cs']
+      }
+    })
+    comp = shallow(<Message name='foo' />, {
+      context: { store }
+    })
+  })
 
   it('provides translate function', () => {
-    expect(comp.find('Message')).toHaveProp('translate');
-  });
-});
+    expect(comp.find('Message')).toHaveProp('translate')
+  })
+})

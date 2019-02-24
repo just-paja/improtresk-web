@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import WorkshopDetailPage from '../WorkshopDetailPage';
+import WorkshopDetailPage from '../WorkshopDetailPage'
 
 describe('Workshop Detail page component', () => {
   it('renders detail container with resource ID', () => {
@@ -10,12 +10,12 @@ describe('Workshop Detail page component', () => {
       <WorkshopDetailPage
         match={{
           params: {
-            slug: 'nehraj-34789',
-          },
+            slug: 'nehraj-34789'
+          }
         }}
       />
-    );
+    )
     expect(comp.find('Connect(ContainerProgress(Connect(WorkshopDetail)))'))
-      .toHaveProp('resourceId', 'nehraj-34789');
-  });
-});
+      .toHaveProp('resourceId', 'nehraj-34789')
+  })
+})

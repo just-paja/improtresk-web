@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import { Field } from 'redux-form';
-import { Translate } from 'react-localize-redux';
+import { Field } from 'redux-form'
+import { Translate } from 'react-localize-redux'
 
-import { FormGeneralError } from '../../proptypes';
+import { FormGeneralError } from '../../proptypes'
 
-import Button from '../../components/Button';
-import Form from '../../forms/components/Form';
-import Input from '../../forms/components/Input';
-import InputSelect from '../../forms/components/InputSelect';
+import Button from '../../components/Button'
+import Form from '../../forms/components/Form'
+import Input from '../../forms/components/Input'
+import InputSelect from '../../forms/components/InputSelect'
 
 const ParticipantEditForm = ({
   error,
@@ -17,51 +17,51 @@ const ParticipantEditForm = ({
   pristine,
   submit,
   submitting,
-  teams,
+  teams
 }) => (
   <Form error={error} name={form} onSubmit={submit}>
     <Field
-      name="name"
+      name='name'
       component={Input}
       disabled={submitting}
-      help="participants.fullNameHelp"
-      label="participants.fullName"
+      help='participants.fullNameHelp'
+      label='participants.fullName'
     />
     <Field
       component={InputSelect}
       disabled={submitting}
-      help="participants.teamHelp"
-      label="participants.team"
-      name="team_name"
+      help='participants.teamHelp'
+      label='participants.team'
+      name='team_name'
       options={teams}
       simpleValue
     />
     <Field
       component={Input}
       disabled={submitting}
-      help="participants.emailHelp"
-      label="participants.email"
-      name="email"
-      type="email"
+      help='participants.emailHelp'
+      label='participants.email'
+      name='email'
+      type='email'
     />
     <Field
       component={Input}
       disabled={submitting}
-      help="participants.phoneNumberHelp"
-      label="participants.phoneNumber"
-      name="phone"
-      placeholder="000000000"
+      help='participants.phoneNumberHelp'
+      label='participants.phoneNumber'
+      name='phone'
+      placeholder='000000000'
     />
     <Button
       disabled={pristine}
-      icon="floppy-o"
+      icon='floppy-o'
       loading={submitting}
-      type="submit"
+      type='submit'
     >
-      <Translate id="participants.saveChanges" />
+      <Translate id='participants.saveChanges' />
     </Button>
   </Form>
-);
+)
 
 ParticipantEditForm.propTypes = {
   error: FormGeneralError,
@@ -69,13 +69,13 @@ ParticipantEditForm.propTypes = {
   pristine: PropTypes.bool,
   submit: PropTypes.func.isRequired,
   submitting: PropTypes.bool,
-  teams: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
+  teams: PropTypes.arrayOf(PropTypes.object).isRequired
+}
 
 ParticipantEditForm.defaultProps = {
   error: null,
   pristine: false,
-  submitting: false,
-};
+  submitting: false
+}
 
-export default ParticipantEditForm;
+export default ParticipantEditForm

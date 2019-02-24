@@ -1,5 +1,5 @@
-import createFetchSaga from '../../sagas/createFetchSaga';
+import createFetchSaga from '../../sagas/createFetchSaga'
 
-import { newsListFetch } from '../actions';
+import { newsListFetch } from '../actions'
 
-export default createFetchSaga(newsListFetch);
+export default createFetchSaga(newsListFetch)

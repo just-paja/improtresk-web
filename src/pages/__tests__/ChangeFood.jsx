@@ -1,91 +1,91 @@
-import configureMockStore from 'redux-mock-store';
-import React from 'react';
+import configureMockStore from 'redux-mock-store'
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import ChangeFood from '../ChangeFood';
+import ChangeFood from '../ChangeFood'
 
-const mockStore = configureMockStore();
+const mockStore = configureMockStore()
 
 describe('ChangeFood container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
       locale: {
-        languages: [],
+        languages: []
       },
       accomodation: {
         list: {
           data: [
             {
               id: 5,
-              name: 'Something new',
-            },
+              name: 'Something new'
+            }
           ],
-          valid: true,
-        },
+          valid: true
+        }
       },
       food: {
         list: {
           data: [],
-          valid: true,
-        },
+          valid: true
+        }
       },
       orders: {
         list: {
-          data: [],
-        },
+          data: []
+        }
       },
       participants: {
         detail: {
           data: null,
-          valid: true,
-        },
+          valid: true
+        }
       },
       workshops: {
         lectors: {
           list: {
             data: [],
-            valid: true,
-          },
+            valid: true
+          }
         },
         list: {
           data: [],
-          valid: true,
-        },
+          valid: true
+        }
       },
       years: {
         capacity: {
           data: [],
-          valid: true,
+          valid: true
         },
         list: {
           data: [
             {
               id: 150,
               current: true,
-              topic: 'foo',
-            },
+              topic: 'foo'
+            }
           ],
-          valid: true,
-        },
-      },
-    });
+          valid: true
+        }
+      }
+    })
     comp = shallow(<ChangeFood />, {
-      context: { store },
-    });
-  });
+      context: { store }
+    })
+  })
 
   it('provides progress', () => {
-    expect(comp.find('SceneProgress(Connect(ChangeFoodPage))')).toHaveProp('progress');
-  });
+    expect(comp.find('SceneProgress(Connect(ChangeFoodPage))')).toHaveProp('progress')
+  })
 
   it('triggers home mounted action on mount', () => {
-    comp.dive().dive();
+    comp.dive().dive()
     expect(store.getActions()).toEqual([
-      { type: 'ORDER_RESOURCES_REQUIRED' },
-    ]);
-  });
-});
+      { type: 'ORDER_RESOURCES_REQUIRED' }
+    ])
+  })
+})

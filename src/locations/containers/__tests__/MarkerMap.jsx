@@ -1,20 +1,20 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
+import React from 'react'
+import configureStore from 'redux-mock-store'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import MarkerMap from '../MarkerMap';
+import MarkerMap from '../MarkerMap'
 
-const mockStore = configureStore();
+const mockStore = configureStore()
 
 describe('MarkerMap container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
       locale: {
-        languages: ['cs'],
+        languages: ['cs']
       },
       locations: {
         list: {
@@ -23,25 +23,25 @@ describe('MarkerMap container', () => {
             {
               id: 20,
               address: 'Nádražní 10',
-              name: 'lunch',
-            },
-          ],
+              name: 'lunch'
+            }
+          ]
         },
         geocode: {
           'Nádražní 10': {
             valid: true,
             data: {
               lat: 15,
-              lng: 16,
-            },
-          },
-        },
-      },
-    });
+              lng: 16
+            }
+          }
+        }
+      }
+    })
     comp = shallow(<MarkerMap />, {
-      context: { store },
-    });
-  });
+      context: { store }
+    })
+  })
 
   it('provides list of locations', () => {
     expect(comp.dive().dive().find('withScriptjs(withGoogleMap(MarkerMapComponent))')).toHaveProp('markers', [
@@ -50,15 +50,15 @@ describe('MarkerMap container', () => {
         address: 'Nádražní 10',
         name: 'lunch',
         lat: 15,
-        lng: 16,
-      },
-    ]);
-  });
+        lng: 16
+      }
+    ])
+  })
 
   it('dispatches news required action on mount', () => {
-    comp.dive();
+    comp.dive()
     expect(store.getActions()).toContainEqual(expect.objectContaining({
-      type: 'LOCATIONS_REQUIRED',
-    }));
-  });
-});
+      type: 'LOCATIONS_REQUIRED'
+    }))
+  })
+})

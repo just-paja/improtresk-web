@@ -1,28 +1,28 @@
-import Alert from 'reactstrap/lib/Alert';
-import Markdown from 'react-markdown';
-import PropTypes from 'prop-types';
-import React from 'react';
+import Alert from 'reactstrap/lib/Alert'
+import Markdown from 'react-markdown'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import { MultiLingualDescription } from '../proptypes';
+import { MultiLingualDescription } from '../proptypes'
 
-import Message from '../containers/Message';
+import Message from '../containers/Message'
 
 const MultiLingualMarkdown = ({
   emptyMessage,
   headingSize: HeadingSize,
   lang,
   skipFirstHeading,
-  texts,
+  texts
 }) => {
   if (!texts || !texts.length) {
     if (emptyMessage) {
       return (
-        <Alert color="info">
+        <Alert color='info'>
           <Message name={emptyMessage} />
         </Alert>
-      );
+      )
     }
-    return null;
+    return null
   }
 
   return (
@@ -38,22 +38,22 @@ const MultiLingualMarkdown = ({
           </div>
         ))}
     </div>
-  );
-};
+  )
+}
 
 MultiLingualMarkdown.propTypes = {
   emptyMessage: PropTypes.string,
   headingSize: PropTypes.string,
   lang: PropTypes.string.isRequired,
   skipFirstHeading: PropTypes.bool,
-  texts: MultiLingualDescription,
-};
+  texts: MultiLingualDescription
+}
 
 MultiLingualMarkdown.defaultProps = {
   emptyMessage: null,
   headingSize: 'h2',
   skipFirstHeading: false,
-  texts: null,
-};
+  texts: null
+}
 
-export default MultiLingualMarkdown;
+export default MultiLingualMarkdown

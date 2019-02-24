@@ -1,4 +1,4 @@
-import textField from './textField';
+import textField from './textField'
 
 const emailField = ({
   messages,
@@ -9,10 +9,10 @@ const emailField = ({
   maxLength,
   messages: {
     pattern: 'forms.notAnEmail',
-    ...messages,
+    ...messages
   },
   pattern: /^([a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)?$/,
-  ...other,
-});
+  ...other
+})
 
-export default emailField;
+export default emailField

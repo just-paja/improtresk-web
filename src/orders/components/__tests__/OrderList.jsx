@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import OrderList from '../OrderList';
+import OrderList from '../OrderList'
 
 describe('OrderList component', () => {
   it('renders list of order list items', () => {
@@ -20,14 +20,14 @@ describe('OrderList component', () => {
                 date: '2018-05-12',
                 id: '10',
                 name: 'dinner',
-                price: 10,
-              },
+                price: 10
+              }
             ],
-            reservation: {},
-          },
+            reservation: {}
+          }
         ]}
       />
-    );
+    )
     expect(comp.find('OrderListItem')).toHaveProp('order', {
       id: 457,
       symvar: '897233289732',
@@ -40,9 +40,9 @@ describe('OrderList component', () => {
           date: '2018-05-12',
           id: '10',
           name: 'dinner',
-          price: 10,
-        },
-      ],
-    });
-  });
-});
+          price: 10
+        }
+      ]
+    })
+  })
+})

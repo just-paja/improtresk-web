@@ -1,100 +1,100 @@
-import Helmet from 'react-helmet';
-import React from 'react';
+import Helmet from 'react-helmet'
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import PageBase from '../pageBase';
+import PageBase from '../pageBase'
 
 describe('PageBase component', () => {
   beforeEach(() => {
-    Helmet.canUseDOM = false;
-  });
+    Helmet.canUseDOM = false
+  })
 
   afterEach(() => {
-    Helmet.canUseDOM = true;
-  });
+    Helmet.canUseDOM = true
+  })
 
   it('renders html language', () => {
     const comp = shallow(
       <PageBase
-        lang="en"
+        lang='en'
         css={['/assets/test.css']}
         js={['/assets/test.js']}
-        markup="foo"
+        markup='foo'
         state={{ testState: 'foo' }}
         helmet={Helmet.rewind()}
       />
-    );
-    expect(comp.find('html')).toHaveProp('lang', 'en');
-  });
+    )
+    expect(comp.find('html')).toHaveProp('lang', 'en')
+  })
 
   it('renders IE compatible meta tag language', () => {
     const comp = shallow(
       <PageBase
-        lang="en"
+        lang='en'
         css={['/assets/test.css']}
         js={['/assets/test.js']}
-        markup="foo"
+        markup='foo'
         state={{ testState: 'foo' }}
         helmet={Helmet.rewind()}
       />
-    );
-    expect(comp.find('meta[httpEquiv="X-UA-Compatible"]')).toHaveProp('content', 'IE=edge');
-  });
+    )
+    expect(comp.find('meta[httpEquiv="X-UA-Compatible"]')).toHaveProp('content', 'IE=edge')
+  })
 
   it('renders charset', () => {
     const comp = shallow(
       <PageBase
-        lang="en"
+        lang='en'
         css={['/assets/test.css']}
         js={['/assets/test.js']}
-        markup="foo"
+        markup='foo'
         state={{ testState: 'foo' }}
         helmet={Helmet.rewind()}
       />
-    );
-    expect(comp.find('meta[charSet="utf-8"]')).toHaveLength(1);
-  });
+    )
+    expect(comp.find('meta[charSet="utf-8"]')).toHaveLength(1)
+  })
 
   it('renders default viewport scale', () => {
     const comp = shallow(
       <PageBase
-        lang="en"
+        lang='en'
         css={['/assets/test.css']}
         js={['/assets/test.js']}
-        markup="foo"
+        markup='foo'
         state={{ testState: 'foo' }}
         helmet={Helmet.rewind()}
       />
-    );
-    expect(comp.find('meta[name="viewport"]')).toHaveProp('content', 'width=device-width,initial-scale=1');
-  });
+    )
+    expect(comp.find('meta[name="viewport"]')).toHaveProp('content', 'width=device-width,initial-scale=1')
+  })
 
   it('renders title', () => {
     const comp = shallow(
       <PageBase
-        lang="en"
+        lang='en'
         css={['/assets/test.css']}
         js={['/assets/test.js']}
-        markup="foo"
+        markup='foo'
         state={{ testState: 'foo' }}
         helmet={Helmet.rewind()}
       />
-    );
-    expect(comp.find('title')).toHaveLength(1);
-  });
+    )
+    expect(comp.find('title')).toHaveLength(1)
+  })
 
   it('renders app content', () => {
     const comp = shallow(
       <PageBase
-        lang="en"
+        lang='en'
         css={['/assets/test.css']}
         js={['/assets/test.js']}
-        markup="foo"
+        markup='foo'
         state={{ testState: 'foo' }}
         helmet={Helmet.rewind()}
       />
-    );
-    expect(comp.find('body #appContent')).toHaveLength(1);
-  });
-});
+    )
+    expect(comp.find('body #appContent')).toHaveLength(1)
+  })
+})

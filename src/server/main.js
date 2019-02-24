@@ -1,2 +1,2 @@
-import './mainCss';
-import './mainServer';
+import './mainCss'
+import './mainServer'

@@ -1,17 +1,17 @@
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import LinkService from './LinkService';
+import LinkService from './LinkService'
 
 const LinkServiceList = ({
   inline,
-  links,
+  links
 }) => (
   <ul
     className={classnames({
       'list-unstyled': !inline,
-      'list-inline': inline,
+      'list-inline': inline
     })}
   >
     {links.map(link => (
@@ -25,19 +25,19 @@ const LinkServiceList = ({
       </li>
     ))}
   </ul>
-);
+)
 
 LinkServiceList.propTypes = {
   inline: PropTypes.bool,
   links: PropTypes.arrayOf(PropTypes.shape({
     address: PropTypes.string.isRequired,
     service: PropTypes.string,
-    name: PropTypes.string.isRequired,
-  })).isRequired,
-};
+    name: PropTypes.string.isRequired
+  })).isRequired
+}
 
 LinkServiceList.defaultProps = {
-  inline: false,
-};
+  inline: false
+}
 
-export default LinkServiceList;
+export default LinkServiceList

@@ -1,11 +1,11 @@
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import Prop from '../../components/Prop';
-import Capacity from '../../components/Capacity';
+import Prop from '../../components/Prop'
+import Capacity from '../../components/Capacity'
 
-import styles from './WorkshopSummaryOneLine.css';
+import styles from './WorkshopSummaryOneLine.css'
 
 const WorkshopSummaryOneLine = ({
   assigned,
@@ -14,12 +14,12 @@ const WorkshopSummaryOneLine = ({
   hideCapacity,
   name,
   lectors,
-  reserved,
+  reserved
 }) => (
   <div>
     <h3 className={styles.heading}>{name}</h3>
     <ul className={classnames('list-unstyled', styles.list)}>
-      <Prop label="Lektoři">
+      <Prop label='Lektoři'>
         {lectors
           .map(lectorPosition => lectorPosition.lector.name)
           .join(', ')}
@@ -34,7 +34,7 @@ const WorkshopSummaryOneLine = ({
       )}
     </ul>
   </div>
-);
+)
 
 WorkshopSummaryOneLine.propTypes = {
   assigned: PropTypes.number,
@@ -44,19 +44,19 @@ WorkshopSummaryOneLine.propTypes = {
   hideCapacity: PropTypes.bool,
   lectors: PropTypes.arrayOf(PropTypes.shape({
     lector: PropTypes.shape({
-      name: PropTypes.tring,
+      name: PropTypes.tring
     }),
-    role: PropTypes.string,
+    role: PropTypes.string
   })).isRequired,
-  name: PropTypes.string.isRequired,
-};
+  name: PropTypes.string.isRequired
+}
 
 WorkshopSummaryOneLine.defaultProps = {
   assigned: null,
   capacity: null,
   freeSpots: null,
   hideCapacity: false,
-  reserved: null,
-};
+  reserved: null
+}
 
-export default WorkshopSummaryOneLine;
+export default WorkshopSummaryOneLine

@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import webpack from 'webpack';
+import webpack from 'webpack'
 
 import { loaders, globalOptions, frontendEntry, frontendPlugins } from './common';
 
@@ -19,9 +19,9 @@ export default {
     rules: [
       {
         enforce: 'pre',
-        test: /(\.js$|\.jsx$)/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'eslint-loader',
+        loader: 'standard-loader'
       },
       ...loaders,
       {

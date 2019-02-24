@@ -5,15 +5,13 @@
   "main": "dist/server.js",
   "private": true,
   "scripts": {
-    "dev": "babel-node ./src/server/main",
+    "dev": "babel-node ./src/server/main.js",
     "build": "npm run build:clean && npm run build:client && npm run build:server",
     "build:clean": "rimraf dist",
     "build:client": "webpack --config webpack/client.babel.js",
     "build:server": "webpack --config webpack/server.babel.js",
     "start": "node ./dist/server.js",
     "test:production": "npm run build && node dist/server.js",
-    "test:unit": "mocha --compilers babel-register -r mocha.js --recursive",
-    "test:watch": "npm run test:unit -- -w --watch-extensions js,jsx,css",
     "test": "node scripts/test.js --env=jsdom"
   },
   "repository": {
@@ -26,6 +24,12 @@
     "url": "https://github.com/just-paja/improtresk-web/issues"
   },
   "homepage": "https://improtresk.cz",
+  "standard": {
+    "env": [
+      "jest"
+    ],
+    "parser": "babel-eslint"
+  },
   "dependencies": {
     "accept-language-parser": "^1.5.0",
     "body-parser": "^1.18.3",
@@ -85,76 +89,46 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-stage-2": "^7.0.0",
+    "@babel/runtime": "^7.3.1",
     "assets-webpack-plugin": "^3.5.1",
-    "babel-cli": "^6.24.1",
+    "babel-eslint": "^10.0.1",
     "babel-istanbul": "^0.12.2",
-    "babel-jest": "^22.4.3",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "babel-register": "^6.24.1",
-    "babel-runtime": "^6.23.0",
+    "babel-jest": "^24.1.0",
+    "babel-loader": "^8.0.5",
     "codeclimate-test-reporter": "^0.5.0",
     "command-line-args": "^5.0.2",
     "dotenv": "^5.0.0",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-loader": "^2.0.0",
-    "eslint-plugin-filenames": "^1.2.0",
-    "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-jest": "^21.15.1",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.9.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.9",
-    "glob": "^7.1.2",
-    "istanbul-lib-coverage": "^1.2.0",
-    "jest": "^22.4.3",
+    "glob": "^7.1.3",
+    "istanbul-lib-coverage": "^1.2.1",
+    "jest": "^24.1.0",
     "jest-css-modules-transform": "^1.1.0",
-    "jest-enzyme": "^4.2.0",
-    "nock": "^9.0.13",
+    "jest-enzyme": "^7.0.1",
+    "jest-runner-standard": "0.0.12",
+    "nock": "^10.0.6",
     "react-addons-test-utils": "^15.5.1",
     "react-hot-loader": "^3.1.3",
-    "redux-mock-store": "^1.5.1",
+    "redux-mock-store": "^1.5.3",
     "redux-saga-tester": "^1.0.379",
     "rimraf": "^2.6.3",
-    "sinon": "^4.5.0",
+    "sinon": "^7.2.4",
+    "standard": "^12.0.1",
+    "standard-loader": "^6.0.1",
     "webpack": "^3.11.0",
     "webpack-dev-middleware": "^2.0.5",
     "webpack-hot-middleware": "^2.18.0",
     "webpack-node-externals": "^1.5.4"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/locales/",
-      "/constants/"
-    ],
-    "testEnvironment": "node",
-    "testURL": "http://localhost",
-    "transform": {
-      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
-      ".+\\.(css|styl|less|sass|scss)$": "jest-css-modules-transform",
-      "^(?!.*\\.(json)$)": "<rootDir>/config/jest/fileTransform.js"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web"
-    },
-    "setupTestFrameworkScriptFile": "<rootDir>/config/jest/enzyme.js"
   }
 }

@@ -1,5 +1,5 @@
-import fetchMealList from './fetchMealList';
+import fetchMealList from './fetchMealList'
 
 export default [
-  ...fetchMealList,
-];
+  ...fetchMealList
+]

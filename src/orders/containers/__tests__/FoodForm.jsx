@@ -1,42 +1,42 @@
-import configureMockStore from 'redux-mock-store';
-import React from 'react';
+import configureMockStore from 'redux-mock-store'
+import React from 'react'
 
-import { shallow } from 'enzyme';
+import { shallow } from 'enzyme'
 
-import FoodForm from '../FoodForm';
+import FoodForm from '../FoodForm'
 
-const mockStore = configureMockStore();
+const mockStore = configureMockStore()
 
 describe('FoodForm container', () => {
-  let comp;
-  let store;
+  let comp
+  let store
 
   beforeEach(() => {
     store = mockStore({
       locale: {
-        languages: [],
+        languages: []
       },
       accomodation: {
         list: {
           data: [
             {
               id: 5,
-              name: 'Something new',
-            },
+              name: 'Something new'
+            }
           ],
-          valid: true,
-        },
+          valid: true
+        }
       },
       food: {
         list: {
           data: [
             {
               id: 31,
-              date: '2018-05-11',
-            },
+              date: '2018-05-11'
+            }
           ],
-          valid: true,
-        },
+          valid: true
+        }
       },
       orders: {
         list: {
@@ -50,75 +50,75 @@ describe('FoodForm container', () => {
                 accomodation: 5,
                 mealReservation: [
                   {
-                    meal: 31,
-                  },
-                ],
+                    meal: 31
+                  }
+                ]
               },
               year: 150,
-              price: 434,
-            },
+              price: 434
+            }
           ],
-          valid: true,
-        },
+          valid: true
+        }
       },
       participants: {
-        detail: {},
+        detail: {}
       },
       workshops: {
         lectors: {
           list: {
             data: [],
-            valid: true,
+            valid: true
           },
           roles: {
             data: [],
-            valid: true,
-          },
+            valid: true
+          }
         },
         list: {
           data: [],
-          valid: true,
-        },
+          valid: true
+        }
       },
       years: {
         capacity: {
           data: [],
-          valid: true,
+          valid: true
         },
         list: {
           data: [
             {
               id: 150,
               current: true,
-              topic: 'foo',
-            },
+              topic: 'foo'
+            }
           ],
-          valid: true,
-        },
-      },
-    });
+          valid: true
+        }
+      }
+    })
     comp = shallow(<FoodForm />, {
-      context: { store },
-    });
-  });
+      context: { store }
+    })
+  })
 
   it('provides progress', () => {
-    expect(comp.find('ContainerProgress(Connect(FoodForm))')).toHaveProp('progress');
-  });
+    expect(comp.find('ContainerProgress(Connect(FoodForm))')).toHaveProp('progress')
+  })
 
   it('provides meal list', () => {
     expect(comp.dive().dive().find('FoodForm')).toHaveProp('meals', [
       {
         id: 31,
-        date: '2018-05-11',
-      },
-    ]);
-  });
+        date: '2018-05-11'
+      }
+    ])
+  })
 
   it('triggers order list required action on mount', () => {
-    comp.dive().dive();
+    comp.dive().dive()
     expect(store.getActions()).toContainEqual(expect.objectContaining({
-      type: 'ORDER_RESOURCES_REQUIRED',
-    }));
-  });
-});
+      type: 'ORDER_RESOURCES_REQUIRED'
+    }))
+  })
+})

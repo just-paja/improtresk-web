@@ -1,7 +1,7 @@
-import newsDetail from './newsDetail';
-import newsList from './newsList';
+import newsDetail from './newsDetail'
+import newsList from './newsList'
 
 export default [
   ...newsDetail,
-  ...newsList,
-];
+  ...newsList
+]

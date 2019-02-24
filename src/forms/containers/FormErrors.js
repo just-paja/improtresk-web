@@ -1,10 +1,10 @@
-import { connect } from 'react-redux';
-import { getTranslate } from 'react-localize-redux';
+import { connect } from 'react-redux'
+import { getTranslate } from 'react-localize-redux'
 
-import FormErrors from '../components/FormErrors';
+import FormErrors from '../components/FormErrors'
 
 const mapStateToProps = state => ({
-  translate: getTranslate(state.locale),
-});
+  translate: getTranslate(state.locale)
+})
 
-export default connect(mapStateToProps)(FormErrors);
+export default connect(mapStateToProps)(FormErrors)

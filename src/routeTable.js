@@ -1,4 +1,4 @@
-import Crossing from 'crossing';
+import Crossing from 'crossing'
 
 const cs = {
   accomodation: '/ubytovani',
@@ -27,8 +27,8 @@ const cs = {
   signup: '/prihlaska',
   tips: '/tipy',
   workshopDetail: '/workshopy/:slug',
-  workshops: '/workshopy',
-};
+  workshops: '/workshopy'
+}
 
 const en = {
   accomodation: '/accomodation',
@@ -57,55 +57,55 @@ const en = {
   signup: '/signup',
   tips: '/tips',
   workshopDetail: '/workshops/:slug',
-  workshops: '/workshops',
-};
+  workshops: '/workshops'
+}
 
-const resolver = new Crossing(new RegExp(':([A-Za-z0-9-_%]{1,})'));
-const getLangUrlName = (lang, urlName) => `${lang}:${urlName}`;
+const resolver = new Crossing(new RegExp(':([A-Za-z0-9-_%]{1,})'))
+const getLangUrlName = (lang, urlName) => `${lang}:${urlName}`
 const urlMap = {
   cs,
-  en,
-};
-
-export function getAvailableLangs() {
-  return Object.keys(urlMap);
+  en
 }
 
-export function idFromSlug(slug) {
-  return slug ? slug.split('-').pop() : null;
+export function getAvailableLangs () {
+  return Object.keys(urlMap)
 }
 
-export function reverse(lang, urlName, params) {
-  return resolver.get(getLangUrlName(lang, urlName), params);
+export function idFromSlug (slug) {
+  return slug ? slug.split('-').pop() : null
 }
 
-export function getUrlName(lang, url) {
-  const map = urlMap[lang];
+export function reverse (lang, urlName, params) {
+  return resolver.get(getLangUrlName(lang, urlName), params)
+}
+
+export function getUrlName (lang, url) {
+  const map = urlMap[lang]
   return Object.keys(map).find((pathName) => {
-    const patternStr = map[pathName].replace(/^:[^/]+/g, '[^/]+');
-    const pattern = new RegExp(`^${patternStr}$`);
+    const patternStr = map[pathName].replace(/^:[^/]+/g, '[^/]+')
+    const pattern = new RegExp(`^${patternStr}$`)
     if (url.substr(3).match(pattern)) {
-      return pathName;
+      return pathName
     }
-    return null;
-  }) || null;
+    return null
+  }) || null
 }
 
-export function getUrlPattern(lang, name) {
+export function getUrlPattern (lang, name) {
   if (urlMap[lang] && urlMap[lang][name]) {
-    return `/${lang}${urlMap[lang][name]}`;
+    return `/${lang}${urlMap[lang][name]}`
   }
-  return null;
+  return null
 }
 
 const urlTable = Object.keys(urlMap).reduce((map, lang) => ({
   ...map,
   ...Object.keys(urlMap[lang]).reduce((urls, urlName) => ({
     ...urls,
-    [getLangUrlName(lang, urlName)]: `/${lang}${urlMap[lang][urlName]}`,
-  }), {}),
+    [getLangUrlName(lang, urlName)]: `/${lang}${urlMap[lang][urlName]}`
+  }), {})
 }), {
-  root: '/',
-});
+  root: '/'
+})
 
-resolver.load(urlTable);
+resolver.load(urlTable)

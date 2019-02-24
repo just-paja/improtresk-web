@@ -1,43 +1,43 @@
-import Alert from 'reactstrap/lib/Alert';
-import Col from 'reactstrap/lib/Col';
-import FormFeedback from 'reactstrap/lib/FormFeedback';
-import moment from 'moment';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import Alert from 'reactstrap/lib/Alert'
+import Col from 'reactstrap/lib/Col'
+import FormFeedback from 'reactstrap/lib/FormFeedback'
+import moment from 'moment'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-import FormErrors from '../../forms/containers/FormErrors';
-import MealPickerItem from './MealPickerItem';
+import FormErrors from '../../forms/containers/FormErrors'
+import MealPickerItem from './MealPickerItem'
 
-import { Meal } from '../../proptypes';
+import { Meal } from '../../proptypes'
 
 export default class MealPicker extends Component {
-  constructor() {
-    super();
-    this.handleChange = this.handleChange.bind(this);
+  constructor () {
+    super()
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(id, select) {
-    const pass = select ?
-      [...this.props.input.value, id] :
-      this.props.input.value.filter(item => item !== id);
-    this.props.input.onChange(pass);
+  handleChange (id, select) {
+    const pass = select
+      ? [...this.props.input.value, id]
+      : this.props.input.value.filter(item => item !== id)
+    this.props.input.onChange(pass)
   }
 
-  render() {
+  render () {
     const {
       foodPickCloseDate,
       input,
       meals,
-      meta,
-    } = this.props;
-    const foodPickClosed = foodPickCloseDate && moment().isAfter(foodPickCloseDate);
+      meta
+    } = this.props
+    const foodPickClosed = foodPickCloseDate && moment().isAfter(foodPickCloseDate)
 
     if (foodPickClosed) {
       return (
-        <Alert color="warning">
+        <Alert color='warning'>
           Výběr jídla je v tuto chvíli již uzavřen.
         </Alert>
-      );
+      )
     }
 
     return (
@@ -64,7 +64,7 @@ export default class MealPicker extends Component {
           </FormFeedback>
         ) : null}
       </Col>
-    );
+    )
   }
 }
 
@@ -72,9 +72,9 @@ MealPicker.propTypes = {
   foodPickCloseDate: PropTypes.string,
   input: PropTypes.object.isRequired,
   meals: PropTypes.arrayOf(Meal).isRequired,
-  meta: PropTypes.object.isRequired,
-};
+  meta: PropTypes.object.isRequired
+}
 
 MealPicker.defaultProps = {
-  foodPickCloseDate: null,
-};
+  foodPickCloseDate: null
+}

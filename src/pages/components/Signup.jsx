@@ -1,40 +1,40 @@
-import Col from 'reactstrap/lib/Col';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import Row from 'reactstrap/lib/Row'
 
-import { getUrlParams } from 'query-string-manipulator';
+import { getUrlParams } from 'query-string-manipulator'
 
-import Container from '../../components/Container';
-import HelmetTitle from '../../containers/HelmetTitle';
-import SignupCountdown from '../../years/containers/SignupCountdown';
-import SignupIntro from '../../participants/components/SignupIntro';
-import SignupTooLate from '../../participants/components/SignupTooLate';
-import SignupWillOpen from '../../participants/components/SignupWillOpen';
-import SignupOpenDateUnsure from '../../participants/components/SignupOpenDateUnsure';
-import UserEntry from '../../components/UserEntry';
+import Container from '../../components/Container'
+import HelmetTitle from '../../containers/HelmetTitle'
+import SignupCountdown from '../../years/containers/SignupCountdown'
+import SignupIntro from '../../participants/components/SignupIntro'
+import SignupTooLate from '../../participants/components/SignupTooLate'
+import SignupWillOpen from '../../participants/components/SignupWillOpen'
+import SignupOpenDateUnsure from '../../participants/components/SignupOpenDateUnsure'
+import UserEntry from '../../components/UserEntry'
 
-import styles from './Signup.css';
+import styles from './Signup.css'
 
 export default class Signup extends Component {
-  componentDidMount() {
+  componentDidMount () {
     const params = getUrlParams(this.props.location.search)
-      .filter(param => param.key === 'redirectTo');
-    this.props.onRedirectSet(params.length === 0 ? null : params[0].value);
+      .filter(param => param.key === 'redirectTo')
+    this.props.onRedirectSet(params.length === 0 ? null : params[0].value)
   }
-  render() {
+  render () {
     const {
       signupsClosed,
       onSignupsOpen,
       signupsOpen,
       signupsOpenDate,
-      translate,
-    } = this.props;
-    let content;
+      translate
+    } = this.props
+    let content
     if (signupsOpenDate && signupsClosed) {
-      content = <SignupTooLate />;
+      content = <SignupTooLate />
     } else if (signupsOpenDate && !signupsOpen) {
-      content = <SignupWillOpen signupsOpenDate={signupsOpenDate} />;
+      content = <SignupWillOpen signupsOpenDate={signupsOpenDate} />
     }
     return (
       <div>
@@ -42,7 +42,7 @@ export default class Signup extends Component {
           <HelmetTitle title={translate('pages.signup')} />
           <Row>
             <Col md={{ size: 8, offset: 2 }} lg={{ size: 6, offset: 3 }}>
-              <h1 className="decent">{translate('pages.signup')}</h1>
+              <h1 className='decent'>{translate('pages.signup')}</h1>
               <SignupIntro />
               {signupsOpenDate ? content : <SignupOpenDateUnsure />}
               <UserEntry />
@@ -54,7 +54,7 @@ export default class Signup extends Component {
           <SignupCountdown onOpen={onSignupsOpen} />
         </div>
       </div>
-    );
+    )
   }
 }
 
@@ -65,12 +65,12 @@ Signup.propTypes = {
   signupsClosed: PropTypes.bool,
   signupsOpen: PropTypes.bool,
   signupsOpenDate: PropTypes.string,
-  translate: PropTypes.func.isRequired,
-};
+  translate: PropTypes.func.isRequired
+}
 
 Signup.defaultProps = {
   onSignupsOpen: null,
   signupsClosed: false,
   signupsOpen: false,
-  signupsOpenDate: null,
-};
+  signupsOpenDate: null
+}
