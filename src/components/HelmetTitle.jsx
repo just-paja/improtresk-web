@@ -6,7 +6,7 @@ import { Year } from '../proptypes'
 
 const HelmetTitle = ({ title, translate, year }) => {
   const templatedTitle = translate(year ? 'pages.titleYearTemplate' : 'pages.titleTemplate', {
-    year: year.year
+    year: year && year.year
   }).replace('%s', title)
   return (
     <Helmet>

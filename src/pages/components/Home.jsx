@@ -14,7 +14,11 @@ import TextHome from '../../texts/containers/TextHome'
 import YearDetail from '../../years/components/YearDetail'
 
 const Home = ({ year }) => {
-  const yearClass = `year-${year.year}`
+  if (!year) {
+    return null
+  }
+
+  const yearClass = year && `year-${year.year}`
 
   return (
     <div
