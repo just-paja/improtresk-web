@@ -1,9 +1,6 @@
 import express from 'express'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import webpack from 'webpack'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import webpackDev from 'webpack-dev-middleware'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import webpackHot from 'webpack-hot-middleware'
 
 import webpackConfig from '../../../webpack/dev'
