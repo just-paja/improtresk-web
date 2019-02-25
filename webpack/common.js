@@ -35,11 +35,3 @@ export const loaders = [
     loader: 'file-loader',
   },
 ];
-
-export const optimizePlugins = [
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false,
-    },
-  }),
-];

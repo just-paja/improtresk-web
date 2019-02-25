@@ -1,11 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import nodeExternals from 'webpack-node-externals';
-import path from 'path';
-import webpack from 'webpack';
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import nodeExternals from 'webpack-node-externals'
+import path from 'path'
+import webpack from 'webpack'
 
-import { loaders, globalOptions, serverEntry, frontendPlugins, optimizePlugins } from './common';
+import { loaders, globalOptions, serverEntry, frontendPlugins } from './common'
 
 export default {
   ...globalOptions,
@@ -13,7 +13,7 @@ export default {
   externals: [nodeExternals()],
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'server.js',
+    filename: 'server.js'
   },
   target: 'node',
   module: {
@@ -22,16 +22,15 @@ export default {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'postcss-loader'],
-        }),
+          use: ['css-loader', 'postcss-loader']
+        })
       },
-      ...loaders,
-    ],
+      ...loaders
+    ]
   },
   plugins: [
     ...frontendPlugins,
     new webpack.IgnorePlugin(/webpack-assets\.json$/),
-    new ExtractTextPlugin('[name].css'),
-    ...optimizePlugins,
-  ],
-};
+    new ExtractTextPlugin('[name].css')
+  ]
+}

@@ -1,11 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-import AssetsPlugin from 'assets-webpack-plugin';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import path from 'path';
-import webpack from 'webpack';
+import AssetsPlugin from 'assets-webpack-plugin'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import path from 'path'
+import webpack from 'webpack'
 
-import { loaders, globalOptions, frontendEntry, frontendPlugins, optimizePlugins } from './common';
+import { loaders, globalOptions, frontendEntry, frontendPlugins } from './common'
 
 export default {
   ...globalOptions,
@@ -22,12 +22,12 @@ export default {
       'react-router',
       'react-router-bootstrap',
       'redux',
-      'redux-saga',
-    ],
+      'redux-saga'
+    ]
   },
   output: {
     path: path.resolve(__dirname, '../dist/frontend'),
-    filename: '[name].[hash].js',
+    filename: '[name].[hash].js'
   },
   module: {
     loaders: [
@@ -35,28 +35,27 @@ export default {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'postcss-loader'],
-        }),
+          use: ['css-loader', 'postcss-loader']
+        })
       },
-      ...loaders,
-    ],
+      ...loaders
+    ]
   },
   plugins: [
     ...frontendPlugins,
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"',
-        IS_BROWSER: 'true',
-      },
+        IS_BROWSER: 'true'
+      }
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      minChunks: Infinity,
+      minChunks: Infinity
     }),
     new ExtractTextPlugin('[name].[hash].css'),
     new AssetsPlugin({
-      path: path.resolve(__dirname, '../dist'),
-    }),
-    ...optimizePlugins,
-  ],
-};
+      path: path.resolve(__dirname, '../dist')
+    })
+  ]
+}
