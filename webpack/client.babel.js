@@ -10,27 +10,14 @@ import { loaders, globalOptions, frontendEntry, frontendPlugins } from './common
 export default {
   ...globalOptions,
   entry: {
-    main: frontendEntry,
-    vendor: [
-      'diacritics',
-      'isomorphic-fetch',
-      'moment',
-      'react',
-      // 'react-bootstrap',
-      'react-dom',
-      'react-fontawesome',
-      'react-router',
-      'react-router-bootstrap',
-      'redux',
-      'redux-saga'
-    ]
+    main: frontendEntry
   },
   output: {
     path: path.resolve(__dirname, '../dist/frontend'),
     filename: '[name].[hash].js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
@@ -41,6 +28,11 @@ export default {
       ...loaders
     ]
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
+  },
   plugins: [
     ...frontendPlugins,
     new webpack.DefinePlugin({
@@ -48,10 +40,6 @@ export default {
         NODE_ENV: '"production"',
         IS_BROWSER: 'true'
       }
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: Infinity
     }),
     new ExtractTextPlugin('[name].[hash].css'),
     new AssetsPlugin({
