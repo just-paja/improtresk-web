@@ -1,37 +1,3 @@
-@keyframes :local(neon) {
-  0% {
-    opacity: 1;
-  }
-
-  2% {
-    opacity: 0.8;
-  }
-
-  4% {
-    opacity: 1;
-  }
-
-  8% {
-    opacity: 0.9;
-  }
-
-  10% {
-    opacity: 1;
-  }
-
-  34% {
-    opacity: 1;
-  }
-
-  36% {
-    opacity: 0.85;
-  }
-
-  38% {
-    opacity: 1;
-  }
-}
-
 :local .container {
   padding: 6rem 0 1rem;
   position: relative;
@@ -57,10 +23,6 @@
 
 :local .textOverlayBackground {
   position: absolute;
-  background: radial-gradient(ellipse, rgba(33,141,193, .65) 0, rgba(0,0,0,0) 70%);
-  animation-duration: 1s;
-  animation-name: neon;
-  animation-iteration-count: infinite;
   left: 0;
   right: 0;
   bottom: 0;
@@ -91,6 +53,7 @@
   max-width: 35rem;
   font-family: 'NeoNeon';
 }
+
 :local .topic i {
   color: rgba(229,246,255,.9);
   font-size: 4rem;
