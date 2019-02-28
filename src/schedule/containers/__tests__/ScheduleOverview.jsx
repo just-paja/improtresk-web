@@ -1,21 +1,14 @@
 import React from 'react'
-import configureStore from 'redux-mock-store'
-
-import { shallow } from 'enzyme'
 
 import ScheduleOverview from '../ScheduleOverview'
 
-const mockStore = configureStore()
+import { renderContainer } from '../../../../mock/containers'
 
 describe('ScheduleOverview container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: ['cs']
-      },
+    const state = {
       performers: {
         list: {
           valid: true,
@@ -62,20 +55,18 @@ describe('ScheduleOverview container', () => {
               id: 10,
               year: '2018',
               current: true,
-              startAt: '2018-05-11',
-              endAt: '2018-05-13'
+              startDate: '2018-05-11',
+              endDate: '2018-05-13'
             }
           ]
         }
       }
-    })
-    comp = shallow(<ScheduleOverview />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<ScheduleOverview />, state)
   })
 
   it('provides list of events', () => {
-    expect(comp.dive().dive().find('ScheduleOverview')).toHaveProp('events', [
+    expect(comp.find('ScheduleOverview')).toHaveProp('events', [
       {
         id: 20,
         createdAt: '2017-03-05T00:00:00',
@@ -89,8 +80,7 @@ describe('ScheduleOverview container', () => {
   })
 
   it('dispatches schedule required action on mount', () => {
-    comp.dive()
-    expect(store.getActions()).toContainEqual(expect.objectContaining({
+    expect(comp.store.getActions()).toContainEqual(expect.objectContaining({
       type: 'SCHEDULE_EVENTS_REQUIRED'
     }))
   })

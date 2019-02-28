@@ -1,5 +1,5 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import configureStore from 'redux-mock-store';
+
 import { createStore } from 'redux';
 
 import reducers from '../src/reducers';
@@ -12,9 +12,12 @@ export default (initialState) => {
     locale: {
       ...appStore.getState().locale,
       languages: [
-        { code: 'cs', active: true },
+        { code: 'cs', active: true }
       ],
       options: {},
     },
+    session: {
+      locale: 'cs'
+    }
   });
 };

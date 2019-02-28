@@ -1,21 +1,14 @@
-import configureMockStore from 'redux-mock-store'
 import React from 'react'
-
-import { shallow } from 'enzyme'
 
 import ParticipantHome from '../ParticipantHome'
 
-const mockStore = configureMockStore()
+import { renderContainer } from '../../../mock/containers'
 
 describe('ParticipantHome container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: []
-      },
+    const state = {
       accomodation: {
         list: {
           data: [
@@ -34,7 +27,10 @@ describe('ParticipantHome container', () => {
       },
       participants: {
         detail: {
-          data: null,
+          data: {
+            id: 10,
+            name: 'John Doe'
+          },
           valid: true
         }
       },
@@ -54,16 +50,14 @@ describe('ParticipantHome container', () => {
           valid: true
         }
       }
-    })
-    comp = shallow(<ParticipantHome />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<ParticipantHome />, state)
   })
 
   it('dispatches logout on logout', () => {
-    comp.simulate('logout')
-    expect(store.getActions()).toEqual([
-      { type: 'PARTICIPANT_LOGOUT' }
-    ])
+    comp.find('ParticipantHome').props().onLogout()
+    expect(comp.store.getActions()).toContainEqual({
+      type: 'PARTICIPANT_LOGOUT'
+    })
   })
 })

@@ -1,21 +1,14 @@
-import configureMockStore from 'redux-mock-store'
 import React from 'react'
-
-import { shallow } from 'enzyme'
 
 import WorkshopDetailPage from '../WorkshopDetailPage'
 
-const mockStore = configureMockStore()
+import { renderContainer } from '../../../mock/containers'
 
-describe('WorkshopDetailPage container', () => {
+describe('WorkshopDetail page', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({})
-    comp = shallow(<WorkshopDetailPage match={{ params: { slug: 'nehraj-23125' } }} />, {
-      context: { store }
-    })
+    comp = renderContainer(<WorkshopDetailPage match={{ params: { slug: 'nehraj-23125' } }} />)
   })
 
   it('passes route match', () => {

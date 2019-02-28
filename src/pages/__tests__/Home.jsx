@@ -1,41 +1,41 @@
-import configureMockStore from 'redux-mock-store'
 import React from 'react'
-
-import { shallow } from 'enzyme'
 
 import Home from '../Home'
 
-const mockStore = configureMockStore()
+import { renderContainer } from '../../../mock/containers'
 
-describe('Home container', () => {
+describe('Home page', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
+    const state = {
       years: {
         list: {
           data: [
             {
               id: 150,
               current: true,
-              topic: 'foo'
+              topic: 'foo',
+              year: '2019',
+              startDate: '2019-05-04',
+              endDate: '2019-05-09'
             }
           ],
           valid: true
         }
       }
-    })
-    comp = shallow(<Home />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<Home />, state)
   })
 
   it('provides active year', () => {
     expect(comp.find('Home')).toHaveProp('year', {
       id: 150,
       current: true,
-      topic: 'foo'
+      topic: 'foo',
+      year: '2019',
+      startDate: '2019-05-04',
+      endDate: '2019-05-09'
     })
   })
 })

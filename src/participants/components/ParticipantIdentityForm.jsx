@@ -3,7 +3,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Field } from 'redux-form'
-import { Translate } from 'react-localize-redux'
 
 import { FormGeneralError, Participant } from '../../proptypes'
 
@@ -41,7 +40,7 @@ const ParticipantIdentityForm = ({
       loading={submitting}
       type='submit'
     >
-      <Translate id='participants.saveChanges' />
+      <Message name='participants.saveChanges' />
     </Button>
     {participant.address && participant.idNumber ? (
       <Alert className='mb-3 mt-3'>

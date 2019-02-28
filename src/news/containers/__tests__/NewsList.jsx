@@ -1,23 +1,16 @@
 import React from 'react'
-import configureStore from 'redux-mock-store'
-
-import { shallow } from 'enzyme'
 
 import { newsListFetch } from '../../actions'
 
 import NewsList from '../NewsList'
 
-const mockStore = configureStore()
+import { renderContainer } from '../../../../mock/containers'
 
 describe('NewsList container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: ['cs']
-      },
+    const state = {
       news: {
         list: {
           valid: true,
@@ -32,14 +25,12 @@ describe('NewsList container', () => {
           ]
         }
       }
-    })
-    comp = shallow(<NewsList to='foo' />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<NewsList to='foo' />, state)
   })
 
   it('provides list of news', () => {
-    expect(comp.dive().dive().find('NewsList')).toHaveProp('news', [
+    expect(comp.find('NewsList')).toHaveProp('news', [
       {
         id: 20,
         createdAt: '2017-03-05T00:00:00',
@@ -51,8 +42,7 @@ describe('NewsList container', () => {
   })
 
   it('dispatches news required action on mount', () => {
-    comp.dive()
-    expect(store.getActions()).toContainEqual(expect.objectContaining({
+    expect(comp.store.getActions()).toContainEqual(expect.objectContaining({
       type: newsListFetch.TRIGGER
     }))
   })

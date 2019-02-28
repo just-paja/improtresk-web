@@ -1,24 +1,14 @@
 import React from 'react'
-import configureStore from 'redux-mock-store'
-
-import { shallow } from 'enzyme'
 
 import MultiLingualMarkdown from '../MultiLingualMarkdown'
 
-const mockStore = configureStore()
+import { renderContainer } from '../../../mock/containers'
 
 describe('MultiLingualMarkdown container', () => {
   let comp
 
   beforeEach(() => {
-    const store = mockStore({
-      session: {
-        locale: 'cs-CZ'
-      }
-    })
-    comp = shallow(<MultiLingualMarkdown />, {
-      context: { store }
-    })
+    comp = renderContainer(<MultiLingualMarkdown />)
   })
 
   it('provides selected language', () => {

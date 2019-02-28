@@ -4,7 +4,7 @@ import { shallow } from 'enzyme'
 
 import ArchivedYear from '../ArchivedYear'
 
-describe('Workshop Detail page component', () => {
+describe('ArchivedYear page component', () => {
   it('renders year detail', () => {
     const comp = shallow(
       <ArchivedYear match={{ params: { slug: '2016' } }} />

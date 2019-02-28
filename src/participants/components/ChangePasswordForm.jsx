@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Field } from 'redux-form'
-import { Translate } from 'react-localize-redux'
 
 import { FormGeneralError } from '../../proptypes'
 
 import Button from '../../components/Button'
+import Message from '../../containers/Message'
 import Form from '../../forms/components/Form'
 import Input from '../../forms/components/Input'
 
@@ -52,7 +52,7 @@ const ChangePasswordForm = ({
         loading={submitting}
         type='submit'
       >
-        <Translate id='participants.changePassword' />
+        <Message name='participants.changePassword' />
       </Button>
     </Form>
   )

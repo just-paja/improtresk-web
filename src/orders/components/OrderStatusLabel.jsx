@@ -7,7 +7,7 @@ import { Reservation, Workshop } from '../../proptypes'
 
 import Message from '../../containers/Message'
 
-const OrderStatus = ({
+const OrderStatusLabel = ({
   assigned,
   cancelled,
   confirmed,
@@ -46,7 +46,7 @@ const OrderStatus = ({
   return <Label className='mb-0 text-danger'><Message name='orders.unconfirmed' /></Label>
 }
 
-OrderStatus.propTypes = {
+OrderStatusLabel.propTypes = {
   assigned: PropTypes.bool,
   cancelled: PropTypes.bool,
   confirmed: PropTypes.bool,
@@ -56,7 +56,7 @@ OrderStatus.propTypes = {
   workshop: Workshop
 }
 
-OrderStatus.defaultProps = {
+OrderStatusLabel.defaultProps = {
   assigned: false,
   cancelled: false,
   confirmed: false,
@@ -65,4 +65,4 @@ OrderStatus.defaultProps = {
   workshop: null
 }
 
-export default OrderStatus
+export default OrderStatusLabel

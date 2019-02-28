@@ -1,21 +1,14 @@
-import configureMockStore from 'redux-mock-store'
 import React from 'react'
-
-import { shallow } from 'enzyme'
 
 import SignupCountdown from '../SignupCountdown'
 
-const mockStore = configureMockStore()
+import { renderContainer } from '../../../../mock/containers'
 
 describe('SignupCountdown container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: []
-      },
+    const state = {
       years: {
         capacity: {
           data: [],
@@ -44,10 +37,8 @@ describe('SignupCountdown container', () => {
           }
         }
       }
-    })
-    comp = shallow(<SignupCountdown onOpen={() => {}} />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<SignupCountdown onOpen={() => {}} />, state)
   })
 
   it('provides openDate as years signup open date', () => {

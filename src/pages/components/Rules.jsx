@@ -8,7 +8,7 @@ import HelmetTitle from '../../containers/HelmetTitle'
 import Message from '../../containers/Message'
 import RulesContainer from '../../years/containers/Rules'
 
-const Rules = ({ translate }) => (
+const RulesPage = ({ translate }) => (
   <Container>
     <HelmetTitle title={translate('pages.conditions')} />
     <h1><Message name='pages.conditions' /></h1>
@@ -24,8 +24,8 @@ const Rules = ({ translate }) => (
   </Container>
 )
 
-Rules.propTypes = {
+RulesPage.propTypes = {
   translate: PropTypes.func.isRequired
 }
 
-export default Rules
+export default RulesPage

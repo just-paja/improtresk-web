@@ -1,27 +1,14 @@
 import React from 'react'
-import configureStore from 'redux-mock-store'
-
-import { shallow } from 'enzyme'
 
 import LanguagePicker from '../LanguagePicker'
 
-const mockStore = configureStore()
+import { renderContainer } from '../../../mock/containers'
 
 describe('LanguagePicker container', () => {
   let comp
 
   beforeEach(() => {
-    const store = mockStore({
-      locale: {
-        languages: ['cs', 'en']
-      },
-      session: {
-        locale: 'cs'
-      }
-    })
-    comp = shallow(<LanguagePicker to='foo' />, {
-      context: { store }
-    })
+    comp = renderContainer(<LanguagePicker to='foo' />)
   })
 
   it('provides selected language', () => {

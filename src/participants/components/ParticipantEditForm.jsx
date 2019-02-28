@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Field } from 'redux-form'
-import { Translate } from 'react-localize-redux'
 
 import { FormGeneralError } from '../../proptypes'
 
 import Button from '../../components/Button'
+import Message from '../../containers/Message'
 import Form from '../../forms/components/Form'
 import Input from '../../forms/components/Input'
 import InputSelect from '../../forms/components/InputSelect'
@@ -58,7 +58,7 @@ const ParticipantEditForm = ({
       loading={submitting}
       type='submit'
     >
-      <Translate id='participants.saveChanges' />
+      <Message name='participants.saveChanges' />
     </Button>
   </Form>
 )

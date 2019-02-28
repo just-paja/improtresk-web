@@ -1,20 +1,16 @@
 import React from 'react'
-import configureStore from 'redux-mock-store'
-
-import { shallow } from 'enzyme'
 
 import PrivateRoute from '../PrivateRoute'
 
-const mockStore = configureStore()
+import { renderContainer } from '../../../mock/containers'
+
+const TestComponent = () => <div />
 
 describe('PrivateRoute container', () => {
   let comp
 
   beforeEach(() => {
-    const store = mockStore({
-      session: {
-        locale: 'cs'
-      },
+    comp = renderContainer(<PrivateRoute path='/' component={TestComponent} />, {
       participants: {
         detail: {
           valid: true,
@@ -24,9 +20,6 @@ describe('PrivateRoute container', () => {
           }
         }
       }
-    })
-    comp = shallow(<PrivateRoute path='/' component={() => {}} />, {
-      context: { store }
     })
   })
 

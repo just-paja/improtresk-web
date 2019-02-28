@@ -1,23 +1,15 @@
 import React from 'react'
-import configureStore from 'redux-mock-store'
-
-import { shallow } from 'enzyme'
 
 import ArchivedYearDetail from '../ArchivedYearDetail'
 
 import { yearDetailFetch } from '../../actions'
-
-const mockStore = configureStore()
+import { renderContainer } from '../../../../mock/containers'
 
 describe('ArchivedYearDetail container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: ['cs']
-      },
+    const state = {
       years: {
         archive: {
           valid: true,
@@ -31,30 +23,27 @@ describe('ArchivedYearDetail container', () => {
           }
         }
       }
-    })
-    comp = shallow(<ArchivedYearDetail resourceId='2018' />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<ArchivedYearDetail resourceId='2018' />, state)
   })
 
   it('provides translate method', () => {
-    expect(comp.dive().dive().find('ArchivedYearDetail')).toHaveProp('translate')
+    expect(comp.find('ArchivedYearDetail')).toHaveProp('translate')
   })
 
   it('provides year number', () => {
-    expect(comp.dive().dive().find('ArchivedYearDetail')).toHaveProp('year', '2018')
+    expect(comp.find('ArchivedYearDetail')).toHaveProp('year', '2018')
   })
 
   it('provides year topic', () => {
-    expect(comp.dive().dive().find('ArchivedYearDetail')).toHaveProp('topic', 'Sladíme se společně')
+    expect(comp.find('ArchivedYearDetail')).toHaveProp('topic', 'Sladíme se společně')
   })
 
   it('provides year workshops', () => {
-    expect(comp.dive().dive().find('ArchivedYearDetail')).toHaveProp('workshops', [])
+    expect(comp.find('ArchivedYearDetail')).toHaveProp('workshops', [])
   })
 
   it('dispatches year detail required action on mount', () => {
-    comp.dive()
-    expect(store.getActions()).toContainEqual(yearDetailFetch('2018'))
+    expect(comp.store.getActions()).toContainEqual(yearDetailFetch('2018'))
   })
 })

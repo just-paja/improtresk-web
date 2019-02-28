@@ -1,21 +1,14 @@
 import React from 'react'
-import configureStore from 'redux-mock-store'
-
-import { shallow } from 'enzyme'
 
 import MarkerMap from '../MarkerMap'
 
-const mockStore = configureStore()
+import { renderContainer } from '../../../../mock/containers'
 
 describe('MarkerMap container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: ['cs']
-      },
+    const state = {
       locations: {
         list: {
           valid: true,
@@ -37,14 +30,12 @@ describe('MarkerMap container', () => {
           }
         }
       }
-    })
-    comp = shallow(<MarkerMap />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<MarkerMap />, state)
   })
 
   it('provides list of locations', () => {
-    expect(comp.dive().dive().find('withScriptjs(withGoogleMap(MarkerMapComponent))')).toHaveProp('markers', [
+    expect(comp.find('withScriptjs(withGoogleMap(MarkerMapComponent))')).toHaveProp('markers', [
       {
         id: 20,
         address: 'Nádražní 10',
@@ -56,8 +47,7 @@ describe('MarkerMap container', () => {
   })
 
   it('dispatches news required action on mount', () => {
-    comp.dive()
-    expect(store.getActions()).toContainEqual(expect.objectContaining({
+    expect(comp.store.getActions()).toContainEqual(expect.objectContaining({
       type: 'LOCATIONS_REQUIRED'
     }))
   })

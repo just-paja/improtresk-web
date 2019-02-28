@@ -1,21 +1,14 @@
-import configureMockStore from 'redux-mock-store'
 import React from 'react'
-
-import { shallow } from 'enzyme'
 
 import ChangeFood from '../ChangeFood'
 
-const mockStore = configureMockStore()
+import { renderContainer } from '../../../mock/containers'
 
-describe('ChangeFood container', () => {
+describe('ChangeFood page', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: []
-      },
+    const state = {
       accomodation: {
         list: {
           data: [
@@ -72,10 +65,8 @@ describe('ChangeFood container', () => {
           valid: true
         }
       }
-    })
-    comp = shallow(<ChangeFood />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<ChangeFood />, state)
   })
 
   it('provides progress', () => {
@@ -83,8 +74,7 @@ describe('ChangeFood container', () => {
   })
 
   it('triggers home mounted action on mount', () => {
-    comp.dive().dive()
-    expect(store.getActions()).toEqual([
+    expect(comp.store.getActions()).toEqual([
       { type: 'ORDER_RESOURCES_REQUIRED' }
     ])
   })

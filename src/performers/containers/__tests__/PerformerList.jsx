@@ -1,23 +1,16 @@
 import React from 'react'
-import configureStore from 'redux-mock-store'
-
-import { shallow } from 'enzyme'
 
 import { performerListFetch } from '../../actions'
 
 import PerformerList from '../PerformerList'
 
-const mockStore = configureStore()
+import { renderContainer } from '../../../../mock/containers'
 
 describe('PerformerList container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: ['cs']
-      },
+    const state = {
       performers: {
         list: {
           valid: true,
@@ -32,14 +25,12 @@ describe('PerformerList container', () => {
           ]
         }
       }
-    })
-    comp = shallow(<PerformerList to='foo' />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<PerformerList to='foo' />, state)
   })
 
   it('provides list of performers', () => {
-    expect(comp.dive().dive().find('PerformerList')).toHaveProp('performerList', [
+    expect(comp.find('PerformerList')).toHaveProp('performerList', [
       {
         id: 20,
         createdAt: '2017-03-05T00:00:00',
@@ -51,8 +42,7 @@ describe('PerformerList container', () => {
   })
 
   it('dispatches news required action on mount', () => {
-    comp.dive()
-    expect(store.getActions()).toContainEqual(expect.objectContaining({
+    expect(comp.store.getActions()).toContainEqual(expect.objectContaining({
       type: performerListFetch.TRIGGER
     }))
   })

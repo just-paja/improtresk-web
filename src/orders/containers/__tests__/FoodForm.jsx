@@ -1,21 +1,14 @@
-import configureMockStore from 'redux-mock-store'
 import React from 'react'
-
-import { shallow } from 'enzyme'
 
 import FoodForm from '../FoodForm'
 
-const mockStore = configureMockStore()
+import { renderContainer } from '../../../../mock/containers'
 
 describe('FoodForm container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: []
-      },
+    const state = {
       accomodation: {
         list: {
           data: [
@@ -32,7 +25,10 @@ describe('FoodForm container', () => {
           data: [
             {
               id: 31,
-              date: '2018-05-11'
+              date: '2018-05-11',
+              name: 'Lunch',
+              food: [],
+              soups: []
             }
           ],
           valid: true
@@ -55,7 +51,8 @@ describe('FoodForm container', () => {
                 ]
               },
               year: 150,
-              price: 434
+              price: 434,
+              meals: []
             }
           ],
           valid: true
@@ -96,10 +93,8 @@ describe('FoodForm container', () => {
           valid: true
         }
       }
-    })
-    comp = shallow(<FoodForm />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<FoodForm />, state)
   })
 
   it('provides progress', () => {
@@ -107,17 +102,19 @@ describe('FoodForm container', () => {
   })
 
   it('provides meal list', () => {
-    expect(comp.dive().dive().find('FoodForm')).toHaveProp('meals', [
+    expect(comp.find('FoodForm').first()).toHaveProp('meals', [
       {
         id: 31,
-        date: '2018-05-11'
+        date: '2018-05-11',
+        name: 'Lunch',
+        food: [],
+        soups: []
       }
     ])
   })
 
   it('triggers order list required action on mount', () => {
-    comp.dive().dive()
-    expect(store.getActions()).toContainEqual(expect.objectContaining({
+    expect(comp.store.getActions()).toContainEqual(expect.objectContaining({
       type: 'ORDER_RESOURCES_REQUIRED'
     }))
   })

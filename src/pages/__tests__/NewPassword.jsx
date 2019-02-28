@@ -1,28 +1,23 @@
 import React from 'react'
 
 import { initialize } from 'redux-form'
-import { shallow } from 'enzyme'
 
-import mockStore from '../../../mock/store'
 import NewPasswordPage from '../NewPasswordPage'
+
+import { renderContainer } from '../../../mock/containers'
 
 describe('NewPasswordPage container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore()
-    comp = shallow(<NewPasswordPage location={{ search: '?token=theToken' }} />, {
-      context: { store }
-    })
+    comp = renderContainer(<NewPasswordPage location={{ search: '?token=theToken' }} />)
   })
 
   it('triggers form values set action on mount', () => {
-    comp.dive()
-    expect(store.getActions()).toEqual([
+    expect(comp.store.getActions()).toContainEqual(
       initialize('FORM_NEW_PASSWORD', {
         token: 'theToken'
       })
-    ])
+    )
   })
 })

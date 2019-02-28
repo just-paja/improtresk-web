@@ -1,23 +1,16 @@
 import React from 'react'
-import configureStore from 'redux-mock-store'
-
-import { shallow } from 'enzyme'
 
 import { mealListFetch } from '../../actions'
 
 import MealList from '../MealList'
 
-const mockStore = configureStore()
+import { renderContainer } from '../../../../mock/containers'
 
 describe('MealList container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: ['cs']
-      },
+    const state = {
       food: {
         list: {
           valid: true,
@@ -25,30 +18,31 @@ describe('MealList container', () => {
             {
               id: 20,
               date: '2017-03-05',
-              name: 'lunch'
+              name: 'lunch',
+              soups: [],
+              food: []
             }
           ]
         }
       }
-    })
-    comp = shallow(<MealList to='foo' />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<MealList to='foo' />, state)
   })
 
   it('provides list of meals', () => {
-    expect(comp.dive().dive().find('MealList')).toHaveProp('mealList', [
+    expect(comp.find('MealList')).toHaveProp('mealList', [
       {
         id: 20,
         date: '2017-03-05',
-        name: 'lunch'
+        name: 'lunch',
+        soups: [],
+        food: []
       }
     ])
   })
 
   it('dispatches meals required action on mount', () => {
-    comp.dive()
-    expect(store.getActions()).toContainEqual(expect.objectContaining({
+    expect(comp.store.getActions()).toContainEqual(expect.objectContaining({
       type: mealListFetch.TRIGGER
     }))
   })

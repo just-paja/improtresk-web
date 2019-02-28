@@ -1,21 +1,14 @@
 import React from 'react'
-import configureStore from 'redux-mock-store'
-
-import { shallow } from 'enzyme'
 
 import LocationList from '../LocationList'
 
-const mockStore = configureStore()
+import { renderContainer } from '../../../../mock/containers'
 
 describe('LocationList container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: ['cs']
-      },
+    const state = {
       locations: {
         list: {
           valid: true,
@@ -25,32 +18,39 @@ describe('LocationList container', () => {
               createdAt: '2017-03-05T00:00:00',
               name: 'lunch',
               text: 'foo',
-              lang: 'cs'
+              lang: 'cs',
+              photos: [],
+              address: 'Drtinova 10',
+              description: [
+                { id: 1, lang: 'cs', text: 'Impact Hub' }
+              ]
             }
           ]
         }
       }
-    })
-    comp = shallow(<LocationList to='foo' />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<LocationList to='foo' />, state)
   })
 
   it('provides list of locations', () => {
-    expect(comp.dive().dive().find('LocationList')).toHaveProp('locationList', [
+    expect(comp.find('LocationList')).toHaveProp('locationList', [
       {
         id: 20,
         createdAt: '2017-03-05T00:00:00',
         name: 'lunch',
         text: 'foo',
-        lang: 'cs'
+        lang: 'cs',
+        photos: [],
+        address: 'Drtinova 10',
+        description: [
+          { id: 1, lang: 'cs', text: 'Impact Hub' }
+        ]
       }
     ])
   })
 
   it('dispatches news required action on mount', () => {
-    comp.dive()
-    expect(store.getActions()).toContainEqual(expect.objectContaining({
+    expect(comp.store.getActions()).toContainEqual(expect.objectContaining({
       type: 'LOCATIONS_REQUIRED'
     }))
   })

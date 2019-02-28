@@ -1,18 +1,14 @@
-import configureMockStore from 'redux-mock-store'
 import React from 'react'
-
-import { shallow } from 'enzyme'
 
 import Signup from '../Signup'
 
-const mockStore = configureMockStore()
+import { renderContainer } from '../../../mock/containers'
 
-describe('Signup container', () => {
+describe('Signup page', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
+    const state = {
       accomodation: {
         list: {
           data: [
@@ -34,17 +30,17 @@ describe('Signup container', () => {
             {
               id: 150,
               current: true,
-              topic: 'foo'
+              topic: 'foo',
+              startDate: '2018-04-01',
+              startSignupsAt: '2018-03-02'
             }
           ],
           valid: true
         }
       },
       texts: {}
-    })
-    comp = shallow(<Signup />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<Signup location={{}} />, state)
   })
 
   it('provides progress', () => {
@@ -59,9 +55,8 @@ describe('Signup container', () => {
   })
 
   it('triggers home mounted action on mount', () => {
-    comp.dive()
-    expect(store.getActions()).toEqual([
-      { type: 'PAGE_SIGNUP_ENTERED' }
-    ])
+    expect(comp.store.getActions()).toContainEqual({
+      type: 'PAGE_SIGNUP_ENTERED'
+    })
   })
 })

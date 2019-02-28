@@ -41,7 +41,7 @@ export default class InputRadioGroup extends Component {
     delete other.touched
 
     return (
-      <FormGroup validationState={(touched && error) ? 'error' : null}>
+      <FormGroup>
         <strong>{label}</strong>
         {!required ? (
           <InputRadio

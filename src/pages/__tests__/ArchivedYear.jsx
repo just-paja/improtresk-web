@@ -1,21 +1,14 @@
-import configureMockStore from 'redux-mock-store'
 import React from 'react'
-
-import { shallow } from 'enzyme'
 
 import ArchivedYear from '../ArchivedYear'
 
-const mockStore = configureMockStore()
+import { renderContainer } from '../../../mock/containers'
 
-describe('ArchivedYear container', () => {
+describe('ArchivedYear page', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({})
-    comp = shallow(<ArchivedYear match={{ params: { slug: '2017' } }} />, {
-      context: { store }
-    })
+    comp = renderContainer(<ArchivedYear match={{ params: { slug: '2017' } }} />)
   })
 
   it('provides route match', () => {

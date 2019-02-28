@@ -1,21 +1,14 @@
 import React from 'react'
-import configureStore from 'redux-mock-store'
-
-import { shallow } from 'enzyme'
 
 import Rules from '../Rules'
 
-const mockStore = configureStore()
+import { renderContainer } from '../../../../mock/containers'
 
 describe('Rules container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: ['cs']
-      },
+    const state = {
       years: {
         rules: {
           valid: true,
@@ -28,14 +21,12 @@ describe('Rules container', () => {
           }
         }
       }
-    })
-    comp = shallow(<Rules />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<Rules />, state)
   })
 
   it('provides rules', () => {
-    expect(comp.dive().dive().find('Rules')).toHaveProp('rules', {
+    expect(comp.find('Rules')).toHaveProp('rules', {
       id: 20,
       createdAt: '2017-03-05T00:00:00',
       name: 'lunch',
@@ -45,8 +36,7 @@ describe('Rules container', () => {
   })
 
   it('dispatches news required action on mount', () => {
-    comp.dive()
-    expect(store.getActions()).toContainEqual(expect.objectContaining({
+    expect(comp.store.getActions()).toContainEqual(expect.objectContaining({
       type: 'YEAR_RULES_REQUIRED'
     }))
   })

@@ -1,7 +1,8 @@
 import React from 'react'
 import configureStore from 'redux-mock-store'
 
-import { shallow } from 'enzyme'
+import { Provider } from 'react-redux'
+import { mount } from 'enzyme'
 
 import App from '../App'
 
@@ -35,9 +36,7 @@ describe('App container', () => {
         }
       }
     })
-    comp = shallow(<App />, {
-      context: { store }
-    })
+    comp = mount(<Provider store={store}><App /></Provider>)
   })
 
   it('provides number of active requests', () => {
@@ -45,7 +44,6 @@ describe('App container', () => {
   })
 
   it('triggers app mounted action on mount', () => {
-    comp.dive()
     expect(store.getActions()).toMatchObject([
       { type: 'APP_MOUNTED' }
     ])

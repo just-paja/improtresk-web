@@ -1,26 +1,14 @@
-import configureMockStore from 'redux-mock-store'
 import React from 'react'
-
-import { shallow } from 'enzyme'
 
 import Fees from '../Fees'
 
-const mockStore = configureMockStore()
+import { renderContainer } from '../../../mock/containers'
 
 describe('Fees container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: []
-      },
-      texts: {}
-    })
-    comp = shallow(<Fees />, {
-      context: { store }
-    })
+    comp = renderContainer(<Fees />)
   })
 
   it('renders fees page', () => {

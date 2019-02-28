@@ -1,23 +1,15 @@
 import React from 'react'
-import configureStore from 'redux-mock-store'
-
-import { shallow } from 'enzyme'
 
 import AccomodationList from '../AccomodationList'
 
+import { renderContainer } from '../../../../mock/containers'
 import { accomodationListFetch } from '../../actions'
-
-const mockStore = configureStore()
 
 describe('AccomodationList container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: ['cs']
-      },
+    comp = renderContainer(<AccomodationList />, {
       accomodation: {
         list: {
           valid: true,
@@ -27,7 +19,8 @@ describe('AccomodationList container', () => {
               createdAt: '2017-03-05T00:00:00',
               name: 'lunch',
               text: 'foo',
-              lang: 'cs'
+              lang: 'cs',
+              photos: []
             }
           ]
         }
@@ -36,34 +29,31 @@ describe('AccomodationList container', () => {
         capacity: {}
       }
     })
-    comp = shallow(<AccomodationList />, {
-      context: { store }
-    })
   })
 
   it('provides list of accomodation', () => {
-    expect(comp.dive().dive().find('AccomodationList')).toHaveProp('accomodationList', [
+    expect(comp.find('AccomodationList')).toHaveProp('accomodationList', [
       {
         id: 20,
         createdAt: '2017-03-05T00:00:00',
         name: 'lunch',
         text: 'foo',
         lang: 'cs',
-        capacityStatus: {}
+        capacityStatus: {},
+        photos: []
       }
     ])
   })
 
   it('dispatches accomodation required action on mount', () => {
-    comp.dive()
-    expect(store.getActions()).toContainEqual(expect.objectContaining({
+    expect(comp.store.getActions()).toContainEqual(expect.objectContaining({
       type: accomodationListFetch.SUBSCRIBE
     }))
   })
 
   it('dispatches accomodation left on unmount', () => {
-    comp.dive().unmount()
-    expect(store.getActions()).toContainEqual(expect.objectContaining({
+    comp.unmount()
+    expect(comp.store.getActions()).toContainEqual(expect.objectContaining({
       type: accomodationListFetch.UNSUBSCRIBE
     }))
   })

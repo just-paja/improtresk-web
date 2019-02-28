@@ -1,21 +1,14 @@
 import React from 'react'
-import configureStore from 'redux-mock-store'
-
-import { shallow } from 'enzyme'
 
 import TipList from '../TipList'
 
-const mockStore = configureStore()
+import { renderContainer } from '../../../../mock/containers'
 
 describe('TipList container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: ['cs']
-      },
+    const state = {
       texts: {
         tips: {
           valid: true,
@@ -25,32 +18,31 @@ describe('TipList container', () => {
               createdAt: '2017-03-05T00:00:00',
               name: 'lunch',
               text: 'foo',
-              lang: 'cs'
+              lang: 'cs',
+              photos: []
             }
           ]
         }
       }
-    })
-    comp = shallow(<TipList />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<TipList />, state)
   })
 
   it('provides list of tips', () => {
-    expect(comp.dive().dive().find('TipList')).toHaveProp('tips', [
+    expect(comp.find('TipList')).toHaveProp('tips', [
       {
         id: 20,
         createdAt: '2017-03-05T00:00:00',
         name: 'lunch',
         text: 'foo',
-        lang: 'cs'
+        lang: 'cs',
+        photos: []
       }
     ])
   })
 
   it('dispatches tips required action on mount', () => {
-    comp.dive()
-    expect(store.getActions()).toContainEqual(expect.objectContaining({
+    expect(comp.store.getActions()).toContainEqual(expect.objectContaining({
       type: 'TIPS_REQUIRED'
     }))
   })

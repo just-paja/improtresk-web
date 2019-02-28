@@ -1,23 +1,16 @@
 import React from 'react'
-import configureStore from 'redux-mock-store'
-
-import { shallow } from 'enzyme'
 
 import { performerDetailFetch } from '../../actions'
 
 import PerformerDetail from '../PerformerDetail'
 
-const mockStore = configureStore()
+import { renderContainer } from '../../../../mock/containers'
 
 describe('PerformerDetail container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: ['cs']
-      },
+    const state = {
       performers: {
         detail: {
           valid: true,
@@ -27,32 +20,36 @@ describe('PerformerDetail container', () => {
             name: 'lunch',
             text: 'foo',
             lang: 'cs',
+            links: [],
             photos: [
               {
                 id: 10,
-                image: '/images/10.jpg'
+                image: '/images/10.jpg',
+                width: 640,
+                height: 480
               }
             ]
           }
         }
       }
-    })
-    comp = shallow(<PerformerDetail resourceId='20000-zidu-pod-morem-3154' />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<PerformerDetail resourceId='20000-zidu-pod-morem-3154' />, state)
   })
 
   it('provides list of news', () => {
-    expect(comp.dive().dive().find('PerformerDetail')).toHaveProp('performer', {
+    expect(comp.find('PerformerDetail')).toHaveProp('performer', {
       id: 20,
       createdAt: '2017-03-05T00:00:00',
       name: 'lunch',
       text: 'foo',
       lang: 'cs',
+      links: [],
       photos: [
         {
           id: 10,
-          image: '/images/10.jpg'
+          image: '/images/10.jpg',
+          width: 640,
+          height: 480
         }
       ],
       frontImage: '/images/10.jpg'
@@ -60,8 +57,7 @@ describe('PerformerDetail container', () => {
   })
 
   it('dispatches news required action on mount', () => {
-    comp.dive()
-    expect(store.getActions()).toContainEqual(expect.objectContaining({
+    expect(comp.store.getActions()).toContainEqual(expect.objectContaining({
       type: performerDetailFetch.TRIGGER,
       payload: '20000-zidu-pod-morem-3154'
     }))

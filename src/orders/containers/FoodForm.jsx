@@ -48,6 +48,4 @@ const container = mapProgress(connect(mapStateToProps, mapDispatchToProps)(formC
   onResourceChange: requireOrderResources
 })
 
-container.displayName = 'ContainerProgress(Connect(FoodForm))'
-
 export default container

@@ -1,21 +1,14 @@
 import React from 'react'
-import configureStore from 'redux-mock-store'
-
-import { shallow } from 'enzyme'
 
 import WorkshopList from '../WorkshopList'
 
-const mockStore = configureStore()
+import { renderContainer } from '../../../../mock/containers'
 
 describe('WorkshopList container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: ['cs']
-      },
+    const state = {
       workshops: {
         difficulties: {
           data: []
@@ -49,14 +42,12 @@ describe('WorkshopList container', () => {
           data: []
         }
       }
-    })
-    comp = shallow(<WorkshopList to='foo' />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<WorkshopList to='foo' />, state)
   })
 
   it('provides list of workshops', () => {
-    expect(comp.dive().dive().find('WorkshopList')).toHaveProp('workshops', [
+    expect(comp.find('WorkshopList')).toHaveProp('workshops', [
       {
         capacityStatus: {},
         createdAt: '2017-03-05T00:00:00',
@@ -71,15 +62,14 @@ describe('WorkshopList container', () => {
   })
 
   it('dispatches workshops required action on mount', () => {
-    comp.dive()
-    expect(store.getActions()).toContainEqual(expect.objectContaining({
+    expect(comp.store.getActions()).toContainEqual(expect.objectContaining({
       type: 'WORKSHOPS_INTERACTIVE_REQUIRED'
     }))
   })
 
   it('dispatches workshops left action on unmount', () => {
-    comp.dive().unmount()
-    expect(store.getActions()).toContainEqual(expect.objectContaining({
+    comp.unmount()
+    expect(comp.store.getActions()).toContainEqual(expect.objectContaining({
       type: 'WORKSHOPS_LEFT'
     }))
   })

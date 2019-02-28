@@ -1,23 +1,17 @@
 import React from 'react'
 
-import { shallow } from 'enzyme'
-
-import mockStore from '../../../../mock/store'
 import NewPasswordForm from '../NewPasswordForm'
 
+import { renderContainer } from '../../../../mock/containers'
+
 describe('NewPasswordForm container', () => {
-  let store
   let comp
 
   beforeEach(() => {
-    store = mockStore()
-    comp = shallow(
-      <NewPasswordForm />,
-      { context: { store } }
-    )
+    comp = renderContainer(<NewPasswordForm />)
   })
 
   it('provides form name', () => {
-    expect(comp.dive()).toHaveProp('form', 'FORM_NEW_PASSWORD')
+    expect(comp.find('ReduxForm').first()).toHaveProp('form', 'FORM_NEW_PASSWORD')
   })
 })

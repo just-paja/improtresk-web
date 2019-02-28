@@ -1,25 +1,14 @@
-import configureMockStore from 'redux-mock-store'
 import React from 'react'
-
-import { shallow } from 'enzyme'
 
 import Schedule from '../Schedule'
 
-const mockStore = configureMockStore()
+import { renderContainer } from '../../../mock/containers'
 
 describe('Schedule container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: []
-      }
-    })
-    comp = shallow(<Schedule />, {
-      context: { store }
-    })
+    comp = renderContainer(<Schedule />)
   })
 
   it('provides translate method', () => {

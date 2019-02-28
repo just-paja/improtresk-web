@@ -66,8 +66,9 @@ const getAppRoutes = () => {
 }
 
 class App extends Component {
-  componentWillMount () {
-    this.props.onMount()
+  constructor (props) {
+    super(props)
+    props.onMount()
   }
 
   render () {

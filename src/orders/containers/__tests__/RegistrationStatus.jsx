@@ -1,28 +1,16 @@
 import React from 'react'
-import configureStore from 'redux-mock-store'
-
-import { shallow } from 'enzyme'
 
 import { orderListFetch } from '../../actions'
 
 import RegistrationStatus from '../RegistrationStatus'
 
-const mockStore = configureStore()
+import { renderContainer } from '../../../../mock/containers'
 
 describe('RegistrationStatus container', () => {
   let comp
-  let store
 
   beforeEach(() => {
-    store = mockStore({
-      locale: {
-        languages: ['cs']
-      },
-      accomodation: {
-        list: {
-          data: []
-        }
-      },
+    const state = {
       food: {
         list: {
           valid: true,
@@ -41,7 +29,9 @@ describe('RegistrationStatus container', () => {
             {
               id: 10,
               year: 10,
-              reservation: {},
+              reservation: {
+                endsAt: '2018-04-14T00:00:00'
+              },
               price: 200,
               symvar: '22323',
               createdAt: '2018-03-14T00:00:00'
@@ -74,23 +64,24 @@ describe('RegistrationStatus container', () => {
               id: 10,
               current: true,
               year: '2018',
-              startDate: '2018-05-05'
+              startDate: '2018-05-05',
+              endDate: '2018-05-09'
             }
           ],
           valid: true
         }
       }
-    })
-    comp = shallow(<RegistrationStatus />, {
-      context: { store }
-    })
+    }
+    comp = renderContainer(<RegistrationStatus />, state)
   })
 
   it('provides active order', () => {
-    expect(comp.dive().dive().find('RegistrationStatus')).toHaveProp('activeOrder', {
+    expect(comp.find('RegistrationStatus')).toHaveProp('activeOrder', {
       id: 10,
       assigned: false,
-      reservation: {},
+      reservation: {
+        endsAt: '2018-04-14T00:00:00'
+      },
       price: 200,
       remainingPrice: 200,
       symvar: '22323',
@@ -102,14 +93,14 @@ describe('RegistrationStatus container', () => {
         id: 10,
         current: true,
         year: '2018',
-        startDate: '2018-05-05'
+        startDate: '2018-05-05',
+        endDate: '2018-05-09'
       }
     })
   })
 
   it('dispatches meals required action on mount', () => {
-    comp.dive()
-    expect(store.getActions()).toContainEqual(expect.objectContaining({
+    expect(comp.store.getActions()).toContainEqual(expect.objectContaining({
       type: orderListFetch.TRIGGER
     }))
   })
