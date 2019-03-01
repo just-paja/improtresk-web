@@ -1,5 +1,6 @@
 export const FORM_ORDER = 'FORM_ORDER'
 export const ORDER_CANCEL = 'ORDER_CANCEL'
+export const ORDER_CHANGE = 'ORDER_CHANGE'
 export const ORDER_CONFIRM = 'ORDER_CONFIRM'
 export const ORDER_CONFIRMED = 'ORDER_CONFIRMED'
 export const ORDER_CREATED = 'ORDER_CREATED'
