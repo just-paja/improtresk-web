@@ -82,7 +82,7 @@ export const getStore = (req) => {
       isMobile: ['phone', 'gtablet'].indexOf(req.device.type) > -1
     },
     server: {
-      host: req.hostname,
+      host: req.headers.host,
       protocol: req.protocol,
       pathLang: req.path.split('/')[1] || null,
       entryPath: req.path,
