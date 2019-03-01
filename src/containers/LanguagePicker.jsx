@@ -7,8 +7,10 @@ import * as locales from '../locales'
 
 import LanguagePicker from '../components/LanguagePicker'
 
-const mapStateToProps = state => ({
-  pathName: typeof window === 'undefined' || !window ? 'home' : getUrlName(getLang(state), window.location.pathname) || 'home',
+const mapStateToProps = (state) => ({
+  pathName: (typeof window === 'undefined' || !window
+    ? getUrlName(getLang(state), state.server.entryPath)
+    : getUrlName(getLang(state), window.location.pathname)) || 'home',
   availableLangs: Object.keys(locales),
   selectedLang: getLang(state)
 })
