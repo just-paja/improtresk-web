@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { Router, Route } from 'react-router'
 
+import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootswatch/dist/cyborg/bootstrap.min.css'
 
 import App from '../containers/App'

@@ -80,23 +80,8 @@
   width: 100%;
   z-index: 1;
   text-shadow:
-    rgb(197,229,246) 0 0 2px,
-    rgb(197,229,246) 0 0 2rem,
-    #1d80b6 0 0 3rem,
-    rgb(197,229,246) 0 0 4rem,
-    #1d80b6 0 0 5rem,
-    #1d80b6 0 0 6rem,
-    #1d80b6 0 0 7rem,
-    #1d80b6 0 0 8rem,
-    #1d80b6 0 0 9rem,
-    #1d80b6 0 0 10rem,
-    #1d80b6 0 0 11rem,
     #1d80b6 0 0 12rem,
     #ffffff 0 0 13rem,
-    #1d80b6 0 0 14rem,
-    #1d80b6 0 0 15rem,
-    #1d80b6 0 0 16rem,
-    #1d80b6 0 0 17rem,
     #1d80b6 0 0 20rem;
 }
 

@@ -1,5 +1,6 @@
 import path from 'path'
 import webpack from 'webpack'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 export const globalOptions = {
   resolve: {
@@ -9,6 +10,14 @@ export const globalOptions = {
 
 export const serverEntry = path.resolve(__dirname, '../src/server/main.js')
 export const frontendEntry = path.resolve(__dirname, '../src/web/main.jsx')
+
+export const cssExtract = {
+  plugin: new MiniCssExtractPlugin({
+    filename: '[name].css',
+    chunkFilename: '[id].css'
+  }),
+  loader: MiniCssExtractPlugin.loader
+}
 
 export const frontendPlugins = [
   new webpack.ContextReplacementPlugin(/moment[/]locale$/, /^\.\/(en|cs|ko|ja|zh-cn)$/)
@@ -27,5 +36,24 @@ export const loaders = [
   {
     test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
     loader: 'file-loader'
+  }
+]
+
+const getCssModuleLoaders = (extract, modules) => [
+  extract ? cssExtract.loader : 'style-loader',
+  { loader: 'css-loader', options: { modules, importLoaders: 1 } },
+  'postcss-loader'
+]
+
+export const getCssLoaders = (extract = false) => [
+  {
+    include: /node_modules/,
+    test: /\.css$/,
+    use: getCssModuleLoaders(extract, false)
+  },
+  {
+    exclude: /node_modules/,
+    test: /\.css$/,
+    use: getCssModuleLoaders(extract, true)
   }
 ]

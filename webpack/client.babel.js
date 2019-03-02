@@ -1,14 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import AssetsPlugin from 'assets-webpack-plugin'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import path from 'path'
 import webpack from 'webpack'
 
-import { loaders, globalOptions, frontendEntry, frontendPlugins } from './common'
+import { getCssLoaders, loaders, globalOptions, frontendEntry, frontendPlugins, cssExtract } from './common'
 
 export default {
   ...globalOptions,
+  mode: 'production',
   entry: {
     main: frontendEntry
   },
@@ -18,19 +18,14 @@ export default {
   },
   module: {
     rules: [
-      {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'postcss-loader']
-        })
-      },
+      ...getCssLoaders(true),
       ...loaders
     ]
   },
   optimization: {
     splitChunks: {
-      chunks: 'all'
+      chunks: 'all',
+      maxSize: 512 * 1024
     }
   },
   plugins: [
@@ -41,7 +36,7 @@ export default {
         IS_BROWSER: 'true'
       }
     }),
-    new ExtractTextPlugin('[name].[hash].css'),
+    cssExtract.plugin,
     new AssetsPlugin({
       path: path.resolve(__dirname, '../dist')
     })

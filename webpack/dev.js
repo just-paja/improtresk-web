@@ -1,6 +1,6 @@
 import webpack from 'webpack'
 
-import { loaders, globalOptions, frontendEntry, frontendPlugins } from './common'
+import { getCssLoaders, loaders, globalOptions, frontendEntry, frontendPlugins } from './common'
 
 export default {
   ...globalOptions,
@@ -14,7 +14,6 @@ export default {
     path: '/',
     publicPath: 'http://localhost:3000/assets'
   },
-  devtool: 'eval-source-map',
   module: {
     rules: [
       {
@@ -23,11 +22,8 @@ export default {
         exclude: /node_modules/,
         loader: 'standard-loader'
       },
-      ...loaders,
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader']
-      }
+      ...getCssLoaders(),
+      ...loaders
     ]
   },
   plugins: [
