@@ -13,7 +13,9 @@ export default {
   externals: [nodeExternals()],
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'server.js'
+    filename: 'server.js',
+    library: 'server',
+    libraryTarget: 'commonjs2'
   },
   target: 'node',
   module: {
