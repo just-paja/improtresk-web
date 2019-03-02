@@ -31,14 +31,14 @@ if (process.env.NODE_ENV === 'production') {
   const assetsRaw = JSON.parse(fs.readFileSync(assetsPath))
   Object.keys(assetsRaw)
     .sort((a, b) => {
-      if (a === 'vendor') {
-        return 1
-      }
-      if (b === 'vendor') {
-        return 1
-      }
       if (a === b) {
         return 0
+      }
+      if (a.indexOf('vendor') !== -1) {
+        return -1
+      }
+      if (b.indexOf('vendor') !== -1) {
+        return -1
       }
       return -1
     })
@@ -104,6 +104,7 @@ export const getStore = (req) => {
 }
 
 export const renderMarkupAndWait = (req, store, componentTree) => {
+  logger.info(`render: sagas: started for ${req.url}`)
   const rootTask = store.sagaMiddleware.run(serverSagas)
   let resolved = false
   let resolveRender
@@ -115,9 +116,10 @@ export const renderMarkupAndWait = (req, store, componentTree) => {
   store.subscribe(() => {
     if (!resolved) {
       const progress = getAppProgress(store.getState())
-      logger.debug('READY STATE UPDATE', progress)
+      logger.debug('render: state: ready update', progress)
       if ((progress.failed || progress.valid) && !progress.loading) {
         if (progress.failed) {
+          logger.debug('render: progress failure')
           logger.error(progress.errors)
         }
         resolved = true
@@ -126,25 +128,26 @@ export const renderMarkupAndWait = (req, store, componentTree) => {
           store.dispatch(END)
         }, 5)
         resolveRender()
-        logger.debug('SAGAS READY')
+        logger.debug('render: sagas: finished')
       }
     }
   })
   store.dispatch({ type: 'SILLY_INIT' })
 
-  logger.debug(`INITIAL RENDER: ${req.url}`)
+  logger.info(`render: initial for: ${req.url}`)
   try {
     renderToString(componentTree)
   } catch (error) {
+    logger.debug(`render: failed initial for ${req.url}`)
     logger.error(error)
     return Promise.reject(error)
   }
-  logger.debug(`WAIT FOR STORE: ${req.url}`)
+  logger.info(`render: waiting for store: ${req.url}`)
   return Promise.all([
     waitForConfig,
     rootTask.done
   ]).then(() => {
-    logger.debug(`REACT RENDER STRING: ${req.url}`)
+    logger.info(`render: final for: ${req.url}`)
     return ({
       markup: renderToString(componentTree),
       state: store.getState()
@@ -164,13 +167,14 @@ export const renderInHtml = (markupAndState) => {
 
 export const respondWithHtml = (req, res, markupAndState, routerContext) => {
   if (routerContext && routerContext.action === 'REPLACE' && req.url !== routerContext.url) {
-    logger.debug('REDIRECT', req.url, routerContext.url)
+    logger.debug(`respond for ${req.url} ${routerContext.url}`)
     return res.redirect(routerContext.url)
   }
-  logger.debug('REACT RENDER STATIC', req.url)
+  logger.debug(`respond with static for ${req.url}`)
   try {
     return res.send(renderInHtml(markupAndState))
   } catch (e) {
+    logger.debug(`error while rendering static markup for ${req.url}`)
     logger.error(e)
   }
 
