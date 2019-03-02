@@ -2,21 +2,20 @@ import fs from 'fs'
 import Helmet from 'react-helmet'
 import path from 'path'
 import React from 'react'
-import { parse as parseLanguages } from 'accept-language-parser'
 
+import { AppContainer } from '../../containers/AppContainer'
 import { END } from 'redux-saga'
+import { getAppProgress } from '../../selectors/app'
+import { PageBase } from '../components/PageBase'
+import { parse as parseLanguages } from 'accept-language-parser'
 import { Provider } from 'react-redux'
 import { renderToString, renderToStaticMarkup } from 'react-dom/server'
+import { serverSagas } from '../../sagas'
 import { StaticRouter } from 'react-router'
 
-import App from '../../containers/App'
 import configure from '../config'
 import configureStore from '../../store'
 import logger from '../logger'
-import pageBase from '../components/pageBase'
-
-import { serverSagas } from '../../sagas'
-import { getAppProgress } from '../../selectors/app'
 
 const assetTypes = ['css', 'js']
 const assets = {
@@ -56,7 +55,7 @@ if (process.env.NODE_ENV === 'production') {
 export const getComponentTree = (req, store, context) => (
   <Provider store={store}>
     <StaticRouter context={context} location={req.url}>
-      <App />
+      <AppContainer />
     </StaticRouter>
   </Provider>
 )
@@ -155,13 +154,15 @@ export const renderMarkupAndWait = (req, store, componentTree) => {
   })
 }
 
-export const renderInHtml = (markupAndState) => {
-  const markup = renderToStaticMarkup(pageBase({
-    helmet: Helmet.rewind(),
-    ...markupAndState,
-    ...assets
-  }))
-
+export const renderInHtml = (markupAndState, lang) => {
+  const markup = renderToStaticMarkup(
+    <PageBase
+      helmet={Helmet.renderStatic()}
+      lang={markupAndState.state.session.locale}
+      {...markupAndState}
+      {...assets}
+    />
+  )
   return `<!DOCTYPE html>${markup}`
 }
 

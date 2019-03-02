@@ -5,7 +5,7 @@ import Message from '../containers/Message'
 
 import styles from './AppCrash.css'
 
-const AppCrash = () => (
+export const AppCrash = () => (
   <div className={styles.container}>
     <div className={styles.dialog}>
       <Alert color='danger'>
@@ -20,5 +20,3 @@ const AppCrash = () => (
     </div>
   </div>
 )
-
-export default AppCrash

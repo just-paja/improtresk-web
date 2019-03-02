@@ -2,13 +2,12 @@ import Analytics from 'react-ga'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
+import { AppContainer } from '../containers/AppContainer'
 import { Provider } from 'react-redux'
 import { Router, Route } from 'react-router'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootswatch/dist/cyborg/bootstrap.min.css'
-
-import App from '../containers/App'
 
 Analytics.initialize('UA-40099806-8')
 
@@ -31,7 +30,7 @@ export default class Root extends Component {
     return (
       <Provider store={store}>
         <Router history={history} >
-          <Route render={() => <App location={history.location} />} />
+          <Route render={() => <AppContainer location={history.location} />} />
         </Router>
       </Provider>
     )

@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import { Route, Switch } from 'react-router-dom'
+import { AppLoader } from './AppLoader'
+import { AppCrash } from './AppCrash'
+import { AppHelmet } from './AppHelmet'
 import { ResourceProgress } from 'react-saga-rest/lib/proptypes'
+import { Route, Switch } from 'react-router-dom'
 
 import Accomodation from '../pages/Accomodation'
-import AppCrash from './AppCrash'
-import AppHelmet from './AppHelmet'
-import AppLoader from './AppLoader'
 import ArchivedYear from '../pages/ArchivedYear'
 import Contact from '../pages/Contact'
 import CrashHandler from './CrashHandler'

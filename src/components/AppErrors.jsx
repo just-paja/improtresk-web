@@ -12,7 +12,7 @@ const mapErrorMessage = (message) => {
   return <Message name='error.unknown' data={{ message }} />
 }
 
-const AppErrors = ({ errors }) => (!errors || errors.length === 0 ? null : (
+export const AppErrors = ({ errors }) => (!errors || errors.length === 0 ? null : (
   <Container>
     <h1><Message name='app.somethingWentWrong' /></h1>
     <p><Message name='app.errorHelp' /></p>
@@ -33,5 +33,3 @@ AppErrors.propTypes = {
 AppErrors.defaultProps = {
   errors: null
 }
-
-export default AppErrors

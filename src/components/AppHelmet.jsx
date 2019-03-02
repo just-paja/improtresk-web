@@ -6,7 +6,7 @@ import { Year } from '../proptypes'
 
 import HelmetTitle from './HelmetTitle'
 
-const AppHelmet = ({
+export const AppHelmet = ({
   host,
   entryPath,
   translate,
@@ -76,5 +76,3 @@ AppHelmet.defaultProps = {
   entryPath: null,
   year: null
 }
-
-export default AppHelmet

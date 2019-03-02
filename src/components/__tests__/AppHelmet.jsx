@@ -1,8 +1,7 @@
 import React from 'react'
 
+import { AppHelmet } from '../AppHelmet'
 import { shallow } from 'enzyme'
-
-import AppHelmet from '../AppHelmet'
 
 describe('AppHelmet component', () => {
   it('renders default title', () => {

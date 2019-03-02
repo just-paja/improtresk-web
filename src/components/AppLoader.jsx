@@ -1,7 +1,5 @@
 import React from 'react'
 
-const AppLoader = () => (
+export const AppLoader = () => (
   <div>Application not ready</div>
 )
-
-export default AppLoader

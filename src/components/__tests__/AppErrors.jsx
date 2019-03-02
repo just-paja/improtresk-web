@@ -1,8 +1,7 @@
 import React from 'react'
 
+import { AppErrors } from '../AppErrors'
 import { shallow } from 'enzyme'
-
-import AppErrors from '../AppErrors'
 
 describe('App Errors component', () => {
   it('renders main heading', () => {

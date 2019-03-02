@@ -3,13 +3,10 @@ import { getTranslate } from 'react-localize-redux'
 
 import App from '../components/App'
 
-import { logout } from '../participants/actions'
-import {
-  countAppRequests,
-  getAppProgress
-} from '../selectors/app'
+import { countAppRequests, getAppProgress } from '../selectors/app'
 import { getHost, getLang } from '../selectors'
 import { getParticipantDetail } from '../participants/selectors'
+import { logout } from '../participants/actions'
 import { yearCurrent, yearsNotCurrent } from '../years/selectors'
 
 import * as actions from '../constants'
@@ -31,4 +28,4 @@ const mapDispatchToProps = {
   onLogout: logout
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App)

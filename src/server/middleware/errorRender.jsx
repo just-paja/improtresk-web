@@ -1,15 +1,11 @@
 import React from 'react'
 
+import { getStore, respondWithHtml } from './renderReact'
 import { renderToString } from 'react-dom/server'
 
 import logger from '../logger'
 import NotFound from '../../pages/NotFound'
 import GeneralError from '../../components/GeneralError'
-
-import {
-  getStore,
-  respondWithHtml
-} from './renderReact'
 
 const templateMap = {
   404: NotFound

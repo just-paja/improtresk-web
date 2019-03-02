@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const pageBase = ({
+export const PageBase = ({
   css,
   js,
   markup,
@@ -42,7 +42,7 @@ const pageBase = ({
   )
 }
 
-pageBase.propTypes = {
+PageBase.propTypes = {
   css: PropTypes.arrayOf(PropTypes.string),
   js: PropTypes.arrayOf(PropTypes.string),
   lang: PropTypes.string.isRequired,
@@ -57,11 +57,11 @@ pageBase.propTypes = {
   }).isRequired
 }
 
-pageBase.defaultProps = {
+PageBase.defaultProps = {
   css: [],
   js: [],
   markup: null,
   state: {}
 }
 
-export default pageBase
+export default PageBase
