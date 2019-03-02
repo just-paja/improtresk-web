@@ -70,7 +70,7 @@ const renderArchiveDropdown = (lang, years) => renderDropDown(
       key={yearRun.id}
       lang={lang}
       to='archiveYearDetail'
-      title={yearRun.topic}
+      title={yearRun.topic || ''}
     >
       <DropdownItem>{yearRun.year} - {yearRun.topic}</DropdownItem>
     </PermaLinkContainer>
