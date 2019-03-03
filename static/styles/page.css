@@ -3,19 +3,12 @@ html, body, #appContent {
   min-width: 320px;
 }
 
+html {
+  font-family: 'Bai Jamjuree', 'Roboto', sans !important;
+}
+
 .app-content {
   min-height: 240px;
-}
-
-@font-face {
-  src: url(/static/theme/2018/fonts/neo-neon-webfont.woff2) format('woff2'),
-    url(/static/theme/2018/fonts/neo-neon-webfont.woff) format('woff');
-  font-family: 'NeoNeon';
-}
-
-body h1,
-body h2 {
-  font-family: 'NeoNeon';
 }
 
 body h1 {

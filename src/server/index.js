@@ -3,9 +3,10 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 
+import { logger } from './logger'
+
 import configure from './config'
 import api from './api'
-import logger from './logger'
 import routerRender from './middleware/routerRender'
 import errorRender from './middleware/errorRender'
 import staticMiddleware from './middleware/static'

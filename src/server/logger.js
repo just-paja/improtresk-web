@@ -13,7 +13,7 @@ const format = winston.format.combine(
   winston.format.timestamp()
 )
 
-export default winston.createLogger({
+export const logger = winston.createLogger({
   level: 'debug',
   format,
   transports: [

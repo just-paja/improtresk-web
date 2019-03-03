@@ -35,5 +35,8 @@ export default {
       }
     }),
     new webpack.HotModuleReplacementPlugin()
-  ]
+  ],
+  node: {
+    fs: 'empty'
+  }
 }

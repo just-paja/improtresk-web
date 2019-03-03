@@ -1,9 +1,9 @@
 import React from 'react'
 
 import { getStore, respondWithHtml } from './renderReact'
+import { logger } from '../logger'
 import { renderToString } from 'react-dom/server'
 
-import logger from '../logger'
 import NotFound from '../../pages/NotFound'
 import GeneralError from '../../components/GeneralError'
 
@@ -14,7 +14,7 @@ const templateMap = {
 const getTemplate = status => templateMap[status] || GeneralError
 
 const handleError = res => error => {
-  logger.info('render error failed')
+  logger.debug('render error failed')
   logger.error(error)
   return res.status(500).send('Internal server errror')
 }
@@ -40,7 +40,7 @@ export default (err, req, res, next) => {
     res.status(404)
   }
 
-  logger.info('render error general')
+  logger.debug('render error general')
   logger.error(err)
 
   try {

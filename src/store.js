@@ -11,6 +11,14 @@ export const sagaMiddleware = createSagaMiddleware()
 const DEVELOPMENT = process.env.NODE_ENV !== 'production' // eslint-disable-line no-undef
 const IS_BROWSER = !!process.env.IS_BROWSER // eslint-disable-line no-undef
 
+const getLogger = () => {
+  try {
+    return require('./server/logger').logger
+  } catch (e) {
+  }
+  return console
+}
+
 export default function configureStore (initialState = {}, history) {
   const middlewares = []
 
@@ -20,19 +28,16 @@ export default function configureStore (initialState = {}, history) {
 
   middlewares.push(sagaMiddleware)
 
-  if (DEVELOPMENT) {
-    if (IS_BROWSER) {
-      middlewares.push(createLogger({
-        collapsed: true,
-        diff: true
-      }))
-    } else {
-      middlewares.push(() => next => (action) => {
-        // eslint-disable-next-line no-console
-        console.log(action.type)
-        next(action)
-      })
-    }
+  if (DEVELOPMENT && IS_BROWSER) {
+    middlewares.push(createLogger({
+      collapsed: true,
+      diff: true
+    }))
+  } else if (!IS_BROWSER) {
+    middlewares.push(() => next => (action) => {
+      getLogger().debug(`store: ${action.type}`)
+      next(action)
+    })
   }
 
   const enhancers = [

@@ -6,6 +6,7 @@ import React from 'react'
 import { AppContainer } from '../../containers/AppContainer'
 import { END } from 'redux-saga'
 import { getAppProgress } from '../../selectors/app'
+import { logger } from '../logger'
 import { PageBase } from '../components/PageBase'
 import { parse as parseLanguages } from 'accept-language-parser'
 import { Provider } from 'react-redux'
@@ -15,7 +16,6 @@ import { StaticRouter } from 'react-router'
 
 import configure from '../config'
 import configureStore from '../../store'
-import logger from '../logger'
 
 const assetTypes = ['css', 'js']
 const assets = {
@@ -103,7 +103,7 @@ export const getStore = (req) => {
 }
 
 export const renderMarkupAndWait = (req, store, componentTree) => {
-  logger.info(`render: sagas: started for ${req.url}`)
+  logger.debug(`render: sagas: started for ${req.url}`)
   const rootTask = store.sagaMiddleware.run(serverSagas)
   let resolved = false
   let resolveRender
@@ -141,12 +141,12 @@ export const renderMarkupAndWait = (req, store, componentTree) => {
     logger.error(error)
     return Promise.reject(error)
   }
-  logger.info(`render: waiting for store: ${req.url}`)
+  logger.debug(`render: waiting for store: ${req.url}`)
   return Promise.all([
     waitForConfig,
     rootTask.done
   ]).then(() => {
-    logger.info(`render: final for: ${req.url}`)
+    logger.debug(`render: final for: ${req.url}`)
     return ({
       markup: renderToString(componentTree),
       state: store.getState()
