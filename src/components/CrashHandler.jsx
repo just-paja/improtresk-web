@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 
+import { AppCrash } from './AppCrash'
 import { Children } from '../proptypes'
-
 import { logError } from '../clientLogger'
-
-import AppCrash from './AppCrash'
 
 export default class CrashHandler extends Component {
   constructor () {
