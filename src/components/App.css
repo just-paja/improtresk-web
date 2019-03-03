@@ -35,6 +35,56 @@
   html {
     font-family: 'Bai Jamjuree', 'Roboto', sans !important;
   }
+
+  html, body, #appContent {
+    height: 100%;
+    min-width: 320px;
+  }
+
+  .app-content {
+    min-height: 240px;
+  }
+
+  body h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  body h1.decent {
+    font-size: 3rem;
+  }
+
+  .card {
+    box-shadow:
+      rgba(42,159,214,.25) 0 0 2px,
+      rgba(42,159,214,.25) 0 0 4rem;
+  }
+
+  .col-wrap {
+    margin-bottom: 1.5rem;
+  }
+
+  @media screen and (max-width: 576px) {
+    body .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    body .card {
+      margin-left: -1rem;
+      margin-right: -1rem;
+    }
+  }
+
+  p:last-child,
+  ul:last-child,
+  .alert:last-child {
+    margin-bottom: 0;
+  }
+
+  .Select {
+    background: transparent !important;
+    padding: 0 !important;
+  }
 }
 
 :local .app {
