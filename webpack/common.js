@@ -42,7 +42,15 @@ export const loaders = [
 const getCssModuleLoaders = (extract, modules) => [
   extract ? cssExtract.loader : 'style-loader',
   { loader: 'css-loader', options: { modules, importLoaders: 1 } },
-  'postcss-loader'
+  {
+    loader: 'postcss-loader',
+    options: {
+      ident: 'postcss',
+      config: {
+        path: path.resolve(__dirname, '..', 'postcss.config.js')
+      }
+    }
+  }
 ]
 
 export const getCssLoaders = (extract = false) => [

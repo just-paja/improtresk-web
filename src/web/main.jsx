@@ -7,6 +7,9 @@ import ReactDOM from 'react-dom'
 
 import { syncHistoryWithStore } from 'react-router-redux'
 
+import 'bootswatch/dist/cyborg/bootstrap.min.css'
+import './theme.css'
+
 import configureStore from '../store'
 import RootDefault from '../components/Root'
 import sagas from '../sagas'

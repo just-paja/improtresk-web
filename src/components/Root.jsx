@@ -26,7 +26,7 @@ export default class Root extends Component {
     const { history, store } = this.props
     return (
       <Provider store={store}>
-        <Router history={history} >
+        <Router history={history}>
           <Route render={() => <AppContainer location={history.location} />} />
         </Router>
       </Provider>
