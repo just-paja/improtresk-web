@@ -20,9 +20,7 @@ import configureStore from '../../store'
 const assetTypes = ['css', 'js']
 const assets = {
   js: [],
-  css: [
-    '/static/theme/styles/page.css'
-  ]
+  css: []
 }
 
 if (process.env.NODE_ENV === 'production') {

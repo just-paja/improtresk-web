@@ -1,4 +1,6 @@
 :global {
+  @import '../../node_modules/bootswatch/dist/cyborg/bootstrap.min.css'
+
   /* latin-ext */
   @font-face {
     font-family: 'Bai Jamjuree';

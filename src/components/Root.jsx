@@ -6,9 +6,6 @@ import { AppContainer } from '../containers/AppContainer'
 import { Provider } from 'react-redux'
 import { Router, Route } from 'react-router'
 
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootswatch/dist/cyborg/bootstrap.min.css'
-
 Analytics.initialize('UA-40099806-8')
 
 const handleHistoryChange = (location) => {

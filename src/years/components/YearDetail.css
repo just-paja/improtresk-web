@@ -64,25 +64,6 @@
   transform: translateZ(0);
   z-index: 2;
 }
-:local .topic:before {
-  border-radius: 4rem;
-  color: transparent;
-  content: 'Otevreno nonstop';
-  display: block;
-  font-size: 4rem;
-  font-weight: 400;
-  left: 0;
-  margin: 0 auto;
-  position: absolute;
-  top: 0;
-  transform: translateZ(0);
-  width: 100%;
-  z-index: 1;
-  text-shadow:
-    #1d80b6 0 0 12rem,
-    #ffffff 0 0 13rem,
-    #1d80b6 0 0 20rem;
-}
 
 :local .upcomingDate {
   font-size: 24px;

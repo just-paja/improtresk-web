@@ -40,5 +40,8 @@ export default {
     new AssetsPlugin({
       path: path.resolve(__dirname, '../dist')
     })
-  ]
+  ],
+  node: {
+    fs: 'empty'
+  }
 }
