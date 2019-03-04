@@ -36,6 +36,7 @@
     "@babel/node": "^7.2.2",
     "@babel/runtime": "^7.3.4",
     "accept-language-parser": "^1.5.0",
+    "babel-runtime": "^6.26.0",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.0.0",
     "bootswatch": "^4.0.0",
