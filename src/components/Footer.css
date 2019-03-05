@@ -1,6 +1,23 @@
 :local .footer {
   padding: 1rem 0 1rem;
-  border-top: 1px solid #111;
+  position: relative;
+  padding-top: 200px;
+}
+
+:local .footer:before {
+  content: ' ';
+  display: block;
+  background-image: url(../../static/2019/mesto.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  padding-top: 500px;
+  position: absolute;
+  left:0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  pointer-events: none;
 }
 
 :local .social {
@@ -9,4 +26,10 @@
 
 :local .social li {
   margin-right: .5rem;
+}
+
+:local .wrapper {
+  background: #fff;
+  position: relative;
+  z-index: 1000;
 }

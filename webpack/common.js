@@ -34,7 +34,7 @@ export const loaders = [
     loader: 'url-loader?limit=10000&minetype=application/font-woff'
   },
   {
-    test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+    test: /\.(png|jpg|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
     loader: 'file-loader'
   }
 ]
