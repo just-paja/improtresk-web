@@ -1,5 +1,6 @@
 :local .container {
-  padding: 4rem 0 1rem;
+  margin-top: 2rem;
+  padding: 0.5rem 0 1.5rem;
   position: relative;
   background: rgba(6,6,6,.25);
 }

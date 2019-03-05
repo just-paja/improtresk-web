@@ -1,6 +1,6 @@
 :local .app {
   min-height: 100%;
-  padding-top: 6rem;
+  padding-top: 4rem;
   background-color: #000;
   background-image: url(../../static/2019/texture.png);
   background-repeat: repeat;
