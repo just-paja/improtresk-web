@@ -1,32 +1,7 @@
 :local .container {
-  padding: 6rem 0 1rem;
+  padding: 4rem 0 1rem;
   position: relative;
-  background: #060606;
-  min-height: 377px;
-}
-
-:local .textOverlay {
-  position: absolute;
-  z-index: 1;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-}
-
-:local .textOverlayHorizontalLimit {
-  position: relative;
-  max-width: 650px;
-  height: 100%;
-  margin: 0 auto;
-}
-
-:local .textOverlayBackground {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
+  background: rgba(6,6,6,.25);
 }
 
 @media(min-width: 1350px) {
@@ -84,10 +59,4 @@
 :local .text h1 {
   padding: 0 2rem;
   font-size: 4rem;
-}
-
-:local .year {
-  position: relative;
-  top: -4rem;
-  margin: 0 -1rem;
 }
