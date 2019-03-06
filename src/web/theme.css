@@ -86,16 +86,16 @@ body h1.decent {
 }
 
 p:last-child,
-ul:last-child,
-.alert:last-child {
+ul:last-child {
   margin-bottom: 0;
 }
 
-.Select {
+:global .Select {
   background: transparent !important;
   padding: 0 !important;
+  border: 0 !important;
 }
 
-.card {
+:global .card {
   background-color: rgba(6,6,6,.2);
 }
