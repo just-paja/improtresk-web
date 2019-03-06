@@ -95,3 +95,7 @@ ul:last-child,
   background: transparent !important;
   padding: 0 !important;
 }
+
+.card {
+  background-color: rgba(6,6,6,.2);
+}
