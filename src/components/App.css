@@ -2,7 +2,7 @@
   min-height: 100%;
   padding-top: 4rem;
   background-color: #000;
-  background-image: url(../../static/2019/texture.png);
+  background-image: radial-gradient(at top,rgba(35,57,66,0.7), rgba(35,57,66,0)), url(../../static/2019/texture.png);
   background-repeat: repeat;
   background-position: center top;
 }
