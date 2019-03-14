@@ -48,7 +48,7 @@ const RegistrationStatus = ({
     if (!moment().isBefore(registrationsCloseDate)) {
       return (
         <Alert color='warning'>
-          <Message name='orders.registrationClosed' />
+          <Message name='participants.signupsAlreadyClosed' />
         </Alert>
       )
     }
