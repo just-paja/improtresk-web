@@ -1,6 +1,6 @@
 {
   "name": "improtresk-web",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Website app for Improtřesk festival, Czech improvisation festival",
   "main": "dist/server.js",
   "private": true,
