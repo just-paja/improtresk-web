@@ -63,7 +63,7 @@ const SignupButton = ({
           {' '}
           <HumanDate date={startAt} showTime />
         </Alert>
-        : <LinkContainer to='signup'>
+        : <LinkContainer to='participantRegister'>
           <Button disabled={disabled} color='primary'>
             <Message name={textButton} />
           </Button>
