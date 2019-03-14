@@ -26,7 +26,7 @@ describe('RegistrationStatus component', () => {
         activeOrder={null}
       />
     )
-    expect(comp.find('RegisterButton')).toHaveLength(1)
+    expect(comp.find('Connect(SignupButton)')).toHaveLength(1)
   })
 
   it('does not render registration button when user has no order and registrations are closed', () => {
@@ -38,7 +38,7 @@ describe('RegistrationStatus component', () => {
         activeOrder={null}
       />
     )
-    expect(comp.find('RegisterButton')).toHaveLength(0)
+    expect(comp.find('Connect(SignupButton)')).toHaveLength(0)
   })
 
   it('renders registrations countdown when user has no order', () => {
