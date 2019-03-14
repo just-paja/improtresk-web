@@ -58,16 +58,18 @@ const OrderForm = ({
       </Col>
       <Col xs={12} xl={6}>
         <Row>
-          <Col xs={12} md={6} xl={12}>
-            <h3><Message name='orders.food' /></h3>
-            <p><Message name='orders.foodHelp' /></p>
-            <Field
-              component={MealPicker}
-              foodPickCloseDate={foodPickCloseDate}
-              meals={meals}
-              name='meals'
-            />
-          </Col>
+          {meals.length > 0 ? (
+            <Col xs={12} md={6} xl={12}>
+              <h3><Message name='orders.food' /></h3>
+              <p><Message name='orders.foodHelp' /></p>
+              <Field
+                component={MealPicker}
+                foodPickCloseDate={foodPickCloseDate}
+                meals={meals}
+                name='meals'
+              />
+            </Col>
+          ) : null}
           <Col xs={12} md={6} xl={12}>
             <h3><Message name='orders.accomodation' /></h3>
             <p><Message name='orders.accomodationHelp' /></p>
