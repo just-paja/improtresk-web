@@ -20,7 +20,7 @@ import PaymentDetails from './PaymentDetails'
 import Price from '../../components/Price'
 import Prop from '../../components/Prop'
 import QrCheckinLink from '../containers/QrCheckinLink'
-import RegisterButton from './RegisterButton'
+import SignupButton from '../../participants/containers/SignupButton'
 import SignupCountdown from '../../years/containers/SignupCountdown'
 
 const renderOrderStatusProp = (order) => {
@@ -58,7 +58,7 @@ const RegistrationStatus = ({
           <Message name='orders.notRegisteredToWorkshop' />
         </Alert>
         <p><SignupCountdown /></p>
-        <RegisterButton />
+        <SignupButton />
       </div>
     )
   }
