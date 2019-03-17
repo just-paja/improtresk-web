@@ -4,11 +4,10 @@ import React from 'react'
 import styles from './ScheduleHour.css'
 
 const ScheduleHour = ({ hour, rowHeight }) => (
-  <div
-    style={{ minHeight: rowHeight }}
-    className={styles.row}
-  >
-    {hour}
+  <div style={{ minHeight: rowHeight }}>
+    <span className={styles.row}>
+      {hour}
+    </span>
   </div>
 )
 

@@ -74,15 +74,13 @@ const ScheduleOverview = ({
   return (
     <div className={styles.container}>
       <Row className={styles.agenda}>
-        <Col sm={0} lg={1} className={classnames(styles.hours, styles.hourStretch, 'd-none', 'd-lg-block')}>
-          <ScheduleHours
-            max={maxHour}
-            min={minHour}
-            rowHeight={rowHeight}
-            timeSkips={timeSkips}
-          />
-        </Col>
-        <Col sm={12} lg={11} className={styles.days}>
+        <ScheduleHours
+          max={maxHour}
+          min={minHour}
+          rowHeight={rowHeight}
+          timeSkips={timeSkips}
+        />
+        <Col sm={12} lg={{ offset: 1, size: 11 }} className={styles.days}>
           <Row className={styles.daysOverlay}>
             {days}
           </Row>

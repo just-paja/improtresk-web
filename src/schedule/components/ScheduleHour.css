@@ -1,3 +1,6 @@
 :local .row {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid rgba(6,6,6,.25);
+  position: absolute;
+  width: 100%;
+  z-index: 0
 }
