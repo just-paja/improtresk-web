@@ -96,6 +96,7 @@ ul:last-child {
   border: 0 !important;
 }
 
+:global .breadcrumb,
 :global .card,
 :global .list-group-item {
   background-color: rgba(6,6,6,.2);
