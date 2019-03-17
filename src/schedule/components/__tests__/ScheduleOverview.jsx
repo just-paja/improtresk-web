@@ -73,8 +73,8 @@ describe('ScheduleOverview component', () => {
     )
 
     expect(comp.find('ScheduleHours').at(0).props()).toMatchObject({
-      min: 7,
-      max: 11,
+      min: 8,
+      max: 10,
       rowHeight: 2
     })
   })

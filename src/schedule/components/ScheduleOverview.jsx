@@ -41,7 +41,8 @@ const ScheduleOverview = ({
     }
   })
 
-  minHour = Math.max(0, minHour - 1)
+  minHour = Math.max(0, minHour)
+  maxHour -= 1
   const dayLength = Math.abs(currentDate.diff(year.endDate, 'days')) + 1
 
   while (!currentDate.isAfter(year.endDate)) {
