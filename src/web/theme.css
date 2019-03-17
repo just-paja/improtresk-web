@@ -96,6 +96,14 @@ ul:last-child {
   border: 0 !important;
 }
 
-:global .card {
+:global .card,
+:global .list-group-item {
   background-color: rgba(6,6,6,.2);
+  border-color: rgba(66,66,66,.2);
+  cursor: default;
+}
+
+:global .list-group-item:hover {
+  background-color: rgba(200,200,200,.15);
+  text-decoration: none;
 }
