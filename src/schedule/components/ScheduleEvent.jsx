@@ -7,6 +7,15 @@ import HumanTimeRange from '../../components/HumanTimeRange'
 
 import styles from './ScheduleEvent.css'
 
+const getEventPosition = (startAt, minHour, timeSkips) => {
+  const start = moment(startAt)
+  return (
+    (start.hours() + (start.minutes() / 60)) -
+    minHour -
+    timeSkips.filter(skip => skip < start.hours()).length
+  )
+}
+
 const ScheduleEvent = ({
   crossing,
   crossingPosition,
@@ -17,14 +26,13 @@ const ScheduleEvent = ({
   performer,
   rowHeight,
   startAt,
-  workshops
+  workshops,
+  timeSkips
 }) => {
   const minHeight = Math.max(0.5, moment(endAt).diff(startAt, 'minutes') / 60) * rowHeight
   const crossingUnit = 100 / (crossing + 1)
   const width = `${crossingUnit - 1}%`
-  const top = (
-    (moment(startAt).hours() + (moment(startAt).minutes() / 60)) - minHour
-  ) * rowHeight
+  const top = getEventPosition(startAt, minHour, timeSkips) * rowHeight
   const left = `${crossingPosition * crossingUnit}%`
   const image = performer && performer.frontImage
     ? performer.frontImage : null
@@ -74,6 +82,7 @@ ScheduleEvent.propTypes = {
   performer: PropTypes.object,
   rowHeight: PropTypes.number.isRequired,
   startAt: PropTypes.string.isRequired,
+  timeSkips: PropTypes.arrayOf(PropTypes.number),
   workshops: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
@@ -81,7 +90,8 @@ ScheduleEvent.defaultProps = {
   crossing: 0,
   crossingPosition: 0,
   locationName: null,
-  performer: null
+  performer: null,
+  timeSkips: []
 }
 
 export default ScheduleEvent

@@ -3,21 +3,20 @@ import React from 'react'
 
 import ScheduleHour from './ScheduleHour'
 
+import { getNumberRange, unshiftHour } from './range'
+
 import styles from './ScheduleHours.css'
 
-const shiftHour = hour => (hour > 23 ? hour - 23 : hour)
-
-const ScheduleHours = ({ max, min, rowHeight }) => {
-  const hours = []
-  for (let i = min; i <= max; i += 1) {
-    hours.push((
+const ScheduleHours = ({ max, min, rowHeight, timeSkips }) => {
+  const hours = getNumberRange(min, max)
+    .filter(hour => timeSkips.indexOf(hour) === -1)
+    .map(hour => (
       <ScheduleHour
-        key={`${shiftHour(i)}:00`}
-        hour={`${shiftHour(i)}:00`}
+        key={hour}
+        hour={`${unshiftHour(hour)}:00`}
         rowHeight={rowHeight}
       />
     ))
-  }
   return (
     <div className={styles.list}>{hours}</div>
   )
@@ -26,7 +25,12 @@ const ScheduleHours = ({ max, min, rowHeight }) => {
 ScheduleHours.propTypes = {
   max: PropTypes.number.isRequired,
   min: PropTypes.number.isRequired,
-  rowHeight: PropTypes.number.isRequired
+  rowHeight: PropTypes.number.isRequired,
+  timeSkips: PropTypes.arrayOf(PropTypes.number)
+}
+
+ScheduleHours.defaultProps = {
+  timeSkips: []
 }
 
 export default ScheduleHours

@@ -7,7 +7,6 @@
 }
 
 @media (min-width: 992px) {
-  :local .hoursOverlay,
   :local .daysOverlay {
     position: absolute;
     left: 15px;
@@ -18,10 +17,6 @@
 
   :local .day {
     margin-bottom: 0;
-  }
-
-  :local .hourStretch {
-    visibility: hidden;
   }
 
   :local .agenda,

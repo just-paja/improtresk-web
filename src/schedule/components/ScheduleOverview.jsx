@@ -7,6 +7,7 @@ import React from 'react'
 import Row from 'reactstrap/lib/Row'
 
 import { Year } from '../../proptypes'
+import { getNumberRange, isInEvent, shiftHour } from './range'
 
 import Message from '../../containers/Message'
 import ScheduleHours from './ScheduleHours'
@@ -14,7 +15,22 @@ import ScheduleDay from './ScheduleDay'
 
 import styles from './ScheduleOverview.css'
 
-const shiftHour = hour => (hour < 6 ? hour + 23 : hour)
+const getMinHour = events => Math.max(
+  0,
+  events
+    .map(event => shiftHour(moment(event.startAt).hours()))
+    .reduce((min, hour) => min > hour ? hour : min)
+)
+
+const getMaxHour = events => (
+  events
+    .map(event => shiftHour(moment(event.endAt).hours()))
+    .reduce((max, hour) => max < hour ? hour : max)
+) - 1
+
+const getTimeSkips = (events, minHour, maxHour) =>
+  getNumberRange(minHour, maxHour)
+    .filter(hour => !events.some(isInEvent(hour)))
 
 const ScheduleOverview = ({
   year,
@@ -27,22 +43,9 @@ const ScheduleOverview = ({
 
   const days = []
   const currentDate = moment(year.startDate)
-  let minHour
-  let maxHour
-
-  events.forEach((event) => {
-    const eventStartAt = shiftHour(moment(event.startAt).hours())
-    const eventEndAt = shiftHour(moment(event.endAt).hours())
-    if (!minHour || minHour > eventStartAt) {
-      minHour = eventStartAt
-    }
-    if (!maxHour || maxHour < eventEndAt) {
-      maxHour = eventEndAt
-    }
-  })
-
-  minHour = Math.max(0, minHour)
-  maxHour -= 1
+  const minHour = getMinHour(events)
+  const maxHour = getMaxHour(events)
+  const timeSkips = getTimeSkips(events, minHour, maxHour)
   const dayLength = Math.abs(currentDate.diff(year.endDate, 'days')) + 1
 
   while (!currentDate.isAfter(year.endDate)) {
@@ -61,6 +64,7 @@ const ScheduleOverview = ({
           maxHour={maxHour}
           minHour={minHour}
           rowHeight={rowHeight}
+          timeSkips={timeSkips}
         />
       </Col>
     ))
@@ -75,13 +79,7 @@ const ScheduleOverview = ({
             max={maxHour}
             min={minHour}
             rowHeight={rowHeight}
-          />
-        </Col>
-        <Col sm={0} lg={1} className={classnames(styles.hours, styles.hoursOverlay, 'd-none', 'd-lg-block')}>
-          <ScheduleHours
-            max={maxHour}
-            min={minHour}
-            rowHeight={rowHeight}
+            timeSkips={timeSkips}
           />
         </Col>
         <Col sm={12} lg={11} className={styles.days}>

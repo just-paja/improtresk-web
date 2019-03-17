@@ -21,4 +21,18 @@ describe('ScheduleHours component', () => {
     expect(hours.filter({ hour: '12:00' })).toHaveLength(1)
     expect(hours.filter({ hour: '13:00' })).toHaveLength(1)
   })
+
+  it('does not render skipped hours', () => {
+    const comp = shallow(
+      <ScheduleHours
+        max={13}
+        min={9}
+        rowHeight={2}
+        timeSkips={[10, 11]}
+      />
+    )
+    const hours = comp.find('ScheduleHour')
+    expect(hours.filter({ hour: '10:00' })).toHaveLength(0)
+    expect(hours.filter({ hour: '11:00' })).toHaveLength(0)
+  })
 })

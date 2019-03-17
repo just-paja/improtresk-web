@@ -37,7 +37,8 @@ const ScheduleDay = ({
   date,
   events,
   minHour,
-  rowHeight
+  rowHeight,
+  timeSkips
 }) => {
   const crossings = {}
 
@@ -67,6 +68,7 @@ const ScheduleDay = ({
               rowHeight={rowHeight}
               startAt={event.startAt}
               workshops={event.workshops}
+              timeSkips={timeSkips}
             />
           )
         })}
@@ -79,7 +81,12 @@ ScheduleDay.propTypes = {
   date: PropTypes.string.isRequired,
   events: PropTypes.arrayOf(PropTypes.object).isRequired,
   minHour: PropTypes.number.isRequired,
-  rowHeight: PropTypes.number.isRequired
+  rowHeight: PropTypes.number.isRequired,
+  timeSkips: PropTypes.arrayOf(PropTypes.number)
+}
+
+ScheduleEvent.defaultProps = {
+  timeSkips: []
 }
 
 export default ScheduleDay
