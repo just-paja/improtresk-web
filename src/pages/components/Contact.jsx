@@ -41,8 +41,8 @@ export default class Contact extends Component {
                   </li>
                   <li>
                     <IconMessage fixedWidth icon='phone' name='generic.contactPhone' />:{' '}
-                    Vanda Gabrielová{' '}
-                    <a href='tel:+420 728 376 440'>+420 728 376 440</a>
+                    Jakub Krejčí{' '}
+                    <a href='tel:+420 721 434 532'>+420 721 434 532</a>
                   </li>
                   <li>
                     <IconMessage fixedWidth icon='facebook-official' name='generic.facebook' />:{' '}
