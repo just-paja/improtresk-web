@@ -14,7 +14,7 @@ export default {
     fees: 'Fees',
     feesEmpty: 'We did not publish information about fees yet. Come and check this page again soon.',
     festivalMenu: 'Festival Menu',
-    festivalOrg: 'The festival Improtřesk is administered under <a href="https://improliga.cz">Czech improvisation league z. s.</a> cooperating with <a href="http://www.milevskem.cz/kultura-a-volny-cas/dum-kultury-milevsko/o-nas">DK Milevsko</a>.',
+    festivalOrg: 'The festival Improtřesk is administered under <a href="https://improliga.cz">Czech improvisation league z. s.</a> cooperating with <a href="http://www.odvaz.eu/">Improvisational Theatre Odvaz</a>.',
     food: 'Food',
     forParticipants: 'For Participants',
     howMuchCost: '<b>How much</b> for a ticket?',
