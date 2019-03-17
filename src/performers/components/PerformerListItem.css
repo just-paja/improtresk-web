@@ -9,7 +9,7 @@
 
 :local .title {
   align-items:center;
-  background: rgba(6,6,6,.75);
+  background: rgba(6,6,6,.25);
   bottom: 0;
   display:flex;
   justify-content:center;
@@ -17,7 +17,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  transition: background 0.5s, color 0.5s;
+  transition: background 0.3s, color 0.3s;
 }
 
 :local .text {

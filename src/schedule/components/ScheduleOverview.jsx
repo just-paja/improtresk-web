@@ -1,5 +1,4 @@
 import Alert from 'reactstrap/lib/Alert'
-import classnames from 'classnames'
 import Col from 'reactstrap/lib/Col'
 import moment from 'moment'
 import PropTypes from 'prop-types'

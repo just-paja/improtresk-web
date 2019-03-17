@@ -2,13 +2,9 @@
   background-color: rgba(6,6,6,.2);
 }
 
-:local .withWorkshops {
-  background-color: #1f6b0c;
-  color: #d0d0d0;
-}
-
+:local .withWorkshops,
 :local .withPerformers {
-  background-color: #1b3c58;
+  background-color: rgba(42, 159, 214, .5);
   color: #d0d0d0;
 }
 
