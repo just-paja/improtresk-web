@@ -37,12 +37,13 @@ const OrderForm = ({
         <h3><Message name='orders.workshop' /></h3>
         <p><Message name='orders.workshopHelp' /></p>
         <Field
+          allowEmpty={year.withoutWorkshop}
           component={WorkshopPicker}
           disabled={submitting}
           name='workshop'
           workshops={workshops}
         />
-        {workshopValue ? null : (
+        {year.withoutWorkshop && !workshopValue ? (
           <div>
             <hr />
             <h3><Message name='orders.howLongStay' /></h3>
@@ -54,7 +55,7 @@ const OrderForm = ({
               start={year.startDate}
             />
           </div>
-        )}
+        ) : null}
       </Col>
       <Col xs={12} xl={6}>
         <Row>

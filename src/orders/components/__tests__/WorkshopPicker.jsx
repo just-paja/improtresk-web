@@ -9,6 +9,7 @@ describe('WorkshopPicker component', () => {
   it('renders picker items', () => {
     const comp = shallow((
       <WorkshopPicker
+        allowEmpty
         input={{
           name: 'workshop',
           onChange: () => {},

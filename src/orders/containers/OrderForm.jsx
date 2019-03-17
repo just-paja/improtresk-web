@@ -15,10 +15,13 @@ import { yearActive } from '../../years/selectors'
 import OrderForm from '../components/OrderForm'
 import mapProgress from '../../containers/mapProgress'
 
-const validate = (values) => {
+const validate = (values, props) => {
   const errors = {}
   if (!values.accomodation) {
     errors.accomodation = 'forms.fieldRequired'
+  }
+  if (props.year && !props.year.withoutWorkshop && !values.workshop) {
+    errors.workshop = 'forms.fieldRequired'
   }
   return errors
 }

@@ -7,6 +7,7 @@ import FormErrors from '../../forms/containers/FormErrors'
 import WorkshopPickerItem from './WorkshopPickerItem'
 
 const WorkshopPicker = ({
+  allowEmpty,
   input,
   meta,
   workshops
@@ -36,19 +37,22 @@ const WorkshopPicker = ({
       }
     </ListGroup>
     <hr />
-    <WorkshopPickerItem
-      name='Jedu bez workshopu'
-      selected={!input.value}
-      freeSpots={1000}
-      onChange={input.onChange}
-      lectors={[]}
-      id={null}
-    />
+    {allowEmpty ? (
+      <WorkshopPickerItem
+        name='Jedu bez workshopu'
+        selected={!input.value}
+        freeSpots={1000}
+        onChange={input.onChange}
+        lectors={[]}
+        id={null}
+      />
+    ) : null}
     {meta.touched && meta.error ? (
       <FormFeedback>
         <FormErrors
           errors={meta.error}
           data={{ field: input.name }}
+          label='orders.workshop'
         />
       </FormFeedback>
     ) : null}
@@ -56,9 +60,14 @@ const WorkshopPicker = ({
 )
 
 WorkshopPicker.propTypes = {
+  allowEmpty: PropTypes.bool,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
   workshops: PropTypes.arrayOf(PropTypes.object).isRequired
+}
+
+WorkshopPicker.defaultProps = {
+  allowEmpty: false
 }
 
 export default WorkshopPicker
