@@ -6,7 +6,15 @@
   margin-bottom: 40px;
 }
 
+:local .hours {
+  display: none;
+}
+
 @media (min-width: 992px) {
+  :local .hours {
+    display: block;
+  }
+
   :local .daysOverlay {
     position: absolute;
     left: 15px;

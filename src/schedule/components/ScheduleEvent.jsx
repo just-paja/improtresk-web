@@ -7,13 +7,13 @@ import HumanTimeRange from '../../components/HumanTimeRange'
 
 import styles from './ScheduleEvent.css'
 
-const getEventPosition = (startAt, minHour, timeSkips) => {
+const getEventPosition = (startAt, minHour, timeSkips, rowHeight) => {
   const start = moment(startAt)
   return (
     (start.hours() + (start.minutes() / 60)) -
     minHour -
     timeSkips.filter(skip => skip < start.hours()).length
-  )
+  ) * rowHeight + (timeSkips.filter(skip => skip < start.hours()).length)
 }
 
 const ScheduleEvent = ({
@@ -32,7 +32,7 @@ const ScheduleEvent = ({
   const minHeight = Math.max(0.5, moment(endAt).diff(startAt, 'minutes') / 60) * rowHeight
   const crossingUnit = 100 / (crossing + 1)
   const width = `${crossingUnit - 1}%`
-  const top = getEventPosition(startAt, minHour, timeSkips) * rowHeight
+  const top = getEventPosition(startAt, minHour, timeSkips, rowHeight)
   const left = `${crossingPosition * crossingUnit}%`
   const image = performer && performer.frontImage
     ? performer.frontImage : null

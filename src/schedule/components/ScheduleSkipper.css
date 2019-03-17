@@ -1,0 +1,10 @@
+:local .padd {
+  height: 1px;
+}
+
+:local .row {
+  height: 1px;
+  background-color: rgba(200, 200, 200, .25);
+  position: absolute;
+  width: 100%;
+}
