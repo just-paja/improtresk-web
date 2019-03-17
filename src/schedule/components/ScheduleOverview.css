@@ -2,7 +2,11 @@
   padding-top: 20px;
 }
 
-@media (min-width: 768px) {
+:local .day {
+  margin-bottom: 40px;
+}
+
+@media (min-width: 992px) {
   :local .hoursOverlay,
   :local .daysOverlay {
     position: absolute;
@@ -12,6 +16,10 @@
     width: auto;
   }
 
+  :local .day {
+    margin-bottom: 0;
+  }
+
   :local .hourStretch {
     visibility: hidden;
   }
@@ -19,11 +27,5 @@
   :local .agenda,
   :local .days {
     position: relative;
-  }
-}
-
-@media (max-width: 768px) {
-  :local .day {
-    margin-bottom: 40px;
   }
 }

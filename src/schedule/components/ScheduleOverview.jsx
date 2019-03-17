@@ -42,12 +42,18 @@ const ScheduleOverview = ({
   })
 
   minHour = Math.max(0, minHour - 1)
+  const dayLength = Math.abs(currentDate.diff(year.endDate, 'days')) + 1
 
   while (!currentDate.isAfter(year.endDate)) {
     const dayEvents = events.filter(event => currentDate.isSame(event.startAt, 'day'))
     const dateFormatted = currentDate.format(moment.RFC_8601)
     days.push((
-      <Col xs={12} sm={6} md={4} key={dateFormatted} className={styles.day}>
+      <Col
+        className={styles.day}
+        key={dateFormatted}
+        lg={12 / dayLength}
+        xs={12}
+      >
         <ScheduleDay
           date={dateFormatted}
           events={dayEvents}
@@ -63,21 +69,21 @@ const ScheduleOverview = ({
   return (
     <div className={styles.container}>
       <Row className={styles.agenda}>
-        <Col sm={0} md={1} className={classnames(styles.hours, styles.hourStretch, 'd-none', 'd-md-block')}>
+        <Col sm={0} lg={1} className={classnames(styles.hours, styles.hourStretch, 'd-none', 'd-lg-block')}>
           <ScheduleHours
             max={maxHour}
             min={minHour}
             rowHeight={rowHeight}
           />
         </Col>
-        <Col sm={0} md={1} className={classnames(styles.hours, styles.hoursOverlay, 'd-none', 'd-md-block')}>
+        <Col sm={0} lg={1} className={classnames(styles.hours, styles.hoursOverlay, 'd-none', 'd-lg-block')}>
           <ScheduleHours
             max={maxHour}
             min={minHour}
             rowHeight={rowHeight}
           />
         </Col>
-        <Col sm={12} md={11} className={styles.days}>
+        <Col sm={12} lg={11} className={styles.days}>
           <Row className={styles.daysOverlay}>
             {days}
           </Row>
